@@ -3,8 +3,8 @@
 # ----------------------- #
 
 url: http://chenxiaohui.github.io
-title: Harry Chen
-subtitle: 
+title: CXH.ME
+subtitle: 程序员改变世界
 author: Harry Chen
 simple_search: http://google.com/search
 description:
@@ -19,7 +19,7 @@ date_format: "ordinal"
 subscribe_rss: /atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
-email:
+email: sdqxcxh@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
