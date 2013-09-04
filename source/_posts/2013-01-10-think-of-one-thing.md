@@ -2,6 +2,7 @@
 title: 想起一件事情
 author: Harry Chen
 layout: post
+comments: true
 permalink: /think-of-one-thing/
 mkd_text:
   - |
