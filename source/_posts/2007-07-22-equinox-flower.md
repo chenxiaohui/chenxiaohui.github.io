@@ -2,7 +2,7 @@
 title: 曼殊沙华
 author: Harry Chen
 layout: post
-permalink: /equinox-flower/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: '长度、分隔符加校验的TCP分包设计(C#)'
 author: Harry Chen
 layout: post
-permalink: /tcp-subpackage-design-with-length-separator-and-veryfication/
+
 dsq_thread_id:
   - 1254286443
 categories:

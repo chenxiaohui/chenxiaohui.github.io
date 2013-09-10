@@ -2,7 +2,7 @@
 title: 我的奥运生活
 author: Harry Chen
 layout: post
-permalink: /my-olympic-days/
+
 categories:
   - 随笔
 ---

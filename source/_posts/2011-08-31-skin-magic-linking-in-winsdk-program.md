@@ -2,7 +2,7 @@
 title: SkinMagic在WinSDK程序中的链接
 author: Harry Chen
 layout: post
-permalink: /skin-magic-linking-in-winsdk-program/
+
 categories:
   - MFC
   - 与技术相关

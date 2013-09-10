@@ -2,7 +2,7 @@
 title: 关于大片
 author: Harry Chen
 layout: post
-permalink: /about-big-movies/
+
 categories:
   - 随笔
 ---

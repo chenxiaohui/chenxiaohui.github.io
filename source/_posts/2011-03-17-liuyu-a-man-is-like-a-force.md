@@ -2,7 +2,7 @@
 title: 刘瑜 《一个人要像一支队伍》
 author: Harry Chen
 layout: post
-permalink: /liuyu-a-man-is-like-a-force/
+
 categories:
   - 世情百态
 tags:

@@ -2,7 +2,7 @@
 title: '简短总结一下C#里跨线程更新UI'
 author: Harry Chen
 layout: post
-permalink: /summary-of-cross-thread-ui-update-in-csharp/
+
 mkd_text:
   - |
     跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用

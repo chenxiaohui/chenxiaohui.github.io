@@ -2,7 +2,7 @@
 title: 春天来了
 author: Harry Chen
 layout: post
-permalink: /spring-comes/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 很好很强大很和谐
 author: Harry Chen
 layout: post
-permalink: /good-strong-harmony/
+
 categories:
   - 随笔
 ---

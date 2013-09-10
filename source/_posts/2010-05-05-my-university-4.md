@@ -2,7 +2,7 @@
 title: 我的大学（四）
 author: Harry Chen
 layout: post
-permalink: /my-university-4/
+
 categories:
   - 世情百态
 ---

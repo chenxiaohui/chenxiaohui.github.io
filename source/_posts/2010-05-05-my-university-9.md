@@ -2,7 +2,7 @@
 title: 我的大学（九）
 author: Harry Chen
 layout: post
-permalink: /my-university-9/
+
 categories:
   - 世情百态
 ---

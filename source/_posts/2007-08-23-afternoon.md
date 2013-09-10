@@ -2,7 +2,7 @@
 title: 午后
 author: Harry Chen
 layout: post
-permalink: /afternoon/
+
 dsq_thread_id:
   - 1262682378
 categories:

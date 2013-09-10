@@ -2,7 +2,7 @@
 title: 生命瞬间的感动
 author: Harry Chen
 layout: post
-permalink: /move-at-a-moment-of-life/
+
 categories:
   - 随笔
 ---

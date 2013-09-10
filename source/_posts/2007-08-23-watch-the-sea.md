@@ -2,7 +2,7 @@
 title: 看海
 author: Harry Chen
 layout: post
-permalink: /watch-the-sea/
+
 categories:
   - 随笔
 ---

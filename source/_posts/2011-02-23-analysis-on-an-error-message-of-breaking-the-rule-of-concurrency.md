@@ -2,7 +2,7 @@
 title: '&ldquo;违反并发性: UpdateCommand 影响了预期1条记录中的0条&rdquo;原因分析'
 author: Harry Chen
 layout: post
-permalink: /analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/
+
 dsq_thread_id:
   - 1266432130
 categories:

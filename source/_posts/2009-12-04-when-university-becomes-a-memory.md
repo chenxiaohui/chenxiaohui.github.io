@@ -2,7 +2,7 @@
 title: 当大学生活成为一种过往
 author: Harry Chen
 layout: post
-permalink: /when-university-becomes-a-memory/
+
 categories:
   - 世情百态
 ---

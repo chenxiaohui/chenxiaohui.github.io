@@ -2,7 +2,7 @@
 title: 关于商业互联网十年领袖峰会
 author: Harry Chen
 layout: post
-permalink: /the-meeting-of-leaders-of-internet-in-last-ten-years/
+
 categories:
   - 随笔
 ---

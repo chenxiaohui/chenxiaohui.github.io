@@ -2,7 +2,7 @@
 title: 光山三日
 author: Harry Chen
 layout: post
-permalink: /three-days-in-guangshan/
+
 categories:
   - 随笔
 ---

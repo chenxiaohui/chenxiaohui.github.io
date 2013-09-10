@@ -2,7 +2,7 @@
 title: 百战归来再读书
 author: Harry Chen
 layout: post
-permalink: /read-books-after-fight/
+
 categories:
   - 世情百态
 tags:

@@ -2,7 +2,7 @@
 title: 关于Const指针的一点补充
 author: Harry Chen
 layout: post
-permalink: /appendix-to-const-pointer/
+
 mkd_text:
   - |
     OsChina上一个朋友给出的例子，很能说明问题：

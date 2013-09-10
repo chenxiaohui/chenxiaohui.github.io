@@ -2,7 +2,7 @@
 title: FencView插件在windows下的配置
 author: Harry Chen
 layout: post
-permalink: /configuration-of-plugin-fenview-under-windows/
+
 dsq_thread_id:
   - 1257610554
 categories:

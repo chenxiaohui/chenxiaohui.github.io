@@ -2,7 +2,7 @@
 title: 我的大学（七）
 author: Harry Chen
 layout: post
-permalink: /my-university-7/
+
 categories:
   - 世情百态
 ---

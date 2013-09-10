@@ -2,7 +2,7 @@
 title: 在空气中游泳的鱼儿
 author: Harry Chen
 layout: post
-permalink: /fish-in-the-air/
+
 dsq_thread_id:
   - 1306488347
 categories:

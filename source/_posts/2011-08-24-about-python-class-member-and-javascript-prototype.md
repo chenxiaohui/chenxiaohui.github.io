@@ -2,7 +2,7 @@
 title: 关于Python的类成员和Javascript的原型
 author: Harry Chen
 layout: post
-permalink: /about-python-class-member-and-javascript-prototype/
+
 categories:
   - 与技术相关
   - 基础理论

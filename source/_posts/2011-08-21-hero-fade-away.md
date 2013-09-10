@@ -2,7 +2,7 @@
 title: 英雄迟暮
 author: Harry Chen
 layout: post
-permalink: /hero-fade-away/
+
 categories:
   - 世情百态
 tags:

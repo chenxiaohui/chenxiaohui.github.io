@@ -3,7 +3,7 @@ title: 想起一件事情
 author: Harry Chen
 layout: post
 comments: true
-permalink: /think-of-one-thing/
+
 mkd_text:
   - |
     前几天给家里打电话，妈妈说，你什么时候放假回来啊，姨夫前几天还问你了，说能不能给把手机刷新一下，我也不懂，你看你知道怎么弄么？

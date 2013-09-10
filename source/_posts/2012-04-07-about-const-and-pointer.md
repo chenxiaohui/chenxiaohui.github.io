@@ -2,7 +2,7 @@
 title: 关于const和指针的专题
 author: Harry Chen
 layout: post
-permalink: /about-const-and-pointer/
+
 categories:
   - 与技术相关
   - 基础理论

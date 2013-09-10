@@ -2,7 +2,7 @@
 title: 日和版《冰河世纪》
 author: Harry Chen
 layout: post
-permalink: /funny-ice-age/
+
 categories:
   - 世情百态
 tags:

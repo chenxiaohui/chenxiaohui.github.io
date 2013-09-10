@@ -2,7 +2,7 @@
 title: 关于装机的一些问题
 author: Harry Chen
 layout: post
-permalink: /some-problems-of-setting-up-an-computer/
+
 categories:
   - Others
 tags:

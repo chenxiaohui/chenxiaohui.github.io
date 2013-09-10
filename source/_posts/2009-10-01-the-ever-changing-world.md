@@ -2,7 +2,7 @@
 title: 人间正道是沧桑
 author: Harry Chen
 layout: post
-permalink: /the-ever-changing-world/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 做人要有追求
 author: Harry Chen
 layout: post
-permalink: /have-goal-in-your-life/
+
 categories:
   - 随笔
 ---

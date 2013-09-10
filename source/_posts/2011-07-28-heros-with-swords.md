@@ -2,7 +2,7 @@
 title: 刀剑英雄
 author: Harry Chen
 layout: post
-permalink: /heros-with-swords/
+
 categories:
   - 世情百态
 tags:

@@ -2,7 +2,7 @@
 title: 《黑客与画家》第二章文摘
 author: Harry Chen
 layout: post
-permalink: /hacker-and-painter-second-chapter/
+
 dsq_thread_id:
   - 
 categories:

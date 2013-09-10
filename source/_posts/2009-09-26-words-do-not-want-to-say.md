@@ -2,7 +2,7 @@
 title: 不想说的一些话
 author: Harry Chen
 layout: post
-permalink: /words-do-not-want-to-say/
+
 categories:
   - 随笔
 ---

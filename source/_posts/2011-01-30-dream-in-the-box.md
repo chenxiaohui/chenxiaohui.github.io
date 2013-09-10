@@ -2,7 +2,7 @@
 title: 盒子的梦想
 author: Harry Chen
 layout: post
-permalink: /dream-in-the-box/
+
 categories:
   - 挨踢人生
 tags:

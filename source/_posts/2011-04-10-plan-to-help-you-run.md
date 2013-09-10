@@ -2,7 +2,7 @@
 title: 助跑计划，几个有才版本
 author: Harry Chen
 layout: post
-permalink: /plan-to-help-you-run/
+
 categories:
   - 挨踢人生
 tags:

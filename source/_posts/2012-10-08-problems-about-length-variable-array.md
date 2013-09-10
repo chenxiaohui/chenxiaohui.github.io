@@ -2,7 +2,7 @@
 title: 变长数组的问题
 author: Harry Chen
 layout: post
-permalink: /problems-about-length-variable-array/
+
 mkd_text:
   - |
     今天在gcc里写代码，偶然发现好像下标可以用变量（非const），比如：

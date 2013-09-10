@@ -2,7 +2,7 @@
 title: 慕容雪村对大学生的演讲稿:我们只向真理低头
 author: Harry Chen
 layout: post
-permalink: /we-only-bend-to-truth-by-murongxuecun/
+
 categories:
   - 世情百态
 tags:

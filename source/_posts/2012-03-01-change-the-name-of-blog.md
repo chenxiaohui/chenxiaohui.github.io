@@ -2,7 +2,7 @@
 title: 博客域名更改
 author: Harry Chen
 layout: post
-permalink: /change-the-name-of-blog/
+
 dsq_thread_id:
   - 1262682643
 categories:

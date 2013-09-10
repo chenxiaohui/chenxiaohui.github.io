@@ -2,7 +2,7 @@
 title: eclipse全屏插件
 author: Harry Chen
 layout: post
-permalink: /eclipse-full-screen-plugin/
+
 dsq_thread_id:
   - 1262612196
 categories:

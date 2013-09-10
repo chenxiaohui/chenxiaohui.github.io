@@ -2,7 +2,7 @@
 title: 夜雨
 author: Harry Chen
 layout: post
-permalink: /rain-at-night/
+
 categories:
   - 随笔
 ---

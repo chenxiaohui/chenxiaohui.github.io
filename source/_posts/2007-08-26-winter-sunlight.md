@@ -2,7 +2,7 @@
 title: 冬日阳光
 author: Harry Chen
 layout: post
-permalink: /winter-sunlight/
+
 categories:
   - 随笔
 ---

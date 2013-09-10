@@ -2,7 +2,7 @@
 title: 行走在军训的回忆中
 author: Harry Chen
 layout: post
-permalink: /walk-in-the-memory-of-military-training/
+
 categories:
   - 随笔
 ---

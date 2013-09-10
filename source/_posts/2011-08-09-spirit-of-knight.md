@@ -2,7 +2,7 @@
 title: 骑士精神
 author: Harry Chen
 layout: post
-permalink: /spirit-of-knight/
+
 categories:
   - 世情百态
 tags:

@@ -2,7 +2,7 @@
 title: 关于两代人的理念
 author: Harry Chen
 layout: post
-permalink: /the-idea-of-people-of-two-generation/
+
 categories:
   - 世情百态
 tags:

@@ -2,7 +2,7 @@
 title: 一些过往
 author: Harry Chen
 layout: post
-permalink: /some-old-days/
+
 categories:
   - 世情百态
 ---

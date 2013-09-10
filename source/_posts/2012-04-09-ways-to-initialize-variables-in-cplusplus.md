@@ -2,7 +2,7 @@
 title: C++变量的初始化方式
 author: Harry Chen
 layout: post
-permalink: /ways-to-initialize-variables-in-cplusplus/
+
 categories:
   - 基础理论
 tags:

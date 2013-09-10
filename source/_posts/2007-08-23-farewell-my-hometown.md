@@ -2,7 +2,7 @@
 title: 再见，我的故乡
 author: Harry Chen
 layout: post
-permalink: /farewell-my-hometown/
+
 categories:
   - 随笔
 ---

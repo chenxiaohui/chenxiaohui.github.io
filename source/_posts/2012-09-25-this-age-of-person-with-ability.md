@@ -2,7 +2,7 @@
 title: 在这个才人辈出的时代
 author: Harry Chen
 layout: post
-permalink: /this-age-of-person-with-ability/
+
 mkd_text:
   - |
     偶然翻bootstrap的资料，在bootstrap的中文网站看到如下三个sample:

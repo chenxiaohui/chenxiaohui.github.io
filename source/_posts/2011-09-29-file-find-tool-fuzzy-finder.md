@@ -2,7 +2,7 @@
 title: '文件查找利器&mdash;&mdash;FuzzyFinder'
 author: Harry Chen
 layout: post
-permalink: /file-find-tool-fuzzy-finder/
+
 dsq_thread_id:
   - 1254513643
 categories:

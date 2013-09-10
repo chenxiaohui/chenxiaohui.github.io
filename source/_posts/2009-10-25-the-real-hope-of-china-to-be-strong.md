@@ -2,7 +2,7 @@
 title: 中国强大的真正希望
 author: Harry Chen
 layout: post
-permalink: /the-real-hope-of-china-to-be-strong/
+
 categories:
   - 随笔
 ---

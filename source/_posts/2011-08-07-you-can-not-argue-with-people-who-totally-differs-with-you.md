@@ -2,7 +2,7 @@
 title: 立场殊异，无可与争
 author: Harry Chen
 layout: post
-permalink: /you-can-not-argue-with-people-who-totally-differs-with-you/
+
 categories:
   - 世情百态
 tags:

@@ -2,7 +2,7 @@
 title: 《弹痕》书评
 author: Harry Chen
 layout: post
-permalink: /book-review-of-danhen/
+
 categories:
   - 随笔
 ---

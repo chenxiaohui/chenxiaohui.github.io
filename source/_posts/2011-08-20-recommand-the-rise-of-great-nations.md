@@ -2,7 +2,7 @@
 title: 推荐《大国崛起》
 author: Harry Chen
 layout: post
-permalink: /recommand-the-rise-of-great-nations/
+
 categories:
   - 世情百态
 tags:

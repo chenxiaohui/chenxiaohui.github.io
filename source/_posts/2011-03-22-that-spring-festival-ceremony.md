@@ -2,7 +2,7 @@
 title: 那一年的春晚
 author: Harry Chen
 layout: post
-permalink: /that-spring-festival-ceremony/
+
 dsq_thread_id:
   - 1377874921
 categories:

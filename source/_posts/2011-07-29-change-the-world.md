@@ -2,7 +2,7 @@
 title: 改变世界
 author: Harry Chen
 layout: post
-permalink: /change-the-world/
+
 categories:
   - 世情百态
 tags:

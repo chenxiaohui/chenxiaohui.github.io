@@ -2,7 +2,7 @@
 title: 极客文化
 author: Harry Chen
 layout: post
-permalink: /geek-culture/
+
 categories:
   - 挨踢人生
 tags:

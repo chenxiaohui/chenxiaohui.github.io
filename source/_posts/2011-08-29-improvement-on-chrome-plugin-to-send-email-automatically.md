@@ -2,7 +2,7 @@
 title: 对Chrome自动发送邮件插件的改进
 author: Harry Chen
 layout: post
-permalink: /improvement-on-chrome-plugin-to-send-email-automatically/
+
 dsq_thread_id:
   - 1254528969
 categories:

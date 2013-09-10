@@ -2,7 +2,7 @@
 title: 转两首词，评《亮剑》
 author: Harry Chen
 layout: post
-permalink: /two-poem-about-liangjian/
+
 categories:
   - 随笔
 ---

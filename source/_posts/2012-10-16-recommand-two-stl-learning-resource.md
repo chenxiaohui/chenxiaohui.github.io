@@ -2,7 +2,7 @@
 title: 推荐两个STL学习资源
 author: Harry Chen
 layout: post
-permalink: /recommand-two-stl-learning-resource/
+
 mkd_text:
   - |
     本来想自己写一点的，后来觉得见识颇浅，所以直接贴别人的了。两篇文章其实都是说algorithm多于stl的数据结构，不过这也可能是很多人学习的时候忽视的，而且把通用算法用到数组上的方法确实挺方便。

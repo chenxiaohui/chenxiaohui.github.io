@@ -2,7 +2,7 @@
 title: 关于.NET中的AutoScrollPosition属性
 author: Harry Chen
 layout: post
-permalink: /about-the-AutoScrollPosition-property-under-dotNet/
+
 categories:
   - .Net
 tags:

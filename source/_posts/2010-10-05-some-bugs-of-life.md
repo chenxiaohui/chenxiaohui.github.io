@@ -2,7 +2,7 @@
 title: 关于人生的一些Bug
 author: Harry Chen
 layout: post
-permalink: /some-bugs-of-life/
+
 categories:
   - 挨踢人生
 ---

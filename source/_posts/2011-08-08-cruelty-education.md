@@ -2,7 +2,7 @@
 title: 残忍教育
 author: Harry Chen
 layout: post
-permalink: /cruelty-education/
+
 categories:
   - 世情百态
 tags:

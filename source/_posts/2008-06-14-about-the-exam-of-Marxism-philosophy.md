@@ -2,7 +2,7 @@
 title: 关于马哲考试
 author: Harry Chen
 layout: post
-permalink: /about-the-exam-of-Marxism-philosophy/
+
 categories:
   - 随笔
 ---

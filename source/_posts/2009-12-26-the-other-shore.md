@@ -2,7 +2,7 @@
 title: 彼岸
 author: Harry Chen
 layout: post
-permalink: /the-other-shore/
+
 dsq_thread_id:
   - 
 categories:

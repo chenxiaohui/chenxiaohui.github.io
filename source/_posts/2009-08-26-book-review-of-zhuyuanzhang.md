@@ -2,7 +2,7 @@
 title: 《朱元璋》书评
 author: Harry Chen
 layout: post
-permalink: /book-review-of-zhuyuanzhang/
+
 categories:
   - 随笔
 ---

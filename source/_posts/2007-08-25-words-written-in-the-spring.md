@@ -2,7 +2,7 @@
 title: 写在春天的文字
 author: Harry Chen
 layout: post
-permalink: /words-written-in-the-spring/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 记三个小问题
 author: Harry Chen
 layout: post
-permalink: /three-problems/
+
 categories:
   - Others
 tags:

@@ -2,7 +2,7 @@
 title: '第一人称马里奥[v]'
 author: Harry Chen
 layout: post
-permalink: /first-person-Mario/
+
 categories:
   - 挨踢人生
 tags:

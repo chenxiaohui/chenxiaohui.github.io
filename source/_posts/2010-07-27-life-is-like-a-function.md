@@ -2,7 +2,7 @@
 title: Life is like a function
 author: Harry Chen
 layout: post
-permalink: /life-is-like-a-function/
+
 categories:
   - 挨踢人生
 ---

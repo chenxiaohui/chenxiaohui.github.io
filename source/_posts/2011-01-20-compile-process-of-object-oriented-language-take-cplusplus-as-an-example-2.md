@@ -2,7 +2,7 @@
 title: '面向对象语言的编译过程&#8211;以C++为例(二)'
 author: Harry Chen
 layout: post
-permalink: /compile-process-of-object-oriented-language-take-cplusplus-as-an-example-2/
+
 dsq_thread_id:
   - 1301103271
 categories:

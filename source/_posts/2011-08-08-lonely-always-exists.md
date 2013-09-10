@@ -2,7 +2,7 @@
 title: 迷茫常有，孤独总有
 author: Harry Chen
 layout: post
-permalink: /lonely-always-exists/
+
 categories:
   - 世情百态
 tags:

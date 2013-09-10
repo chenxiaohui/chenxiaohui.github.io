@@ -2,7 +2,7 @@
 title: 1月3号的日志
 author: Harry Chen
 layout: post
-permalink: /blog-of-january-1st/
+
 categories:
   - 随笔
 ---

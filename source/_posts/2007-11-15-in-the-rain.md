@@ -2,7 +2,7 @@
 title: 雨中
 author: Harry Chen
 layout: post
-permalink: /in-the-rain/
+
 categories:
   - 随笔
 ---

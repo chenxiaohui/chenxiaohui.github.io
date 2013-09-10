@@ -2,7 +2,7 @@
 title: 社会责任
 author: Harry Chen
 layout: post
-permalink: /social_responsibility/
+
 categories:
   - 随笔
 ---

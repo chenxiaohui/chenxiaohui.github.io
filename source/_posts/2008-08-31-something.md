@@ -2,7 +2,7 @@
 title: 有些事
 author: Harry Chen
 layout: post
-permalink: /something/
+
 categories:
   - 随笔
 ---

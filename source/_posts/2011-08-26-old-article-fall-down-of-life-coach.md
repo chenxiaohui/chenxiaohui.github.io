@@ -2,7 +2,7 @@
 title: 老文章了：人生导师的倒掉
 author: Harry Chen
 layout: post
-permalink: /old-article-fall-down-of-life-coach/
+
 categories:
   - 世情百态
 tags:

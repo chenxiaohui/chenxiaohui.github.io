@@ -2,7 +2,7 @@
 title: 来信， 创业 和 移动互联网(转载自CoolShell)
 author: Harry Chen
 layout: post
-permalink: /letters-venture-and-mobile-internet-from-coolshell/
+
 dsq_thread_id:
   - 1392549102
 categories:

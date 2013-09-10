@@ -2,7 +2,7 @@
 title: 写的一段介绍宿舍的文字
 author: Harry Chen
 layout: post
-permalink: /an-article-to-introduce-dormitory/
+
 categories:
   - 随笔
 ---

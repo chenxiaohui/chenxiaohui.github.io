@@ -2,7 +2,7 @@
 title: 转一篇网络文章
 author: Harry Chen
 layout: post
-permalink: /an-article-from-the-web/
+
 categories:
   - 挨踢人生
 tags:

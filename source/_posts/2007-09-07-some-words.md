@@ -2,7 +2,7 @@
 title: 一点文字
 author: Harry Chen
 layout: post
-permalink: /some-words/
+
 categories:
   - 随笔
 ---

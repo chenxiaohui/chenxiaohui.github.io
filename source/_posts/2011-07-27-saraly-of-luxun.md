@@ -2,7 +2,7 @@
 title: 鲁迅工资
 author: Harry Chen
 layout: post
-permalink: /saraly-of-luxun/
+
 categories:
   - 世情百态
 tags:

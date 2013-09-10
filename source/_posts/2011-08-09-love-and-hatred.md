@@ -2,7 +2,7 @@
 title: 爱恨恢恢
 author: Harry Chen
 layout: post
-permalink: /love-and-hatred/
+
 categories:
   - 世情百态
 tags:

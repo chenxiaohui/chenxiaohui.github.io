@@ -2,7 +2,7 @@
 title: 写在前面
 author: Harry Chen
 layout: post
-permalink: /words-written-on-the-top/
+
 categories:
   - 随笔
 ---

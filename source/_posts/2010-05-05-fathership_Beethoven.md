@@ -2,7 +2,7 @@
 title: 父性贝多芬
 author: Harry Chen
 layout: post
-permalink: /fathership_Beethoven/
+
 categories:
   - 世情百态
 ---

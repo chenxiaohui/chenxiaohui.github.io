@@ -2,7 +2,7 @@
 title: 通过goagent使用Picasa客户端
 author: Harry Chen
 layout: post
-permalink: /use-picasa-client-from-goagent/
+
 mkd_text:
   - |
     goagent这一神器就不多说了，配置详见[goagent教程][1]。这里主要探讨picasa客户端使用代理的问题。

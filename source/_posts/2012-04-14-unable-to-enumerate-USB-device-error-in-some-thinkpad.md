@@ -2,7 +2,7 @@
 title: 记ThinkPad某些型号下Linux报Unable to enumerate USB device错误的问题
 author: Harry Chen
 layout: post
-permalink: /unable-to-enumerate-USB-device-error-in-some-thinkpad/
+
 mkd_text:
   - |
     这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报

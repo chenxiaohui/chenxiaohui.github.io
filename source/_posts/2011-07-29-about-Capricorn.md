@@ -2,7 +2,7 @@
 title: 关于摩羯
 author: Harry Chen
 layout: post
-permalink: /about-Capricorn/
+
 categories:
   - 世情百态
 tags:

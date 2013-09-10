@@ -2,7 +2,7 @@
 title: 深入解析C++输入输出运算符重载
 author: Harry Chen
 layout: post
-permalink: /deep-understanding-of-cplusplus-input-output-operation-reload/
+
 mkd_text:
   - |
     其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。

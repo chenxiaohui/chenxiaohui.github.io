@@ -2,7 +2,7 @@
 title: Blumind一个超轻量的思维导图工具
 author: Harry Chen
 layout: post
-permalink: /blumind-a-light-mind-map-tool/
+
 dsq_thread_id:
   - 1281757555
 categories:

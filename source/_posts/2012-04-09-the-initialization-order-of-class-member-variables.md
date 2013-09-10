@@ -2,7 +2,7 @@
 title: 关于类成员变量初始化顺序
 author: Harry Chen
 layout: post
-permalink: /the-initialization-order-of-class-member-variables/
+
 mkd_text:
   - |
     java和C#语言里类变量初始化的顺序是

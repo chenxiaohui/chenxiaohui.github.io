@@ -2,7 +2,7 @@
 title: 中国第一代程序员列传
 author: Harry Chen
 layout: post
-permalink: /the-story-of-first-generation-of-chinese-programmer/
+
 categories:
   - 挨踢人生
 tags:

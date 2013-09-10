@@ -2,7 +2,7 @@
 title: 中关村遭遇强卖
 author: Harry Chen
 layout: post
-permalink: /encounter-with-unfair-business-in-zhongguancun/
+
 categories:
   - 随笔
 ---

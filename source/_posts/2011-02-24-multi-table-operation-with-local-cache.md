@@ -2,7 +2,7 @@
 title: '基于本地缓存的多表级联操作的实现（C#）'
 author: Harry Chen
 layout: post
-permalink: /multi-table-operation-with-local-cache/
+
 dsq_thread_id:
   - 1255514081
 categories:

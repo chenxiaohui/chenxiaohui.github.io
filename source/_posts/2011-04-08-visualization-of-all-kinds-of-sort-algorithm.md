@@ -2,7 +2,7 @@
 title: 各种排序算法的图形化演示
 author: Harry Chen
 layout: post
-permalink: /visualization-of-all-kinds-of-sort-algorithm/
+
 dsq_thread_id:
   - 1264907315
 categories:

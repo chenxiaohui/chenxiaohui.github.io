@@ -2,7 +2,7 @@
 title: 阳光灿烂的日子
 author: Harry Chen
 layout: post
-permalink: /days-with-sunlight/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: IE8无法调试ActiveX控件的问题
 author: Harry Chen
 layout: post
-permalink: /can-not-debug-activex-plugin-in-ie8/
+
 dsq_thread_id:
   - 1256072487
 categories:

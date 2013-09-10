@@ -2,7 +2,7 @@
 title: 《黑客与画家》第一章文摘
 author: Harry Chen
 layout: post
-permalink: /hacker-and-painter-first-chapter/
+
 dsq_thread_id:
   - 
 categories:

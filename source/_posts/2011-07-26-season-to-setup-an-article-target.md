@@ -2,7 +2,7 @@
 title: 一年一度开题季
 author: Harry Chen
 layout: post
-permalink: /season-to-setup-an-article-target/
+
 categories:
   - 世情百态
   - 挨踢人生

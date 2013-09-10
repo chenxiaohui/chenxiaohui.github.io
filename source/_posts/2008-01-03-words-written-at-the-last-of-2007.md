@@ -2,7 +2,7 @@
 title: 写在07年的最后
 author: Harry Chen
 layout: post
-permalink: /words-written-at-the-last-of-2007/
+
 categories:
   - 随笔
 ---

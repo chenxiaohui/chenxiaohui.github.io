@@ -3,7 +3,7 @@ title: >
   十年前，假如你有二十万元，你是用它来买房子还是用它来出国留学
 author: Harry Chen
 layout: post
-permalink: /if-you-have-twenty-thousand-ten-years-ago-you-will-buy-a-house-or-go-abroad/
+
 categories:
   - 世情百态
 tags:

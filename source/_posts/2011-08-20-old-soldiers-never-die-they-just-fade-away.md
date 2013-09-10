@@ -2,7 +2,7 @@
 title: 老兵不死，只是渐凋零
 author: Harry Chen
 layout: post
-permalink: /old-soldiers-never-die-they-just-fade-away/
+
 categories:
   - 世情百态
 tags:

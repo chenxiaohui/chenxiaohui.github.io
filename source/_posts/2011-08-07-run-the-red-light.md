@@ -2,7 +2,7 @@
 title: 闯红灯
 author: Harry Chen
 layout: post
-permalink: /run-the-red-light/
+
 categories:
   - 世情百态
 tags:

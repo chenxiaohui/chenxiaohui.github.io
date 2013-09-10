@@ -2,7 +2,7 @@
 title: 理想与现实
 author: Harry Chen
 layout: post
-permalink: /rationality-and-nasty/
+
 categories:
   - 世情百态
 tags:

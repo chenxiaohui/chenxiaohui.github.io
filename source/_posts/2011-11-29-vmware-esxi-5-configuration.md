@@ -2,7 +2,7 @@
 title: VMware ESXi 5安装配置部分
 author: Harry Chen
 layout: post
-permalink: /vmware-esxi-5-configuration/
+
 dsq_thread_id:
   - 1256850131
 categories:

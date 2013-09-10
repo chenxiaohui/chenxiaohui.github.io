@@ -2,7 +2,7 @@
 title: Doxygen几个小问题，mark一下
 author: Harry Chen
 layout: post
-permalink: /some-problems-about-doxygen/
+
 dsq_thread_id:
   - 1341183078
 categories:

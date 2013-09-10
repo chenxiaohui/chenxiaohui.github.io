@@ -2,7 +2,7 @@
 title: 东庄
 author: Harry Chen
 layout: post
-permalink: /dong-zhuang/
+
 categories:
   - 世情百态
 tags:

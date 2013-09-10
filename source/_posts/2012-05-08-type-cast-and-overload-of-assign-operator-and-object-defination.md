@@ -3,7 +3,7 @@ title: >
   区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值
 author: Harry Chen
 layout: post
-permalink: /type-cast-and-overload-of-assign-operator-and-object-defination/
+
 mkd_text:
   - |
     这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。

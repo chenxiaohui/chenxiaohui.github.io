@@ -2,7 +2,7 @@
 title: '小漫画: 被罚抄500遍,怎样取巧?'
 author: Harry Chen
 layout: post
-permalink: /a-comic-how-to-manipulate-when-punished-to-write-500-times/
+
 categories:
   - 挨踢人生
 tags:

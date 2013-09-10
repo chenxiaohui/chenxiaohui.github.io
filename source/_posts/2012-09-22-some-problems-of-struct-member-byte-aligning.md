@@ -2,7 +2,7 @@
 title: 关于结构体字节对齐的一些问题
 author: Harry Chen
 layout: post
-permalink: /some-problems-of-struct-member-byte-aligning/
+
 mkd_text:
   - |
     **字节对齐的目的**

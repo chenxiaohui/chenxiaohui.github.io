@@ -2,7 +2,7 @@
 title: 预约一篇博客
 author: Harry Chen
 layout: post
-permalink: /order-an-blog/
+
 mkd_text:
   - >
     准备写写我这研究生阶段的研究方向，虽然我们整个实验室都无比的鄙视+反感这个方向，但是既然没有选择了，

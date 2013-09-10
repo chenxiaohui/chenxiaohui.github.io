@@ -2,7 +2,7 @@
 title: 夜风微冷
 author: Harry Chen
 layout: post
-permalink: /chilly-evening-wind/
+
 categories:
   - 随笔
 ---

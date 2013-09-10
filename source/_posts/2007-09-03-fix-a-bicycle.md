@@ -2,7 +2,7 @@
 title: 修车记
 author: Harry Chen
 layout: post
-permalink: /fix-a-bicycle/
+
 categories:
   - 随笔
 ---

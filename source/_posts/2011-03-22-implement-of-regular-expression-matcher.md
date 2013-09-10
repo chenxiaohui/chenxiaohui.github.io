@@ -2,7 +2,7 @@
 title: 正则表达式匹配器的实现
 author: Harry Chen
 layout: post
-permalink: /implement-of-regular-expression-matcher/
+
 dsq_thread_id:
   - 1273908025
 categories:

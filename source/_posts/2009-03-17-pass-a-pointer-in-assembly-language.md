@@ -2,7 +2,7 @@
 title: 汇编传指针
 author: Harry Chen
 layout: post
-permalink: /pass-a-pointer-in-assembly-language/
+
 categories:
   - 随笔
 ---

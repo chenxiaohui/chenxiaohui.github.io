@@ -2,7 +2,7 @@
 title: 关于转型
 author: Harry Chen
 layout: post
-permalink: /about-changing/
+
 categories:
   - 世情百态
 tags:

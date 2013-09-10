@@ -2,7 +2,7 @@
 title: 关于吞灯泡问题
 author: Harry Chen
 layout: post
-permalink: /about-swallowing-the-bulb/
+
 categories:
   - 世情百态
 tags:

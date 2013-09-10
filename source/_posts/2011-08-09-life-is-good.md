@@ -2,7 +2,7 @@
 title: 美好人生
 author: Harry Chen
 layout: post
-permalink: /life-is-good/
+
 categories:
   - 世情百态
 tags:

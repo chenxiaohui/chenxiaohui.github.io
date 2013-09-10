@@ -2,7 +2,7 @@
 title: 关于函数式编程
 author: Harry Chen
 layout: post
-permalink: /about-functional-programming/
+
 mkd_text:
   - |
     本来想写点东西的，后来发现自己的理解还是比较浅薄，所以直接贴两篇文章好了。

@@ -2,7 +2,7 @@
 title: 那一棵山楂树
 author: Harry Chen
 layout: post
-permalink: /that-hawthorn-tree/
+
 categories:
   - 随笔
 ---

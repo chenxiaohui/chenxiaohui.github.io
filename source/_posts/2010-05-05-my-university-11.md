@@ -2,7 +2,7 @@
 title: 我的大学（十一）
 author: Harry Chen
 layout: post
-permalink: /my-university-11/
+
 categories:
   - 世情百态
 ---

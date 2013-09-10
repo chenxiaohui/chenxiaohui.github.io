@@ -2,7 +2,7 @@
 title: 青山
 author: Harry Chen
 layout: post
-permalink: /blue-mountain/
+
 categories:
   - 随笔
 ---

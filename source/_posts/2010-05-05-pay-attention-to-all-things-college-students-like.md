@@ -2,7 +2,7 @@
 title: 关注一切大学生关注的事情
 author: Harry Chen
 layout: post
-permalink: /pay-attention-to-all-things-college-students-like/
+
 categories:
   - 挨踢人生
 ---

@@ -2,7 +2,7 @@
 title: weka命令行脚本
 author: Harry Chen
 layout: post
-permalink: /weka-command-line-script/
+
 dsq_thread_id:
   - 1257097178
 categories:

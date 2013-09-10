@@ -2,7 +2,7 @@
 title: 指针数组，数组指针与函数指针
 author: Harry Chen
 layout: post
-permalink: /pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/
+
 mkd_text:
   - |
     指针数组是指由指针组成的数组，这个比较好理解；数组指针是指向一个数组的指针，其实字面上也比较好理解。容易混淆的地方在于书写形式有些类似

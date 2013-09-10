@@ -2,7 +2,7 @@
 title: 二维字符串数组的问题
 author: Harry Chen
 layout: post
-permalink: /problems-of-two-dimension-string-array/
+
 mkd_text:
   - |
     随手写了个字符串的程序，才发现自己好像对字符串数组的理解一直似懂非懂。

@@ -2,7 +2,7 @@
 title: 明天的记忆
 author: Harry Chen
 layout: post
-permalink: /memory-of-tomorrow/
+
 mkd_text:
   - |
     孙燕姿的MV，看了好多遍 

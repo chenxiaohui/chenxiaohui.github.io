@@ -2,7 +2,7 @@
 title: 关于VI的一则趣事
 author: Harry Chen
 layout: post
-permalink: /an-interesting-story-about-vi/
+
 categories:
   - 挨踢人生
 tags:

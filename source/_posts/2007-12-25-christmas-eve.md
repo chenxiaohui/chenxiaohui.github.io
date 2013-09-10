@@ -2,7 +2,7 @@
 title: 平安夜
 author: Harry Chen
 layout: post
-permalink: /christmas-eve/
+
 categories:
   - 随笔
 ---

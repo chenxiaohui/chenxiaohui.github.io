@@ -2,7 +2,7 @@
 title: 渐行渐远
 author: Harry Chen
 layout: post
-permalink: /walking-away/
+
 categories:
   - 随笔
 ---

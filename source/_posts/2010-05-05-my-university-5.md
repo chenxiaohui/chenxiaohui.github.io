@@ -2,7 +2,7 @@
 title: 我的大学（五）
 author: Harry Chen
 layout: post
-permalink: /my-university-5/
+
 categories:
   - 世情百态
 ---

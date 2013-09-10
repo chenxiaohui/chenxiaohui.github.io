@@ -2,7 +2,7 @@
 title: 《黑客与画家》第三章文摘
 author: Harry Chen
 layout: post
-permalink: /hacker-and-painter-third-chapter/
+
 dsq_thread_id:
   - 1306487671
 categories:

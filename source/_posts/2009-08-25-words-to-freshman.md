@@ -2,7 +2,7 @@
 title: 应邀写的新生寄语
 author: Harry Chen
 layout: post
-permalink: /words-to-freshman/
+
 categories:
   - 随笔
 ---

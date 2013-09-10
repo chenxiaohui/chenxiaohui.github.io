@@ -2,7 +2,7 @@
 title: VMware ESXi 网络配置
 author: Harry Chen
 layout: post
-permalink: /vmware-esxi-5-network-configuration/
+
 categories:
   - Others
   - 与技术相关

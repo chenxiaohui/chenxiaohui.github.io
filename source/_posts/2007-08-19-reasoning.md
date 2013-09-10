@@ -2,7 +2,7 @@
 title: 讲道理
 author: Harry Chen
 layout: post
-permalink: /reasoning/
+
 categories:
   - 世情百态
 ---

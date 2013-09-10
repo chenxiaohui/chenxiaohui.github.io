@@ -2,7 +2,7 @@
 title: 写给自己的话
 author: Harry Chen
 layout: post
-permalink: /words-wirtten-to-me/
+
 categories:
   - 随笔
 ---

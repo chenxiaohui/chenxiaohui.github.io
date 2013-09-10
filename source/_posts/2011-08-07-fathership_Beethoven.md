@@ -2,7 +2,7 @@
 title: 父爱如山
 author: Harry Chen
 layout: post
-permalink: /fathership_Beethoven/
+
 dsq_thread_id:
   - 1280398201
 categories:

@@ -2,7 +2,7 @@
 title: 似水流年
 author: Harry Chen
 layout: post
-permalink: /as-time-goes-by/
+
 categories:
   - 随笔
 ---

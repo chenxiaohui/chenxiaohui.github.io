@@ -2,7 +2,7 @@
 title: 关于兴趣
 author: Harry Chen
 layout: post
-permalink: /about-interest/
+
 categories:
   - 世情百态
 tags:

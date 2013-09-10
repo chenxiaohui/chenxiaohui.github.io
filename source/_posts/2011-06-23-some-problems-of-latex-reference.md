@@ -2,7 +2,7 @@
 title: 澄清几个关于Latex参考文献的问题
 author: Harry Chen
 layout: post
-permalink: /some-problems-of-latex-reference/
+
 dsq_thread_id:
   - 1281772229
 categories:

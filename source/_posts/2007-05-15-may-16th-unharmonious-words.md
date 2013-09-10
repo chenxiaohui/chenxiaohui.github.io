@@ -2,7 +2,7 @@
 title: 五一六，敏感词，敏感词和敏感词
 author: Harry Chen
 layout: post
-permalink: /may-16th-unharmonious-words/
+
 categories:
   - 随笔
 ---

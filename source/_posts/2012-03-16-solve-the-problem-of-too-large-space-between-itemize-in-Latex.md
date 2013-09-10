@@ -2,7 +2,7 @@
 title: 解决Latex中Itemize距离过大的问题
 author: Harry Chen
 layout: post
-permalink: /solve-the-problem-of-too-large-space-between-itemize-in-Latex/
+
 dsq_thread_id:
   - 1255023816
 categories:

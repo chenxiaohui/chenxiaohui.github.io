@@ -2,7 +2,7 @@
 title: Vim轻量级缓冲区管理插件Buf_it修订版Buf_itv2
 author: Harry Chen
 layout: post
-permalink: /light-vim-buffer-management-plugin-bufit-v2/
+
 mkd_text:
   - |
     之前发布了Vim的缓冲区管理插件Buf_it的一个修正版，但是后来发现在windows下命令行使用的时候有问题，同时与Nertree和Taglist等插件也有冲突。于是继续fix了几个bug，然后解决了这部分冲突，新的代码放在我的[github](https://github.com/BitRobt 'Bitrobt')上，或者也可以这里下载，有问题可以继续留言，谢谢。

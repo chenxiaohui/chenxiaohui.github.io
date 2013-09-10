@@ -2,7 +2,7 @@
 title: 张宗昌的搞笑诗
 author: Harry Chen
 layout: post
-permalink: /funny-poems-of-zhangzongchang/
+
 dsq_thread_id:
   - 1321481023
 categories:

@@ -2,7 +2,7 @@
 title: 莫名
 author: Harry Chen
 layout: post
-permalink: /inexplicably/
+
 categories:
   - 随笔
 ---

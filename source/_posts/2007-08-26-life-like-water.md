@@ -2,7 +2,7 @@
 title: 水样年华
 author: Harry Chen
 layout: post
-permalink: /life-like-water/
+
 categories:
   - 世情百态
 ---

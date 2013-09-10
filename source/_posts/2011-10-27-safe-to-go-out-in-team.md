@@ -4,7 +4,7 @@ title: >
   ipc.me）
 author: Harry Chen
 layout: post
-permalink: /safe-to-go-out-in-team/
+
 dsq_thread_id:
   - 
 categories:

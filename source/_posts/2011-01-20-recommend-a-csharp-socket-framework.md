@@ -2,7 +2,7 @@
 title: '推荐一套C#的Socket框架'
 author: Harry Chen
 layout: post
-permalink: /recommend-a-csharp-socket-framework/
+
 dsq_thread_id:
   - 1256711087
 categories:

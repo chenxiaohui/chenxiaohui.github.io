@@ -2,7 +2,7 @@
 title: '仿QQ、MSN消息提示窗口的实现（C#）'
 author: Harry Chen
 layout: post
-permalink: /message-box-like-qq-or-msn/
+
 dsq_thread_id:
   - 1255708991
 categories:

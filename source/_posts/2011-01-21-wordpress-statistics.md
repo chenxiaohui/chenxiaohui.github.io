@@ -2,7 +2,7 @@
 title: WordPress统计
 author: Harry Chen
 layout: post
-permalink: /wordpress-statistics/
+
 dsq_thread_id:
   - 1262682410
 categories:

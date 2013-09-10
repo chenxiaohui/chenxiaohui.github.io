@@ -2,7 +2,7 @@
 title: 关于php编码一个弱弱的问题
 author: Harry Chen
 layout: post
-permalink: /a-problem-about-php-encoding/
+
 categories:
   - PHP
 tags:

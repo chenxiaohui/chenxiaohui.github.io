@@ -2,7 +2,7 @@
 title: 16楼的美好
 author: Harry Chen
 layout: post
-permalink: /happy-days-with-building-16/
+
 categories:
   - 随笔
 ---

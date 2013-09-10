@@ -2,7 +2,7 @@
 title: 支持上传文件的xhEditor for Typecho EX插件
 author: Harry Chen
 layout: post
-permalink: /xheditor-for-typeecho-plugin-supports-file-upload/
+
 dsq_thread_id:
   - 1258318670
 categories:

@@ -2,7 +2,7 @@
 title: 做人要个性
 author: Harry Chen
 layout: post
-permalink: /be-a-man-of-personality/
+
 categories:
   - 世情百态
 ---

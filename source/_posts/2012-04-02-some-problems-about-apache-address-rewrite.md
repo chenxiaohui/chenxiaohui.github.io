@@ -2,7 +2,7 @@
 title: Apache地址重写的几个问题
 author: Harry Chen
 layout: post
-permalink: /some-problems-about-apache-address-rewrite/
+
 categories:
   - PHP
 tags:

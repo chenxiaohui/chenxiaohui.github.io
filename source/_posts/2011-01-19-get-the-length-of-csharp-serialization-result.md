@@ -2,7 +2,7 @@
 title: '关于C#序列化结果的长度获取'
 author: Harry Chen
 layout: post
-permalink: /get-the-length-of-csharp-serialization-result/
+
 dsq_thread_id:
   - 1380774281
 categories:

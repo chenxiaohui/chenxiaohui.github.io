@@ -2,7 +2,7 @@
 title: FTP命令
 author: Harry Chen
 layout: post
-permalink: /ftp-commands/
+
 categories:
   - Others
 ---

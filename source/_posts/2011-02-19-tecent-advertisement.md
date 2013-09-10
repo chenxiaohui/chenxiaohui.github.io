@@ -2,7 +2,7 @@
 title: 关于腾讯12年品牌广告
 author: Harry Chen
 layout: post
-permalink: /tecent-advertisement/
+
 categories:
   - 世情百态
 tags:

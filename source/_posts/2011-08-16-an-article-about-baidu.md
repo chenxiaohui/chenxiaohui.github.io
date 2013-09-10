@@ -2,7 +2,7 @@
 title: 转一篇关于baidu的帖子
 author: Harry Chen
 layout: post
-permalink: /an-article-about-baidu/
+
 categories:
   - 挨踢人生
 tags:

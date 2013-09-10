@@ -2,7 +2,7 @@
 title: 在国际机场
 author: Harry Chen
 layout: post
-permalink: /at-international-airport/
+
 categories:
   - 随笔
 ---

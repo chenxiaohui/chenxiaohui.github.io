@@ -2,7 +2,7 @@
 title: 清醒纪
 author: Harry Chen
 layout: post
-permalink: /sober-words/
+
 categories:
   - 世情百态
 ---

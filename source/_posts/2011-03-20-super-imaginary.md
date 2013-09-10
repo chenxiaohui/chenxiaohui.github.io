@@ -2,7 +2,7 @@
 title: 超现实的想象力
 author: Harry Chen
 layout: post
-permalink: /super-imaginary/
+
 categories:
   - 挨踢人生
 tags:

@@ -2,7 +2,7 @@
 title: 好久
 author: Harry Chen
 layout: post
-permalink: /a-long-time/
+
 categories:
   - 随笔
 ---

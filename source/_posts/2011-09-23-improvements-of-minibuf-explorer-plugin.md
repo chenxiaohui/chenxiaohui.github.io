@@ -2,7 +2,7 @@
 title: Vim 的MiniBufExplorer插件改进
 author: Harry Chen
 layout: post
-permalink: /improvements-of-minibuf-explorer-plugin/
+
 dsq_thread_id:
   - 1260004543
 categories:

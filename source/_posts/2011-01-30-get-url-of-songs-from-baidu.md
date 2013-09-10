@@ -2,7 +2,7 @@
 title: 关于从某度扒取歌曲下载链接
 author: Harry Chen
 layout: post
-permalink: /get-url-of-songs-from-baidu/
+
 categories:
   - .Net
   - 与技术相关

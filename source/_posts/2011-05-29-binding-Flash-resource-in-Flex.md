@@ -2,7 +2,7 @@
 title: 关于Flex绑定Flash资源
 author: Harry Chen
 layout: post
-permalink: /binding-Flash-resource-in-Flex/
+
 categories:
   - Flex
   - 与技术相关

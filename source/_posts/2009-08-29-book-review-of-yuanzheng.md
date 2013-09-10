@@ -2,7 +2,7 @@
 title: 《远征》书评
 author: Harry Chen
 layout: post
-permalink: /book-review-of-yuanzheng/
+
 categories:
   - 随笔
 ---

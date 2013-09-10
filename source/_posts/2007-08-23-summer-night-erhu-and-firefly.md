@@ -2,7 +2,7 @@
 title: '夏夜&middot;二胡&middot;萤火虫'
 author: Harry Chen
 layout: post
-permalink: /summer-night-erhu-and-firefly/
+
 categories:
   - 随笔
 ---

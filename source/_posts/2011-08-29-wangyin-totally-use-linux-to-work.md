@@ -2,7 +2,7 @@
 title: 王垠：完全用Linux工作
 author: Harry Chen
 layout: post
-permalink: /wangyin-totally-use-linux-to-work/
+
 dsq_thread_id:
   - 1269215762
 categories:

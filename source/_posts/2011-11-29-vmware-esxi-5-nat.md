@@ -2,7 +2,7 @@
 title: VMware ESXi NAT实现
 author: Harry Chen
 layout: post
-permalink: /vmware-esxi-5-nat/
+
 categories:
   - Others
   - 与技术相关

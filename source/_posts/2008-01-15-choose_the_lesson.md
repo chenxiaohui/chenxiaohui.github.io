@@ -2,7 +2,7 @@
 title: 选课
 author: Harry Chen
 layout: post
-permalink: /choose_the_lesson/
+
 categories:
   - 随笔
 ---

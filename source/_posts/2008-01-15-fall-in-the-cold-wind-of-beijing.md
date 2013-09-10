@@ -2,7 +2,7 @@
 title: 倒在北京的寒流里
 author: Harry Chen
 layout: post
-permalink: /fall-in-the-cold-wind-of-beijing/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 关于选择
 author: Harry Chen
 layout: post
-permalink: /about-choice/
+
 categories:
   - 世情百态
 ---

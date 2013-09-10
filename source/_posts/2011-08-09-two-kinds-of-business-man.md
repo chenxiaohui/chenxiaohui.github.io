@@ -2,7 +2,7 @@
 title: 两种生意人
 author: Harry Chen
 layout: post
-permalink: /two-kinds-of-business-man/
+
 dsq_thread_id:
   - 1306480447
 categories:

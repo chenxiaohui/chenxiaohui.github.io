@@ -2,7 +2,7 @@
 title: 水漫帝都这点事
 author: Harry Chen
 layout: post
-permalink: /water-over-beijing/
+
 categories:
   - 世情百态
 tags:

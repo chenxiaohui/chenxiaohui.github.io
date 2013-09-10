@@ -2,7 +2,7 @@
 title: 关于对越反击战
 author: Harry Chen
 layout: post
-permalink: /about-war-of-china-against-vietnam/
+
 categories:
   - 世情百态
 ---

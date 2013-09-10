@@ -2,7 +2,7 @@
 title: 特质
 author: Harry Chen
 layout: post
-permalink: /characteristic/
+
 categories:
   - 随笔
 ---

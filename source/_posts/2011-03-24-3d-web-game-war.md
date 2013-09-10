@@ -2,7 +2,7 @@
 title: 3d网页游戏市场大战
 author: Harry Chen
 layout: post
-permalink: /3d-web-game-war/
+
 categories:
   - Others
   - 与技术相关

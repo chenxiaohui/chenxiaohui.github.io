@@ -2,7 +2,7 @@
 title: '香山&middot;老人&middot;易拉罐'
 author: Harry Chen
 layout: post
-permalink: /xiangshan-oldman-popcan/
+
 categories:
   - 随笔
 ---

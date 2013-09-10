@@ -2,7 +2,7 @@
 title: 万水千山总是情，预装下header行不行？
 author: Harry Chen
 layout: post
-permalink: /cannnot-you-install-the-headers/
+
 categories:
   - Linux
 tags:

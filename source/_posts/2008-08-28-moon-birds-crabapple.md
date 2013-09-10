@@ -2,7 +2,7 @@
 title: 月朦胧，鸟朦胧，帘卷海棠红
 author: Harry Chen
 layout: post
-permalink: /moon-birds-crabapple/
+
 categories:
   - 随笔
 ---

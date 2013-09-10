@@ -2,7 +2,7 @@
 title: 转载：中国数字时代：独立候选人梁树新未能通过提名
 author: Harry Chen
 layout: post
-permalink: /liangxinshu-unnominated/
+
 categories:
   - 世情百态
 tags:

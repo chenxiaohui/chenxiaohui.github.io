@@ -2,7 +2,7 @@
 title: 我就不是一个单纯的人
 author: Harry Chen
 layout: post
-permalink: /i-am-not-a-simple-person/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 关于Django url映射的一些小问题
 author: Harry Chen
 layout: post
-permalink: /some-problems-of-django-url-mapping/
+
 mkd_text:
   - |
     之前写Django一直没想着去用patterns的prefix，偶然用的时候发现总不起作用，后来才发觉原来是写法的问题

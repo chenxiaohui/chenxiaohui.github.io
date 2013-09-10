@@ -2,7 +2,7 @@
 title: Unity已支持将3D游戏导出成Flash
 author: Harry Chen
 layout: post
-permalink: /unity-supports-3d-games-import-to-flash/
+
 categories:
   - Web
 tags:

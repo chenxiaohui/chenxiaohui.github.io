@@ -2,7 +2,7 @@
 title: 关于生活
 author: Harry Chen
 layout: post
-permalink: /about-life/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 淡然
 author: Harry Chen
 layout: post
-permalink: /indifferent/
+
 categories:
   - 随笔
 ---

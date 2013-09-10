@@ -2,7 +2,7 @@
 title: 高跟鞋管制
 author: Harry Chen
 layout: post
-permalink: /control-on-high-heel-shoes/
+
 categories:
   - 世情百态
 ---

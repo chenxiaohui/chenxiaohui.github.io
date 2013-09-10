@@ -2,7 +2,7 @@
 title: 世上不平事
 author: Harry Chen
 layout: post
-permalink: /unfairs-things-in-the-world/
+
 categories:
   - 世情百态
 ---

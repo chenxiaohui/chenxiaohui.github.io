@@ -2,7 +2,7 @@
 title: '转载: 腾讯的张小龙是一个什么样的人'
 author: Harry Chen
 layout: post
-permalink: /about-tencent-zhangxiaolong/
+
 dsq_thread_id:
   - 1319799808
 categories:

@@ -2,7 +2,7 @@
 title: 死亡游戏
 author: Harry Chen
 layout: post
-permalink: /death-game/
+
 categories:
   - 随笔
 ---

@@ -2,7 +2,7 @@
 title: 这才是真正的算法研究，从实际出发，解决实际问题
 author: Harry Chen
 layout: post
-permalink: /this-is-real-algorithm-from-life-and-deal-with-problems-in-life/
+
 dsq_thread_id:
   - 1306489757
 categories:

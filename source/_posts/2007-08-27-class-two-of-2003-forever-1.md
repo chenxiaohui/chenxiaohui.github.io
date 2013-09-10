@@ -2,7 +2,7 @@
 title: 永远的三年二班(1)
 author: Harry Chen
 layout: post
-permalink: /class-two-of-2003-forever-1/
+
 categories:
   - 随笔
 ---

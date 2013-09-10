@@ -2,7 +2,7 @@
 title: 去创业还是去环游世界
 author: Harry Chen
 layout: post
-permalink: /start-a-business-or-travel-around-the-world/
+
 categories:
   - 挨踢人生
 ---

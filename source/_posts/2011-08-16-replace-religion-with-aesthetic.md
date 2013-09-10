@@ -2,7 +2,7 @@
 title: 美育代替宗教
 author: Harry Chen
 layout: post
-permalink: /replace-religion-with-aesthetic/
+
 dsq_thread_id:
   - 1260311790
 categories:

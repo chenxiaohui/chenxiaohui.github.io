@@ -2,7 +2,7 @@
 title: Windows下64位PHP+Mysql+Apache的安装配置
 author: Harry Chen
 layout: post
-permalink: /php-apache-mysql-configuration-under-windows-x64/
+
 dsq_thread_id:
   - 1272359189
 categories:

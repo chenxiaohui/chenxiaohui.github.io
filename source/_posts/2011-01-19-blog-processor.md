@@ -2,7 +2,7 @@
 title: 日志格式处理BlogProcessor
 author: Harry Chen
 layout: post
-permalink: /blog-processor/
+
 categories:
   - .Net
   - 与技术相关

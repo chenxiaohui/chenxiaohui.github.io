@@ -2,7 +2,7 @@
 title: 关于邮件服务器
 author: Harry Chen
 layout: post
-permalink: /about-mail-server/
+
 categories:
   - 挨踢人生
 ---

@@ -2,7 +2,7 @@
 title: 看看当年中国人民是如何不惧核污染的
 author: Harry Chen
 layout: post
-permalink: /sea-how-chinese-people-do-not-fear-nuclear-pollution/
+
 categories:
   - 世情百态
 tags:

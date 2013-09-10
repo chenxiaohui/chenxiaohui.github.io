@@ -2,7 +2,7 @@
 title: 发布VIM缓冲区切换插件buf_it升级版
 author: Harry Chen
 layout: post
-permalink: /publish-the-vim-buffer-management-plugin/
+
 dsq_thread_id:
   - 1262682716
 categories:

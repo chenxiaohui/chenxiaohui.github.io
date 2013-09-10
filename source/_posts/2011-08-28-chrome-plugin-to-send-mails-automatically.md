@@ -2,7 +2,7 @@
 title: chrome自动发送邮件插件
 author: Harry Chen
 layout: post
-permalink: /chrome-plugin-to-send-mails-automatically/
+
 dsq_thread_id:
   - 1258066965
 categories:

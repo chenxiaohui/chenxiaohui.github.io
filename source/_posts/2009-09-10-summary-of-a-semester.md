@@ -2,7 +2,7 @@
 title: 学期总结
 author: Harry Chen
 layout: post
-permalink: /summary-of-a-semester/
+
 categories:
   - 随笔
 ---
