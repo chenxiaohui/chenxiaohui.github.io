@@ -2,7 +2,6 @@
 title: '由&#8221;喵&#8221;代码想到的'
 author: Harry Chen
 layout: post
-permalink: /from-the-miao-code/
 comments: true
 mkd_text:
   - |
