@@ -12,8 +12,8 @@ git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知�
 
 在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.
 
-  git config --global diff.tool vimdiff  
-  git config --global difftool.prompt No  
+    git config --global diff.tool vimdiff  
+    git config --global difftool.prompt No  
 
 这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.
 
@@ -23,16 +23,16 @@ git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知�
 
 当然我们也可以替换掉默认的diff工具, 可以指定
 
-  git config --global diff.external git_diff_wrapper
+    git config --global diff.external git_diff_wrapper
 
 然后在PATH的某个目录下建立git_diff_wrapper, 比如/usr/bin/git_diff_wrapper, 内容如下:
  
-  #!/bin/sh
-  vimdiff "$2" "$5"
+    #!/bin/sh
+    vimdiff "$2" "$5"
 
 最后加执行权限
 
-  chmod +x git_diff_wrapper
+    chmod +x git_diff_wrapper
 
 执行git diff的时候就可以看到效果
 
