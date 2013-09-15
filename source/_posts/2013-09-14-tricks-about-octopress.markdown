@@ -66,3 +66,5 @@ Jekyll每次都会生成所有的_posts, 这会导致生成速度的极度下降
 chrome打开的时候还没有执行preview, 所以需要再刷新一下...preview有些输出, 觉得不想看的可以重定向.
 
 [1]: http://stackoverflow.com/questions/16368771/copy-path-file-with-nerdtree-vim-plugin  "Copy path file with NERDtree Vim plugin"
+
+
