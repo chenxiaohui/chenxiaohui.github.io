@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "oceanbase源码分析-RootServer主要框架"
-date: 2013-09-02 12:55
+date: 2013-09-15 12:55
 comments: true
 categories: oceanbase源码分析
 ---
