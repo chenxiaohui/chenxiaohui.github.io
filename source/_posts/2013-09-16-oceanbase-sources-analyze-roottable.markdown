@@ -8,8 +8,7 @@ categories: oceanbase源码分析
 
 这里分析一下ObRowkey相关的源码.
 
-引用[晓楚师兄的
-一段话](http://blog.csdn.net/maray/article/details/9731113 " OceanBase里面的rowkey是什么概念，是由哪些要素构成的？"):
+引用[晓楚师兄的一段话](http://blog.csdn.net/maray/article/details/9731113 " OceanBase里面的rowkey是什么概念，是由哪些要素构成的？"):
 
 * Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。
 
