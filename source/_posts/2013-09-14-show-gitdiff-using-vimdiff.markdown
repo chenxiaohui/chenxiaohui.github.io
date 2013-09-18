@@ -12,8 +12,10 @@ git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知�
 
 在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.
 
-    git config --global diff.tool vimdiff  
-    git config --global difftool.prompt No  
+``` shell
+git config --global diff.tool vimdiff  
+git config --global difftool.prompt No  
+```
 
 这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.
 
