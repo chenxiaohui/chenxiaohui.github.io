@@ -21,11 +21,12 @@ comments: true
 
 > 这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出
 
-
+``` c++
     int a;
     int b;
     int c;
     printf("a=%d  b=%d  c=%dn", a, b, c);
+```
 
 2.块注释不能嵌套
 
