@@ -21,30 +21,31 @@ categories: oceanbase源码分析
 	
 定义了OceanBase中支持的基本数据类型,我们可以在ob_obj_type.h中看到其定义
 
-		enum ObObjType
-		{
-       ObMinType = -1,
- 
-       ObNullType,   // 空类型
-       ObIntType,
-       ObFloatType,              // @deprecated
- 
-       ObDoubleType,             // @deprecated
-       ObDateTimeType,           // @deprecated
-       ObPreciseDateTimeType,    // =5
- 
-       ObVarcharType,
-       ObUnknownType,    // For sql prepare
-       ObCreateTimeType,
- 
-       ObModifyTimeType,
-       ObExtendType,
-       ObBoolType,
- 
-       ObDecimalType,            // aka numeric
-       ObMaxType,
-     };
+``` 
+enum ObObjType
+{
+    ObMinType = -1,
 
+    ObNullType,   // 空类型
+    ObIntType,
+    ObFloatType,              // @deprecated
+
+    ObDoubleType,             // @deprecated
+    ObDateTimeType,           // @deprecated
+    ObPreciseDateTimeType,    // =5
+
+    ObVarcharType,
+    ObUnknownType,    // For sql prepare
+    ObCreateTimeType,
+
+    ObModifyTimeType,
+    ObExtendType,
+    ObBoolType,
+
+    ObDecimalType,            // aka numeric
+    ObMaxType,
+};
+```
 
 
 #ObRowkeyColumn
