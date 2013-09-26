@@ -3,7 +3,7 @@ layout: post
 title: "oceanbase源码分析-root_table_manager相关"
 date: 2013-09-26 12:15
 comments: true
-categories: 
+categories: oceanbase源码分析 
 ---
 
 ###ObTableNameIterator
@@ -37,3 +37,4 @@ categories:
 ###	ObTableIdName
 
 顾名思义, TableId 和 TableName 的组合
+
