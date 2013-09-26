@@ -85,7 +85,7 @@ task :preview do
     [jekyllPid, compassPid, rackupPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
     exit 0
   }
-
+  system "nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &"
   [jekyllPid, compassPid, rackupPid].each { |pid| Process.wait(pid) }
 end
 
@@ -113,7 +113,7 @@ task :new_post, :title do |t, args|
     post.puts "categories: "
     post.puts "---"
   end
-  system "vim #{filename}"
+  system "LD_PRELOAD=~/bin/libsublime-imfix.so /usr/share/sublime/sublime_text #{filename}"
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
