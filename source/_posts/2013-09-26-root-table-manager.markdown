@@ -12,7 +12,7 @@ categories: oceanbase源码分析
 
 * init
 
-  初始化并调用scan_tables执行查询表名的sql语句
+  初始化并调用scan_tables执行查询表名的sql语句   
 
 * scan_tables
 
@@ -37,4 +37,22 @@ categories: oceanbase源码分析
 ###	ObTableIdName
 
 顾名思义, TableId 和 TableName 的组合
+
+### ObTableSchemaIterator
+
+获取TableSchema的迭代器
+
+### ObRootSchemaService
+
+RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作. 
+
+成员
+	
+方法
+
+	init
+	写入
+### RootTableService
+
+RootServer
 
