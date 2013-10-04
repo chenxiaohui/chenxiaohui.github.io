@@ -1,4 +1,18 @@
-<section>
-  <h1>About Me</h1>
-  <p>北航计算机本，清华软件硕，就职于支付宝北京</p>
+<section class="well">
+  <ul id="about_me" class="nav">
+    <li class="nav-header">About Me</li>
+  </ul>
+  <hr/>
+        <div class="profilepic">
+            <script src="{{ root_url }}/javascripts/md5.js"></script>
+            <script type="text/javascript">
+                $(function(){
+                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("{{ site.email | downcase }}") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+                });
+            </script>
+        </div>
+    <hr/>
+  <ul class="nav">
+        {{ site.description }}
+    </ul>
 </section>
