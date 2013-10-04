@@ -222,6 +222,7 @@ task :deploy do
 
   Rake::Task[:copydot].invoke(source_dir, public_dir)
   Rake::Task["#{deploy_default}"].execute
+  system "nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &"
 end
 
 desc "Generate website and deploy"
