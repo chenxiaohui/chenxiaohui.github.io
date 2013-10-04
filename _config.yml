@@ -104,3 +104,9 @@ facebook_like: false
 
 #weibo
 weibo_xiu: true
+
+#jiathis
+jiathis: false
+
+#cnzz
+cnzz: true
