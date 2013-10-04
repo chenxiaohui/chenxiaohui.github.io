@@ -8,6 +8,7 @@ subtitle: 用百度搜进来的给我面壁去~
 author: Harry Chen
 simple_search: http://google.com/search
 description:  北航计算机本，清华软件硕，就职于支付宝北京
+lang: zh-CN
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

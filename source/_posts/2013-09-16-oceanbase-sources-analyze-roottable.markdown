@@ -14,15 +14,23 @@ categories: oceanbase源码分析
 * 为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。
 * 如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。
 
-#ObObjType
+###ObObjType
 
 定义了OceanBase中支持的基本数据类型,我们可以在ob_obj_type.h中看到其定义
 
 
-#ObRowkeyColumn
+###ObRowkeyColumn
 定义了RowKey中的每个列Column
 
 
-#ObRowkeyInfo
+###ObRowkeyInfo
 定义了RowkeyColumn的集合
- 	git
+
+###ObRootTableRow:
+存储了RootServer中一行所需要关注的信息，包括了rowkey列的数据和各个replica的版本信息
+
+      void set_min_row(const int64_t rowkey_num);
+      // makeout
+      int input_tablet_row(const bool start_key, const ObRootTabletInfo & tablet);
+      // output
+      int output_tablet_row(common::ObScanner & result);
