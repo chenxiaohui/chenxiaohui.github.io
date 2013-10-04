@@ -8,6 +8,7 @@ subtitle: 用百度搜进来的给我面壁去~
 author: Harry Chen
 simple_search: http://google.com/search
 description:  北航计算机本，清华软件硕，就职于支付宝北京
+keywords:  分布式,oceanbase,数据库,挨踢人生,世情百态
 lang: zh-CN
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
@@ -51,8 +52,8 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html, 
-    asides/pinboard.html, asides/googleplus.html, custom/asides/weibo.html, custom/asides/about.html]
+default_asides: [asides/recent_posts.html, asides/github.html, asides/delicious.html,
+    asides/pinboard.html, asides/googleplus.html,  custom/asides/weibo.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -71,7 +72,7 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user: 
+twitter_user:
 twitter_tweet_button: false
 
 # Google +1
@@ -101,5 +102,5 @@ google_analytics_tracking_id:
 # Facebook Like
 facebook_like: false
 
-#weibo 
+#weibo
 weibo_xiu: true
