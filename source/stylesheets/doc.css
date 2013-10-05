@@ -1,7 +1,7 @@
 body {
     padding-bottom: 40px;
     padding-top: 65px;
-    font-family:'Microsoft YaHei', Georgia, 'Times New Roman', Times, serif;
+    font-family:'Microsoft YaHei','Helvetica Neue',Helvetica,Arial,Sans-serif;
     position: relative;
     background-color: #fff;
     background-image: url(../images/grid-18px-masked.png);
@@ -30,25 +30,6 @@ pre{
     word-wrap:break-word;
 }
 
-/* Add additional stylesheets below
--------------------------------------------------- */
-    /*
-    Bootstrap's documentation styles
-    Special styles for presenting Bootstrap's documentation and examples
-     */
-
-
-    /* Body and structure
-    -------------------------------------------------- */
-    body {
-}
-
-/* Space out sub-sections more
--------------------------------------------------- */
-    section {
-        padding-top: 60px;
-}
-
 /* Faded out hr */
 hr.soften {
     height: 1px;
@@ -60,11 +41,10 @@ hr.soften {
     border: 0;
 }
 
-
 /* Jumbotrons
 -------------------------------------------------- */
-    .jumbotron {
-        position: relative;
+.jumbotron {
+    position: relative;
 }
 .jumbotron h1 {
     margin-bottom: 9px;
@@ -112,10 +92,10 @@ hr.soften {
 
 /* Specific jumbotrons
 ------------------------- */
-    /* supporting docs pages */
-    .subhead {
-        padding-bottom: 0;
-        margin-bottom: 9px;
+/* supporting docs pages */
+.subhead {
+    padding-bottom: 0;
+    margin-bottom: 9px;
 }
 .subhead h1 {
     font-size: 54px;
@@ -218,8 +198,8 @@ hr.soften {
 
 /* Quick links
 -------------------------------------------------- */
-    .bs-links {
-        margin: 36px 0;
+.bs-links {
+    margin: 36px 0;
 }
 .quick-links {
     min-height: 30px;
@@ -244,11 +224,10 @@ hr.soften {
     top: 5px;
 }
 
-
 /* Marketing section of Overview
 -------------------------------------------------- */
-    .marketing .row {
-        margin-bottom: 9px;
+.marketing .row {
+    margin-bottom: 9px;
 }
 .marketing h1 {
     margin: 36px 0 27px;
@@ -294,9 +273,9 @@ hr.soften {
 
 /* Special grid styles
 -------------------------------------------------- */
-    .show-grid {
-        margin-top: 10px;
-        margin-bottom: 20px;
+.show-grid {
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 .show-grid [class*="span"] {
     background-color: #eee;
@@ -473,9 +452,9 @@ hr.soften {
 
 /* Color swatches on LESS docs page
 -------------------------------------------------- */
-    /* Sets the width of the td */
-    .swatch-col {
-        width: 30px;
+/* Sets the width of the td */
+.swatch-col {
+    width: 30px;
 }
 /* Le swatch */
 .swatch {
@@ -498,8 +477,8 @@ hr.soften {
 /* Misc
 -------------------------------------------------- */
 
-    img {
-        max-width: 100%;
+img {
+    max-width: 100%;
 }
 
 /* Make tables spaced out a bit more */
@@ -575,10 +554,10 @@ form.well {
 
 /* Responsive table
 ------------------------- */
-    .responsive-utilities th small {
-        display: block;
-        font-weight: normal;
-        color: #999;
+.responsive-utilities th small {
+    display: block;
+    font-weight: normal;
+    color: #999;
 }
 .responsive-utilities tbody th {
     font-weight: normal;
@@ -597,11 +576,11 @@ form.well {
 
 /* Responsive tests
 ------------------------- */
-    .responsive-utilities-test {
-        margin-top: 5px;
-        margin-left: 0;
-        list-style: none;
-        overflow: hidden; /* clear floats */
+.responsive-utilities-test {
+    margin-top: 5px;
+    margin-left: 0;
+    list-style: none;
+    overflow: hidden; /* clear floats */
 }
 .responsive-utilities-test li {
     position: relative;
@@ -636,7 +615,6 @@ form.well {
     background-color: #dff0d8;
     border: 1px solid #d6e9c6;
 }
-
 
 /* Responsive Docs
 -------------------------------------------------- */
@@ -838,7 +816,6 @@ form.well {
   }
 
 }
-
 
 /* LARGE DESKTOP SCREENS */
 @media (min-width: 1210px) {
