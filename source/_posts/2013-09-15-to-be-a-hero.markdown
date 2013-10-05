@@ -8,9 +8,10 @@ categories: 世情百态
 
 只是想起一首老歌:
 
+<!-- more -->
+
 <embed src="http://player.youku.com/player.php/sid/XMTQ3NjIzNjk2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 
-<!-- more -->
 
 >有时候 我必须 选择一个人过冬
 

@@ -12,6 +12,8 @@ categories: vim
 
 主要说下面几个小技巧:
 
+<!-- more -->
+
 ###1\. alias(别名)
 
 话说每次写博客的时候要敲rake new_post/ rake generate/ rake preview/ rake deploy...等等, 中间再出一点什么git同步的错误, 严重影响写博客的心情.可以通过alias简化命令:
