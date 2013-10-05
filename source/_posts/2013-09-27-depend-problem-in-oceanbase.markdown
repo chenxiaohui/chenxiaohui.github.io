@@ -29,9 +29,9 @@ categories: oceanbase
 
 -l library
 
->   Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not recommended.)
+  >   Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not recommended.)
 
- >  It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are specified.  Thus, foo.o -lz bar.o searches library z after file foo.o but before bar.o.  If bar.o refers to functions in z, those functions may not be loaded.
+  >  It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are specified.  Thus, foo.o -lz bar.o searches library z after file foo.o but before bar.o.  If bar.o refers to functions in z, those functions may not be loaded.
 
 所以在使用一些依赖关系比较复杂的静态库时，我们可能会看到这样的使用方式：gcc –o test main.c libtest1.a libtest2.a libtest1.a。在链接序列中，一个静态库可能出现多次，以解决一些循环依赖。
 
