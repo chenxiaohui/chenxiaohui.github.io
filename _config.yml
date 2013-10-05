@@ -4,12 +4,13 @@
 
 url: http://cxh.me
 title: CXH.ME
-subtitle: 用百度搜进来的给我面壁去~
 author: Harry Chen
 simple_search: http://google.com/search
+lang: zh-CN
+
+subtitle: 面朝大海，春暖花开 ——海子
 description: 在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~
 keywords:  分布式,oceanbase,数据库,挨踢人生,世情百态
-lang: zh-CN
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in

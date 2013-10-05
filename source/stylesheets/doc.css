@@ -10,12 +10,6 @@ body {
 h1 {
     margin-bottom: 15px;
 }
-img {
-    max-width: 100%;
-}
-.profilepic{
-    text-align:center;
-}
 .sharing, .meta, .pager {
     margin: 20px 0px 20px 0px;
 }
@@ -28,6 +22,30 @@ pre{
     word-break:break-all;
     word-wrap:break-word;
 }
+/*basic settings*/
+h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 50, .3) 1px 1px 3px; }
+
+/*some common settings*/
+.left{float:left;}
+.right{float:right;}
+.center{margin:0px auto}
+.clear{overflow:hidden;}
+.bold {font-weight:bold;}
+.white{ color:white; }
+.align-right{text-align:right}
+.align-center{text-align:center;}
+
+/*fonts*/
+.s14{font-size:14px}
+.s15{font-size:15px}
+.s16{font-size:16px}
+
+/*shadow*/
+.shadow { -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc; -ms-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc; -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc;border:1px solid #eee \9; }
+.shad{-moz-box-shadow: 0px 0px 10px #cbcbcb; box-shadow: 0px 0px 10px #cbcbcb;-webkit-box-shadow: 0px 0px 10px #cbcbcb; border:1px solid #eee \9; }
+
+/*round*/
+.round{border-radius:10px;}
 
 /* Faded out hr */
 hr.soften {
@@ -39,7 +57,6 @@ hr.soften {
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
     border: 0;
 }
-
 /* Jumbotrons
 -------------------------------------------------- */
 .jumbotron {
@@ -478,7 +495,10 @@ hr.soften {
 
 img {
     max-width: 100%;
-}
+    margin-bottom:5px;
+    margin-top:5px;
+    border-radius:5px;
+ }
 
 /* Make tables spaced out a bit more */
 h2 + table,
