@@ -11,7 +11,9 @@ categories: 挨踢人生
 
 兰州: 一种烟, 如图所示:
 
-![兰州](/images/2013-9/lanzhou.jpg "兰州")
-![兰州](/images/2013-9/lanzhou2.jpg "兰州")
+
+
+<!-- ![兰州](/images/2013-9/lanzhou.jpg "兰州") -->
+<!-- ![兰州](/images/2013-9/lanzhou2.jpg "兰州") -->
 
 钦此.

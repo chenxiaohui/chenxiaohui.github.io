@@ -45,9 +45,6 @@ module Jekyll
       url
     end
 
-    def get_gist_url_for(gist, file)
-      "https://raw.github.com/gist/#{gist}/#{file}"
-    end
 
     def cache(gist, file, data)
       cache_file = get_cache_file_for gist, file
