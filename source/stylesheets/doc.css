@@ -1,6 +1,6 @@
 body {
     padding-bottom: 40px;
-    padding-top: 65px;
+    padding-top: 40px;
     position: relative;
     background-color: #fff;
     background-image: url(../images/grid-18px-masked.png);
@@ -88,8 +88,8 @@ hr.soften {
 
 /* Masthead (docs home) */
 .masthead {
-    padding-top: 36px;
-    margin-bottom: 72px;
+    padding-top: 0px;
+    margin-bottom: 30px;
 }
 .masthead h1,
 .masthead p {
