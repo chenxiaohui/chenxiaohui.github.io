@@ -14,6 +14,8 @@ categories: oceanbase源码分析
 * 为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。
 * 如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。
 
+<!-- more -->
+
 ###ObObjType
 
 定义了OceanBase中支持的基本数据类型,我们可以在ob_obj_type.h中看到其定义

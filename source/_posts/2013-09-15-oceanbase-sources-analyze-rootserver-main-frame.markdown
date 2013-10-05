@@ -6,6 +6,10 @@ comments: true
 categories: oceanbase源码分析
 ---
 
+这里记录一下RootServer主要框架的阅读和心得。
+
+<!-- more -->
+
 ##BaseMain
 
 BaseMain的逻辑从start开始,首先定义了日志格式(ob_easy_log_format),具体定义在ob_easy_log.cpp中

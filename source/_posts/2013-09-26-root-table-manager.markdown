@@ -5,6 +5,10 @@ date: 2013-09-26 12:15
 comments: true
 categories: oceanbase源码分析 
 ---
+ 
+记录一下root_table_manager相关类的阅读和心得。
+
+<!-- more -->
 
 ###ObTableNameIterator
 

@@ -15,3 +15,5 @@ memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\a
 主要的源码有:
 
 * memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并
+
+//TODO
