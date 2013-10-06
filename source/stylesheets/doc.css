@@ -7,9 +7,6 @@ body {
     background-repeat: repeat-x;
     background-position: 0 40px;
 }
-h1 {
-    margin-bottom: 15px;
-}
 .sharing, .meta, .pager {
     margin: 20px 0px 20px 0px;
 }

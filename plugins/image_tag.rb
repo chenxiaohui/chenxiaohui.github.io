@@ -38,6 +38,7 @@ require 'hpricot'
          @img['src'] = get_img_url(@img['src'])
         end
         @img['class'].gsub!(/"/, '') if @img['class']
+        @img['class'] = 'img-polaroid' if !@img['class']
       end
       super
     end
