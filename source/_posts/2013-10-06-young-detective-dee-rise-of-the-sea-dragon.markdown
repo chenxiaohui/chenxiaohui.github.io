@@ -26,17 +26,16 @@ categories: 世情百态
 
 好了，不管土豪的事情了，上几张照片。
 
-{% img http://screencloud.net/v/bS8b    "这个是想表达什么" %}
+{% img /images/2013-10/IMG_20131006_144718.jpg  "这个是想表达什么" %}
+<p class="align-center">其实我一直不明白这个是要表达什么。</p>
 
-其实我一直不明白这个是要表达什么。
 
-{% img http://screencloud.net/v/6zM1 "话说这个狗狗还是挺可爱的嘛" %}
+{% img /images/2013-10/IMG_20131006_145824.jpg "话说这个狗狗还是挺可爱的嘛" %}
+<p class="align-center">话说这个狗狗还是挺可爱的嘛</p>
 
-话说这个狗狗还是挺可爱的嘛
 
-{% img http://screencloud.net/v/aPh1 "最震撼的其实是这个" %}
-
-最震撼的其实是这个....
+{% img /images/2013-10/IMG_20131006_172509.jpg "最震撼的其实是这个" %}
+<p class="align-center">最震撼的其实是这个....</p>
 
 这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛...多么的经济实惠
 
