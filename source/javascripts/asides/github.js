@@ -11,7 +11,7 @@ var github = (function(){
   return {
     showRepos: function(options){
 
-      $.getJSON("https://api.github.com/users/"+options.user+"/repos?sort=updated&direction=desc&callback=?", 
+      $.getJSON("https://api.github.com/users/"+options.user+"/repos?sort=updated&direction=desc&callback=?",
         function(response) {
           var repos = [];
           if (!response || response.data.length == 0) { return; }
@@ -30,9 +30,9 @@ var github = (function(){
           });
 
           if (options.count) { repos.splice(options.count); }
-          
+
           render(options.target, repos);
-        
+
       });
     }
   };

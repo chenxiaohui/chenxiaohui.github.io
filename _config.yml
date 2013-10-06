@@ -71,8 +71,8 @@ default_asides: [
 
 # Github repositories
 github_user: chenxiaohui
-github_repo_count: 0
-github_show_profile_link: true
+github_repo_count: 5
+github_show_profile_link: false
 github_skip_forks: true
 
 # Twitter
