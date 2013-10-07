@@ -22,6 +22,7 @@ require 'rubygems'
 require 'hpricot'
   class ImageTag < Liquid::Tag
     @img = nil
+    @sub = ''
 
     def initialize(tag_name, markup, tokens)
       attributes = ['class', 'src', 'width', 'height', 'title']
@@ -31,6 +32,7 @@ require 'hpricot'
         if /(?:"|')(?<title>[^"']+)?(?:"|')\s+(?:"|')(?<alt>[^"']+)?(?:"|')/ =~ @img['title']
           @img['title']  = title
           @img['alt']    = alt
+          @sub = '<p class="align-center">' + alt + '</p>'
         else
           @img['alt']    = @img['title'].gsub!(/"/, '&#34;') if @img['title']
         end
@@ -38,7 +40,6 @@ require 'hpricot'
          @img['src'] = get_img_url(@img['src'])
         end
         @img['class'].gsub!(/"/, '') if @img['class']
-        @img['class'] = 'img-polaroid' if !@img['class']
       end
       super
     end
@@ -65,9 +66,9 @@ require 'hpricot'
 
     def render(context)
       if @img
-        "<img #{@img.collect {|k,v| "#{k}=\"#{v}\"" if v}.join(" ")}>"
+        "<img #{@img.collect {|k,v| "#{k}=\"#{v}\"" if v}.join(" ")}>#{@sub}"
       else
-u       "Error processing input, expected syntax: {% img [class name(s)] [http[s]:/]/path/to/image [width [height]] [title text | \"title text\" [\"alt text\"]] %}"
+       "Error processing input, expected syntax: {% img [class name(s)] [http[s]:/]/path/to/image [width [height]] [title text | \"title text\" [\"alt text\"]] %}"
       end
     end
   end

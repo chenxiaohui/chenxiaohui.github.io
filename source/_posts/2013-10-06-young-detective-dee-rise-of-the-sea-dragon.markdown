@@ -20,22 +20,17 @@ categories: 世情百态
 
 --------
 
-{% img no-class /images/common/ask.jpg 100 "are you kidding me" %} 你家的土豪是坐公交的啊
+{% img /images/common/ask.jpg 200 "are you kidding me" %} 你家的土豪是坐公交的啊
 
 --------
 
 好了，不管土豪的事情了，上几张照片。
 
-{% img /images/2013-10/IMG_20131006_144718.jpg  "这个是想表达什么" %}
-<p class="align-center">其实我一直不明白这个是要表达什么。</p>
+{% img img-polaroid /images/2013-10/IMG_20131006_144718.jpg  "这个是想表达什么" "这个是想表达什么" %}
 
+{% img img-polaroid /images/2013-10/IMG_20131006_145824.jpg "话说这个狗狗还是挺可爱的嘛" "话说这个狗狗还是挺可爱的嘛" %}
 
-{% img /images/2013-10/IMG_20131006_145824.jpg "话说这个狗狗还是挺可爱的嘛" %}
-<p class="align-center">话说这个狗狗还是挺可爱的嘛</p>
-
-
-{% img /images/2013-10/IMG_20131006_172509.jpg "最震撼的其实是这个" %}
-<p class="align-center">最震撼的其实是这个....</p>
+{% img img-polaroid /images/2013-10/IMG_20131006_172509.jpg "最震撼的其实是这个" "最震撼的其实是这个" %}
 
 这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛...多么的经济实惠
 
