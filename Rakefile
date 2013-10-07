@@ -266,15 +266,14 @@ multitask :push do
     system "git push origin #{deploy_branch}"
     puts "\n## Github Pages deploy complete"
   end
-  cd "." do
-    system "git add -A"
-    puts "\n## Commiting: Site updated at #{Time.now.utc}"
-    message = "Site updated at #{Time.now.utc}"
-    system "git commit -m \"#{message}\""
-    puts "\n## Pushing source"
-    system "git push origin "
-    puts "\n## Github source pushed"
-  end
+
+  system "git add -A"
+  puts "\n## Commiting: Site updated at #{Time.now.utc}"
+  message = "Site updated at #{Time.now.utc}"
+  system "git commit -m \"#{message}\""
+  puts "\n## Pushing source"
+  system "git push origin "
+  puts "\n## Github source pushed"
 end
 
 desc "Update configurations to support publishing to root or sub directory"
