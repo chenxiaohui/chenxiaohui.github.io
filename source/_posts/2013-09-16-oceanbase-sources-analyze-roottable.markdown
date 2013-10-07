@@ -114,6 +114,4 @@ First Root Table 	Cluster ID + User Root Table ID
 
 FirstRootTable
 
-
-
 ###ObScanner
