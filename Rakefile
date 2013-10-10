@@ -267,6 +267,7 @@ multitask :push do
     puts "\n## Github Pages deploy complete"
   end
 
+  #source
   system "git add -A"
   puts "\n## Commiting: Site updated at #{Time.now.utc}"
   message = "Site updated at #{Time.now.utc}"
@@ -274,6 +275,9 @@ multitask :push do
   puts "\n## Pushing source"
   system "git push origin "
   puts "\n## Github source pushed"
+
+  #ftp
+  system 'lftp -u sdqxcxh,justfe3lit.x ftp://192.157.216.125 -e "mirror -R /media/backup/work/blog/public/ /www/blog/"'
 end
 
 desc "Update configurations to support publishing to root or sub directory"
