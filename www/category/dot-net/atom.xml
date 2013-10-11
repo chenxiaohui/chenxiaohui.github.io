@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: .Net | CXH.ME]]></title>
+  <link href="http://cxh.me/category/dot-net/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[简短总结一下C#里跨线程更新UI]]></title>
+    <link href="http://cxh.me/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/"/>
+    <updated>2012-04-16T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/04/16/summary-of-cross-thread-ui-update-in-csharp</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用</p>
+
+<pre><code>Control.CheckForIllegalCrossThreadCalls = false;
+</code></pre>
+
+<p>来关闭跨线程检测。但是这样做有一定的风险，容易让程序崩溃。</p>
+
+<p>最好的办法是通过Invoke，这篇博客只是提供一个示例，至于那些线程同步、Invoke和BeginInvoke，Invoke底层实现神马的，有空再说吧。</p>
+
+<p>一个简单的例子如下：（注，Form1 加入了一个名为txt的TextBox）</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Threading;
+
+namespace testThread
+{
+    public partial class Form1 : Form
+    {
+        private delegate void InvokeCallback(string msg); //定义回调函数（代理）格式
+        public Form1()
+        {
+            InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;//关闭跨线程调用检测
+            MyMessage m = new MyMessage();//一个消息源
+            //启动一个线程，把界面对象传递过去
+            Thread t = new Thread(new ParameterizedThreadStart(m.Test));
+            t.Start((object)this);
+        }
+        //Invoke回调函数
+        public void UpdateText(string text)
+        {
+            if (txt.InvokeRequired)//当前线程不是创建线程
+                txt.Invoke(new InvokeCallback(UpdateText),new object[]{text});//回调
+            else//当前线程是创建线程（界面线程）
+                txt.Text = text;//直接更新
+        }
+    }
+    //消息源
+    class MyMessage
+    {
+        public void Test(object para)
+        {
+            Form1 form = (Form1)para;
+            form.UpdateText("测试");
+        }
+    }
+}
+</code></pre>
+
+<p>上面的例子很简单，主要是需要判断一下当前线程是不是控件的创建线程，如果是就直接更新，否则建立一个Invoke对象，设置好代理和参数，然后调用Invoke。需要注意的是建立线程的时候如果需要传参数，应该通过ParameterizedThreadStart建立并且以object格式传递参数。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于.NET中的AutoScrollPosition属性]]></title>
+    <link href="http://cxh.me/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/"/>
+    <updated>2011-11-13T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>今天写一个能滚动的PictureBox，PictureBox默认没有滚动条，所以又两种实现方式，要么在PictureBox外套一个规定大小的Panel，然后设置Panel有滚动条，要么单独做一个UserControl，自己管理重绘。</p>
+
+<p>但是都发现一个问题，我写拖动的代码的时候，获得了两次拖动事件之间的移动距离，然后想加到AutoScrollPosition属性上，控制滚动，但是总会跳回原点。经过了无数次艰苦卓绝的测试，最后发现一个哭笑不得的问题。</p>
+
+<p>.Net实在太智能了，智能的你都想不到他智能哪里去了。</p>
+
+<blockquote><p>Point p = new Point(20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>上面这句会设定有滚动20个像素</p>
+
+<blockquote><p>Point p = new Point(-20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>下面这句会调回原点，原因是你设置AutoScrollPosition=20的时候，.NET自动给20加了一个符号，AutoScrollPosition变成了-20，这都好理解，问题是你累加AutoScrollPosition的时候，开始是20，取出来就变成-20，于是你再加20，刚好回原点。这是一个多么奇葩的结果，你跟一个人说，滚，然后他努力的每次向前移动20cm，结果他在原地振动了……</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于Flex和.NET自定义事件的比较]]></title>
+    <link href="http://cxh.me/2011/05/29/difference-between-Flex-and-dotNet-event/"/>
+    <updated>2011-05-29T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/05/29/difference-between-Flex-and-dotNet-event</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>实际上大多数语言，或者说大多数框架的消息机制是类似的。Flex和.NET(c#为例)的消息机制可以做为一个例子说明。如下我们给出一个简单的Flex自定义消息和.NET自定义消息的例子，不同的是，.NET下消息是通过代理(delegate)给出的，而Flex这个超像java的东东还是一如既往的用观察模式去AddEventListener，不过这种差别应该都是语言层的差别，就实现机制应该没什么不一样的，毕竟消息这种东西嘛，到头来都是观察模式，授人以柄，供其调用。</p>
+
+<p>两者的不同点其实也挺值得玩味的，Flex是弱类型语言，类型弱得连函数都若有如无，所以不需要定义事件处理句柄的类型（我的理解），而C#各个event自己管理，所以也不需要用一个类似于Flex消息类型的东西去界定这是哪个消息。</p>
+
+<p>世界如此有爱。</p>
+
+<p>Flex自定义消息例子</p>
+
+<pre><code>EventType.as：定义了消息类型，类似于一个枚举
+package event
+{
+    public final class EventType
+    {
+        public static const TableClickEvent:String="TableClick";
+    }
+}
+TableEvent.as：定义了消息本身，继承自Event,自定义了一个参数传递一个value
+package event
+{
+    import flash.events.Event;
+
+    public class TableEvent extends Event
+    {
+        public var value:int=0;
+        public function TableEvent(type:String, value:int,bubbles:Boolean=false, cancelable:Boolean=false)
+        {
+            super(type, bubbles, cancelable);
+            this.value=value;
+        }
+
+    }
+}
+Table.as：分发消息的类，也就是消息源
+package msg
+{
+    import event.*;
+
+    import flash.events.EventDispatcher;
+    public class Table extends EventDispatcher
+    {
+        public function Table()
+        {
+        }
+        public function TableClick():void
+        {
+            dispatchEvent(new TableEvent(EventType.TableClickEvent,1));
+        }
+    }
+}
+监听消息的代码：
+public var table:Table;
+table=new Table();
+table.addEventListener(EventType.TableClickEvent,TableClick);
+table.TableClick();
+</code></pre>
+
+<p>应该比较通俗易懂，不做解释</p>
+
+<p>下面给出.NET下自定义消息的一个例子：</p>
+
+<pre><code>MyEvent.cs自定义消息分发类，自定义了一个delegate指定消息句柄类型:
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace testMessage
+{
+    class MyEvent
+    {
+        public delegate void MyEventHandler(MyEventArgs e);
+        public event MyEventHandler handler;
+        public void Click()
+        {
+            if (handler != null)
+                handler(new MyEventArgs("helloworld"));
+        }
+      }
+}
+MyEventArgs.cs消息类型定义
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace testMessage
+{
+    class MyEventArgs:EventArgs
+    {
+        public String strMessage;
+        public MyEventArgs(string message)
+        {
+            strMessage = message;
+        }
+    }
+}
+消息监听类：
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace testMessage
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyEvent eve = new MyEvent();
+            eve.handler =new MyEvent.MyEventHandler(eve_handler);
+            eve.Click();
+        }
+
+        static void eve_handler(MyEventArgs e)
+        {
+            Console.WriteLine(e.strMessage);
+        }
+    }
+}
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[发一套华丽的Vista风格日历控件]]></title>
+    <link href="http://cxh.me/2011/03/16/a-gorgeous-vista-like-calendar-control/"/>
+    <updated>2011-03-16T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/03/16/a-gorgeous-vista-like-calendar-control</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>最近需要用一套可编辑的日历控件，ASP.NET里的日历控件是可用的，但是WinForm下的日历控件无法编辑。没时间写，就直接上网找了个控件修改了一下。其实这控件严格说不能叫日历……这明明是月份牌，实际上就是在一张底图上写上一些日期文字而已。主要的改动是加了一些接口，然后写了部分自动生成的代码，可以直接把一个月的日历显示上去。勉强可用，不过总觉得有点山寨。不说了，上图（打牌这部分纯属吐槽，请勿随意联系）。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/03/thumb.png" title="无标题" alt="无标题" /></p>
+
+<p>代码<a href="http://www.roybit.com/wp-content/uploads/2011/03/VistaCalendar.rar">这里</a>下载。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p>Vista风格日历控件C#版，</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[C#配置文件读写的两种思路]]></title>
+    <link href="http://cxh.me/2011/03/08/two-methods-to-deal-with-config-file-using-csharp/"/>
+    <updated>2011-03-08T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/03/08/two-methods-to-deal-with-config-file-using-csharp</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>配置文件是增加软件扩展性不可获取的一部分。本文提供两种C#配置文件读写的方式。</p>
+
+<p>第一种是使用Windows自身的INI文件读写API，在.NET下调用的时候需要对其进行声明，这也是最传统的一类，问题在于INI文件表达能力有限，每次都要费心地去给每个不同的配置项设置不同的KEY，不适合LIST型的配置项的书写。</p>
+
+<p>另一种是使用XML序列化与反序列化。这里只是用XML作为一个例子，其实.NET下的几种序列化方式<a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">1</a>都可以用来作为配置文件读写的一种方式。XML的表达能力强于INI文件，同时序列化方式也大大简化了配置文件读写的过程，确是一种方便的工具。</p>
+
+<p>详见<a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">代码</a>。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">1</a>C#序列化技术详解（转），</p></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

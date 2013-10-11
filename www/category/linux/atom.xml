@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Linux | CXH.ME]]></title>
+  <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[霸气风骚的系统监视器htop]]></title>
+    <link href="http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop/"/>
+    <updated>2013-10-10T20:12:00+08:00</updated>
+    <id>http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop</id>
+    <content type="html"><![CDATA[<p>做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
+
+<!-- more -->
+
+
+<h3>介绍</h3>
+
+<blockquote><p>htop 是Linux系统中的一个互动的进程查看器，一个文本模式的应用程序(在控制台或者X终端中)，需要ncurses。</p>
+
+<p>与Linux传统的top相比，htop更加人性化。它可让用户交互式操作，支持颜色主题，可横向或纵向滚动浏览进程列表，并支持鼠标操作。</p>
+
+<p>与top相比，htop有以下优点：</p>
+
+<ul>
+<li>可以横向或纵向滚动浏览进程列表，以便看到所有的进程和完整的命令行。</li>
+<li>在启动上，比top 更快。</li>
+<li>杀进程时不需要输入进程号。</li>
+<li>htop 支持鼠标操作。</li>
+</ul>
+
+
+<p>htop 官网：<a href="http://htop.sourceforge.net/">http://htop.sourceforge.net/</a></p></blockquote>
+
+<h3>截图</h3>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/htop.png" title="&ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo;" ></p>
+
+<h3>安装</h3>
+
+<h4>Ubuntu</h4>
+
+<pre><code>sudo apt-get install htop
+</code></pre>
+
+<h4>RHEL/CentOS</h4>
+
+<h5>CentOS 5.x</h5>
+
+<pre><code>32位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+64位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+导入key
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+</code></pre>
+
+<h5>CentOS 6.x</h5>
+
+<pre><code>32位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+64位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+导入key：
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+</code></pre>
+
+<p>最后执行</p>
+
+<pre><code>yum install htop
+</code></pre>
+
+<h4>源码安装</h4>
+
+<pre><code>wget http://nchc.dl.sourceforge.net/project/htop/htop/1.0.1/htop-1.0.1.tar.gz
+tar zxvf htop-1.0.1.tar.gz
+cd htop-1.0.1
+./configure
+make
+make install
+</code></pre>
+
+<h3>参考文献：</h3>
+
+<blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[防止通过rm误删文件]]></title>
+    <link href="http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm/"/>
+    <updated>2013-09-22T20:46:00+08:00</updated>
+    <id>http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm</id>
+    <content type="html"><![CDATA[<p>相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
+
+<p>为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
+
+<p>这里我们首先建立如下脚本:</p>
+
+<pre><code>#!/bin/sh 
+dirpath=/tmp/recycle_$USER # find a place for recycle
+now=`date +%Y%m%d_%H_%M_%S_`  
+arg=$1
+if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # compatible with /bin/rm
+    shift
+    arg=$1
+elif [ -d $arg ]; then # is a directory
+    echo "rm: cannot remove '$arg': Is a directory"
+    exit
+fi
+filename=${now}$arg # add a timestamp for files deleted
+if [ ! -d ${dirpath} ];then  
+    /bin/mkdir -p ${dirpath} 
+    chmod 777 ${dirpath} 
+fi 
+/bin/mv $arg ${dirpath}/${filename} # move to trash
+</code></pre>
+
+<p>然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
+
+<pre><code>export PATH=$HOME/bin:$PATH
+</code></pre>
+
+<p>最后记得给rm加权限就行</p>
+
+<p>需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
+
+<pre><code>alias rm='rm -i --preserve-root' 
+</code></pre>
+
+<p>就需要把上面的$1都改成$3, 钦此.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Win7与多Linux并存的安装方法]]></title>
+    <link href="http://cxh.me/2011/09/18/methods-for-win7-to-coexist-with-several-linux/"/>
+    <updated>2011-09-18T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/09/18/methods-for-win7-to-coexist-with-several-linux</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>网上有很多使用EasyBCD从Win7下安装linux的方法，不过用来用去觉得EasyBCD还是有些问题，比如我装Fedora64就一直报错，而做成安装U盘就可以。而且大多数Linux在EasyBCD安装的时候都要求iso文件存放于Fat32的分区里，作为一个已经装了Win7的孩纸，在硬盘上划出一块Fat32的分区实属令人发指的行为。</p>
+
+<p>这里推荐一个Linux官方的安装方法，首先下载Universal-USB-Installer，这文件很小，但是五脏俱全，包括了你可能见到的所有的Linux的……呃，选项。当然这软件还可以用来做Windows的安装盘。傻瓜化操作就不说了，不过记得每个选项对应一种Linux，包含了各种发行版，下载的iso最好不要改名，免得找不到。</p>
+
+<p>安装的事情仁者见仁，修复Grub的问题智者见智。最简单的办法是先装Win7，因为Win7是不鸟各种Linux的（丫挺的），然后装个个版本的Linux，不过不要装GrubLoader，也就是不要把启动信息写入Mbr，最后装Ubuntu，伟大的乌邦图会识别各种Linux系统然后建立启动菜单。</p>
+
+<p>当然你也可以先安装Ubuntu，然后装其他的Linux，同样不要安装Grub Loader，最后在Ubuntu下手动配置grub.cfg来驱动，不过最好的办法是使用</p>
+
+<pre><code>sudo update-grub
+</code></pre>
+
+<p>让Ubuntu自动识别安装的Linux系统，你会看到激动人心的类似于如下界面的结果：<img src="http://www.roybit.com/wp-content/uploads/2011/09/ScreenshotcxhcxhThinkPadT420__thumb.png" title="Screenshot-cxh@cxh-ThinkPad-T420_ ~" alt="Screenshot-cxh@cxh-ThinkPad-T420_ ~" /></p>
+
+<p>如果想让Win7默认启动，可以在ubuntu下执行</p>
+
+<pre><code>sudo mv /etc/grub.d/30_os-prober /etc/grub.d/06_os-prober
+</code></pre>
+
+<p>然后同上Update Grub就可以了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[清华大学软件学院MSE开题报告Latex模板]]></title>
+    <link href="http://cxh.me/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/"/>
+    <updated>2011-08-31T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>使用请先编译BIB文件（参考文献），然后直接生成pdflatex（windows下），用Linux的孩纸请自行抉择。</p>
+
+<blockquote><p>bibtex %1</p>
+
+<p>pdflatex %1.tex</p></blockquote>
+
+<p>没找到表格分散对齐的命令，只能手动填充空格了。</p>
+
+<p>在CTex下测试通过。下载链接：<a href="http://www.roybit.com/wp-content/uploads/2011/08/docs.rar" title="docs">here</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[王垠：完全用Linux工作]]></title>
+    <link href="http://cxh.me/2011/08/29/wangyin-totally-use-linux-to-work/"/>
+    <updated>2011-08-29T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/08/29/wangyin-totally-use-linux-to-work</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>老文章了，不过很有启发意义。</p>
+
+<blockquote></blockquote>
+]]></content>
+  </entry>
+  
+</feed>

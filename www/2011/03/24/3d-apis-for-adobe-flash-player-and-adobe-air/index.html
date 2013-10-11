@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>3D APIs for Adobe Flash Player and Adobe AIR - CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+
+  
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me/2011/03/24/3d-apis-for-adobe-flash-player-and-adobe-air">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span12 well" role="article">
+
+  
+  <header class="page-header">
+    
+      <h2 class="entry-title">3D APIs for Adobe Flash Player and Adobe AIR</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-24T00:00:00+08:00" pubdate data-updated="true">Mar 24<span>th</span>, 2011</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1></h1>
+
+<p>Adobe在2月27日举行的2011年Flash游戏峰会上发布了预览版MoleHill，支持3D全屏高清Flash游戏，这表明，我们离3D<a href="http://www.07073.com/">网页游戏</a>又近了一步。Adobe声称MoleHill将帮助游戏开发者制作60帧/秒的3D全屏高清Flash游戏。这个里程碑式的成功主要归功于Molehill的3D硬件加速支持团队。Flash游戏开发者已经开始蜂拥前往Adobe官网下载Molehill。</p>
+
+<p>Molehill是Adobe官方将推出的一套底层3D渲染引擎，该引擎能够调用GPU，借助GPU强大的浮点运算能力实现开创新的Flash3D技术。使用Molehill和图形芯片则可以在60Hz左右的高分辨率显示器中全屏渲染近百万的Z缓冲三角形。这些新的3D API还将同时支持Flash Player和Adobe AIR，为用户提供全新的3D体验。</p>
+
+<p>Adobe的Flash“平台天才”Mihai Coran表示“在预览版MoleHill可以以30帧/秒的速度渲染几千个非Z缓冲三角形。”</p>
+
+<p>目前的预览版本只能在台式机上运行，Adobe表示正在努力为智能手机开发3D引擎。</p>
+
+<p>Molehill项目是在去年10月开始的，Adobe承诺Molehill低等级的API硬件设备接口，将为3D引擎开发者提供良好的硬件加速灵活度。许多游戏开发者如Frima Studio已经开始使用Molehill制作3D游戏。</p>
+
+<p>根据不同的操作系统，Molehill要依赖DirectX9或者OpenGL才能运行，而Molehill的API可以在ActionScript 3上下载。</p>
+
+<p>Adobe的竞争对手Unity Technology在今天宣布了一个令人吃惊的消息——升级该公司的Unity引擎以支持Molehill的运行。</p>
+
+<p>MoleHill升级版的发布日期尚未公布。</p>
+
+<p>以上文字转载自Howe的博客。</p>
+
+<p>[2]是Adobe官网的关于MoleHill的一个展示，[3]是对此的翻译，从效果看真是非常炫，你可以在这里（）体验一下，当然需要装新的Adobe Flash Player11。</p>
+
+<blockquote><p>参考文献：</p>
+
+<p><a href="http://www.07073.com/">1</a> Adobe发布预览版Flash3D引擎MoleHill，</p>
+
+<p>[2] 3D APIs for Adobe Flash Player and Adobe AIR,</p>
+
+<p>[3] Molehill 3D APIs － GPU硬件加速的Flash 3D API,</p></blockquote>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-24T00:00:00+08:00" pubdate data-updated="true">Mar 24<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/others/'>Others</a>, <a class='category' href='/category/yu-ji-zhu-xiang-guan/'>与技术相关</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2011/03/22/that-spring-festival-ceremony/" title="Previous Post:
+        那一年的春晚">&laquo; 那一年的春晚</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/2011/03/24/3d-web-game-war/"
+        title="Next Post: 3d网页游戏市场大战">3d网页游戏市场大战
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+});
+-->
+</script>
+
+
+</body>
+</html>

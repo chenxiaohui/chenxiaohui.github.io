@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 与技术相关 | CXH.ME]]></title>
+  <link href="http://cxh.me/category/yu-ji-zhu-xiang-guan/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[关于函数式编程]]></title>
+    <link href="http://cxh.me/2012/09/26/about-functional-programming/"/>
+    <updated>2012-09-26T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/09/26/about-functional-programming</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>本来想写点东西的，后来发现自己的理解还是比较浅薄，所以直接贴两篇文章好了。</p>
+
+<blockquote><p>[1]阮一峰老师的函数式编程初探</p>
+
+<p>[2]Steve Yegge的大作名词王国中的死刑</p></blockquote>
+
+<p>看完之后相信你会对函数式编程有一个基本的理解。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于结构体字节对齐的一些问题]]></title>
+    <link href="http://cxh.me/2012/09/22/some-problems-of-struct-member-byte-aligning/"/>
+    <updated>2012-09-22T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/09/22/some-problems-of-struct-member-byte-aligning</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p><strong>字节对齐的目的</strong></p>
+
+<p>字节对齐的作用不仅是便于cpu快速访问，同时合理的利用字节对齐可以有效地节省存储空间。对于32位机来说，4字节对齐能够使cpu访问速度提高，比如说一个long类型的变量，如果跨越了4字节边界存储，那么cpu要读取两次，这样效率就低了。但是在32位机中使用1字节或者2字节对齐，反而会使变量访问速度降低。所以这要考虑处理器类型，另外还得考虑编译器的类型。在vc中默认是4字节对齐的，GNU gcc 也是默认4字节对齐。</p>
+
+<p><strong>字节对齐的基本原则</strong></p>
+
+<p>如下三条</p>
+
+<blockquote><ol>
+<li> 结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li> 结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal adding）；</li>
+<li> 结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）。</li>
+</ol>
+</blockquote>
+
+<p>举一个简单的例子：</p>
+
+<pre><code>struct node
+{
+    double d;
+    int a;
+    int b;
+    char c;
+};
+</code></pre>
+
+<p>首先double d的偏移是0，占用8字节；int a的偏移是8，可以被a的长度（4字节）整除，所以在偏移8的位置占用4字节；int b的偏移是12，同样可以整除；char c的偏移是16,可以被c的长度（1）整除，所以在偏移16的位置占用1字节。这时整个结构体占用了17字节的长度，不能被最长的成员（double类型，8字节）整除，所以必须再填充7字节。从而整个结构体的长度为24字节。</p>
+
+<p>我们把之前的例子稍微变一下：</p>
+
+<pre><code>struct node
+{
+    int a;
+    int b;
+    char c;
+    double d;
+};
+</code></pre>
+
+<p>这时a占用4字节，b占用4字节，c在偏移8的位置占用1字节，这时的偏移是9，无法被double的长度整除，所以需要填充7字节，最后占用24字节，刚好可以被结构体最长元素（double）整除。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1]Struct大小和内存对齐，</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[记ThinkPad某些型号下Linux报Unable to enumerate USB device错误的问题]]></title>
+    <link href="http://cxh.me/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/"/>
+    <updated>2012-04-14T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报</p>
+
+<pre><code>Unable to enumerate USB device…..
+</code></pre>
+
+<p>的错误，而在某些Linux版本（比如pinguy os）下会不停提示Device Recognized和Device Removed，有人提供了如[1]的解决方案，但是好像在pinguy os 下并无效果，而且这实际上就是禁用了usb2.0，还有人直接禁用了全部usb。</p>
+
+<p>这里面好像有硬件问题，但是如果是Thinkpad系普遍的问题的话，也就有点说不过去了，硬件不检测好就出场，这也不是Thinkpad的风格。后来想到会不会是指纹识别的问题，于是在BIOS里禁用指纹识别，一切OK。反正这是实验室的笔记本，也不能存我自己的指纹吧。</p>
+
+<p>后来证实其实是指纹识别坏了…还好在保修内…</p>
+
+<h2>参考文献：</h2>
+
+<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于const和指针的专题]]></title>
+    <link href="http://cxh.me/2012/04/07/about-const-and-pointer/"/>
+    <updated>2012-04-07T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/04/07/about-const-and-pointer</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。</p>
+
+<p>首先是几种const与指针组合的区分，比如：</p>
+
+<blockquote><p>int b = 500;
+const int<em> a = &b; [1]
+int const </em>a = &b; [2]
+int<em> const a = &b; [3]
+const int</em> const a = &b; [4]</p></blockquote>
+
+<p>[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。</p>
+
+<p>至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+int a=1;
+const int </em>b=&a;
+<em>b ;//成立
+(</em>b) ;//编译器错误
+}</p></blockquote>
+
+<p>那么我们能不能突破const去修改一个值呢？虽然这件事情本身并没有多大意义，但是还是可以做的。我们可以用const_cast来去掉一个const或者volatile限制。const_cast的作用主要分如下三种：</p>
+
+<blockquote><p>转化一个常量指针为非常量指针</p>
+
+<p>转化一个常量引用为非常量引用</p>
+
+<p>转化一个常量对象为非常量对象</p></blockquote>
+
+<p>至于例子</p>
+
+<p>我们举如下一个例子：</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>class Test
+{
+public:
+const int a ;
+Test(int b):a(b)
+{</p>
+
+<p>}
+};</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+Test t(1);
+//t.a=2;//出错
+int b=const_cast(t.a);
+int&amp; c=const_cast(t.a);
+int</em> d=const_cast(&amp;t.a);
+b=2;
+c=3;
+cout</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Latex中使用visio的矢量图(转载+修改）]]></title>
+    <link href="http://cxh.me/2012/03/14/using-visio-vector-diagram-in-Latex/"/>
+    <updated>2012-03-14T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/14/using-visio-vector-diagram-in-Latex</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>我们知道，visio用来画流程图等专业图很方便，而Latex的专业排版效果是Word所不能比的，而Visio不支持导入eps和dvi格式的矢量图，而导出jpeg毕竟有质量损失，那么怎么才能在Latex中直接使用visio导出的矢量图呢？</p>
+
+<p>1. Visio可以保存为wmf，emf等矢量图形格式（word的默认插图格式），再转换为eps格式（可使用TpX，由本论坛得知早期版本貌似可直接保存eps）插入LaTeX。可转换后的eps图片格式不稳定，图形易错位；另外Visio使用Windows字体，转换后的eps图形只引用而不包含字体，插入LaTex后由于找不到对应字体，中文（或mathtype公式，特殊符号）会乱码。
+2. 用ps虚拟打印的方式虽然可以解决格式和乱码问题，但中文字符（或其他不支持的内容）会按位图处理，得不到完美的矢量图形。
+经过探索，将visio保存为pdf格式是最完美的解决方式，因为pdf文件保存了所有格式和字体信息。借助pdfcrop和ebb程序，调用graphicx宏包插入pdf格式图片，能够得到完美的visio矢量图形。</p>
+
+<p>注：
+1.导入的代码依然可以使用标准的fig标签，例如：
+egin{figure}</p>
+]]></content>
+  </entry>
+  
+</feed>

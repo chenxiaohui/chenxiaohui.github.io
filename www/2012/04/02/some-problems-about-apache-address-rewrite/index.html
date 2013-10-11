@@ -1,0 +1,299 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Apache地址重写的几个问题 - CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+
+  
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me/2012/04/02/some-problems-about-apache-address-rewrite">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span12 well" role="article">
+
+  
+  <header class="page-header">
+    
+      <h2 class="entry-title">Apache地址重写的几个问题</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h1></h1>
+
+<p>Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。</p>
+
+<p>首先要打开rewrite模块windows下的配置是</p>
+
+<blockquote><p>LoadModule rewrite_module modules/mod_rewrite.so</p></blockquote>
+
+<p>httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。</p>
+
+<p>.htaccess的则放到相应目录下或者根目录即可这是VPS里常用的一种方式毕竟作为一个VPS购买者不可能要求提供商去更改全局配置文件。这种方式需要注意的有如下两点</p>
+
+<p>首先.htaccess要想起作用必须要在httpd.conf中相应的Directory标签下配置AllowOverride All默认是None其次是windows下这种无文件名仅有扩展名的文件是无法直接生成的可以在cmd窗口下使用copy con命令来生成这命令也有年头了我小学的时候还学过光阴荏苒啊扯远了…Ctrl Z保存。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image" alt="image" /></p>
+
+<p>然后我们说一下几个概念。</p>
+
+<p>首先是RewriteEngine这是地址重写的引擎可以方便的设置为On或者Off来启用和关闭引擎。</p>
+
+<p>其次是RewriteCond地址重写的条件符合这个条件的才进行表达式判断和重写这样能有效减少匹配的条数提高重写效率。</p>
+
+<p>最后是RewriteBase和RewriteRuleRewriteBase指明重定向地址的基础即RewriteRule后一部分重定向地址会拼合上RewriteBase合成一个完整的重定向地址。这在一个web容器下有多个网站的时候比较有用。</p>
+
+<p>RewriteRule才是我们讨论的主要话题。RewriteRule实现把符合表达式的地址重定向到另一个地址的功能RewriteRule的语法类似于下面</p>
+
+<blockquote><p>RewriteRule ^forum-([0-9] )&ndash;([0-9] )&#46;html$ forumdisplay.php?fid=$1&amp;page=$2</p></blockquote>
+
+<p>RewriteRule紧跟着判断表达式之后是需要重定向的位置正则表达式()会捕获一个分组然后通过$n引用这个分组从而实现地址重写。RewriteRule匹配的开始位置是整个URL去掉当前目录后剩下的部分比如我在/discuz配置上面所示的RewriteRule然后输入一个URL-<a href="http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82">http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82</a></p>
+
+<blockquote><p>RewriteRule ^(.*)/forum-([0-9] )&ndash;([0-9] )&#46;html$ rewrite.php?param=$1</p>
+
+<p>注在rewrite.php里打印一下GET[&lsquo;param’]参数</p></blockquote>
+
+<p>另外这里需要说明的是如果我定义了</p>
+
+<blockquote><p>RewriteBase /discuz</p></blockquote>
+
+<p>那么前面的<sup>forum</sup>-([0-9] )&ndash;([0-9] )&#46;html$不受影响但是后面会变成/discuz/forumdisplay.php?fid=$1&amp;page=$2。不过RewriteBase并不是必须的若有指定RewriteBase结果为RewriteBase 重定向地址否则为当前目录 重定向地址。这里当前目录指的是.htaccess所在目录使用.htaccess的时候或者Directory标签指定的目录使用httpd.conf的时候。</p>
+
+<p>以上操作在windows下测试通过。</p>
+
+<p>参考文献</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image">1</a>Apache中RewriteCond规则参数介绍</p>
+
+<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">http://hi.baidu.com/һ/blog/item/ace7f14e19851cc4d0c86af2.html</a></p>
+
+<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">2</a>RewriteRule-htaccess详细语法使用教程</p>
+
+<p><a href="http://www.3code.cn/rewriterule-htaccess%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">http://www.3code.cn/rewriterule-htaccess详细语法使用教程/</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/php/'>PHP</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2012/03/31/some-problems-about-doxygen/" title="Previous Post:
+        Doxygen几个小问题，mark一下">&laquo; Doxygen几个小问题，mark一下</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/2012/04/07/about-const-and-pointer/"
+        title="Next Post: 关于const和指针的专题">关于const和指针的专题
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+});
+-->
+</script>
+
+
+</body>
+</html>

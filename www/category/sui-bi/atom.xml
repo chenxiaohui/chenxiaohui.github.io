@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 随笔 | CXH.ME]]></title>
+  <link href="http://cxh.me/category/sui-bi/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[由&#8221;喵&#8221;代码想到的]]></title>
+    <link href="http://cxh.me/2013/05/29/from-the-miao-code/"/>
+    <updated>2013-05-29T00:00:00+08:00</updated>
+    <id>http://cxh.me/2013/05/29/from-the-miao-code</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>网上看到这样一段代码</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2013/05/miao.jpg" title="miao.jpg" alt="miao.jpg" /></p>
+
+<p>还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：</p>
+
+<pre><code>#include 
+
+#define aaa "3a"
+#define a "1a"
+#define aa "2a"
+
+int main(int argc, const char *argv[])
+{
+    printf("%s
+",aaa);
+}
+</code></pre>
+
+<p>这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况</p>
+
+<pre><code>printf("%s
+",aa a);
+</code></pre>
+
+<p>替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
+另外一种字符串跨行的方式是：</p>
+
+<pre><code>    char chstr2[] = "abcabc\
+abcabc";
+</code></pre>
+
+<p>这里需要注意，第二行前面不能有空格或者tab。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[想起一件事情]]></title>
+    <link href="http://cxh.me/2013/01/10/think-of-one-thing/"/>
+    <updated>2013-01-10T00:00:00+08:00</updated>
+    <id>http://cxh.me/2013/01/10/think-of-one-thing</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>前几天给家里打电话，妈妈说，你什么时候放假回来啊，姨夫前几天还问你了，说能不能给把手机刷新一下，我也不懂，你看你知道怎么弄么？</p>
+
+<p>估计所有学计算机相关专业的孩子都会遇到这种事情，大家觉得在电子产品领域，他们不懂的你都该懂，要不然你都学了些什么。这是个极为无奈的问题。或许放在几年前我肯定会说，我又不是修手机的，但想了想还是说，我回去看看吧。</p>
+
+<p>记得很久之前，要么高中要么快考高中的时候，爸爸的一个朋友找来说，看能不能让你孩子帮忙考个计算机一级啊，评职称要用的，人老了，学不会电脑了。于是爸爸征求我的意见，我那时候年少气盛，立场坚定，转了个弯说我直接考计算机二级的，这些形而上学的Word操作我实在不研究啊。想想也算是回绝的不留余地，不知道那人是信了还是觉得不好强求，于是说那好，我再找找别人吧。</p>
+
+<p>这么些年过去了，回来想这件事情，才觉得心中怅然，不能说有所愧疚，只是觉得有些原则，不见得那么重要。放在现在我也觉得作弊自然不对，不过这些事情放在父母那里，就不是那么绝对了。出来求学这几年，多有负于父母，唯一能做的，也就是尽量帮他们解决点麻烦。小城小镇，圈子就那么大，帮他们打理一下人际，在外也多一份安心，毕竟回趟家，已经不是容易的事情了。</p>
+
+<p>唉重珍重。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[指针数组，数组指针与函数指针]]></title>
+    <link href="http://cxh.me/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/"/>
+    <updated>2012-10-08T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>指针数组是指由指针组成的数组，这个比较好理解；数组指针是指向一个数组的指针，其实字面上也比较好理解。容易混淆的地方在于书写形式有些类似</p>
+
+<pre><code>int *p[n];  //array of pointers
+int (*p)[n];//pointer to an array
+</code></pre>
+
+<p>指针数组可以像普通数组一样使用，只不过每个元素是指针而已，数组指针可直接指向一个数组，从而用来遍历一个数组，一个简单的例子如下：</p>
+
+<pre><code>void PrintLine(int *p,int n)
+{
+    for(int i=0;i
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[博客域名更改]]></title>
+    <link href="http://cxh.me/2012/03/01/change-the-name-of-blog/"/>
+    <updated>2012-03-01T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/01/change-the-name-of-blog</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>之所以要改域名，是因为之前的域名无论英文还是中文都被隐藏在一堆布拉德皮特（Brad Pitt）的新闻里，搜索不到，长此以往，博将不博。其实布拉德皮特的电影我只看过《西（和谐）藏十年》，对他并无反感，但是作为一个博客总夹在娱乐新闻里想不娱乐都难，我写的可是正正规规的技术文章啊亲……</p>
+
+<p>Roy这名字似乎是某个英国国王的名字，也有不少人用这个做姓，老外的姓氏和名字还真是混乱啊，不过想想同学里似乎也有叫王林的，也就无所了，反正我可是注册到了六位的还有一定含义的域名，六位啊亲……</p>
+
+<p>就这样吧。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Vim 的MiniBufExplorer插件改进]]></title>
+    <link href="http://cxh.me/2011/09/23/improvements-of-minibuf-explorer-plugin/"/>
+    <updated>2011-09-23T00:00:00+08:00</updated>
+    <id>http://cxh.me/2011/09/23/improvements-of-minibuf-explorer-plugin</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>首先，VI(M)是一种信仰。</p>
+
+<p>然后扯一下关于MiniBufExplorer插件，主要的作用是实现缓冲区之间的切换，比BufExplorer更加小巧，界面如图所示，下载链接在这里</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/image_thumb.png" title="image" alt="image" /></p>
+
+<p>这个插件在windows下使用的问题主要是在切换的时候会切换到一个No Name的初始缓冲区，这样我本来打开了三个文件，却总在四个文件直接来回切换，同时默认的:bd删除缓冲区命令和:q关闭文件命令在windows下也存在一些问题，:bd不能关闭最后的窗口，:q又直接关闭几个缓冲区。</p>
+
+<p>针对如上问题，做以下的改进</p>
+
+<blockquote><p>1 修改MiniBufExplorer插件的切换代码，切换时不停留在No Name缓冲区</p>
+
+<p>2 在_vimrc文件中重新绑定关闭快捷键的代码，加入窗口数的判断</p></blockquote>
+
+<p>针对第一个问题，我们修改minibufexpl.vim里的如下代码</p>
+
+<pre><code>" Skip any non-modifiable buffers, but don't cycle forever
+" This should stop us from stopping in any of the [Explorers]
+while (getbufvar(l:curBuf, '&amp;modifiable') == 0 || bufname('%')=='') &amp;&amp; l:origBuf != l:curBuf
+</code></pre>
+
+<p>主要是bufname为空（初始缓冲区）的时候再跳转一次。</p>
+
+<p>针对第二个问题，我们在_vimrc文件中重定义绑定和退出函数</p>
+
+<pre><code>" 如果只有一个窗口，那么直接退出
+function! CustomExit()
+    if (winbufnr(2) == -1)
+        q
+    else
+        bd
+    endif
+endfunction
+
+nmap wq :w:call CustomExit()
+nmap q :call CustomExit()
+nmap w :w
+nmap x :bd!:call CustomExit()
+
+
+nnoremap  :MBEbn
+nnoremap  :MBEbp
+</code></pre>
+
+<p>最后，为了windows下使用方便，可以配置一下右键，请在regedit中添加如下项，然后默认值设置为"E:\Vim im73\gvim.exe" -p –remote-silent &ldquo;%1"，gvim路径请自行修改</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/image_thumb1.png" title="image" alt="image" /></p>
+
+<p>这样就可以用右键菜单打开gvim，打开两个以上文件的时候，可以用shift l shift h切换左右菜单，q退出文件等等。</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -32,7 +32,7 @@ email: sdqxcxh@gmail.com
 root: /
 permalink: /:year/:month/:day/:title/
 source: source
-destination: public
+destination: www
 plugins: plugins
 code_dir: downloads/code
 category_dir: category

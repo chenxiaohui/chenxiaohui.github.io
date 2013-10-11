@@ -26,7 +26,7 @@ categories: Linux
 
 ###截图
 
-{% img img-ploaroid /images/2013-10/htop.png  "htop截图" "htop截图" %}
+{% img img-ploaroid center /images/2013-10/htop.png  "htop截图" "htop截图" %}
 
 ###安装
 

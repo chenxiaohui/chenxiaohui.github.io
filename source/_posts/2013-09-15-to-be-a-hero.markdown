@@ -10,7 +10,7 @@ categories: 世情百态
 
 <!-- more -->
 
-<embed src="http://player.youku.com/player.php/sid/XMTQ3NjIzNjk2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
+<embed class="center" src="http://player.youku.com/player.php/sid/XMTQ3NjIzNjk2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
 
 
 >有时候 我必须 选择一个人过冬

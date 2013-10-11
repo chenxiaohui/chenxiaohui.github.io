@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[CXH.ME]]></title>
+  <link href="http://cxh.me/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[post_review在svn和git共同存在下的冲突问题]]></title>
+    <link href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/"/>
+    <updated>2013-10-11T21:24:00+08:00</updated>
+    <id>http://cxh.me/2013/10/11/post-review-conflict-under-git-svn</id>
+    <content type="html"><![CDATA[<p>  有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
+
+<ul>
+<li>不习惯某种版本管理工具，希望通过另一种熟悉的版本管理工具进行管理</li>
+<li>有些特性是其他的版本管理工具所没有的</li>
+<li>开发的版本管理和自己的分支管理策略之间有冲突，开发的版本库不允许随便建立测试分支</li>
+</ul>
+
+
+<!-- more -->
+
+
+<p>  具体到一种情况下，比如我们有一个svn的版本库，版本管理策略比较严格，而我们需要做一些有风险的本地开发的时候，都原意建立一个test分支，开发确定没有问题之后再合并到master分支，但是现实的情况不允许我们随便建立丢弃分支。这样就可以通过加入一个git的版本管理来实现。</p>
+
+<p>  比如我们建立了一个新的版本库（repository）</p>
+
+<pre><code>mkdir repository.git &amp;&amp; cd repository.git &amp;&amp; git init --bare
+</code></pre>
+
+<p>  然后checkout了版本并使当前项目加入版本管理，这里我只会一个笨办法，checkout一个空的，然后mv .git目录进去，有空再研究别的方法。</p>
+
+<p>  之后所有的修改都可以通过git进行管理了，git的version control文件只存在于根目录下，所以也不会污染原有版本库。</p>
+
+<p>  但是post-review的时候就有问题了我们明明有修改，但是post-review总是报错：</p>
+
+<pre><code>  There don't seem to be any diffs!
+</code></pre>
+
+<p>  这到底是什么问题呢，启动debug模式运行post-review，结果如下：</p>
+
+<pre><code>&gt;&gt;&gt; RBTools 0.5
+&gt;&gt;&gt; Python 2.6.6 (r266:84292, May  1 2012, 13:52:17) 
+[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)]
+&gt;&gt;&gt; Running on Linux-2.6.32-220.el6.x86_64-x86_64-with-redhat-6.2-Santiago
+&gt;&gt;&gt; Home = /xxx
+&gt;&gt;&gt; Current Directory = /xxx
+&gt;&gt;&gt; Checking the repository type. Errors shown below are mostly harmless.
+DEBUG:root:Checking for a Bazaar repository...
+DEBUG:root:Checking for a CVS repository...
+DEBUG:root:Checking for a ClearCase repository...
+DEBUG:root:Checking for a Git repository...
+DEBUG:root:Running: git rev-parse --git-dir
+DEBUG:root:Running: git config core.bare
+DEBUG:root:Running: git rev-parse --show-toplevel
+DEBUG:root:Running: git symbolic-ref -q HEAD
+DEBUG:root:Running: git config --get branch.master.merge
+DEBUG:root:Running: git config --get branch.master.remote
+DEBUG:root:Running: git config --get remote.origin.url
+DEBUG:root:repository info: Path: /xxx.git, Base path: , Supports changesets: False
+&gt;&gt;&gt; Finished checking the repository type.
+&gt;&gt;&gt; HTTP GETting api/info/
+DEBUG:root:Running: git merge-base origin/master refs/heads/master
+DEBUG:root:Running: git diff --no-color --full-index --no-ext-diff --ignore-submodules --no-renames 43351ae337ca18c3f00660c9d565b18a5e904e66..refs/heads/master
+There don't seem to be any diffs!
+</code></pre>
+
+<p>  可以看到，git的检测优先于subversion，这样当前版本库被当作git管理的版本库来处理了，所以才没有变更。</p>
+
+<p>  解决办法有两个，要么修改RBTool的代码，更改检测优先级，或者post-review之前运行</p>
+
+<pre><code>mv .git git
+</code></pre>
+
+<p>  这足够骗过RBTool了。</p>
+
+<p>  钦此。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[霸气风骚的系统监视器htop]]></title>
+    <link href="http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop/"/>
+    <updated>2013-10-10T20:12:00+08:00</updated>
+    <id>http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop</id>
+    <content type="html"><![CDATA[<p>做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
+
+<!-- more -->
+
+
+<h3>介绍</h3>
+
+<blockquote><p>htop 是Linux系统中的一个互动的进程查看器，一个文本模式的应用程序(在控制台或者X终端中)，需要ncurses。</p>
+
+<p>与Linux传统的top相比，htop更加人性化。它可让用户交互式操作，支持颜色主题，可横向或纵向滚动浏览进程列表，并支持鼠标操作。</p>
+
+<p>与top相比，htop有以下优点：</p>
+
+<ul>
+<li>可以横向或纵向滚动浏览进程列表，以便看到所有的进程和完整的命令行。</li>
+<li>在启动上，比top 更快。</li>
+<li>杀进程时不需要输入进程号。</li>
+<li>htop 支持鼠标操作。</li>
+</ul>
+
+
+<p>htop 官网：<a href="http://htop.sourceforge.net/">http://htop.sourceforge.net/</a></p></blockquote>
+
+<h3>截图</h3>
+
+<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/htop.png" title="htop截图" alt="htop截图"><p class="align-center">htop截图</p></p>
+
+<h3>安装</h3>
+
+<h4>Ubuntu</h4>
+
+<pre><code>sudo apt-get install htop
+</code></pre>
+
+<h4>RHEL/CentOS</h4>
+
+<h5>CentOS 5.x</h5>
+
+<pre><code>32位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
+64位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+导入key
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+</code></pre>
+
+<h5>CentOS 6.x</h5>
+
+<pre><code>32位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
+64位系统选择：
+rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
+导入key：
+rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+</code></pre>
+
+<p>最后执行</p>
+
+<pre><code>yum install htop
+</code></pre>
+
+<h4>源码安装</h4>
+
+<pre><code>wget http://nchc.dl.sourceforge.net/project/htop/htop/1.0.1/htop-1.0.1.tar.gz
+tar zxvf htop-1.0.1.tar.gz
+cd htop-1.0.1
+./configure
+make
+make install
+</code></pre>
+
+<h3>参考文献：</h3>
+
+<blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[去了趟锦州]]></title>
+    <link href="http://cxh.me/2013/10/07/tourism-of-jinzhou/"/>
+    <updated>2013-10-07T18:34:00+08:00</updated>
+    <id>http://cxh.me/2013/10/07/tourism-of-jinzhou</id>
+    <content type="html"><![CDATA[<p>去锦州的原因，其实是没搞到去其他的地方的票。</p>
+
+<p>十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[狄仁杰之神都龙王]]></title>
+    <link href="http://cxh.me/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/"/>
+    <updated>2013-10-06T20:21:00+08:00</updated>
+    <id>http://cxh.me/2013/10/06/young-detective-dee-rise-of-the-sea-dragon</id>
+    <content type="html"><![CDATA[<p>抽空去看了一下。去看的原因倒是很简单， 有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
+
+<p>坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
+
+<!-- more -->
+
+
+<p>我不理解的是，这几年过去了，武侠怎么已经上升到法术的高度了，更让我不能理解的是，这么牛逼的一只<a href="http://baike.baidu.com/link?url=dWI58A0UeuCs95DyVPXFM-4bT9b4wQyRlXRSbA3o2u0ShtN1Rhum3rLMJSoKyGwO" title="蝠鲼">蝠鲼</a>（fú fèn，原谅我的猜测，那只怪物或许真是什么变异物种也说不定，比如随便从山海经里面拿一只出来就足够吓尿观众了），怎么就死在几只毒鱼下了呢，这是告诉我们食品安全刻不容缓么？</p>
+
+<p>话说这么险恶的环境，狄大人能活下来真的是奇迹啊。为了救美女拿人头打赌的都是亡命徒啊，果然只有不怕死的才命大&hellip;</p>
+
+<p>顺便逛了一下<a href="http://www.parkviewgreen.com/cn/" title="侨福芳草地">侨福芳草地</a>，好象是芳草地一周年还是怎么的，里面布满了各种艺术雕塑。有种进了798的感觉，但是798毕竟厂房了一点，这才是艺术品该待的地方嘛。没准哪个土豪逛着逛着看上一个就掏钱买了呢，要知道可不是所有的土豪都愿意转两趟公交去大山桥然后走200米左右跑798那堆厂房去。</p>
+
+<hr />
+
+<p><img src="http://cxh.me/images/common/ask.jpg" width="200" title="&#34;are you kidding me&#34;" alt="&#34;are you kidding me&#34;"> 你家的土豪是坐公交的啊</p>
+
+<hr />
+
+<p>好了，不管土豪的事情了，上几张照片。</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_144718.jpg" title="这个是想表达什么" alt="这个是想表达什么"><p class="align-center">这个是想表达什么</p></p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_145824.jpg" title="话说这个狗狗还是挺可爱的嘛" alt="话说这个狗狗还是挺可爱的嘛"><p class="align-center">话说这个狗狗还是挺可爱的嘛</p></p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_172509.jpg" title="最震撼的其实是这个" alt="最震撼的其实是这个"><p class="align-center">最震撼的其实是这个</p></p>
+
+<p>这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
+
+<p>钦此。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[陌生的人, 请给我一支兰州]]></title>
+    <link href="http://cxh.me/2013/09/30/give-me-a-sigarette-of-lanzhou/"/>
+    <updated>2013-09-30T16:11:00+08:00</updated>
+    <id>http://cxh.me/2013/09/30/give-me-a-sigarette-of-lanzhou</id>
+    <content type="html"><![CDATA[<!-- more -->
+
+
+<p>普及一下:</p>
+
+<p>兰州: 一种烟, 如图所示:</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2013-9/lanzhou.jpg" width="200" title="兰州" ></p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2013-9/lanzhou2.jpg" width="200" title="兰州" ></p>
+
+<p>钦此.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase的库依赖问题]]></title>
+    <link href="http://cxh.me/2013/09/27/depend-problem-in-oceanbase/"/>
+    <updated>2013-09-27T16:15:00+08:00</updated>
+    <id>http://cxh.me/2013/09/27/depend-problem-in-oceanbase</id>
+    <content type="html"><![CDATA[<p>今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
+
+<p>最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
+
+<!-- more -->
+
+
+<pre><code>LDADD = libtest2.a \
+        libtest2.a 
+</code></pre>
+
+<p>或者gcc命令</p>
+
+<pre><code>gcc –o test main.c libtest2.a libtest1.a
+</code></pre>
+
+<p>这里编译的时候会认为libtest2.a依赖于libtest1.a, libtest2.a可以使用libtest1.a的接口，但是反过来会找不到符号。也就是会有会有&#8221;undefined reference to ***”的链接错误。</p>
+
+<p>找了一下原因，主要是gcc链接顺序的问题，以下引自 <a href="http://www.cnblogs.com/wujianlundao/archive/2012/06/06/2538125.html" title="使用静态库链接程序">悟空不悟空的博客</a></p>
+
+<hr />
+
+<p>原因是gcc在链接的时候，对于多个静态库或者.o文件是从前往后依次处理的，如果当前的静态库或.o文件中没有使用的符号，则往后继续寻找，而不会再往前查找。</p>
+
+<p>下面是man gcc看到的说明：</p>
+
+<p>-l library</p>
+
+<blockquote><p>  Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not recommended.)</p>
+
+<p> It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are specified.  Thus, foo.o -lz bar.o searches library z after file foo.o but before bar.o.  If bar.o refers to functions in z, those functions may not be loaded.</p></blockquote>
+
+<p>所以在使用一些依赖关系比较复杂的静态库时，我们可能会看到这样的使用方式：gcc –o test main.c libtest1.a libtest2.a libtest1.a。在链接序列中，一个静态库可能出现多次，以解决一些循环依赖。</p>
+
+<hr />
+
+<p>另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
+
+<p>ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的&hellip;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase源码分析-root_table_manager相关]]></title>
+    <link href="http://cxh.me/2013/09/26/root-table-manager/"/>
+    <updated>2013-09-26T12:15:00+08:00</updated>
+    <id>http://cxh.me/2013/09/26/root-table-manager</id>
+    <content type="html"><![CDATA[<p>记录一下root_table_manager相关类的阅读和心得。</p>
+
+<!-- more -->
+
+
+<h3>ObTableNameIterator</h3>
+
+<p>一个Iterator, 用于获取所有的TableName</p>
+
+<ul>
+<li><p>init</p>
+
+<p>初始化并调用scan_tables执行查询表名的sql语句</p></li>
+<li><p>scan_tables</p>
+
+<p>执行sql语句 &ldquo;select table_name, table_id from __all_table&rdquo; 来得到所有表的表名</p></li>
+<li><p>get_next</p>
+
+<p>获取下一个表名, 如果 table_idx_ &lt; 3 获取的是内部表的信息, 否则从sql执行结果中迭代返回普通表名</p>
+
+<p>table_idx_对应的表名分别是:</p>
+
+<p>&hellip;.</p></li>
+<li><p>internal_get</p>
+
+<p>获取内部表名</p></li>
+<li><p>normal_get</p>
+
+<p>获取普通表名</p></li>
+</ul>
+
+
+<h3>ObTableIdName</h3>
+
+<p>顾名思义, TableId 和 TableName 的组合</p>
+
+<h3>ObTableSchemaIterator</h3>
+
+<p>获取TableSchema的迭代器</p>
+
+<h3>ObRootSchemaService</h3>
+
+<p>RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作.</p>
+
+<p>成员</p>
+
+<p>方法</p>
+
+<pre><code>init
+写入
+</code></pre>
+
+<h3>RootTableService</h3>
+
+<p>RootServer</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[防止通过rm误删文件]]></title>
+    <link href="http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm/"/>
+    <updated>2013-09-22T20:46:00+08:00</updated>
+    <id>http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm</id>
+    <content type="html"><![CDATA[<p>相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
+
+<p>为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
+
+<p>这里我们首先建立如下脚本:</p>
+
+<pre><code>#!/bin/sh 
+dirpath=/tmp/recycle_$USER # find a place for recycle
+now=`date +%Y%m%d_%H_%M_%S_`  
+arg=$1
+if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # compatible with /bin/rm
+    shift
+    arg=$1
+elif [ -d $arg ]; then # is a directory
+    echo "rm: cannot remove '$arg': Is a directory"
+    exit
+fi
+filename=${now}$arg # add a timestamp for files deleted
+if [ ! -d ${dirpath} ];then  
+    /bin/mkdir -p ${dirpath} 
+    chmod 777 ${dirpath} 
+fi 
+/bin/mv $arg ${dirpath}/${filename} # move to trash
+</code></pre>
+
+<p>然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
+
+<pre><code>export PATH=$HOME/bin:$PATH
+</code></pre>
+
+<p>最后记得给rm加权限就行</p>
+
+<p>需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
+
+<pre><code>alias rm='rm -i --preserve-root' 
+</code></pre>
+
+<p>就需要把上面的$1都改成$3, 钦此.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[OceanBase源码分析-tablet相关]]></title>
+    <link href="http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet/"/>
+    <updated>2013-09-16T15:49:00+08:00</updated>
+    <id>http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet</id>
+    <content type="html"><![CDATA[<h3>ObRootTabletInfo</h3>
+
+<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
+
+<p>//TODO</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase源码分析-Rowkey相关]]></title>
+    <link href="http://cxh.me/2013/09/16/oceanbase-sources-analyze-roottable/"/>
+    <updated>2013-09-16T12:55:00+08:00</updated>
+    <id>http://cxh.me/2013/09/16/oceanbase-sources-analyze-roottable</id>
+    <content type="html"><![CDATA[<p>这里分析一下ObRowkey相关的源码.</p>
+
+<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
+
+<ul>
+<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
+<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
+<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
+</ul>
+
+
+<!-- more -->
+
+
+<h3>ObObjType</h3>
+
+<p>定义了OceanBase中支持的基本数据类型,我们可以在ob_obj_type.h中看到其定义</p>
+
+<h3>ObRowkeyColumn</h3>
+
+<p>定义了RowKey中的每个列Column</p>
+
+<h3>ObRowkeyInfo</h3>
+
+<p>定义了RowkeyColumn的集合</p>
+
+<h3>ObCellInfo</h3>
+
+<p>从结构上可以看出，定义了一个cell的相关信息，主要包括了</p>
+
+<pre><code>  ObString table_name_; //所在表名
+  uint64_t table_id_;   //表id
+  ObRowkey row_key_;    //所在行row_key_
+  uint64_t column_id_;  //列id
+  ObString column_name_;//列名
+  ObObj value_;         //cell值
+</code></pre>
+
+<p>如下两个类与之有关联，一并写在这里</p>
+
+<h3>ObRootTableRow:</h3>
+
+<p>存储了RootTable中一行的信息，包括了rowkey列的数据和各个replica的版本信息</p>
+
+<pre><code>  // 方法
+  int input_tablet_row(const bool start_key, const ObRootTabletInfo &amp; tablet);
+  int output_tablet_row(common::ObScanner &amp; result);
+  // 成员
+  common::ObObj rowkey_objs_[common::OB_MAX_ROWKEY_COLUMN_NUMBER];
+  common::ObCellInfo row_cells_[common::OB_MAX_COLUMN_NUMBER];
+</code></pre>
+
+<p>着重分析一下input_tablet_row方法，首先拷贝rowkey，没有做深拷贝</p>
+
+<pre><code>// copy the range end key as rowkey
+rowkey_column_num_ = rowkey_len;
+for (int64_t i = 0; i &lt; rowkey_column_num_; ++i)
+{
+  rowkey_objs_[i] = input_key.ptr()[i];
+}
+</code></pre>
+
+<p>然后填充row_cells_，RootTable中一行的各个列信息，</p>
+
+<pre><code>ADD_REPLICA_SERVER(normal_column_num_, i, replica-&gt;server_, replica-&gt;version_);
+</code></pre>
+
+<p>ADD_REPLICA_SERVER的定义如下：</p>
+
+<pre><code>#define ADD_REPLICA_SERVER(column, index, server, version) \
+{ \
+    ObRowkey rowkey; \
+    rowkey.assign(rowkey_objs_, rowkey_column_num_); \
+    row_cells_[column].row_key_ = rowkey; \
+    row_cells_[column].table_name_ = ObString::make_string("temp"); \
+    row_cells_[column].column_name_ = ObString::make_string("version_"#index); \
+    row_cells_[column].value_.set_int(version); \
+    column++; \
+    row_cells_[column].row_key_ = rowkey; \
+    row_cells_[column].table_name_ = ObString::make_string("temp"); \
+    row_cells_[column].column_name_ = ObString::make_string("port_"#index); \
+    row_cells_[column].value_.set_int(server.get_port()); \
+    column++; \
+    row_cells_[column].row_key_ = rowkey; \
+    row_cells_[column].table_name_ = ObString::make_string("temp"); \
+    row_cells_[column].column_name_ = ObString::make_string("ip_"#index); \
+    row_cells_[column].value_.set_int(server.get_ipv4()); \
+    column++; \
+}
+</code></pre>
+
+<p>同时填充了三个cell，分别是version，port，ip，对应了RootTable的表结构，这里顺便说一下RootTable内部表化之后的表结构定义：</p>
+
+<h3>表名</h3>
+
+<p>First Root Table 的 Table ID 为 111(固定值,暂定 111)
+User Meta Table 和 User Root Table 为 User Table 的衍生 Table, 对外不可见, 在 User Table 创建时自动创建， Table Name 和 Table
+ID 取值约定如下:要求 User Table ID 从 3000 以后取值。</p>
+
+<p>如下所示：</p>
+
+<p>Table Type          Table Name              Table ID
+User Table          User Table Name         User Table ID
+User Meta Table     <strong>User Table ID.META    User Table ID – 1
+User Root Table     </strong>User Table ID.ROOT    User Table ID – 2
+First Root Table    __first_root_table      111</p>
+
+<p>Rowkey构成规则</p>
+
+<p>Table Type          Table Rowkey
+User Table          User Table Rowkey Columns
+User Meta Table     Cluster ID + User Table ID + User Table Rowkey Columns
+User Root Table     Cluster ID + User Meta Table ID + User Table ID + User Table Rowkey Columns
+First Root Table    Cluster ID + User Root Table ID</p>
+
+<p>表结构比较多，只捡主要的说：</p>
+
+<p>FirstRootTable</p>
+
+<h3>ObScanner</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[memcached源码分析-内存管理]]></title>
+    <link href="http://cxh.me/2013/09/15/memcached-source-analysis/"/>
+    <updated>2013-09-15T18:29:00+08:00</updated>
+    <id>http://cxh.me/2013/09/15/memcached-source-analysis</id>
+    <content type="html"><![CDATA[<p>Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的引入可以减少对于数据库等的请求, 从而减少应用响应时间, 提高吞吐量. 国外类似的实现有Redis等. 国内有淘宝自主研发的tair系统等.</p>
+
+<p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
+
+<h2>基本源码结构</h2>
+
+<p>主要的源码有:</p>
+
+<ul>
+<li>memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并</li>
+</ul>
+
+
+<p>//TODO</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase源码分析-RootServer主要框架]]></title>
+    <link href="http://cxh.me/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/"/>
+    <updated>2013-09-15T12:55:00+08:00</updated>
+    <id>http://cxh.me/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame</id>
+    <content type="html"><![CDATA[<p>这里记录一下RootServer主要框架的阅读和心得。</p>
+
+<!-- more -->
+
+
+<h2>BaseMain</h2>
+
+<p>BaseMain的逻辑从start开始,首先定义了日志格式(ob_easy_log_format),具体定义在ob_easy_log.cpp中
+日志格式如何使用需要跟到Libeasy里去看了.</p>
+
+<p>之后parse_cmd_line解析命令行参数.既然继承自同一个基类,那么这几个server的启动函数就非常相似</p>
+
+<p>之后是一些启动琐事,建立pid文件,建立log文件,设置log级别等.有些地方引用到了TBsys和libeasy,如果需要了解的话可以跟进去看看.</p>
+
+<p>start的最后注册了signal ,并调用do_work开始逻辑.do_work需要子类重载实现.
+restart处理了重启的问题.</p>
+
+<h2>ObServerConfig</h2>
+
+<pre><code>主要是读取系统配置,包含一个oibsystemconfig的指针
+</code></pre>
+
+<h2>ObSystemConfig</h2>
+
+<pre><code>系统配置,键值对和resultset形式
+</code></pre>
+
+<h2>ObRootMain</h2>
+
+<p>继承自common下的BaseMain,定义了RootServer的启动流程</p>
+
+<p>ObRootMain的几个主要成员:</p>
+
+<h1>RootServerConfig</h1>
+
+<pre><code>定义了rootserver的配置
+    继承自obServerConfig
+</code></pre>
+
+<p>ReloadConfig</p>
+
+<p>ConfigManager</p>
+
+<p>ObRootWorker</p>
+
+<pre><code>很大的一个类,包含了rootserver的几乎所有逻辑,ObRootMain设置一些配置项之后调用ObRootWorker的start
+
+
+
+还有一部分代码格式错乱的 clustermanager/ocm_admin.cpp中
+</code></pre>
+
+<h1>ObRootReloadConfig</h1>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[普通英雄]]></title>
+    <link href="http://cxh.me/2013/09/15/to-be-a-hero/"/>
+    <updated>2013-09-15T12:54:00+08:00</updated>
+    <id>http://cxh.me/2013/09/15/to-be-a-hero</id>
+    <content type="html"><![CDATA[<p>只是想起一首老歌:</p>
+
+<!-- more -->
+
+
+<p><embed class="center" src="http://player.youku.com/player.php/sid/XMTQ3NjIzNjk2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
+
+<blockquote><p>有时候 我必须 选择一个人过冬</p>
+
+<p>习惯在 冰天雪地里 追梦</p>
+
+<p>人从容 再出手 自然也就从容</p>
+
+<p>只相信 地球间的 那一点红</p>
+
+<p>看世上 所有英雄</p>
+
+<p>哪一个 做得轻松</p>
+
+<p>我也不 希望被歌颂</p>
+
+<p>我只想 普普通通</p>
+
+<p>自己的伤自己知道痛</p>
+
+<p>哪道深哪一道最重</p>
+
+<p>血肉之躯只会越战越勇</p>
+
+<p>好男儿气贯长虹</p>
+
+<p>倒下也要忍着痛苦</p>
+
+<p>看这世上所有的英雄</p>
+
+<p>竟没有一个人想通</p>
+
+<p>淹没在残酷的波涛中</p>
+
+<p>就像岸上的砂粒一样 普普通通</p>
+
+<p>就像岸上的砂粒一样 来去匆匆</p>
+
+<p>就像岸上的砂粒一样 感叹如风</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress的一些技巧]]></title>
+    <link href="http://cxh.me/2013/09/14/tricks-about-octopress/"/>
+    <updated>2013-09-14T15:03:00+08:00</updated>
+    <id>http://cxh.me/2013/09/14/tricks-about-octopress</id>
+    <content type="html"><![CDATA[<p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
+
+<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
+
+<p>主要说下面几个小技巧:</p>
+
+<!-- more -->
+
+
+<h3>1. alias(别名)</h3>
+
+<p>话说每次写博客的时候要敲rake new_post/ rake generate/ rake preview/ rake deploy&hellip;等等, 中间再出一点什么git同步的错误, 严重影响写博客的心情.可以通过alias简化命令:</p>
+
+<pre><code>alias rg='rake generate &amp;&amp; rake preview'
+alias rd='rake deploy &amp;&amp; git add . &amp;&amp; git commit "`date`" &amp;&amp; git push origin source'
+alias rn='rake new_post'
+</code></pre>
+
+<h3>2. 插入图片</h3>
+
+<p>octopress的一大优点是插图片方便, 拷贝到source/images目录下, 然后在markdown里插入就行了, 但是不是很智能啊&hellip;其实如果大家在vim里装了nerdtree的话, 完全可以通过nerdtree找到图片, 然后拷贝图片链接. 问题是nerd_tree不支持这个操作&hellip;</p>
+
+<p><img src="http://cxh.me/images/2013-9/are-you-fucking-kidding-me.jpg" title="你特么在逗我?" alt="" /></p>
+
+<p>不过我们可以 <a href="http://stackoverflow.com/questions/16368771/copy-path-file-with-nerdtree-vim-plugin" title="Copy path file with NERDtree Vim plugin">扩展一下nerd_tree</a>. 在$VIM/nerdtree_plugin下建立yank_mapping.vim, 内容如下</p>
+
+<pre><code>call NERDTreeAddKeyMap({
+        \ 'key': 'yy',
+        \ 'callback': 'NERDTreeYankCurrentNode',
+        \ 'quickhelpText': 'put full path of current node into the default register' })
+function! NERDTreeYankCurrentNode()
+    let n = g:NERDTreeFileNode.GetSelected()
+    if n != {}
+        call setreg('"', n.path.str())
+    endif
+endfunction
+</code></pre>
+
+<p>这样找到文件之后就可以yy了~~~    yy&hellip;yy&hellip;</p>
+
+<h3>3. 生成文件直接打开</h3>
+
+<p>我们执行rake new_post之后, 填好title之后会在_post下生成一个markdown文件(先不讨论title翻译slug的蛋疼之处), 每次那么长的文件命不能让我每次都敲进去或者复制进去吧. 我们可以修改Rakefile在task:new_post最后加一句自动打开生成的文件:</p>
+
+<pre><code>system "vi #{filename}"
+</code></pre>
+
+<h3>4. 加快生成速度</h3>
+
+<p>Jekyll每次都会生成所有的_posts, 这会导致生成速度的极度下降, 而且官方也没有给出什么解决方案啊. Octopress实现一个比较笨的办法, Rake Isolate和 Rake Integrate, 从名字就可以看出, 是把需要生成的文件保留, 其他的都移出去, 生成完毕之后再移动回来. 不管怎么说吧, 至少是个方案. 写了一段简单的vimscript实现这个功能跟vim的集成.</p>
+
+<pre><code>"plugin -ocotpress  写octopress博客的插件
+function! RakePreview()
+  silent! execute "!rake isolate['".expand("%&lt;")."']"
+  silent! execute "!rake generate"
+  silent! execute "!rake integrate"
+  silent! execute "!google-chrome http://localhost:4000"
+  silent! execute "!rake preview"
+endf
+
+nmap &lt;leader&gt;rp :call RakePreview()&lt;cr&gt;
+</code></pre>
+
+<p>chrome打开的时候还没有执行preview, 所以需要再刷新一下&hellip;preview有些输出, 觉得不想看的可以重定向.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用vimdiff来显示gitdiff]]></title>
+    <link href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/"/>
+    <updated>2013-09-14T11:40:00+08:00</updated>
+    <id>http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff</id>
+    <content type="html"><![CDATA[<p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
+
+<p>具体说来有两种办法:</p>
+
+<!-- more -->
+
+
+<p>在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.</p>
+
+<p>git config &mdash;global diff.tool vimdiff<br/>
+git config &mdash;global difftool.prompt No</p>
+
+<p>这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.</p>
+
+<p>第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下的结果:</p>
+
+<p><img src="http://cxh.me/images/2013-9/difftool-prompt.png" title="git diff prompt" alt="" /></p>
+
+<p>当然我们也可以替换掉默认的diff工具, 可以指定</p>
+
+<pre><code>git config --global diff.external git_diff_wrapper
+</code></pre>
+
+<p>然后在PATH的某个目录下建立git_diff_wrapper, 比如/usr/bin/git_diff_wrapper, 内容如下:</p>
+
+<pre><code>#!/bin/sh
+vimdiff "$2" "$5"
+</code></pre>
+
+<p>最后加执行权限</p>
+
+<pre><code>chmod +x git_diff_wrapper
+</code></pre>
+
+<p>执行git diff的时候就可以看到效果</p>
+
+<p><img src="http://cxh.me/images/2013-9/git-vimdiff.png" title="vim diff 效果" alt="" /></p>
+
+<p>可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ObString源码分析]]></title>
+    <link href="http://cxh.me/2013/09/12/obstring-souce-analysis/"/>
+    <updated>2013-09-12T16:02:00+08:00</updated>
+    <id>http://cxh.me/2013/09/12/obstring-souce-analysis</id>
+    <content type="html"><![CDATA[<p>ObString是oceanbase的源码类</p>
+
+<p>//TODO</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[犀骆]]></title>
+    <link href="http://cxh.me/2013/09/11/rhinoceros-camel/"/>
+    <updated>2013-09-11T15:46:00+08:00</updated>
+    <id>http://cxh.me/2013/09/11/rhinoceros-camel</id>
+    <content type="html"><![CDATA[<p>中文名: 犀骆</p>
+
+<p>英文名: Rhinoceros Camel</p>
+
+<p><img src="http://cxh.me/images/2013-9/rhinoceros_camel.jpg" title="犀骆 Rhinoceros Camel" alt="" /></p>
+
+<p>犀骆是骆驼科, 骆驼属的动物, 因体型高大威猛, 貌似犀牛, 故被称作犀骆. 主要生活在北非洲和西亚洲、印度等热带地域, 是重要的交通工具和牲畜.</p>
+
+<p>犀骆是<a href="http://alibaba.github.io/oceanbase/" title="OceanBase">OceanBase</a> 0.4.2版本的吉祥物.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[C++ Primer 读书笔记]]></title>
+    <link href="http://cxh.me/2013/09/02/cplusplus-primer-book-review/"/>
+    <updated>2013-09-02T12:55:00+08:00</updated>
+    <id>http://cxh.me/2013/09/02/cplusplus-primer-book-review</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。</p>
+
+<ol>
+<li> 关于初始化变量和未初始化变量</li>
+</ol>
+
+
+<blockquote><p>这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出</p></blockquote>
+
+<pre><code>int a;
+int b;
+int c;
+printf("a=%d  b=%d  c=%dn", a, b, c);
+</code></pre>
+
+<p>2.块注释不能嵌套</p>
+
+<p>3.两种初始化方式</p>
+
+<pre><code>int ival(1024);//直接初始化
+int ival=1024; //复制初始化
+</code></pre>
+
+<blockquote><p>c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替</p>
+
+<p>初始化语句中前面定义的变量可以用来初始化后面的值，所以如下语句是合法的</p></blockquote>
+
+<pre><code>double salary=9999.99,wage(salary 0.01);
+</code></pre>
+
+<p>4.const作用域也不能出文件</p>
+
+<p>5.const引用是指向const对象的引用，是一种语法规则限制。另外const引用可以初始化为不同类型的对象或右值，例如：</p>
+
+<pre><code>double dval=3.14;
+const int &amp;ri=dval;//编译器会转换代码为：int temp=dval;const int &amp;ri=temp;
+
+const int &amp;r=42;
+const int &amp;r2=r i;
+</code></pre>
+
+<p>6.string的连接： 操作符左右操作数必须至少有一个是string类型的，但是鉴于 操作符是从左到右求值的，所以这种是合法的：</p>
+
+<pre><code>string s1="b";
+string s2="a" s1 "c";
+</code></pre>
+
+<p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[由&#8221;喵&#8221;代码想到的]]></title>
+    <link href="http://cxh.me/2013/05/29/from-the-miao-code/"/>
+    <updated>2013-05-29T00:00:00+08:00</updated>
+    <id>http://cxh.me/2013/05/29/from-the-miao-code</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>网上看到这样一段代码</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2013/05/miao.jpg" title="miao.jpg" alt="miao.jpg" /></p>
+
+<p>还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：</p>
+
+<pre><code>#include 
+
+#define aaa "3a"
+#define a "1a"
+#define aa "2a"
+
+int main(int argc, const char *argv[])
+{
+    printf("%s
+",aaa);
+}
+</code></pre>
+
+<p>这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况</p>
+
+<pre><code>printf("%s
+",aa a);
+</code></pre>
+
+<p>替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
+另外一种字符串跨行的方式是：</p>
+
+<pre><code>    char chstr2[] = "abcabc\
+abcabc";
+</code></pre>
+
+<p>这里需要注意，第二行前面不能有空格或者tab。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[想起一件事情]]></title>
+    <link href="http://cxh.me/2013/01/10/think-of-one-thing/"/>
+    <updated>2013-01-10T00:00:00+08:00</updated>
+    <id>http://cxh.me/2013/01/10/think-of-one-thing</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>前几天给家里打电话，妈妈说，你什么时候放假回来啊，姨夫前几天还问你了，说能不能给把手机刷新一下，我也不懂，你看你知道怎么弄么？</p>
+
+<p>估计所有学计算机相关专业的孩子都会遇到这种事情，大家觉得在电子产品领域，他们不懂的你都该懂，要不然你都学了些什么。这是个极为无奈的问题。或许放在几年前我肯定会说，我又不是修手机的，但想了想还是说，我回去看看吧。</p>
+
+<p>记得很久之前，要么高中要么快考高中的时候，爸爸的一个朋友找来说，看能不能让你孩子帮忙考个计算机一级啊，评职称要用的，人老了，学不会电脑了。于是爸爸征求我的意见，我那时候年少气盛，立场坚定，转了个弯说我直接考计算机二级的，这些形而上学的Word操作我实在不研究啊。想想也算是回绝的不留余地，不知道那人是信了还是觉得不好强求，于是说那好，我再找找别人吧。</p>
+
+<p>这么些年过去了，回来想这件事情，才觉得心中怅然，不能说有所愧疚，只是觉得有些原则，不见得那么重要。放在现在我也觉得作弊自然不对，不过这些事情放在父母那里，就不是那么绝对了。出来求学这几年，多有负于父母，唯一能做的，也就是尽量帮他们解决点麻烦。小城小镇，圈子就那么大，帮他们打理一下人际，在外也多一份安心，毕竟回趟家，已经不是容易的事情了。</p>
+
+<p>唉重珍重。</p>
+]]></content>
+  </entry>
+  
+</feed>

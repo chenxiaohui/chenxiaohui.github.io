@@ -1,0 +1,1936 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+
+  
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me/page/3">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+  
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/09/the-initialization-order-of-class-member-variables/">关于类成员变量初始化顺序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/09/the-initialization-order-of-class-member-variables/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>java和C#语言里类变量初始化的顺序是</p>
+
+<blockquote><ol>
+<li><p> 类成员变量初始化先于类的构造函数</p></li>
+<li><p> 静态成员变量先于实例变量</p></li>
+<li><p> 父类成员变量先于子类成员变量 C#相反</p></li>
+<li><p> 父类构造函数先于子类构造函数</p></li>
+</ol>
+</blockquote>
+
+<p>举一个java的例子:</p>
+
+<pre><code>class Base
+{
+    public static Test a=new Test("a");
+    public static Test b;
+    public Test c=new Test("c");
+    public Test d;
+    static
+    {
+        b=new Test("b");
+    }
+    public Base()
+    {
+        d=new Test("d");
+    }
+    public static void main(String[] args) {
+        new Derived();
+    }
+}
+class Derived extends Base
+{
+    public static Test da=new Test("da");
+    public static Test db;
+    public Test dc=new Test("dc");
+    public Test dd;
+    static
+    {
+        db=new Test("db");
+    }
+    public Derived()
+    {
+        dd=new Test("dd");
+    }
+}
+
+class Test
+{
+    public Test (String name) {
+        System.out.println(name);
+    }
+}
+</code></pre>
+
+<p>运行结果是：</p>
+
+<pre><code>a
+b
+da
+db
+c
+d
+dc
+dd
+</code></pre>
+
+<p>C 中没有成员变量定义时初始化的方式，所以有如下几条：</p>
+
+<ol>
+<li><p> 构造函数初始化列表的变量优先于构造函数（至少明显的写在前面）</p></li>
+<li><p> 静态成员变量先于实例变量</p></li>
+<li><p> 父类成员变量先于子类成员变量</p></li>
+<li><p> 父类构造函数先于子类构造函数</p></li>
+</ol>
+
+
+<p>举一个例子：</p>
+
+<pre><code>#include 
+#include 
+using namespace std;
+class Test
+{
+public:
+    Test(string n)
+    {
+        cout
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/07/about-const-and-pointer/">关于const和指针的专题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-07T00:00:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/07/about-const-and-pointer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。</p>
+
+<p>首先是几种const与指针组合的区分，比如：</p>
+
+<blockquote><p>int b = 500;
+const int<em> a = &b; [1]
+int const </em>a = &b; [2]
+int<em> const a = &b; [3]
+const int</em> const a = &b; [4]</p></blockquote>
+
+<p>[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。</p>
+
+<p>至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+int a=1;
+const int </em>b=&a;
+<em>b ;//成立
+(</em>b) ;//编译器错误
+}</p></blockquote>
+
+<p>那么我们能不能突破const去修改一个值呢？虽然这件事情本身并没有多大意义，但是还是可以做的。我们可以用const_cast来去掉一个const或者volatile限制。const_cast的作用主要分如下三种：</p>
+
+<blockquote><p>转化一个常量指针为非常量指针</p>
+
+<p>转化一个常量引用为非常量引用</p>
+
+<p>转化一个常量对象为非常量对象</p></blockquote>
+
+<p>至于例子</p>
+
+<p>我们举如下一个例子：</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>class Test
+{
+public:
+const int a ;
+Test(int b):a(b)
+{</p>
+
+<p>}
+};</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+Test t(1);
+//t.a=2;//出错
+int b=const_cast(t.a);
+int&amp; c=const_cast(t.a);
+int</em> d=const_cast(&amp;t.a);
+b=2;
+c=3;
+cout</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/02/some-problems-about-apache-address-rewrite/">Apache地址重写的几个问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/04/02/some-problems-about-apache-address-rewrite/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。</p>
+
+<p>首先要打开rewrite模块windows下的配置是</p>
+
+<blockquote><p>LoadModule rewrite_module modules/mod_rewrite.so</p></blockquote>
+
+<p>httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。</p>
+
+<p>.htaccess的则放到相应目录下或者根目录即可这是VPS里常用的一种方式毕竟作为一个VPS购买者不可能要求提供商去更改全局配置文件。这种方式需要注意的有如下两点</p>
+
+<p>首先.htaccess要想起作用必须要在httpd.conf中相应的Directory标签下配置AllowOverride All默认是None其次是windows下这种无文件名仅有扩展名的文件是无法直接生成的可以在cmd窗口下使用copy con命令来生成这命令也有年头了我小学的时候还学过光阴荏苒啊扯远了…Ctrl Z保存。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image" alt="image" /></p>
+
+<p>然后我们说一下几个概念。</p>
+
+<p>首先是RewriteEngine这是地址重写的引擎可以方便的设置为On或者Off来启用和关闭引擎。</p>
+
+<p>其次是RewriteCond地址重写的条件符合这个条件的才进行表达式判断和重写这样能有效减少匹配的条数提高重写效率。</p>
+
+<p>最后是RewriteBase和RewriteRuleRewriteBase指明重定向地址的基础即RewriteRule后一部分重定向地址会拼合上RewriteBase合成一个完整的重定向地址。这在一个web容器下有多个网站的时候比较有用。</p>
+
+<p>RewriteRule才是我们讨论的主要话题。RewriteRule实现把符合表达式的地址重定向到另一个地址的功能RewriteRule的语法类似于下面</p>
+
+<blockquote><p>RewriteRule ^forum-([0-9] )&ndash;([0-9] )&#46;html$ forumdisplay.php?fid=$1&amp;page=$2</p></blockquote>
+
+<p>RewriteRule紧跟着判断表达式之后是需要重定向的位置正则表达式()会捕获一个分组然后通过$n引用这个分组从而实现地址重写。RewriteRule匹配的开始位置是整个URL去掉当前目录后剩下的部分比如我在/discuz配置上面所示的RewriteRule然后输入一个URL-<a href="http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82">http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82</a></p>
+
+<blockquote><p>RewriteRule ^(.*)/forum-([0-9] )&ndash;([0-9] )&#46;html$ rewrite.php?param=$1</p>
+
+<p>注在rewrite.php里打印一下GET[&lsquo;param’]参数</p></blockquote>
+
+<p>另外这里需要说明的是如果我定义了</p>
+
+<blockquote><p>RewriteBase /discuz</p></blockquote>
+
+<p>那么前面的<sup>forum</sup>-([0-9] )&ndash;([0-9] )&#46;html$不受影响但是后面会变成/discuz/forumdisplay.php?fid=$1&amp;page=$2。不过RewriteBase并不是必须的若有指定RewriteBase结果为RewriteBase 重定向地址否则为当前目录 重定向地址。这里当前目录指的是.htaccess所在目录使用.htaccess的时候或者Directory标签指定的目录使用httpd.conf的时候。</p>
+
+<p>以上操作在windows下测试通过。</p>
+
+<p>参考文献</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image">1</a>Apache中RewriteCond规则参数介绍</p>
+
+<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">http://hi.baidu.com/һ/blog/item/ace7f14e19851cc4d0c86af2.html</a></p>
+
+<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">2</a>RewriteRule-htaccess详细语法使用教程</p>
+
+<p><a href="http://www.3code.cn/rewriterule-htaccess%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">http://www.3code.cn/rewriterule-htaccess详细语法使用教程/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/31/some-problems-about-doxygen/">Doxygen几个小问题，mark一下</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-31T00:00:00+08:00" pubdate data-updated="true">Mar 31<span>st</span>, 2012</time>
+        
+         | <a href="/2012/03/31/some-problems-about-doxygen/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>首先是在Visual Assist X中的配置，在Snippet Editor窗口修改一下file header的snippet和Refactor Document Method的snippet.</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb5.png" title="image" alt="image" /></p>
+
+<p>设置分别如下</p>
+
+<p>file header</p>
+
+<p>/<em>*
+* @file $FILE_BASE$.$FILE_EXT$
+* @Synopsis $end$
+* @author 你的名字,你的邮箱
+* @version $version$
+* @date $DAY$:$MONTH$:$YEAR$
+</em>/</p>
+
+<p>Refactor Document Method</p>
+
+<p>/<em> —————————————————————————-</em>/
+/<em><em>
+* @Synopsis $SymbolName$
+* $end$
+* @Param $MethodArg$
+*
+* @Returns $SymbolType$
+</em>/
+/</em> —————————————————————————-*/
+然后记得DoxygenWizard的这个工作目录是一定要点选的，这里有个触发，如果直接复制路径进去是无法run doxygen的。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb6.png" title="image" alt="image" /></p>
+
+<p>最后是中文编码的问题，如果你的项目是GBK编码，那么要防止乱码必须要做的事情是设置工程为UTF-8编码，而设置输入为GBK。切记。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb7.png" title="image" alt="image" /></p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb8.png" title="image" alt="image" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/">发布VIM缓冲区切换插件buf_it升级版</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-28T00:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/28/publish-the-vim-buffer-management-plugin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>VIM默认使用的过程中有一个重要的问题，就是打开多个文件的时候无法可视化看到打开的文件，并在这些文件中切换。MiniBufExplorer是一个常用的buffer切换插件，但是这个插件在Windows下使用的时候有许多问题，同时也太繁琐。buf_it<a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a>则实现了轻量的buffer管理，但是buf_it同样在windows下有许多问题，而buf_it的退出机制也会出现只想关闭一个文件确关闭了整个vim的情况。</p>
+
+<p>基于这两个问题，我修改了buf_it插件，这里共享出来，欢迎大家提意见。先给张图</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image" alt="image" /></p>
+
+<p>修改：</p>
+
+<blockquote><p>1 windows下使用GVIM优化，方式多开一个空白缓冲区，windows下gvim右键配置见参考文献2</p>
+
+<p>2 增加自定义退出方式</p>
+
+<p>3 修改了部分快捷键，只是个人习惯，可无视之</p></blockquote>
+
+<p>安装：</p>
+
+<blockquote><p>直接扔到plugin目录就行，原作者没写doc，那我也不写啦。</p></blockquote>
+
+<p>配置：</p>
+
+<blockquote><p>nnoremap wq :w:call BufClose()
+nnoremap q :call BufClose()
+nnoremap w :w
+nnoremap x :bd!:call BufClose()</p></blockquote>
+
+<p>使用：</p>
+
+<blockquote><p>shift h,l ：左右切换tab</p>
+
+<p>be ：BufEcho 显示当前缓冲区名字</p>
+
+<p>bo ：只保留当前缓冲区，其他的都关掉</p>
+
+<p>alt i : 切换到序号为i的缓冲区</p>
+
+<p>wq: 保存关闭当前缓冲区并退出</p>
+
+<p>q: 关闭当前缓冲区并退出</p>
+
+<p>w: 保存当前缓冲区</p>
+
+<p>x: 不保存关闭当前缓冲区</p></blockquote>
+
+<p>下载:<a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">buf_it</a></p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a> buf_it : Buffer list in statusline,</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">2</a> 在windows下给你的右键菜单添加&#8221;edit with vim&#8221;的方法,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/">解决Latex中Itemize距离过大的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-16T00:00:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>默认的itemize存在行距过大的问题，大概是如下的样子：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb2.png" title="image" alt="image" /></p>
+
+<p>用paralist包可以减少行距，代码如下</p>
+
+<blockquote><p>\usepackage{paralist}
+\let\itemize</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/">两种可行的Latex中文生成方式(GBK/UTF8)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>本来想总结一下Latex里各种中文排版支持，但是发现太乱了，CCT，CJK，CTEX神马的，还有GBK和UTF8下的不同编码方式，再加上XeLatex这样来搅局的……所以最后决定只给出一种可行的排版方式，测试环境是Windows CTex2.8。</p>
+
+<p>ps:每天忍辱负重的在Windows下用Vim和Latex……</p>
+
+<p>第一种是gbk编码下的编译方式</p>
+
+<blockquote><p>REM taskkill /im AcroRd32.exe
+pdflatex %1
+bibtex %1
+pdflatex %1
+gbk2uni %1.out
+pdflatex %1
+start %1.pdf</p></blockquote>
+
+<p>其中第一句的目的是结束掉当前的PDF文档，但是它会随机选择一个Acrobat Reader进程结束，所以给注掉了。从代码里可以看出，需要执行多遍pdflatex，同时穿插bibtex生成参考文件，gbk2uni的作用是将gbk转成unicode，这个命令是cct里的，请确保你的环境变量中有cct的bin目录。</p>
+
+<p>测试article代码如下：</p>
+
+<blockquote><p>\documentclass{article}
+\usepackage{CJK}
+\usepackage{cite}
+ewcommand{\upcite}[1]{ extsuperscript{ extsuperscript{</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/14/using-visio-vector-diagram-in-Latex/">Latex中使用visio的矢量图(转载+修改）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T00:00:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/14/using-visio-vector-diagram-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>我们知道，visio用来画流程图等专业图很方便，而Latex的专业排版效果是Word所不能比的，而Visio不支持导入eps和dvi格式的矢量图，而导出jpeg毕竟有质量损失，那么怎么才能在Latex中直接使用visio导出的矢量图呢？</p>
+
+<p>1. Visio可以保存为wmf，emf等矢量图形格式（word的默认插图格式），再转换为eps格式（可使用TpX，由本论坛得知早期版本貌似可直接保存eps）插入LaTeX。可转换后的eps图片格式不稳定，图形易错位；另外Visio使用Windows字体，转换后的eps图形只引用而不包含字体，插入LaTex后由于找不到对应字体，中文（或mathtype公式，特殊符号）会乱码。
+2. 用ps虚拟打印的方式虽然可以解决格式和乱码问题，但中文字符（或其他不支持的内容）会按位图处理，得不到完美的矢量图形。
+经过探索，将visio保存为pdf格式是最完美的解决方式，因为pdf文件保存了所有格式和字体信息。借助pdfcrop和ebb程序，调用graphicx宏包插入pdf格式图片，能够得到完美的visio矢量图形。</p>
+
+<p>注：
+1.导入的代码依然可以使用标准的fig标签，例如：
+egin{figure}</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/14/ajust-distance-between-table-title-and-content-in-Latex/">Latex里图片与表格标题与正文距离的调整</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T00:00:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/14/ajust-distance-between-table-title-and-content-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>首先，我们这里的图表用的分别是figure和table标签，宏包应该是graphicx和??，我们需要调整的距离是其标题(caption)的前后的空白，比如下面图中所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb.png" title="image" alt="image" /></p>
+
+<p>首先，我们可以通过如下代码设置这个距离，above设置标题上面的距离，below设置标题下面的距离。</p>
+
+<blockquote><p>\setlength{bovecaptionskip}{10pt}
+\setlength{elowcaptionskip}{-10pt}</p></blockquote>
+
+<p>需要特别说明的是一点，网上好像都没有人说这个事情。如果标题在图标的上面的话，这两个距离是反的，这点让人觉得很不适应。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb1.png" title="image" alt="image" /></p>
+
+<p>参考文献：</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/05/xheditor-for-typeecho-plugin-supports-file-upload/">支持上传文件的xhEditor for Typecho EX插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-05T00:00:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/05/xheditor-for-typeecho-plugin-supports-file-upload/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>Typecho是一套超轻量的开源博客，界面简洁，功能紧凑，但是Typecho的文本编辑器实在是不好，需要自己写html代码，插图也不方便。试用了几个插件，发现TinyMCE回车总有问题，每次保存就多几个空行，其他几个插件也有类似问题。于是就想能不能把xhEditor这个强大的可视化HTML编辑器移植过去，后来找到一个xhEditor for Typecho插件，下载地址在<a href="http://115.com/file/atedbyls">这里</a>，作者主页。这个插件不支持上传图片，而插件使用之后系统本身的插图功能就不能用了，所以导致图片只能贴网络图了。</p>
+
+<p>于是决定在这个插件基础上改进，主要是</p>
+
+<blockquote><p>增加了图片/多媒体文件上传功能
+增加More标签直接插入功能
+修改三种工具栏模式，保证每种模式都有查看源码、Preview和More标签按钮
+更新xheditor到最新版1.1.13</p></blockquote>
+
+<p>你可能需要在admin/css/typeecho.source.css里改一下body的一个默认颜色，否则导致上传图片的弹窗左边的字显示为白色而看不到。需要说明的是，这一版More标签没有直接的可视化效果，点了之后请到源码里查看，以后有时间再做效果。另外，没时间给More做个小图标了，直接用了显示源码的那个按钮的图标。</p>
+
+<p>有bug请留言。谢谢。下载地址:<a href="http://www.roybit.com/wp-content/uploads/2012/03/XhEditor-for-Typecho.rar" title="XhEditor for Typecho">XhEditor for Typecho EX</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/01/change-the-name-of-blog/">博客域名更改</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-01T00:00:00+08:00" pubdate data-updated="true">Mar 1<span>st</span>, 2012</time>
+        
+         | <a href="/2012/03/01/change-the-name-of-blog/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>之所以要改域名，是因为之前的域名无论英文还是中文都被隐藏在一堆布拉德皮特（Brad Pitt）的新闻里，搜索不到，长此以往，博将不博。其实布拉德皮特的电影我只看过《西（和谐）藏十年》，对他并无反感，但是作为一个博客总夹在娱乐新闻里想不娱乐都难，我写的可是正正规规的技术文章啊亲……</p>
+
+<p>Roy这名字似乎是某个英国国王的名字，也有不少人用这个做姓，老外的姓氏和名字还真是混乱啊，不过想想同学里似乎也有叫王林的，也就无所了，反正我可是注册到了六位的还有一定含义的域名，六位啊亲……</p>
+
+<p>就这样吧。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/02/24/ways-to-change-ports-in-exsi/">ESXi修改默认端口的方法(zz)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2012</time>
+        
+         | <a href="/2012/02/24/ways-to-change-ports-in-exsi/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>转载自网络，找不到出处了，没试过，应该是对的。</p>
+
+<p>修改默认端口的方法： 端口 80 (http) 443 (https)
+root登录后
+vi /etc/vmware/hostd/proxy.xml
+找到下添加以下内容
+custom port #
+custom port #
+保存文件
+重新启动vmware-hostd服务</p>
+
+<h1>service mgmt-vmware restart</h1>
+
+<p>例子：添加以下为分别改为81 444
+81
+444</p>
+
+<p>ESX 4.0测试通过</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/02/24/vmware-esxi-5-nat-on-admin-ports/">VMware ESXi 管理端口的NAT配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2012</time>
+        
+         | <a href="/2012/02/24/vmware-esxi-5-nat-on-admin-ports/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>先复习一下VMWare的基本网络概念。</p>
+
+<p>VMware ESXi使用桥接（猜测，错了不管）的方式实现网络配置，通过虚拟交换机的概念来模拟物理交换机，这样连接在同一个交换机下的虚拟机相当于处于一个网段之内，如下图所示，管理端口和pfSense（NAT系统）处于一个网段，pfSense添加了两个虚拟交换机，这样就等于接通了两个网段，起NAT的作用，WAN口处于8网段，LAN口在1网段做DHCP，其他两个操作系统（win2k8和RHEL5.4）只连接内网，通过pfSense做NAT到这些虚拟机上。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/11/1.png" alt="1.png" /></p>
+
+<p>接着说为什么要重做NAT。前几篇文章我们已经实现了一个ESXi上的NAT架构，但新的问题出现了：之前管理端口（8.232）是单独的一个IP，而我们的服务器搭建好之后往往只绑定一个外网IP，然后就远程管理了，这样如果管理端口还使用一个单独的内网IP，我们从外网就没有办法使用Sphere Client管理了。于是需要把管理端口也放到NAT的内网，从NAT映射到管理端口上去。</p>
+
+<p>首先，ESXi本身使用两个端口（不考虑SSH），一个443端口放一个简单的介绍网页（https），剩下的是Sphere Client使用的端口902（ESX Server好像是903），如果想更改端口，更改方式在下篇文章中再谈。</p>
+
+<p>这样我们需要做的是，首先在NAT的虚拟交换机中添加VMKernel</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/02/1_thumb.jpg" title="1" alt="1" /></p>
+
+<p>设置好内网IP ，更改默认网关</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/02/2_thumb.jpg" title="2" alt="2" /></p>
+
+<p>这时候其实就可以进内网的一个操作系统(比如我的win2k8)，telnet一下192.168.1.4的902端口，看看是否可以使用了，如果可以使用，在这个操作系统下就可以用Sphere Client连接ESXi了，只不过有点慢。</p>
+
+<p>开始的时候我直接在pfSense做了NAT（443和902，到192.168.1.4上），结果发现外网根本telnet不了这两个端口，最后想想干脆把标准交换机0上的那个192.168.8.232的Management Network移除好了，关掉了过程中弹出的几个语气严厉的警告窗口之后，再telnet，就可以使用了。这时候如果到物理服务器上，f2进入ESXi的配置界面，就可以看到Network Configuration那里已经改成了192.168.1.4的IP和192.168.1.1的网关。</p>
+
+<p>这样，你的管理端口，几个虚拟机就都进入了pfSense的管辖范围里了，也就是说，从公网IP映射到pfSense的WAN口IP，剩下的NAT都是pfSense来做了，无论是ESXi本身，还是其上的虚拟机。最后的网络配置如下，Management Network移除之后不会消失，但是已经没有IP显示了。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/02/3_thumb.jpg" title="3" alt="3" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/29/vmware-esxi-5-network-configuration/">VMware ESXi 网络配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-29T00:00:00+08:00" pubdate data-updated="true">Nov 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/29/vmware-esxi-5-network-configuration/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>上一讲忘了扯一下vCenter，大家应该经常会看到Sphere vCenter，这个是用来管理多台ESX(i) Server的，换句话说，是虚拟云的管理端，详见官方白皮书<a href="http://www.roybit.com/wp-content/uploads/2011/11/1_thumb.png" title="1">1</a>。所以如果你只有一台服务器，大可不必搭理。另外大家应该也经常看到VMware Appliance这种名字，实际上就是装好的VMWare虚拟机镜像，我们可以用VMware Converter安装到远程服务器上。这个之后我们也会提到。</p>
+
+<p>现在我们搭建了好了ESXi Server，同时建立了虚拟机，现在开始为虚拟机配置网络。ESXi的网络理念和VMware WorkStation完全不一样，我们在WorkStation里用的那一套[3]没法在这里用。ESXi Server里，你能看到类似于这样的网络拓扑结构，虚拟交换机的概念替代了之前的三种网络模式，具体概念参见[2]。我们可以简单理解，ESXi把物理交换机完全屏蔽了，你可以建立一台虚拟交换机，然后也不需要考虑这台虚拟交换机的接口问题，直接进操作系统配置你的IP就行了，你可以想想虚拟机就是一台跟物理机一样的机器，甚至这个管理端口Management Network的IP也是可以随便换的，至于为什么ESXi能随意绑定IP，可以想见，应该也是通过了Bridge桥接技术，通过把网卡设置为混杂模式，用类似于ARP欺骗的技术来实现桥接。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/11/1_thumb.png" title="1" alt="1" /></p>
+
+<p>样例可参考[4]，需要说明的是，每个适配器相当于一个网卡，虽然你可以不指定，一个操作系统，添加了多个虚拟网络之后，就相当于有了多个网卡，每个网卡按照应该遵循的配置来配置，至于NAT，ESXi默认不支持NAT，所以如果有NAT，一定是路由器给你做的。所以作者在WAN适配器配置外网IP，LAN配置局域网IP，PAN配置服务器内网IP。相当于三块网卡。</p>
+
+<p>下一讲讲ESXi的NAT实现。转载请注明出处。</p>
+
+<p>参考文献：</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2011/11/1_thumb.png" title="1">1</a> VMware vCenter Server</p>
+
+<p>[2] VMware Virtual Networking Concepts</p>
+
+<p>[3] VMware网络配置详解</p>
+
+<p>[4] ESXi虚拟网络配置的几点认识</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/29/vmware-esxi-5-nat/">VMware ESXi NAT实现</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-29T00:00:00+08:00" pubdate data-updated="true">Nov 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/29/vmware-esxi-5-nat/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>上节我们讲到VMware ESXi默认不支持NAT，但是我们如果只有一个外网端口映射，然后希望通过这个映射，从外网访问两台机器的话，那最好做NAT。这里我们通过一个开源的网络防火墙pfSense来实现NAT<a href="http://www.roybit.com/wp-content/uploads/2011/11/logo_thumb.png" title="logo">1</a>。当然也有人通过Zental实现<a href="http://blog.romant.net/wp-content/uploads/2010/07/Step2.png">2</a>，或SmoothWall神马的<a href="http://blog.romant.net/wp-content/uploads/2010/07/Step3_121.png">3</a>。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/11/logo_thumb.png" title="logo" alt="logo" /></p>
+
+<p>首先建立一个NAT使用的虚拟交换机</p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/Step2.png" alt="" /></p>
+
+<p>弹出如下对话框的时候不要选择任何物理网卡，这个虚拟交换机是专门用来做NAT的。</p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/Step3_121.png" alt="" /></p>
+
+<p>改个名字</p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/Step3_13.png" alt="" /></p>
+
+<p>完成之后，你就有了两个可用的虚拟交换机。</p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/Step_last_summary_2.png" alt="" /></p>
+
+<p>然后建立pfSense的虚拟机，我们通过VMConverter来实现，这样更快一些。首先下载VMWare vCenter Converter ()，我们直接在本地运行Converter任务，然后向服务器上上传虚拟机文件，所以选择对应你本地操作系统的版本，安装的时候选择本地安装。然后下载pfSense，注意我们要下载Vmware Appliance版本，还记得之前说的Appliance概念吗，我们这里就通过Appliance简化安装。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/11/image_thumb.png" title="image" alt="image" /></p>
+
+<p>选择虚拟机文件 ，填入用户名，ip，和密码</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/11/image_thumb1.png" title="image" alt="image" /></p>
+
+<p>剩下的事情就不用操心了。</p>
+
+<p>启动pfSense虚拟机之前注意为pfSense系统添加网卡，NAT和原来的网络都要添加，<img src="http://blog.romant.net/wp-content/uploads/2010/07/Step_last.png" alt="" /></p>
+
+<p>之后启动pfSense，配置网络</p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/pfsense_config_2.png" alt="" /></p>
+
+<p>结果大概是这样，具体的教程见<a href="http://blog.romant.net/wp-content/uploads/2010/07/Step3_121.png">3</a></p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/pfsense_summary.png" alt="" /></p>
+
+<p>最后指定虚拟操作系统的网络接口</p>
+
+<p><img src="http://blog.romant.net/wp-content/uploads/2010/07/client_network.png" alt="" /></p>
+
+<p>剩下的NAT配置什么的，参考<a href="http://blog.romant.net/wp-content/uploads/2010/07/Step3_13.png">4</a>吧。一系列教程，讲的非常详细了。教程里的图都来自<a href="http://www.roybit.com/wp-content/uploads/2011/11/logo_thumb.png" title="logo">1</a>，这哥哥真帮了大忙了。</p>
+
+<p>参考文献：</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2011/11/logo_thumb.png" title="logo">1</a> Configuring NAT on ESX and ESXi,</p>
+
+<p><a href="http://blog.romant.net/wp-content/uploads/2010/07/Step2.png">2</a> Configure NAT on Esxi Server,</p>
+
+<p><a href="http://blog.romant.net/wp-content/uploads/2010/07/Step3_121.png">3</a> SmoothWall Express as NAT on ESXi</p>
+
+<p><a href="http://blog.romant.net/wp-content/uploads/2010/07/Step3_13.png">4</a> pfSense学习</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/29/vmware-esxi-5-configuration/">VMware ESXi 5安装配置部分</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-29T00:00:00+08:00" pubdate data-updated="true">Nov 29<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/29/vmware-esxi-5-configuration/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>折腾了两天，终于搞懂了是怎么回事了。这里写一下详细配置，给其他像我这样的小白一个参考。</p>
+
+<p>首先明确一下ESXi是干嘛的。</p>
+
+<blockquote><p>VMware ESXi是VMware的嵌入式hypervisor。ESXi没有服务控制台，可以说是一个精简版的ESX。对于由于成本和硬件还没有开始实施虚拟化的组织来说，使用免费的VMware ESXi hypervisor不失为着手虚拟化的好方式。[3]</p>
+
+<p><img src="http://www.servicetech.com.hk/img/vmware_esxi.gif" alt="VMware ESXi ¥i¦bµw¥ó¤Wª½±µ¹B¦æ" /></p>
+
+<p>图1：VMware ESX系列架构<a href="http://www.servicetech.com.hk/img/vmware_esxi.gif">1</a></p></blockquote>
+
+<p>而ESXi可以看做ESX Server的轻量化版本。</p>
+
+<p>两者的区别见文献<a href="https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default">2</a>，还有一个非常不错的专题[3]</p>
+
+<p>我在一台Dell R710服务器上搭建了一个ESXi Server，同时运行两台服务器，一台RHEL5.4，一台Win2K8。详细过程如下：</p>
+
+<p>首先需要注意的是很多服务器购买的时候，内置软件有远程管理模块。比如DELL的iDRAC，实际上来讲，用处不大，而且iDRAC占用着一些端口（比如HTTPS 443），导致我安装了ESXi之后一度连接不上也看不到web提示页面。这里我们先禁用iDRAC。从System Setup进入Dell内置管理系统，然后不给iDRAC配置IP地址（原则上讲开始是没有配置IP的，但是大部分人的习惯是进去把IP配置了，I suppose）。之后在管理系统里建立RAID，注意RAID1是热备份的，相当于你只有一半硬盘空间可用。然后选择安装操作系统，系统类型选择ESXi 4，放入系统光盘。实际上我从官网下载（<a href="https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default">https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default</a>）了ESXi5，但不影响。ESXi安装可以参考[4]，绝对通俗易懂。</p>
+
+<p>进入ESXi之后可以选择开启SSH和ESXiShell，这样你就可以远程登陆到ESXi做点很底层的事情，至于ESXiShell，这是个定制的Shell，里面只保留了一部分的Linux命令，然后加入了一部分ESXi自己的命令。传说ESXi需要用账号unsupported登陆，而这个unsupported本身是不受服务支持的，改坏了自己负责。但是实际上用root登陆就行了。</p>
+
+<p>其实最常用的还是VMware Sphere Client，虽然官方有命令行工具Sphere CLI，但是大部分人不会去使用。安装完ESXi之后，浏览器输入IP应该就能看到一个页面了。然后用Sphere Client登陆之后可以做相应操作，比如安装操作系统什么的。</p>
+
+<p>这里一定要注意一个问题，安装操作系统的时候不能断开Sphere Client，我在这问题上2了很久，后来才想到原来是这个原因。就像远程桌面连接拷东西的时候不能退出一样，这东西不会后台自动运行的，退出，就没了。</p>
+
+<p>下一讲讲一下ESXi的网络配置，欢迎关注。转载请注明出处。</p>
+
+<p>参考文献：</p>
+
+<p><a href="http://www.servicetech.com.hk/img/vmware_esxi.gif">1</a> 產品方案 – VMware – ESXi 入門教學，</p>
+
+<p><a href="https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default">2</a> ESX还是ESXi？这也是个问题，</p>
+
+<p>[3] 虚拟化hypervisor：VMware ESXi全面解析，</p>
+
+<p>[4]Vmware_ESXI_4.0_安装详解(图文)，</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/26/about-tencent-zhangxiaolong/">转载: 腾讯的张小龙是一个什么样的人</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-26T00:00:00+08:00" pubdate data-updated="true">Nov 26<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/26/about-tencent-zhangxiaolong/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>有人在知乎上问：腾讯的张小龙是一个什么样的人？
+下面是我的回答：</p>
+
+<p>5年前，张小龙是中国Top10的程序员。
+他一个人写代码，完成了Foxmail的头三个版本。
+Foxmail如此受到欢迎，以至于他不得不外放了语言包，让各种忠实粉丝翻译为十几种语言。
+直至今日，Foxmail被收购，QQmail推出，Foxmail的企业用户依然有数百万。</p>
+
+<p>在被腾讯收购之后，Foxmail开始了艰难的转变，从客户端转变为Web产品。
+一开始非常不顺利，最早的版本类似Web上的巨无霸，几乎无法操作。
+从程序员到管理者，从客户端产品经理到Web产品经理，
+张小龙度过了极为孤独的三年时光。
+三年后，他完成了第一次变形。
+QQmail被腾讯内部称为“七星级产品”。
+人们经常用一个例子来说明QQmail在产品体验上的细腻入微：
+如果你在邮件正文里提到“附件”，而你在发送时并没有粘贴任何附件，
+那么系统会立即提醒：您是否忘了加上附件。
+这一体验现在Gmail也有了。</p>
+
+<p>QQmail的成功，却让张小龙感觉到焦灼。
+因为邮箱对于大数量的普通网民而言，依然是一个门槛极高的产品。
+也许，教会他们用@符号都需要许多年。
+还有什么是海量网民所需要的产品？
+张小龙开始了他的第二次转变，
+从Web工具类产品，进入Web社交类产品。</p>
+
+<p>这一过程大约耗费了不到两年时间，
+难度比上一次更大，周折更多。
+张小龙和他的团队最先试验了阅读空间，
+这是跳出工具类产品的第一个接榫。
+做阅读空间貌似是一个工具，但是其中会有简单的人际互动。
+可以观察用户的行为和交互习惯。</p>
+
+<p>阅读空间获得了成功，
+于是就有了QQ邮箱广播的尝试。
+这是在QQ邮箱中试图打造一个类Twitter产品的尝试。
+163邮箱也做过类似的事情，
+但是这个项目失败了，用户和内容并入了腾讯微博。
+在邮箱的使用场景下，
+阅读空间的慢速阅读和深阅读是和邮箱调性相契合的，
+但是和快速流动的Tweets流却不能相容。</p>
+
+<p>于是，又有了QQ邮箱漂流瓶。
+这是一场试验，
+主题是：假设在大用户数量基础上，做轻SNS类应用，尤其是陌生人交友，是否能够获得成功？
+结果空前成功。
+每天的漂流瓶达到了骇人听闻的数量级，
+用户粘性也得到了非常可观的增长。
+这个试验的副产品是正视了普通网民内心深处是何等孤独。
+以至于他们愿意一次次用尽写瓶中信的每日三次机会，
+愿意一次次打捞蓝色页面中转瞬即逝的电子漂流瓶。</p>
+
+<p>第三次转变突然到来，
+张小龙的目光早已经从Web跳转到了移动互联网。
+只是一个简单的要求，
+团队中的程序员就从原来的岗位离开，
+开始学习手机客户端的编程。
+原来在QQmail手机随身邮上的经验，
+被广泛应用到了微信的打造过程中。
+新的手机团队不是做一个客户端，
+而是IOS、安卓、塞班三个客户端同时开始做，
+放出IOS版本之后，立即转安卓做下一个版本，
+安卓做完转塞班，然后再转回做IOS。
+这叫全天候手机开发团队。
+他们喜欢在黑夜里通宵开发，
+此时广州寂寥无人，
+适合集中精力并行开发。
+程序员三五成群，在工作区过道上低声讨论，
+有的就地开始做俯卧撑，以提振精神。
+有人把他们称为“矿工”，
+因为他们总是在黑暗里工作，
+而他们以这称号为傲。</p>
+
+<p>微信在8个月里就横扫了整个市场，
+比它炫的没它简单，
+比它简单的没它快，
+没有谁比它更快，
+哪怕在GPRS下，微信也能把进度条轻易推到底。
+万法归宗，唯快不破。
+在各家拼单点功能的时候，
+微信在11年下半年突然跳离主战场，
+在LBS和视频通话上布下两粒棋子。
+随即，在LBS上开发了“摇一摇”功能。
+满城的“卡嚓”声响起，
+无穷尽的寂寞之心终于有了简单的去处。
+从Web SNS产品到移动互联网SNS产品，
+张小龙第三跳只用了8个月。</p>
+
+<p>在这八个月里，
+微信从无人看好到炙手可热，
+巨大的转变下让张小龙感觉到更多的是孤独。
+在11年上半年的一个月时间内，
+他曾经一篇篇仔细读过几乎所有业界对微信的评价。
+读过一边倒认为微信无望的论调，
+读过各种关于微信抄袭KIK和Talkbox的指责。
+11年下半年，一起都逆转了过来。
+张小龙依然沉默不语，
+但是微信3.0的开机页面上放出了迈克尔.杰克逊的图片，
+边上写了MJ的一句话：
+&ldquo;你说我是错的,那你最好证明你是对的.&rdquo;
+&ldquo;谨以此版本纪念迈克尔杰克逊，感谢他的音乐陪伴我们的产品开发之旅。“
+同年11月，TalkBox放出了TXT和图片输入功能。
+而此时，微信开始提供自定义透明背景头像、二维码名片，
+开始试验时尚感对产品流行度的影响。</p>
+
+<p>除了每周一次的网球，和每天深夜的音乐，
+张小龙没有什么别的嗜好。
+程序员时代的烟瘾一直保持了下来，
+他是广州深夜里最大的Kent消费者，
+沉默到像谜一样的男人，
+中国为数不多具有文艺气质的产品经理。
+他是那种因为喜欢《蓝莲花》歌词，
+就一定要问许巍买下版权，
+挂在QQ邮箱入口的人。
+他也是那种喜欢同事小女儿涂鸦，
+就把一幅涂鸦画和《蓝莲花》一样挂在QQ邮箱入口的人。</p>
+
+<p>如果世界上又出现了什么新鲜的APP应用，
+在发布后的48小时之内，
+如果你也下载尝鲜，
+可能你会遇到个名叫Allen的人，
+如果这人沉默不语，甚至连头像都没有。
+那么你也许已经遇见了张小龙。</p>
+
+<p><strong>（以上内容纯属传说，不能对其真实性负责）</strong></p>
+
+<p>补充材料：小龙喜欢车，但是早年买不起。一次去美国的时候，租了一辆。临走的前一晚，半夜醒来张小龙失踪了。原来，他舍不得告别那车，半夜开出去兜风了。—陈让回忆录《我所知道的张小龙》</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/22/zz-book-review-of-stories-about-ming-dynasty/">Zz 明朝那些事 读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-22T00:00:00+08:00" pubdate data-updated="true">Nov 22<span>nd</span>, 2011</time>
+        
+         | <a href="/2011/11/22/zz-book-review-of-stories-about-ming-dynasty/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>【作者按】</p>
+
+<blockquote><p>很多人问，为什么看历史，很多人回答，以史为鉴。现在我来告诉你，以史为鉴，是不可能的。因为我发现，其实历史没有变化，技术变了，衣服变了，饮食变了，这都是外壳，里面什么都没变化，还是几千年前那一套，转来转去，该犯的错误还是要犯，该杀的人还是要杀，岳飞会死，袁崇焕会死，再过一千年，还是会死。</p>
+
+<p>所有发生的，是因为它有发生的理由，能超越历史的人，才叫以史为鉴，然而我们终究不能超越，因为我们自己的欲望和弱点。</p>
+
+<p>所有的错误，我们都知道，然而终究改不掉。</p>
+
+<p>能改的，叫做缺点，不能改的，叫做弱点。</p>
+
+<p>我本人虽然经常幽默幽默，但对很多事情都很悲观，因为我经常看历史（就好比很多人看电视剧一样），不同的是，我看到的那些古文中，只有悲剧结局，无一例外。</p>
+
+<p>每一个人，他的飞黄腾达和他的没落，对他本人而言，是几十年，而对我而言，只有几页，前一页他很牛，后一页就怂了。王朝也是如此。真没意思，没意思透了。</p>
+
+<p>但我坚持幽默，是因为我明白，无论这个世界有多绝望，你自己都要充满希望</p>
+
+<p>人生并非如某些人所说，很短暂，事实上，有时候，它很漫长，特别是对苦难中的人，漫长得想死。</p>
+
+<p>但我坚持，无论有多绝望，无论有多悲哀，每天早上起来，都要对自己说，这个世界很好，很强大。</p>
+
+<p>这句话，不是在满怀希望光明时说的，很绝望、很无助、很痛苦、很迷茫的时候，说这句话。</p></blockquote>
+
+<p>【发表议论】</p>
+
+<blockquote><p>1． 所谓气节这样东西，平日被很多人挂在嘴边，也经常被当作大棒来打别人，但真正的气节总是在危急关头表现出来的。而在这种时候，坚持气节的下场往往不会是鲜花和掌声。</p>
+
+<p>只有那些真正的英雄，才能在面对屠刀时体现出自己的气节。这种气节才是真正的勇气。</p>
+
+<p>2． 简单的占有是小聪明，暂时的放弃才是大智慧。</p>
+
+<p>3． 权力斗争就如同剑客比武，一击必杀才是制胜的王道，因为一旦宝剑出鞘，就没有收回的余地。</p>
+
+<p>4． 一无所有并不可怕，可怕的是得到后再失去。</p>
+
+<p>得到了权力，似乎就得到了一切，但其实很多人并不明白，在权力游戏中，你没有休息的机会，一旦参加进来，就必须一直玩下去，直到你失败或是死亡。得到了很多，但失去的更多。这就是他们必须付出的代价，无论是成功者，还是失败者。走上了这条路，就不能再回头。</p>
+
+<p>5. 哲学是无数天才一生思考、生活的结晶，他们吃过许多亏，受过许多苦，才最终将其浓缩为书本上的短短数言。一个二十岁的青年人是不会懂得这些的，他们太天真，太幼稚，他们或许能够在考试中得到一百分，却不可能真正了解其中的含义。所以他们虽然手握真理，却无法使用，满怀热情地踏入社会，却被撞得头破血流。</p>
+
+<p>6．因为天真的理想主义者纵使执着、纵使顽强，却依然是软弱的。他们并不明白，在这世上，很多事情你可以不理解，却必须接受。只有真正了解这个世界的丑陋与污浊，被现实打击，被痛苦折磨，遍体鳞伤、无所遁形，却从未放弃对光明的追寻，依然微笑着，坚定前行的人，才是真正的勇者。</p>
+
+<p>不经历黑暗的人，是无法懂得光明的。</p>
+
+<p>7．在这个世界上，什么都好商量，但只要涉及到利益二字，翻脸会比翻书更快。而翻脸的程度及其表现方式，就要看利益多少了，动嘴动手，还是动刀子动导弹，都取决于此。</p>
+
+<p>8. 他（李时珍）告诉我们，最伟大的人是没有派系的，最伟大的爱是没有分别的。</p>
+
+<p>9．在这个世界上，所有的爱都是为了相聚，只有母爱，是为了分离。</p>
+
+<p>10．现实生活不是电影，坏人总是赢，好人经常输，而像朱常洛这种老好人，应该算是稳输不赢。</p>
+
+<p>11.要克服畏惧，最有效、最快捷的方法，就是找一个人来和你一起畏惧。</p>
+
+<p>12.很多人说过，最好的老师，不是特级教师，不是名牌学校，而是兴趣。但我要告诉你，这个答案是错误的。在这个世界上，最优秀的老师，是生存。</p></blockquote>
+
+<p>【对历史思考】</p>
+
+<blockquote><p>自古以来，建立一个王朝很难，毁灭一个却相对容易得多，所谓墙倒众人推，破鼓万人捶，不是没有来由的。</p>
+
+<p>一个人要显示自己的力量，从来不是靠暴力，挑战这一准则的人必然会被历史从强者的行列中淘汰，历来如此。</p>
+
+<p>当面对强大的敌人时，人们的第一反应往往是初生牛犊不怕虎，先上去拼一拼，不行再说。这个行为的错误之处在于，牛犊并非不怕虎，而是因为它不知道虎的可怕。</p>
+
+<p>越接近对方的水平，就越了解对方的强大，就会越来越畏惧。当他的畏惧达到极点的时候，也就是他能与对手匹敌的时候！</p>
+
+<p>这就是所谓的性格决定命运吧。（反复出现）</p>
+
+<p>在历史的进程中，命运之神会从芸芸众生中挑选一些人，给他们建功立业的机会。如果你被挑中，实在是一件幸运的事情。但你同时也必须认识到，这是一场残酷的比赛，当机会到来时，你若要真的有所建树，就必须比其他人更优秀、更强大，因为最终的胜利者只有一个。</p>
+
+<p>无论他如何强大，在历史的眼中，他只不过是一颗小小的棋子。他可以影响少数人于永远，也可以影响多数人于暂时，但他无法影响多数人于永远。</p>
+
+<p>忽悠，侃，是不行的；拍板，断，是不够的；谋略才是真正的王道。</p>
+
+<p>一位伟大的厚黑学政治家曾经用这样一句话揭开了背后隐藏的所有秘密：观点斗争是假的、方向斗争也是假的，只有权力斗争才是真的。</p>
+
+<p>历史告诉我们，所谓道德与公理，只有在实力相等的情况下才能拿出来讨论</p>
+
+<p>历史一次又一次地告诉了我们这样一个真理：正义和公道或许会迟到，却绝不会旷课。</p>
+
+<p>战争最残酷的地方，其实并不在于死了多少人，有多少财产损失，而是它一旦开始，就很难停止。</p>
+
+<p>正义和道德是值得景仰的，值得膜拜的，值得三拜九叩的，但是，正义和道德不能当饭吃，不能当衣服穿，更不可能掌控政权。因为掌控政权的唯一方式，就是斗争。</p>
+
+<p>战场之上，求生者死，求死者生。</p>
+
+<p>历史已经无数次证明，邪不胜正是靠谱的，但这个命题有个前提条件——时间。</p></blockquote>
+
+<p>【规律总结】</p>
+
+<blockquote><p>1．名将是怎样炼成的</p>
+
+<p>在成为名将的道路上，我们要经历六个坎坷，让我们以六个年级来标明他们，只有战胜眼前的坎坷，才能升入下一个年级：</p>
+
+<p>第一个年级要学习的是军事理论</p>
+
+<p>第二个年级学习的内容是实战</p>
+
+<p>三年级要学习的是冷酷</p>
+
+<p>四年级要学习的是理智</p>
+
+<p>五年级是最重要的一个年级，在这个年级里，学员们要学习的是判断</p>
+
+<p>最后一个年级，这个年级我们要学习的是坚强</p>
+
+<p>当你具备了以上所有条件后，你就成为了真正的名将，但还有一点，是你必须具备的，那就是运气。</p>
+
+<p>2．英雄是怎样炼成的</p>
+
+<p>一般看来，英雄是这样的几种人：</p>
+
+<p>所谓英雄者，敢为人之所不敢为，敢当人之所不敢当。</p>
+
+<p>所谓英雄者，挽狂澜于既倒，扶大厦于将倾。</p>
+
+<p>所谓英雄者，坚强刚毅，屡败屡战。</p>
+
+<p>如此之人，方可称为英雄！</p>
+
+<p>但是在我看来，真正的英雄绝不限于此。</p>
+
+<p>所谓英雄，其实是一群心怀畏惧的人。要成为英雄，必须先学会畏惧。</p>
+
+<p>我们都曾经历天真无邪的童年，踌躇满志的少年，也时常梦想着将来一展抱负，开创事业，天下之大，任我往来！</p>
+
+<p>但当你真正融入这个世界，就会发现，这并不是你自己一个人的世界，你会遇到很多的不如意，很多的挫折，事情从来不会如同你所想的那样去进行。</p>
+
+<p>于是人们开始退缩，开始畏惧。他们开始意识到，在这个世界上生存下去不是那么容易的。于是有人沉沦，有人消极。</p>
+
+<p>然而英雄就是在此时出现的。</p>
+
+<p>这个世界上本来就不存在着天生的英雄，没有谁一生下来就会刚毅果断，坚强勇敢，在母亲怀中的时候，我们都是同样的人。</p>
+
+<p>如果你的人生就此一帆风顺，那当然值得祝贺。</p>
+
+<p>但可惜的是，这是不可能的。在你的成长历程中，必然会遇到各种各样的挫折。</p>
+
+<p>而这些挫折会带给你许多并不快乐的体验，踌躇、痛苦、绝望，纷至沓来，让你不得安宁。</p>
+
+<p>被人打才会知痛！被人骂才会知辱！</p>
+
+<p>当你遭受这些痛和辱的时候，你才会明白，要实现你的目标是多么的不容易，你会开始畏惧，畏惧所有阻挡在你眼前的障碍。</p>
+
+<p>如果你遇到这些困难，感到畏惧和痛苦，支撑不下去的时候，你应该同时意识到，决定你命运的时候到了。</p>
+
+<p>因为畏惧并不是消极的，事实上，它是一个人真正强大的开始，也是成为英雄的起点。</p>
+
+<p>不懂得畏惧的人不知道什么是困难，也无法战胜困难。</p>
+
+<p>只有懂得畏惧的人，才能唤起自己的力量。</p>
+
+<p>只有懂得畏惧的人，才有勇气去战胜畏惧。</p>
+
+<p>懂得畏惧的可怕，还能超越它，征服它，最终成为它的主人的人，就是英雄。</p>
+
+<p>所以英雄这个称号，并不单单属于那些建功立业，名留青史的人，</p>
+
+<p>事实上，所有懂得畏惧并最后战胜畏惧的人都是英雄。</p></blockquote>
+
+<p>【幽默】</p>
+
+<blockquote><p>1．我们可以总结出一个定律：爱一个人不需要理由，骂一个人也不需要借口。</p>
+
+<p>2．可是有讲义气的就一定会有不讲义气的。自古以来从无例外。</p>
+
+<p>3．曾有一位厚黑学前辈说过，违法的事情不能做，违背良心的事可以做。</p>
+
+<p>4. 因为所谓复仇，从来都不是热菜，而是冷盘。</p>
+
+<p>4．还是那句老话：对付流氓，要用流氓的方法。</p>
+
+<p>5．所谓特权，就是当你在家酒足饭饱准备洗脚睡觉的时候，有人闯进来，拿走你的全部财产，放火烧了你的房子，把洗脚水泼在你的头上，然后告诉你，这是他的权力。</p>
+
+<p>拥有特权的人，可以践踏一切道德规范，藐视所有的法律法规，想干什么就干什么。而弱者，只能任人宰割。</p>
+
+<p>战胜特权的方法——更大的特权。</p>
+
+<p>6．没有无缘无故的爱，也没有无缘无故的恨，我信了。</p>
+
+<p>7．路见不平也不吼，专门暗地下黑手</p></blockquote>
+
+<p>【我按】</p>
+
+<blockquote><p>历史，生活，让我们有太多的理由悲观，自然更替，阴晴圆缺，分分合合。有人的地方就存在利益，有利益的地方就存在斗争，历来如此。求善未必得善，从恶未必得报。即使天道有常，或因人势迟，然终不误，但对我们个人来说，天道如果来的太晚，又有何意义？</p>
+
+<p>我们人类太小，渺沧海之一粟，很多事情，看明白了，没意思，很无奈，然而我们的人生还是要继续，还是要坚持幽默，坚持希望，不是在满怀希望光明时说的，很绝望、很无助、很痛苦、很迷茫的时候，说这句话。</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/15/letters-venture-and-mobile-internet-from-coolshell/">来信， 创业 和 移动互联网(转载自CoolShell)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-15T00:00:00+08:00" pubdate data-updated="true">Nov 15<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/15/letters-venture-and-mobile-internet-from-coolshell/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>原文链接：</p>
+
+<p>by 陈皓</p>
+
+<p>上一篇博文<a href="http://coolshell.cn/articles/5701.html">翻译了Steve Yegge的rant</a>，这两天有一些事让我也想rant一下（所谓rant就是一篇巨长无比的抱怨和说教），不过无论是从见解还是恶搞来说肯定没有SteveY的水平高，所以，这篇博文只是单纯的rant，看标题就知道了，就像“<strong>篱笆，女人和狗</strong>”一样，乡土味实足。所以，下述的一些观点未必正确，也未必靠谱，也就是我的个人唠叨罢了，我想到哪里说到哪里。（篇幅较长，见谅）</p>
+
+<h6>引子</h6>
+
+<p>我前两天，收到一封邮件，一位快要毕业的的大学生问我，是去百度，还是去创新工场？他在来信中说，从个人道德价值观来说，他想去创新工场，要远离流氓企业，不然会有狼狈为奸、助纣为虐的感觉，对不起自己。但是创新工场那边情况不熟悉， 不知道怎么选择，并问我现在比较热的移动互联网靠不靠谱。</p>
+
+<p>正好这两天我在微博里看到大家转贴李开复的几个让毕业生创业的微博，比如，<a href="http://weibo.com/1197161814/xwjDfAcf6">这个微博</a>，还有 <a href="http://weibo.com/1197161814/xw46V0Cz4">这个微博</a>。呵呵。</p>
+
+<blockquote><p><strong>李开复</strong>：有关毕业生高科技创业,我的建议：1）创业需要理解趋势、汇集精英、实践经验,因此大学毕业不要主导创业,只能参加创业公司,2）最好远在毕业前就寻找创业公司实习机会（无偿亦可）,因为也许创业并不适合你或你想象那样,3）毕业时若想学习创业,最好到创业公司。到大公司学习能学技术但不够针对性。</p></blockquote>
+
+<p>还有前两天的“移动开发者大会”，然后，又有一个以前的同事和我谈了一下他创业的事以及他的想法，正好又在网上看到罗永浩同学的那个“<a href="http://v.youku.com/v_show/id_XMzE3OTIyMzg0.html">一个理想者创业的故事</a>”的演讲。还有一些做blog插件的团队希望我能在酷壳上安装一下他们的插件。等等，等等。所以，让我有了这个可以rant的写作情绪。</p>
+
+<h6>邮件回复</h6>
+
+<p>请原谅我不能把邮件的原文直接贴出来，因为自从上次我在博客中点名评批了关于敏捷的东西，我明白了，这个世界上，当把你放到公众的高度上，很多以前可以说的话可能都不能说了（虽然我还是在说，说得还比较尖锐，可能本性如此，呵呵）。言归正传，关于这个网友问我的问题，要是我的话，我可能两个都不会选，但是必竟人家刚毕业，回想一下我当年毕业的时候，不也一样，就像菜市场里的大白菜一样被路过的人挑来捡去的，那有什么选择可言。人都是需要慢慢成长的，刚毕业的这个时候还不能挑挑捡捡的时候，能有两个offer在手作选择已是非常不错了。另外，人家刚毕业，面对北京这个物价奇高的地方，首先要解决的是生活下来，而不是像那些有工作经验的人一样可以追求更高层次的东西，所以，我不应该从我的角度上来思考这个问题，应该从他们的角度，从更现实的角度来思考。于是，我是大概是这么回复他的（加上了很多口水话是为了更像rant）——</p>
+
+<ul>
+<li>我对新东西是总是持谨慎的态度，创新工场的刚起步，还需要磨练，而且从现阶段的情况看下来，并不太妙。百度的技术还是很不错的，人家好多年了，用户数量也很大，也有很多积累了，所以还是应该去百度。我之所以这样评价，是因为我始终觉得：1）<strong>创业是不需要助跑的，创业是一种积累到了自然就出现的东西</strong>。你也许并不那么觉得，但是我觉得创业助跑就像高考的辅导班一样，或是像英语培训一样，正如老罗所说的，出成绩的本来就是人家先天悟性不错，不行的总是不行，而需要培训的大多数总是有问题的，搞培训的都知道这个道理。退一步讲，就算是这些辅导班让你可以考个高分，但是后面呢？创业是一条很长的路，不是考了高分拿了风投被人宣传就能成的事。2）<strong>刚毕业的学生，要学的不是创业，而</strong><strong>是开眼界，长见识，这比任何事都重要，因为我们的的视野决定了我们的人生</strong>。大家也知道我国的教育是什么情况。所以，刚毕业的同学第一件事是把教育和工作的那个差距上的那条大沟给填平了。因此，我觉得大公司有更多的资源和牛人能开阔你的眼界，而不是创新工场里的那些补习班式的团队和项目。而要开眼界应该是去一些成熟的公司，就算要学习创业也应该去那些刚刚成型的创业公司，这是因为，更多的是你要看的那些成功公司的经验和思路。<strong>你可能知道什么不好，但是你没有见过好的，你将不知道什么是好的</strong>。这是就我觉得开眼界长见识的最大的价值。</li>
+<li>关于那些流氓企业（商业公司总是会有些商业手段的，但是流氓的商业公司使用的是流氓手段），我们处在的这个社会似乎已经分不清楚什么是流氓手段，什么是商业手段，但是有些公司的做法还是太过份，在如今这样垃圾的社会中居然还会那能脱颖而出，不得不让人佩服。不过我认为，<strong>我们需要用出世的态度去思考，入世的态度去做事</strong>。社会是个大染坊，我们走入社会参加工作后，很多人都会迷失在其中，所以这需要我们坚持住我们心中那份理想的价值观，这个很难，能坚持下来的也不多。无论这个公司的文化让你有多么的不认同，但只要是其技术还是很不错的，能让你开眼界长见识，那就没有问题。因为不管你去到哪里，那些恶心的事总是会或多或少的存在，这就是中国的社会。所以，<strong>我们去那些无良企业，并不是学他的文化，而是学习他的技术和他们把事做出来的经验，根据鲁迅的拿来主义，重要的去其糟粕，取其精华</strong>。必竟人家那么大，在技术方面总是有可取之处的。我们的教育把我们洗脑洗成了只有是和非的价值观，要么就是大好，要么就是大恶。所以，我们的感情要么就是爱，要么就是恨。没有必要，社会是多元的，多维的，这需要我们要学会分开看问题。</li>
+</ul>
+
+
+<p>所以，对于李开复的微博，我认为，毕业去创业并不好。去学习创业也要看看是去哪里？很多朋友都觉得毕业就算学完了，这就错了。大学毕业表示真正的学习才刚刚开始，我比较保守，我觉得走出学校，还需要5-10年的社会学习和积累。我经历告诉我，大多数人是浮燥的，急功近利的，好大喜功的，无论是投资人，创业者，还是打工者。真正踏踏实实学习和努力的人很少。我想说是，不要被人两三句话就说得激动万分，不知道自己是谁了，<strong>你一开始没有吃好的饭，你总有一天得回来吃的</strong>。</p>
+
+<h6>创业 和 事业</h6>
+
+<p>我上上周未和我一个朋友聊了一下他的创业的想法和经历。他和我说他见到这个国外投资人曾投过MySQL，当这个投资人听到他的项目的时候，很惊讶，因为，投资人来中国听到几乎全部都是“业务型的项目”，而从他这里第一次听到“技术型的项目”。投资人非常感兴趣，于是就聊了一会就决定投他的项目了。</p>
+
+<p>我在想，如果我们假设有一天MongoDB的创始人在中国找投资人，对中国的投资人说，我有一个很NB的想法，我要做一个开源的非关系型的数据库，可以解决大规模数据量的快速水平扩展的问题，并可以为现在互联网上的数据处理增加巨大的性能价值， 我不知道中国的投资人对这样的项目会不会感兴趣？我看悬。我这里不是说“产品型的项目”不好，我只是想说，在一个浮燥的环境里，几乎没人会关注这些“技术型的项目”。“业务型的项目”外表很华丽，更能打动人，可以让人看到“钱途”，所以，也就没人会关心那些可能改变世界的长期性的“技术型的项目”。</p>
+
+<p>其实，<strong>创业就是开创事业</strong>。重点是事业，不是开个公司，也不是挣钱，<strong>公司和挣钱是你事业的副产品</strong>。<strong>事业是我们的理想，是我们对自己人生价值的一种诉求</strong>。我个人认为，只有上升上事业的层面上来，才能算得上是创业。如果你只是想开个公司，接两个项目做做，挣点钱，我觉得那就是在浪费时间浪费生命，除非你是想以一种曲线的方式达到你的人生理想目标。<strong>你的公司至少应该要去改善或是颠覆点什么，如果还有价值观的输出，那就更完美了</strong>。总之一句话，<strong>别把自己给卖了</strong>。</p>
+
+<p>就算是在公司里打工，也应该有这份理想主义。我一直和我的团队说——我们每一个人今天不愁找工作，外面也有很多东西在诱惑着我们。对于我们来说，我们今天在Amazon这个高速增涨并很踏实的公司里，我们应该把在公司里打工升华到事业的层面上来。看看，Amazon是怎么一点一点地、扎扎实实地、有条不紊地、通过技术分析用户和市场来改变世界的，想想自己在Amazon公司里可以影响些什么，可以领导些什么，可以跟着Amazon去为这个世界改变些什么。当你有这样的心态和方式，积累到了，你就能去改变些什么，那时，你要出去创业也就成了一件水到渠成的事。</p>
+
+<p>看看今天如此浮燥的社会，我不知道人们怎么了。<strong>中国的很多的创业公司好像都只是为了上市挣钱，而国外更多的公司是为了上市后能改变世界或颠覆传统，这其中有多大的差距啊</strong>。每当看到中国有那么多的CopyCat（<a href="http://coolshell.cn/articles/3820.html">或叫C2C</a>），而国外有那么多的创新，我实在无法为国人感到骄傲。他们甚至还为他们的抄袭找到很多理由，比如，有人说Linux 抄 Unix还不是抄，Windows还不是抄MacOS，OpenOffice抄MS Office，等等。我同意很多好的创意会被人Copy去，这本来也没有什么。只是我想说的是：</p>
+
+<p>1）判断一个事抄不抄另一个事。我觉得不应该看其表面特征像不像，应该看其有没有颠覆性。比如Linux对Unix的颠覆。PC对苹果电脑的颠覆（Windows属于PC机颠覆时代的产物，让PC机更具颠覆性。 同样，Linux的开始也是先上x86）。<strong>就算是表面上复制了你，但是用另一种模式其改变了世界，颠覆了传统，创造了价值，这就不是抄袭</strong>。而中国的很多团队呢，还有那个山寨大王的公司，他们只不过是在做简单的复制，Copy而已，根本谈不上什么颠覆。举个例子，新浪微博可能是一个比较不错的复制，我暂时不说其在技术处理信息的回复上和Twitter巨大的差异（<a href="http://coolshell.cn/articles/5247.html">可以看看这篇文章</a>），但是我们可以看到它还是有很多不错的功能（可惜的是新浪的名人路线让其永远不能理解什么是互联网的内涵，而很多人也迷失在这种浮华和虚荣之中）。而其它什么饭否，知乎，等等就是纯粹为了山寨了。如果我们不能颠覆一个产品，我们至少要想着去颠覆或是改善其某个或是几个功能吧。单纯的复制，走不长远，因为你无法理解其内涵。</p>
+
+<p>2）我们能不能问问我们自己。只是简单地去复制一个别人的想法，而没有经过自己的分析和考虑，这样的创业有意思吗？总有一些东西要不同吧，总不能靠我们政府帮你墙了你的复制源吧。这样的人生有什么意思吗？还是那句话——<strong>别把自己给卖了</strong>。</p>
+
+<p>我有一些同学，都在给中国的国有银行做项目，做了十多年了，还是和十年前几乎一个样。项目就是打单，加班，赶工，需求拼命变更，被甲方和SB领导蹂躏，等等，等等。我在想，一个公司，十多年了，还是老样子，连最基本的商业动作和项目管理还是十年前老样子，哎。十年，在IT行业，这十年是完全翻天覆地的变化，人们的生活方式和传统都受到了前所未有的改变和颠覆。然而，我们很多这样的公司，这十年，他们并没有改变什么，连自己都没有改变。银行里的系统还是向十年前那样，还是用十年前的方式和银行打交道。这些公司，他们从未想过要去改变或是颠覆点什么，就算想过，也就坚持了一两年。<strong>我们中国的企业，大多数是没有理想，没有抱负的企业</strong>。这样的例子有很多很多。</p>
+
+<ul>
+<li>看看csdn，it-pub, 中文infoQ等一系例的技术论坛。尤其是 CSDN，也有十来年的历史了吧。从来没有想过怎么过提高信息质量，论坛和博客系统有段时间那叫一个难用啊。充斥着各种各样的广告和产商的软文和活动。看看<a href="http://weibo.com/1654762921/xx4FL0z6g">这个微博</a>，你就知道为什么这些论坛干了那么长时间也无法成为像<a href="http://stackoverflow.com/">StackOverflow</a>或是<a href="http://www.quora.com/">Quora</a>这样的水平。再说说<a href="http://www.infoq.com/cn/">InfoQ中文站</a>，完全就是敏捷的喉舌，主编里面有半数以上是TW公司的，上面的文章就像看新华网，人民网一样失去了媒体应有的客观性。而且那里的语言栏目没有C/C 语言，你能想像这些坑爹的编辑是怎么想的吗？所以，他们也无法成为像<a href="http://www.cnet.com/">CNet</a>, <a href="http://techcrunch.com/">TechCrunch</a>，或是像<a href="http://drdobbs.com/">Dr. Dobb’s</a>。因为那里是产商的广告战场，而不是技术人员的论坛。他们的目光短浅之处就在于，<strong>他们并没有明白真正让论坛和社区有人气有权威的是技术人员，而不是这些为了销售的产商。难道不想成为最权威的技术网站吗？难道不知道成为最权威的技术网站后面所蕴藏的商机会比今天这种模式要大N倍吗</strong>？</li>
+<li>淘宝也一样（也许马云明白，下面的人不明白）。前段时间我在淘宝商城里买了一个假货。于是我找在线客服投诉，在线客服不管，让我打电话去杭州（这么大个公司连个800的客服电话都没有，shit!），我只好打到杭州，经过若干个占线的经历后（淘宝的call center真是弱爆了），杭州的客服告诉我，让我在线点“让淘宝客服介入”，我说，我打电话来淘宝就是让你介入的，但他却被告诉要求介入的方法必需是在网站上点相应的按钮。我滴神啊，哪个脑子进水的经理设计的这处流程啊（这是和老罗那个短片里星巴克的“中杯”的段子不一样脑残吗）。好吧，我还没疯，我去网站点了，结果3-4个月，淘宝的客服根本就没找我，连个邮件都没发。可见，<strong>淘宝几乎是和商家一伙的，而不是站在买家一边的</strong>。淘宝的目光短浅之处就在于，<strong>他们并没有明白真正付钱的是买家，而不是那些商户。如果买家满意了，淘宝及其商户才能赚到钱。这么浅显的道理不懂吗？也许，淘宝知道他现在平台上的这些商户让他根本不敢面对买家</strong>（另外，关于淘宝的技术，我觉得有点两极分化，后台看似很强，但是前台用户的管理页面那个恶心啊，还要整些ActiveX插件，搞得只支持IE 和 Win，支持IE也罢了，有时候下单的时候看不见提交按钮，联系在线客服，他让我：换别的浏览器，如果不行，就清空所有的缓存，再不行就重装浏览器，WTF，你们开发人员有没有搞错啊）</li>
+<li>百度和360就更SB了。有技术，有资金，有用户，有市场，还是上市公司，也积累了那么多年，也有很不错的产品和功能，但是就一定要去走流氓的路线，脑子透逗了吧。<strong>这不是目光短浅的问题了，这是人品和智商的问题了</strong>。难道百度不觉得有一个权威公正的搜索排名，会比恶意地竞价排名能挣更多的钱吗？难道百度不明白保护知识产权也能挣更多的钱吗？因为，当你让一个生态环境良性循环起来，你会发现，作为生态引擎的你会让整个生态系统更加依赖你，追捧你，而这个良性的生态系统会让你不由自主地进化和变得越来越强。对于360我不就不多说了，你懂的，你要是不懂，那也不是目光短浅的问题了，也是智商的问题了。</li>
+</ul>
+
+
+<p>所以，他们能走到最高点也就是这样了。不想去创新，不想去改变传统方式，不去分析和关注用户，只为了挣钱挣钱，眼光就是如此短浅，所以也就成了钱和投资方的奴隶，于是也就变得愚蠢和迟钝了。<strong>真是Stay hungry, Stay foolish啊，hungry到饥不择食，foolish到自掘坟墓</strong>。</p>
+
+<p>当然，你一定会说，对这些大公司来说是这样的，但是对于创业的小团队来说，我说的这些东西太大了，什么改变世界，什么颠覆传统，这个命题太大了。你甚至可以举出像“超级玛丽”这样的经典游戏，或是像“开心农场”这样打发时间的游戏，其并没有改变世界，也没有颠覆传统，但人家还是很成功的。没错，有些时候，我们创业并不需要去改变什么，只需要去满足别人些什么（满足他人的虚荣心的微博，让人打发时间的游戏）。对于我们大多数人来说，能做一个软件产品有很多用户在用就很满足了。能让很多用户来用你的东西，说白了还是在改变什么，或是在颠覆点什么。你没有发现，满足人们的虚荣心，让人打发时间也不件简单的事，电子游戏界的创新以及其方式的改变也是相当猛的。</p>
+
+<p>好吧，我再圆一圆我的话——<strong>创业总是要去改变点什么，颠覆点什么，或是满足点人们什么，解决点什么，而只有想要去创建某种规则，建立某种秩序，并有价值观输出的团队，才有可能成为真正的事业</strong>。</p>
+
+<p>在这个社会里，很多人并不明白这个道理，就算是明白，也不会这么行事。我有一个以前的同事，来中国Amazon面试Kindle App团队的部门经理，过了，也给offer了。但是不想来，为什么？因为他觉得现在他在管一个几十人的团队。而Amazon的这个团队太小了，只有不到十人，而且职位的title不满意。这就是我前面说的，眼界不够开阔的问题。小团队干大事情这不挺好的吗？我们很多人都把眼光放在了那些虚的地方，比如部门大不大，位置高不高，薪水诱不诱人，但却没有看到要做这个事有多大。可惜啊。</p>
+
+<p>上新浪微博看看，全是什么XXCTO，XXCEO，XX创始人，XX总监，XX高级主管……title要多牛有多牛，但可惜的是也就是个名称罢了，我花10元钱也可以为自己印一盒要有多牛就有多牛的名片。那些用人经理只会问，你职位是什么啊？你管多少人啊？好像是个高级主管，管上几十上百人就很牛似的。可是，你用这个title和这些人做了什么事啊？这就像我质问Thoughtworks和敏捷人士们一样，你们用这些所谓NB的东西做了什么大事啊？！（注意：我不是说，挣多少钱和职位发展不重要，我只是说，相对于做什么事，怎么做事来说，这些都是其次重要的，只要做的事靠谱，报酬和职业都会得到的）</p>
+
+<p>好吧，让我再回到创业的话题上来，<strong>有一本书叫“<a href="http://book.douban.com/subject/3889178/">Rework</a>”，想创业的朋友可以好好读一读</strong>。“保持 小的公司规模，你不需要加班，你没有必要耗尽你一生的积蓄，承担财务风险。你可以一边继续日常工作，一边开始创业，这样随时都能有现金满足需要。你甚至不需要办公室。现在可以在家工作，和从未见面离你千里之外的人合作…… ” 这是一本让你可以去思考的书，远比那些名人们的微博有价值地多得多。<strong>不要跟随大流，保持住内心的理想，Think it Big, Make it Different</strong>。</p>
+
+<p>我没有能力去诠释人活着是为了什么。但就我而言，我认为应该在自己那短暂的人生内能去多经历更多一些事情，能多做一些事情，人生太短了，人太容易变了，时间，精力和人性都经不起折腾。所以，如果你是一个做事的人，我觉得，不要去盲目地创业，那是在浪费时间，潜下心来，观察，思考，尝试，积累，就像在一只非洲草原上匍匐前缓缓逼进猎物的狮子那样有耐心。<strong>把自己当成一个沉着稳重猎手，而不是战场上的炮灰</strong>。</p>
+
+<h6>移动互联网</h6>
+
+<p>我不知道大家怎么看这个名词的。这是个当今巨火无比的词儿。有人跟我说过一个段子，某中国大公司的研究研的某某研究员是做出了这样的口沫横飞的定义——“移动互联网绝对是个了不起的东西，因为互联网是移动互联网的子集，因为静止是相对的，移动是绝对的，所以移动互联网必然是未来的一切……”。领导的讲话真是没得说。</p>
+
+<p>在我眼中，互联网才是核心，移动只不过是互联网的补充，只不过是为了让互联网有更好的体验。今天，全世界都打鸡血似地开发移动应用，我仿佛看到当年Windows平台出现的时候，大家都在Windows上写一些小软件一样。不可否认其中是有一些很不错的应用，也不可否认苹果的App Store让这些“软件个体户们”有了更好的创作平台，而软件质量也显著提高。但是更多的应用都会像Windows平台上的那些小软件一样，必然会很快被淹没在历史大潮之中。没有后面互联网和实际业务的强力支持，移动上的应用也就是一些小打小闹的东西。今天移动互联网的热，就像10年前.com的热一样，我看到移动互联网中像当前.com那样大量的泡沫。我看到各种创业团队和投资一涌而上，而我们都知道，<strong>当潮水退却的时候，就可以看到哪些人在裸泳了</strong>。</p>
+
+<p>今天的移动设备和当年的PC机何其相似，真正制定规则的人都是那些在制造移动设备及其操作系统的公司。当年在Windows上有很多不错的共享软件，什么foxmail，netants，cuteftp，…… 我记得当时foxmail被以2000万收购，但是今天也就这样了。我相信今天在这些在移动设备上开发应用的创业团队，很有可能也会在5到10年之后面临着相同的尴尬。我倒不是说这样的小软件没意思，我只是想说，这样的小软件的开发完全没有必要成立公司，要成立公司，就应该要干得比这个事要大。不是吗？难道你不想创建一个能比自己寿命还长的公司吗？移动互联网上的很多小应用，更像是大学里学生们开发着玩的一些软件玩具罢了。</p>
+
+<p>移动互联网上很多app感觉特别无聊，比如foursquare, 街旁之类的东西，虽然我实在不能理解这样的东西为何流行，但我想起了我6年前（2005年），当blog出现的时候，我在MSN的BLOG上记录<a href="http://blog.sina.com.cn/s/blog_538efefb0100n53e.html">过自己的一些粗糙的想法</a>（现在搬到了新浪Blog）。当时我认为，<strong>互联网的进化和人类社会的进化很相似，web1.0 到 web 2.0，就是从“自由”到“自我”的一个过程。</strong>今天，我们看到了 “自我”这个过程的各种各样的演绎，也许，像这种地理位置签到的玩意儿同样满足了人们那种“自我”的渴望。不过，我们都可以看到今天互联网上“自我”的泛滥，人们在网上晒各种各样自己的东西，在豆瓣上展示自己读过的书，看过的电影，在微博上晒自己的旅行照片，生活点滴，自己的车子房子老婆孩子，公司，职位，简历，加V，衣食住行，吃喝拉撒，等等一切可以拿出来炫耀的东西，包括自己的地理位置。我想到了“自我”，但我万万没有想到自我的东西里还包括自己的位置。<strong>这些不创造任何价值的自我的东西终将是过眼云烟，昙花一现</strong>。<strong>我们都得问问自己这个问题——我们有没有在创造价值</strong>？！</p>
+
+<p>今天，我大胆预测一下未来互联网的走势，只有了解历史，我们才能看清未来。</p>
+
+<ul>
+<li><strong>互联网的精髓是自由和分享</strong>。这个东西以前是这样，现在也是这样，未来还是这样。就算是我们正在经历那些反人类的东西。但这个精神和趋势必然是无法阻挡的。我们在网上没有边界地分享我们的数字信息，或公开，或私密，无论是我的发邮件，写博客，织微博，还是看视频，听音乐，写评论。都是自由和分享的体现。移动互联网会把这个事体现到极致。</li>
+<li><strong>互联网的本质是信息组织</strong>。关于信息，以前是ICP发布信息，现在是ICP feed信息(订阅)，大众参与组织信息。但是都会有一个问题，那就是信息太多，等于没有信息。搜索引擎的出现部分解决了这一问题。但没有解决彻底。因为搜索出来的东西还是太多，而且是搜索引擎的单一标准，而不是个体差异和喜好的标准。所以，<strong>我觉得未来的信息必然要走个性化的路。搜索引擎或是别的平台（如豆瓣，电子商务等）会学习用户的习惯和喜好，然后根据用户的喜好出现不同的结果。这就是所谓的推荐</strong>！<strong>未来必然是推荐的时代</strong>。</li>
+</ul>
+
+
+<p>所以，对于移动平台，我觉得最有价值的就是这些事情：1）<strong>阅读</strong>（如：kindle，新闻，图书，订阅等），2）<strong>分享和交流</strong>（如：facetime，iMessage，微信，米聊，电邮等等），3）<strong>电子商务</strong>（如：机票酒店餐饮购物），4）<strong>推荐</strong>（目前这一块还是比较空的）。注意，我们需要清楚地认识到，其中的分享和交流是对传统电话和短信的延续，并不是取代！有些时候，本来直接打个电话发个短信就解决了的事，我们还要让用户上我们的平台，这就没有意义了。</p>
+
+<p>哦，你会问我，云计算在哪里？云嘛，在天上漂着呢。我不知道你还记不记得前几年的“网格计算”？现在真的成浮云了。不要去追随着那些媒体们热捧热炒的东西，中国的科技媒体们一来只会跟产商，二来他们哪有你懂技术懂产品啊。所以，不要被他们吹晕了，不知道自己该干什么了。</p>
+
+<h6>结尾</h6>
+
+<p>最后，我要说明一下，本文是我思考了十天左右的文章，不存在喝多了，也不存在凌晨写作头脑不清的问题，也不存在本来要把一篇给小范围传播的文章给大家看。对于我在文中批评的那些公司，我希望他们能把我的这些rant当成一种建议和鞭策，当然，你们需要适应我调侃和尖锐的语气。千万不要学那些敏感人士，或是黑我的blog，或是骂人，因为这样只会让你们看上去更为难堪。</p>
+
+<p>最后注明一下版权，<strong>本文由陈皓原创发表，你可以任意传载，但必需在明显位置注明作者和出处，而且不能用于任何商业用途</strong>。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/">关于.NET中的AutoScrollPosition属性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-13T00:00:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天写一个能滚动的PictureBox，PictureBox默认没有滚动条，所以又两种实现方式，要么在PictureBox外套一个规定大小的Panel，然后设置Panel有滚动条，要么单独做一个UserControl，自己管理重绘。</p>
+
+<p>但是都发现一个问题，我写拖动的代码的时候，获得了两次拖动事件之间的移动距离，然后想加到AutoScrollPosition属性上，控制滚动，但是总会跳回原点。经过了无数次艰苦卓绝的测试，最后发现一个哭笑不得的问题。</p>
+
+<p>.Net实在太智能了，智能的你都想不到他智能哪里去了。</p>
+
+<blockquote><p>Point p = new Point(20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>上面这句会设定有滚动20个像素</p>
+
+<blockquote><p>Point p = new Point(-20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>下面这句会调回原点，原因是你设置AutoScrollPosition=20的时候，.NET自动给20加了一个符号，AutoScrollPosition变成了-20，这都好理解，问题是你累加AutoScrollPosition的时候，开始是20，取出来就变成-20，于是你再加20，刚好回原点。这是一个多么奇葩的结果，你跟一个人说，滚，然后他努力的每次向前移动20cm，结果他在原地振动了……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <ul class="pager">
+    
+    <li class="previous"><a href="/page/4/">&larr; Older</a></li>
+    
+    <li><a href="/blog/archives">Blog Archives</a></li>
+    
+    <li class="next"><a href="/page/2/">Newer &rarr;</a></li>
+    
+  </ul>
+</div>
+<aside class="sidebar-nav span3">
+  
+    <section class="well">
+    <div class="profilepic align-center">
+        <script src="/javascripts/md5.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' class='img-rounded' />");
+                    });
+        </script>
+    </div>
+    <hr/>
+
+    <ul id="about_me" class="nav nav-list">
+        <li class="nav-header">About Me</li>
+        <li>在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~</li>
+    </ul>
+    <hr/>
+    <ul id="profile" class="nav nav-list">
+        <li><b>GitHub</b> : <a href="https://github.com/chenxiaohui/">chenxiaohui</a></li>
+    </ul>
+</section>
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1661094240&verifier=45baa042&dpc=1"></iframe>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+});
+-->
+</script>
+
+
+</body>
+</html>

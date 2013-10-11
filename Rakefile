@@ -3,7 +3,7 @@ require "bundler/setup"
 require "stringex"
 
 ## -- Rsync Deploy config -- ##
-# Be sure your public key is listed in your server's ~/.ssh/authorized_keys file
+# Be sure your www key is listed in your server's ~/.ssh/authorized_keys file
 ssh_user       = "user@domain.com"
 ssh_port       = "22"
 document_root  = "~/website.com/"
@@ -16,7 +16,7 @@ deploy_branch  = "master"
 
 ## -- Misc Configs -- ##
 
-public_dir      = "www"    # compiled site directory
+www_dir      = "www"    # compiled site directory
 source_dir      = "source"    # source file directory
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
@@ -41,7 +41,7 @@ task :install, :theme do |t, args|
   mkdir_p "sass"
   cp_r "#{themes_dir}/#{theme}/sass/.", "sass"
   mkdir_p "#{source_dir}/#{posts_dir}"
-  mkdir_p public_dir
+  mkdir_p www_dir
 end
 
 #######################
@@ -100,6 +100,7 @@ task :new_post, :title do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
+  system "echo #{filename} |xclip -i -selection clipboard "
   if File.exist?(filename)
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
   end
@@ -113,7 +114,7 @@ task :new_post, :title do |t, args|
     post.puts "categories: "
     post.puts "---"
   end
-  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so /usr/share/sublime/sublime_text #{filename}"
+  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup /usr/share/sublime/sublime_text #{filename} >/dev/null 2>&1 &"
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")
@@ -220,7 +221,7 @@ task :deploy do
     Rake::Task[:generate].execute
   end
 
-  Rake::Task[:copydot].invoke(source_dir, public_dir)
+  Rake::Task[:copydot].invoke(source_dir, www_dir)
   Rake::Task["#{deploy_default}"].execute
   system "nohup google-chrome http://cxh.me >/dev/null 2>&1 &"
 end
@@ -243,10 +244,10 @@ task :rsync do
     exclude = "--exclude-from '#{File.expand_path('./rsync-exclude')}'"
   end
   puts "## Deploying website via Rsync"
-  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{public_dir}/ #{ssh_user}:#{document_root}")
+  ok_failed system("rsync -avze 'ssh -p #{ssh_port}' #{exclude} #{rsync_args} #{"--delete" unless rsync_delete == false} #{www_dir}/ #{ssh_user}:#{document_root}")
 end
 
-desc "deploy public directory to github pages"
+desc "deploy www directory to github pages"
 multitask :push do
   puts "## Deploying branch to Github Pages "
   puts "## Pulling any updates from Github Pages "
@@ -254,9 +255,9 @@ multitask :push do
     system "git pull"
   end
   (Dir["#{deploy_dir}/*"]).each { |f| rm_rf(f) }
-  Rake::Task[:copydot].invoke(public_dir, deploy_dir)
-  puts "\n## Copying #{public_dir} to #{deploy_dir}"
-  cp_r "#{public_dir}/.", deploy_dir
+  Rake::Task[:copydot].invoke(www_dir, deploy_dir)
+  puts "\n## Copying #{www_dir} to #{deploy_dir}"
+  cp_r "#{www_dir}/.", deploy_dir
   cd "#{deploy_dir}" do
     system "git add -A"
     puts "\n## Commiting: Site updated at #{Time.now.utc}"
@@ -276,8 +277,12 @@ multitask :push do
   system "git push origin "
   puts "\n## Github source pushed"
 
+end
+
+desc "deploy www directory to ftp"
+task :ftp do
   #ftp
-  system 'lftp -u sdqxcxh,justfe3lit.x ftp://192.157.216.125 -e "mirror -R –only-newer –verbose /media/backup/work/blg/www/ /"'
+  system 'lftp -u sdqxcxh,justfe3lit.x ftp://192.157.216.125 -e "mirror -R --only-newer --verbose /media/backup/work/blog/www/ /www/"'
 end
 
 desc "Update configurations to support publishing to root or sub directory"
@@ -290,7 +295,7 @@ task :set_root_dir, :dir do |t, args|
       dir = "/" + args.dir.sub(/(\/*)(.+)/, "\\2").sub(/\/$/, '');
     end
     rakefile = IO.read(__FILE__)
-    rakefile.sub!(/public_dir(\s*)=(\s*)(["'])[\w\-\/]*["']/, "public_dir\\1=\\2\\3public#{dir}\\3")
+    rakefile.sub!(/www_dir(\s*)=(\s*)(["'])[\w\-\/]*["']/, "www_dir\\1=\\2\\3www#{dir}\\3")
     File.open(__FILE__, 'w') do |f|
       f.write rakefile
     end
@@ -298,19 +303,19 @@ task :set_root_dir, :dir do |t, args|
     compass_config.sub!(/http_path(\s*)=(\s*)(["'])[\w\-\/]*["']/, "http_path\\1=\\2\\3#{dir}/\\3")
     compass_config.sub!(/http_images_path(\s*)=(\s*)(["'])[\w\-\/]*["']/, "http_images_path\\1=\\2\\3#{dir}/images\\3")
     compass_config.sub!(/http_fonts_path(\s*)=(\s*)(["'])[\w\-\/]*["']/, "http_fonts_path\\1=\\2\\3#{dir}/fonts\\3")
-    compass_config.sub!(/css_dir(\s*)=(\s*)(["'])[\w\-\/]*["']/, "css_dir\\1=\\2\\3public#{dir}/stylesheets\\3")
+    compass_config.sub!(/css_dir(\s*)=(\s*)(["'])[\w\-\/]*["']/, "css_dir\\1=\\2\\3www#{dir}/stylesheets\\3")
     File.open('config.rb', 'w') do |f|
       f.write compass_config
     end
     jekyll_config = IO.read('_config.yml')
-    jekyll_config.sub!(/^destination:.+$/, "destination: public#{dir}")
+    jekyll_config.sub!(/^destination:.+$/, "destination: www#{dir}")
     jekyll_config.sub!(/^subscribe_rss:\s*\/.+$/, "subscribe_rss: #{dir}/atom.xml")
     jekyll_config.sub!(/^root:.*$/, "root: /#{dir.sub(/^\//, '')}")
     File.open('_config.yml', 'w') do |f|
       f.write jekyll_config
     end
-    rm_rf public_dir
-    mkdir_p "#{public_dir}#{dir}"
+    rm_rf www_dir
+    mkdir_p "#{www_dir}#{dir}"
     puts "## Site's root directory is now '/#{dir.sub(/^\//, '')}' ##"
   end
 end
@@ -346,7 +351,7 @@ task :setup_github_pages, :repo do |t, args|
       system "git branch -m master source"
       puts "Master branch renamed to 'source' for committing your blog source files"
     else
-      unless !public_dir.match("#{project}").nil?
+      unless !www_dir.match("#{project}").nil?
         system "rake set_root_dir[#{project}]"
       end
     end

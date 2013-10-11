@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Others | CXH.ME]]></title>
+  <link href="http://cxh.me/category/others/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[关于Const指针的一点补充]]></title>
+    <link href="http://cxh.me/2012/05/10/appendix-to-const-pointer/"/>
+    <updated>2012-05-10T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/05/10/appendix-to-const-pointer</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>OsChina上一个朋友给出的例子，很能说明问题：</p>
+
+<pre><code>typedef char * CharPtr;
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //OK[1]
+mycharptr = "It's Wrong"; //Err[2]
+</code></pre>
+
+<p>如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char <em>是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char</em>被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它的赋值肯定会引起编译错误，而[0]这种寻址并不影响。</p>
+
+<p>不过，如果把typedef 改为宏替换（如下），事情就不一样了，毕竟宏替换只是一种替换而已，不会引起编译器的检查，编译之前，CharPtr就已经被替换掉了。</p>
+
+<pre><code>#define CharPtr char *
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //Err
+mycharptr = "It's Wrong"; //OK
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[记ThinkPad某些型号下Linux报Unable to enumerate USB device错误的问题]]></title>
+    <link href="http://cxh.me/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/"/>
+    <updated>2012-04-14T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报</p>
+
+<pre><code>Unable to enumerate USB device…..
+</code></pre>
+
+<p>的错误，而在某些Linux版本（比如pinguy os）下会不停提示Device Recognized和Device Removed，有人提供了如[1]的解决方案，但是好像在pinguy os 下并无效果，而且这实际上就是禁用了usb2.0，还有人直接禁用了全部usb。</p>
+
+<p>这里面好像有硬件问题，但是如果是Thinkpad系普遍的问题的话，也就有点说不过去了，硬件不检测好就出场，这也不是Thinkpad的风格。后来想到会不会是指纹识别的问题，于是在BIOS里禁用指纹识别，一切OK。反正这是实验室的笔记本，也不能存我自己的指纹吧。</p>
+
+<p>后来证实其实是指纹识别坏了…还好在保修内…</p>
+
+<h2>参考文献：</h2>
+
+<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Doxygen几个小问题，mark一下]]></title>
+    <link href="http://cxh.me/2012/03/31/some-problems-about-doxygen/"/>
+    <updated>2012-03-31T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/31/some-problems-about-doxygen</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>首先是在Visual Assist X中的配置，在Snippet Editor窗口修改一下file header的snippet和Refactor Document Method的snippet.</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb5.png" title="image" alt="image" /></p>
+
+<p>设置分别如下</p>
+
+<p>file header</p>
+
+<p>/<em>*
+* @file $FILE_BASE$.$FILE_EXT$
+* @Synopsis $end$
+* @author 你的名字,你的邮箱
+* @version $version$
+* @date $DAY$:$MONTH$:$YEAR$
+</em>/</p>
+
+<p>Refactor Document Method</p>
+
+<p>/<em> —————————————————————————-</em>/
+/<em><em>
+* @Synopsis $SymbolName$
+* $end$
+* @Param $MethodArg$
+*
+* @Returns $SymbolType$
+</em>/
+/</em> —————————————————————————-*/
+然后记得DoxygenWizard的这个工作目录是一定要点选的，这里有个触发，如果直接复制路径进去是无法run doxygen的。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb6.png" title="image" alt="image" /></p>
+
+<p>最后是中文编码的问题，如果你的项目是GBK编码，那么要防止乱码必须要做的事情是设置工程为UTF-8编码，而设置输入为GBK。切记。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb7.png" title="image" alt="image" /></p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb8.png" title="image" alt="image" /></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[ESXi修改默认端口的方法(zz)]]></title>
+    <link href="http://cxh.me/2012/02/24/ways-to-change-ports-in-exsi/"/>
+    <updated>2012-02-24T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/02/24/ways-to-change-ports-in-exsi</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>转载自网络，找不到出处了，没试过，应该是对的。</p>
+
+<p>修改默认端口的方法： 端口 80 (http) 443 (https)
+root登录后
+vi /etc/vmware/hostd/proxy.xml
+找到下添加以下内容
+custom port #
+custom port #
+保存文件
+重新启动vmware-hostd服务</p>
+
+<h1>service mgmt-vmware restart</h1>
+
+<p>例子：添加以下为分别改为81 444
+81
+444</p>
+
+<p>ESX 4.0测试通过</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[VMware ESXi 管理端口的NAT配置]]></title>
+    <link href="http://cxh.me/2012/02/24/vmware-esxi-5-nat-on-admin-ports/"/>
+    <updated>2012-02-24T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/02/24/vmware-esxi-5-nat-on-admin-ports</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>先复习一下VMWare的基本网络概念。</p>
+
+<p>VMware ESXi使用桥接（猜测，错了不管）的方式实现网络配置，通过虚拟交换机的概念来模拟物理交换机，这样连接在同一个交换机下的虚拟机相当于处于一个网段之内，如下图所示，管理端口和pfSense（NAT系统）处于一个网段，pfSense添加了两个虚拟交换机，这样就等于接通了两个网段，起NAT的作用，WAN口处于8网段，LAN口在1网段做DHCP，其他两个操作系统（win2k8和RHEL5.4）只连接内网，通过pfSense做NAT到这些虚拟机上。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/11/1.png" alt="1.png" /></p>
+
+<p>接着说为什么要重做NAT。前几篇文章我们已经实现了一个ESXi上的NAT架构，但新的问题出现了：之前管理端口（8.232）是单独的一个IP，而我们的服务器搭建好之后往往只绑定一个外网IP，然后就远程管理了，这样如果管理端口还使用一个单独的内网IP，我们从外网就没有办法使用Sphere Client管理了。于是需要把管理端口也放到NAT的内网，从NAT映射到管理端口上去。</p>
+
+<p>首先，ESXi本身使用两个端口（不考虑SSH），一个443端口放一个简单的介绍网页（https），剩下的是Sphere Client使用的端口902（ESX Server好像是903），如果想更改端口，更改方式在下篇文章中再谈。</p>
+
+<p>这样我们需要做的是，首先在NAT的虚拟交换机中添加VMKernel</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/02/1_thumb.jpg" title="1" alt="1" /></p>
+
+<p>设置好内网IP ，更改默认网关</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/02/2_thumb.jpg" title="2" alt="2" /></p>
+
+<p>这时候其实就可以进内网的一个操作系统(比如我的win2k8)，telnet一下192.168.1.4的902端口，看看是否可以使用了，如果可以使用，在这个操作系统下就可以用Sphere Client连接ESXi了，只不过有点慢。</p>
+
+<p>开始的时候我直接在pfSense做了NAT（443和902，到192.168.1.4上），结果发现外网根本telnet不了这两个端口，最后想想干脆把标准交换机0上的那个192.168.8.232的Management Network移除好了，关掉了过程中弹出的几个语气严厉的警告窗口之后，再telnet，就可以使用了。这时候如果到物理服务器上，f2进入ESXi的配置界面，就可以看到Network Configuration那里已经改成了192.168.1.4的IP和192.168.1.1的网关。</p>
+
+<p>这样，你的管理端口，几个虚拟机就都进入了pfSense的管辖范围里了，也就是说，从公网IP映射到pfSense的WAN口IP，剩下的NAT都是pfSense来做了，无论是ESXi本身，还是其上的虚拟机。最后的网络配置如下，Management Network移除之后不会消失，但是已经没有IP显示了。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/02/3_thumb.jpg" title="3" alt="3" /></p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,1224 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+
+  
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+  
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/10/11/post-review-conflict-under-git-svn/">Post_review在svn和git共同存在下的冲突问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-11T21:24:00+08:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/11/post-review-conflict-under-git-svn/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>  有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
+
+<ul>
+<li>不习惯某种版本管理工具，希望通过另一种熟悉的版本管理工具进行管理</li>
+<li>有些特性是其他的版本管理工具所没有的</li>
+<li>开发的版本管理和自己的分支管理策略之间有冲突，开发的版本库不允许随便建立测试分支</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/11/post-review-conflict-under-git-svn/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-10T20:12:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/10/the-best-monitor-under-linux-htop/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/10/the-best-monitor-under-linux-htop/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-07T18:34:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/07/tourism-of-jinzhou/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>去锦州的原因，其实是没搞到去其他的地方的票。</p>
+
+<p>十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-06T20:21:00+08:00" pubdate data-updated="true">Oct 6<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>抽空去看了一下。去看的原因倒是很简单， 有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
+
+<p>坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T16:11:00+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/27/depend-problem-in-oceanbase/">Oceanbase的库依赖问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-27T16:15:00+08:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/27/depend-problem-in-oceanbase/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
+
+<p>最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/27/depend-problem-in-oceanbase/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/26/root-table-manager/">Oceanbase源码分析-root_table_manager相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-26T12:15:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/26/root-table-manager/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>记录一下root_table_manager相关类的阅读和心得。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/26/root-table-manager/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/">防止通过rm误删文件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-22T20:46:00+08:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
+        
+         | <a href="/2013/09/22/avoid-delete-wrong-files-using-rm/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
+
+<p>为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
+
+<p>这里我们首先建立如下脚本:</p>
+
+<pre><code>#!/bin/sh 
+dirpath=/tmp/recycle_$USER # find a place for recycle
+now=`date +%Y%m%d_%H_%M_%S_`  
+arg=$1
+if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # compatible with /bin/rm
+    shift
+    arg=$1
+elif [ -d $arg ]; then # is a directory
+    echo "rm: cannot remove '$arg': Is a directory"
+    exit
+fi
+filename=${now}$arg # add a timestamp for files deleted
+if [ ! -d ${dirpath} ];then  
+    /bin/mkdir -p ${dirpath} 
+    chmod 777 ${dirpath} 
+fi 
+/bin/mv $arg ${dirpath}/${filename} # move to trash
+</code></pre>
+
+<p>然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
+
+<pre><code>export PATH=$HOME/bin:$PATH
+</code></pre>
+
+<p>最后记得给rm加权限就行</p>
+
+<p>需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
+
+<pre><code>alias rm='rm -i --preserve-root' 
+</code></pre>
+
+<p>就需要把上面的$1都改成$3, 钦此.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-source-analysis-tablet/">OceanBase源码分析-tablet相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T15:49:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/16/oceanbase-source-analysis-tablet/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>ObRootTabletInfo</h3>
+
+<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-sources-analyze-roottable/">oceanbase源码分析-Rowkey相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T12:55:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/16/oceanbase-sources-analyze-roottable/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里分析一下ObRowkey相关的源码.</p>
+
+<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
+
+<ul>
+<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
+<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
+<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/16/oceanbase-sources-analyze-roottable/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T18:29:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/memcached-source-analysis/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的引入可以减少对于数据库等的请求, 从而减少应用响应时间, 提高吞吐量. 国外类似的实现有Redis等. 国内有淘宝自主研发的tair系统等.</p>
+
+<p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
+
+<h2>基本源码结构</h2>
+
+<p>主要的源码有:</p>
+
+<ul>
+<li>memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并</li>
+</ul>
+
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">oceanbase源码分析-RootServer主要框架</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:55:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里记录一下RootServer主要框架的阅读和心得。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:54:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/to-be-a-hero/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>只是想起一首老歌:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/to-be-a-hero/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/14/tricks-about-octopress/">Octopress的一些技巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-14T15:03:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/14/tricks-about-octopress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
+
+<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
+
+<p>主要说下面几个小技巧:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/14/tricks-about-octopress/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/14/show-gitdiff-using-vimdiff/">用vimdiff来显示gitdiff</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-14T11:40:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/14/show-gitdiff-using-vimdiff/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
+
+<p>具体说来有两种办法:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/14/show-gitdiff-using-vimdiff/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/12/obstring-souce-analysis/">ObString源码分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-12T16:02:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/12/obstring-souce-analysis/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ObString是oceanbase的源码类</p>
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/11/rhinoceros-camel/">犀骆</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-11T15:46:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/11/rhinoceros-camel/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>中文名: 犀骆</p>
+
+<p>英文名: Rhinoceros Camel</p>
+
+<p><img src="/images/2013-9/rhinoceros_camel.jpg" title="犀骆 Rhinoceros Camel" alt="" /></p>
+
+<p>犀骆是骆驼科, 骆驼属的动物, 因体型高大威猛, 貌似犀牛, 故被称作犀骆. 主要生活在北非洲和西亚洲、印度等热带地域, 是重要的交通工具和牲畜.</p>
+
+<p>犀骆是<a href="http://alibaba.github.io/oceanbase/" title="OceanBase">OceanBase</a> 0.4.2版本的吉祥物.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/02/cplusplus-primer-book-review/">C++ Primer 读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-02T12:55:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2013</time>
+        
+         | <a href="/2013/09/02/cplusplus-primer-book-review/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。</p>
+
+<ol>
+<li> 关于初始化变量和未初始化变量</li>
+</ol>
+
+
+<blockquote><p>这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出</p></blockquote>
+
+<pre><code>int a;
+int b;
+int c;
+printf("a=%d  b=%d  c=%dn", a, b, c);
+</code></pre>
+
+<p>2.块注释不能嵌套</p>
+
+<p>3.两种初始化方式</p>
+
+<pre><code>int ival(1024);//直接初始化
+int ival=1024; //复制初始化
+</code></pre>
+
+<blockquote><p>c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替</p>
+
+<p>初始化语句中前面定义的变量可以用来初始化后面的值，所以如下语句是合法的</p></blockquote>
+
+<pre><code>double salary=9999.99,wage(salary 0.01);
+</code></pre>
+
+<p>4.const作用域也不能出文件</p>
+
+<p>5.const引用是指向const对象的引用，是一种语法规则限制。另外const引用可以初始化为不同类型的对象或右值，例如：</p>
+
+<pre><code>double dval=3.14;
+const int &amp;ri=dval;//编译器会转换代码为：int temp=dval;const int &amp;ri=temp;
+
+const int &amp;r=42;
+const int &amp;r2=r i;
+</code></pre>
+
+<p>6.string的连接： 操作符左右操作数必须至少有一个是string类型的，但是鉴于 操作符是从左到右求值的，所以这种是合法的：</p>
+
+<pre><code>string s1="b";
+string s2="a" s1 "c";
+</code></pre>
+
+<p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/05/29/from-the-miao-code/">由&#8221;喵&#8221;代码想到的</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
+        
+         | <a href="/2013/05/29/from-the-miao-code/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>网上看到这样一段代码</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2013/05/miao.jpg" title="miao.jpg" alt="miao.jpg" /></p>
+
+<p>还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：</p>
+
+<pre><code>#include 
+
+#define aaa "3a"
+#define a "1a"
+#define aa "2a"
+
+int main(int argc, const char *argv[])
+{
+    printf("%s
+",aaa);
+}
+</code></pre>
+
+<p>这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况</p>
+
+<pre><code>printf("%s
+",aa a);
+</code></pre>
+
+<p>替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
+另外一种字符串跨行的方式是：</p>
+
+<pre><code>    char chstr2[] = "abcabc\
+abcabc";
+</code></pre>
+
+<p>这里需要注意，第二行前面不能有空格或者tab。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/01/10/think-of-one-thing/">想起一件事情</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-10T00:00:00+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+        
+         | <a href="/2013/01/10/think-of-one-thing/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>前几天给家里打电话，妈妈说，你什么时候放假回来啊，姨夫前几天还问你了，说能不能给把手机刷新一下，我也不懂，你看你知道怎么弄么？</p>
+
+<p>估计所有学计算机相关专业的孩子都会遇到这种事情，大家觉得在电子产品领域，他们不懂的你都该懂，要不然你都学了些什么。这是个极为无奈的问题。或许放在几年前我肯定会说，我又不是修手机的，但想了想还是说，我回去看看吧。</p>
+
+<p>记得很久之前，要么高中要么快考高中的时候，爸爸的一个朋友找来说，看能不能让你孩子帮忙考个计算机一级啊，评职称要用的，人老了，学不会电脑了。于是爸爸征求我的意见，我那时候年少气盛，立场坚定，转了个弯说我直接考计算机二级的，这些形而上学的Word操作我实在不研究啊。想想也算是回绝的不留余地，不知道那人是信了还是觉得不好强求，于是说那好，我再找找别人吧。</p>
+
+<p>这么些年过去了，回来想这件事情，才觉得心中怅然，不能说有所愧疚，只是觉得有些原则，不见得那么重要。放在现在我也觉得作弊自然不对，不过这些事情放在父母那里，就不是那么绝对了。出来求学这几年，多有负于父母，唯一能做的，也就是尽量帮他们解决点麻烦。小城小镇，圈子就那么大，帮他们打理一下人际，在外也多一份安心，毕竟回趟家，已经不是容易的事情了。</p>
+
+<p>唉重珍重。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <ul class="pager">
+    
+    <li class="previous"><a href="/page/2/">&larr; Older</a></li>
+    
+    <li><a href="/blog/archives">Blog Archives</a></li>
+    
+  </ul>
+</div>
+<aside class="sidebar-nav span3">
+  
+    <section class="well">
+    <div class="profilepic align-center">
+        <script src="/javascripts/md5.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' class='img-rounded' />");
+                    });
+        </script>
+    </div>
+    <hr/>
+
+    <ul id="about_me" class="nav nav-list">
+        <li class="nav-header">About Me</li>
+        <li>在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~</li>
+    </ul>
+    <hr/>
+    <ul id="profile" class="nav nav-list">
+        <li><b>GitHub</b> : <a href="https://github.com/chenxiaohui/">chenxiaohui</a></li>
+    </ul>
+</section>
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1661094240&verifier=45baa042&dpc=1"></iframe>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+});
+-->
+</script>
+
+
+</body>
+</html>

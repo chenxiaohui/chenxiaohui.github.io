@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Latex | CXH.ME]]></title>
+  <link href="http://cxh.me/category/latex/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-10-11T21:43:25+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[解决Latex中Itemize距离过大的问题]]></title>
+    <link href="http://cxh.me/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/"/>
+    <updated>2012-03-16T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>默认的itemize存在行距过大的问题，大概是如下的样子：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb2.png" title="image" alt="image" /></p>
+
+<p>用paralist包可以减少行距，代码如下</p>
+
+<blockquote><p>\usepackage{paralist}
+\let\itemize</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[两种可行的Latex中文生成方式(GBK/UTF8)]]></title>
+    <link href="http://cxh.me/2012/03/15/two-ways-to-generate-chinese-in-Latex/"/>
+    <updated>2012-03-15T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/15/two-ways-to-generate-chinese-in-Latex</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>本来想总结一下Latex里各种中文排版支持，但是发现太乱了，CCT，CJK，CTEX神马的，还有GBK和UTF8下的不同编码方式，再加上XeLatex这样来搅局的……所以最后决定只给出一种可行的排版方式，测试环境是Windows CTex2.8。</p>
+
+<p>ps:每天忍辱负重的在Windows下用Vim和Latex……</p>
+
+<p>第一种是gbk编码下的编译方式</p>
+
+<blockquote><p>REM taskkill /im AcroRd32.exe
+pdflatex %1
+bibtex %1
+pdflatex %1
+gbk2uni %1.out
+pdflatex %1
+start %1.pdf</p></blockquote>
+
+<p>其中第一句的目的是结束掉当前的PDF文档，但是它会随机选择一个Acrobat Reader进程结束，所以给注掉了。从代码里可以看出，需要执行多遍pdflatex，同时穿插bibtex生成参考文件，gbk2uni的作用是将gbk转成unicode，这个命令是cct里的，请确保你的环境变量中有cct的bin目录。</p>
+
+<p>测试article代码如下：</p>
+
+<blockquote><p>\documentclass{article}
+\usepackage{CJK}
+\usepackage{cite}
+ewcommand{\upcite}[1]{ extsuperscript{ extsuperscript{</p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Latex中使用visio的矢量图(转载+修改）]]></title>
+    <link href="http://cxh.me/2012/03/14/using-visio-vector-diagram-in-Latex/"/>
+    <updated>2012-03-14T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/14/using-visio-vector-diagram-in-Latex</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>我们知道，visio用来画流程图等专业图很方便，而Latex的专业排版效果是Word所不能比的，而Visio不支持导入eps和dvi格式的矢量图，而导出jpeg毕竟有质量损失，那么怎么才能在Latex中直接使用visio导出的矢量图呢？</p>
+
+<p>1. Visio可以保存为wmf，emf等矢量图形格式（word的默认插图格式），再转换为eps格式（可使用TpX，由本论坛得知早期版本貌似可直接保存eps）插入LaTeX。可转换后的eps图片格式不稳定，图形易错位；另外Visio使用Windows字体，转换后的eps图形只引用而不包含字体，插入LaTex后由于找不到对应字体，中文（或mathtype公式，特殊符号）会乱码。
+2. 用ps虚拟打印的方式虽然可以解决格式和乱码问题，但中文字符（或其他不支持的内容）会按位图处理，得不到完美的矢量图形。
+经过探索，将visio保存为pdf格式是最完美的解决方式，因为pdf文件保存了所有格式和字体信息。借助pdfcrop和ebb程序，调用graphicx宏包插入pdf格式图片，能够得到完美的visio矢量图形。</p>
+
+<p>注：
+1.导入的代码依然可以使用标准的fig标签，例如：
+egin{figure}</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Latex里图片与表格标题与正文距离的调整]]></title>
+    <link href="http://cxh.me/2012/03/14/ajust-distance-between-table-title-and-content-in-Latex/"/>
+    <updated>2012-03-14T00:00:00+08:00</updated>
+    <id>http://cxh.me/2012/03/14/ajust-distance-between-table-title-and-content-in-Latex</id>
+    <content type="html"><![CDATA[<h1></h1>
+
+<p>首先，我们这里的图表用的分别是figure和table标签，宏包应该是graphicx和??，我们需要调整的距离是其标题(caption)的前后的空白，比如下面图中所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb.png" title="image" alt="image" /></p>
+
+<p>首先，我们可以通过如下代码设置这个距离，above设置标题上面的距离，below设置标题下面的距离。</p>
+
+<blockquote><p>\setlength{bovecaptionskip}{10pt}
+\setlength{elowcaptionskip}{-10pt}</p></blockquote>
+
+<p>需要特别说明的是一点，网上好像都没有人说这个事情。如果标题在图标的上面的话，这两个距离是反的，这点让人觉得很不适应。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb1.png" title="image" alt="image" /></p>
+
+<p>参考文献：</p>
+]]></content>
+  </entry>
+  
+</feed>

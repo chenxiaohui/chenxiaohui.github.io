@@ -1,0 +1,1381 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+
+  
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me/page/2">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML,http://drz.ac/javascripts/MathJaxLocal.js">
+</script>
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="span9">
+  
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/12/19/watch-variables-when-debuggin-with-gdb-and-pdb/">GDB/PDB调试时变量的监视</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-19T00:00:00+08:00" pubdate data-updated="true">Dec 19<span>th</span>, 2012</time>
+        
+         | <a href="/2012/12/19/watch-variables-when-debuggin-with-gdb-and-pdb/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>gdb下有几个监视变量的命令，比如watch可以监视一个变量是否更改，rwatch监视读，awatch监视写等等。这里说的主要是另一个命令，display。</p>
+
+<p>display命令做的事情是指定一个变量，然后在每次调试停住的时候显示这个变量的值。这个是很有用的操作，等于在命令行调试的时候提供了类似于IDE里监视变量（Add to Watch）的功能。但是一直没有发现python的调试工具pdb里有类似的功能。后来在Python官方文档里看到一个命令:commands，提供了类似的功能。</p>
+
+<p>commands命令的使用是 commands [bpnumber] 。bpnumber指定了断点的id（集），省略的话表示上一个断点（集）。之后可以输入需要做的事情，然后以end结尾，一个简单的例子如下：</p>
+
+<pre><code>(Pdb) commands 1
+(com) print some_variable
+(com) end
+(Pdb)
+</code></pre>
+
+<p>commands有一个明显的问题，就是如果停在其他断点的地方，就会终止这个commands，以后即使执行到了这个断点，也不会再执行该commands，官方的解释是：</p>
+
+<blockquote><p>Specifying any command resuming execution (currently continue, step, next, return, jump, quit and their abbreviations) terminates the command list (as if that command was immediately followed by end). This is because any time you resume execution (even with a simple next or step), you may encounter another breakpoint–which could have its own command list, leading to ambiguities about which list to execute.</p></blockquote>
+
+<p>但是这个明明是说只要恢复执行，commands就失效啊…但是实际上比如你只打了一个断点，然后在这个断点定义了commands，之后每次都是用continue，这是不会导致该断点失效的，毕竟没有encounter another breakpoint–which could have its own command list嘛。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/11/21/nazaritism-of-programmers/">技术人员之修行</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-21T00:00:00+08:00" pubdate data-updated="true">Nov 21<span>st</span>, 2012</time>
+        
+         | <a href="/2012/11/21/nazaritism-of-programmers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>最近在看关于阿里的几篇文章，比如<a href="http://kb.cnblogs.com/page/132724/" title="淘宝技术发展">淘宝技术发展</a>,<a href="http://kb.cnblogs.com/page/132716/" title="技术普及帖：你刚才在淘宝上买了一件东西">技术普及帖：你刚才在淘宝上买了一件东西</a>和 <a href="http://kb.cnblogs.com/page/132752/" title="从P1到P7——我在淘宝这7年">从P1到P7——我在淘宝这7年</a>等。看完最深刻的感受其实是做技术是种修行，颇有打怪练级的意思。解决一个一个问题，才能提升自己的水平，而到了一定的程度，也就能触类旁通了。这是个挺艰难的过程。</p>
+
+<p>我一直觉得做技术还是挺好的一件事情，说简单，挑战很大，成高手很难，说复杂，其实技术再复杂也有章可循，世界上最复杂的，莫过于人。这恐怕会牵扯到许多关于做不做技术的讨论，比如<a href="http://kb.cnblogs.com/page/131719/" title="关于IT行业人员吃的都是青春饭？">这个</a>和<a href="http://kb.cnblogs.com/page/131717/" title="IT单身男士必看【找女友-单身程序员】">这个</a>。不过总的来说，不管将来是不是一直做技术，先做几年还是有好处的。万学归源，能力是不变的，素质是共通的，能把一件事情做到登峰造极的人，做其他事情，大致不会很差，反过来说，尽全力都做不好一件事的，恐怕也很难做好别的事情。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/11/18/some-feelings/">一点心情</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-11-18T00:00:00+08:00" pubdate data-updated="true">Nov 18<span>th</span>, 2012</time>
+        
+         | <a href="/2012/11/18/some-feelings/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>写程序写了一天，晚上跟爸妈打了个电话，聊聊签工作的事情，越谈越觉得伤感。这几天听了太多的户口、发展、机会之类的词汇，突然觉得这些东西未必是你真的想追求的。读高中的时候觉得一定要考出去，否则有啥出息，研三的这个秋天，才觉得之前很多深恶痛绝的事情，是如此的温情。</p>
+
+<p>很多变化真是不知不觉。比如有时候想跟父母说压力好大，但是往往话到嘴边又吞回去了。再比如说一天下来累的要命，想找个人聊聊天，结果想来想去也找不到该联系谁。刘瑜说人生之惬意，在于三五知己，谈笑风生。以前没感觉，现在才觉得真是难得，尤其在这样一个忙忙碌碌的社会里。</p>
+
+<p>落寞。好像这个词最贴切了。写这点东西，多半是因为这个词，是它让我有落笔的冲动。站在窗台看外面风吹树叶，昏黄的等下陌生的行人，猛然觉得这个城市还是如此陌生。北京，北京，在这里居住了六年了，逛了很多地方，换了两所学校，所得的印象依然是如此模糊。回味一下，似乎对遇到这些人的印象甚于对这所城市。走过一个城市，认识一些人，发生一些事，不知道这是不是大家共同的人生轨迹。也许某些年前的一个决定，就决定了你将来会来到这里，遇见谁。所以说高考的魅力，不在于如愿以偿，而在于阴差阳错。</p>
+
+<p>找工作赞告一段落了。最终签哪里还在犹豫，但是也没多少好犹豫的时间了。还是那样，未来无法预测，随他阴差阳错去吧。但是真的想离开了。最近一个突出的感觉是，无论签哪里，未来几年的生活状态都差不多，上班挤地铁加班，然后寻求涨薪，等机会跳槽，大致如此。这永远是一个拼搏的城市，每天早上多睡了一个小时都觉得好奢侈。年轻的时候压力大点无所谓，但是过几年难免心态疲惫。或许应该换个地方，换个心情了。偌大的世界，阻挡你走出去的，只有自己。</p>
+
+<p>好久不写东西了，感觉文字都退化了，这个微博盛行和消息爆炸的时代，果然求摘要是最刚性的需求，所以简单的说，就是一句话，想走了…</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/10/16/recommand-two-stl-learning-resource/">推荐两个STL学习资源</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-16T00:00:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/10/16/recommand-two-stl-learning-resource/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>本来想自己写一点的，后来觉得见识颇浅，所以直接贴别人的了。两篇文章其实都是说algorithm多于stl的数据结构，不过这也可能是很多人学习的时候忽视的，而且把通用算法用到数组上的方法确实挺方便。</p>
+
+<blockquote><p>1: <a href="http://www.lslnet.com/linux/books/resource/stl.html">http://www.lslnet.com/linux/books/resource/stl.html</a> STL 简介，标准模板库</p>
+
+<p>2: <a href="http://net.pku.edu.cn/~yhf/UsingSTL.htm">http://net.pku.edu.cn/~yhf/UsingSTL.htm</a> 三十分钟掌握STL</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/10/16/problems-of-two-dimension-string-array/">二维字符串数组的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-16T00:00:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/10/16/problems-of-two-dimension-string-array/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>随手写了个字符串的程序，才发现自己好像对字符串数组的理解一直似懂非懂。</p>
+
+<p>先举一个int二维数组简单的例子：</p>
+
+<pre><code>void foo(int (*p)[3],int n)
+{
+    for(int i=0;i
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/10/08/problems-about-length-variable-array/">变长数组的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-08T00:00:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time>
+        
+         | <a href="/2012/10/08/problems-about-length-variable-array/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天在gcc里写代码，偶然发现好像下标可以用变量（非const），比如：</p>
+
+<pre><code>int n=0;
+scanf("%d",&amp;n);
+int a[n];//当然这里一定要有合法性判断
+</code></pre>
+
+<p>这个理念太颠覆了，从学c语言的时候就被灌输说数组长度是不可变的，想用可变长度的话，要么malloc一块内存，要么用vector这种动态表。后来试了试发现vc里是直接无法通过编译的。查到如下一段说明：</p>
+
+<blockquote><p>在C99中新加入了对变长数组的支持，即数组的长度可以由某个非const变量来定义。可变数组的空间大小直到程序运行时才能确定，因此只有程序在运行时才能为程序分配空间。在gcc编译器程序会在运行时根据实际指定的大小(变量当前的值)调节esp的值，为数组在栈上分配适当大小的空间。由于要在运行时才能为数组分配空间，在开始分配空间之前空间的大小是不确定的，因此分配空间的起始地址也是不确定的(例如要在栈上分配两个可变长数组的情况下)。为了在以后的代码中对可变长数组的内容进行引用操作，程序必须通过某种方式获取可变长数组的地址。在gcc编译器中会在相对于ebp固定的偏移量的栈上分配的一个固定大小的区域（称为内情向量）来记录可变长数组的信息，如数组的开始地址等。后继代码通过内情向量中的起始地址访问可变长数组。</p>
+
+<p>因为数组依靠在程序运行时动态的调整esp来分配空间，所以这种类型的数组只能够定义在栈内，不能够定义在数据段上(全局数组，静态数组)。</p></blockquote>
+
+<p>看来gcc才是王道啊。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/">指针数组，数组指针与函数指针</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-08T00:00:00+08:00" pubdate data-updated="true">Oct 8<span>th</span>, 2012</time>
+        
+         | <a href="/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>指针数组是指由指针组成的数组，这个比较好理解；数组指针是指向一个数组的指针，其实字面上也比较好理解。容易混淆的地方在于书写形式有些类似</p>
+
+<pre><code>int *p[n];  //array of pointers
+int (*p)[n];//pointer to an array
+</code></pre>
+
+<p>指针数组可以像普通数组一样使用，只不过每个元素是指针而已，数组指针可直接指向一个数组，从而用来遍历一个数组，一个简单的例子如下：</p>
+
+<pre><code>void PrintLine(int *p,int n)
+{
+    for(int i=0;i
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/10/03/some-problems-of-django-url-mapping/">关于Django Url映射的一些小问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-03T00:00:00+08:00" pubdate data-updated="true">Oct 3<span>rd</span>, 2012</time>
+        
+         | <a href="/2012/10/03/some-problems-of-django-url-mapping/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>之前写Django一直没想着去用patterns的prefix，偶然用的时候发现总不起作用，后来才发觉原来是写法的问题</p>
+
+<pre><code>urlpatterns = patterns('book.views',
+    (r'^(\w ).html$', 'default_render'),
+)
+</code></pre>
+
+<p>在这种情况下肯定是没问题的，但是不排除会有同学跟我一样的写成如下的格式</p>
+
+<pre><code>urlpatterns = patterns('book.views',
+    (r'^(\w ).html$', default_render),
+)
+</code></pre>
+
+<p>看到差别了吧，只有字符串才可以拼接嘛。</p>
+
+<p>另外是关于Django 1.4之后的路径的问题，每个app被放到跟主project同级的目录，所以引用的时候都变成与project同级的模块。比如有一个叫test的project，那么test里的urls.py必然是test.urls，而某个app里的urls.py显然已经不是test.app.urls而是app.urls了。</p>
+
+<p>纯mark之。水文勿喷….</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/26/about-functional-programming/">关于函数式编程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-26T00:00:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/26/about-functional-programming/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>本来想写点东西的，后来发现自己的理解还是比较浅薄，所以直接贴两篇文章好了。</p>
+
+<blockquote><p>[1]阮一峰老师的函数式编程初探</p>
+
+<p>[2]Steve Yegge的大作名词王国中的死刑</p></blockquote>
+
+<p>看完之后相信你会对函数式编程有一个基本的理解。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/25/use-picasa-client-from-goagent/">通过goagent使用Picasa客户端</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/25/use-picasa-client-from-goagent/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>goagent这一神器就不多说了，配置详见<a href="http://maolihui.com/goagent-detailed-version-of-the-tutorial.html" title="goagent教程详细版">goagent教程</a>。这里主要探讨picasa客户端使用代理的问题。</p>
+
+<p>picasa本身的代理设置只有一个用户名和密码，不明所以，所以一直用<a href="http://www.williamlong.info/blog/archives/409.html" title="Picasa相册的HOSTS文件">hosts文件的方法</a>，但是后来发现配置里还有一项“自动检测网络设置”，勾选之后只要在系统里设置好goagent代理（PS，Internet选项那里，Linux没试，Linux下也没有picasa端吧），就可以使用代理上传照片了。</p>
+
+<p>最后吐槽一下：picasa也是google神器了，更有牛逼的人脸识别，但自从picasa相册编程google plus相册之后，就有了很多纠结的问题。比如我只是想把认识的人圈点一下，结果你非要在Google Plus群发一条消息，这如何是我等低调之人所能容忍的。算了，picasa相册还是当网盘使好了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/25/this-age-of-person-with-ability/">在这个才人辈出的时代</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/25/this-age-of-person-with-ability/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>偶然翻bootstrap的资料，在bootstrap的中文网站看到如下三个sample:</p>
+
+<blockquote></blockquote>
+
+<p>神吐槽，不解释。膜拜楼主。细软跑。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/">关于结构体字节对齐的一些问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-22T00:00:00+08:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p><strong>字节对齐的目的</strong></p>
+
+<p>字节对齐的作用不仅是便于cpu快速访问，同时合理的利用字节对齐可以有效地节省存储空间。对于32位机来说，4字节对齐能够使cpu访问速度提高，比如说一个long类型的变量，如果跨越了4字节边界存储，那么cpu要读取两次，这样效率就低了。但是在32位机中使用1字节或者2字节对齐，反而会使变量访问速度降低。所以这要考虑处理器类型，另外还得考虑编译器的类型。在vc中默认是4字节对齐的，GNU gcc 也是默认4字节对齐。</p>
+
+<p><strong>字节对齐的基本原则</strong></p>
+
+<p>如下三条</p>
+
+<blockquote><ol>
+<li> 结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li> 结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal adding）；</li>
+<li> 结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）。</li>
+</ol>
+</blockquote>
+
+<p>举一个简单的例子：</p>
+
+<pre><code>struct node
+{
+    double d;
+    int a;
+    int b;
+    char c;
+};
+</code></pre>
+
+<p>首先double d的偏移是0，占用8字节；int a的偏移是8，可以被a的长度（4字节）整除，所以在偏移8的位置占用4字节；int b的偏移是12，同样可以整除；char c的偏移是16,可以被c的长度（1）整除，所以在偏移16的位置占用1字节。这时整个结构体占用了17字节的长度，不能被最长的成员（double类型，8字节）整除，所以必须再填充7字节。从而整个结构体的长度为24字节。</p>
+
+<p>我们把之前的例子稍微变一下：</p>
+
+<pre><code>struct node
+{
+    int a;
+    int b;
+    char c;
+    double d;
+};
+</code></pre>
+
+<p>这时a占用4字节，b占用4字节，c在偏移8的位置占用1字节，这时的偏移是9，无法被double的长度整除，所以需要填充7字节，最后占用24字节，刚好可以被结构体最长元素（double）整除。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1]Struct大小和内存对齐，</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/06/28/light-vim-buffer-management-plugin-bufit-v2/">Vim轻量级缓冲区管理插件Buf_it修订版Buf_itv2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-28T00:00:00+08:00" pubdate data-updated="true">Jun 28<span>th</span>, 2012</time>
+        
+         | <a href="/2012/06/28/light-vim-buffer-management-plugin-bufit-v2/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>之前发布了Vim的缓冲区管理插件Buf_it的一个修正版，但是后来发现在windows下命令行使用的时候有问题，同时与Nertree和Taglist等插件也有冲突。于是继续fix了几个bug，然后解决了这部分冲突，新的代码放在我的<a href="https://github.com/BitRobt" title="Bitrobt">github</a>上，或者也可以这里下载，有问题可以继续留言，谢谢。</p>
+
+<p>效果如下：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图" alt="效果图" /></p>
+
+<h2>安装：</h2>
+
+<blockquote><p>扔进plugin目录就行</p></blockquote>
+
+<h2>配置</h2>
+
+<pre><code>nnoremap wq :w:call BufClose(0)
+nnoremap q :call BufClose(0)
+nnoremap w :w
+nnoremap x :call BufClose(1)
+</code></pre>
+
+<h2>使用</h2>
+
+<blockquote><p>shift h,l ：左右切换tab</p>
+
+<p>\be ：BufEcho 显示当前缓冲区名字</p>
+
+<p>\bo ：只保留当前缓冲区，其他的都关掉</p>
+
+<p>alt i : 切换到序号为i的缓冲区</p>
+
+<p>\wq: 保存关闭当前缓冲区并退出</p>
+
+<p>\q: 关闭当前缓冲区并退出</p>
+
+<p>\w: 保存当前缓冲区</p>
+
+<p>\x: 不保存关闭当前缓冲区</p></blockquote>
+
+<h2>参考文献：</h2>
+
+<blockquote><p><a href="https://github.com/BitRobt" title="Bitrobt">1</a> buf_it : Buffer list in statusline,</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图">2</a> 在windows下给你的右键菜单添加”edit with vim”的方法,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/25/memory-of-tomorrow/">明天的记忆</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/25/memory-of-tomorrow/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>孙燕姿的MV，看了好多遍</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/10/appendix-to-const-pointer/">关于Const指针的一点补充</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-10T00:00:00+08:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/10/appendix-to-const-pointer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>OsChina上一个朋友给出的例子，很能说明问题：</p>
+
+<pre><code>typedef char * CharPtr;
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //OK[1]
+mycharptr = "It's Wrong"; //Err[2]
+</code></pre>
+
+<p>如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char <em>是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char</em>被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它的赋值肯定会引起编译错误，而[0]这种寻址并不影响。</p>
+
+<p>不过，如果把typedef 改为宏替换（如下），事情就不一样了，毕竟宏替换只是一种替换而已，不会引起编译器的检查，编译之前，CharPtr就已经被替换掉了。</p>
+
+<pre><code>#define CharPtr char *
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //Err
+mycharptr = "It's Wrong"; //OK
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-08T00:00:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。</p>
+
+<p>首先是强制类型转换运算符的重载，作用是当前对象向其他类型的转换，常见的形式是</p>
+
+<pre><code>operator int();
+Integer::operator int()
+{
+    return x;
+}
+</code></pre>
+
+<p>调用方式类似于</p>
+
+<pre><code>Integer c(10);
+int a=c;
+</code></pre>
+
+<p>在函数调用的时候，类型转换的重载也会被隐式调用，比如下面一种情况</p>
+
+<pre><code>void print(int n)
+{
+    cout
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/">深入解析C++输入输出运算符重载</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-07T00:00:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。</p>
+
+<p>我们以输出运算符为例。首先输出运算符重载的一般形式是</p>
+
+<pre><code>friend ostream&amp; operator(CArchive&amp; ar, CObject*&amp; pOb);
+</code></pre>
+
+<p>于是才发觉ostream并不是必需的，换句话说，从语法上讲，ostream的位置放什么类都可以，只不过语义上要行得通。而友元的重载从语法上讲也不是必须的，比如可以依然用成员函数重载，函数定义变成如下的格式</p>
+
+<pre><code>ostream&amp; operator&gt;&gt;(ostream&amp; o);
+</code></pre>
+
+<p>使用的时候只能用object>>cout（或者cout>>object这就太别扭了）形式了，并且不可能连续使用了（比如obj1>>obj2>>cout），这违背了C 规范，但是语法上是的过得去的。</p>
+
+<p>举一个简单而诡异的例子（原谅我这里诡异的代码风格，只是个演示）</p>
+
+<pre><code>#include "stdafx.h"
+#include 
+using namespace std;
+class output
+{
+public:
+    output&amp; operator
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">简短总结一下C#里跨线程更新UI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T00:00:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用</p>
+
+<pre><code>Control.CheckForIllegalCrossThreadCalls = false;
+</code></pre>
+
+<p>来关闭跨线程检测。但是这样做有一定的风险，容易让程序崩溃。</p>
+
+<p>最好的办法是通过Invoke，这篇博客只是提供一个示例，至于那些线程同步、Invoke和BeginInvoke，Invoke底层实现神马的，有空再说吧。</p>
+
+<p>一个简单的例子如下：（注，Form1 加入了一个名为txt的TextBox）</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Threading;
+
+namespace testThread
+{
+    public partial class Form1 : Form
+    {
+        private delegate void InvokeCallback(string msg); //定义回调函数（代理）格式
+        public Form1()
+        {
+            InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;//关闭跨线程调用检测
+            MyMessage m = new MyMessage();//一个消息源
+            //启动一个线程，把界面对象传递过去
+            Thread t = new Thread(new ParameterizedThreadStart(m.Test));
+            t.Start((object)this);
+        }
+        //Invoke回调函数
+        public void UpdateText(string text)
+        {
+            if (txt.InvokeRequired)//当前线程不是创建线程
+                txt.Invoke(new InvokeCallback(UpdateText),new object[]{text});//回调
+            else//当前线程是创建线程（界面线程）
+                txt.Text = text;//直接更新
+        }
+    }
+    //消息源
+    class MyMessage
+    {
+        public void Test(object para)
+        {
+            Form1 form = (Form1)para;
+            form.UpdateText("测试");
+        }
+    }
+}
+</code></pre>
+
+<p>上面的例子很简单，主要是需要判断一下当前线程是不是控件的创建线程，如果是就直接更新，否则建立一个Invoke对象，设置好代理和参数，然后调用Invoke。需要注意的是建立线程的时候如果需要传参数，应该通过ParameterizedThreadStart建立并且以object格式传递参数。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/">记ThinkPad某些型号下Linux报Unable to Enumerate USB Device错误的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-14T00:00:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报</p>
+
+<pre><code>Unable to enumerate USB device…..
+</code></pre>
+
+<p>的错误，而在某些Linux版本（比如pinguy os）下会不停提示Device Recognized和Device Removed，有人提供了如[1]的解决方案，但是好像在pinguy os 下并无效果，而且这实际上就是禁用了usb2.0，还有人直接禁用了全部usb。</p>
+
+<p>这里面好像有硬件问题，但是如果是Thinkpad系普遍的问题的话，也就有点说不过去了，硬件不检测好就出场，这也不是Thinkpad的风格。后来想到会不会是指纹识别的问题，于是在BIOS里禁用指纹识别，一切OK。反正这是实验室的笔记本，也不能存我自己的指纹吧。</p>
+
+<p>后来证实其实是指纹识别坏了…还好在保修内…</p>
+
+<h2>参考文献：</h2>
+
+<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/">C++变量的初始化方式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>写这个问题是受微软今年实习生招聘的一道笔试题启发，上一篇博客好像提到了。之前还真没细想过这些事情。</p>
+
+<p>首先把需要初始化的成员变量分为几类：</p>
+
+<blockquote><p>一般变量(int)</p>
+
+<p>静态成员变量(static int)</p>
+
+<p>常量(const int )</p>
+
+<p>静态常量(static const int)</p></blockquote>
+
+<p>对应的初始化方式是：</p>
+
+<blockquote><p>一般变量可以在初始化列表里或者构造函数里初始化，不能直接初始化或者类外初始化</p>
+
+<p>静态成员变量必须在类外初始化</p>
+
+<p>常量必须在初始化列表里初始化</p>
+
+<p>静态常量必须只能在定义的时候初始化</p></blockquote>
+
+<p>举一个简单的例子</p>
+
+<blockquote><h1>include</h1>
+
+<h1>include</h1>
+
+<p>using namespace std;
+class Test
+{
+private:
+int a;
+static int b;
+const int c;
+static const int d=4;
+public:
+Test():c(3)//,a(1)或者在初始化列表里初始化
+{
+a=1;
+}
+};
+int Test::b=2;</p>
+
+<p>void main()
+{
+Test t;
+}</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  <ul class="pager">
+    
+    <li class="previous"><a href="/page/3/">&larr; Older</a></li>
+    
+    <li><a href="/blog/archives">Blog Archives</a></li>
+    
+    <li class="next"><a href="/">Newer &rarr;</a></li>
+    
+  </ul>
+</div>
+<aside class="sidebar-nav span3">
+  
+    <section class="well">
+    <div class="profilepic align-center">
+        <script src="/javascripts/md5.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' class='img-rounded' />");
+                    });
+        </script>
+    </div>
+    <hr/>
+
+    <ul id="about_me" class="nav nav-list">
+        <li class="nav-header">About Me</li>
+        <li>在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~</li>
+    </ul>
+    <hr/>
+    <ul id="profile" class="nav nav-list">
+        <li><b>GitHub</b> : <a href="https://github.com/chenxiaohui/">chenxiaohui</a></li>
+    </ul>
+</section>
+<section class="well">
+  <ul id="recent_posts" class="nav nav-list">
+    <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1661094240&verifier=45baa042&dpc=1"></iframe>
+</section>
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+});
+-->
+</script>
+
+
+</body>
+</html>
