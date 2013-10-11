@@ -123,7 +123,7 @@
 /* Style */
 pre.prettyprint {
   background: #1d1f21;
-  font-family: Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
+  font-family: Courier New, Menlo, "Bitstream Vera Sans Mono", "DejaVu Sans Mono", Monaco, Consolas, monospace;
   font-size: 12px;
   line-height: 1.5;
   border: 1px solid #cccccc;
