@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "post_review在svn和git共同存在下的冲突问题"
+title: "post-review在svn和git共同存在下的冲突问题"
 date: 2013-10-11 21:24
 comments: true
 categories: 
