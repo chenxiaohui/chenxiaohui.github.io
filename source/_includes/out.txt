@@ -1,0 +1,20 @@
+after_footer.html:{% include twitter_sharing.html %}
+asides/twitter.html:{% if site.twitter_user %}
+asides/twitter.html:      getTwitterFeed("{{site.twitter_user}}", {{site.twitter_tweet_count}}, {{site.twitter_show_replies}});
+asides/twitter.html:  <script src="{{ root_url }}/javascripts/asides/twitter.js" type="text/javascript"> </script>
+asides/twitter.html:  {% if site.twitter_follow_button %}
+asides/twitter.html:    <a href="http://twitter.com/{{ site.twitter_user }}" class="twitter-follow-button" data-show-count="{{ site.twitter_show_follower_count }}">Follow @{{ site.twitter_user }}</a>
+asides/twitter.html:    <p>Follow <a href="http://twitter.com/{{site.twitter_user}}">@{{ site.twitter_user }}</a></p>
+banner.html:{% if site.twitter_user and site.twitter_tweet_count > 0 %}
+banner.html:	<small><a href="http://twitter.com/{{ site.twitter_user }}">{{ site.twitter_user }}</a> @ <a href="http://twitter.com">Twitter</a></small>
+banner.html:<script src="{{ root_url }}/javascripts/twitter.js"></script>
+banner.html:		$('#banner').getTwitterFeed('{{ site.twitter_user }}', {{ site.twitter_tweet_count }}, {{ site.twitter_show_replies }});
+custom/asides/profile.html:        <li><a href="https://twitter.com/{{site.twitter_user}}/">@{{ site.twitter }}</a></li>
+post/sharing.html:  {% if site.twitter_tweet_button %}
+post/sharing.html:  <a href="http://twitter.com/share" class="twitter-share-button" data-url="{{ site.url }}{{ page.url }}" data-via="{{ site.twitter_user }}" data-counturl="{{ site.url }}{{ page.url }}" >Tweet</a>
+twitter_sharing.html:{% if site.twitter_follow_button or site.twitter_tweet_button %}
+twitter_sharing.html:      var twitterWidgets = document.createElement('script');
+twitter_sharing.html:      twitterWidgets.type = 'text/javascript';
+twitter_sharing.html:      twitterWidgets.async = true;
+twitter_sharing.html:      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+twitter_sharing.html:      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
