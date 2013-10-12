@@ -6,9 +6,9 @@ comments: true
 categories: oceanbase
 ---
 
-### mutli target patterns
+### ERROR: mutli target patterns
 
----这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。---
+<s>这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。</s>
 
 后来 [聿明](http://weibo.com/leslieyuchen "阿里聿明") 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。
 	
