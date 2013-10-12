@@ -114,6 +114,104 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/01/19/blog-processor/">日志格式处理BlogProcessor</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-19T00:00:00+08:00" pubdate data-updated="true">Jan 19<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/19/blog-processor/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>从之前的博客转文章的时候发现存在格式问题，之前格式贴到LiveWriter里总是一堆混乱。LiveWriter也是微软一大神器，格式莫名奇妙，如果直接拷贝一篇文章进去，那么段前的空格缩进都会消失，又没有什么好的缩进方式。不知道有没有牛人给解释一下？</p>
+
+<p>无奈做了一个格式处理的工具，先处理掉所有的空行，空格和tab，然后在每行前加四个空格的缩进。为了显得好看，每行之间再加一个空行，最后拷贝到剪贴板。也是没办法的办法，不知道各位有什么高招？</p>
+
+<p>程序很简单，在界面拖一个TextBox，一个Button，如下所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/sds_thumb1.jpg" alt="" /></p>
+
+<p>代码如下所示：</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Text;
+using System.Windows.Forms;
+
+namespace BlogProcessor
+{
+    public partial class BlogPorcess : Form
+    {
+        public BlogPorcess()
+        {
+            InitializeComponent();
+        }
+
+        private void btnProcess_Click(object sender, EventArgs e)
+        {
+            string str = txtInput.Text;
+            str = "    "   str.Replace(" ", "").Replace("   ", "");
+            while (str.IndexOf("
+
+") != -1)
+                str=str.Replace("
+
+", "
+");
+            int idx = str.IndexOf("
+");
+            while (idx != -1)
+            {
+                str = str.Substring(0, idx   2)   "    "
+                    str.Substring(idx   2);
+                idx = str.IndexOf("
+", idx   2);
+            }
+            str=str.Replace("
+", "
+
+");
+            txtInput.Text = str;
+            Clipboard.SetDataObject(str);
+        }
+    }
+}
+</code></pre>
+
+<p>程序文件就不放了，没啥含量，而且也没有完美的解决问题，期待牛人。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/01/01/summary-of-2010/">2010总结</a></h1>
     
     
@@ -1166,50 +1264,6 @@ End Sub
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/05/05/fathership_Beethoven/">父性贝多芬</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2010</time>
-        
-         | <a href="/2010/05/05/fathership_Beethoven/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>听贝多芬，越发觉得苍凉厚重。经历了生活的潦倒，世人的冷漠，与命运抗争，以欢乐颂终结——如此一生，已成永恒。</p>
-
-<p>和弦回响，有种父亲的温暖。罗兰说莱茵河是欧洲的父性大河，从莱茵河里流淌出的音乐，也带着父性的厚重与坚忍。每天都会有各种悲喜上演，世界吻我以痛，我还世界以歌，这就是英雄。</p>
-
-<p>所以，作为世人，尊重那些默默承受与付出的人吧，不要失去了才想起珍惜；作为男人，因责任而生，因使命而战，承受痛苦而默默奉献，除此之外，你没有多少选择。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/11/">&larr; Older</a></li>
@@ -1248,7 +1302,11 @@ End Sub
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
       </li>
     
       <li class="post">
@@ -1261,10 +1319,6 @@ End Sub
     
       <li class="post">
         <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
       </li>
     
   </ul>

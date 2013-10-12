@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-12T14:11:21+08:00</updated>
+  <updated>2013-10-12T16:15:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,97 @@
 
   
   <entry>
-    <title type="html"><![CDATA[post_review在svn和git共同存在下的冲突问题]]></title>
+    <title type="html"><![CDATA[记几个诡异的bug]]></title>
+    <link href="http://cxh.me/2013/10/12/a-strange-error/"/>
+    <updated>2013-10-12T15:57:00+08:00</updated>
+    <id>http://cxh.me/2013/10/12/a-strange-error</id>
+    <content type="html"><![CDATA[<h3>mutli target patterns</h3>
+
+<p>&mdash;-这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。&mdash;&ndash;</p>
+
+<p>后来 <a href="http://weibo.com/leslieyuchen" title="阿里聿明">聿明</a> 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。</p>
+
+<pre><code>alias make='make -s -j 4' #这里开到4-5就不要更多了
+</code></pre>
+
+<!-- more -->
+
+
+<h3>ob集群无法启动</h3>
+
+<p>怀疑是机器的问题，但是如果大部分机器我都无法启动这算怎么一回事，</p>
+
+<p>rs的日志如下：</p>
+
+<pre><code>[2013-10-12 14:41:56.484203] WARN  create_first_table (ob_root_bootstrap.cpp:164) [140296887187200] fail to create e
+mpty tablet. table_id=111 err=-54
+[2013-10-12 14:41:56.484272] WARN  bootstrap_first_table (ob_root_bootstrap.cpp:130) [140296887187200] fail to creat
+e first_tablet_entry's tablet. err=-54
+[2013-10-12 14:41:56.484289] ERROR do_bootstrap (ob_root_server2.cpp:582) [140296887187200] bootstrap first root table error, err=-54
+[2013-10-12 14:41:56.484302] ERROR boot_strap (ob_root_server2.cpp:565) [140296887187200] bootstrap failed! ret: [-54]
+[2013-10-12 14:41:56.484314] INFO  ob_root_server2.cpp:570 [140296887187200] ObRootServer2::bootstrap() end:ret[-54]
+[2013-10-12 14:41:56.484325] INFO  ob_root_worker.cpp:3129 [140296887187200] admin cmd=16, err=-54
+[2013-10-12 14:41:56.484339] WARN  do_admin_without_return (ob_root_worker.cpp:3252) [140296887187200] not supported admin cmd:cmd[16]
+</code></pre>
+
+<p>cs的日志如下：</p>
+
+<pre><code>ERROR do_request (ob_chunk_service.cpp:451) [139992810493696] service not started, only accept start schema message or heatbeat from rootserver.
+[2013-10-12 14:41:56.480804] INFO  ob_tablet_image.cpp:3133 [139993389482080] begin scan report_tablet_list size:0
+[2013-10-12 14:41:56.481673] INFO  ob_general_rpc_stub.cpp:259 [139993389482080] report tablets over, send OB_WAITING_JOB_DONE message.
+[2013-10-12 14:41:56.482303] INFO  ob_tablet_manager.cpp:987 [139993389482080] tablet report. typeset=51
+[2013-10-12 14:41:56.482321] INFO  ob_tablet_image.cpp:3133 [139993389482080] begin scan report_tablet_list size:0
+[2013-10-12 14:41:56.483331] INFO  ob_general_rpc_stub.cpp:259 [139993389482080] report tablets over, send OB_WAITING_JOB_DONE message.
+[2013-10-12 14:41:56.483670] ERROR do_request (ob_chunk_service.cpp:470) [139992810493696] call func error packet_code is 219 return code is -1026
+</code></pre>
+
+<p>ms的日志如下：</p>
+
+<pre><code>[2013-10-12 14:41:56.510527] WARN  create (../../src/common/hash/ob_hashtable.h:302) [139726122704928] create buckets fail
+[2013-10-12 14:41:56.527871] WARN  init (../../src/common/ob_kv_storecache.h:1755) [139726122704928] create map fail
+ ret=-1 num=5543383
+[2013-10-12 14:41:56.527890] ERROR init (ob_sql_query_cache.cpp:217) [139726122704928] KeyValueCache init error, ret: 1
+[2013-10-12 14:41:56.527897] ERROR initialize (ob_mysql_server.cpp:151) [139726122704928] ObSQLQueryCache init error, ret: 1
+[2013-10-12 14:41:56.527906] WARN  start (ob_mysql_server.cpp:508) [139726122704928] initialize failed ret is 1
+[2013-10-12 14:41:56.527913] ERROR do_work (ob_merge_server_main.cpp:172) [139726122704928] obmysql server start failed,ret=1
+[2013-10-12 14:41:56.527982] INFO  ob_mysql_server.cpp:611 [139726122704928] server stoped.
+</code></pre>
+
+<p>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</p>
+
+<h3>关于border_flag</h3>
+
+<p>border_flag这事情是很早遗留的问题了，<a href="http://weibo.com/chuanhui85" title="阿里日照">@日照师兄</a> 说过，大概是border_flag和min/max对象两套东西一起在用，目前看直接不要用border_flag的MIN/MAX位就好了，比对的时候会直接跟min/max对象比对的，而忽略了border_flag。但是毕竟有些地方没改过来，比如：</p>
+
+<pre><code>int ObRootTabletInfo::split_tablet(const ObReplica &amp; replica)
+{
+  int ret = OB_ERROR;
+  if (replica.meta_.range_.start_key_ == meta_info_.range_.start_key_)
+  {
+    if (replica.meta_.range_.end_key_ &lt; meta_info_.range_.end_key_)
+    {
+      meta_info_.range_.border_flag_.unset_min_value(); #这里需要设置
+      meta_info_.range_.start_key_ = replica.meta_.range_.end_key_;
+      ret = OB_SUCCESS;
+    }
+  }
+  if (OB_SUCCESS != ret)
+  {
+    TBSYS_LOG(WARN, "split tablet error:tablet[%s], replica[%s]", to_cstring(meta_info_.range_),
+        to_cstring(replica.meta_.range_));
+  }
+  return ret;
+}
+</code></pre>
+
+<p>如果split的时候一个tablet已经置位MIN/MAX了，现在分裂的时候后一部分（原tablet split之后的那部分）已经不是MIN-MAX，但是置位还在，就悲催了。</p>
+
+<p>钦此。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[post-review在svn和git共同存在下的冲突问题]]></title>
     <link href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/"/>
     <updated>2013-10-11T21:24:00+08:00</updated>
     <id>http://cxh.me/2013/10/11/post-review-conflict-under-git-svn</id>
@@ -915,25 +1005,6 @@ abcabc";
 </code></pre>
 
 <p>这里需要注意，第二行前面不能有空格或者tab。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[想起一件事情]]></title>
-    <link href="http://cxh.me/2013/01/10/think-of-one-thing/"/>
-    <updated>2013-01-10T00:00:00+08:00</updated>
-    <id>http://cxh.me/2013/01/10/think-of-one-thing</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>前几天给家里打电话，妈妈说，你什么时候放假回来啊，姨夫前几天还问你了，说能不能给把手机刷新一下，我也不懂，你看你知道怎么弄么？</p>
-
-<p>估计所有学计算机相关专业的孩子都会遇到这种事情，大家觉得在电子产品领域，他们不懂的你都该懂，要不然你都学了些什么。这是个极为无奈的问题。或许放在几年前我肯定会说，我又不是修手机的，但想了想还是说，我回去看看吧。</p>
-
-<p>记得很久之前，要么高中要么快考高中的时候，爸爸的一个朋友找来说，看能不能让你孩子帮忙考个计算机一级啊，评职称要用的，人老了，学不会电脑了。于是爸爸征求我的意见，我那时候年少气盛，立场坚定，转了个弯说我直接考计算机二级的，这些形而上学的Word操作我实在不研究啊。想想也算是回绝的不留余地，不知道那人是信了还是觉得不好强求，于是说那好，我再找找别人吧。</p>
-
-<p>这么些年过去了，回来想这件事情，才觉得心中怅然，不能说有所愧疚，只是觉得有些原则，不见得那么重要。放在现在我也觉得作弊自然不对，不过这些事情放在父母那里，就不是那么绝对了。出来求学这几年，多有负于父母，唯一能做的，也就是尽量帮他们解决点麻烦。小城小镇，圈子就那么大，帮他们打理一下人际，在外也多一份安心，毕竟回趟家，已经不是容易的事情了。</p>
-
-<p>唉重珍重。</p>
 ]]></content>
   </entry>
   

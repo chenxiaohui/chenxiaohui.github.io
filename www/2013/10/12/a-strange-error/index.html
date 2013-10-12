@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>霸气风骚的系统监视器htop - CXH.ME</title>
+  <title>记几个诡异的bug - CXH.ME</title>
   <meta name="author" content="Harry Chen">
 
   
@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop">
+  <link rel="canonical" href="http://cxh.me/2013/10/12/a-strange-error">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -112,7 +112,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
   <header class="page-header">
     
-      <h2 class="entry-title">霸气风骚的系统监视器htop</h2>
+      <h2 class="entry-title">记几个诡异的bug</h2>
     
     
       <p class="meta">
@@ -128,7 +128,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-10-10T20:12:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+<time datetime="2013-10-12T15:57:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -137,80 +137,88 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   </header>
 
 
-<div class="entry-content"><p>做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
+<div class="entry-content"><h3>mutli target patterns</h3>
+
+<p>&mdash;-这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。&mdash;&ndash;</p>
+
+<p>后来 <a href="http://weibo.com/leslieyuchen" title="阿里聿明">聿明</a> 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。</p>
+
+<pre><code>alias make='make -s -j 4' #这里开到4-5就不要更多了
+</code></pre>
 
 <!-- more -->
 
 
-<h3>介绍</h3>
+<h3>ob集群无法启动</h3>
 
-<blockquote><p>htop 是Linux系统中的一个互动的进程查看器，一个文本模式的应用程序(在控制台或者X终端中)，需要ncurses。</p>
+<p>怀疑是机器的问题，但是如果大部分机器我都无法启动这算怎么一回事，</p>
 
-<p>与Linux传统的top相比，htop更加人性化。它可让用户交互式操作，支持颜色主题，可横向或纵向滚动浏览进程列表，并支持鼠标操作。</p>
+<p>rs的日志如下：</p>
 
-<p>与top相比，htop有以下优点：</p>
-
-<ul>
-<li>可以横向或纵向滚动浏览进程列表，以便看到所有的进程和完整的命令行。</li>
-<li>在启动上，比top 更快。</li>
-<li>杀进程时不需要输入进程号。</li>
-<li>htop 支持鼠标操作。</li>
-</ul>
-
-
-<p>htop 官网：<a href="http://htop.sourceforge.net/">http://htop.sourceforge.net/</a></p></blockquote>
-
-<h3>截图</h3>
-
-<p><img class="img-ploaroid center" src="/images/2013-10/htop.png" title="htop截图" alt="htop截图"><p class="align-center">htop截图</p></p>
-
-<h3>安装</h3>
-
-<h4>Ubuntu</h4>
-
-<pre><code>sudo apt-get install htop
+<pre><code>[2013-10-12 14:41:56.484203] WARN  create_first_table (ob_root_bootstrap.cpp:164) [140296887187200] fail to create e
+mpty tablet. table_id=111 err=-54
+[2013-10-12 14:41:56.484272] WARN  bootstrap_first_table (ob_root_bootstrap.cpp:130) [140296887187200] fail to creat
+e first_tablet_entry's tablet. err=-54
+[2013-10-12 14:41:56.484289] ERROR do_bootstrap (ob_root_server2.cpp:582) [140296887187200] bootstrap first root table error, err=-54
+[2013-10-12 14:41:56.484302] ERROR boot_strap (ob_root_server2.cpp:565) [140296887187200] bootstrap failed! ret: [-54]
+[2013-10-12 14:41:56.484314] INFO  ob_root_server2.cpp:570 [140296887187200] ObRootServer2::bootstrap() end:ret[-54]
+[2013-10-12 14:41:56.484325] INFO  ob_root_worker.cpp:3129 [140296887187200] admin cmd=16, err=-54
+[2013-10-12 14:41:56.484339] WARN  do_admin_without_return (ob_root_worker.cpp:3252) [140296887187200] not supported admin cmd:cmd[16]
 </code></pre>
 
-<h4>RHEL/CentOS</h4>
+<p>cs的日志如下：</p>
 
-<h5>CentOS 5.x</h5>
-
-<pre><code>32位系统选择：
-rpm -ivh http://download.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
-64位系统选择：
-rpm -ivh http://download.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
-导入key
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+<pre><code>ERROR do_request (ob_chunk_service.cpp:451) [139992810493696] service not started, only accept start schema message or heatbeat from rootserver.
+[2013-10-12 14:41:56.480804] INFO  ob_tablet_image.cpp:3133 [139993389482080] begin scan report_tablet_list size:0
+[2013-10-12 14:41:56.481673] INFO  ob_general_rpc_stub.cpp:259 [139993389482080] report tablets over, send OB_WAITING_JOB_DONE message.
+[2013-10-12 14:41:56.482303] INFO  ob_tablet_manager.cpp:987 [139993389482080] tablet report. typeset=51
+[2013-10-12 14:41:56.482321] INFO  ob_tablet_image.cpp:3133 [139993389482080] begin scan report_tablet_list size:0
+[2013-10-12 14:41:56.483331] INFO  ob_general_rpc_stub.cpp:259 [139993389482080] report tablets over, send OB_WAITING_JOB_DONE message.
+[2013-10-12 14:41:56.483670] ERROR do_request (ob_chunk_service.cpp:470) [139992810493696] call func error packet_code is 219 return code is -1026
 </code></pre>
 
-<h5>CentOS 6.x</h5>
+<p>ms的日志如下：</p>
 
-<pre><code>32位系统选择：
-rpm -ivh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-6-8.noarch.rpm
-64位系统选择：
-rpm -ivh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-导入key：
-rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+<pre><code>[2013-10-12 14:41:56.510527] WARN  create (../../src/common/hash/ob_hashtable.h:302) [139726122704928] create buckets fail
+[2013-10-12 14:41:56.527871] WARN  init (../../src/common/ob_kv_storecache.h:1755) [139726122704928] create map fail
+ ret=-1 num=5543383
+[2013-10-12 14:41:56.527890] ERROR init (ob_sql_query_cache.cpp:217) [139726122704928] KeyValueCache init error, ret: 1
+[2013-10-12 14:41:56.527897] ERROR initialize (ob_mysql_server.cpp:151) [139726122704928] ObSQLQueryCache init error, ret: 1
+[2013-10-12 14:41:56.527906] WARN  start (ob_mysql_server.cpp:508) [139726122704928] initialize failed ret is 1
+[2013-10-12 14:41:56.527913] ERROR do_work (ob_merge_server_main.cpp:172) [139726122704928] obmysql server start failed,ret=1
+[2013-10-12 14:41:56.527982] INFO  ob_mysql_server.cpp:611 [139726122704928] server stoped.
 </code></pre>
 
-<p>最后执行</p>
+<p>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</p>
 
-<pre><code>yum install htop
+<h3>关于border_flag</h3>
+
+<p>border_flag这事情是很早遗留的问题了，<a href="http://weibo.com/chuanhui85" title="阿里日照">@日照师兄</a> 说过，大概是border_flag和min/max对象两套东西一起在用，目前看直接不要用border_flag的MIN/MAX位就好了，比对的时候会直接跟min/max对象比对的，而忽略了border_flag。但是毕竟有些地方没改过来，比如：</p>
+
+<pre><code>int ObRootTabletInfo::split_tablet(const ObReplica &amp; replica)
+{
+  int ret = OB_ERROR;
+  if (replica.meta_.range_.start_key_ == meta_info_.range_.start_key_)
+  {
+    if (replica.meta_.range_.end_key_ &lt; meta_info_.range_.end_key_)
+    {
+      meta_info_.range_.border_flag_.unset_min_value(); #这里需要设置
+      meta_info_.range_.start_key_ = replica.meta_.range_.end_key_;
+      ret = OB_SUCCESS;
+    }
+  }
+  if (OB_SUCCESS != ret)
+  {
+    TBSYS_LOG(WARN, "split tablet error:tablet[%s], replica[%s]", to_cstring(meta_info_.range_),
+        to_cstring(replica.meta_.range_));
+  }
+  return ret;
+}
 </code></pre>
 
-<h4>源码安装</h4>
+<p>如果split的时候一个tablet已经置位MIN/MAX了，现在分裂的时候后一部分（原tablet split之后的那部分）已经不是MIN-MAX，但是置位还在，就悲催了。</p>
 
-<pre><code>wget http://nchc.dl.sourceforge.net/project/htop/htop/1.0.1/htop-1.0.1.tar.gz
-tar zxvf htop-1.0.1.tar.gz
-cd htop-1.0.1
-./configure
-make
-make install
-</code></pre>
-
-<h3>参考文献：</h3>
-
-<blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
+<p>钦此。</p>
 </div>
 
 
@@ -233,12 +241,12 @@ make install
   
 
 
-<time datetime="2013-10-10T20:12:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
+<time datetime="2013-10-12T15:57:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/category/linux/'>Linux</a>
+    <a class='category' href='/category/oceanbase/'>oceanbase</a>
   
 </span>
 
@@ -262,14 +270,10 @@ make install
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/10/07/tourism-of-jinzhou/" title="Previous Post:
-        去了趟锦州">&laquo; 去了趟锦州</a></li>
+        href="/2013/10/11/post-review-conflict-under-git-svn/" title="Previous Post:
+        post-review在svn和git共同存在下的冲突问题">&laquo; post-review在svn和git共同存在下的冲突问题</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/10/11/post-review-conflict-under-git-svn/"
-        title="Next Post: post-review在svn和git共同存在下的冲突问题">post-review在svn和git共同存在下的冲突问题
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -299,8 +303,8 @@ make install
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop/';
-        var disqus_url = 'http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop/';
+        var disqus_identifier = 'http://cxh.me/2013/10/12/a-strange-error/';
+        var disqus_url = 'http://cxh.me/2013/10/12/a-strange-error/';
         var disqus_script = 'embed.js';
       
     (function () {

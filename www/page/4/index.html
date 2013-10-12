@@ -114,6 +114,60 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/">关于.NET中的AutoScrollPosition属性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-13T00:00:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2011</time>
+        
+         | <a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天写一个能滚动的PictureBox，PictureBox默认没有滚动条，所以又两种实现方式，要么在PictureBox外套一个规定大小的Panel，然后设置Panel有滚动条，要么单独做一个UserControl，自己管理重绘。</p>
+
+<p>但是都发现一个问题，我写拖动的代码的时候，获得了两次拖动事件之间的移动距离，然后想加到AutoScrollPosition属性上，控制滚动，但是总会跳回原点。经过了无数次艰苦卓绝的测试，最后发现一个哭笑不得的问题。</p>
+
+<p>.Net实在太智能了，智能的你都想不到他智能哪里去了。</p>
+
+<blockquote><p>Point p = new Point(20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>上面这句会设定有滚动20个像素</p>
+
+<blockquote><p>Point p = new Point(-20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>下面这句会调回原点，原因是你设置AutoScrollPosition=20的时候，.NET自动给20加了一个符号，AutoScrollPosition变成了-20，这都好理解，问题是你累加AutoScrollPosition的时候，开始是20，取出来就变成-20，于是你再加20，刚好回原点。这是一个多么奇葩的结果，你跟一个人说，滚，然后他努力的每次向前移动20cm，结果他在原地振动了……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/10/27/safe-to-go-out-in-team/">爆笑比利时公益广告，还是组队出门比较安全！(zz From ipc.me）</a></h1>
     
     
@@ -1236,46 +1290,6 @@ VERIFY( 1 == SetDialogSkin( "Dialog" ) );
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/26/the-1990s-ancient-movies-of-hongkong/">九十年代香港电影古装篇</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-26T00:00:00+08:00" pubdate data-updated="true">Aug 26<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/26/the-1990s-ancient-movies-of-hongkong/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>太怀念了，80后真的老了！！！</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/5/">&larr; Older</a></li>
@@ -1314,7 +1328,11 @@ VERIFY( 1 == SetDialogSkin( "Dialog" ) );
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
       </li>
     
       <li class="post">
@@ -1327,10 +1345,6 @@ VERIFY( 1 == SetDialogSkin( "Dialog" ) );
     
       <li class="post">
         <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
       </li>
     
   </ul>

@@ -114,6 +114,52 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/04/08/visualization-of-all-kinds-of-sort-algorithm/">各种排序算法的图形化演示</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-08T00:00:00+08:00" pubdate data-updated="true">Apr 8<span>th</span>, 2011</time>
+        
+         | <a href="/2011/04/08/visualization-of-all-kinds-of-sort-algorithm/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>一个日本哥哥写的各种排序算法的图形化演示，非常不错，推荐一下。</p>
+
+<p>Your browser does not support iframes.</p>
+
+<p>(ps:话说那个bogo算法到底在做甚么??)</p>
+
+<p>还有之前一直很火的一个视频：排序算法的声音，一起欣赏一下吧~~</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/04/02/two-harvard-man-in-take-me-out/">《非诚勿扰》两位哈佛男&mdash;&mdash;陆宏毅&amp;安田剪辑对比。窥二人而知哈佛。</a></h1>
     
     
@@ -1144,87 +1190,6 @@ public void Msg(string message)
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/02/16/curd-operation-of-multi-table/">多表级联增删查改操作的实现（C#）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-16T00:00:00+08:00" pubdate data-updated="true">Feb 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/02/16/curd-operation-of-multi-table/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>本文背景：</p>
-
-<p>我们经常会遇到这样的问题：从数据库里通过几个表级联查询数据，然后显示到界面上，用户修改了这些级联之后的数据后，如何将数据更新到数据库里去？我们查询的时候完全可以使用视图，但是视图不支持增删查操作。如何实现视图的可更新呢？</p>
-
-<p>本文的实现主要采用了.Net DataTable(和DataSet)，使用DataAdapter可更新数据的特性，底层通过存储过程更新数据。逻辑结构如图1所示：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb.jpg" title="未命名" alt="未命名" /></p>
-
-<p>图 1 逻辑结构</p>
-
-<p>基本的想法是：</p>
-
-<ul>
-<li>通过视图进行数据的查询操作，而且这样可以通过SQLServer等工具自动生成视图。</li>
-<li>删除，插入和修改分别实现存储过程（或Sql语句），然后构建DataAdapter，将DataAdapter的InsertCommand,UpdateCommand,SelectCommand,DeleteCommand分别置为之前的四种操作。</li>
-<li>通过DataAdapter的Update操作更新DataTable（或DataSet）</li>
-</ul>
-
-
-<p>举一个简单的例子，目前有四个数据库，之间的关系如图2所示，其中Orders（订单）通过Order_id与Customers（客户）表关联，OrderDetails（订单细节）通过ProductID与Products（商品）表关联，Orders与OrderDetails明显冗余了（一对一），中间做的时候改动了不少东西，所以到最后成了这个样子，算了，懒得改了：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/2_thumb.jpg" title="未2命名" alt="未2命名" /></p>
-
-<p>图2 数据库各个表之间的关系</p>
-
-<p>类图如图3所示，主要是一个数据库连接类，一个表操作基类和两个派生类。派生类主要是覆盖基类方法并填写DataAdapter的四个Command，其中InsertCommand是必须填写的，如果只涉及一个表的操作的话，那么其他三个Command可以用CommandBuilder自动构造：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/testData_thumb.jpg" title="testData" alt="testData" /> 图3 类图</p>
-
-<p>数据库里的操作主要是写存储过程和创建视图，如图4所示：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb.png" title="数据库" alt="数据库" /> 图4 数据库里的操作</p>
-
-<p>程序执行的截图如图5所示：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/ui_thumb.png" title="ui" alt="ui" /> 具体的详见<a href="http://www.roybit.com/wp-content/uploads/2011/02/testData.rar">代码</a>，请自行修改连接字符串。</p>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb.jpg" title="未命名">1</a> SQLServer 存储过程简介与使用方法，</p>
-
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/02/2_thumb.jpg" title="未2命名">2</a> 使用DataSet更新数据库的两种方式，</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/9/">&larr; Older</a></li>
@@ -1263,7 +1228,11 @@ public void Msg(string message)
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
       </li>
     
       <li class="post">
@@ -1276,10 +1245,6 @@ public void Msg(string message)
     
       <li class="post">
         <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
       </li>
     
   </ul>

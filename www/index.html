@@ -114,7 +114,57 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
-      <h2 class="entry-title"><a href="/2013/10/11/post-review-conflict-under-git-svn/">Post_review在svn和git共同存在下的冲突问题</a></h1>
+      <h2 class="entry-title"><a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-12T15:57:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/12/a-strange-error/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>mutli target patterns</h3>
+
+<p>&mdash;-这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。&mdash;&ndash;</p>
+
+<p>后来 <a href="http://weibo.com/leslieyuchen" title="阿里聿明">聿明</a> 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。</p>
+
+<pre><code>alias make='make -s -j 4' #这里开到4-5就不要更多了
+</code></pre>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/12/a-strange-error/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/10/11/post-review-conflict-under-git-svn/">Post-review在svn和git共同存在下的冲突问题</a></h1>
     
     
       <p class="meta">
@@ -1059,54 +1109,6 @@ abcabc";
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/01/10/think-of-one-thing/">想起一件事情</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-01-10T00:00:00+08:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
-        
-         | <a href="/2013/01/10/think-of-one-thing/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>前几天给家里打电话，妈妈说，你什么时候放假回来啊，姨夫前几天还问你了，说能不能给把手机刷新一下，我也不懂，你看你知道怎么弄么？</p>
-
-<p>估计所有学计算机相关专业的孩子都会遇到这种事情，大家觉得在电子产品领域，他们不懂的你都该懂，要不然你都学了些什么。这是个极为无奈的问题。或许放在几年前我肯定会说，我又不是修手机的，但想了想还是说，我回去看看吧。</p>
-
-<p>记得很久之前，要么高中要么快考高中的时候，爸爸的一个朋友找来说，看能不能让你孩子帮忙考个计算机一级啊，评职称要用的，人老了，学不会电脑了。于是爸爸征求我的意见，我那时候年少气盛，立场坚定，转了个弯说我直接考计算机二级的，这些形而上学的Word操作我实在不研究啊。想想也算是回绝的不留余地，不知道那人是信了还是觉得不好强求，于是说那好，我再找找别人吧。</p>
-
-<p>这么些年过去了，回来想这件事情，才觉得心中怅然，不能说有所愧疚，只是觉得有些原则，不见得那么重要。放在现在我也觉得作弊自然不对，不过这些事情放在父母那里，就不是那么绝对了。出来求学这几年，多有负于父母，唯一能做的，也就是尽量帮他们解决点麻烦。小城小镇，圈子就那么大，帮他们打理一下人际，在外也多一份安心，毕竟回趟家，已经不是容易的事情了。</p>
-
-<p>唉重珍重。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1143,7 +1145,11 @@ abcabc";
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post_review在svn和git共同存在下的冲突问题</a>
+        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
       </li>
     
       <li class="post">
@@ -1156,10 +1162,6 @@ abcabc";
     
       <li class="post">
         <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a>
       </li>
     
   </ul>
