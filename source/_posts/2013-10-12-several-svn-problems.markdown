@@ -25,7 +25,7 @@ categories: oceanbase
 
 ### 版本控制中移除文件
 
-经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一边automake。
+经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一遍automake。
 
 {% img img-ploaroid center /images/2013-10/before-rm.png "错误的把Makefile.in加入版本控制" "错误的把Makefile.in加入版本控制" %}
 

@@ -80,6 +80,7 @@ border_flag这事情是很早遗留的问题了，[@日照师兄](http://weibo.c
 	  }
 	  return ret;
 	}
+	
 如果split的时候一个tablet已经置位MIN/MAX了，现在分裂的时候后一部分（原tablet split之后的那部分）已经不是MIN-MAX，但是置位还在，就悲催了。
 
 钦此。
