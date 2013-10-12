@@ -4,7 +4,7 @@
   <title><![CDATA[Category: oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-12T18:35:32+08:00</updated>
+  <updated>2013-10-12T20:16:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[几个svn的问题]]></title>
+    <link href="http://cxh.me/2013/10/12/several-svn-problems/"/>
+    <updated>2013-10-12T19:27:00+08:00</updated>
+    <id>http://cxh.me/2013/10/12/several-svn-problems</id>
+    <content type="html"><![CDATA[<h3>误用rm删除了未提交文件</h3>
+
+<p>经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="&ldquo;直接用rm删除的文件&rdquo; &ldquo;直接用rm删除的文件&rdquo;" ></p>
+
+<p>解决办法也很简单，我们直接:</p>
+
+<pre><code>svn revert ob_alive_table_tablet_iter.h
+</code></pre>
+
+<p>这时候文件并不会被恢复，但是</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[记几个诡异的bug]]></title>
@@ -70,7 +90,9 @@ e first_tablet_entry's tablet. err=-54
 [2013-10-12 14:41:56.527982] INFO  ob_mysql_server.cpp:611 [139726122704928] server stoped.
 </code></pre>
 
-<p>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</p>
+<p><s>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</s></p>
+
+<p>确认了 ms 起不来是因为内存分配失败的问题 感谢 <a href="http://www.weibo.com/u/1912538231" title="瑶瓔">瑶瓔</a> 的辛苦debug</p>
 
 <h3>关于border_flag</h3>
 

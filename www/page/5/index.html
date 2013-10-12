@@ -114,6 +114,66 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/08/28/chrome-plugin-to-send-mails-automatically/">Chrome自动发送邮件插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-28T00:00:00+08:00" pubdate data-updated="true">Aug 28<span>th</span>, 2011</time>
+        
+         | <a href="/2011/08/28/chrome-plugin-to-send-mails-automatically/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>写这个插件的最初的原因是实验室的网络无法同步Chrome书签，同时有时候需要与宿舍的笔记本同步一些文本信息，所以琢磨自己写一个同步插件。</p>
+
+<p>但是偌大一个教育网，竟然找不到一个可用的在线存储服务，金山快盘已经叫嚣要开放API很久了，但是就是没见到官方的API手册。最后想来想去，干脆用邮件算了，最终的 程序结构如下：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/08/thumb.png" title="程序结构" alt="程序结构" /></p>
+
+<p>Chrome插件的开发参考了ClickTrans<a href="http://www.roybit.com/wp-content/uploads/2011/08/thumb.png" title="程序结构">1</a>的开发，源码可以在<a href="http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B61.rar">这里</a>下载，使用的时候在浏览器里右键，就会有Save选项，如果选择了文本，就把文本发送到邮件，否则发送当前链接地址。具体实现不解释，可以参考代码，简单说下Chrome插件的一些东东。</p>
+
+<p>Chrome插件实际上是一组JS的脚本 配置文件，可能还有Html的页面，Chrome本身提供一些API接口，剩下的就通过JS来操作页面元素实现。Chrome插件里比较重要的两个东东，一个是页面，包括了BackGround页，Popup页（Popup页又分Page_Action和Browser_Action），另一个是向页面注入的JS脚本。因为插件自己的脚本并不能直接操作Web页，所以必须要向页面注入一个脚本才能进行页面操作。Chrome的API可以通过这里<a href="http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B61.rar">2</a>查询，自己的脚本和注入脚本之间的通信参见ClickTrans<a href="http://www.roybit.com/wp-content/uploads/2011/08/thumb.png" title="程序结构">1</a>的文章。</p>
+
+<p>最后不得不提的一个东西，JS本身是无法实现SMTP协议的，或者说没人做，需要发送邮件的时候必须借助其他Web语言，通过服务的形式调用，我是写了一个简单的PHP响应请求并发送邮件的程序，具体代码如下，重要的不是代码，而是PHP下mail的配置，详见配置win下的sendmail<a href="http://www.php.net/if">3</a></p>
+
+<p>Chrome插件的代码里固定了一个邮件服务的地址，localhost/test/send.php，如果需要请自行更改然后打包，有空再做成可配置的，然后放到SinaAppEngine上，这样就方便访问了，否则总得本地起服务，太费劲了。</p>
+
+<p>参考文献</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2011/08/thumb.png" title="程序结构">1</a> 从无到有制作Chrome扩展：ClickTrans，</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B61.rar">2</a> Chrome扩展API参考，</p>
+
+<p><a href="http://www.php.net/if">3</a> php mail函数在win下的使用，以及配置win下的sendmail</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/08/26/the-1990s-ancient-movies-of-hongkong/">九十年代香港电影古装篇</a></h1>
     
     
@@ -1052,48 +1112,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/13/this-is-real-algorithm-from-life-and-deal-with-problems-in-life/">这才是真正的算法研究，从实际出发，解决实际问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-13T00:00:00+08:00" pubdate data-updated="true">Aug 13<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/13/this-is-real-algorithm-from-life-and-deal-with-problems-in-life/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>转阮一峰的一篇日志：</p>
-
-<blockquote><p>神奇的图像处理算法</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/6/">&larr; Older</a></li>
@@ -1132,6 +1150,10 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
       </li>
     
@@ -1145,10 +1167,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
       </li>
     
   </ul>

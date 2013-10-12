@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: MFC - CXH.ME</title>
+  <title>几个svn的问题 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
 
   
-  <meta name="description" content="Category: MFC">
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.mecategory/mfc">
+  <link rel="canonical" href="http://cxh.me/2013/10/12/several-svn-problems">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,133 +107,107 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span12 well" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: MFC</h1>
+    
+      <h2 class="entry-title">几个svn的问题</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-12T19:27:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><h3>误用rm删除了未提交文件</h3>
 
-  
-  <h1>2012</h1>
+<p>经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
 
-<article>
-  <div class="well">
+<p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
 
-<h3><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值
-</a></h3>
-<time datetime="2012-05-08T00:00:00+08:00" pubdate><span class='month'>May</span> <span class='day'>08</span> <span class='year'>2012</span></time>
+<p>解决办法也很简单，我们直接:</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/mfc/'>MFC</a></span>
-</footer>
+<pre><code>svn revert ob_alive_table_tablet_iter.h
+</code></pre>
 
+<p>这时候文件并不会被恢复，但是</p>
 </div>
 
-</article>
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>
+
+      
 
 
 
-<article>
-  <div class="well">
 
-<h3><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/">深入解析C++输入输出运算符重载</a></h3>
-<time datetime="2012-05-07T00:00:00+08:00" pubdate><span class='month'>May</span> <span class='day'>07</span> <span class='year'>2012</span></time>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/mfc/'>MFC</a></span>
-</footer>
-
-</div>
-
-</article>
 
 
 
   
-  <h1>2011</h1>
 
-<article>
-  <div class="well">
 
-<h3><a href="/2011/08/31/skin-magic-linking-in-winsdk-program/">SkinMagic在WinSDK程序中的链接</a></h3>
-<time datetime="2011-08-31T00:00:00+08:00" pubdate><span class='month'>Aug</span> <span class='day'>31</span> <span class='year'>2011</span></time>
+<time datetime="2013-10-12T19:27:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+      
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/mfc/'>MFC</a>, <a class='category' href='/category/yu-ji-zhu-xiang-guan/'>与技术相关</a></span>
-</footer>
+<span class="categories">
+  
+    <a class='category' href='/category/oceanbase/'>oceanbase</a>
+  
+</span>
 
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
 </div>
 
-</article>
-
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
-
-  
-</article>
-
-<aside class="sidebar-nav span3">
-  
-    <section class="well">
-    <div class="profilepic align-center">
-        <script src="/javascripts/md5.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' class='img-rounded' />");
-                    });
-        </script>
-    </div>
-    <hr/>
-
-    <ul id="about_me" class="nav nav-list">
-        <li class="nav-header">About Me</li>
-        <li>在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。网上不喜用真名，以免被跨省。流量惨淡，感谢拍砖~~</li>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2013/10/12/a-strange-error/" title="Previous Post:
+        记几个诡异的bug">&laquo; 记几个诡异的bug</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
     </ul>
-    <hr/>
-    <ul id="about_me" class="nav nav-list">
-        <li class="nav-header">GitHub</li>
-        <li><a href="https://github.com/chenxiaohui/">chenxiaohui</a></li>
-    </ul>
-</section>
-<section class="well">
-  <ul id="recent_posts" class="nav nav-list">
-    <li class="nav-header">Recent Posts</li>
-    
-      <li class="post">
-        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
-      </li>
-    
-  </ul>
-</section>
-
-<section>
-<iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=1&uid=1661094240&verifier=45baa042&dpc=1"></iframe>
-</section>
-
-
-  
-</aside>
+  </footer>
+</article>
 
 
     </div>
@@ -258,7 +232,10 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       var disqus_shortname = 'harrychen';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cxh.me/2013/10/12/several-svn-problems/';
+        var disqus_url = 'http://cxh.me/2013/10/12/several-svn-problems/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

@@ -189,7 +189,9 @@ e first_tablet_entry's tablet. err=-54
 [2013-10-12 14:41:56.527982] INFO  ob_mysql_server.cpp:611 [139726122704928] server stoped.
 </code></pre>
 
-<p>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</p>
+<p><s>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</s></p>
+
+<p>确认了 ms 起不来是因为内存分配失败的问题 感谢 <a href="http://www.weibo.com/u/1912538231" title="瑶瓔">瑶瓔</a> 的辛苦debug</p>
 
 <h3>关于border_flag</h3>
 
@@ -274,6 +276,10 @@ e first_tablet_entry's tablet. err=-54
         post-review在svn和git共同存在下的冲突问题">&laquo; post-review在svn和git共同存在下的冲突问题</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/2013/10/12/several-svn-problems/"
+        title="Next Post: 几个svn的问题">几个svn的问题
+        &raquo;</a></li>
       
     </ul>
   </footer>

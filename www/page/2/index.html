@@ -114,6 +114,78 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/05/29/from-the-miao-code/">由&#8221;喵&#8221;代码想到的</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
+        
+         | <a href="/2013/05/29/from-the-miao-code/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>网上看到这样一段代码</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2013/05/miao.jpg" title="miao.jpg" alt="miao.jpg" /></p>
+
+<p>还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：</p>
+
+<pre><code>#include 
+
+#define aaa "3a"
+#define a "1a"
+#define aa "2a"
+
+int main(int argc, const char *argv[])
+{
+    printf("%s
+",aaa);
+}
+</code></pre>
+
+<p>这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况</p>
+
+<pre><code>printf("%s
+",aa a);
+</code></pre>
+
+<p>替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
+另外一种字符串跨行的方式是：</p>
+
+<pre><code>    char chstr2[] = "abcabc\
+abcabc";
+</code></pre>
+
+<p>这里需要注意，第二行前面不能有空格或者tab。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/01/10/think-of-one-thing/">想起一件事情</a></h1>
     
     
@@ -1170,59 +1242,6 @@ namespace testThread
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/">记ThinkPad某些型号下Linux报Unable to Enumerate USB Device错误的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-14T00:00:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2012</time>
-        
-         | <a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报</p>
-
-<pre><code>Unable to enumerate USB device…..
-</code></pre>
-
-<p>的错误，而在某些Linux版本（比如pinguy os）下会不停提示Device Recognized和Device Removed，有人提供了如[1]的解决方案，但是好像在pinguy os 下并无效果，而且这实际上就是禁用了usb2.0，还有人直接禁用了全部usb。</p>
-
-<p>这里面好像有硬件问题，但是如果是Thinkpad系普遍的问题的话，也就有点说不过去了，硬件不检测好就出场，这也不是Thinkpad的风格。后来想到会不会是指纹识别的问题，于是在BIOS里禁用指纹识别，一切OK。反正这是实验室的笔记本，也不能存我自己的指纹吧。</p>
-
-<p>后来证实其实是指纹识别坏了…还好在保修内…</p>
-
-<h2>参考文献：</h2>
-
-<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1261,6 +1280,10 @@ namespace testThread
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
       </li>
     
@@ -1274,10 +1297,6 @@ namespace testThread
     
       <li class="post">
         <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
       </li>
     
   </ul>

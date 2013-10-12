@@ -53,7 +53,9 @@ ms的日志如下：
 	[2013-10-12 14:41:56.527913] ERROR do_work (ob_merge_server_main.cpp:172) [139726122704928] obmysql server start failed,ret=1
 	[2013-10-12 14:41:56.527982] INFO  ob_mysql_server.cpp:611 [139726122704928] server stoped.
 
-create_bucket失败，这个也不能总是说内存的问题吧...莫非是大部分开发机都资源不足？我靠谁干的....
+<s>create_bucket失败，这个也不能总是说内存的问题吧...莫非是大部分开发机都资源不足？我靠谁干的....</s>
+
+确认了 ms 起不来是因为内存分配失败的问题 感谢 [瑶瓔](http://www.weibo.com/u/1912538231 "瑶瓔") 的辛苦debug
 
 ###关于border_flag
 

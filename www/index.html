@@ -114,6 +114,55 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/10/12/several-svn-problems/">几个svn的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-12T19:27:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/12/several-svn-problems/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>误用rm删除了未提交文件</h3>
+
+<p>经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
+
+<p>解决办法也很简单，我们直接:</p>
+
+<pre><code>svn revert ob_alive_table_tablet_iter.h
+</code></pre>
+
+<p>这时候文件并不会被恢复，但是</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a></h1>
     
     
@@ -1037,78 +1086,6 @@ string s2="a" s1 "c";
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/05/29/from-the-miao-code/">由&#8221;喵&#8221;代码想到的</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2013</time>
-        
-         | <a href="/2013/05/29/from-the-miao-code/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>网上看到这样一段代码</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2013/05/miao.jpg" title="miao.jpg" alt="miao.jpg" /></p>
-
-<p>还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：</p>
-
-<pre><code>#include 
-
-#define aaa "3a"
-#define a "1a"
-#define aa "2a"
-
-int main(int argc, const char *argv[])
-{
-    printf("%s
-",aaa);
-}
-</code></pre>
-
-<p>这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况</p>
-
-<pre><code>printf("%s
-",aa a);
-</code></pre>
-
-<p>替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
-另外一种字符串跨行的方式是：</p>
-
-<pre><code>    char chstr2[] = "abcabc\
-abcabc";
-</code></pre>
-
-<p>这里需要注意，第二行前面不能有空格或者tab。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1145,6 +1122,10 @@ abcabc";
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
       </li>
     
@@ -1158,10 +1139,6 @@ abcabc";
     
       <li class="post">
         <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/">狄仁杰之神都龙王</a>
       </li>
     
   </ul>
