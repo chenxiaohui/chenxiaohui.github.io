@@ -59,8 +59,7 @@ titlecase: true       # Converts page and post titles to titlecase
 sidebar: false
 default_asides: [
     custom/asides/about.html,
-    asides/recent_posts.html,
-    custom/asides/weibo.html
+    asides/recent_posts.html
     ]
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
@@ -110,7 +109,9 @@ google_analytics_tracking_id:
 facebook_like: false
 
 #weibo
-weibo_xiu: true
+weibo_xiu: false
+weibo: Harry Chen
+weibo_user: sdqxcxh
 
 #jiathis
 jiathis: false
