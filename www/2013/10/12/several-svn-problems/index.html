@@ -143,12 +143,36 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
 <p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
 
+<!-- more -->
+
+
 <p>解决办法也很简单，我们直接:</p>
 
 <pre><code>svn revert ob_alive_table_tablet_iter.h
 </code></pre>
 
-<p>这时候文件并不会被恢复，但是</p>
+<p>这时候文件并不会被恢复，但是svn status上已经显示删除了，post-review不会再报错，如下图所示：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/after_revert.png" title="revert之后" alt="revert之后"><p class="align-center">revert之后</p></p>
+
+<h3>版本控制中移除文件</h3>
+
+<p>经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一边automake。</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before-rm.png" title="错误的把Makefile.in加入版本控制" alt="错误的把Makefile.in加入版本控制"><p class="align-center">错误的把Makefile.in加入版本控制</p></p>
+
+<p>其实 svn rm 提供了keep-local选项来保留本地副本：</p>
+
+<pre><code>svn rm Makefile.in --keep-local
+</code></pre>
+
+<p>执行之后的版本库状态如下图：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before-rm.png" title="版本控制的状态" alt="版本控制的状态"><p class="align-center">版本控制的状态</p></p>
+
+<p>从文件管理里面看，这个本地副本依然存在，如下图：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/ll-result.png" title="文件管理里的情况" alt="文件管理里的情况"><p class="align-center">文件管理里的情况</p></p>
 </div>
 
 
