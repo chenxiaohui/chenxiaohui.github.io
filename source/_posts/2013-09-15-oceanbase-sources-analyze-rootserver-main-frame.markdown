@@ -3,7 +3,7 @@ layout: post
 title: "oceanbase源码分析-RootServer主要框架"
 date: 2013-09-15 12:55
 comments: true
-categories: oceanbase源码分析
+categories: oceanbase
 ---
 
 这里记录一下RootServer主要框架的阅读和心得。

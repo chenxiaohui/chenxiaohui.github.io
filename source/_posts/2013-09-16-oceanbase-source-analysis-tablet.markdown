@@ -3,7 +3,7 @@ layout: post
 title: "OceanBase源码分析-tablet相关"
 date: 2013-09-16 15:49
 comments: true
-categories: OceanBase源码分析
+categories: OceanBase
 ---
 
 ###ObRootTabletInfo

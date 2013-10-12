@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-12T20:29:19+08:00</updated>
+  <updated>2013-10-12T20:32:15+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -38,7 +38,7 @@
 
 <h3>版本控制中移除文件</h3>
 
-<p>经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一边automake。</p>
+<p>经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一遍automake。</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before-rm.png" title="错误的把Makefile.in加入版本控制" alt="错误的把Makefile.in加入版本控制"><p class="align-center">错误的把Makefile.in加入版本控制</p></p>
 
