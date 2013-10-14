@@ -114,6 +114,60 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">IE8无法调试ActiveX控件的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>最近调ActiveX控件，发现总是无法停到一个断点去，这不坑爹呢？</p>
+
+<p>后来找来找去，发现IE8 默认是多进程工作的，通过修改注册表可以改为单进程工作，多进程的时候，启动的ie进程和加载要调试的ocx的ie进程不是一个进程，所以不能调试。</p>
+
+<p>注册表操作如下：</p>
+
+<blockquote><p>Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+&ldquo;TabProcGrowth&rdquo;=dword:00000000</p></blockquote>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1] VC做的OCX控件，IE下断点调试问题,</p>
+
+<p>[2] IE8调试VC6的OCX控件不能进入断点问题解决方法</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/04/10/plan-to-help-you-run/">助跑计划，几个有才版本</a></h1>
     
     
@@ -1138,54 +1192,6 @@ public void Msg(string message)
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/02/19/tecent-advertisement/">关于腾讯12年品牌广告</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-19T00:00:00+08:00" pubdate data-updated="true">Feb 19<span>th</span>, 2011</time>
-        
-         | <a href="/2011/02/19/tecent-advertisement/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>据说是春晚前的一个广告，拍的挺感人的。腾讯开始走温情路线了，尤其瞄准了老爸老妈这一辈人。不过不得不说还真是挺有效果。</p>
-
-<p>罗永浩（或者是周云蓬）说过：我们这些在外打拼的人，一点点的成绩在父母那里都会被无限的夸大。其实不只是成绩，父母眼里跟我们任何相关的事情都会变得无限重要，虽然这在我们自己看来只是小事。</p>
-
-<p>父母曾经何等意气风发，现在却已两鬓斑白，这事情想起来就心酸。 二十年光阴，想想真不知道是怎么过来的。时间就是如此无情，你意识到沧桑的时候，光阴早已将过往带到记忆里去了，无可挽回。</p>
-
-<p>珍重万千啊。</p>
-
-<p>顺便附一个太平洋保险的广告，温情路线，甚为感人。背景音乐是李健的《爱的四季》。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/9/">&larr; Older</a></li>
@@ -1217,7 +1223,6 @@ public void Msg(string message)
 <section class="well">
     <ul id="profile" class="nav nav-list">
         <li class="nav-header">Profile</li>
-        <hr/>
         <li><a href="https://github.com/chenxiaohui/">GitHub</a></li>
         <li><a href="http://weibo.com/sdqxcxh/">Weibo</a></li>
         <li><a href="http://renren.com/sdqxcxh/">Renren</a></li>
@@ -1228,6 +1233,10 @@ public void Msg(string message)
 <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
+      </li>
     
       <li class="post">
         <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
@@ -1243,10 +1252,6 @@ public void Msg(string message)
     
       <li class="post">
         <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a>
       </li>
     
   </ul>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: OceanBase - CXH.ME</title>
+  <title>关于svn commit fail的问题 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
 
   
-  <meta name="description" content="Category: OceanBase">
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。流量惨淡，感谢拍砖~~">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.mecategory/oceanbase">
+  <link rel="canonical" href="http://cxh.me/2013/10/12/svn-commit-failed">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,97 +107,116 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span12 well" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: OceanBase</h1>
+    
+      <h2 class="entry-title">关于svn Commit Fail的问题</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-12T21:39:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
 
-  
-  <h1>2013</h1>
+<p>看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
 
-<article>
-  <div class="well">
+<blockquote><p>-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.</p>
 
-<h3><a href="/2013/09/16/oceanbase-source-analysis-tablet/">OceanBase源码分析-tablet相关</a></h3>
-<time datetime="2013-09-16T15:49:00+08:00" pubdate><span class='month'>Sep</span> <span class='day'>16</span> <span class='year'>2013</span></time>
+<ul>
+<li>例: svn ci -F svn-commit.tmp</li>
+</ul>
+</blockquote>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/oceanbase/'>OceanBase</a></span>
-</footer>
+<!-- more -->
 
+
+<p>PS: commit 完后, 还是要手动 rm svn-commit.tmp.</p>
+
+<p>另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表有误怎么办？</p>
+
+<p>其实很简单，只要不保存退出，就会有提示了。保存退出才会直接提交的。放心。</p>
+
+<p>钦此。</p>
 </div>
 
-</article>
 
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-12T21:39:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/oceanbase/'>oceanbase</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
 </div>
 
-  
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2013/10/12/several-svn-problems/" title="Previous Post:
+        几个svn的问题">&laquo; 几个svn的问题</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
-
-<aside class="sidebar-nav span3">
-  
-    <section class="well">
-    <div class="profilepic align-center">
-        <script src="/javascripts/md5.js"></script>
-        <script type="text/javascript">
-            $(function(){
-                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' class='img-rounded' />");
-                    });
-        </script>
-    </div>
-    <hr/>
-
-    <ul id="about_me" class="nav nav-list">
-        <li class="nav-header">About Me</li>
-        <li>在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。流量惨淡，感谢拍砖~~</li>
-    </ul>
-</section>
-<section class="well">
-    <ul id="profile" class="nav nav-list">
-        <li class="nav-header">Profile</li>
-        <li><a href="https://github.com/chenxiaohui/">GitHub</a></li>
-        <li><a href="http://weibo.com/sdqxcxh/">Weibo</a></li>
-        <li><a href="http://renren.com/sdqxcxh/">Renren</a></li>
-        <li><a href="https://twitter.com/sdqxcxh/">Twitter</a></li>
-        <li><a href="https://facebook.com/sdqxcxh/">Facebook</a></li>
-    </ul>
-</section>
-<section class="well">
-  <ul id="recent_posts" class="nav nav-list">
-    <li class="nav-header">Recent Posts</li>
-    
-      <li class="post">
-        <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
-      </li>
-    
-  </ul>
-</section>
-
-  
-</aside>
 
 
     </div>
@@ -222,7 +241,10 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       var disqus_shortname = 'harrychen';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cxh.me/2013/10/12/svn-commit-failed/';
+        var disqus_url = 'http://cxh.me/2013/10/12/svn-commit-failed/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
