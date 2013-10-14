@@ -31,6 +31,7 @@ h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 5
 .white{ color:white; }
 .align-right{text-align:right}
 .align-center{text-align:center;}
+.indent{text-indent:2em;}
 
 /*fonts*/
 .s14{font-size:14px}

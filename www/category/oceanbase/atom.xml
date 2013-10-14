@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: OceanBase | CXH.ME]]></title>
+  <title><![CDATA[Category: oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-14T15:45:24+08:00</updated>
+  <updated>2013-10-14T21:25:20+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,15 +14,277 @@
 
   
   <entry>
-    <title type="html"><![CDATA[OceanBase源码分析-tablet相关]]></title>
-    <link href="http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet/"/>
-    <updated>2013-09-16T15:49:00+08:00</updated>
-    <id>http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet</id>
-    <content type="html"><![CDATA[<h3>ObRootTabletInfo</h3>
+    <title type="html"><![CDATA[关于svn commit fail的问题]]></title>
+    <link href="http://cxh.me/2013/10/12/svn-commit-failed/"/>
+    <updated>2013-10-12T21:39:00+08:00</updated>
+    <id>http://cxh.me/2013/10/12/svn-commit-failed</id>
+    <content type="html"><![CDATA[<p>svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
 
-<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
+<p>看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
 
-<p>//TODO</p>
+<blockquote><p>-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.</p>
+
+<ul>
+<li>例: svn ci -F svn-commit.tmp</li>
+</ul>
+</blockquote>
+
+<!-- more -->
+
+
+<p>PS: commit 完后, 还是要手动 rm svn-commit.tmp.</p>
+
+<p>另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表有误怎么办？</p>
+
+<p>其实很简单，只要不保存退出，就会有提示了。保存退出才会直接提交的。放心。</p>
+
+<p>钦此。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[几个svn的问题]]></title>
+    <link href="http://cxh.me/2013/10/12/several-svn-problems/"/>
+    <updated>2013-10-12T19:27:00+08:00</updated>
+    <id>http://cxh.me/2013/10/12/several-svn-problems</id>
+    <content type="html"><![CDATA[<h3>误用rm删除了未提交文件</h3>
+
+<p>经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="&ldquo;直接用rm删除的文件&rdquo; &ldquo;直接用rm删除的文件&rdquo;" ></p>
+
+<!-- more -->
+
+
+<p>解决办法也很简单，我们直接:</p>
+
+<pre><code>svn revert ob_alive_table_tablet_iter.h
+</code></pre>
+
+<p>这时候文件并不会被恢复，但是svn status上已经显示删除了，post-review不会再报错，如下图所示：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/after_revert.png" title="&ldquo;revert之后&rdquo; &ldquo;revert之后&rdquo;" ></p>
+
+<h3>版本控制中移除文件</h3>
+
+<p>经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一遍automake。</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before-rm.png" title="&ldquo;错误的把Makefile.in加入版本控制&rdquo; &ldquo;错误的把Makefile.in加入版本控制&rdquo;" ></p>
+
+<p>其实 svn rm 提供了keep-local选项来保留本地副本：</p>
+
+<pre><code>svn rm Makefile.in --keep-local
+</code></pre>
+
+<p>执行之后的版本库状态如下图：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/before-rm.png" title="&ldquo;版本控制的状态&rdquo; &ldquo;版本控制的状态&rdquo;" ></p>
+
+<p>从文件管理里面看，这个本地副本依然存在，如下图：</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/ll-result.png" title="&ldquo;文件管理里的情况&rdquo; &ldquo;文件管理里的情况&rdquo;" ></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[记几个诡异的bug]]></title>
+    <link href="http://cxh.me/2013/10/12/a-strange-error/"/>
+    <updated>2013-10-12T15:57:00+08:00</updated>
+    <id>http://cxh.me/2013/10/12/a-strange-error</id>
+    <content type="html"><![CDATA[<h3>ERROR: mutli target patterns</h3>
+
+<p><s>这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。</s></p>
+
+<p>后来 <a href="http://weibo.com/leslieyuchen" title="阿里聿明">聿明</a> 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。</p>
+
+<pre><code>alias make='make -s -j 4' #这里开到4-5就不要更多了
+</code></pre>
+
+<!-- more -->
+
+
+<h3>ob集群无法启动</h3>
+
+<p>怀疑是机器的问题，但是如果大部分机器我都无法启动这算怎么一回事，</p>
+
+<p>rs的日志如下：</p>
+
+<pre><code>[2013-10-12 14:41:56.484203] WARN  create_first_table (ob_root_bootstrap.cpp:164) [140296887187200] fail to create e
+mpty tablet. table_id=111 err=-54
+[2013-10-12 14:41:56.484272] WARN  bootstrap_first_table (ob_root_bootstrap.cpp:130) [140296887187200] fail to creat
+e first_tablet_entry's tablet. err=-54
+[2013-10-12 14:41:56.484289] ERROR do_bootstrap (ob_root_server2.cpp:582) [140296887187200] bootstrap first root table error, err=-54
+[2013-10-12 14:41:56.484302] ERROR boot_strap (ob_root_server2.cpp:565) [140296887187200] bootstrap failed! ret: [-54]
+[2013-10-12 14:41:56.484314] INFO  ob_root_server2.cpp:570 [140296887187200] ObRootServer2::bootstrap() end:ret[-54]
+[2013-10-12 14:41:56.484325] INFO  ob_root_worker.cpp:3129 [140296887187200] admin cmd=16, err=-54
+[2013-10-12 14:41:56.484339] WARN  do_admin_without_return (ob_root_worker.cpp:3252) [140296887187200] not supported admin cmd:cmd[16]
+</code></pre>
+
+<p>cs的日志如下：</p>
+
+<pre><code>ERROR do_request (ob_chunk_service.cpp:451) [139992810493696] service not started, only accept start schema message or heatbeat from rootserver.
+[2013-10-12 14:41:56.480804] INFO  ob_tablet_image.cpp:3133 [139993389482080] begin scan report_tablet_list size:0
+[2013-10-12 14:41:56.481673] INFO  ob_general_rpc_stub.cpp:259 [139993389482080] report tablets over, send OB_WAITING_JOB_DONE message.
+[2013-10-12 14:41:56.482303] INFO  ob_tablet_manager.cpp:987 [139993389482080] tablet report. typeset=51
+[2013-10-12 14:41:56.482321] INFO  ob_tablet_image.cpp:3133 [139993389482080] begin scan report_tablet_list size:0
+[2013-10-12 14:41:56.483331] INFO  ob_general_rpc_stub.cpp:259 [139993389482080] report tablets over, send OB_WAITING_JOB_DONE message.
+[2013-10-12 14:41:56.483670] ERROR do_request (ob_chunk_service.cpp:470) [139992810493696] call func error packet_code is 219 return code is -1026
+</code></pre>
+
+<p>ms的日志如下：</p>
+
+<pre><code>[2013-10-12 14:41:56.510527] WARN  create (../../src/common/hash/ob_hashtable.h:302) [139726122704928] create buckets fail
+[2013-10-12 14:41:56.527871] WARN  init (../../src/common/ob_kv_storecache.h:1755) [139726122704928] create map fail
+ ret=-1 num=5543383
+[2013-10-12 14:41:56.527890] ERROR init (ob_sql_query_cache.cpp:217) [139726122704928] KeyValueCache init error, ret: 1
+[2013-10-12 14:41:56.527897] ERROR initialize (ob_mysql_server.cpp:151) [139726122704928] ObSQLQueryCache init error, ret: 1
+[2013-10-12 14:41:56.527906] WARN  start (ob_mysql_server.cpp:508) [139726122704928] initialize failed ret is 1
+[2013-10-12 14:41:56.527913] ERROR do_work (ob_merge_server_main.cpp:172) [139726122704928] obmysql server start failed,ret=1
+[2013-10-12 14:41:56.527982] INFO  ob_mysql_server.cpp:611 [139726122704928] server stoped.
+</code></pre>
+
+<p><s>create_bucket失败，这个也不能总是说内存的问题吧&hellip;莫非是大部分开发机都资源不足？我靠谁干的&hellip;.</s></p>
+
+<p>确认了 ms 起不来是因为内存分配失败的问题 感谢 <a href="http://www.weibo.com/u/1912538231" title="瑶瓔">瑶瓔</a> 的辛苦debug</p>
+
+<h3>关于border_flag</h3>
+
+<p>border_flag这事情是很早遗留的问题了，<a href="http://weibo.com/chuanhui85" title="阿里日照">@日照师兄</a> 说过，大概是border_flag和min/max对象两套东西一起在用，目前看直接不要用border_flag的MIN/MAX位就好了，比对的时候会直接跟min/max对象比对的，而忽略了border_flag。但是毕竟有些地方没改过来，比如：</p>
+
+<pre><code>int ObRootTabletInfo::split_tablet(const ObReplica &amp; replica)
+{
+  int ret = OB_ERROR;
+  if (replica.meta_.range_.start_key_ == meta_info_.range_.start_key_)
+  {
+    if (replica.meta_.range_.end_key_ &lt; meta_info_.range_.end_key_)
+    {
+      meta_info_.range_.border_flag_.unset_min_value(); #这里需要设置
+      meta_info_.range_.start_key_ = replica.meta_.range_.end_key_;
+      ret = OB_SUCCESS;
+    }
+  }
+  if (OB_SUCCESS != ret)
+  {
+    TBSYS_LOG(WARN, "split tablet error:tablet[%s], replica[%s]", to_cstring(meta_info_.range_),
+        to_cstring(replica.meta_.range_));
+  }
+  return ret;
+}
+</code></pre>
+
+<p>如果split的时候一个tablet已经置位MIN/MAX了，现在分裂的时候后一部分（原tablet split之后的那部分）已经不是MIN-MAX，但是置位还在，就悲催了。</p>
+
+<p>钦此。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase的库依赖问题]]></title>
+    <link href="http://cxh.me/2013/09/27/depend-problem-in-oceanbase/"/>
+    <updated>2013-09-27T16:15:00+08:00</updated>
+    <id>http://cxh.me/2013/09/27/depend-problem-in-oceanbase</id>
+    <content type="html"><![CDATA[<p>今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
+
+<p>最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
+
+<!-- more -->
+
+
+<pre><code>LDADD = libtest2.a \
+        libtest2.a 
+</code></pre>
+
+<p>或者gcc命令</p>
+
+<pre><code>gcc –o test main.c libtest2.a libtest1.a
+</code></pre>
+
+<p>这里编译的时候会认为libtest2.a依赖于libtest1.a, libtest2.a可以使用libtest1.a的接口，但是反过来会找不到符号。也就是会有会有"undefined reference to ***”的链接错误。</p>
+
+<p>找了一下原因，主要是gcc链接顺序的问题，以下引自 <a href="http://www.cnblogs.com/wujianlundao/archive/2012/06/06/2538125.html" title="使用静态库链接程序">悟空不悟空的博客</a></p>
+
+<hr />
+
+<p>原因是gcc在链接的时候，对于多个静态库或者.o文件是从前往后依次处理的，如果当前的静态库或.o文件中没有使用的符号，则往后继续寻找，而不会再往前查找。</p>
+
+<p>下面是man gcc看到的说明：</p>
+
+<p>-l library</p>
+
+<blockquote><p>  Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not recommended.)</p>
+
+<p> It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are specified.  Thus, foo.o -lz bar.o searches library z after file foo.o but before bar.o.  If bar.o refers to functions in z, those functions may not be loaded.</p></blockquote>
+
+<p>所以在使用一些依赖关系比较复杂的静态库时，我们可能会看到这样的使用方式：gcc –o test main.c libtest1.a libtest2.a libtest1.a。在链接序列中，一个静态库可能出现多次，以解决一些循环依赖。</p>
+
+<hr />
+
+<p>另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
+
+<p>ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的&hellip;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase源码分析-root_table_manager相关]]></title>
+    <link href="http://cxh.me/2013/09/26/root-table-manager/"/>
+    <updated>2013-09-26T12:15:00+08:00</updated>
+    <id>http://cxh.me/2013/09/26/root-table-manager</id>
+    <content type="html"><![CDATA[<p>记录一下root_table_manager相关类的阅读和心得。</p>
+
+<!-- more -->
+
+
+<h3>ObTableNameIterator</h3>
+
+<p>一个Iterator, 用于获取所有的TableName</p>
+
+<ul>
+<li><p>init</p>
+
+<p>初始化并调用scan_tables执行查询表名的sql语句</p></li>
+<li><p>scan_tables</p>
+
+<p>执行sql语句 &ldquo;select table_name, table_id from __all_table&rdquo; 来得到所有表的表名</p></li>
+<li><p>get_next</p>
+
+<p>获取下一个表名, 如果 table_idx_ &lt; 3 获取的是内部表的信息, 否则从sql执行结果中迭代返回普通表名</p>
+
+<p>table_idx_对应的表名分别是:</p>
+
+<p>&hellip;.</p></li>
+<li><p>internal_get</p>
+
+<p>获取内部表名</p></li>
+<li><p>normal_get</p>
+
+<p>获取普通表名</p></li>
+</ul>
+
+
+<h3>ObTableIdName</h3>
+
+<p>顾名思义, TableId 和 TableName 的组合</p>
+
+<h3>ObTableSchemaIterator</h3>
+
+<p>获取TableSchema的迭代器</p>
+
+<h3>ObRootSchemaService</h3>
+
+<p>RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作.</p>
+
+<p>成员</p>
+
+<p>方法</p>
+
+<pre><code>init
+写入
+</code></pre>
+
+<h3>RootTableService</h3>
+
+<p>RootServer</p>
 ]]></content>
   </entry>
   

@@ -10,7 +10,11 @@ lang: zh-CN
 
 description: 在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。流量惨淡，感谢拍砖~~
 keywords:  分布式,oceanbase,数据库,挨踢人生,世情百态
+
 subtitle: 世间所有的相遇，都是久别重逢
+sub_from: 《一代宗师》
+subpic: yidaizongshi.jpg
+
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -60,6 +64,7 @@ sidebar: false
 default_asides: [
     custom/asides/about.html,
     custom/asides/profile.html,
+    custom/asides/notice.html,
     asides/recent_posts.html
     ]
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
