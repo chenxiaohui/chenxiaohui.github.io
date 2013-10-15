@@ -114,6 +114,131 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-08T00:00:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。</p>
+
+<p>首先是强制类型转换运算符的重载，作用是当前对象向其他类型的转换，常见的形式是</p>
+
+<pre><code>operator int();
+Integer::operator int()
+{
+    return x;
+}
+</code></pre>
+
+<p>调用方式类似于</p>
+
+<pre><code>Integer c(10);
+int a=c;
+</code></pre>
+
+<p>在函数调用的时候，类型转换的重载也会被隐式调用，比如下面一种情况</p>
+
+<pre><code>void print(int n)
+{
+    cout
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/">深入解析C++输入输出运算符重载</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-07T00:00:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。</p>
+
+<p>我们以输出运算符为例。首先输出运算符重载的一般形式是</p>
+
+<pre><code>friend ostream&amp; operator(CArchive&amp; ar, CObject*&amp; pOb);
+</code></pre>
+
+<p>于是才发觉ostream并不是必需的，换句话说，从语法上讲，ostream的位置放什么类都可以，只不过语义上要行得通。而友元的重载从语法上讲也不是必须的，比如可以依然用成员函数重载，函数定义变成如下的格式</p>
+
+<pre><code>ostream&amp; operator&gt;&gt;(ostream&amp; o);
+</code></pre>
+
+<p>使用的时候只能用object>>cout（或者cout>>object这就太别扭了）形式了，并且不可能连续使用了（比如obj1>>obj2>>cout），这违背了C 规范，但是语法上是的过得去的。</p>
+
+<p>举一个简单而诡异的例子（原谅我这里诡异的代码风格，只是个演示）</p>
+
+<pre><code>#include "stdafx.h"
+#include 
+using namespace std;
+class output
+{
+public:
+    output&amp; operator
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">简短总结一下C#里跨线程更新UI</a></h1>
     
     
@@ -1402,246 +1527,6 @@ custom port #
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/11/29/vmware-esxi-5-configuration/">VMware ESXi 5安装配置部分</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-29T00:00:00+08:00" pubdate data-updated="true">Nov 29<span>th</span>, 2011</time>
-        
-         | <a href="/2011/11/29/vmware-esxi-5-configuration/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>折腾了两天，终于搞懂了是怎么回事了。这里写一下详细配置，给其他像我这样的小白一个参考。</p>
-
-<p>首先明确一下ESXi是干嘛的。</p>
-
-<blockquote><p>VMware ESXi是VMware的嵌入式hypervisor。ESXi没有服务控制台，可以说是一个精简版的ESX。对于由于成本和硬件还没有开始实施虚拟化的组织来说，使用免费的VMware ESXi hypervisor不失为着手虚拟化的好方式。[3]</p>
-
-<p><img src="http://www.servicetech.com.hk/img/vmware_esxi.gif" alt="VMware ESXi ¥i¦bµw¥ó¤Wª½±µ¹B¦æ" /></p>
-
-<p>图1：VMware ESX系列架构<a href="http://www.servicetech.com.hk/img/vmware_esxi.gif">1</a></p></blockquote>
-
-<p>而ESXi可以看做ESX Server的轻量化版本。</p>
-
-<p>两者的区别见文献<a href="https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default">2</a>，还有一个非常不错的专题[3]</p>
-
-<p>我在一台Dell R710服务器上搭建了一个ESXi Server，同时运行两台服务器，一台RHEL5.4，一台Win2K8。详细过程如下：</p>
-
-<p>首先需要注意的是很多服务器购买的时候，内置软件有远程管理模块。比如DELL的iDRAC，实际上来讲，用处不大，而且iDRAC占用着一些端口（比如HTTPS 443），导致我安装了ESXi之后一度连接不上也看不到web提示页面。这里我们先禁用iDRAC。从System Setup进入Dell内置管理系统，然后不给iDRAC配置IP地址（原则上讲开始是没有配置IP的，但是大部分人的习惯是进去把IP配置了，I suppose）。之后在管理系统里建立RAID，注意RAID1是热备份的，相当于你只有一半硬盘空间可用。然后选择安装操作系统，系统类型选择ESXi 4，放入系统光盘。实际上我从官网下载（<a href="https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default">https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default</a>）了ESXi5，但不影响。ESXi安装可以参考[4]，绝对通俗易懂。</p>
-
-<p>进入ESXi之后可以选择开启SSH和ESXiShell，这样你就可以远程登陆到ESXi做点很底层的事情，至于ESXiShell，这是个定制的Shell，里面只保留了一部分的Linux命令，然后加入了一部分ESXi自己的命令。传说ESXi需要用账号unsupported登陆，而这个unsupported本身是不受服务支持的，改坏了自己负责。但是实际上用root登陆就行了。</p>
-
-<p>其实最常用的还是VMware Sphere Client，虽然官方有命令行工具Sphere CLI，但是大部分人不会去使用。安装完ESXi之后，浏览器输入IP应该就能看到一个页面了。然后用Sphere Client登陆之后可以做相应操作，比如安装操作系统什么的。</p>
-
-<p>这里一定要注意一个问题，安装操作系统的时候不能断开Sphere Client，我在这问题上2了很久，后来才想到原来是这个原因。就像远程桌面连接拷东西的时候不能退出一样，这东西不会后台自动运行的，退出，就没了。</p>
-
-<p>下一讲讲一下ESXi的网络配置，欢迎关注。转载请注明出处。</p>
-
-<p>参考文献：</p>
-
-<p><a href="http://www.servicetech.com.hk/img/vmware_esxi.gif">1</a> 產品方案 – VMware – ESXi 入門教學，</p>
-
-<p><a href="https://www.vmware.com/cn/tryvmware/?p=free-esxi5&amp;lp=default">2</a> ESX还是ESXi？这也是个问题，</p>
-
-<p>[3] 虚拟化hypervisor：VMware ESXi全面解析，</p>
-
-<p>[4]Vmware_ESXI_4.0_安装详解(图文)，</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/11/26/about-tencent-zhangxiaolong/">转载: 腾讯的张小龙是一个什么样的人</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-11-26T00:00:00+08:00" pubdate data-updated="true">Nov 26<span>th</span>, 2011</time>
-        
-         | <a href="/2011/11/26/about-tencent-zhangxiaolong/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>有人在知乎上问：腾讯的张小龙是一个什么样的人？
-下面是我的回答：</p>
-
-<p>5年前，张小龙是中国Top10的程序员。
-他一个人写代码，完成了Foxmail的头三个版本。
-Foxmail如此受到欢迎，以至于他不得不外放了语言包，让各种忠实粉丝翻译为十几种语言。
-直至今日，Foxmail被收购，QQmail推出，Foxmail的企业用户依然有数百万。</p>
-
-<p>在被腾讯收购之后，Foxmail开始了艰难的转变，从客户端转变为Web产品。
-一开始非常不顺利，最早的版本类似Web上的巨无霸，几乎无法操作。
-从程序员到管理者，从客户端产品经理到Web产品经理，
-张小龙度过了极为孤独的三年时光。
-三年后，他完成了第一次变形。
-QQmail被腾讯内部称为“七星级产品”。
-人们经常用一个例子来说明QQmail在产品体验上的细腻入微：
-如果你在邮件正文里提到“附件”，而你在发送时并没有粘贴任何附件，
-那么系统会立即提醒：您是否忘了加上附件。
-这一体验现在Gmail也有了。</p>
-
-<p>QQmail的成功，却让张小龙感觉到焦灼。
-因为邮箱对于大数量的普通网民而言，依然是一个门槛极高的产品。
-也许，教会他们用@符号都需要许多年。
-还有什么是海量网民所需要的产品？
-张小龙开始了他的第二次转变，
-从Web工具类产品，进入Web社交类产品。</p>
-
-<p>这一过程大约耗费了不到两年时间，
-难度比上一次更大，周折更多。
-张小龙和他的团队最先试验了阅读空间，
-这是跳出工具类产品的第一个接榫。
-做阅读空间貌似是一个工具，但是其中会有简单的人际互动。
-可以观察用户的行为和交互习惯。</p>
-
-<p>阅读空间获得了成功，
-于是就有了QQ邮箱广播的尝试。
-这是在QQ邮箱中试图打造一个类Twitter产品的尝试。
-163邮箱也做过类似的事情，
-但是这个项目失败了，用户和内容并入了腾讯微博。
-在邮箱的使用场景下，
-阅读空间的慢速阅读和深阅读是和邮箱调性相契合的，
-但是和快速流动的Tweets流却不能相容。</p>
-
-<p>于是，又有了QQ邮箱漂流瓶。
-这是一场试验，
-主题是：假设在大用户数量基础上，做轻SNS类应用，尤其是陌生人交友，是否能够获得成功？
-结果空前成功。
-每天的漂流瓶达到了骇人听闻的数量级，
-用户粘性也得到了非常可观的增长。
-这个试验的副产品是正视了普通网民内心深处是何等孤独。
-以至于他们愿意一次次用尽写瓶中信的每日三次机会，
-愿意一次次打捞蓝色页面中转瞬即逝的电子漂流瓶。</p>
-
-<p>第三次转变突然到来，
-张小龙的目光早已经从Web跳转到了移动互联网。
-只是一个简单的要求，
-团队中的程序员就从原来的岗位离开，
-开始学习手机客户端的编程。
-原来在QQmail手机随身邮上的经验，
-被广泛应用到了微信的打造过程中。
-新的手机团队不是做一个客户端，
-而是IOS、安卓、塞班三个客户端同时开始做，
-放出IOS版本之后，立即转安卓做下一个版本，
-安卓做完转塞班，然后再转回做IOS。
-这叫全天候手机开发团队。
-他们喜欢在黑夜里通宵开发，
-此时广州寂寥无人，
-适合集中精力并行开发。
-程序员三五成群，在工作区过道上低声讨论，
-有的就地开始做俯卧撑，以提振精神。
-有人把他们称为“矿工”，
-因为他们总是在黑暗里工作，
-而他们以这称号为傲。</p>
-
-<p>微信在8个月里就横扫了整个市场，
-比它炫的没它简单，
-比它简单的没它快，
-没有谁比它更快，
-哪怕在GPRS下，微信也能把进度条轻易推到底。
-万法归宗，唯快不破。
-在各家拼单点功能的时候，
-微信在11年下半年突然跳离主战场，
-在LBS和视频通话上布下两粒棋子。
-随即，在LBS上开发了“摇一摇”功能。
-满城的“卡嚓”声响起，
-无穷尽的寂寞之心终于有了简单的去处。
-从Web SNS产品到移动互联网SNS产品，
-张小龙第三跳只用了8个月。</p>
-
-<p>在这八个月里，
-微信从无人看好到炙手可热，
-巨大的转变下让张小龙感觉到更多的是孤独。
-在11年上半年的一个月时间内，
-他曾经一篇篇仔细读过几乎所有业界对微信的评价。
-读过一边倒认为微信无望的论调，
-读过各种关于微信抄袭KIK和Talkbox的指责。
-11年下半年，一起都逆转了过来。
-张小龙依然沉默不语，
-但是微信3.0的开机页面上放出了迈克尔.杰克逊的图片，
-边上写了MJ的一句话：
-&ldquo;你说我是错的,那你最好证明你是对的.&rdquo;
-&ldquo;谨以此版本纪念迈克尔杰克逊，感谢他的音乐陪伴我们的产品开发之旅。“
-同年11月，TalkBox放出了TXT和图片输入功能。
-而此时，微信开始提供自定义透明背景头像、二维码名片，
-开始试验时尚感对产品流行度的影响。</p>
-
-<p>除了每周一次的网球，和每天深夜的音乐，
-张小龙没有什么别的嗜好。
-程序员时代的烟瘾一直保持了下来，
-他是广州深夜里最大的Kent消费者，
-沉默到像谜一样的男人，
-中国为数不多具有文艺气质的产品经理。
-他是那种因为喜欢《蓝莲花》歌词，
-就一定要问许巍买下版权，
-挂在QQ邮箱入口的人。
-他也是那种喜欢同事小女儿涂鸦，
-就把一幅涂鸦画和《蓝莲花》一样挂在QQ邮箱入口的人。</p>
-
-<p>如果世界上又出现了什么新鲜的APP应用，
-在发布后的48小时之内，
-如果你也下载尝鲜，
-可能你会遇到个名叫Allen的人，
-如果这人沉默不语，甚至连头像都没有。
-那么你也许已经遇见了张小龙。</p>
-
-<p><strong>（以上内容纯属传说，不能对其真实性负责）</strong></p>
-
-<p>补充材料：小龙喜欢车，但是早年买不起。一次去美国的时候，租了一辆。临走的前一晚，半夜醒来张小龙失踪了。原来，他舍不得告别那车，半夜开出去兜风了。—陈让回忆录《我所知道的张小龙》</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -1699,6 +1584,10 @@ QQmail被腾讯内部称为“七星级产品”。
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
       </li>
     
@@ -1711,11 +1600,7 @@ QQmail被腾讯内部称为“七星级产品”。
       </li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
+        <a href="/2013/10/12/svn-commit-failed/">Svn Commit Failed</a>
       </li>
     
   </ul>

@@ -114,6 +114,92 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/05/20/Obama-like-the-god/">神一样的奥巴马哈哈哈</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-20T00:00:00+08:00" pubdate data-updated="true">May 20<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/20/Obama-like-the-god/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/05/14/cannnot-you-install-the-headers/">万水千山总是情，预装下header行不行？</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-14T00:00:00+08:00" pubdate data-updated="true">May 14<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/14/cannnot-you-install-the-headers/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>晚上安装Ngix总是遇到一个问题，如下图</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/05/image_thumb.png" title="image" alt="image" /></p>
+
+<p>也就是&#8221;<strong>C preprocessor &ldquo;/lib/cpp&rdquo; fails sanity check”</strong>错误，网上怎么说的都有，随便一搜索就是一堆问题，历尽千辛万苦，装了一堆乱七八糟的rpm包（我是RedHat AS4），差点就换个内核了，最后在发现是glibc-headers没装，最后在RedHat第三张盘里发现了glibc-headers的rpm，如下</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/05/image_thumb1.png" title="image" alt="image" /> 问题是这么重要的东西，为什么就不预装一下，甚至软件管理那里都没有它的选项….</p>
+
+<p>哎，万水千山总是情，预装下header行不行？</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">IE8无法调试ActiveX控件的问题</a></h1>
     
     
@@ -1070,128 +1156,6 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/02/24/message-box-like-qq-or-msn/">仿QQ、MSN消息提示窗口的实现（C#）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
-        
-         | <a href="/2011/02/24/message-box-like-qq-or-msn/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>前言：我们在QQ、MSN、飞信等即时通信软件中经常看到消息弹出提示，即屏幕右下角弹出一个消息提示框，然后过一段时间隐去（有时候也不隐去，比如一个艰难的决定）。这种提示方式在消息通信中比弹MessageBox更符合用户习惯，前者往往阻碍用户正常操作。我们尝试在.Net下模拟这种方式。</p>
-
-<p>坦白的说核心代码是某位大牛（John O’Byrne）写的，另一位大牛Patrick Vanden Driessche 修改了部分代码，我在此基础上增加了对多弹框的支持，文后附了原代码和我修改之后的代码。</p>
-
-<p>多弹框的实现部分主要写了一个PlaceManager类每次从0下标开始检测哪个位置可用，然后在这个位置弹出消息提示框，消息提示框隐掉之后再回收这个位置。</p>
-
-<p>考虑到同时弹出两个及两个以上框的几率非常小，同时建立TaskbarNotifier窗口的过程资源消耗较多，程序里默认建立了一个TaskbarNotifier的对象，每次检测如果这个对象没有被使用则直接填入标题和内容并弹出，否则新建一个TaskbarNotifier对象再弹出。没有做使用概率的分析，大家如果觉得一个不够用可以默认多建立几个。</p>
-
-<p>Demo里弹出消息提示框是在界面线程里，如果不是界面线程则会有问题，即使取消了CheckForIllegalCrossThreadCalls依然不行，这时需要在界面类里添加代理方法，使用代理方法弹出消息，具体代码如下所示，这问题也困扰了我好久：</p>
-
-<pre><code>delegate void PromptMessage(string message);
-public void Msg(string message)
-{
-    PromptMessage call = new PromptMessage(PromptMsg);
-    this.Invoke(call, new object[] { message });
-}
-</code></pre>
-
-<p>程序界面如图1所示：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb3.png" title="未命名" alt="未命名" /> 图2 程序界面</p>
-
-<p>点击<a href="http://www.roybit.com/wp-content/uploads/2011/02/TaskbarNotifier.rar">这里</a>下载源程序代码，<a href="http://www.roybit.com/wp-content/uploads/2011/02/TestQQNotify.rar">这里</a>下载我添加了多窗口提示后的代码。</p>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb3.png" title="未命名">1</a> TaskbarNotifier代码，Created by John O’Byrne，2002-12-2，Modified by Patrick Vanden Driessche ，2003-1-11</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/02/23/analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/">&ldquo;违反并发性: UpdateCommand 影响了预期1条记录中的0条&rdquo;原因分析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-23T00:00:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time>
-        
-         | <a href="/2011/02/23/analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>该问题出现在使用DataAdapter自动对DataTable(或DataSet)进行更新的时候，具体情形是：通过界面添加了一条记录，然后调用DataAdapter的Update方法更新了数据，之后又修改或删除了这条记录。</p>
-
-<p>原因网上有很多说法，大部分的分析我感觉是扯淡，其实主要的原因是自增长字段的值没有跟数据库同步<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a>，即前台的记录里添加了一条记录，但是程序不知道自增长的ID字段应该填充多少，用户也不可能指定这个ID，更新了之后数据库自动填充了自增长ID，但是前台对应的DataTable(或DataSet)里却没有同步更新，从而导致DataAdapter不知道根据什么字段来定位修改的记录，因而出错。</p>
-
-<p>具体的解决方法参考<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a>一文中给出了一种方法，即每次插入记录的时候去服务器查询自增长种子值，然后把结果放到DataTable对应自增长ID列的AutoIncrementSeed属性里，主要的问题有如下两点：</p>
-
-<ol>
-<li> 我不知道怎么获取……SQLServer里可以用DBCC CheckIdent([User],NoReseed)语句，但是这个语句在代码里貌似是不返回结果的。</li>
-<li> 如果两个用户同时操作，比如A添加了一条记录未提交，B也添加了一条记录，这时两个用户的AutoIncrementSeed是一样的，之后也会存在更新的并发问题。</li>
-</ol>
-
-
-<p>其实最简单的解决方法就是每次更新之后把新的记录返回一下，替换当前DataTable，问题不就解决了么。参见<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">代码</a></p>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a> Access自动编号 违反并发性原因解析,</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/9/">&larr; Older</a></li>
@@ -1249,6 +1213,10 @@ public void Msg(string message)
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
       </li>
     
@@ -1261,11 +1229,7 @@ public void Msg(string message)
       </li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
+        <a href="/2013/10/12/svn-commit-failed/">Svn Commit Failed</a>
       </li>
     
   </ul>

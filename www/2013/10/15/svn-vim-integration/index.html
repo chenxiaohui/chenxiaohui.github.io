@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>关于svn commit fail的问题 - CXH.ME</title>
+  <title>svn vim 整合方案 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
 
   
@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/10/12/svn-commit-failed">
+  <link rel="canonical" href="http://cxh.me/2013/10/15/svn-vim-integration">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -112,7 +112,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
   <header class="page-header">
     
-      <h2 class="entry-title">关于svn Commit Fail的问题</h2>
+      <h2 class="entry-title">Svn Vim 整合方案</h2>
     
     
       <p class="meta">
@@ -128,7 +128,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-10-12T21:39:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+<time datetime="2013-10-15T11:53:00+08:00" pubdate data-updated="true">Oct 15<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -137,27 +137,106 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   </header>
 
 
-<div class="entry-content"><p>svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
+<div class="entry-content"><p>这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
 
-<p>看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
-
-<blockquote><p>-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.</p>
-
-<ul>
-<li>例: svn ci -F svn-commit.tmp</li>
-</ul>
-</blockquote>
+<p>遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
 
 <!-- more -->
 
 
-<p>PS: commit 完后, 还是要手动 rm svn-commit.tmp.</p>
+<pre><code>alias sta='st|grep ^A '
+alias stm='st|grep ^M '
+alias std='st|grep ^D '
+alias po='echo "#!/bin/sh" &gt;post-review.sh &amp;&amp; echo "post-review \\" &gt;&gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; std &gt;&gt;post-review.sh; stm &gt;&gt; post-review.sh ; vi post-review.sh'
+</code></pre>
 
-<p>另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表有误怎么办？</p>
+<p>之后可以得到类似如下所示的post-review.sh，当然这个是不能直接运行的。</p>
 
-<p>其实很简单，只要不保存退出，就会有提示了。保存退出才会直接提交的。放心。</p>
+<pre><code>#!/bin/sh
+post-review \
+M       tests/rootserver/root_table/iterator/test_ob_server_tablet_iter.cpp
+M       tests/rootserver/root_table/iterator/test_ob_root_replica_iter.cpp
+M       tests/rootserver/root_table/iterator/test_ob_server_replica_iter.cpp
+M       tests/rootserver/root_table/iterator/test_iterator_base.h
+M       tests/rootserver/root_table/iterator/Makefile.am
+M       tests/rootserver/root_table/iterator/test_ob_root_table_iter.cpp
+M       tests/rootserver/root_table/iterator/run.sh
+M       tests/rootserver/root_table/iterator/test_ob_alive_root_table_iter.cpp
+</code></pre>
 
-<p>钦此。</p>
+<p>我们面临两个问题：</p>
+
+<ol>
+<li>每行的格式都略有差别，比如前面有A/M/D标记，后面没有续行符号\，没有空格什么的。</li>
+<li>需要能够针对每一行或者多行进行svn操作（svn diff/revert 应该是最常见的操作）</li>
+</ol>
+
+
+<p>这里我们通过vim脚本实现如下的功能：</p>
+
+<p>svn.vim 实现如下</p>
+
+<pre><code>function! StripSVN() range
+    "Step through each line in the range...
+    for linenum in range(a:firstline, a:lastline)
+        "Replace loose ampersands (as in DeAmperfy())...
+        let curr_line   = getline(linenum)
+        let replacement = substitute(curr_line,'^\(A\|M\|D\)','','g')
+        call setline(linenum, replacement." \\")
+    endfor
+    call cursor(linenum)
+    "Report what was done...
+    if a:lastline &gt; a:firstline
+        echo "Strip Svn" (a:lastline - a:firstline + 1) "lines"
+    endif
+endfunction
+function! SVNCommand(cmd, prompt, combine) range
+    if a:prompt
+        let sure = input("Are you sure? (y/n) ")
+        if sure != 'y'
+            return
+        endif
+    endif
+    let cmd = '!svn '.a:cmd
+    for linenum in range(a:firstline, a:lastline)
+        "Replace loose ampersands (as in DeAmperfy())...
+        let curr_line   = getline(linenum)
+        let replacement = substitute(curr_line,'^\(A\|M\)','','g')
+        let replacement = Trim(Trim(replacement,'\\'),' ')
+        if a:combine
+           let cmd = cmd.' '.replacement.' '
+        else
+            let cmd = '!svn ' . a:cmd. ' ' . replacement
+            execute cmd
+            "echo cmd
+        endif
+    endfor
+    if a:combine
+        execute cmd
+        "echo cmd
+    endif
+endfunction
+</code></pre>
+
+<p>第一个函数处理每行的格式，第二个函数读取每行的内容，生成命令并执行，prompt=1 的时候会提示并让用户确认， combine=1 的时候所有行会拼成一条执行，否则每行执行一次。</p>
+
+<p>然后在vimrc中添加：</p>
+
+<pre><code>noremap &lt;leader&gt;sp :call StripSVN()&lt;CR&gt;
+noremap &lt;leader&gt;sf :call SVNCommand("diff", 0 ,1)&lt;cr&gt;
+noremap &lt;leader&gt;sr :call SVNCommand("revert", 1 ,0)&lt;cr&gt;dd
+noremap &lt;leader&gt;sl :call SVNCommand("log", 0 ,0)&lt;cr&gt;
+noremap &lt;leader&gt;sa :call SVNCommand("add", 0 ,1)&lt;cr&gt;
+noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
+</code></pre>
+
+<p>这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1] SVN 命令参考（svn command reference）, <a href="http://riaoo.com/subpages/svn_cmd_reference.html">http://riaoo.com/subpages/svn_cmd_reference.html</a></p>
+
+<p>[2] 使用脚本编写 Vim 编辑器, <a href="http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/">http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/</a></p></blockquote>
 </div>
 
 
@@ -180,7 +259,7 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
   
 
 
-<time datetime="2013-10-12T21:39:00+08:00" pubdate data-updated="true">Oct 12<span>th</span>, 2013</time>
+<time datetime="2013-10-15T11:53:00+08:00" pubdate data-updated="true">Oct 15<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -209,14 +288,10 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/10/12/several-svn-problems/" title="Previous Post:
-        几个svn的问题">&laquo; 几个svn的问题</a></li>
+        href="/2013/10/12/svn-commit-failed/" title="Previous Post:
+        关于svn commit fail的问题">&laquo; 关于svn commit fail的问题</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/10/15/svn-vim-integration/"
-        title="Next Post: svn vim 整合方案">svn vim 整合方案
-        &raquo;</a></li>
       
     </ul>
   </footer>
@@ -246,8 +321,8 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://cxh.me/2013/10/12/svn-commit-failed/';
-        var disqus_url = 'http://cxh.me/2013/10/12/svn-commit-failed/';
+        var disqus_identifier = 'http://cxh.me/2013/10/15/svn-vim-integration/';
+        var disqus_url = 'http://cxh.me/2013/10/15/svn-vim-integration/';
         var disqus_script = 'embed.js';
       
     (function () {

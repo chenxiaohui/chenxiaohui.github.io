@@ -114,6 +114,160 @@ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-1/">面向对象语言的编译过程&#8211;以C++为例(一)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-20T00:00:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-1/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>摘要:</p>
+
+<p>概述面向对象语言的重要概念和实现技术</p>
+
+<p>以C 语言为例，介绍如何将C 程序翻译成C程序</p>
+
+<p>实际的编译器大都把C 程序直接翻译成低级语言程序</p>
+
+<p>关于面向过程的高级语言的编译过程想必大家不陌生。《编译原理》类的课程多是以C语言（C的子集)为例，介绍高级语言的编译过程。但是自从面向对象语言产生以来(I love OO programming,yeah)，面向对象的编程语言明显在编程语言中占据了主流的位置。面向对象的编程语言有三个明显的特点：封装（Encapsulation)，继承（Inheritance），和多态（Polymorphism）——以上是一道常见的面试题，各位童鞋请注意。最初的面向对象语言往往只提供部分的面向对象特性，比如VB（oh,I love VB so much)。</p>
+
+<p>面向对象的三个特性给代码复用带来的极大的好处，同时也改变了程序员的理念，使逻辑开发更接近于现实世界，而面向对象从根本上说是一种世界观，是对现实世界的一种认识方式，扯远了。</p>
+
+<p>那么编译器是如何理解这三个特性的呢？我们以C 为例，看编译器如何把面向对象的程序翻译成面向过程的程序，也就是把C 翻译成C语言，实际的编译器往往直接把C 程序翻译成低级语言，但是也有特例，比如ObjectC，就是把C 翻译成C语言，而以C语言（或C语言的子集，不甚了解）作为中间代码的。</p>
+
+<p>翻译的过程如下：</p>
+
+<p>1. 将C 语言中一个类的所有非静态属性构成一个C语言的结构体类型，取类的名字作为结构体类型的名字</p>
+
+<p>2. 类的静态属性是该类的所有对象所共有的,应当翻译成C中的全局变量，但是需要改一个名字</p>
+
+<p>3. C 语言中类的对象声明不加翻译就成了C语言中相应结构体类型的变量声明</p>
+
+<p>4. 将C 语言中类的非静态方法翻译成C语言的函数，对应的方法和函数的区别有下面几点：</p>
+
+<p>函数的名字必须在原来方法名的基础上修改</p>
+
+<p>函数声明增加一个形参this</p>
+
+<p>在函数体中出现的函数调用也要增加一个实参</p>
+
+<p>在方法中对本对象的非静态属性的访问，改成对this相应域的访问。在方法中对其它对象的非静态属性的访问不必修改</p>
+
+<p>5. 类的静态方法在定义和调用的地方都需要改名</p>
+
+<p>我们举一个例子，以下是一个简单的面向对象的程序，主要体现了面向对象的封装特性：</p>
+
+<pre><code>#include 
+
+using namespace std;
+
+class Test
+
+{
+
+public:
+
+//一个静态变量
+
+static int c;
+
+int a;
+
+static void printc();
+
+void printa();
+
+};
+
+int Test::c;//静态变量初始化
+
+void Test::printc()
+
+{
+
+cout
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/01/20/be-a-man-of-personality/">做人要个性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-20T00:00:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2011</time>
+        
+         | <a href="/2011/01/20/be-a-man-of-personality/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p><img src="http://fmn.xnimg.cn/fmn045/20100813/1510/b_large_tsfn_477c0000d13b2d12.jpg" alt="" /></p>
+
+<p><img src="http://fmn.xnimg.cn/fmn040/20100813/1505/b_large_6REe_5b060000d2022d0b.jpg" alt="" />
+<img src="http://fmn.xnimg.cn/fmn044/20100813/1505/b_large_eOmt_611e000030c72d0f.jpg" alt="" />
+<img src="http://fmn.xnimg.cn/fmn038/20100813/1505/b_large_G378_6122000094cb2d0f.jpg" alt="" />
+<img src="http://fmn.xnimg.cn/fmn040/20100813/1505/b_large_h5I4_3ea7000032e42d0c.jpg" alt="" />
+<img src="http://fmn.xnimg.cn/fmn045/20100813/1505/b_large_8s7M_0592000095522d0e.jpg" alt="" />
+<img src="http://fmn.xnimg.cn/fmn045/20100813/1505/b_large_rHbB_6ef00000983f2d13.jpg" alt="" />
+<img src="http://fmn.xnimg.cn/fmn043/20100813/1505/b_large_fcxR_2a540000323b2d0d.jpg" alt="" />
+ps:&ldquo;一开到北京&#8221;之前明显有一句tmd，但是字幕给和谐掉了</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/01/19/words-written-on-the-top/">写在最前</a></h1>
     
     
@@ -1195,116 +1349,6 @@ End Sub
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/05/05/my-university-2/">我的大学（二）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2010</time>
-        
-         | <a href="/2010/05/05/my-university-2/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>毛概貌似是最无聊的，去的不多，醒得更少，听的没有。倒是最后的展示课去了很多人，八仙过海，各显神通。那时候新媒体还没分出去，所以六系还没有显得这么荒凉。我们跟一个新媒体的寝室合拍一个话剧，写蒋介石的，借了几套国防生的衣服，笑场无数。郎钰泽有胡子的样子还真有点老蒋的意思。那张青天白日旗我也一直留着，毕竟这东西比较烫手，想扔也不敢……</p>
-
-<p>（四）</p>
-
-<p>大一的我们，已经有点学霸的意思了。我到现在还是挺好奇，这么帮人怎么会凑到一起。环境的影响作用还是挺大的，基本上看一个人，就能想象一个宿舍的氛围。那时候宿舍没有门禁，十一点半关门，楼管最早认识的一个人就是赵龙了，因为他总是上自习到在关门之后，再敲门回宿舍。主席说，一个人，熬几天夜不难，难得是天天熬夜。龙龙这四年一直用美国人作息时间严格要求自己，这是一种什么精神?——这是身在曹营心在汉的精神……</p>
-
-<p>大一其实算是个分水岭，进入大学的时候，我们要么是最优秀的一部分，要么是相当优秀的一部分，是金子总要发光的，但当满地都是金子的时候，我自己也不知道自己是哪颗了。不过有的人真的从那个学期就开始堕落了。每个人有自己的选择，不过回想从前的时候，如果发现日子总是那么苍白，是不是种悲哀?</p>
-
-<p>有时候觉得这句话挺对的：长恨人心不如水，等闲平地起波澜。生活如果一直这么过下去，那么未必不是件好事。一切悲剧的来源，都是对现实的不满。况且感情泛滥的时代里，寂寞是最常见的状态。我相信感情的无邪，也承认曾经的不成熟。无论怎样，人总是在痛苦中成长起来，少年多磨砺，本不是什么坏事。现在翻翻兜里那张好人卡，依然坚定地认为，我确实是个好人。</p>
-
-<p>（五）</p>
-
-<p>有人说，大学里没有甩人和被甩的经历，人生不完整。这个要求真是太高了，尤其在北航这样的地方。甩人是不可能的了，我连被甩的机会都没有。感情在没有得到肯定的时候就被好人卡无情的扼杀了。每当仰望蓝天的时候，我都由衷的感慨道，让我被甩一次吧……</p>
-
-<p>在大三的时候听说一个女生因感情问题跳荷花池了，被救起后嚎啕大哭。我们当时的反应都是这个女生的男朋友是怎样牛掰的一个人啊，让北航的女生要死要活的。不过荷花池自杀的难度也大了点，除去遥远的荷花池浮尸案，据说当年死的唯一一个兄弟是，跳下去没淹死，但死意已决，爬上来用板砖把自己拍晕了，然后，淹死了……</p>
-
-<p>后来我终于明白QQ是怎么来的了，世上本无聊，聊的人多了，就有了QQ。有人说男人只有一个QQ号，却加满了各种女人，而女人有好多QQ号，目的只是调戏同一个男人。不置可否。只是知道QQ看似寥落的上线人数背后有着庞大的隐身队伍，往往随便扔个炸弹就能炸出好多浅水者。寒冷的冬夜里，那小企鹅的跳动，毕竟温暖了许多人的心。不过我总把谁谁谁把我加为好友的消息看成谁谁谁把我加为好人了。敏感了……谢谢大家。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/05/05/my-university-11/">我的大学（十一）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2010</time>
-        
-         | <a href="/2010/05/05/my-university-11/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>（二十一）</p>
-
-<p>我想，毕业的时候肯定会有很多人问：你觉得大学收获了什么。其实世界上很多事情都是不明确的，能用数字和尺度度量的只是很少的一部分。无论你觉得你收获的东西有多么明确，背后其实还隐含着很多，而这些东西，往往在潜意识里影响你很长时间。如果真的去分辨一下，那么我只能说，学历代表过去，能力代表现在，学习力代表未来。</p>
-
-<p>我一直在试图淡化大学这个概念。高墙，校门，象牙塔，其实并不能割裂出一个独立的空间。物理上的分隔，在思想上造成的影响，其实很小。细想大学的生活与校外究竟有多少差别？读书，听课，生活，实践，其实淡去事物的本质，也就是一种思想的交流罢了。</p>
-
-<p>而思想是没有界限的。</p>
-
-<p>很欣赏陈寅恪先生所说，“自由之精神，独立之人格”，以思想的自由，在繁芜丛杂的价值定位里，维持自己的独立人格，这才是为学之人应该有的境界。在你的人生没有被固定到朝九晚五去的时候，努力多读点书，多思考，与时间对话，这样才能寻求独立的人格。在大学这个相对隔离的环境里，我们才能以一个旁观者的视角，透过现象，去看生活的本质，如此机会，以后恐怕难得了。</p>
-
-<p>大学其实是最后的象牙塔了。以后很难有时间专心的去学习和思考。站在人生的一个新的节点，回顾曾经的画面，才发觉不经意间时间已经过了好多。回首大学四年，有太多的感动，喜悦，痛苦和收获。曾经在三号楼通宵写作业，跟班级一起郊游聚餐，也曾在图书馆泡一整天，在实验室涮火锅做柚子茶……在北航度过的四年已经成为记忆深处不可磨灭的印记，而所收获的也必将影响深远。</p>
-
-<p>其实写到这里很多东西已经偏离了主旨，甚至有点别扭。作为一个总结本科阶段的作业，不相关的写的有点多了。我更习惯处于暗处，用一双眼睛冷静的旁观社会。随手写这些文字，希望不要引起反感。我很欣赏蔡元培先生“兼容并包”的思想，有包容，有冲突，才能有新的思想产生，如达尔文所说，适者生存。至于这些文字是不是像一个本科总结，我想——</p>
-
-<p>也许似乎大概是，然而未必不见得吧。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/11/">&larr; Older</a></li>
@@ -1362,6 +1406,10 @@ End Sub
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
       </li>
     
@@ -1374,11 +1422,7 @@ End Sub
       </li>
     
       <li class="post">
-        <a href="/2013/10/11/post-review-conflict-under-git-svn/">post-review在svn和git共同存在下的冲突问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a>
+        <a href="/2013/10/12/svn-commit-failed/">Svn Commit Failed</a>
       </li>
     
   </ul>
