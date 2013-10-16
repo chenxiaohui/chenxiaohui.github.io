@@ -110,6 +110,163 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/09/02/all-maps-in-douban-alpha-city/">貌似是豆瓣alpha城全部的地图了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-02T00:00:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2011</time>
+        
+         | <a href="/2011/09/02/all-maps-in-douban-alpha-city/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/thumb.png" title="地图" alt="地图" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/08/31/skin-magic-linking-in-winsdk-program/">SkinMagic在WinSDK程序中的链接</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-31T00:00:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2011</time>
+        
+         | <a href="/2011/08/31/skin-magic-linking-in-winsdk-program/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实这种诡异的搭我配估计没人会遇到。我只是想在SDK程序里做一下美化而已。</p>
+
+<p>SkinMagic在MFC程序里的使用还是很常见的，网上代码有的是，至于大家手里的SkinMagic库，恐怕没有几个是正版的吧？有木有有木有！</p>
+
+<p>其实在SDK下使用SkinMagic还是比较简单的事情，主要解决两个问题：</p>
+
+<ol>
+<li> 库的链接</li>
+<li> 皮肤的导入</li>
+</ol>
+
+
+<p>第一个其实好说，注意InitSkinMagicLib传入WinMain的hInstance：</p>
+
+<pre><code>VERIFY( 1 == InitSkinMagicLib(hInstance, NULL , NULL, NULL ));
+VERIFY( 1 == LoadSkinFromResource(NULL,MAKEINTRESOURCE(IDR_SKIN5),"skin"));
+VERIFY( 1 == SetDialogSkin( "Dialog" ) );
+</code></pre>
+
+<p>然后记得导入库就行</p>
+
+<pre><code>#pragma  comment(lib,"SkinMagicTrial")
+#include "SkinMagicLib.h"
+</code></pre>
+
+<p>第二个问题，由于是SDK程序，所以需要手动添加资源，然后在资源里建立SKIN项，再导入皮肤，这时候VS会自动建立resource.h文件。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/08/image_thumb.png" title="image" alt="image" /> 然后就OK啦。如果自己建立窗口，记得对ShowWindow之前调用一下SetWindowSkin。我只弹了个对话框，效果如下</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/08/image_thumb1.png" title="image" alt="image" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/">清华大学软件学院MSE开题报告Latex模板</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-31T00:00:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2011</time>
+        
+         | <a href="/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>使用请先编译BIB文件（参考文献），然后直接生成pdflatex（windows下），用Linux的孩纸请自行抉择。</p>
+
+<blockquote><p>bibtex %1</p>
+
+<p>pdflatex %1.tex</p></blockquote>
+
+<p>没找到表格分散对齐的命令，只能手动填充空格了。</p>
+
+<p>在CTex下测试通过。下载链接：<a href="http://www.roybit.com/wp-content/uploads/2011/08/docs.rar" title="docs">here</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/08/30/liangxinshu-unnominated/">转载：中国数字时代：独立候选人梁树新未能通过提名</a></h1>
     
     
@@ -1014,126 +1171,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/fish-in-the-air/">在空气中游泳的鱼儿</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/16/fish-in-the-air/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>原文链接：<a href="http://www.dapenti.com/blog/more.asp?name=xilei&amp;id=48138">http://www.dapenti.com/blog/more.asp?name=xilei&amp;id=48138</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/an-article-has-the-characteristic-of-luoyonghao/">这个段子很有罗永浩的风格</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/16/an-article-has-the-characteristic-of-luoyonghao/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>去附近的atm自动取款机的小房间里，熬夜看书，大概看了2个小时左右，2个平平安安来敲门，问我在里面干嘛，我说我在看书，他问我为什么在这里看书，我说我看不下去的时候就把银行卡插进去看看余额，就有心思接着看书了。他听了我这番话后，眼神里都是星星点点的东西。就让我早点回家休息。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/an-article-about-baidu/">转一篇关于baidu的帖子</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/16/an-article-about-baidu/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>央视曝光百度推广链接内幕真相:诚信与利益 孰轻孰重</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/6/">&larr; Older</a></li>
@@ -1191,23 +1228,23 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/16/linux-mount-ntfs/">linux下挂载ntfs分区的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/16/linux-mount-ntfs/">Linux Mount Ntfs</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/15/git-reset-revert/">git reset和git revert</a>
       </li>
     
       <li class="post">
         <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
       </li>
     
   </ul>

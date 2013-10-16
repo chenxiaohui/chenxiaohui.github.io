@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-15T19:08:02+08:00</updated>
+  <updated>2013-10-16T16:39:39+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,209 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[linux下挂载ntfs分区的问题]]></title>
+    <link href="http://cxh.me/2013/10/16/linux-mount-ntfs/"/>
+    <updated>2013-10-16T10:29:00+08:00</updated>
+    <id>http://cxh.me/2013/10/16/linux-mount-ntfs</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[测试覆盖率统计]]></title>
+    <link href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/"/>
+    <updated>2013-10-16T10:15:00+08:00</updated>
+    <id>http://cxh.me/2013/10/16/test-coverage-percentage-statistics</id>
+    <content type="html"><![CDATA[<p>代码覆盖率(code coverage)的评价准则</p>
+
+<p>函数覆盖率（Function coverage）：程序中的每个函数或者子函数都被调用过吗？
+指令/语句覆盖率（Statement coverage）：程序中的每个节点node或者每个语句都被执行过吗？
+判断/分支覆盖率（Decision coverage or branch coverage）：若用控制流图表示程序，有执行到控制流图中的每一个边吗？例如控制结构中所有IF或者switch case指令都有执行到逻辑运算式成立及不成立的情形吗？
+条件覆盖率（Condition coverage）：也称为断定覆盖（predicate coverage），每一个逻辑运算式中的每一个条件（无法再分解的逻辑运算式）是否都有执行到成立及不成立的情形吗？条件覆盖率成立不表示判断覆盖率一定成立。
+条件/判断覆盖率（Condition/decision coverage）：需同时满足判断覆盖率和条件覆盖率。
+考虑以下的C/C++函数：</p>
+
+<p>int foo (int x, int y)</p>
+
+<p>{</p>
+
+<p>int z = 0;</p>
+
+<p>if ((x>0) &amp;&amp; (y>0)) {</p>
+
+<p>z = x;
+lsv
+}</p>
+
+<p>return z;</p>
+
+<p>}</p>
+
+<p>假设此函数是一个大型程序的一部份，且某测试用例执行到此函数：</p>
+
+<p>函数覆盖率：只要函数foo有执行过一次，即满足函数覆盖率100%的条件。
+指令覆盖率：若有调用过foo(1,1)，函数中每一行（包括z = x;）都执行一次，满足指令覆盖率100%的条件。
+判断覆盖率：若有调用过foo(1,1)及foo(0,1)，前者会使if的条件成立，因此z = x;会执行，后者会使if的逻辑运算式（(x>0) &amp;&amp; (y>0);）不成立，因此满足判断覆盖率100%的条件。
+条件覆盖率：若有调用过foo(1,1)、foo(1,0)及foo(0,0)，前二个会使(x>0)的条件成立，而第三个会使该条件不成立，而第一个会使(y>0)的条件成立，而后面二个会使该条件不成立，所有条件都有出现成立及不成立的情形，因此满足条件覆盖率100%的条件。
+考虑以下的程序：</p>
+
+<p>if a and b then</p>
+
+<p>以下二个测试可以得到100%的条件覆盖率：</p>
+
+<p>a=true, b=false
+a=false, b=true
+但上述的测试条件都不会使if的逻辑运算式成立，因此不符合判断覆盖的条件。至少还需要添加如下的测试条件，才能保证if的判断条件都满足了。</p>
+
+<p>a=true, b=true</p>
+
+<p> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p>
+
+<p> <a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
+
+<p> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p>
+
+<p> <a href="http://magustest.com/blog/whiteboxtesting/using-gcov-lcov/">http://magustest.com/blog/whiteboxtesting/using-gcov-lcov/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux Mount Ntfs]]></title>
+    <link href="http://cxh.me/2013/10/16/linux-mount-ntfs/"/>
+    <updated>2013-10-16T00:00:00+08:00</updated>
+    <id>http://cxh.me/2013/10/16/linux-mount-ntfs</id>
+    <content type="html"><![CDATA[<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, &#8216;Palatino Linotype&#8217;, Times, &#8216;Times New Roman&#8217;,
+              &#8220;Hiragino Sans GB&#8221;, &#8220;STXihei&#8221;, &#8220;微软雅黑&#8221;, serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: &#8221; (&#8221; attr(href) &#8220;)&#8221;; }
+  abbr[title]:after { content: &#8221; (&#8221; attr(title) &#8220;)&#8221;; }
+  .ir a:after, a[href^=&#8221;javascript:&#8221;]:after, a[href^=&#8221;#&#8221;]:after { content: &#8220;&#8221;; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>2013-10-16-linux-mount-ntfs</title></head><body><hr />
+<p>layout: post
+title: &#8220;linux下挂载ntfs分区的问题&#8221;
+date: 2013-10-16 10:29
+comments: true
+categories: </p>
+<hr /></body></html>]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[git reset和git revert]]></title>
@@ -901,177 +1104,6 @@ restart处理了重启的问题.</p>
 </code></pre>
 
 <h1>ObRootReloadConfig</h1>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[普通英雄]]></title>
-    <link href="http://cxh.me/2013/09/15/to-be-a-hero/"/>
-    <updated>2013-09-15T12:54:00+08:00</updated>
-    <id>http://cxh.me/2013/09/15/to-be-a-hero</id>
-    <content type="html"><![CDATA[<p>只是想起一首老歌:</p>
-
-<!-- more -->
-
-
-<p><embed class="center" src="http://player.youku.com/player.php/sid/XMTQ3NjIzNjk2/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
-
-<blockquote><p>有时候 我必须 选择一个人过冬</p>
-
-<p>习惯在 冰天雪地里 追梦</p>
-
-<p>人从容 再出手 自然也就从容</p>
-
-<p>只相信 地球间的 那一点红</p>
-
-<p>看世上 所有英雄</p>
-
-<p>哪一个 做得轻松</p>
-
-<p>我也不 希望被歌颂</p>
-
-<p>我只想 普普通通</p>
-
-<p>自己的伤自己知道痛</p>
-
-<p>哪道深哪一道最重</p>
-
-<p>血肉之躯只会越战越勇</p>
-
-<p>好男儿气贯长虹</p>
-
-<p>倒下也要忍着痛苦</p>
-
-<p>看这世上所有的英雄</p>
-
-<p>竟没有一个人想通</p>
-
-<p>淹没在残酷的波涛中</p>
-
-<p>就像岸上的砂粒一样 普普通通</p>
-
-<p>就像岸上的砂粒一样 来去匆匆</p>
-
-<p>就像岸上的砂粒一样 感叹如风</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress的一些技巧]]></title>
-    <link href="http://cxh.me/2013/09/14/tricks-about-octopress/"/>
-    <updated>2013-09-14T15:03:00+08:00</updated>
-    <id>http://cxh.me/2013/09/14/tricks-about-octopress</id>
-    <content type="html"><![CDATA[<p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
-
-<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
-
-<p>主要说下面几个小技巧:</p>
-
-<!-- more -->
-
-
-<h3>1. alias(别名)</h3>
-
-<p>话说每次写博客的时候要敲rake new_post/ rake generate/ rake preview/ rake deploy&hellip;等等, 中间再出一点什么git同步的错误, 严重影响写博客的心情.可以通过alias简化命令:</p>
-
-<pre><code>alias rg='rake generate &amp;&amp; rake preview'
-alias rd='rake deploy &amp;&amp; git add . &amp;&amp; git commit "`date`" &amp;&amp; git push origin source'
-alias rn='rake new_post'
-</code></pre>
-
-<h3>2. 插入图片</h3>
-
-<p>octopress的一大优点是插图片方便, 拷贝到source/images目录下, 然后在markdown里插入就行了, 但是不是很智能啊&hellip;其实如果大家在vim里装了nerdtree的话, 完全可以通过nerdtree找到图片, 然后拷贝图片链接. 问题是nerd_tree不支持这个操作&hellip;</p>
-
-<p><img src="http://cxh.me/images/2013-9/are-you-fucking-kidding-me.jpg" title="你特么在逗我?" alt="" /></p>
-
-<p>不过我们可以 <a href="http://stackoverflow.com/questions/16368771/copy-path-file-with-nerdtree-vim-plugin" title="Copy path file with NERDtree Vim plugin">扩展一下nerd_tree</a>. 在$VIM/nerdtree_plugin下建立yank_mapping.vim, 内容如下</p>
-
-<pre><code>call NERDTreeAddKeyMap({
-        \ 'key': 'yy',
-        \ 'callback': 'NERDTreeYankCurrentNode',
-        \ 'quickhelpText': 'put full path of current node into the default register' })
-function! NERDTreeYankCurrentNode()
-    let n = g:NERDTreeFileNode.GetSelected()
-    if n != {}
-        call setreg('"', n.path.str())
-    endif
-endfunction
-</code></pre>
-
-<p>这样找到文件之后就可以yy了~~~    yy&hellip;yy&hellip;</p>
-
-<h3>3. 生成文件直接打开</h3>
-
-<p>我们执行rake new_post之后, 填好title之后会在_post下生成一个markdown文件(先不讨论title翻译slug的蛋疼之处), 每次那么长的文件命不能让我每次都敲进去或者复制进去吧. 我们可以修改Rakefile在task:new_post最后加一句自动打开生成的文件:</p>
-
-<pre><code>system "vi #{filename}"
-</code></pre>
-
-<h3>4. 加快生成速度</h3>
-
-<p>Jekyll每次都会生成所有的_posts, 这会导致生成速度的极度下降, 而且官方也没有给出什么解决方案啊. Octopress实现一个比较笨的办法, Rake Isolate和 Rake Integrate, 从名字就可以看出, 是把需要生成的文件保留, 其他的都移出去, 生成完毕之后再移动回来. 不管怎么说吧, 至少是个方案. 写了一段简单的vimscript实现这个功能跟vim的集成.</p>
-
-<pre><code>"plugin -ocotpress  写octopress博客的插件
-function! RakePreview()
-  silent! execute "!rake isolate['".expand("%&lt;")."']"
-  silent! execute "!rake generate"
-  silent! execute "!rake integrate"
-  silent! execute "!google-chrome http://localhost:4000"
-  silent! execute "!rake preview"
-endf
-
-nmap &lt;leader&gt;rp :call RakePreview()&lt;cr&gt;
-</code></pre>
-
-<p>chrome打开的时候还没有执行preview, 所以需要再刷新一下&hellip;preview有些输出, 觉得不想看的可以重定向.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用vimdiff来显示gitdiff]]></title>
-    <link href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/"/>
-    <updated>2013-09-14T11:40:00+08:00</updated>
-    <id>http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff</id>
-    <content type="html"><![CDATA[<p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
-
-<p>具体说来有两种办法:</p>
-
-<!-- more -->
-
-
-<p>在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.</p>
-
-<p>git config &mdash;global diff.tool vimdiff<br/>
-git config &mdash;global difftool.prompt No</p>
-
-<p>这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.</p>
-
-<p>第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下的结果:</p>
-
-<p><img src="http://cxh.me/images/2013-9/difftool-prompt.png" title="git diff prompt" alt="" /></p>
-
-<p>当然我们也可以替换掉默认的diff工具, 可以指定</p>
-
-<pre><code>git config --global diff.external git_diff_wrapper
-</code></pre>
-
-<p>然后在PATH的某个目录下建立git_diff_wrapper, 比如/usr/bin/git_diff_wrapper, 内容如下:</p>
-
-<pre><code>#!/bin/sh
-vimdiff "$2" "$5"
-</code></pre>
-
-<p>最后加执行权限</p>
-
-<pre><code>chmod +x git_diff_wrapper
-</code></pre>
-
-<p>执行git diff的时候就可以看到效果</p>
-
-<p><img src="http://cxh.me/images/2013-9/git-vimdiff.png" title="vim diff 效果" alt="" /></p>
-
-<p>可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).</p>
 ]]></content>
   </entry>
   

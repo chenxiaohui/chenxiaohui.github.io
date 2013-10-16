@@ -110,6 +110,170 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/03/08/two-methods-to-deal-with-config-file-using-csharp/">C#配置文件读写的两种思路</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-03-08T00:00:00+08:00" pubdate data-updated="true">Mar 8<span>th</span>, 2011</time>
+        
+         | <a href="/2011/03/08/two-methods-to-deal-with-config-file-using-csharp/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>配置文件是增加软件扩展性不可获取的一部分。本文提供两种C#配置文件读写的方式。</p>
+
+<p>第一种是使用Windows自身的INI文件读写API，在.NET下调用的时候需要对其进行声明，这也是最传统的一类，问题在于INI文件表达能力有限，每次都要费心地去给每个不同的配置项设置不同的KEY，不适合LIST型的配置项的书写。</p>
+
+<p>另一种是使用XML序列化与反序列化。这里只是用XML作为一个例子，其实.NET下的几种序列化方式<a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">1</a>都可以用来作为配置文件读写的一种方式。XML的表达能力强于INI文件，同时序列化方式也大大简化了配置文件读写的过程，确是一种方便的工具。</p>
+
+<p>详见<a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">代码</a>。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">1</a>C#序列化技术详解（转），</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/02/25/about-swallowing-the-bulb/">关于吞灯泡问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-25T00:00:00+08:00" pubdate data-updated="true">Feb 25<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/25/about-swallowing-the-bulb/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>之前网上有一个很火的帖子，关于为什么不能吞灯泡的问题[1]，还有很多被好奇心害死娃们前仆后继的证明并跟帖[2]。不过最近果壳传出一个视频辟谣，看结果貌似吞灯泡没神马大不了的。</p>
+
+<p>PS:这位哥哥真是很有献身精神和娱乐精神啊。</p>
+
+<p>视频1 吞宝剑吞铁球算个毛，真的猛士敢于吞灯泡</p>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1] 为什么不能吞灯泡（好奇心太强者慎入），</p>
+
+<p>[2] 为什么不能吞灯泡(亮点在下面的跟帖)，</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/02/24/multi-table-operation-with-local-cache/">基于本地缓存的多表级联操作的实现（C#）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+        
+         | <a href="/2011/02/24/multi-table-operation-with-local-cache/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>背景：数据库操作中我们经常会遇到级联修改的问题，在之前的一篇文章<a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png" title="视图结构">1</a>里我们探讨了多表级联的一种实现方式，这篇文章我们将探讨另一种实现方式，即通过本地缓存的方式，避免不必要的存储过程。</p>
+
+<p>定义：</p>
+
+<blockquote><p>事实表：中央表，它包含联系事实与维度表的数字度量值和键。简单说，事实表包括各个维度的ID。</p>
+
+<p>维表：述事实数据表中的数据。维度表包含创建维度所基于的数据。</p></blockquote>
+
+<p>首先，我们的条件是，级联不是很复杂，存在一张事实表和若干维表，通过单ID将事实表和维表进行级联。思路是：首先本地缓存维表的所有数据，然后将事实表的数据绑定到DataGridView上，将ID列设置为DataGridViewComboBoxColumn，绑定相应的维表，指定值字段和显示字段，让结果自动对应。</p>
+
+<p>举个简单的例子：订单数据库，包含Customers，Products和Orders三个表，之间的逻辑关系如图1所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png" title="视图结构" alt="视图结构" />图1 数据库表结构关系</p>
+
+<p>程序运行截图如图2所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb2.png" title="程序" alt="程序" /></p>
+
+<p>图2 程序运行截图</p>
+
+<p>具体的见<a href="http://www.roybit.com/wp-content/uploads/2011/02/testDataUpdate.rar">代码</a>，不再赘述。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png" title="视图结构">1</a> 多表级联增删查改操作的实现，</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/02/24/message-box-like-qq-or-msn/">仿QQ、MSN消息提示窗口的实现（C#）</a></h1>
     
     
@@ -1155,243 +1319,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/20/recommend-a-csharp-socket-framework/">推荐一套C#的Socket框架</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-20T00:00:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/20/recommend-a-csharp-socket-framework/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>最近做一个C#的C/S项目，自己实现了一套底层的框架，想查查有什么好的TCP分包实现，能防止冗余和错误的，结果发现了这套框架，作者是一个非常牛逼而乐于助人的牛人，推荐一下：</p>
-
-<p>可扩展多线程异步Socket服务器框架EMTASS 2.0：</p>
-
-<p>C#实现的可复用Socket接收/发送共享缓冲区类：</p>
-
-<p>期待大家有所收获，希望能与大家一起交流。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/20/ftp-commands/">FTP命令</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-20T00:00:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/20/ftp-commands/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>用命令如何把自己写好的网页上传到服务器或者从服务器上下载东西呢。方法有很多。用ftp是个不错的选择。方法如下</p>
-
-<h2>#</h2>
-
-<pre><code>echo open 你的ftpip &gt;ftp.txt
-
-echo user &gt;&gt;ftp.txt
-
-echo password&gt;&gt;ftp.txt
-
-echo get test.exe &gt;&gt;ftp.txt
-
-echo bye &gt;&gt;ftp.txt
-
-ftp -s:ftp.txt
-
-del ftp.txt
-</code></pre>
-
-<p>这样就可以把test.exe下载下来。也可以做个批处理</p>
-
-<pre><code>@echo off
-
-echo open 你的ftpip &gt;ftp.txt
-
-echo user &gt;&gt;ftp.txt
-
-echo password&gt;&gt;ftp.txt
-
-echo get test.exe &gt;&gt;ftp.txt
-
-echo bye &gt;&gt;ftp.txt
-
-ftp -s:ftp.txt
-
-delftp.txt
-
-@cls
-</code></pre>
-
-<h2>#</h2>
-
-<p>之前的部分是转载，其实就是利用了ftp命令可以读取指令的功能，实际ftp.txt文件内容如下（中文部分是需要替换的）：</p>
-
-<pre><code>open 你的ftp地址
-
-你的用户名
-
-你的密码
-
-bin
-
-get 你的文件名
-
-bye
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-2/">面向对象语言的编译过程&#8211;以C++为例(二)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-20T00:00:00+08:00" pubdate data-updated="true">Jan 20<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-2/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>摘要:</p>
-
-<p>概述面向对象语言的重要概念和实现技术</p>
-
-<p>以C 语言为例，介绍如何将C 程序翻译成C程序</p>
-
-<p>实际的编译器大都把C 程序直接翻译成低级语言程序</p>
-
-<p>编译器对于继承的处理，往往是父类包含子类的对象，例如</p>
-
-<pre><code>struct Base
-
-{
-
-int a;
-
-};
-
-struct Derived
-
-{
-
-Base base;
-
-int b;
-
-};
-</code></pre>
-
-<p>再深入的偶也不会了………</p>
-
-<p>下面我们讨论对面向对象多态特性的处理。多态是面向对象语言最为精彩的地方，可以说是诞生无数神奇的特性，多态给了我们极大的自由，让我们可以在一套类的体系结构中自由游走，可以写很少的代码，但是完成复杂的功能，可以在别人的基础上做二次开发……</p>
-
-<p>好了，不打广告了，下面举一个简单的例子说明编译器对多态的处理。首先介绍一下虚函数表。大多数编译器实现多态都是通过虚函数表，虚函数表是一个保存了多个函数指针的表，其中每个函数对应着一个虚函数（非虚函数不参与），调用一个虚函数的时候，编译器通过虚函数表查找相应位置的函数，所以编译时编译器不知道这个函数会调用到基类的函数还是派生类的函数，所以叫动态绑定或运行时绑定。</p>
-
-<p>以下是一个简单的多态实例程序，有了虚函数所以可以在基类指针指向派生类对象的时候运行派生类的函数。</p>
-
-<pre><code>#include 
-
-using namespace std;
-
-class Base
-
-{
-
-public:
-
-virtual void Hello();
-
-};
-
-void Base::Hello()
-
-{
-
-cout
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/10/">&larr; Older</a></li>
@@ -1449,23 +1376,23 @@ cout
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/16/linux-mount-ntfs/">linux下挂载ntfs分区的问题</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/16/linux-mount-ntfs/">Linux Mount Ntfs</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/15/git-reset-revert/">git reset和git revert</a>
       </li>
     
       <li class="post">
         <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/svn-commit-failed/">关于svn commit fail的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/several-svn-problems/">几个svn的问题</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/12/a-strange-error/">记几个诡异的bug</a>
       </li>
     
   </ul>

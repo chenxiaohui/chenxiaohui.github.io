@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>测试覆盖率统计 - CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+
+  
+  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。流量惨淡，感谢拍砖~~">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span12 well" role="article">
+
+  
+  <header class="page-header">
+    
+      <h2 class="entry-title">测试覆盖率统计</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-16T10:15:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>代码覆盖率(code coverage)的评价准则</p>
+
+<p>函数覆盖率（Function coverage）：程序中的每个函数或者子函数都被调用过吗？
+指令/语句覆盖率（Statement coverage）：程序中的每个节点node或者每个语句都被执行过吗？
+判断/分支覆盖率（Decision coverage or branch coverage）：若用控制流图表示程序，有执行到控制流图中的每一个边吗？例如控制结构中所有IF或者switch case指令都有执行到逻辑运算式成立及不成立的情形吗？
+条件覆盖率（Condition coverage）：也称为断定覆盖（predicate coverage），每一个逻辑运算式中的每一个条件（无法再分解的逻辑运算式）是否都有执行到成立及不成立的情形吗？条件覆盖率成立不表示判断覆盖率一定成立。
+条件/判断覆盖率（Condition/decision coverage）：需同时满足判断覆盖率和条件覆盖率。
+考虑以下的C/C++函数：</p>
+
+<p>int foo (int x, int y)</p>
+
+<p>{</p>
+
+<p>int z = 0;</p>
+
+<p>if ((x>0) &amp;&amp; (y>0)) {</p>
+
+<p>z = x;
+lsv
+}</p>
+
+<p>return z;</p>
+
+<p>}</p>
+
+<p>假设此函数是一个大型程序的一部份，且某测试用例执行到此函数：</p>
+
+<p>函数覆盖率：只要函数foo有执行过一次，即满足函数覆盖率100%的条件。
+指令覆盖率：若有调用过foo(1,1)，函数中每一行（包括z = x;）都执行一次，满足指令覆盖率100%的条件。
+判断覆盖率：若有调用过foo(1,1)及foo(0,1)，前者会使if的条件成立，因此z = x;会执行，后者会使if的逻辑运算式（(x>0) &amp;&amp; (y>0);）不成立，因此满足判断覆盖率100%的条件。
+条件覆盖率：若有调用过foo(1,1)、foo(1,0)及foo(0,0)，前二个会使(x>0)的条件成立，而第三个会使该条件不成立，而第一个会使(y>0)的条件成立，而后面二个会使该条件不成立，所有条件都有出现成立及不成立的情形，因此满足条件覆盖率100%的条件。
+考虑以下的程序：</p>
+
+<p>if a and b then</p>
+
+<p>以下二个测试可以得到100%的条件覆盖率：</p>
+
+<p>a=true, b=false
+a=false, b=true
+但上述的测试条件都不会使if的逻辑运算式成立，因此不符合判断覆盖的条件。至少还需要添加如下的测试条件，才能保证if的判断条件都满足了。</p>
+
+<p>a=true, b=true</p>
+
+<p> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p>
+
+<p> <a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
+
+<p> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p>
+
+<p> <a href="http://magustest.com/blog/whiteboxtesting/using-gcov-lcov/">http://magustest.com/blog/whiteboxtesting/using-gcov-lcov/</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-16T10:15:00+08:00" pubdate data-updated="true">Oct 16<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/oceanbase/'>oceanbase</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  
+  
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2013/10/16/linux-mount-ntfs/" title="Previous Post:
+        Linux Mount Ntfs">&laquo; Linux Mount Ntfs</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/2013/10/16/linux-mount-ntfs/"
+        title="Next Post: linux下挂载ntfs分区的问题">linux下挂载ntfs分区的问题
+        &raquo;</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cxh.me/2013/10/16/test-coverage-percentage-statistics/';
+        var disqus_url = 'http://cxh.me/2013/10/16/test-coverage-percentage-statistics/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+});
+-->
+</script>
+
+
+</body>
+</html>
