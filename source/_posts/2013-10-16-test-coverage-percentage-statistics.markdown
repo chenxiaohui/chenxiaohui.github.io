@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "测试覆盖率统计"
+title: "测试覆盖率统计/draft"
 date: 2013-10-16 10:15
 comments: true
 categories: oceanbase
