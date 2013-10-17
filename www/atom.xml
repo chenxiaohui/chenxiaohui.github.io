@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-17T20:50:35+08:00</updated>
+  <updated>2013-10-17T21:00:25+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -92,7 +92,7 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
     <link href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/"/>
     <updated>2013-10-16T10:15:00+08:00</updated>
     <id>http://cxh.me/2013/10/16/test-coverage-percentage-statistics</id>
-    <content type="html"><![CDATA[<h3>什么是代码覆盖率(code coverage)</h3>
+    <content type="html"><![CDATA[<p>**什么是代码覆盖率(code coverage)</p>
 
 <p>代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
 
@@ -107,6 +107,8 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
 
 
 <p>具体的参见参考文献[1] [2].</p>
+
+<p>**怎么得到覆盖率数据</p>
 
 <p>这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
 
@@ -164,12 +166,20 @@ AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
 
 <p>之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献[3] [4]。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看<a href="http://cxh.me/2013/10/16/user-script-to-get-coverage/" title="通过脚本统计代码覆盖率">下一篇博客</a>。</p>
 
+<p>[1] <a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a> &ldquo;代码覆盖率浅谈&rdquo;
+[2] <a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a> &ldquo;代码覆盖率&rdquo;
+[3] <a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a> &ldquo;Linux下c/c++项目代码覆盖率的产生方法&rdquo;
+[4] <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a> &ldquo;[整理] gcov lcov 覆盖c/c++项目入门&rdquo;</p>
+
 <h3>参考文献</h3>
 
-<blockquote><p>[1] 代码覆盖率浅谈，<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a>
-[2] 代码覆盖率，<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a>
-[3] Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a>
-[4] [整理] gcov lcov 覆盖c/c++项目入门, <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p></blockquote>
+<blockquote><p>[1] 代码覆盖率浅谈，<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a></p>
+
+<p>[2] 代码覆盖率，<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a></p>
+
+<p>[3] Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
+
+<p>[4] [整理] gcov lcov 覆盖c/c++项目入门, <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p></blockquote>
 ]]></content>
   </entry>
   
