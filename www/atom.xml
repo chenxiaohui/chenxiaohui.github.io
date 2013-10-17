@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-17T10:38:06+08:00</updated>
+  <updated>2013-10-17T10:43:34+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -67,6 +67,14 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
 </code></pre>
 
 <p>这样getcov拉取覆盖率文件，html命令建立webserver并打开浏览器，小trick，用起来舒服而已。</p>
+
+<hr />
+
+<p>擦，我不得我提醒各位，有时候发现修改了case之后覆盖率并没有提升，这一定不是你的问题，不一定是coverage数据没有更新的问题，不一定是数据没有拉取成功的问题，极有可能是浏览器缓存了数据的问题。</p>
+
+<p>这对这种问题，我们的解决方法就是：</p>
+
+<p><strong>作死地按f5</strong></p>
 ]]></content>
   </entry>
   

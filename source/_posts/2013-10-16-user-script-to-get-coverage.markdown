@@ -49,3 +49,11 @@ categories: oceanbase
 	alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
 
 这样getcov拉取覆盖率文件，html命令建立webserver并打开浏览器，小trick，用起来舒服而已。
+
+----------------------
+
+擦，我不得我提醒各位，有时候发现修改了case之后覆盖率并没有提升，这一定不是你的问题，不一定是coverage数据没有更新的问题，不一定是数据没有拉取成功的问题，极有可能是浏览器缓存了数据的问题。
+
+这对这种问题，我们的解决方法就是：
+
+**作死地按f5**
