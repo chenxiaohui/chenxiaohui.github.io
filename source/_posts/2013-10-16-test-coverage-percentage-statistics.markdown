@@ -6,7 +6,7 @@ comments: true
 categories: oceanbase
 ---
 
-**什么是代码覆盖率(code coverage)**
+####什么是代码覆盖率(code coverage)
 
 代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。
 
@@ -19,7 +19,7 @@ categories: oceanbase
 
 具体的参见参考文献[1] [2].
 
-**怎么得到覆盖率数据**
+####怎么得到覆盖率数据
 
 这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。
 
@@ -67,14 +67,15 @@ configure.ac/configure.in脚本里面需要加入
 
 	./configure --with-coverage来生成Makefile了
 
-之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献[3] [4]。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看[下一篇博客](http://cxh.me/2013/10/16/user-script-to-get-coverage/ "通过脚本统计代码覆盖率")。
+之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献[3][] [4][]。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看[下一篇博客](http://cxh.me/2013/10/16/user-script-to-get-coverage/ "通过脚本统计代码覆盖率")。
 
-[1] http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html "代码覆盖率浅谈"
-[2] http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87 "代码覆盖率"
-[3] http://sdet.org/?p=212 "Linux下c/c++项目代码覆盖率的产生方法"
-[4] http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html "[整理] gcov lcov 覆盖c/c++项目入门" 
+[1]: http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html "代码覆盖率浅谈"
+[2]: http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87 "代码覆盖率"
+[3]: http://sdet.org/?p=212 "Linux下c/c++项目代码覆盖率的产生方法"
+[4]: http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html "[整理] gcov lcov 覆盖c/c++项目入门"
 
-###参考文献
+
+####参考文献
 
 >[1] 代码覆盖率浅谈，<http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html>
 
