@@ -6,7 +6,7 @@ comments: true
 categories: oceanbase
 ---
 
-####什么是代码覆盖率(code coverage)
+###什么是代码覆盖率(code coverage)
 
 代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。
 
@@ -19,7 +19,7 @@ categories: oceanbase
 
 具体的参见参考文献[1] [2].
 
-####怎么得到覆盖率数据
+###怎么得到覆盖率数据
 
 这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。
 
@@ -75,7 +75,7 @@ configure.ac/configure.in脚本里面需要加入
 [4]: http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html "[整理] gcov lcov 覆盖c/c++项目入门"
 
 
-####参考文献
+###参考文献
 
 >[1] 代码覆盖率浅谈，<http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html>
 
