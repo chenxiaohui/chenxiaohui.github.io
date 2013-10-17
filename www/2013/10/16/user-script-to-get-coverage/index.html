@@ -137,7 +137,7 @@
 
 <p>我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。</p>
 
-<p>关于gcc coverage选项和gcov/lcov工具的使用已经在上篇文章里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
+<p>关于gcc coverage选项和gcov/lcov工具的使用已经在 <a href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/" title="测试覆盖率统计">上篇文章</a>里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
 
 <!-- more -->
 
@@ -187,7 +187,7 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
 
 <p>擦，我不得我提醒各位，有时候发现修改了case之后覆盖率并没有提升，这一定不是你的问题，不一定是coverage数据没有更新的问题，不一定是数据没有拉取成功的问题，极有可能是浏览器缓存了数据的问题。</p>
 
-<p>这对这种问题，我们的解决方法就是：</p>
+<p>针对这种问题，我们的解决方法就是：</p>
 
 <p><strong>作死地按f5</strong></p>
 </div>

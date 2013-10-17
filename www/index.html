@@ -139,7 +139,7 @@
 
 <p>我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。</p>
 
-<p>关于gcc coverage选项和gcov/lcov工具的使用已经在上篇文章里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
+<p>关于gcc coverage选项和gcov/lcov工具的使用已经在 <a href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/" title="测试覆盖率统计">上篇文章</a>里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
 
 </div>
   
@@ -195,7 +195,7 @@
       
   <header class="page-header">
     
-      <h2 class="entry-title"><a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计/draft</a></h1>
+      <h2 class="entry-title"><a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a></h1>
     
     
       <p class="meta">
@@ -220,58 +220,30 @@
   </header>
 
 
-  <div class="entry-content"><p>代码覆盖率(code coverage)的评价准则</p>
+  <div class="entry-content"><h3>什么是代码覆盖率(code coverage)</h3>
 
-<p>函数覆盖率（Function coverage）：程序中的每个函数或者子函数都被调用过吗？
-指令/语句覆盖率（Statement coverage）：程序中的每个节点node或者每个语句都被执行过吗？
-判断/分支覆盖率（Decision coverage or branch coverage）：若用控制流图表示程序，有执行到控制流图中的每一个边吗？例如控制结构中所有IF或者switch case指令都有执行到逻辑运算式成立及不成立的情形吗？
-条件覆盖率（Condition coverage）：也称为断定覆盖（predicate coverage），每一个逻辑运算式中的每一个条件（无法再分解的逻辑运算式）是否都有执行到成立及不成立的情形吗？条件覆盖率成立不表示判断覆盖率一定成立。
-条件/判断覆盖率（Condition/decision coverage）：需同时满足判断覆盖率和条件覆盖率。
-考虑以下的C/C++函数：</p>
+<p>代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
 
-<p>int foo (int x, int y)</p>
+<p>代码覆盖主要包括如下四个方面：</p>
 
-<p>{</p>
+<ol>
+<li>语句覆盖(StatementCoverage)</li>
+<li>判定覆盖(DecisionCoverage)</li>
+<li>条件覆盖(ConditionCoverage)</li>
+<li>路径覆盖(PathCoverage) 或者叫条件/判断覆盖率</li>
+</ol>
 
-<p>int z = 0;</p>
 
-<p>if ((x>0) &amp;&amp; (y>0)) {</p>
+<p>具体的参见参考文献[1] [2].</p>
 
-<p>z = x;
-lsv
-}</p>
+<p>这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
 
-<p>return z;</p>
-
-<p>}</p>
-
-<p>假设此函数是一个大型程序的一部份，且某测试用例执行到此函数：</p>
-
-<p>函数覆盖率：只要函数foo有执行过一次，即满足函数覆盖率100%的条件。
-指令覆盖率：若有调用过foo(1,1)，函数中每一行（包括z = x;）都执行一次，满足指令覆盖率100%的条件。
-判断覆盖率：若有调用过foo(1,1)及foo(0,1)，前者会使if的条件成立，因此z = x;会执行，后者会使if的逻辑运算式（(x>0) &amp;&amp; (y>0);）不成立，因此满足判断覆盖率100%的条件。
-条件覆盖率：若有调用过foo(1,1)、foo(1,0)及foo(0,0)，前二个会使(x>0)的条件成立，而第三个会使该条件不成立，而第一个会使(y>0)的条件成立，而后面二个会使该条件不成立，所有条件都有出现成立及不成立的情形，因此满足条件覆盖率100%的条件。
-考虑以下的程序：</p>
-
-<p>if a and b then</p>
-
-<p>以下二个测试可以得到100%的条件覆盖率：</p>
-
-<p>a=true, b=false
-a=false, b=true
-但上述的测试条件都不会使if的逻辑运算式成立，因此不符合判断覆盖的条件。至少还需要添加如下的测试条件，才能保证if的判断条件都满足了。</p>
-
-<p>a=true, b=true</p>
-
-<p> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p>
-
-<p> <a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
-
-<p> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p>
-
-<p> <a href="http://magustest.com/blog/whiteboxtesting/using-gcov-lcov/">http://magustest.com/blog/whiteboxtesting/using-gcov-lcov/</a></p>
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/16/test-coverage-percentage-statistics/">阅读全文</a>
+    </footer>
   
 
 
@@ -1146,7 +1118,7 @@ fi
       </li>
     
       <li class="post">
-        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计/draft</a>
+        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
       </li>
     
       <li class="post">
