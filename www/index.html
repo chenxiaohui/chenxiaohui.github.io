@@ -65,7 +65,7 @@
             <li><a href="/category/latex">Latex</a></li>
             <li><a href="/category/linux">Linux</a></li>
             <li><a href="/category/mfc">MFC</a></li>
-            <li><a href="/category/oceanbaseyuan-ma-fen-xi">Oceanbase</a></li>
+            <li><a href="/category/oceanbase">Oceanbase</a></li>
             <li><a href="/category/others">其他</a></li>
             <li><a href="/category/php">PHP</a></li>
             <li><a href="/category/python">Python</a></li>
@@ -220,7 +220,7 @@
   </header>
 
 
-  <div class="entry-content"><h4>什么是代码覆盖率(code coverage)</h4>
+  <div class="entry-content"><h3>什么是代码覆盖率(code coverage)</h3>
 
 <p>代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
 
@@ -236,7 +236,7 @@
 
 <p>具体的参见参考文献<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">1</a>.</p>
 
-<h4>怎么得到覆盖率数据</h4>
+<h3>怎么得到覆盖率数据</h3>
 
 <p>这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
 
@@ -283,9 +283,21 @@
 
   <div class="entry-content"><h3>git reset 作用</h3>
 
+<p>git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
+
+<p><img class="img-ploaroid center" src="/images/2013-10/git-reset.png" title="git-reset三种方式" alt="git-reset三种方式"><p class="align-center">git-reset三种方式</p></p>
+
+<p>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息
+git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
+git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
+
 <h3>git revert 作用</h3>
 
+<p>git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+
 <h3>撤销之后恢复</h3>
+
+<p>git-reset如果执行之后，再想回退到指定版本。//TODO</p>
 </div>
   
   
