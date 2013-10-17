@@ -223,10 +223,23 @@ noremap &lt;leader&gt;sf :call SVNCommand("diff", 0 ,1)&lt;cr&gt;
 noremap &lt;leader&gt;sr :call SVNCommand("revert", 1 ,0)&lt;cr&gt;dd
 noremap &lt;leader&gt;sl :call SVNCommand("log", 0 ,0)&lt;cr&gt;
 noremap &lt;leader&gt;sa :call SVNCommand("add", 0 ,1)&lt;cr&gt;
+noremap &lt;leader&gt;sb :call SVNCommand("blame", 0 ,1)&lt;cr&gt;
 noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
 </code></pre>
 
-<p>这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
+<h2>这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</h2>
+
+<p>其实偶然发现我好像没说怎么用，大致流程是这样的：</p>
+
+<ol>
+<li>po(alias)，生成修改列表</li>
+<li>在每个行，或者选中多个行执行svn命令(<leader>sf,<leader>sr什么的)，查看diff啊，回滚啊，查看log啊，查看blame啊</li>
+<li>提交前选中所有行执行<leader>sp， 去掉行首的A/M/D标记，在行尾加续行符</li>
+<li>执行post-review.sh提交</li>
+</ol>
+
+
+<hr />
 
 <p>参考文献：</p>
 

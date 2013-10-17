@@ -88,9 +88,20 @@ svn.vim 实现如下
 	noremap <leader>sr :call SVNCommand("revert", 1 ,0)<cr>dd
 	noremap <leader>sl :call SVNCommand("log", 0 ,0)<cr>
 	noremap <leader>sa :call SVNCommand("add", 0 ,1)<cr>
+	noremap <leader>sb :call SVNCommand("blame", 0 ,1)<cr>
 	noremap <leader>sd :call SVNCommand("delete", 1 ,0)<cr>dd
 
 这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。
+---------------------
+
+其实偶然发现我好像没说怎么用，大致流程是这样的：
+
+1. po(alias)，生成修改列表
+2. 在每个行，或者选中多个行执行svn命令(<leader>sf,<leader>sr什么的)，查看diff啊，回滚啊，查看log啊，查看blame啊
+3. 提交前选中所有行执行<leader>sp， 去掉行首的A/M/D标记，在行尾加续行符
+4. 执行post-review.sh提交
+
+------------------------------------------
 
 参考文献：
 
