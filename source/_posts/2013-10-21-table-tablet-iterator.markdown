@@ -13,6 +13,7 @@ categories:
 
 所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。
 
+<!-- more -->
 
 ## ObTableTabletIterator
 
@@ -92,7 +93,7 @@ proxy生成sql语句的时候add_rowkey_column_value失败
 
 主要是deep copy range失败
 
-
+**以上错误码都会直接返回到上层，只不过部分需要单独处理，比如OB_ENTRY_NOT_EXISTS 和OB_NO_RESULT是否继续迭代还是个问题。**
 
 ##ObRootTableIterator
 

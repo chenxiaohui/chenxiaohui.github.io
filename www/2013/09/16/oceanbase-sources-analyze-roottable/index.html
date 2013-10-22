@@ -9,7 +9,7 @@
   <meta name="author" content="Harry Chen">
 
   
-  <meta name="description" content="在帝都仰望星空大学计算机学院读了本科，后辗转五道口工程技术大学软件学院读研。诗书代码皆兴趣，文化科技均可聊。流量惨淡，感谢拍砖~~">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京（北厂环球车间OceanBase生产线）">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -225,6 +225,73 @@ for (int64_t i = 0; i &lt; rowkey_column_num_; ++i)
 </code></pre>
 
 <p>同时填充了三个cell，分别是version，port，ip，对应了RootTable的表结构，这里顺便说一下RootTable内部表化之后的表结构定义：</p>
+
+<p>range默认前开后闭，也就是说从检索tablet的时候的如果刚好有个tablet是以此endkey结尾的，那么这个tablet会被检索出来。如果检索的关键字是rowkey的话，那么这个rowkey所对应的tablet就是这个tablet而不是下一个tablet（如果tablet没有出现空洞的话），这个是系统里的约定，也是比较基础的规则了。</p>
+
+<p>举个例子，如下的函数负责从一堆tablet里面找到刚好对应当前rowkey的tablet,我们来看函数的逻辑。</p>
+
+<p>int ObRootTabletUtil::find_right_tablet(const ObRootTabletList &amp; list, const uint64_t table_id,</p>
+
+<pre><code>const ObRowkey &amp; rowkey, ObRootTabletInfo &amp; tablet)
+</code></pre>
+
+<p>{
+  int ret = OB_ENTRY_NOT_EXIST;
+  for (int64_t i = 0; i &lt; list.list_.count(); ++i)
+  {</p>
+
+<pre><code>tablet = list.list_.at(i);
+TBSYS_LOG(DEBUG, "iterator tablet:%s", to_cstring(tablet.meta_info_.range_));
+if (tablet.meta_info_.range_.table_id_ &lt; table_id)
+{
+  continue;
+}
+else if (tablet.meta_info_.range_.table_id_ &gt; table_id)
+{
+  break;
+}
+else if (tablet.meta_info_.range_.end_key_ &lt; rowkey)
+{
+  continue;
+}
+else
+{
+  if (tablet.meta_info_.range_.start_key_ &gt; rowkey)
+  {
+    break;
+  }
+  else if (tablet.meta_info_.range_.start_key_ == rowkey)
+  {
+    // find the first root tablet
+    if (rowkey.is_min_row())
+    {
+      ret = OB_SUCCESS;
+    }
+    break;
+  }
+  else
+  {
+    ret = OB_SUCCESS;
+    break;
+  }
+}
+</code></pre>
+
+<p>  }
+  if (ret != OB_SUCCESS)
+  {</p>
+
+<pre><code>// find the next tablet but not find the suitable tablet
+if (list.list_.count() &gt; 0)
+{
+  TBSYS_LOG(WARN, "not find the tablet in root table has hole:rowkey[%s], tablet[%s]",
+      to_cstring(rowkey), to_cstring(tablet.meta_info_.range_));
+}
+</code></pre>
+
+<p>  }
+  return ret;
+}</p>
 
 <h3>表名</h3>
 

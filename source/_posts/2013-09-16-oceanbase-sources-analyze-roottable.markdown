@@ -88,6 +88,65 @@ ADD_REPLICA_SERVER的定义如下：
 	}
 同时填充了三个cell，分别是version，port，ip，对应了RootTable的表结构，这里顺便说一下RootTable内部表化之后的表结构定义：
 
+range默认前开后闭，也就是说从检索tablet的时候的如果刚好有个tablet是以此endkey结尾的，那么这个tablet会被检索出来。如果检索的关键字是rowkey的话，那么这个rowkey所对应的tablet就是这个tablet而不是下一个tablet（如果tablet没有出现空洞的话），这个是系统里的约定，也是比较基础的规则了。
+
+举个例子，如下的函数负责从一堆tablet里面找到刚好对应当前rowkey的tablet,我们来看函数的逻辑。
+
+int ObRootTabletUtil::find_right_tablet(const ObRootTabletList & list, const uint64_t table_id,
+    const ObRowkey & rowkey, ObRootTabletInfo & tablet)
+{
+  int ret = OB_ENTRY_NOT_EXIST;
+  for (int64_t i = 0; i < list.list_.count(); ++i)
+  {
+    tablet = list.list_.at(i);
+    TBSYS_LOG(DEBUG, "iterator tablet:%s", to_cstring(tablet.meta_info_.range_));
+    if (tablet.meta_info_.range_.table_id_ < table_id)
+    {
+      continue;
+    }
+    else if (tablet.meta_info_.range_.table_id_ > table_id)
+    {
+      break;
+    }
+    else if (tablet.meta_info_.range_.end_key_ < rowkey)
+    {
+      continue;
+    }
+    else
+    {
+      if (tablet.meta_info_.range_.start_key_ > rowkey)
+      {
+        break;
+      }
+      else if (tablet.meta_info_.range_.start_key_ == rowkey)
+      {
+        // find the first root tablet
+        if (rowkey.is_min_row())
+        {
+          ret = OB_SUCCESS;
+        }
+        break;
+      }
+      else
+      {
+        ret = OB_SUCCESS;
+        break;
+      }
+    }
+  }
+  if (ret != OB_SUCCESS)
+  {
+    // find the next tablet but not find the suitable tablet
+    if (list.list_.count() > 0)
+    {
+      TBSYS_LOG(WARN, "not find the tablet in root table has hole:rowkey[%s], tablet[%s]",
+          to_cstring(rowkey), to_cstring(tablet.meta_info_.range_));
+    }
+  }
+  return ret;
+}
+
+
 ###表名
 
 First Root Table 的 Table ID 为 111(固定值,暂定 111)
