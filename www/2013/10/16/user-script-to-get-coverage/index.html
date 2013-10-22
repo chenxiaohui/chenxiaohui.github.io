@@ -196,9 +196,19 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
   <footer>
     <p class="meta">
       
-  
 
-<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>
+
+<!--<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>-->
+
+<div class="profilepic shad">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+        $(function(){
+                $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=100' alt='Profile Picture' style='width: 100px;' class='img-rounded' />");
+                });
+    </script>
+</div>
+
 
       
 
@@ -245,6 +255,10 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
         linux下挂载ntfs分区的问题/draft">&laquo; linux下挂载ntfs分区的问题/draft</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
+      
+      <li class="next"><a class="basic-alignment right" href="/2013/10/18/update-to-ubuntu-13-10/"
+        title="Next Post: 升级到ubuntu13.10">升级到ubuntu13.10
+        &raquo;</a></li>
       
     </ul>
   </footer>

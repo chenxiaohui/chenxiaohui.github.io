@@ -110,6 +110,107 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/09/18/methods-for-win7-to-coexist-with-several-linux/">Win7与多Linux并存的安装方法</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-18T00:00:00+08:00" pubdate data-updated="true">Sep 18<span>th</span>, 2011</time>
+        
+         | <a href="/2011/09/18/methods-for-win7-to-coexist-with-several-linux/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>网上有很多使用EasyBCD从Win7下安装linux的方法，不过用来用去觉得EasyBCD还是有些问题，比如我装Fedora64就一直报错，而做成安装U盘就可以。而且大多数Linux在EasyBCD安装的时候都要求iso文件存放于Fat32的分区里，作为一个已经装了Win7的孩纸，在硬盘上划出一块Fat32的分区实属令人发指的行为。</p>
+
+<p>这里推荐一个Linux官方的安装方法，首先下载Universal-USB-Installer，这文件很小，但是五脏俱全，包括了你可能见到的所有的Linux的……呃，选项。当然这软件还可以用来做Windows的安装盘。傻瓜化操作就不说了，不过记得每个选项对应一种Linux，包含了各种发行版，下载的iso最好不要改名，免得找不到。</p>
+
+<p>安装的事情仁者见仁，修复Grub的问题智者见智。最简单的办法是先装Win7，因为Win7是不鸟各种Linux的（丫挺的），然后装个个版本的Linux，不过不要装GrubLoader，也就是不要把启动信息写入Mbr，最后装Ubuntu，伟大的乌邦图会识别各种Linux系统然后建立启动菜单。</p>
+
+<p>当然你也可以先安装Ubuntu，然后装其他的Linux，同样不要安装Grub Loader，最后在Ubuntu下手动配置grub.cfg来驱动，不过最好的办法是使用</p>
+
+<pre><code>sudo update-grub
+</code></pre>
+
+<p>让Ubuntu自动识别安装的Linux系统，你会看到激动人心的类似于如下界面的结果：<img src="http://www.roybit.com/wp-content/uploads/2011/09/ScreenshotcxhcxhThinkPadT420__thumb.png" title="Screenshot-cxh@cxh-ThinkPad-T420_ ~" alt="Screenshot-cxh@cxh-ThinkPad-T420_ ~" /></p>
+
+<p>如果想让Win7默认启动，可以在ubuntu下执行</p>
+
+<pre><code>sudo mv /etc/grub.d/30_os-prober /etc/grub.d/06_os-prober
+</code></pre>
+
+<p>然后同上Update Grub就可以了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/09/03/unity-supports-3d-games-import-to-flash/">Unity已支持将3D游戏导出成Flash</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-03T00:00:00+08:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2011</time>
+        
+         | <a href="/2011/09/03/unity-supports-3d-games-import-to-flash/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p><a href="http://unity3d.com/"> Unity</a>是一款支持跨平台开发的3D游戏开发工具，生成的游戏可以导出到 包括iOS, Android, PS3, Wii, XBox360在内的众多平台。<a href="http://v.youku.com/v_show/id_XMzAxMDEzMDI0.html">近日Unity发布了一则视频</a>， 演示了将Unity3D游戏导出到Flash，并运行在<a href="http://labs.adobe.com/downloads/flashplayer11.html">Flashplayer11 beta版</a>上的效果。</p>
+
+<p>游戏虽然不如运行在Unity原生平台流畅，但也已远远超出人们对Flashplayer 3D性能的预期了。看起来，Flashplayer11确实朝3D这个方向迈出了一大步。
+该版本的Uinty还未正式发布，但如果你已经安装了Flashplayer11，可以先试试Adobe推荐的<a href="http://molehill.zombietycoon.com/">3D演示游戏</a>。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/09/02/all-maps-in-douban-alpha-city/">貌似是豆瓣alpha城全部的地图了</a></h1>
     
     
@@ -1089,88 +1190,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/replace-religion-with-aesthetic/">美育代替宗教</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/16/replace-religion-with-aesthetic/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>蔡元培先生的理念，但是这么多年来，未见明显成效。先生提出的原因是中国人没有信仰，而新文化打倒孔家店之后作为古人精神支柱的儒家思想被打倒，国人就更无信仰了。至于建国后破除迷信之后，国人简直连起码的敬畏都没有了。</p>
-
-<p>想来是种病态的社会。中国古人号称信奉儒释道，拜天拜地拜祖宗，这不多神信仰么，跟没信仰一样。中国自古没有宗教的传统，所以不可能像基督教社会一样，用宗教（伊斯兰教就算了，个人观点，没有歧视的意思）来规范人的理念，以忏悔来洗礼你堕落的灵魂。而按元培先生的理念，中国只能走美育，但是可悲的是这么多年，收效甚微。美育这种东西还是有点精英化了，个人理解。从某种程度上讲，什么八荣八耻也在美育的范畴之内，但是这东西明显更没起什么作用，也就证明了以政治推行的美育是没用的。说实话，荣耻观都需要政治来推行，不得不说是中国的倒退。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/man-with-beer-box-as-his-vehicle/">以啤酒箱为交通工具的异常淡定的大哥</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/16/man-with-beer-box-as-his-vehicle/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>这视频是如此的喜感</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/6/">&larr; Older</a></li>
@@ -1228,6 +1247,14 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/18/update-to-ubuntu-13-10/">升级到ubuntu13.10</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/16/user-script-to-get-coverage/">通过脚本统计代码覆盖率</a>
       </li>
     
@@ -1237,14 +1264,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/15/git-reset-revert/">git reset和git revert</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
       </li>
     
   </ul>

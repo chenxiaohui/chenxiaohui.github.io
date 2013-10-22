@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-17T21:50:16+08:00</updated>
+  <updated>2013-10-22T16:01:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,16 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[升级到ubuntu13.10]]></title>
+    <link href="http://cxh.me/2013/10/18/update-to-ubuntu-13-10/"/>
+    <updated>2013-10-18T10:49:00+08:00</updated>
+    <id>http://cxh.me/2013/10/18/update-to-ubuntu-13-10</id>
+    <content type="html"><![CDATA[<p>Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。
+<img class="img-polaroid center" src="/images/2013-10/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[霸气风骚的系统监视器htop]]></title>
@@ -186,19 +196,6 @@ fi
 <p>没找到表格分散对齐的命令，只能手动填充空格了。</p>
 
 <p>在CTex下测试通过。下载链接：<a href="http://www.roybit.com/wp-content/uploads/2011/08/docs.rar" title="docs">here</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[王垠：完全用Linux工作]]></title>
-    <link href="http://cxh.me/2011/08/29/wangyin-totally-use-linux-to-work/"/>
-    <updated>2011-08-29T00:00:00+08:00</updated>
-    <id>http://cxh.me/2011/08/29/wangyin-totally-use-linux-to-work</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>老文章了，不过很有启发意义。</p>
-
-<blockquote></blockquote>
 ]]></content>
   </entry>
   

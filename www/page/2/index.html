@@ -110,6 +110,100 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T18:29:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/memcached-source-analysis/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的引入可以减少对于数据库等的请求, 从而减少应用响应时间, 提高吞吐量. 国外类似的实现有Redis等. 国内有淘宝自主研发的tair系统等.</p>
+
+<p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
+
+<h2>基本源码结构</h2>
+
+<p>主要的源码有:</p>
+
+<ul>
+<li>memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并</li>
+</ul>
+
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">oceanbase源码分析-RootServer主要框架</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:55:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里记录一下RootServer主要框架的阅读和心得。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
     
     
@@ -1022,133 +1116,6 @@ int (*p)[n];//pointer to an array
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/09/25/this-age-of-person-with-ability/">在这个才人辈出的时代</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
-        
-         | <a href="/2012/09/25/this-age-of-person-with-ability/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>偶然翻bootstrap的资料，在bootstrap的中文网站看到如下三个sample:</p>
-
-<blockquote></blockquote>
-
-<p>神吐槽，不解释。膜拜楼主。细软跑。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/">关于结构体字节对齐的一些问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-22T00:00:00+08:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2012</time>
-        
-         | <a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p><strong>字节对齐的目的</strong></p>
-
-<p>字节对齐的作用不仅是便于cpu快速访问，同时合理的利用字节对齐可以有效地节省存储空间。对于32位机来说，4字节对齐能够使cpu访问速度提高，比如说一个long类型的变量，如果跨越了4字节边界存储，那么cpu要读取两次，这样效率就低了。但是在32位机中使用1字节或者2字节对齐，反而会使变量访问速度降低。所以这要考虑处理器类型，另外还得考虑编译器的类型。在vc中默认是4字节对齐的，GNU gcc 也是默认4字节对齐。</p>
-
-<p><strong>字节对齐的基本原则</strong></p>
-
-<p>如下三条</p>
-
-<blockquote><ol>
-<li> 结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
-<li> 结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal adding）；</li>
-<li> 结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）。</li>
-</ol>
-</blockquote>
-
-<p>举一个简单的例子：</p>
-
-<pre><code>struct node
-{
-    double d;
-    int a;
-    int b;
-    char c;
-};
-</code></pre>
-
-<p>首先double d的偏移是0，占用8字节；int a的偏移是8，可以被a的长度（4字节）整除，所以在偏移8的位置占用4字节；int b的偏移是12，同样可以整除；char c的偏移是16,可以被c的长度（1）整除，所以在偏移16的位置占用1字节。这时整个结构体占用了17字节的长度，不能被最长的成员（double类型，8字节）整除，所以必须再填充7字节。从而整个结构体的长度为24字节。</p>
-
-<p>我们把之前的例子稍微变一下：</p>
-
-<pre><code>struct node
-{
-    int a;
-    int b;
-    char c;
-    double d;
-};
-</code></pre>
-
-<p>这时a占用4字节，b占用4字节，c在偏移8的位置占用1字节，这时的偏移是9，无法被double的长度整除，所以需要填充7字节，最后占用24字节，刚好可以被结构体最长元素（double）整除。</p>
-
-<p>参考文献：</p>
-
-<blockquote><p>[1]Struct大小和内存对齐，</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1206,6 +1173,14 @@ int (*p)[n];//pointer to an array
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/18/update-to-ubuntu-13-10/">升级到ubuntu13.10</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/16/user-script-to-get-coverage/">通过脚本统计代码覆盖率</a>
       </li>
     
@@ -1215,14 +1190,6 @@ int (*p)[n];//pointer to an array
     
       <li class="post">
         <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/15/git-reset-revert/">git reset和git revert</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/15/svn-vim-integration/">svn vim 整合方案</a>
       </li>
     
   </ul>

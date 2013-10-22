@@ -114,7 +114,7 @@ task :new_post, :title do |t, args|
     post.puts "categories: "
     post.puts "---"
   end
-  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup /usr/share/sublime/sublime_text #{filename} >/dev/null 2>&1 &"
+  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup ~/share/sublime/sublime_text #{filename} >/dev/null 2>&1 &"
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")

@@ -1,8 +1,18 @@
 {% if post.author %}
-  {% assign author = post.author %}
+{% assign author = post.author %}
 {% elsif page.author %}
-  {% assign author = page.author %}
+{% assign author = page.author %}
 {% else %}
-  {% assign author = site.author %}
+{% assign author = site.author %}
 {% endif %}
-{% if author %}<span class="byline author vcard">Posted by <span class="fn">{{ author }}</span></span>{% endif %}
+<!--{% if author %}<span class="byline author vcard">Posted by <span class="fn">{{ author }}</span></span>{% endif %}-->
+{% if author %}
+<div class="profilepic shad">
+    <script src="{{ root_url }}/javascripts/md5.js"></script>
+    <script type="text/javascript">
+        $(function(){
+                $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("{{ site.email | downcase }}") + "?s=100' alt='Profile Picture' style='width: 100px;' class='img-rounded' />");
+                });
+    </script>
+</div>
+{% endif %}
