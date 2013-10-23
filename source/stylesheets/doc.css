@@ -21,10 +21,8 @@ pre{
 }
 /*basic settings*/
 h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 50, .3) 1px 1px 3px; }
-/*author*/
-.author{padding-left:20px}
-.author .author_info{padding-left:20px}
-.author .author_pic{}
+.pl20{padding-left:20px}
+.pr20{padding-right:20px}
 /*some common settings*/
 .left{float:left;}
 .right{float:right;}
