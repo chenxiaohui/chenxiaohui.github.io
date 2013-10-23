@@ -21,7 +21,10 @@ pre{
 }
 /*basic settings*/
 h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 50, .3) 1px 1px 3px; }
-
+/*author*/
+.author{padding-left:20px}
+.author .author_info{padding-left:20px}
+.author .author_pic{}
 /*some common settings*/
 .left{float:left;}
 .right{float:right;}
@@ -32,7 +35,6 @@ h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 5
 .align-right{text-align:right}
 .align-center{text-align:center;}
 /*.indent{text-indent:2em;}*/
-
 /*fonts*/
 .s14{font-size:14px}
 .s15{font-size:15px}
