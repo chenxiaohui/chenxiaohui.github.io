@@ -91,12 +91,44 @@ end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
-task :new_post, :title do |t, args|
+task :new_post, :title, :category do |t, args|
   if args.title
     title = args.title
   else
     title = get_stdin("Enter a title for your post: ")
   end
+  if args.category
+    category = args.category
+  else
+    #output an array
+    puts "===================================================="
+    categories=[
+        "技术相关",
+        "    软件发布",
+        "    C++",
+        "    .Net",
+        "    Flex",
+        "    基础理论",
+        "    Latex",
+        "    Linux",
+        "    MFC",
+        "    Oceanbase",
+        "    其他",
+        "    PHP",
+        "    Python",
+        "    vim",
+        "    web相关",
+        "IT人生",
+        "世情百态",
+        "随笔" ]
+    for i in 0..categories.size() - 1
+        puts "%2d %s" %[i ,categories[i]]
+    end
+    puts "===================================================="
+    i = get_stdin("Enter a title for your category: ")
+    category = categories[Integer(i)].gsub(/\s/,'')
+  end
+
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
@@ -111,7 +143,7 @@ task :new_post, :title do |t, args|
     post.puts "title: \"#{title.gsub(/&/,'&amp;')}\""
     post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     post.puts "comments: true"
-    post.puts "categories: "
+    post.puts "categories: \"#{category.gsub(/&/,'&amp;')}\""
     post.puts "---"
   end
   system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup ~/share/sublime/sublime_text #{filename} >/dev/null 2>&1 &"

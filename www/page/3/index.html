@@ -110,6 +110,50 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/09/25/use-picasa-client-from-goagent/">通过goagent使用Picasa客户端</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/25/use-picasa-client-from-goagent/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>goagent这一神器就不多说了，配置详见<a href="http://maolihui.com/goagent-detailed-version-of-the-tutorial.html" title="goagent教程详细版">goagent教程</a>。这里主要探讨picasa客户端使用代理的问题。</p>
+
+<p>picasa本身的代理设置只有一个用户名和密码，不明所以，所以一直用<a href="http://www.williamlong.info/blog/archives/409.html" title="Picasa相册的HOSTS文件">hosts文件的方法</a>，但是后来发现配置里还有一项“自动检测网络设置”，勾选之后只要在系统里设置好goagent代理（PS，Internet选项那里，Linux没试，Linux下也没有picasa端吧），就可以使用代理上传照片了。</p>
+
+<p>最后吐槽一下：picasa也是google神器了，更有牛逼的人脸识别，但自从picasa相册编程google plus相册之后，就有了很多纠结的问题。比如我只是想把认识的人圈点一下，结果你非要在Google Plus群发一条消息，这如何是我等低调之人所能容忍的。算了，picasa相册还是当网盘使好了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/09/25/this-age-of-person-with-ability/">在这个才人辈出的时代</a></h1>
     
     
@@ -1458,57 +1502,6 @@ egin{figure}</p>
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/03/05/xheditor-for-typeecho-plugin-supports-file-upload/">支持上传文件的xhEditor for Typecho EX插件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-05T00:00:00+08:00" pubdate data-updated="true">Mar 5<span>th</span>, 2012</time>
-        
-         | <a href="/2012/03/05/xheditor-for-typeecho-plugin-supports-file-upload/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>Typecho是一套超轻量的开源博客，界面简洁，功能紧凑，但是Typecho的文本编辑器实在是不好，需要自己写html代码，插图也不方便。试用了几个插件，发现TinyMCE回车总有问题，每次保存就多几个空行，其他几个插件也有类似问题。于是就想能不能把xhEditor这个强大的可视化HTML编辑器移植过去，后来找到一个xhEditor for Typecho插件，下载地址在<a href="http://115.com/file/atedbyls">这里</a>，作者主页。这个插件不支持上传图片，而插件使用之后系统本身的插图功能就不能用了，所以导致图片只能贴网络图了。</p>
-
-<p>于是决定在这个插件基础上改进，主要是</p>
-
-<blockquote><p>增加了图片/多媒体文件上传功能
-增加More标签直接插入功能
-修改三种工具栏模式，保证每种模式都有查看源码、Preview和More标签按钮
-更新xheditor到最新版1.1.13</p></blockquote>
-
-<p>你可能需要在admin/css/typeecho.source.css里改一下body的一个默认颜色，否则导致上传图片的弹窗左边的字显示为白色而看不到。需要说明的是，这一版More标签没有直接的可视化效果，点了之后请到源码里查看，以后有时间再做效果。另外，没时间给More做个小图标了，直接用了显示源码的那个按钮的图标。</p>
-
-<p>有bug请留言。谢谢。下载地址:<a href="http://www.roybit.com/wp-content/uploads/2012/03/XhEditor-for-Typecho.rar" title="XhEditor for Typecho">XhEditor for Typecho EX</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -1566,6 +1559,10 @@ egin{figure}</p>
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/24/s/">s</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
       </li>
     
@@ -1579,10 +1576,6 @@ egin{figure}</p>
     
       <li class="post">
         <a href="/2013/10/16/linux-mount-ntfs/">linux下挂载ntfs分区的问题/draft</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
       </li>
     
   </ul>
