@@ -110,6 +110,58 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2009/03/17/pass-a-pointer-in-assembly-language/">汇编传指针</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-17T00:00:00+08:00" pubdate data-updated="true">Mar 17<span>th</span>, 2009</time>
+        
+         | <a href="/2009/03/17/pass-a-pointer-in-assembly-language/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<h4>#</h4>
+
+<p>写接口实验程序，想写个函数，函数里读入一个数字，存到内存一个变量里，传了变量的偏移值进去，函数里怎么也写不进内存，调了很长时间后才发现mov [bp 4]，ax是不对的，[bp 4]只取出了地址，想在写进去还要再寻一次值，我觉得一般的办法就是寄存器间接寻址了，加一条：</p>
+
+<p>MOV SI,[BP 4]</p>
+
+<p>MOV [SI],AX</p>
+
+<p>这里寄存器只能用BX,BP,SI,DI,对32位汇编可以使用EAX,EBX,ECX,EDX,ESI,EDI,EBP,ESP</p>
+
+<p>当然如果用invoke指令应该会简单很多…..</p>
+
+<p>C语言还是最伟大的语言啊，简化多少操作…..</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2008/10/22/the-meeting-of-leaders-of-internet-in-last-ten-years/">关于商业互联网十年领袖峰会</a></h1>
     
     
@@ -1041,52 +1093,6 @@ return 0;
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2007/12/25/christmas-eve/">平安夜</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2007-12-25T00:00:00+08:00" pubdate data-updated="true">Dec 25<span>th</span>, 2007</time>
-        
-         | <a href="/2007/12/25/christmas-eve/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>习惯了天天单调的日子，下了自习才发觉晚上是平安夜。关于中国人该不该过圣诞的争论听了无数，暂且不去讨论，我喜欢那种气氛，如果下雪就更好了。每个节日都是心灵的盛宴，于是外国人正企盼着天天过圣诞呢，就像我们企盼天天过年一样。</p>
-
-<p>手机忘了带，8点回寝室才发现收到了好多的短信。天是阴沉的，但我感觉好温暖。每天孤独地上课上自习，常常在晚上很晚受到朋友们的问候，在冷冷的夜中，那如何不温暖了一个人的心灵？</p>
-
-<p>还记得那次看流星雨，一个人仰望天空，孤独的许愿。1点多了，不想打搅朋友们，却收到很多短信，原来大家都没睡。同一片夜空下，有多少人追寻着流星的轨迹呢？</p>
-
-<p>平安夜还是那么简单过去了，有些后悔没计划好。不过那种氛围还是不错的，8食堂的涂鸦，16楼下的烛火，夜空里仿佛传来的圣诞钟声，当然，还有那一条条问候的短信……</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/14/">&larr; Older</a></li>
@@ -1144,6 +1150,10 @@ return 0;
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/25/history-of-tian-chao/">history_of_tian_chao</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
       </li>
     
@@ -1157,10 +1167,6 @@ return 0;
     
       <li class="post">
         <a href="/2013/10/16/linux-mount-ntfs/">linux下挂载ntfs分区的问题/draft</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
       </li>
     
   </ul>
