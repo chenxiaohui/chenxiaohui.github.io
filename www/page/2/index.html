@@ -110,58 +110,6 @@
       
   <header class="page-header">
     
-      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-sources-analyze-roottable/">oceanbase源码分析-Rowkey相关</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-16T12:55:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/16/oceanbase-sources-analyze-roottable/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这里分析一下ObRowkey相关的源码.</p>
-
-<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
-
-<ul>
-<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
-<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
-<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/16/oceanbase-sources-analyze-roottable/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
       <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
     
     
@@ -1124,6 +1072,50 @@ int (*p)[n];//pointer to an array
 
     </article>
   
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/25/use-picasa-client-from-goagent/">通过goagent使用Picasa客户端</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/25/use-picasa-client-from-goagent/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>goagent这一神器就不多说了，配置详见<a href="http://maolihui.com/goagent-detailed-version-of-the-tutorial.html" title="goagent教程详细版">goagent教程</a>。这里主要探讨picasa客户端使用代理的问题。</p>
+
+<p>picasa本身的代理设置只有一个用户名和密码，不明所以，所以一直用<a href="http://www.williamlong.info/blog/archives/409.html" title="Picasa相册的HOSTS文件">hosts文件的方法</a>，但是后来发现配置里还有一项“自动检测网络设置”，勾选之后只要在系统里设置好goagent代理（PS，Internet选项那里，Linux没试，Linux下也没有picasa端吧），就可以使用代理上传照片了。</p>
+
+<p>最后吐槽一下：picasa也是google神器了，更有牛逼的人脸识别，但自从picasa相册编程google plus相册之后，就有了很多纠结的问题。比如我只是想把认识的人圈点一下，结果你非要在Google Plus群发一条消息，这如何是我等低调之人所能容忍的。算了，picasa相册还是当网盘使好了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1181,10 +1173,6 @@ int (*p)[n];//pointer to an array
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/2013/10/24/s/">s</a>
-      </li>
-    
-      <li class="post">
         <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
       </li>
     
@@ -1198,6 +1186,10 @@ int (*p)[n];//pointer to an array
     
       <li class="post">
         <a href="/2013/10/16/linux-mount-ntfs/">linux下挂载ntfs分区的问题/draft</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/10/16/test-coverage-percentage-statistics/">测试覆盖率统计</a>
       </li>
     
   </ul>
