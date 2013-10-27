@@ -1,0 +1,64 @@
+<table>
+<caption>表1 内部表表名和ID对应关系</caption>
+<col width="27%" />
+<col width="32%" />
+<col width="39%" />
+<thead>
+<tr class="header">
+<th align="left">Table Type</th>
+<th align="left">Table Name</th>
+<th align="center">Table ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">User Table</td>
+<td align="left">User Table Name</td>
+<td align="center">User Table ID</td>
+</tr>
+<tr class="even">
+<td align="left">User Meta Table</td>
+<td align="left">__User Table ID.META</td>
+<td align="center">User Table ID – 1</td>
+</tr>
+<tr class="odd">
+<td align="left">User Root Table</td>
+<td align="left">__User Table ID.ROOT</td>
+<td align="center">User Table ID – 2</td>
+</tr>
+<tr class="even">
+<td align="left">First Root Table</td>
+<td align="left"><em><em>first</em>root</em>table</td>
+<td align="center">111</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>表2 Rowkey构成规则</caption>
+<col width="27%" />
+<col width="72%" />
+<thead>
+<tr class="header">
+<th align="left">Table Type</th>
+<th align="center">Table Rowkey</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">User Table</td>
+<td align="center">User Table Rowkey Columns</td>
+</tr>
+<tr class="even">
+<td align="left">User Meta Table</td>
+<td align="center">Cluster ID + Userr Table ID + User Table Rowkey Columns</td>
+</tr>
+<tr class="odd">
+<td align="left">User Root Table</td>
+<td align="center">Cluster ID + User Meta Table ID + User Table ID + User Table Rowkey Columns</td>
+</tr>
+<tr class="even">
+<td align="left">First Root Table</td>
+<td align="center">Cluster ID + User Root Table ID</td>
+</tr>
+</tbody>
+</table>

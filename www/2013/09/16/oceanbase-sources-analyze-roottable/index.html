@@ -301,23 +301,73 @@ ID 取值约定如下:要求 User Table ID 从 3000 以后取值。</p>
 
 <p>如下所示：</p>
 
-<p>Table Type          Table Name              Table ID
-User Table          User Table Name         User Table ID
-User Meta Table     <strong>User Table ID.META    User Table ID – 1
-User Root Table     </strong>User Table ID.ROOT    User Table ID – 2
-First Root Table    __first_root_table      111</p>
+<table>
+<caption>表1 内部表表名和ID对应关系</caption>
+<col width="27%" />
+<col width="32%" />
+<col width="39%" />
+<thead>
+<tr class="header">
+<th align="left">Table Type</th>
+<th align="left">Table Name</th>
+<th align="center">Table ID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">User Table</td>
+<td align="left">User Table Name</td>
+<td align="center">User Table ID</td>
+</tr>
+<tr class="even">
+<td align="left">User Meta Table</td>
+<td align="left">__User Table ID.META</td>
+<td align="center">User Table ID – 1</td>
+</tr>
+<tr class="odd">
+<td align="left">User Root Table</td>
+<td align="left">__User Table ID.ROOT</td>
+<td align="center">User Table ID – 2</td>
+</tr>
+<tr class="even">
+<td align="left">First Root Table</td>
+<td align="left"><em><em>first</em>root</em>table</td>
+<td align="center">111</td>
+</tr>
+</tbody>
+</table>
 
-<p>Rowkey构成规则</p>
 
-<p>Table Type          Table Rowkey
-User Table          User Table Rowkey Columns
-User Meta Table     Cluster ID + User Table ID + User Table Rowkey Columns
-User Root Table     Cluster ID + User Meta Table ID + User Table ID + User Table Rowkey Columns
-First Root Table    Cluster ID + User Root Table ID</p>
+<table>
+<caption>表2 Rowkey构成规则</caption>
+<col width="27%" />
+<col width="72%" />
+<thead>
+<tr class="header">
+<th align="left">Table Type</th>
+<th align="center">Table Rowkey</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">User Table</td>
+<td align="center">User Table Rowkey Columns</td>
+</tr>
+<tr class="even">
+<td align="left">User Meta Table</td>
+<td align="center">Cluster ID + Userr Table ID + User Table Rowkey Columns</td>
+</tr>
+<tr class="odd">
+<td align="left">User Root Table</td>
+<td align="center">Cluster ID + User Meta Table ID + User Table ID + User Table Rowkey Columns</td>
+</tr>
+<tr class="even">
+<td align="left">First Root Table</td>
+<td align="center">Cluster ID + User Root Table ID</td>
+</tr>
+</tbody>
+</table>
 
-<p>表结构比较多，只捡主要的说：</p>
-
-<p>FirstRootTable</p>
 
 <h3>ObScanner</h3>
 </div>
@@ -449,6 +499,7 @@ First Root Table    Cluster ID + User Root Table ID</p>
     $(function() {
       $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
       window.prettyPrint && prettyPrint();
+      $('table').addClass('table')
 });
 -->
 </script>

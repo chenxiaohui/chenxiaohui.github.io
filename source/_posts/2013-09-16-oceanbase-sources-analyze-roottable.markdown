@@ -155,22 +155,8 @@ ID 取值约定如下:要求 User Table ID 从 3000 以后取值。
 
 如下所示：
 
-Table Type 			Table Name 				Table ID
-User Table 			User Table Name 		User Table ID
-User Meta Table 	__User Table ID.META 	User Table ID – 1
-User Root Table 	__User Table ID.ROOT 	User Table ID – 2
-First Root Table 	__first_root_table 		111
-
-Rowkey构成规则
-
-Table Type  		Table Rowkey
-User Table 			User Table Rowkey Columns
-User Meta Table 	Cluster ID + User Table ID + User Table Rowkey Columns
-User Root Table 	Cluster ID + User Meta Table ID + User Table ID + User Table Rowkey Columns
-First Root Table 	Cluster ID + User Root Table ID
-
-表结构比较多，只捡主要的说：
-
-FirstRootTable
-
+{% pandoc root_table.md %}
 ###ObScanner
+
+
+

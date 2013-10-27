@@ -171,3 +171,4 @@ OB_INVALID_ARGUMENT： 初始化参数不合法。
 7. 正常中止条件：两边迭代器都中止。
 8. OB_ITER_END情况下type返回值决定了哪边先结束。
 
+  
