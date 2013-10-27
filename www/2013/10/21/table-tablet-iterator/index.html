@@ -133,7 +133,7 @@
   </header>
 
 
-<div class="entry-content"><p>所有迭代器的类图如下所示：</p>
+<div class="entry-content"><p class="indent">所有迭代器的类图如下所示：</p>
 
 <p><img class="img-polaroid center" src="/images/2013-10/iterator.png" title="iterator类图" alt="iterator类图"><p class="align-center">iterator类图</p></p>
 
@@ -172,15 +172,15 @@
 
 <p><strong>OB_NOT_INIT</strong>:</p>
 
-<p>没有初始化，目前是没有传入RootTableService指针，或者指针为空。</p>
+<p class="indent">没有初始化，目前是没有传入RootTableService指针，或者指针为空。</p>
 
 <p><strong>OB_ROOT_NOT_INTEGRATED</strong>：</p>
 
-<p>scan_range出错，当前end_key不再scan_range的范围里，</p>
+<p class="indent">scan_range出错，当前end_key不再scan_range的范围里，</p>
 
 <p><strong>OB_ERR_UNEXPECTED</strong>：</p>
 
-<p>tablet本身错误，start_key > end_key</p>
+<p class="indent">tablet本身错误，start_key > end_key</p>
 
 <h4>其他从root_table层得到的错误码：</h4>
 
@@ -192,7 +192,9 @@
 
 <p>2.查询到的结果有空洞（某个范围下没有当前表的tablet）</p>
 
-<p><strong>OB_NO_RESULT</strong>：按照指定的条件，proxy查询不到结果，主要是table没有tablet的情况和tablet范围未封闭（没有max)，否则总会找到结果，即使没有对应的tablet，也应该返回OB_ENTRY_NOT_EXIST</p>
+<p><strong>OB_NO_RESULT</strong>：</p>
+
+<p class="indent">按照指定的条件，proxy查询不到结果，主要是table没有tablet的情况和tablet范围未封闭（没有max)，否则总会找到结果，即使没有对应的tablet，也应该返回OB_ENTRY_NOT_EXIST</p>
 
 <p><strong>OB_ERROR</strong>：可能情况</p>
 
@@ -214,25 +216,25 @@
 
 <p><strong>OB_SCHEMA_ERROR</strong>：</p>
 
-<p>proxy生成sql语句的时候add_rowkey_column_value失败</p>
+<p class="indent">proxy生成sql语句的时候add_rowkey_column_value失败</p>
 
 <p><strong>OB_ERR_NULL_VALUE</strong>：</p>
 
-<p>proxy生成sql语句的时候add_rowkey_column_value失败</p>
+<p class="indent">proxy生成sql语句的时候add_rowkey_column_value失败</p>
 
 <p><strong>OB_ERR_SQLCLIENT</strong>：</p>
 
-<p>主要是一些sql调用失败。</p>
+<p class="indent">主要是一些sql调用失败。</p>
 
 <p><strong>OB_ALLOCATE_MEMORY_FAILED</strong>：</p>
 
-<p>主要是deep copy range失败</p>
+<p class="indent">主要是deep copy range失败</p>
 
 <p><strong>以上错误码都会直接返回到上层，只不过部分需要单独处理，比如OB_ENTRY_NOT_EXISTS 和OB_NO_RESULT是否继续迭代还是个问题。</strong></p>
 
 <h2>ObRootTableIterator</h2>
 
-<p>继承ObRootTabletIterator，实现迭代所有表的所有tablet的功能，如果有table完全没有tablet，则返回OB_NO_TABLET，调用者决定是否继续迭代。</p>
+<p class="indent">继承ObRootTabletIterator，实现迭代所有表的所有tablet的功能，如果有table完全没有tablet，则返回OB_NO_TABLET，调用者决定是否继续迭代。</p>
 
 <h3>实现机理</h3>
 

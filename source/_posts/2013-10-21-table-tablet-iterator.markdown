@@ -5,7 +5,7 @@ date: 2013-10-21 16:26
 comments: true
 categories: oceanbase
 ---
-所有迭代器的类图如下所示：
+  所有迭代器的类图如下所示：
 
 {% img img-polaroid center /images/2013-10/iterator.png "iterator类图" "iterator类图" %}
 
@@ -39,15 +39,15 @@ categories: oceanbase
 
 **OB_NOT_INIT**: 
 
-没有初始化，目前是没有传入RootTableService指针，或者指针为空。
+  没有初始化，目前是没有传入RootTableService指针，或者指针为空。
 
 **OB_ROOT_NOT_INTEGRATED**：
 
-scan_range出错，当前end_key不再scan_range的范围里，
+  scan_range出错，当前end_key不再scan_range的范围里，
 
 **OB_ERR_UNEXPECTED**：
 
-tablet本身错误，start_key > end_key
+  tablet本身错误，start_key > end_key
 
 ####其他从root_table层得到的错误码：
 
@@ -59,7 +59,9 @@ tablet本身错误，start_key > end_key
 
 2.查询到的结果有空洞（某个范围下没有当前表的tablet）
 
-**OB_NO_RESULT**：按照指定的条件，proxy查询不到结果，主要是table没有tablet的情况和tablet范围未封闭（没有max)，否则总会找到结果，即使没有对应的tablet，也应该返回OB_ENTRY_NOT_EXIST
+**OB_NO_RESULT**：
+
+  按照指定的条件，proxy查询不到结果，主要是table没有tablet的情况和tablet范围未封闭（没有max)，否则总会找到结果，即使没有对应的tablet，也应该返回OB_ENTRY_NOT_EXIST
 
 **OB_ERROR**：可能情况
 
@@ -79,25 +81,25 @@ tablet本身错误，start_key > end_key
 
 **OB_SCHEMA_ERROR**：
 
-proxy生成sql语句的时候add_rowkey_column_value失败
+  proxy生成sql语句的时候add_rowkey_column_value失败
 
 **OB_ERR_NULL_VALUE**：
 
-proxy生成sql语句的时候add_rowkey_column_value失败
+  proxy生成sql语句的时候add_rowkey_column_value失败
 
 **OB_ERR_SQLCLIENT**：
 
-主要是一些sql调用失败。
+  主要是一些sql调用失败。
 
 **OB_ALLOCATE_MEMORY_FAILED**：
 
-主要是deep copy range失败
+  主要是deep copy range失败
 
 **以上错误码都会直接返回到上层，只不过部分需要单独处理，比如OB_ENTRY_NOT_EXISTS 和OB_NO_RESULT是否继续迭代还是个问题。**
 
 ##ObRootTableIterator
 
-继承ObRootTabletIterator，实现迭代所有表的所有tablet的功能，如果有table完全没有tablet，则返回OB_NO_TABLET，调用者决定是否继续迭代。
+  继承ObRootTabletIterator，实现迭代所有表的所有tablet的功能，如果有table完全没有tablet，则返回OB_NO_TABLET，调用者决定是否继续迭代。
 
 ###实现机理
 
