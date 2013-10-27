@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 随笔 | CXH.ME]]></title>
   <link href="http://cxh.me/category/sui-bi/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-25T21:31:03+08:00</updated>
+  <updated>2013-10-27T11:04:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[夜空中最亮的星]]></title>
+    <link href="http://cxh.me/2013/10/27/brightest-star-in-the-sky/"/>
+    <updated>2013-10-27T10:41:00+08:00</updated>
+    <id>http://cxh.me/2013/10/27/brightest-star-in-the-sky</id>
+    <content type="html"><![CDATA[<p><strong>每当我找不到存在的意义，每当我迷失在黑夜里</strong></p>
+
+<p><strong>夜空中最亮的星，请照亮我前行</strong></p>
+
+<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[(转)天朝六十年编年史]]></title>
@@ -28,6 +41,11 @@
 十一月，大将军刘，西路招抚使邓统王师十万入蜀，前朝余孽星散，蜀，滇，黔传徼而定。
 邓平公封西南节度使，坐 镇西南以图吐蕃。
 是年，帝下《别了，司徒雷登》等三诏，用赐西夷美利坚使，夷使惭去。史称“三诏去西夷”。</p>
+
+<!-- more -->
+
+
+<p>e</p>
 
 <p>高祖武 帝开国二年 50
 二月，北狄俄罗斯遣使来朝，盟，世世代代约为兄弟之邦。
@@ -429,21 +447,6 @@ int (*p)[n];//pointer to an array
 {
     for(int i=0;i
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[博客域名更改]]></title>
-    <link href="http://cxh.me/2012/03/01/change-the-name-of-blog/"/>
-    <updated>2012-03-01T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/03/01/change-the-name-of-blog</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>之所以要改域名，是因为之前的域名无论英文还是中文都被隐藏在一堆布拉德皮特（Brad Pitt）的新闻里，搜索不到，长此以往，博将不博。其实布拉德皮特的电影我只看过《西（和谐）藏十年》，对他并无反感，但是作为一个博客总夹在娱乐新闻里想不娱乐都难，我写的可是正正规规的技术文章啊亲……</p>
-
-<p>Roy这名字似乎是某个英国国王的名字，也有不少人用这个做姓，老外的姓氏和名字还真是混乱啊，不过想想同学里似乎也有叫王林的，也就无所了，反正我可是注册到了六位的还有一定含义的域名，六位啊亲……</p>
-
-<p>就这样吧。</p>
 ]]></content>
   </entry>
   

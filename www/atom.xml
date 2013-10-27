@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-25T21:31:03+08:00</updated>
+  <updated>2013-10-27T11:04:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[夜空中最亮的星]]></title>
+    <link href="http://cxh.me/2013/10/27/brightest-star-in-the-sky/"/>
+    <updated>2013-10-27T10:41:00+08:00</updated>
+    <id>http://cxh.me/2013/10/27/brightest-star-in-the-sky</id>
+    <content type="html"><![CDATA[<p><strong>每当我找不到存在的意义，每当我迷失在黑夜里</strong></p>
+
+<p><strong>夜空中最亮的星，请照亮我前行</strong></p>
+
+<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[(转)天朝六十年编年史]]></title>
@@ -28,6 +41,11 @@
 十一月，大将军刘，西路招抚使邓统王师十万入蜀，前朝余孽星散，蜀，滇，黔传徼而定。
 邓平公封西南节度使，坐 镇西南以图吐蕃。
 是年，帝下《别了，司徒雷登》等三诏，用赐西夷美利坚使，夷使惭去。史称“三诏去西夷”。</p>
+
+<!-- more -->
+
+
+<p>e</p>
 
 <p>高祖武 帝开国二年 50
 二月，北狄俄罗斯遣使来朝，盟，世世代代约为兄弟之邦。
@@ -1400,19 +1418,6 @@ fi
 </code></pre>
 
 <p>就需要把上面的$1都改成$3, 钦此.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OceanBase源码分析-tablet相关]]></title>
-    <link href="http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet/"/>
-    <updated>2013-09-16T15:49:00+08:00</updated>
-    <id>http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet</id>
-    <content type="html"><![CDATA[<h3>ObRootTabletInfo</h3>
-
-<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
-
-<p>//TODO</p>
 ]]></content>
   </entry>
   

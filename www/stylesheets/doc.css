@@ -37,6 +37,7 @@ h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 5
 .s14{font-size:14px}
 .s15{font-size:15px}
 .s16{font-size:16px}
+.notice_pic{margin-left:-5px; width:180px}
 
 /*shadow*/
 .shadow { -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc; -ms-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc; -o-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset, 0 5px 10px #ccc;border:1px solid #eee \9; }

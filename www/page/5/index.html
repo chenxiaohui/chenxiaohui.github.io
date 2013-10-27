@@ -110,6 +110,61 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/">FencView插件在windows下的配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-23T00:00:00+08:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2011</time>
+        
+         | <a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>坦白的讲，我没觉得这插件有什么用……</p>
+
+<p>FencView的作用是Auto detect the file encoding. 自动探测编码，防止乱码的插件。但是_vimrc设置了内部编码之后，至少在Windows下我没遇到什么明显的乱码……</p>
+
+<pre><code>set encoding=utf-8
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 " 如果你要打开的文件编码不在此列，那就添加进去
+set termencoding=utf-8
+</code></pre>
+
+<p>Windows下这插件主要的问题是找不到iconv，也正常，这么华丽丽的编码转换工具必然是linux下的，不过我们可以下载Libiconv for Windows，这样就可以在win下使用iconv了，下载地址如下：</p>
+
+<p>然后记得配置一下环境变量</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/image_thumb2.png" title="image" alt="image" /></p>
+
+<p>当然你可能遇到找不到库的问题……去刚才的页面下载Dependencies吧</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/09/22/eclipse-full-screen-plugin/">Eclipse全屏插件</a></h1>
     
     
@@ -1142,52 +1197,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/twelve-empires-in-Qing-dynasty-yanchongnian/">读阎崇年《正说清十二帝》</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-         | <a href="/2011/08/16/twelve-empires-in-Qing-dynasty-yanchongnian/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>实际上大部分内容在央视百家讲坛已经讲过了，这本书是百家讲坛的手稿，另外补充了一部分史实，是专门从皇帝的角度阐述清史的一部书，读起来通俗易通。有一点考究派的意思，但是总的来说，读史鉴今，甚有裨益。</p>
-
-<p>颇深的两个感触是：</p>
-
-<p>1 老人政治是中国一贯的弊政，本该年轻人干的事情老人干着，本该长者干的事情年轻人干着。总的来说，社会主义国家的领导人就没有年轻人，唯一的一个戈尔巴，结果大家懂的。老人政治让整个社会暮气沉沉，书中最讽刺的一件事情是，乾隆晚年吹嘘十大文治十大武功，搞千叟科举，西方第一次科技革命已经开始了，天朝这边还孙子打着灯笼爷爷考试呢。</p>
-
-<p>2 政治开明的时代，同时伴随的是文化和经济的开放。康熙在的时候是中国古代差不多最开放的时候，中西文化交流日盛，康熙本人就曾学习过西方的近代科学，但乾隆之后就开始闭关锁国（如果我没记错的话）。道光帝的时候，鸦片战争爆发，道光帝甚至问使者英国在哪里，这是康熙帝的时候就解决过的问题。余秋雨的《一个王朝的背影》从避暑山庄折射了这种变化，值得深思。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/6/">&larr; Older</a></li>
@@ -1230,19 +1239,23 @@ ec(test.prototype.age);
     <ul id="feeling" class="nav nav-list">
         <li class="nav-header">一点心情</li>
     </ul>
-    <p></p>
-    <img src="/images/common/yidaizongshi.jpg" class="img-polaroid" alt="世间所有的相遇，都是久别重逢" />
-    <p></p>
+    <br/>
+    <img src="/images/common/star_in_the_sky.jpg" class="notice_pic img-polaroid" alt="每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行" />
+    <br/>
     <p class="indent">
-        世间所有的相遇，都是久别重逢
+        每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行
     </p>
     <p class="align-right">
-        ——《一代宗师》
+        ——《夜空中最亮的星》
     </p>
 </section>
 <section class="well">
   <ul id="recent_posts" class="nav nav-list">
     <li class="nav-header">Recent Posts</li>
+    
+      <li class="post">
+        <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
+      </li>
     
       <li class="post">
         <a href="/2013/10/25/history-of-tian-chao/">(转)天朝六十年编年史</a>
@@ -1258,10 +1271,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2013/10/16/user-script-to-get-coverage/">通过脚本统计代码覆盖率</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/16/linux-mount-ntfs/">linux下挂载ntfs分区的问题/draft</a>
       </li>
     
   </ul>
