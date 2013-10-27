@@ -135,11 +135,7 @@
   </header>
 
 
-  <div class="entry-content"><p><strong>每当我找不到存在的意义，每当我迷失在黑夜里</strong></p>
-
-<p><strong>夜空中最亮的星，请照亮我前行</strong></p>
-
-<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+  <div class="entry-content"><p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
 </div>
   
   
@@ -204,7 +200,7 @@
       
   <header class="page-header">
     
-      <h2 class="entry-title"><a href="/2013/10/21/table-tablet-iterator/">Table_tablet_iterator</a></h1>
+      <h2 class="entry-title"><a href="/2013/10/21/table-tablet-iterator/">Oceanbase迭代器说明</a></h1>
     
     
       <p class="meta">
@@ -1064,6 +1060,502 @@ fi
 
     </article>
   
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-source-analysis-tablet/">OceanBase源码分析-tablet相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T15:49:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/16/oceanbase-source-analysis-tablet/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>ObRootTabletInfo</h3>
+
+<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-sources-analyze-roottable/">oceanbase源码分析-Rowkey相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T12:55:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/16/oceanbase-sources-analyze-roottable/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里分析一下ObRowkey相关的源码.</p>
+
+<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
+
+<ul>
+<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
+<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
+<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/16/oceanbase-sources-analyze-roottable/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T18:29:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/memcached-source-analysis/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的引入可以减少对于数据库等的请求, 从而减少应用响应时间, 提高吞吐量. 国外类似的实现有Redis等. 国内有淘宝自主研发的tair系统等.</p>
+
+<p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
+
+<h2>基本源码结构</h2>
+
+<p>主要的源码有:</p>
+
+<ul>
+<li>memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并</li>
+</ul>
+
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">oceanbase源码分析-RootServer主要框架</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:55:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里记录一下RootServer主要框架的阅读和心得。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:54:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/15/to-be-a-hero/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>只是想起一首老歌:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/to-be-a-hero/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/14/tricks-about-octopress/">Octopress的一些技巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-14T15:03:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/14/tricks-about-octopress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
+
+<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
+
+<p>主要说下面几个小技巧:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/14/tricks-about-octopress/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/14/show-gitdiff-using-vimdiff/">用vimdiff来显示gitdiff</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-14T11:40:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/14/show-gitdiff-using-vimdiff/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
+
+<p>具体说来有两种办法:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/14/show-gitdiff-using-vimdiff/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/12/obstring-souce-analysis/">ObString源码分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-12T16:02:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/12/obstring-souce-analysis/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>ObString是oceanbase的源码类</p>
+
+<p>//TODO</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/11/rhinoceros-camel/">犀骆</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-11T15:46:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2013</time>
+        
+         | <a href="/2013/09/11/rhinoceros-camel/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>中文名: 犀骆</p>
+
+<p>英文名: Rhinoceros Camel</p>
+
+<p><img src="/images/2013-9/rhinoceros_camel.jpg" title="犀骆 Rhinoceros Camel" alt="" /></p>
+
+<p>犀骆是骆驼科, 骆驼属的动物, 因体型高大威猛, 貌似犀牛, 故被称作犀骆. 主要生活在北非洲和西亚洲、印度等热带地域, 是重要的交通工具和牲畜.</p>
+
+<p>犀骆是<a href="http://alibaba.github.io/oceanbase/" title="OceanBase">OceanBase</a> 0.4.2版本的吉祥物.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/02/cplusplus-primer-book-review/">C++ Primer 读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-02T12:55:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2013</time>
+        
+         | <a href="/2013/09/02/cplusplus-primer-book-review/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。</p>
+
+<ol>
+<li> 关于初始化变量和未初始化变量</li>
+</ol>
+
+
+<blockquote><p>这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出</p></blockquote>
+
+<pre><code>int a;
+int b;
+int c;
+printf("a=%d  b=%d  c=%dn", a, b, c);
+</code></pre>
+
+<p>2.块注释不能嵌套</p>
+
+<p>3.两种初始化方式</p>
+
+<pre><code>int ival(1024);//直接初始化
+int ival=1024; //复制初始化
+</code></pre>
+
+<blockquote><p>c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替</p>
+
+<p>初始化语句中前面定义的变量可以用来初始化后面的值，所以如下语句是合法的</p></blockquote>
+
+<pre><code>double salary=9999.99,wage(salary 0.01);
+</code></pre>
+
+<p>4.const作用域也不能出文件</p>
+
+<p>5.const引用是指向const对象的引用，是一种语法规则限制。另外const引用可以初始化为不同类型的对象或右值，例如：</p>
+
+<pre><code>double dval=3.14;
+const int &amp;ri=dval;//编译器会转换代码为：int temp=dval;const int &amp;ri=temp;
+
+const int &amp;r=42;
+const int &amp;r2=r i;
+</code></pre>
+
+<p>6.string的连接： 操作符左右操作数必须至少有一个是string类型的，但是鉴于 操作符是从左到右求值的，所以这种是合法的：</p>
+
+<pre><code>string s1="b";
+string s2="a" s1 "c";
+</code></pre>
+
+<p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1104,9 +1596,9 @@ fi
     <ul id="feeling" class="nav nav-list">
         <li class="nav-header">一点心情</li>
     </ul>
-    <br/>
+    <p></p>
     <img src="/images/common/star_in_the_sky.jpg" class="notice_pic img-polaroid" alt="每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行" />
-    <br/>
+    <p></p>
     <p class="indent">
         每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行
     </p>
@@ -1127,7 +1619,7 @@ fi
       </li>
     
       <li class="post">
-        <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
+        <a href="/2013/10/21/table-tablet-iterator/">Oceanbase迭代器说明</a>
       </li>
     
       <li class="post">

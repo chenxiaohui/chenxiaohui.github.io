@@ -110,502 +110,6 @@
       
   <header class="page-header">
     
-      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-source-analysis-tablet/">OceanBase源码分析-tablet相关</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-16T15:49:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/16/oceanbase-source-analysis-tablet/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h3>ObRootTabletInfo</h3>
-
-<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
-
-<p>//TODO</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-sources-analyze-roottable/">oceanbase源码分析-Rowkey相关</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-16T12:55:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/16/oceanbase-sources-analyze-roottable/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这里分析一下ObRowkey相关的源码.</p>
-
-<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
-
-<ul>
-<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
-<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
-<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/16/oceanbase-sources-analyze-roottable/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T18:29:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/15/memcached-source-analysis/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的引入可以减少对于数据库等的请求, 从而减少应用响应时间, 提高吞吐量. 国外类似的实现有Redis等. 国内有淘宝自主研发的tair系统等.</p>
-
-<p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
-
-<h2>基本源码结构</h2>
-
-<p>主要的源码有:</p>
-
-<ul>
-<li>memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并</li>
-</ul>
-
-
-<p>//TODO</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">oceanbase源码分析-RootServer主要框架</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T12:55:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这里记录一下RootServer主要框架的阅读和心得。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T12:54:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/15/to-be-a-hero/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>只是想起一首老歌:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/15/to-be-a-hero/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/14/tricks-about-octopress/">Octopress的一些技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-14T15:03:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/14/tricks-about-octopress/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
-
-<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
-
-<p>主要说下面几个小技巧:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/14/tricks-about-octopress/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/14/show-gitdiff-using-vimdiff/">用vimdiff来显示gitdiff</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-14T11:40:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/14/show-gitdiff-using-vimdiff/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
-
-<p>具体说来有两种办法:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/14/show-gitdiff-using-vimdiff/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/12/obstring-souce-analysis/">ObString源码分析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-12T16:02:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/12/obstring-souce-analysis/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ObString是oceanbase的源码类</p>
-
-<p>//TODO</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/11/rhinoceros-camel/">犀骆</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-11T15:46:00+08:00" pubdate data-updated="true">Sep 11<span>th</span>, 2013</time>
-        
-         | <a href="/2013/09/11/rhinoceros-camel/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>中文名: 犀骆</p>
-
-<p>英文名: Rhinoceros Camel</p>
-
-<p><img src="/images/2013-9/rhinoceros_camel.jpg" title="犀骆 Rhinoceros Camel" alt="" /></p>
-
-<p>犀骆是骆驼科, 骆驼属的动物, 因体型高大威猛, 貌似犀牛, 故被称作犀骆. 主要生活在北非洲和西亚洲、印度等热带地域, 是重要的交通工具和牲畜.</p>
-
-<p>犀骆是<a href="http://alibaba.github.io/oceanbase/" title="OceanBase">OceanBase</a> 0.4.2版本的吉祥物.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/02/cplusplus-primer-book-review/">C++ Primer 读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-02T12:55:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2013</time>
-        
-         | <a href="/2013/09/02/cplusplus-primer-book-review/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。</p>
-
-<ol>
-<li> 关于初始化变量和未初始化变量</li>
-</ol>
-
-
-<blockquote><p>这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出</p></blockquote>
-
-<pre><code>int a;
-int b;
-int c;
-printf("a=%d  b=%d  c=%dn", a, b, c);
-</code></pre>
-
-<p>2.块注释不能嵌套</p>
-
-<p>3.两种初始化方式</p>
-
-<pre><code>int ival(1024);//直接初始化
-int ival=1024; //复制初始化
-</code></pre>
-
-<blockquote><p>c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替</p>
-
-<p>初始化语句中前面定义的变量可以用来初始化后面的值，所以如下语句是合法的</p></blockquote>
-
-<pre><code>double salary=9999.99,wage(salary 0.01);
-</code></pre>
-
-<p>4.const作用域也不能出文件</p>
-
-<p>5.const引用是指向const对象的引用，是一种语法规则限制。另外const引用可以初始化为不同类型的对象或右值，例如：</p>
-
-<pre><code>double dval=3.14;
-const int &amp;ri=dval;//编译器会转换代码为：int temp=dval;const int &amp;ri=temp;
-
-const int &amp;r=42;
-const int &amp;r2=r i;
-</code></pre>
-
-<p>6.string的连接： 操作符左右操作数必须至少有一个是string类型的，但是鉴于 操作符是从左到右求值的，所以这种是合法的：</p>
-
-<pre><code>string s1="b";
-string s2="a" s1 "c";
-</code></pre>
-
-<p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
       <h2 class="entry-title"><a href="/2013/05/29/from-the-miao-code/">由&#8221;喵&#8221;代码想到的</a></h1>
     
     
@@ -1120,6 +624,1396 @@ int (*p)[n];//pointer to an array
 
     </article>
   
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/26/about-functional-programming/">关于函数式编程</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-26T00:00:00+08:00" pubdate data-updated="true">Sep 26<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/26/about-functional-programming/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>本来想写点东西的，后来发现自己的理解还是比较浅薄，所以直接贴两篇文章好了。</p>
+
+<blockquote><p>[1]阮一峰老师的函数式编程初探</p>
+
+<p>[2]Steve Yegge的大作名词王国中的死刑</p></blockquote>
+
+<p>看完之后相信你会对函数式编程有一个基本的理解。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/25/use-picasa-client-from-goagent/">通过goagent使用Picasa客户端</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/25/use-picasa-client-from-goagent/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>goagent这一神器就不多说了，配置详见<a href="http://maolihui.com/goagent-detailed-version-of-the-tutorial.html" title="goagent教程详细版">goagent教程</a>。这里主要探讨picasa客户端使用代理的问题。</p>
+
+<p>picasa本身的代理设置只有一个用户名和密码，不明所以，所以一直用<a href="http://www.williamlong.info/blog/archives/409.html" title="Picasa相册的HOSTS文件">hosts文件的方法</a>，但是后来发现配置里还有一项“自动检测网络设置”，勾选之后只要在系统里设置好goagent代理（PS，Internet选项那里，Linux没试，Linux下也没有picasa端吧），就可以使用代理上传照片了。</p>
+
+<p>最后吐槽一下：picasa也是google神器了，更有牛逼的人脸识别，但自从picasa相册编程google plus相册之后，就有了很多纠结的问题。比如我只是想把认识的人圈点一下，结果你非要在Google Plus群发一条消息，这如何是我等低调之人所能容忍的。算了，picasa相册还是当网盘使好了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/25/this-age-of-person-with-ability/">在这个才人辈出的时代</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-25T00:00:00+08:00" pubdate data-updated="true">Sep 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/09/25/this-age-of-person-with-ability/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>偶然翻bootstrap的资料，在bootstrap的中文网站看到如下三个sample:</p>
+
+<blockquote></blockquote>
+
+<p>神吐槽，不解释。膜拜楼主。细软跑。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/">关于结构体字节对齐的一些问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-22T00:00:00+08:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p><strong>字节对齐的目的</strong></p>
+
+<p>字节对齐的作用不仅是便于cpu快速访问，同时合理的利用字节对齐可以有效地节省存储空间。对于32位机来说，4字节对齐能够使cpu访问速度提高，比如说一个long类型的变量，如果跨越了4字节边界存储，那么cpu要读取两次，这样效率就低了。但是在32位机中使用1字节或者2字节对齐，反而会使变量访问速度降低。所以这要考虑处理器类型，另外还得考虑编译器的类型。在vc中默认是4字节对齐的，GNU gcc 也是默认4字节对齐。</p>
+
+<p><strong>字节对齐的基本原则</strong></p>
+
+<p>如下三条</p>
+
+<blockquote><ol>
+<li> 结构体变量的首地址能够被其最宽基本类型成员的大小所整除；</li>
+<li> 结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal adding）；</li>
+<li> 结构体的总大小为结构体最宽基本类型成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节（trailing padding）。</li>
+</ol>
+</blockquote>
+
+<p>举一个简单的例子：</p>
+
+<pre><code>struct node
+{
+    double d;
+    int a;
+    int b;
+    char c;
+};
+</code></pre>
+
+<p>首先double d的偏移是0，占用8字节；int a的偏移是8，可以被a的长度（4字节）整除，所以在偏移8的位置占用4字节；int b的偏移是12，同样可以整除；char c的偏移是16,可以被c的长度（1）整除，所以在偏移16的位置占用1字节。这时整个结构体占用了17字节的长度，不能被最长的成员（double类型，8字节）整除，所以必须再填充7字节。从而整个结构体的长度为24字节。</p>
+
+<p>我们把之前的例子稍微变一下：</p>
+
+<pre><code>struct node
+{
+    int a;
+    int b;
+    char c;
+    double d;
+};
+</code></pre>
+
+<p>这时a占用4字节，b占用4字节，c在偏移8的位置占用1字节，这时的偏移是9，无法被double的长度整除，所以需要填充7字节，最后占用24字节，刚好可以被结构体最长元素（double）整除。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1]Struct大小和内存对齐，</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/06/28/light-vim-buffer-management-plugin-bufit-v2/">Vim轻量级缓冲区管理插件Buf_it修订版Buf_itv2</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-06-28T00:00:00+08:00" pubdate data-updated="true">Jun 28<span>th</span>, 2012</time>
+        
+         | <a href="/2012/06/28/light-vim-buffer-management-plugin-bufit-v2/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>之前发布了Vim的缓冲区管理插件Buf_it的一个修正版，但是后来发现在windows下命令行使用的时候有问题，同时与Nertree和Taglist等插件也有冲突。于是继续fix了几个bug，然后解决了这部分冲突，新的代码放在我的<a href="https://github.com/BitRobt" title="Bitrobt">github</a>上，或者也可以这里下载，有问题可以继续留言，谢谢。</p>
+
+<p>效果如下：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图" alt="效果图" /></p>
+
+<h2>安装：</h2>
+
+<blockquote><p>扔进plugin目录就行</p></blockquote>
+
+<h2>配置</h2>
+
+<pre><code>nnoremap wq :w:call BufClose(0)
+nnoremap q :call BufClose(0)
+nnoremap w :w
+nnoremap x :call BufClose(1)
+</code></pre>
+
+<h2>使用</h2>
+
+<blockquote><p>shift h,l ：左右切换tab</p>
+
+<p>\be ：BufEcho 显示当前缓冲区名字</p>
+
+<p>\bo ：只保留当前缓冲区，其他的都关掉</p>
+
+<p>alt i : 切换到序号为i的缓冲区</p>
+
+<p>\wq: 保存关闭当前缓冲区并退出</p>
+
+<p>\q: 关闭当前缓冲区并退出</p>
+
+<p>\w: 保存当前缓冲区</p>
+
+<p>\x: 不保存关闭当前缓冲区</p></blockquote>
+
+<h2>参考文献：</h2>
+
+<blockquote><p><a href="https://github.com/BitRobt" title="Bitrobt">1</a> buf_it : Buffer list in statusline,</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图">2</a> 在windows下给你的右键菜单添加”edit with vim”的方法,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/25/memory-of-tomorrow/">明天的记忆</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/25/memory-of-tomorrow/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>孙燕姿的MV，看了好多遍</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/10/appendix-to-const-pointer/">关于Const指针的一点补充</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-10T00:00:00+08:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/10/appendix-to-const-pointer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>OsChina上一个朋友给出的例子，很能说明问题：</p>
+
+<pre><code>typedef char * CharPtr;
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //OK[1]
+mycharptr = "It's Wrong"; //Err[2]
+</code></pre>
+
+<p>如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char <em>是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char</em>被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它的赋值肯定会引起编译错误，而[0]这种寻址并不影响。</p>
+
+<p>不过，如果把typedef 改为宏替换（如下），事情就不一样了，毕竟宏替换只是一种替换而已，不会引起编译器的检查，编译之前，CharPtr就已经被替换掉了。</p>
+
+<pre><code>#define CharPtr char *
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //Err
+mycharptr = "It's Wrong"; //OK
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-08T00:00:00+08:00" pubdate data-updated="true">May 8<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。</p>
+
+<p>首先是强制类型转换运算符的重载，作用是当前对象向其他类型的转换，常见的形式是</p>
+
+<pre><code>operator int();
+Integer::operator int()
+{
+    return x;
+}
+</code></pre>
+
+<p>调用方式类似于</p>
+
+<pre><code>Integer c(10);
+int a=c;
+</code></pre>
+
+<p>在函数调用的时候，类型转换的重载也会被隐式调用，比如下面一种情况</p>
+
+<pre><code>void print(int n)
+{
+    cout
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/">深入解析C++输入输出运算符重载</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-07T00:00:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time>
+        
+         | <a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。</p>
+
+<p>我们以输出运算符为例。首先输出运算符重载的一般形式是</p>
+
+<pre><code>friend ostream&amp; operator(CArchive&amp; ar, CObject*&amp; pOb);
+</code></pre>
+
+<p>于是才发觉ostream并不是必需的，换句话说，从语法上讲，ostream的位置放什么类都可以，只不过语义上要行得通。而友元的重载从语法上讲也不是必须的，比如可以依然用成员函数重载，函数定义变成如下的格式</p>
+
+<pre><code>ostream&amp; operator&gt;&gt;(ostream&amp; o);
+</code></pre>
+
+<p>使用的时候只能用object>>cout（或者cout>>object这就太别扭了）形式了，并且不可能连续使用了（比如obj1>>obj2>>cout），这违背了C 规范，但是语法上是的过得去的。</p>
+
+<p>举一个简单而诡异的例子（原谅我这里诡异的代码风格，只是个演示）</p>
+
+<pre><code>#include "stdafx.h"
+#include 
+using namespace std;
+class output
+{
+public:
+    output&amp; operator
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">简短总结一下C#里跨线程更新UI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T00:00:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用</p>
+
+<pre><code>Control.CheckForIllegalCrossThreadCalls = false;
+</code></pre>
+
+<p>来关闭跨线程检测。但是这样做有一定的风险，容易让程序崩溃。</p>
+
+<p>最好的办法是通过Invoke，这篇博客只是提供一个示例，至于那些线程同步、Invoke和BeginInvoke，Invoke底层实现神马的，有空再说吧。</p>
+
+<p>一个简单的例子如下：（注，Form1 加入了一个名为txt的TextBox）</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Threading;
+
+namespace testThread
+{
+    public partial class Form1 : Form
+    {
+        private delegate void InvokeCallback(string msg); //定义回调函数（代理）格式
+        public Form1()
+        {
+            InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;//关闭跨线程调用检测
+            MyMessage m = new MyMessage();//一个消息源
+            //启动一个线程，把界面对象传递过去
+            Thread t = new Thread(new ParameterizedThreadStart(m.Test));
+            t.Start((object)this);
+        }
+        //Invoke回调函数
+        public void UpdateText(string text)
+        {
+            if (txt.InvokeRequired)//当前线程不是创建线程
+                txt.Invoke(new InvokeCallback(UpdateText),new object[]{text});//回调
+            else//当前线程是创建线程（界面线程）
+                txt.Text = text;//直接更新
+        }
+    }
+    //消息源
+    class MyMessage
+    {
+        public void Test(object para)
+        {
+            Form1 form = (Form1)para;
+            form.UpdateText("测试");
+        }
+    }
+}
+</code></pre>
+
+<p>上面的例子很简单，主要是需要判断一下当前线程是不是控件的创建线程，如果是就直接更新，否则建立一个Invoke对象，设置好代理和参数，然后调用Invoke。需要注意的是建立线程的时候如果需要传参数，应该通过ParameterizedThreadStart建立并且以object格式传递参数。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/">记ThinkPad某些型号下Linux报Unable to Enumerate USB Device错误的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-14T00:00:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报</p>
+
+<pre><code>Unable to enumerate USB device…..
+</code></pre>
+
+<p>的错误，而在某些Linux版本（比如pinguy os）下会不停提示Device Recognized和Device Removed，有人提供了如[1]的解决方案，但是好像在pinguy os 下并无效果，而且这实际上就是禁用了usb2.0，还有人直接禁用了全部usb。</p>
+
+<p>这里面好像有硬件问题，但是如果是Thinkpad系普遍的问题的话，也就有点说不过去了，硬件不检测好就出场，这也不是Thinkpad的风格。后来想到会不会是指纹识别的问题，于是在BIOS里禁用指纹识别，一切OK。反正这是实验室的笔记本，也不能存我自己的指纹吧。</p>
+
+<p>后来证实其实是指纹识别坏了…还好在保修内…</p>
+
+<h2>参考文献：</h2>
+
+<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/">C++变量的初始化方式</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>写这个问题是受微软今年实习生招聘的一道笔试题启发，上一篇博客好像提到了。之前还真没细想过这些事情。</p>
+
+<p>首先把需要初始化的成员变量分为几类：</p>
+
+<blockquote><p>一般变量(int)</p>
+
+<p>静态成员变量(static int)</p>
+
+<p>常量(const int )</p>
+
+<p>静态常量(static const int)</p></blockquote>
+
+<p>对应的初始化方式是：</p>
+
+<blockquote><p>一般变量可以在初始化列表里或者构造函数里初始化，不能直接初始化或者类外初始化</p>
+
+<p>静态成员变量必须在类外初始化</p>
+
+<p>常量必须在初始化列表里初始化</p>
+
+<p>静态常量必须只能在定义的时候初始化</p></blockquote>
+
+<p>举一个简单的例子</p>
+
+<blockquote><h1>include</h1>
+
+<h1>include</h1>
+
+<p>using namespace std;
+class Test
+{
+private:
+int a;
+static int b;
+const int c;
+static const int d=4;
+public:
+Test():c(3)//,a(1)或者在初始化列表里初始化
+{
+a=1;
+}
+};
+int Test::b=2;</p>
+
+<p>void main()
+{
+Test t;
+}</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/09/the-initialization-order-of-class-member-variables/">关于类成员变量初始化顺序</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/09/the-initialization-order-of-class-member-variables/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>java和C#语言里类变量初始化的顺序是</p>
+
+<blockquote><ol>
+<li><p> 类成员变量初始化先于类的构造函数</p></li>
+<li><p> 静态成员变量先于实例变量</p></li>
+<li><p> 父类成员变量先于子类成员变量 C#相反</p></li>
+<li><p> 父类构造函数先于子类构造函数</p></li>
+</ol>
+</blockquote>
+
+<p>举一个java的例子:</p>
+
+<pre><code>class Base
+{
+    public static Test a=new Test("a");
+    public static Test b;
+    public Test c=new Test("c");
+    public Test d;
+    static
+    {
+        b=new Test("b");
+    }
+    public Base()
+    {
+        d=new Test("d");
+    }
+    public static void main(String[] args) {
+        new Derived();
+    }
+}
+class Derived extends Base
+{
+    public static Test da=new Test("da");
+    public static Test db;
+    public Test dc=new Test("dc");
+    public Test dd;
+    static
+    {
+        db=new Test("db");
+    }
+    public Derived()
+    {
+        dd=new Test("dd");
+    }
+}
+
+class Test
+{
+    public Test (String name) {
+        System.out.println(name);
+    }
+}
+</code></pre>
+
+<p>运行结果是：</p>
+
+<pre><code>a
+b
+da
+db
+c
+d
+dc
+dd
+</code></pre>
+
+<p>C 中没有成员变量定义时初始化的方式，所以有如下几条：</p>
+
+<ol>
+<li><p> 构造函数初始化列表的变量优先于构造函数（至少明显的写在前面）</p></li>
+<li><p> 静态成员变量先于实例变量</p></li>
+<li><p> 父类成员变量先于子类成员变量</p></li>
+<li><p> 父类构造函数先于子类构造函数</p></li>
+</ol>
+
+
+<p>举一个例子：</p>
+
+<pre><code>#include 
+#include 
+using namespace std;
+class Test
+{
+public:
+    Test(string n)
+    {
+        cout
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/07/about-const-and-pointer/">关于const和指针的专题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-07T00:00:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time>
+        
+         | <a href="/2012/04/07/about-const-and-pointer/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。</p>
+
+<p>首先是几种const与指针组合的区分，比如：</p>
+
+<blockquote><p>int b = 500;
+const int<em> a = &b; [1]
+int const </em>a = &b; [2]
+int<em> const a = &b; [3]
+const int</em> const a = &b; [4]</p></blockquote>
+
+<p>[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。</p>
+
+<p>至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+int a=1;
+const int </em>b=&a;
+<em>b ;//成立
+(</em>b) ;//编译器错误
+}</p></blockquote>
+
+<p>那么我们能不能突破const去修改一个值呢？虽然这件事情本身并没有多大意义，但是还是可以做的。我们可以用const_cast来去掉一个const或者volatile限制。const_cast的作用主要分如下三种：</p>
+
+<blockquote><p>转化一个常量指针为非常量指针</p>
+
+<p>转化一个常量引用为非常量引用</p>
+
+<p>转化一个常量对象为非常量对象</p></blockquote>
+
+<p>至于例子</p>
+
+<p>我们举如下一个例子：</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>class Test
+{
+public:
+const int a ;
+Test(int b):a(b)
+{</p>
+
+<p>}
+};</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+Test t(1);
+//t.a=2;//出错
+int b=const_cast(t.a);
+int&amp; c=const_cast(t.a);
+int</em> d=const_cast(&amp;t.a);
+b=2;
+c=3;
+cout</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/04/02/some-problems-about-apache-address-rewrite/">Apache地址重写的几个问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
+        
+         | <a href="/2012/04/02/some-problems-about-apache-address-rewrite/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。</p>
+
+<p>首先要打开rewrite模块windows下的配置是</p>
+
+<blockquote><p>LoadModule rewrite_module modules/mod_rewrite.so</p></blockquote>
+
+<p>httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。</p>
+
+<p>.htaccess的则放到相应目录下或者根目录即可这是VPS里常用的一种方式毕竟作为一个VPS购买者不可能要求提供商去更改全局配置文件。这种方式需要注意的有如下两点</p>
+
+<p>首先.htaccess要想起作用必须要在httpd.conf中相应的Directory标签下配置AllowOverride All默认是None其次是windows下这种无文件名仅有扩展名的文件是无法直接生成的可以在cmd窗口下使用copy con命令来生成这命令也有年头了我小学的时候还学过光阴荏苒啊扯远了…Ctrl Z保存。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image" alt="image" /></p>
+
+<p>然后我们说一下几个概念。</p>
+
+<p>首先是RewriteEngine这是地址重写的引擎可以方便的设置为On或者Off来启用和关闭引擎。</p>
+
+<p>其次是RewriteCond地址重写的条件符合这个条件的才进行表达式判断和重写这样能有效减少匹配的条数提高重写效率。</p>
+
+<p>最后是RewriteBase和RewriteRuleRewriteBase指明重定向地址的基础即RewriteRule后一部分重定向地址会拼合上RewriteBase合成一个完整的重定向地址。这在一个web容器下有多个网站的时候比较有用。</p>
+
+<p>RewriteRule才是我们讨论的主要话题。RewriteRule实现把符合表达式的地址重定向到另一个地址的功能RewriteRule的语法类似于下面</p>
+
+<blockquote><p>RewriteRule ^forum-([0-9] )&ndash;([0-9] )&#46;html$ forumdisplay.php?fid=$1&amp;page=$2</p></blockquote>
+
+<p>RewriteRule紧跟着判断表达式之后是需要重定向的位置正则表达式()会捕获一个分组然后通过$n引用这个分组从而实现地址重写。RewriteRule匹配的开始位置是整个URL去掉当前目录后剩下的部分比如我在/discuz配置上面所示的RewriteRule然后输入一个URL-<a href="http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82">http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82</a></p>
+
+<blockquote><p>RewriteRule ^(.*)/forum-([0-9] )&ndash;([0-9] )&#46;html$ rewrite.php?param=$1</p>
+
+<p>注在rewrite.php里打印一下GET[&lsquo;param’]参数</p></blockquote>
+
+<p>另外这里需要说明的是如果我定义了</p>
+
+<blockquote><p>RewriteBase /discuz</p></blockquote>
+
+<p>那么前面的<sup>forum</sup>-([0-9] )&ndash;([0-9] )&#46;html$不受影响但是后面会变成/discuz/forumdisplay.php?fid=$1&amp;page=$2。不过RewriteBase并不是必须的若有指定RewriteBase结果为RewriteBase 重定向地址否则为当前目录 重定向地址。这里当前目录指的是.htaccess所在目录使用.htaccess的时候或者Directory标签指定的目录使用httpd.conf的时候。</p>
+
+<p>以上操作在windows下测试通过。</p>
+
+<p>参考文献</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image">1</a>Apache中RewriteCond规则参数介绍</p>
+
+<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">http://hi.baidu.com/һ/blog/item/ace7f14e19851cc4d0c86af2.html</a></p>
+
+<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">2</a>RewriteRule-htaccess详细语法使用教程</p>
+
+<p><a href="http://www.3code.cn/rewriterule-htaccess%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">http://www.3code.cn/rewriterule-htaccess详细语法使用教程/</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/31/some-problems-about-doxygen/">Doxygen几个小问题，mark一下</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-31T00:00:00+08:00" pubdate data-updated="true">Mar 31<span>st</span>, 2012</time>
+        
+         | <a href="/2012/03/31/some-problems-about-doxygen/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>首先是在Visual Assist X中的配置，在Snippet Editor窗口修改一下file header的snippet和Refactor Document Method的snippet.</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb5.png" title="image" alt="image" /></p>
+
+<p>设置分别如下</p>
+
+<p>file header</p>
+
+<p>/<em>*
+* @file $FILE_BASE$.$FILE_EXT$
+* @Synopsis $end$
+* @author 你的名字,你的邮箱
+* @version $version$
+* @date $DAY$:$MONTH$:$YEAR$
+</em>/</p>
+
+<p>Refactor Document Method</p>
+
+<p>/<em> —————————————————————————-</em>/
+/<em><em>
+* @Synopsis $SymbolName$
+* $end$
+* @Param $MethodArg$
+*
+* @Returns $SymbolType$
+</em>/
+/</em> —————————————————————————-*/
+然后记得DoxygenWizard的这个工作目录是一定要点选的，这里有个触发，如果直接复制路径进去是无法run doxygen的。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb6.png" title="image" alt="image" /></p>
+
+<p>最后是中文编码的问题，如果你的项目是GBK编码，那么要防止乱码必须要做的事情是设置工程为UTF-8编码，而设置输入为GBK。切记。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb7.png" title="image" alt="image" /></p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb8.png" title="image" alt="image" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/">发布VIM缓冲区切换插件buf_it升级版</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-28T00:00:00+08:00" pubdate data-updated="true">Mar 28<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/28/publish-the-vim-buffer-management-plugin/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>VIM默认使用的过程中有一个重要的问题，就是打开多个文件的时候无法可视化看到打开的文件，并在这些文件中切换。MiniBufExplorer是一个常用的buffer切换插件，但是这个插件在Windows下使用的时候有许多问题，同时也太繁琐。buf_it<a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a>则实现了轻量的buffer管理，但是buf_it同样在windows下有许多问题，而buf_it的退出机制也会出现只想关闭一个文件确关闭了整个vim的情况。</p>
+
+<p>基于这两个问题，我修改了buf_it插件，这里共享出来，欢迎大家提意见。先给张图</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image" alt="image" /></p>
+
+<p>修改：</p>
+
+<blockquote><p>1 windows下使用GVIM优化，方式多开一个空白缓冲区，windows下gvim右键配置见参考文献2</p>
+
+<p>2 增加自定义退出方式</p>
+
+<p>3 修改了部分快捷键，只是个人习惯，可无视之</p></blockquote>
+
+<p>安装：</p>
+
+<blockquote><p>直接扔到plugin目录就行，原作者没写doc，那我也不写啦。</p></blockquote>
+
+<p>配置：</p>
+
+<blockquote><p>nnoremap wq :w:call BufClose()
+nnoremap q :call BufClose()
+nnoremap w :w
+nnoremap x :bd!:call BufClose()</p></blockquote>
+
+<p>使用：</p>
+
+<blockquote><p>shift h,l ：左右切换tab</p>
+
+<p>be ：BufEcho 显示当前缓冲区名字</p>
+
+<p>bo ：只保留当前缓冲区，其他的都关掉</p>
+
+<p>alt i : 切换到序号为i的缓冲区</p>
+
+<p>wq: 保存关闭当前缓冲区并退出</p>
+
+<p>q: 关闭当前缓冲区并退出</p>
+
+<p>w: 保存当前缓冲区</p>
+
+<p>x: 不保存关闭当前缓冲区</p></blockquote>
+
+<p>下载:<a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">buf_it</a></p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a> buf_it : Buffer list in statusline,</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">2</a> 在windows下给你的右键菜单添加&#8221;edit with vim&#8221;的方法,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/">解决Latex中Itemize距离过大的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-16T00:00:00+08:00" pubdate data-updated="true">Mar 16<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>默认的itemize存在行距过大的问题，大概是如下的样子：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb2.png" title="image" alt="image" /></p>
+
+<p>用paralist包可以减少行距，代码如下</p>
+
+<blockquote><p>\usepackage{paralist}
+\let\itemize</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/">两种可行的Latex中文生成方式(GBK/UTF8)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-15T00:00:00+08:00" pubdate data-updated="true">Mar 15<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>本来想总结一下Latex里各种中文排版支持，但是发现太乱了，CCT，CJK，CTEX神马的，还有GBK和UTF8下的不同编码方式，再加上XeLatex这样来搅局的……所以最后决定只给出一种可行的排版方式，测试环境是Windows CTex2.8。</p>
+
+<p>ps:每天忍辱负重的在Windows下用Vim和Latex……</p>
+
+<p>第一种是gbk编码下的编译方式</p>
+
+<blockquote><p>REM taskkill /im AcroRd32.exe
+pdflatex %1
+bibtex %1
+pdflatex %1
+gbk2uni %1.out
+pdflatex %1
+start %1.pdf</p></blockquote>
+
+<p>其中第一句的目的是结束掉当前的PDF文档，但是它会随机选择一个Acrobat Reader进程结束，所以给注掉了。从代码里可以看出，需要执行多遍pdflatex，同时穿插bibtex生成参考文件，gbk2uni的作用是将gbk转成unicode，这个命令是cct里的，请确保你的环境变量中有cct的bin目录。</p>
+
+<p>测试article代码如下：</p>
+
+<blockquote><p>\documentclass{article}
+\usepackage{CJK}
+\usepackage{cite}
+ewcommand{\upcite}[1]{ extsuperscript{ extsuperscript{</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2012/03/14/using-visio-vector-diagram-in-Latex/">Latex中使用visio的矢量图(转载+修改）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-03-14T00:00:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
+        
+         | <a href="/2012/03/14/using-visio-vector-diagram-in-Latex/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>我们知道，visio用来画流程图等专业图很方便，而Latex的专业排版效果是Word所不能比的，而Visio不支持导入eps和dvi格式的矢量图，而导出jpeg毕竟有质量损失，那么怎么才能在Latex中直接使用visio导出的矢量图呢？</p>
+
+<p>1. Visio可以保存为wmf，emf等矢量图形格式（word的默认插图格式），再转换为eps格式（可使用TpX，由本论坛得知早期版本貌似可直接保存eps）插入LaTeX。可转换后的eps图片格式不稳定，图形易错位；另外Visio使用Windows字体，转换后的eps图形只引用而不包含字体，插入LaTex后由于找不到对应字体，中文（或mathtype公式，特殊符号）会乱码。
+2. 用ps虚拟打印的方式虽然可以解决格式和乱码问题，但中文字符（或其他不支持的内容）会按位图处理，得不到完美的矢量图形。
+经过探索，将visio保存为pdf格式是最完美的解决方式，因为pdf文件保存了所有格式和字体信息。借助pdfcrop和ebb程序，调用graphicx宏包插入pdf格式图片，能够得到完美的visio矢量图形。</p>
+
+<p>注：
+1.导入的代码依然可以使用标准的fig标签，例如：
+egin{figure}</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1162,9 +2056,9 @@ int (*p)[n];//pointer to an array
     <ul id="feeling" class="nav nav-list">
         <li class="nav-header">一点心情</li>
     </ul>
-    <br/>
+    <p></p>
     <img src="/images/common/star_in_the_sky.jpg" class="notice_pic img-polaroid" alt="每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行" />
-    <br/>
+    <p></p>
     <p class="indent">
         每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行
     </p>
@@ -1185,7 +2079,7 @@ int (*p)[n];//pointer to an array
       </li>
     
       <li class="post">
-        <a href="/2013/10/21/table-tablet-iterator/">table_tablet_iterator</a>
+        <a href="/2013/10/21/table-tablet-iterator/">Oceanbase迭代器说明</a>
       </li>
     
       <li class="post">

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-27T11:14:03+08:00</updated>
+  <updated>2013-10-27T11:21:14+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,11 +18,7 @@
     <link href="http://cxh.me/2013/10/27/brightest-star-in-the-sky/"/>
     <updated>2013-10-27T10:41:00+08:00</updated>
     <id>http://cxh.me/2013/10/27/brightest-star-in-the-sky</id>
-    <content type="html"><![CDATA[<p><strong>每当我找不到存在的意义，每当我迷失在黑夜里</strong></p>
-
-<p><strong>夜空中最亮的星，请照亮我前行</strong></p>
-
-<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+    <content type="html"><![CDATA[<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
 ]]></content>
   </entry>
   
@@ -367,7 +363,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[table_tablet_iterator]]></title>
+    <title type="html"><![CDATA[Oceanbase迭代器说明]]></title>
     <link href="http://cxh.me/2013/10/21/table-tablet-iterator/"/>
     <updated>2013-10-21T16:26:00+08:00</updated>
     <id>http://cxh.me/2013/10/21/table-tablet-iterator</id>

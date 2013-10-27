@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "table_tablet_iterator"
+title: "Oceanbase迭代器说明"
 date: 2013-10-21 16:26
 comments: true
-categories: 
+categories: oceanbase
 ---
 所有迭代器的类图如下所示：
 
