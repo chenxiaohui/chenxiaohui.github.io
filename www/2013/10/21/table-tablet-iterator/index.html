@@ -139,18 +139,18 @@
 
 <h2>ObRootTabletIterator</h2>
 
-<p>所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。</p>
+<p class="indent">所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。</p>
 
 <!-- more -->
 
 
 <h2>ObTableTabletIterator</h2>
 
-<p>最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。</p>
+<p class="indent">最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。</p>
 
 <h3>实现机理 :</h3>
 
-<p>从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。</p>
+<p class="indent">从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。</p>
 
 <h3>错误码与错误原因对应</h3>
 
@@ -236,7 +236,7 @@
 
 <h3>实现机理</h3>
 
-<p>通过ObTableSchemaIterator迭代所有table, 每次生成一个table的TableTabletIterator,迭代此iterator直到end，然后继续迭代下一个表。如果遇到tablet_iter的错误，返回错误，除OB_NO_TABLET错误外，调用者应中止迭代。</p>
+<p class="indent">通过ObTableSchemaIterator迭代所有table, 每次生成一个table的TableTabletIterator,迭代此iterator直到end，然后继续迭代下一个表。如果遇到tablet_iter的错误，返回错误，除OB_NO_TABLET错误外，调用者应中止迭代。</p>
 
 <h3>错误码与错误对应原因</h3>
 
@@ -244,29 +244,29 @@
 
 <p><strong>OB_NO_TABLET</strong>： 从一个表里没有迭代出任何一个tablet，之后仍可继续迭代。</p>
 
-<p>其他错误码来自ObTableSchemaIterator和TableTabletIterator</p>
+<p class="indent">其他错误码来自ObTableSchemaIterator和TableTabletIterator</p>
 
 <h2>ObServerTabletIterator</h2>
 
-<p>继承ObRootTableIterator（仔细看不是tablet）,实现一个server上所有tablet的迭代。</p>
+<p class="indent">继承ObRootTableIterator（仔细看不是tablet）,实现一个server上所有tablet的迭代。</p>
 
 <h3>实现机理</h3>
 
-<p>迭代所有tablet直到找到有副本分布在这个server上的tablet，然后返回。如果出错，一概中断。</p>
+<p class="indent">迭代所有tablet直到找到有副本分布在这个server上的tablet，然后返回。如果出错，一概中断。</p>
 
 <h3>错误码与错误原因对应</h3>
 
 <p>OB_ITER_END：所有tablet迭代结束。</p>
 
-<p>其他错误码来自root_table_iterator</p>
+<p class="indent">其他错误码来自root_table_iterator</p>
 
 <h2>ObAliveRootTableIterator</h2>
 
-<p>继承ObRootTableIterator（仔细看不是tablet),返回所有表的所有tablet，但是剔除不存活的版本，所以依赖一个ObChunkServerManager指针。</p>
+<p class="indent">继承ObRootTableIterator（仔细看不是tablet),返回所有表的所有tablet，但是剔除不存活的版本，所以依赖一个ObChunkServerManager指针。</p>
 
 <h2>ObTableTabletFilterVersionIterator</h2>
 
-<p>继承ObTableTabletIterator，返回所有表的所有tablet，但是剔除版本不等于指定版本的replica。</p>
+<p class="indent">继承ObTableTabletIterator，返回所有表的所有tablet，但是剔除版本不等于指定版本的replica。</p>
 
 <h3>错误码及错误原因对应</h3>
 
@@ -276,26 +276,26 @@
 
 <h3>ObIteratorUtility</h3>
 
-<p>工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。</p>
+<p class="indent">工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。</p>
 
 <hr/>
 
 
 <h2>ObRootReplicaIterator</h2>
 
-<p>所有replica类迭代器，目前只有ObServerReplicaIterator，定义了迭代接口。包含一个ObRootTableIterator的迭代对象，即所有replica迭代器都是基于RootTableIterator迭代所有表的所有tablet的基础上实现的。</p>
+<p class="indent">所有replica类迭代器，目前只有ObServerReplicaIterator，定义了迭代接口。包含一个ObRootTableIterator的迭代对象，即所有replica迭代器都是基于RootTableIterator迭代所有表的所有tablet的基础上实现的。</p>
 
 <h2>ObServerReplicaIterator</h2>
 
-<p>迭代某个server上的所有replica(副本)</p>
+<p class="indent">迭代某个server上的所有replica(副本)</p>
 
 <h3>实现机理</h3>
 
-<p>迭代所有tablet，直到得到一个tablet里面的分布在该server上的副本。没有就继续迭代。有错误一概中断。</p>
+<p class="indent">迭代所有tablet，直到得到一个tablet里面的分布在该server上的副本。没有就继续迭代。有错误一概中断。</p>
 
 <h2>ObReplicaIteratorCalculator</h2>
 
-<p>合并两个replica类迭代器的结果，并返回当前吐出的replica（replica参数）是属于哪个迭代器的（type参数/LEFT_ITER/RIGHT_ITER/BOTH_ITER三种)</p>
+<p class="indent">合并两个replica类迭代器的结果，并返回当前吐出的replica（replica参数）是属于哪个迭代器的（type参数/LEFT_ITER/RIGHT_ITER/BOTH_ITER三种)</p>
 
 <h3>实现机理</h3>
 

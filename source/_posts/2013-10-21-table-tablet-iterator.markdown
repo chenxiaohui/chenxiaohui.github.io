@@ -11,17 +11,17 @@ categories: oceanbase
 
 ## ObRootTabletIterator
 
-所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。
+  所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。
 
 <!-- more -->
 
 ## ObTableTabletIterator
 
-最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。
+  最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。
 
 ###实现机理 :
 
-从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。
+  从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。
 
 ###错误码与错误原因对应
 
@@ -101,7 +101,7 @@ proxy生成sql语句的时候add_rowkey_column_value失败
 
 ###实现机理
 
-通过ObTableSchemaIterator迭代所有table, 每次生成一个table的TableTabletIterator,迭代此iterator直到end，然后继续迭代下一个表。如果遇到tablet_iter的错误，返回错误，除OB_NO_TABLET错误外，调用者应中止迭代。
+  通过ObTableSchemaIterator迭代所有table, 每次生成一个table的TableTabletIterator,迭代此iterator直到end，然后继续迭代下一个表。如果遇到tablet_iter的错误，返回错误，除OB_NO_TABLET错误外，调用者应中止迭代。
 
 ###错误码与错误对应原因
 
@@ -109,32 +109,32 @@ proxy生成sql语句的时候add_rowkey_column_value失败
 
 **OB_NO_TABLET**： 从一个表里没有迭代出任何一个tablet，之后仍可继续迭代。
 
-其他错误码来自ObTableSchemaIterator和TableTabletIterator
+  其他错误码来自ObTableSchemaIterator和TableTabletIterator
 
 
 ##ObServerTabletIterator
 
-继承ObRootTableIterator（仔细看不是tablet）,实现一个server上所有tablet的迭代。
+  继承ObRootTableIterator（仔细看不是tablet）,实现一个server上所有tablet的迭代。
 
 ###实现机理
 
-迭代所有tablet直到找到有副本分布在这个server上的tablet，然后返回。如果出错，一概中断。
+  迭代所有tablet直到找到有副本分布在这个server上的tablet，然后返回。如果出错，一概中断。
 
 ###错误码与错误原因对应
 
 OB_ITER_END：所有tablet迭代结束。
 
-其他错误码来自root_table_iterator
+  其他错误码来自root_table_iterator
 
 
 ##ObAliveRootTableIterator
 
-继承ObRootTableIterator（仔细看不是tablet),返回所有表的所有tablet，但是剔除不存活的版本，所以依赖一个ObChunkServerManager指针。
+  继承ObRootTableIterator（仔细看不是tablet),返回所有表的所有tablet，但是剔除不存活的版本，所以依赖一个ObChunkServerManager指针。
 
 
 ##ObTableTabletFilterVersionIterator
 
-继承ObTableTabletIterator，返回所有表的所有tablet，但是剔除版本不等于指定版本的replica。
+  继承ObTableTabletIterator，返回所有表的所有tablet，但是剔除版本不等于指定版本的replica。
 
 
 ###错误码及错误原因对应
@@ -145,26 +145,26 @@ OB_INVALID_ARGUMENT： 初始化参数不合法。
 
 ###ObIteratorUtility
 
-工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。
+  工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。
 
 
 <hr/>
 
 ##ObRootReplicaIterator
 
-所有replica类迭代器，目前只有ObServerReplicaIterator，定义了迭代接口。包含一个ObRootTableIterator的迭代对象，即所有replica迭代器都是基于RootTableIterator迭代所有表的所有tablet的基础上实现的。
+  所有replica类迭代器，目前只有ObServerReplicaIterator，定义了迭代接口。包含一个ObRootTableIterator的迭代对象，即所有replica迭代器都是基于RootTableIterator迭代所有表的所有tablet的基础上实现的。
 
 ##ObServerReplicaIterator
 
-迭代某个server上的所有replica(副本)
+  迭代某个server上的所有replica(副本)
 
 ###实现机理
 
-迭代所有tablet，直到得到一个tablet里面的分布在该server上的副本。没有就继续迭代。有错误一概中断。
+  迭代所有tablet，直到得到一个tablet里面的分布在该server上的副本。没有就继续迭代。有错误一概中断。
 
 ##ObReplicaIteratorCalculator
 
-合并两个replica类迭代器的结果，并返回当前吐出的replica（replica参数）是属于哪个迭代器的（type参数/LEFT_ITER/RIGHT_ITER/BOTH_ITER三种)
+  合并两个replica类迭代器的结果，并返回当前吐出的replica（replica参数）是属于哪个迭代器的（type参数/LEFT_ITER/RIGHT_ITER/BOTH_ITER三种)
 
 ###实现机理
 

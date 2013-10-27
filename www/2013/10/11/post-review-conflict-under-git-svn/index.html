@@ -133,7 +133,7 @@
   </header>
 
 
-<div class="entry-content"><p>  有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
+<div class="entry-content"><p class="indent">有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
 
 <ul>
 <li>不习惯某种版本管理工具，希望通过另一种熟悉的版本管理工具进行管理</li>
@@ -145,23 +145,23 @@
 <!-- more -->
 
 
-<p>  具体到一种情况下，比如我们有一个svn的版本库，版本管理策略比较严格，而我们需要做一些有风险的本地开发的时候，都原意建立一个test分支，开发确定没有问题之后再合并到master分支，但是现实的情况不允许我们随便建立丢弃分支。这样就可以通过加入一个git的版本管理来实现。</p>
+<p class="indent">具体到一种情况下，比如我们有一个svn的版本库，版本管理策略比较严格，而我们需要做一些有风险的本地开发的时候，都原意建立一个test分支，开发确定没有问题之后再合并到master分支，但是现实的情况不允许我们随便建立丢弃分支。这样就可以通过加入一个git的版本管理来实现。</p>
 
-<p>  比如我们建立了一个新的版本库（repository）</p>
+<p class="indent">比如我们建立了一个新的版本库（repository）</p>
 
 <pre><code>mkdir repository.git &amp;&amp; cd repository.git &amp;&amp; git init --bare
 </code></pre>
 
-<p>  然后checkout了版本并使当前项目加入版本管理，这里我只会一个笨办法，checkout一个空的，然后mv .git目录进去，有空再研究别的方法。</p>
+<p class="indent">然后checkout了版本并使当前项目加入版本管理，这里我只会一个笨办法，checkout一个空的，然后mv .git目录进去，有空再研究别的方法。</p>
 
-<p>  之后所有的修改都可以通过git进行管理了，git的version control文件只存在于根目录下，所以也不会污染原有版本库。</p>
+<p class="indent">之后所有的修改都可以通过git进行管理了，git的version control文件只存在于根目录下，所以也不会污染原有版本库。</p>
 
-<p>  但是post-review的时候就有问题了我们明明有修改，但是post-review总是报错：</p>
+<p class="indent">但是post-review的时候就有问题了我们明明有修改，但是post-review总是报错：</p>
 
 <pre><code>  There don't seem to be any diffs!
 </code></pre>
 
-<p>  这到底是什么问题呢，启动debug模式运行post-review，结果如下：</p>
+<p class="indent">这到底是什么问题呢，启动debug模式运行post-review，结果如下：</p>
 
 <pre><code>&gt;&gt;&gt; RBTools 0.5
 &gt;&gt;&gt; Python 2.6.6 (r266:84292, May  1 2012, 13:52:17) 
@@ -189,16 +189,16 @@ DEBUG:root:Running: git diff --no-color --full-index --no-ext-diff --ignore-subm
 There don't seem to be any diffs!
 </code></pre>
 
-<p>  可以看到，git的检测优先于subversion，这样当前版本库被当作git管理的版本库来处理了，所以才没有变更。</p>
+<p class="indent">可以看到，git的检测优先于subversion，这样当前版本库被当作git管理的版本库来处理了，所以才没有变更。</p>
 
-<p>  解决办法有两个，要么修改RBTool的代码，更改检测优先级，或者post-review之前运行</p>
+<p class="indent">解决办法有两个，要么修改RBTool的代码，更改检测优先级，或者post-review之前运行</p>
 
 <pre><code>mv .git git
 </code></pre>
 
-<p>  这足够骗过RBTool了。</p>
+<p class="indent">这足够骗过RBTool了。</p>
 
-<p>  钦此。</p>
+<p class="indent">钦此。</p>
 </div>
 
 
