@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-27T13:15:28+08:00</updated>
+  <updated>2013-10-27T13:25:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -394,19 +394,19 @@
 
 <p><strong>断言失败</strong>：</p>
 
-<ol>
-<li><p>接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)</p></li>
-<li><p>sql查询结果为空</p></li>
+<blockquote><ol>
+<li>接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)</li>
+<li>sql查询结果为空</li>
 </ol>
-
+</blockquote>
 
 <p><strong>OB_ITER_END</strong>：</p>
 
-<ol>
-<li><p>迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。</p></li>
-<li><p>如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。</p></li>
+<blockquote><ol>
+<li>迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。</li>
+<li>如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。</li>
 </ol>
-
+</blockquote>
 
 <p><strong>OB_NOT_INIT</strong>:</p>
 
@@ -426,9 +426,11 @@
 
 <p><strong>OB_TABLE_NOT_EXIST</strong>：</p>
 
-<p>1.获得表schema的时候发现schema中不存在这张表</p>
-
-<p>2.查询到的结果有空洞（某个范围下没有当前表的tablet）</p>
+<blockquote><ol>
+<li>获得表schema的时候发现schema中不存在这张表</li>
+<li>查询到的结果有空洞（某个范围下没有当前表的tablet）</li>
+</ol>
+</blockquote>
 
 <p><strong>OB_NO_RESULT</strong>：</p>
 
@@ -436,21 +438,21 @@
 
 <p><strong>OB_ERROR</strong>：可能情况</p>
 
-<ol>
-<li><p>当前表的元数据表没有指定</p></li>
-<li><p>获取root_table_name的时候写入失败</p></li>
-<li><p>proxy读取tablet的时候结果加入返回列表的时候失败。</p></li>
-<li><p>proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）</p></li>
+<blockquote><ol>
+<li>当前表的元数据表没有指定</li>
+<li>获取root_table_name的时候写入失败</li>
+<li>proxy读取tablet的时候结果加入返回列表的时候失败。</li>
+<li>proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）</li>
 </ol>
-
+</blockquote>
 
 <p><strong>OB_ENTRY_NOT_EXIST</strong>：</p>
 
-<ol>
-<li><p>当前表的元数据表schema不存在。</p></li>
-<li><p>tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet</p></li>
+<blockquote><ol>
+<li>当前表的元数据表schema不存在。</li>
+<li>tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet</li>
 </ol>
-
+</blockquote>
 
 <p><strong>OB_SCHEMA_ERROR</strong>：</p>
 
@@ -518,8 +520,7 @@
 
 <p>  工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。</p>
 
-<hr/>
-
+<hr />
 
 <h2>ObRootReplicaIterator</h2>
 
@@ -539,7 +540,7 @@
 
 <h3>实现机理</h3>
 
-<ol>
+<blockquote><ol>
 <li>首先置type为both_iter,两个迭代器都前进一步</li>
 <li>如果left_iter的结果> right_iter，吐出right_iter的结果，置type为LEFT_ITER，保存两个结果。</li>
 <li>同理如果right>left,吐出right_iter的结果，置type为RIGHT_ITER,保存两个结果。</li>
@@ -549,7 +550,7 @@
 <li>正常中止条件：两边迭代器都中止。</li>
 <li>OB_ITER_END情况下type返回值决定了哪边先结束。</li>
 </ol>
-
+</blockquote>
 ]]></content>
   </entry>
   
