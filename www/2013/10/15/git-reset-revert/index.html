@@ -135,21 +135,24 @@
 
 <div class="entry-content"><h3>git reset 作用</h3>
 
-<p>git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
+<p class="indent">git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
 
 <p><img class="img-ploaroid center" src="/images/2013-10/git-reset.png" title="git-reset三种方式" alt="git-reset三种方式"><p class="align-center">git-reset三种方式</p></p>
 
-<p>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息
-git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
-git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
+<blockquote><ul>
+<li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>
+<li>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</li>
+<li>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</li>
+</ul>
+</blockquote>
 
 <h3>git revert 作用</h3>
 
-<p>git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+<p class="indent">git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
 
 <h3>撤销之后恢复</h3>
 
-<p>git-reset如果执行之后，再想回退到指定版本。//TODO</p>
+<p class="indent">git-reset如果执行之后，再想回退到指定版本。//TODO</p>
 </div>
 
 

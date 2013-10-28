@@ -40,24 +40,24 @@ categories: oceanbase
 
 ###	ObTableIdName
 
-顾名思义, TableId 和 TableName 的组合
+  顾名思义, TableId 和 TableName 的组合
 
 ### ObTableSchemaIterator
 
-获取TableSchema的迭代器
+  获取TableSchema的迭代器
 
 ### ObRootSchemaService
 
-RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作. 
+  RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作. 
 
-成员
+  成员
 	
-方法
+  方法
 
 	init
 	写入
 ### RootTableService
 
-RootServer
+  RootServer
 
 

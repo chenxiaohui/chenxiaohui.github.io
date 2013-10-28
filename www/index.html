@@ -466,21 +466,24 @@
 
   <div class="entry-content"><h3>git reset 作用</h3>
 
-<p>git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
+<p class="indent">git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
 
 <p><img class="img-ploaroid center" src="/images/2013-10/git-reset.png" title="git-reset三种方式" alt="git-reset三种方式"><p class="align-center">git-reset三种方式</p></p>
 
-<p>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息
-git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
-git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
+<blockquote><ul>
+<li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>
+<li>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</li>
+<li>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</li>
+</ul>
+</blockquote>
 
 <h3>git revert 作用</h3>
 
-<p>git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+<p class="indent">git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
 
 <h3>撤销之后恢复</h3>
 
-<p>git-reset如果执行之后，再想回退到指定版本。//TODO</p>
+<p class="indent">git-reset如果执行之后，再想回退到指定版本。//TODO</p>
 </div>
   
   
@@ -563,16 +566,16 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
   </header>
 
 
-  <div class="entry-content"><p>svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
+  <div class="entry-content"><p class="indent">svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
 
-<p>看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
+<p class="indent">看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
 
 <blockquote><p>-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.</p>
 
-<ul>
+<blockquote><ul>
 <li>例: svn ci -F svn-commit.tmp</li>
 </ul>
-</blockquote>
+</blockquote></blockquote>
 
 </div>
   
@@ -617,7 +620,7 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
 
   <div class="entry-content"><h3>误用rm删除了未提交文件</h3>
 
-<p>经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
+<p class="indent">经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
 
 <p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
 
@@ -805,9 +808,9 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
   </header>
 
 
-  <div class="entry-content"><p>去锦州的原因，其实是没搞到去其他的地方的票。</p>
+  <div class="entry-content"><p class="indent">去锦州的原因，其实是没搞到去其他的地方的票。</p>
 
-<p>十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
+<p class="indent">十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
 </div>
   
   
@@ -845,9 +848,9 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
   </header>
 
 
-  <div class="entry-content"><p>抽空去看了一下。去看的原因倒是很简单， 有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
+  <div class="entry-content"><p class="indent">抽空去看了一下。去看的原因倒是很简单，有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
 
-<p>坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
+<p class="indent">坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
 
 </div>
   
@@ -931,9 +934,9 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
   </header>
 
 
-  <div class="entry-content"><p>今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
+  <div class="entry-content"><p class="indent">今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
 
-<p>最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
+<p class="indent">最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
 
 </div>
   
@@ -1019,11 +1022,11 @@ git reset –hard：彻底回退到某个版本，本地的源码也会变为上
   </header>
 
 
-  <div class="entry-content"><p>相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
+  <div class="entry-content"><p class="indent">相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
 
-<p>为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
+<p class="indent">为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
 
-<p>这里我们首先建立如下脚本:</p>
+<p class="indent">这里我们首先建立如下脚本:</p>
 
 <pre><code>#!/bin/sh 
 dirpath=/tmp/recycle_$USER # find a place for recycle
@@ -1044,19 +1047,19 @@ fi
 /bin/mv $arg ${dirpath}/${filename} # move to trash
 </code></pre>
 
-<p>然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
+<p class="indent">然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
 
 <pre><code>export PATH=$HOME/bin:$PATH
 </code></pre>
 
-<p>最后记得给rm加权限就行</p>
+<p class="indent">最后记得给rm加权限就行</p>
 
-<p>需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
+<p class="indent">需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
 
 <pre><code>alias rm='rm -i --preserve-root' 
 </code></pre>
 
-<p>就需要把上面的$1都改成$3, 钦此.</p>
+<p class="indent">就需要把上面的$1都改成$3, 钦此.</p>
 </div>
   
   

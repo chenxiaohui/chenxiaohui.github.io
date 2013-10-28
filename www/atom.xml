@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-28T11:01:08+08:00</updated>
+  <updated>2013-10-28T13:52:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -735,21 +735,24 @@ AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
     <id>http://cxh.me/2013/10/15/git-reset-revert</id>
     <content type="html"><![CDATA[<h3>git reset 作用</h3>
 
-<p>git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
+<p>  git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/git-reset.png" title="git-reset三种方式" alt="git-reset三种方式"><p class="align-center">git-reset三种方式</p></p>
 
-<p>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息
-git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
-git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</p>
+<blockquote><ul>
+<li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>
+<li>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</li>
+<li>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</li>
+</ul>
+</blockquote>
 
 <h3>git revert 作用</h3>
 
-<p>git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+<p>  git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
 
 <h3>撤销之后恢复</h3>
 
-<p>git-reset如果执行之后，再想回退到指定版本。//TODO</p>
+<p>  git-reset如果执行之后，再想回退到指定版本。//TODO</p>
 ]]></content>
   </entry>
   
@@ -881,27 +884,27 @@ noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
     <link href="http://cxh.me/2013/10/12/svn-commit-failed/"/>
     <updated>2013-10-12T21:39:00+08:00</updated>
     <id>http://cxh.me/2013/10/12/svn-commit-failed</id>
-    <content type="html"><![CDATA[<p>svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
+    <content type="html"><![CDATA[<p>  svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
 
-<p>看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
+<p>  看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
 
 <blockquote><p>-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.</p>
 
-<ul>
+<blockquote><ul>
 <li>例: svn ci -F svn-commit.tmp</li>
 </ul>
-</blockquote>
+</blockquote></blockquote>
 
 <!-- more -->
 
 
-<p>PS: commit 完后, 还是要手动 rm svn-commit.tmp.</p>
+<p>  PS: commit 完后, 还是要手动 rm svn-commit.tmp.</p>
 
-<p>另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表有误怎么办？</p>
+<p>  另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表有误怎么办？</p>
 
-<p>其实很简单，只要不保存退出，就会有提示了。保存退出才会直接提交的。放心。</p>
+<p>  其实很简单，只要不保存退出，就会有提示了。保存退出才会直接提交的。放心。</p>
 
-<p>钦此。</p>
+<p>  钦此。</p>
 ]]></content>
   </entry>
   
@@ -912,38 +915,38 @@ noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
     <id>http://cxh.me/2013/10/12/several-svn-problems</id>
     <content type="html"><![CDATA[<h3>误用rm删除了未提交文件</h3>
 
-<p>经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
+<p>  经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
 
 <!-- more -->
 
 
-<p>解决办法也很简单，我们直接:</p>
+<p>  解决办法也很简单，我们直接:</p>
 
 <pre><code>svn revert ob_alive_table_tablet_iter.h
 </code></pre>
 
-<p>这时候文件并不会被恢复，但是svn status上已经显示删除了，post-review不会再报错，如下图所示：</p>
+<p>  这时候文件并不会被恢复，但是svn status上已经显示删除了，post-review不会再报错，如下图所示：</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/after_revert.png" title="revert之后" alt="revert之后"><p class="align-center">revert之后</p></p>
 
 <h3>版本控制中移除文件</h3>
 
-<p>经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一遍automake。</p>
+<p>  经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一遍automake。</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before-rm.png" title="错误的把Makefile.in加入版本控制" alt="错误的把Makefile.in加入版本控制"><p class="align-center">错误的把Makefile.in加入版本控制</p></p>
 
-<p>其实 svn rm 提供了keep-local选项来保留本地副本：</p>
+<p>  其实 svn rm 提供了keep-local选项来保留本地副本：</p>
 
 <pre><code>svn rm Makefile.in --keep-local
 </code></pre>
 
-<p>执行之后的版本库状态如下图：</p>
+<p>  执行之后的版本库状态如下图：</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before-rm.png" title="版本控制的状态" alt="版本控制的状态"><p class="align-center">版本控制的状态</p></p>
 
-<p>从文件管理里面看，这个本地副本依然存在，如下图：</p>
+<p>  从文件管理里面看，这个本地副本依然存在，如下图：</p>
 
 <p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/ll-result.png" title="文件管理里的情况" alt="文件管理里的情况"><p class="align-center">文件管理里的情况</p></p>
 ]]></content>
@@ -1202,9 +1205,9 @@ make install
     <link href="http://cxh.me/2013/10/07/tourism-of-jinzhou/"/>
     <updated>2013-10-07T18:34:00+08:00</updated>
     <id>http://cxh.me/2013/10/07/tourism-of-jinzhou</id>
-    <content type="html"><![CDATA[<p>去锦州的原因，其实是没搞到去其他的地方的票。</p>
+    <content type="html"><![CDATA[<p>  去锦州的原因，其实是没搞到去其他的地方的票。</p>
 
-<p>十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
+<p>  十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
 ]]></content>
   </entry>
   
@@ -1213,18 +1216,18 @@ make install
     <link href="http://cxh.me/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/"/>
     <updated>2013-10-06T20:21:00+08:00</updated>
     <id>http://cxh.me/2013/10/06/young-detective-dee-rise-of-the-sea-dragon</id>
-    <content type="html"><![CDATA[<p>抽空去看了一下。去看的原因倒是很简单， 有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
+    <content type="html"><![CDATA[<p>  抽空去看了一下。去看的原因倒是很简单，有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
 
-<p>坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
+<p>  坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
 
 <!-- more -->
 
 
-<p>我不理解的是，这几年过去了，武侠怎么已经上升到法术的高度了，更让我不能理解的是，这么牛逼的一只<a href="http://baike.baidu.com/link?url=dWI58A0UeuCs95DyVPXFM-4bT9b4wQyRlXRSbA3o2u0ShtN1Rhum3rLMJSoKyGwO" title="蝠鲼">蝠鲼</a>（fú fèn，原谅我的猜测，那只怪物或许真是什么变异物种也说不定，比如随便从山海经里面拿一只出来就足够吓尿观众了），怎么就死在几只毒鱼下了呢，这是告诉我们食品安全刻不容缓么？</p>
+<p>  我不理解的是，这几年过去了，武侠怎么已经上升到法术的高度了，更让我不能理解的是，这么牛逼的一只<a href="http://baike.baidu.com/link?url=dWI58A0UeuCs95DyVPXFM-4bT9b4wQyRlXRSbA3o2u0ShtN1Rhum3rLMJSoKyGwO" title="蝠鲼">蝠鲼</a>（fú fèn，原谅我的猜测，那只怪物或许真是什么变异物种也说不定，比如随便从山海经里面拿一只出来就足够吓尿观众了），怎么就死在几只毒鱼下了呢，这是告诉我们食品安全刻不容缓么？</p>
 
-<p>话说这么险恶的环境，狄大人能活下来真的是奇迹啊。为了救美女拿人头打赌的都是亡命徒啊，果然只有不怕死的才命大&hellip;</p>
+<p>  话说这么险恶的环境，狄大人能活下来真的是奇迹啊。为了救美女拿人头打赌的都是亡命徒啊，果然只有不怕死的才命大&hellip;</p>
 
-<p>顺便逛了一下<a href="http://www.parkviewgreen.com/cn/" title="侨福芳草地">侨福芳草地</a>，好象是芳草地一周年还是怎么的，里面布满了各种艺术雕塑。有种进了798的感觉，但是798毕竟厂房了一点，这才是艺术品该待的地方嘛。没准哪个土豪逛着逛着看上一个就掏钱买了呢，要知道可不是所有的土豪都愿意转两趟公交去大山桥然后走200米左右跑798那堆厂房去。</p>
+<p>  顺便逛了一下<a href="http://www.parkviewgreen.com/cn/" title="侨福芳草地">侨福芳草地</a>，好象是芳草地一周年还是怎么的，里面布满了各种艺术雕塑。有种进了798的感觉，但是798毕竟厂房了一点，这才是艺术品该待的地方嘛。没准哪个土豪逛着逛着看上一个就掏钱买了呢，要知道可不是所有的土豪都愿意转两趟公交去大山桥然后走200米左右跑798那堆厂房去。</p>
 
 <hr />
 
@@ -1232,7 +1235,7 @@ make install
 
 <hr />
 
-<p>好了，不管土豪的事情了，上几张照片。</p>
+<p>  好了，不管土豪的事情了，上几张照片。</p>
 
 <p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_144718.jpg" title="这个是想表达什么" alt="这个是想表达什么"><p class="align-center">这个是想表达什么</p></p>
 
@@ -1240,9 +1243,9 @@ make install
 
 <p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_172509.jpg" title="最震撼的其实是这个" alt="最震撼的其实是这个"><p class="align-center">最震撼的其实是这个</p></p>
 
-<p>这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
+<p>  这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
 
-<p>钦此。</p>
+<p>  钦此。</p>
 ]]></content>
   </entry>
   
@@ -1254,15 +1257,13 @@ make install
     <content type="html"><![CDATA[<!-- more -->
 
 
-<p>普及一下:</p>
+<p>  普及一下:</p>
 
-<p>兰州: 一种烟, 如图所示:</p>
+<p>  兰州: 一种烟, 如图所示:</p>
 
 <p><img class="img-polaroid center" src="http://cxh.me/images/2013-9/lanzhou.jpg" width="200" title="兰州" ></p>
 
 <p><img class="img-polaroid center" src="http://cxh.me/images/2013-9/lanzhou2.jpg" width="200" title="兰州" ></p>
-
-<p>钦此.</p>
 ]]></content>
   </entry>
   
@@ -1271,9 +1272,9 @@ make install
     <link href="http://cxh.me/2013/09/27/depend-problem-in-oceanbase/"/>
     <updated>2013-09-27T16:15:00+08:00</updated>
     <id>http://cxh.me/2013/09/27/depend-problem-in-oceanbase</id>
-    <content type="html"><![CDATA[<p>今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
+    <content type="html"><![CDATA[<p>  今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
 
-<p>最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
+<p>  最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
 
 <!-- more -->
 
@@ -1282,34 +1283,34 @@ make install
         libtest2.a 
 </code></pre>
 
-<p>或者gcc命令</p>
+<p>  或者gcc命令</p>
 
 <pre><code>gcc –o test main.c libtest2.a libtest1.a
 </code></pre>
 
-<p>这里编译的时候会认为libtest2.a依赖于libtest1.a, libtest2.a可以使用libtest1.a的接口，但是反过来会找不到符号。也就是会有会有&#8221;undefined reference to ***”的链接错误。</p>
+<p>  这里编译的时候会认为libtest2.a依赖于libtest1.a, libtest2.a可以使用libtest1.a的接口，但是反过来会找不到符号。也就是会有会有&#8221;undefined reference to ***”的链接错误。</p>
 
-<p>找了一下原因，主要是gcc链接顺序的问题，以下引自 <a href="http://www.cnblogs.com/wujianlundao/archive/2012/06/06/2538125.html" title="使用静态库链接程序">悟空不悟空的博客</a></p>
+<p>  找了一下原因，主要是gcc链接顺序的问题，以下引自 <a href="http://www.cnblogs.com/wujianlundao/archive/2012/06/06/2538125.html" title="使用静态库链接程序">悟空不悟空的博客</a></p>
 
 <hr />
 
-<p>原因是gcc在链接的时候，对于多个静态库或者.o文件是从前往后依次处理的，如果当前的静态库或.o文件中没有使用的符号，则往后继续寻找，而不会再往前查找。</p>
+<p>  原因是gcc在链接的时候，对于多个静态库或者.o文件是从前往后依次处理的，如果当前的静态库或.o文件中没有使用的符号，则往后继续寻找，而不会再往前查找。</p>
 
-<p>下面是man gcc看到的说明：</p>
+<p>  下面是man gcc看到的说明：</p>
 
-<p>-l library</p>
+<p>  -l library</p>
 
 <blockquote><p>  Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not recommended.)</p>
 
 <p> It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are specified.  Thus, foo.o -lz bar.o searches library z after file foo.o but before bar.o.  If bar.o refers to functions in z, those functions may not be loaded.</p></blockquote>
 
-<p>所以在使用一些依赖关系比较复杂的静态库时，我们可能会看到这样的使用方式：gcc –o test main.c libtest1.a libtest2.a libtest1.a。在链接序列中，一个静态库可能出现多次，以解决一些循环依赖。</p>
+<p>  所以在使用一些依赖关系比较复杂的静态库时，我们可能会看到这样的使用方式：gcc –o test main.c libtest1.a libtest2.a libtest1.a。在链接序列中，一个静态库可能出现多次，以解决一些循环依赖。</p>
 
 <hr />
 
-<p>另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
+<p>  另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
 
-<p>ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的&hellip;.</p>
+<p>  ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的&hellip;.w</p>
 ]]></content>
   </entry>
   
@@ -1352,19 +1353,19 @@ make install
 
 <h3>ObTableIdName</h3>
 
-<p>顾名思义, TableId 和 TableName 的组合</p>
+<p>  顾名思义, TableId 和 TableName 的组合</p>
 
 <h3>ObTableSchemaIterator</h3>
 
-<p>获取TableSchema的迭代器</p>
+<p>  获取TableSchema的迭代器</p>
 
 <h3>ObRootSchemaService</h3>
 
-<p>RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作.</p>
+<p>  RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作.</p>
 
-<p>成员</p>
+<p>  成员</p>
 
-<p>方法</p>
+<p>  方法</p>
 
 <pre><code>init
 写入
@@ -1372,7 +1373,7 @@ make install
 
 <h3>RootTableService</h3>
 
-<p>RootServer</p>
+<p>  RootServer</p>
 ]]></content>
   </entry>
   
@@ -1381,11 +1382,11 @@ make install
     <link href="http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm/"/>
     <updated>2013-09-22T20:46:00+08:00</updated>
     <id>http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm</id>
-    <content type="html"><![CDATA[<p>相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
+    <content type="html"><![CDATA[<p>  相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
 
-<p>为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
+<p>  为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
 
-<p>这里我们首先建立如下脚本:</p>
+<p>  这里我们首先建立如下脚本:</p>
 
 <pre><code>#!/bin/sh 
 dirpath=/tmp/recycle_$USER # find a place for recycle
@@ -1406,19 +1407,19 @@ fi
 /bin/mv $arg ${dirpath}/${filename} # move to trash
 </code></pre>
 
-<p>然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
+<p>  然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
 
 <pre><code>export PATH=$HOME/bin:$PATH
 </code></pre>
 
-<p>最后记得给rm加权限就行</p>
+<p>  最后记得给rm加权限就行</p>
 
-<p>需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
+<p>  需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
 
 <pre><code>alias rm='rm -i --preserve-root' 
 </code></pre>
 
-<p>就需要把上面的$1都改成$3, 钦此.</p>
+<p>  就需要把上面的$1都改成$3, 钦此.</p>
 ]]></content>
   </entry>
   
