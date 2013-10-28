@@ -135,37 +135,37 @@
 
 <div class="entry-content"><h3>什么是代码覆盖率(code coverage)</h3>
 
-<p>代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
+<p class="indent">代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
 
-<p>代码覆盖主要包括如下四个方面：</p>
+<p class="indent">代码覆盖主要包括如下四个方面：</p>
 
-<ol>
+<blockquote><ol>
 <li>语句覆盖(StatementCoverage)</li>
 <li>判定覆盖(DecisionCoverage)</li>
 <li>条件覆盖(ConditionCoverage)</li>
 <li>路径覆盖(PathCoverage) 或者叫条件/判断覆盖率</li>
 </ol>
+</blockquote>
 
-
-<p>具体的参见参考文献<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">1</a>.</p>
+<p class="indent">具体的参见参考文献<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html" title="代码覆盖率浅谈">1</a> <a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">2</a>.</p>
 
 <h3>怎么得到覆盖率数据</h3>
 
-<p>这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
+<p class="indent">这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
 
 <!-- more -->
 
 
-<p>gcc这里需要做的工作是编译的时候打开coverage选项，主要是如下几步。</p>
+<p class="indent">gcc这里需要做的工作是编译的时候打开coverage选项，主要是如下几步。</p>
 
-<ol>
+<blockquote><ol>
 <li>编译的时候，增加 -fprofile-arcs -ftest-coverage 或者 –coverage；</li>
 <li>链接的时候，增加 -fprofile-arcs 或者 –lgcov；</li>
 <li>打开–g3 选项，去掉-O2以上级别的代码优化选项；否则编译器会对代码做一些优化，例如行合并，从而影响行覆盖率结果；</li>
 </ol>
+</blockquote>
 
-
-<p>为了方便的在Makefile里面控制是否生成测试覆盖率数据，我们在Makefile里面加入如下开关</p>
+<p class="indent">为了方便的在Makefile里面控制是否生成测试覆盖率数据，我们在Makefile里面加入如下开关</p>
 
 <pre><code>ifeq ($(coverage), yes)
     CXXFLAGS       +=  -fprofile-arcs -ftest-coverage
@@ -174,9 +174,9 @@
 endif
 </code></pre>
 
-<p>这样就可以通过make coverage=yes生成。</p>
+<p class="indent">这样就可以通过make coverage=yes生成。</p>
 
-<p>同理如果用automake工具的话，Makefile.am里面需要加入如下语句：</p>
+<p class="indent">同理如果用automake工具的话，Makefile.am里面需要加入如下语句：</p>
 
 <pre><code>if COVERAGE
     CXXFLAGS+=-fprofile-arcs -ftest-coverage
@@ -185,7 +185,7 @@ endif
 endif
 </code></pre>
 
-<p>configure.ac/configure.in脚本里面需要加入</p>
+<p class="indent">configure.ac/configure.in脚本里面需要加入</p>
 
 <pre><code>AC_ARG_WITH([coverage],
        AS_HELP_STRING([--with-coverage],
@@ -200,20 +200,20 @@ endif
 AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
 </code></pre>
 
-<p>就可以通过</p>
+<p class="indent">就可以通过</p>
 
 <pre><code>./configure --with-coverage来生成Makefile了
 </code></pre>
 
-<p>之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献<a href="http://sdet.org/?p=212" title="Linux下c/c++项目代码覆盖率的产生方法">3</a> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html" title="[整理] gcov lcov 覆盖c/c++项目入门">4</a>。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看<a href="http://cxh.me/2013/10/16/user-script-to-get-coverage/" title="通过脚本统计代码覆盖率">下一篇博客</a>。</p>
+<p class="indent">之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献<a href="http://sdet.org/?p=212" title="Linux下c/c++项目代码覆盖率的产生方法">3</a> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html" title="[整理] gcov lcov 覆盖c/c++项目入门">4</a>。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看<a href="http://cxh.me/2013/10/16/user-script-to-get-coverage/" title="通过脚本统计代码覆盖率">下一篇博客</a>。</p>
 
 <h3>参考文献</h3>
 
-<blockquote><p><a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html" title="代码覆盖率浅谈">1</a> 代码覆盖率浅谈，<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a></p>
+<blockquote><p>[1] 代码覆盖率浅谈，<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a></p>
 
-<p><a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">2</a> 代码覆盖率，<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a></p>
+<p>[2] 代码覆盖率，<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a></p>
 
-<p><a href="http://sdet.org/?p=212" title="Linux下c/c++项目代码覆盖率的产生方法">3</a> Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
+<p>[3] Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
 
 <p>[4] [整理] gcov lcov 覆盖c/c++项目入门, <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p></blockquote>
 </div>
