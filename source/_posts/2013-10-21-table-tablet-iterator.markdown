@@ -27,13 +27,13 @@ categories: oceanbase
 
 **断言失败**：
 
->1. 接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)
-2. sql查询结果为空
+  1. 接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)
+  2. sql查询结果为空
 
 **OB_ITER_END**：
 
->1. 迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。
-2. 如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。
+  1. 迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。
+  2. 如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。
 
 **OB_NOT_INIT**: 
 
@@ -53,8 +53,8 @@ categories: oceanbase
 
 **OB_TABLE_NOT_EXIST**：
 
->1. 获得表schema的时候发现schema中不存在这张表
-2. 查询到的结果有空洞（某个范围下没有当前表的tablet）
+  1. 获得表schema的时候发现schema中不存在这张表
+  2. 查询到的结果有空洞（某个范围下没有当前表的tablet）
 
 **OB_NO_RESULT**：
 
@@ -62,15 +62,15 @@ categories: oceanbase
 
 **OB_ERROR**：可能情况
 
->1. 当前表的元数据表没有指定
-2. 获取root_table_name的时候写入失败
-3. proxy读取tablet的时候结果加入返回列表的时候失败。
-4. proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）
+  1. 当前表的元数据表没有指定
+  2. 获取root_table_name的时候写入失败
+  3. proxy读取tablet的时候结果加入返回列表的时候失败。
+  4. proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）
 
 **OB_ENTRY_NOT_EXIST**：
 
->1. 当前表的元数据表schema不存在。
-2. tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet
+  1. 当前表的元数据表schema不存在。
+  2. tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet
 
 **OB_SCHEMA_ERROR**：
 
@@ -162,13 +162,13 @@ OB_INVALID_ARGUMENT： 初始化参数不合法。
 
 ###实现机理
 
->1. 首先置type为both_iter,两个迭代器都前进一步
-2. 如果left_iter的结果> right_iter，吐出right_iter的结果，置type为LEFT_ITER，保存两个结果。
-3. 同理如果right>left,吐出right_iter的结果，置type为RIGHT_ITER,保存两个结果。
-4. 如果right==left，吐出随便哪个结果（左边），置type为BOTH_ITER,保存两个结果。
-5. 之后每次next判断type，type=LEFT_ITER则迭代LEFT_ITER，跟right_iter上次的结果比较，决定吐出哪个，并置位type=left/right/both。RIGHT/BOTH同理。
-6. 如果有单边迭代器中止，比如左边，则置type=RIGHT_ITER, 迭代到结束，反之亦然。
-7. 正常中止条件：两边迭代器都中止。
-8. OB_ITER_END情况下type返回值决定了哪边先结束。
+  1. 首先置type为both_iter,两个迭代器都前进一步
+  2. 如果left_iter的结果> right_iter，吐出right_iter的结果，置type为LEFT_ITER，保存两个结果。
+  3. 同理如果right>left,吐出right_iter的结果，置type为RIGHT_ITER,保存两个结果。
+  4. 如果right==left，吐出随便哪个结果（左边），置type为BOTH_ITER,保存两个结果。
+  5. 之后每次next判断type，type=LEFT_ITER则迭代LEFT_ITER，跟right_iter上次的结果比较，决定吐出哪个，并置位type=left/right/both。RIGHT/BOTH同理。
+  6. 如果有单边迭代器中止，比如左边，则置type=RIGHT_ITER, 迭代到结束，反之亦然。
+  7. 正常中止条件：两边迭代器都中止。
+  8. OB_ITER_END情况下type返回值决定了哪边先结束。
 
   
