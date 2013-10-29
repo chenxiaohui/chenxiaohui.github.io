@@ -137,7 +137,7 @@ jiathis: false
 cnzz: true
 
 #youyan
-youyan: true
+youyan: false
 
 #changyan
-changyan: false
+changyan: true
