@@ -24,6 +24,18 @@ single: true
       <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
     </section>
     {% endif %}
+    {% if site.youyan and page.comments != false %}
+    <section>
+      <h1>Comments</h1>
+      {% include post/youyan.html %}
+    </section>
+    {% endif %}
+    {% if site.changyan and page.comments != false %}
+    <section>
+      <h1>Comments</h1>
+      {% include post/changyan.html %}
+    </section>
+    {% endif %}
     <ul class="pager">
       {% if page.previous.url %}
       <li class="previous"><a class="basic-alignment left"

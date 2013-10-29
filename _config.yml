@@ -110,8 +110,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: harrychen
-disqus_show_comment_count: true
+disqus_short_name: 
+disqus_show_comment_count: 
 
 # Google Analytics
 google_analytics_tracking_id:
@@ -140,4 +140,4 @@ cnzz: true
 youyan: false
 
 #changyan
-changyan: false
+changyan: true
