@@ -110,8 +110,8 @@ delicious_user:
 delicious_count: 3
 
 # Disqus Comments
-disqus_short_name: 
-disqus_show_comment_count: 
+disqus_short_name:
+disqus_show_comment_count:
 
 # Google Analytics
 google_analytics_tracking_id:
@@ -137,7 +137,7 @@ jiathis: false
 cnzz: true
 
 #youyan
-youyan: false
+youyan: true
 
 #changyan
-changyan: true
+changyan: false
