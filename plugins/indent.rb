@@ -1,8 +1,7 @@
 module Jekyll
     module IndentFilter
         def indent(content)
-            content.gsub(/<p>\s\s/, '<p class="indent">')
-            content.gsub(/((<ul>|<ol>)\n<li>\s[\s\S]*?(<\/ul>|<\/ol>))/, '<blockquote>\1</blockquote>')
+            content.gsub(/<p>\s\s/, '<p class="indent">').gsub(/((<ul>|<ol>)\n<li>\s[\s\S]*?(<\/ul>|<\/ol>))/, '<blockquote>\1</blockquote>')
         end
     end
 end

@@ -110,6 +110,60 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-29T13:40:00+08:00" pubdate data-updated="true">Oct 29<span>th</span>, 2013</time>
+        
+         | <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">分布式系统开发的时候我们最经常遇到的问题就是，从一个server发送了一条报文之后怎么在另一个server查看这条报文的处理逻辑是否正确，单机的debug都不是问题，但是多机debug怎么做呢？</p>
+
+<p class="indent">在ob团队里面，正常情况下我们有如下三种方式处理这些问题：</p>
+
+<blockquote><ol>
+<li> 做mock，写单测，隔离开集群环境</li>
+<li> 加调试日志，部署集群环境，看日志。</li>
+<li> 非daemon模式下通过gdb调试。</li>
+</ol></blockquote>
+
+
+<p class="indent">这里我们详细说一下第三种。这也是最有效果的一种。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a></h1>
     
     
@@ -229,13 +283,13 @@
   </header>
 
 
-  <div class="entry-content"><p>  所有迭代器的类图如下所示：</p>
+  <div class="entry-content"><p class="indent">所有迭代器的类图如下所示：</p>
 
 <p><img class="img-polaroid center" src="/images/2013-10/iterator.png" title="iterator类图" alt="iterator类图"><p class="align-center">iterator类图</p></p>
 
 <h2>ObRootTabletIterator</h2>
 
-<p>  所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。</p>
+<p class="indent">所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。</p>
 
 </div>
   
@@ -278,7 +332,7 @@
   </header>
 
 
-  <div class="entry-content"><p>  Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
+  <div class="entry-content"><p class="indent">Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
 
 <p><img class="img-polaroid center" src="/images/2013-10/ubuntu13_10.jpg" title="俏丽的蝾螈" alt="俏丽的蝾螈"><p class="align-center">俏丽的蝾螈</p></p>
 </div>
@@ -318,11 +372,11 @@
   </header>
 
 
-  <div class="entry-content"><p>  只是记录一下工作里面的一些trick。我发现我对这些trick的兴趣无比的高。</p>
+  <div class="entry-content"><p class="indent">只是记录一下工作里面的一些trick。我发现我对这些trick的兴趣无比的高。</p>
 
-<p>  我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。</p>
+<p class="indent">我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。</p>
 
-<p>  关于gcc coverage选项和gcov/lcov工具的使用已经在 <a href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/" title="测试覆盖率统计">上篇文章</a>里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
+<p class="indent">关于gcc coverage选项和gcov/lcov工具的使用已经在 <a href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/" title="测试覆盖率统计">上篇文章</a>里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
 
 </div>
   
@@ -405,9 +459,9 @@
 
   <div class="entry-content"><h3>什么是代码覆盖率(code coverage)</h3>
 
-<p>  代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
+<p class="indent">代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
 
-<p>  代码覆盖主要包括如下四个方面：</p>
+<p class="indent">代码覆盖主要包括如下四个方面：</p>
 
 <blockquote><ol>
 <li>语句覆盖(StatementCoverage)</li>
@@ -417,11 +471,11 @@
 </ol>
 </blockquote>
 
-<p>  具体的参见参考文献<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html" title="代码覆盖率浅谈">1</a> <a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">2</a>.</p>
+<p class="indent">具体的参见参考文献<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html" title="代码覆盖率浅谈">1</a> <a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">2</a>.</p>
 
 <h3>怎么得到覆盖率数据</h3>
 
-<p>  这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
+<p class="indent">这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
 
 </div>
   
@@ -466,7 +520,7 @@
 
   <div class="entry-content"><h3>git reset 作用</h3>
 
-<p>  git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
+<p class="indent">git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
 
 <p><img class="img-ploaroid center" src="/images/2013-10/git-reset.png" title="git-reset三种方式" alt="git-reset三种方式"><p class="align-center">git-reset三种方式</p></p>
 
@@ -479,11 +533,11 @@
 
 <h3>git revert 作用</h3>
 
-<p>  git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+<p class="indent">git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
 
 <h3>撤销之后恢复</h3>
 
-<p>  git-reset如果执行之后，再想回退到指定版本。//TODO</p>
+<p class="indent">git-reset如果执行之后，再想回退到指定版本。//TODO</p>
 </div>
   
   
@@ -521,9 +575,9 @@
   </header>
 
 
-  <div class="entry-content"><p>  这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
+  <div class="entry-content"><p class="indent">这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
 
-<p>  遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
+<p class="indent">遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
 
 </div>
   
@@ -566,9 +620,9 @@
   </header>
 
 
-  <div class="entry-content"><p>  svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
+  <div class="entry-content"><p class="indent">svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？</p>
 
-<p>  看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
+<p class="indent">看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m &lsquo;message&rsquo; 而已。定义如下：</p>
 
 <blockquote><p>-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.</p>
 
@@ -620,7 +674,7 @@
 
   <div class="entry-content"><h3>误用rm删除了未提交文件</h3>
 
-<p>  经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
+<p class="indent">经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
 
 <p><img class="img-ploaroid center" src="/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
 
@@ -715,7 +769,7 @@
   </header>
 
 
-  <div class="entry-content"><p>  有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
+  <div class="entry-content"><p class="indent">有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
 
 <ul>
 <li>不习惯某种版本管理工具，希望通过另一种熟悉的版本管理工具进行管理</li>
@@ -808,9 +862,9 @@
   </header>
 
 
-  <div class="entry-content"><p>  去锦州的原因，其实是没搞到去其他的地方的票。</p>
+  <div class="entry-content"><p class="indent">去锦州的原因，其实是没搞到去其他的地方的票。</p>
 
-<p>  十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
+<p class="indent">十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
 </div>
   
   
@@ -848,9 +902,9 @@
   </header>
 
 
-  <div class="entry-content"><p>  抽空去看了一下。去看的原因倒是很简单，有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
+  <div class="entry-content"><p class="indent">抽空去看了一下。去看的原因倒是很简单，有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
 
-<p>  坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
+<p class="indent">坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
 
 </div>
   
@@ -934,9 +988,9 @@
   </header>
 
 
-  <div class="entry-content"><p>  今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
+  <div class="entry-content"><p class="indent">今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
 
-<p>  最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
+<p class="indent">最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
 
 </div>
   
@@ -1022,11 +1076,11 @@
   </header>
 
 
-  <div class="entry-content"><p>  相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
+  <div class="entry-content"><p class="indent">相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
 
-<p>  为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
+<p class="indent">为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
 
-<p>  这里我们首先建立如下脚本:</p>
+<p class="indent">这里我们首先建立如下脚本:</p>
 
 <pre><code>#!/bin/sh 
 dirpath=/tmp/recycle_$USER # find a place for recycle
@@ -1047,19 +1101,19 @@ fi
 /bin/mv $arg ${dirpath}/${filename} # move to trash
 </code></pre>
 
-<p>  然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
+<p class="indent">然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
 
 <pre><code>export PATH=$HOME/bin:$PATH
 </code></pre>
 
-<p>  最后记得给rm加权限就行</p>
+<p class="indent">最后记得给rm加权限就行</p>
 
-<p>  需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
+<p class="indent">需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
 
 <pre><code>alias rm='rm -i --preserve-root' 
 </code></pre>
 
-<p>  就需要把上面的$1都改成$3, 钦此.</p>
+<p class="indent">就需要把上面的$1都改成$3, 钦此.</p>
 </div>
   
   
@@ -1476,93 +1530,6 @@ fi
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/02/cplusplus-primer-book-review/">C++ Primer 读书笔记</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-02T12:55:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2013</time>
-        
-         | <a href="/2013/09/02/cplusplus-primer-book-review/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。</p>
-
-<blockquote><ol>
-<li> 关于初始化变量和未初始化变量</li>
-</ol></blockquote>
-
-
-<blockquote><p>这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出</p></blockquote>
-
-<pre><code>int a;
-int b;
-int c;
-printf("a=%d  b=%d  c=%dn", a, b, c);
-</code></pre>
-
-<p>2.块注释不能嵌套</p>
-
-<p>3.两种初始化方式</p>
-
-<pre><code>int ival(1024);//直接初始化
-int ival=1024; //复制初始化
-</code></pre>
-
-<blockquote><p>c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替</p>
-
-<p>初始化语句中前面定义的变量可以用来初始化后面的值，所以如下语句是合法的</p></blockquote>
-
-<pre><code>double salary=9999.99,wage(salary 0.01);
-</code></pre>
-
-<p>4.const作用域也不能出文件</p>
-
-<p>5.const引用是指向const对象的引用，是一种语法规则限制。另外const引用可以初始化为不同类型的对象或右值，例如：</p>
-
-<pre><code>double dval=3.14;
-const int &amp;ri=dval;//编译器会转换代码为：int temp=dval;const int &amp;ri=temp;
-
-const int &amp;r=42;
-const int &amp;r2=r i;
-</code></pre>
-
-<p>6.string的连接： 操作符左右操作数必须至少有一个是string类型的，但是鉴于 操作符是从左到右求值的，所以这种是合法的：</p>
-
-<pre><code>string s1="b";
-string s2="a" s1 "c";
-</code></pre>
-
-<p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1618,6 +1585,10 @@ string s2="a" s1 "c";
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
       </li>
     
@@ -1631,10 +1602,6 @@ string s2="a" s1 "c";
     
       <li class="post">
         <a href="/2013/10/18/update-to-ubuntu-13-10/">升级到ubuntu13.10</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/16/user-script-to-get-coverage/">通过脚本统计代码覆盖率</a>
       </li>
     
   </ul>

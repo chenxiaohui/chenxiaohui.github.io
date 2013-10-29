@@ -133,9 +133,9 @@
   </header>
 
 
-<div class="entry-content"><p>  这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
+<div class="entry-content"><p class="indent">这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
 
-<p>  遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
+<p class="indent">遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
 
 <!-- more -->
 
@@ -146,7 +146,7 @@ alias std='st|grep ^D '
 alias po='echo "#!/bin/sh" &gt;post-review.sh &amp;&amp; echo "post-review \\" &gt;&gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; std &gt;&gt;post-review.sh; stm &gt;&gt; post-review.sh ; vi post-review.sh'
 </code></pre>
 
-<p>  之后可以得到类似如下所示的post-review.sh，当然这个是不能直接运行的。</p>
+<p class="indent">之后可以得到类似如下所示的post-review.sh，当然这个是不能直接运行的。</p>
 
 <pre><code>#!/bin/sh
 post-review \
@@ -160,7 +160,7 @@ M       tests/rootserver/root_table/iterator/run.sh
 M       tests/rootserver/root_table/iterator/test_ob_alive_root_table_iter.cpp
 </code></pre>
 
-<p>  我们面临两个问题：</p>
+<p class="indent">我们面临两个问题：</p>
 
 <blockquote><ol>
 <li>每行的格式都略有差别，比如前面有A/M/D标记，后面没有续行符号\，没有空格什么的。</li>
@@ -168,9 +168,9 @@ M       tests/rootserver/root_table/iterator/test_ob_alive_root_table_iter.cpp
 </ol>
 </blockquote>
 
-<p>  这里我们通过vim脚本实现如下的功能：</p>
+<p class="indent">这里我们通过vim脚本实现如下的功能：</p>
 
-<p>  svn.vim 实现如下</p>
+<p class="indent">svn.vim 实现如下</p>
 
 <pre><code>function! StripSVN() range
     "Step through each line in the range...
@@ -214,9 +214,9 @@ function! SVNCommand(cmd, prompt, combine) range
 endfunction
 </code></pre>
 
-<p>  第一个函数处理每行的格式，第二个函数读取每行的内容，生成命令并执行，prompt=1 的时候会提示并让用户确认， combine=1 的时候所有行会拼成一条执行，否则每行执行一次。</p>
+<p class="indent">第一个函数处理每行的格式，第二个函数读取每行的内容，生成命令并执行，prompt=1 的时候会提示并让用户确认， combine=1 的时候所有行会拼成一条执行，否则每行执行一次。</p>
 
-<p>  然后在vimrc中添加：</p>
+<p class="indent">然后在vimrc中添加：</p>
 
 <pre><code>noremap &lt;leader&gt;sp :call StripSVN()&lt;CR&gt;
 noremap &lt;leader&gt;sf :call SVNCommand("diff", 0 ,1)&lt;cr&gt;
@@ -227,11 +227,11 @@ noremap &lt;leader&gt;sb :call SVNCommand("blame", 0 ,1)&lt;cr&gt;
 noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
 </code></pre>
 
-<p>  这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
+<p class="indent">这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
 
 <hr />
 
-<p>  其实偶然发现我好像没说怎么用，大致流程是这样的：</p>
+<p class="indent">其实偶然发现我好像没说怎么用，大致流程是这样的：</p>
 
 <blockquote><ol>
 <li>po(alias)，生成修改列表</li>

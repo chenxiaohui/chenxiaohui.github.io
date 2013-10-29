@@ -110,6 +110,93 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/09/02/cplusplus-primer-book-review/">C++ Primer 读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-02T12:55:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2013</time>
+        
+         | <a href="/2013/09/02/cplusplus-primer-book-review/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。</p>
+
+<blockquote><ol>
+<li> 关于初始化变量和未初始化变量</li>
+</ol></blockquote>
+
+
+<blockquote><p>这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出</p></blockquote>
+
+<pre><code>int a;
+int b;
+int c;
+printf("a=%d  b=%d  c=%dn", a, b, c);
+</code></pre>
+
+<p>2.块注释不能嵌套</p>
+
+<p>3.两种初始化方式</p>
+
+<pre><code>int ival(1024);//直接初始化
+int ival=1024; //复制初始化
+</code></pre>
+
+<blockquote><p>c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替</p>
+
+<p>初始化语句中前面定义的变量可以用来初始化后面的值，所以如下语句是合法的</p></blockquote>
+
+<pre><code>double salary=9999.99,wage(salary 0.01);
+</code></pre>
+
+<p>4.const作用域也不能出文件</p>
+
+<p>5.const引用是指向const对象的引用，是一种语法规则限制。另外const引用可以初始化为不同类型的对象或右值，例如：</p>
+
+<pre><code>double dval=3.14;
+const int &amp;ri=dval;//编译器会转换代码为：int temp=dval;const int &amp;ri=temp;
+
+const int &amp;r=42;
+const int &amp;r2=r i;
+</code></pre>
+
+<p>6.string的连接： 操作符左右操作数必须至少有一个是string类型的，但是鉴于 操作符是从左到右求值的，所以这种是合法的：</p>
+
+<pre><code>string s1="b";
+string s2="a" s1 "c";
+</code></pre>
+
+<p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/05/29/from-the-miao-code/">由&#8221;喵&#8221;代码想到的</a></h1>
     
     
@@ -1966,54 +2053,6 @@ ewcommand{\upcite}[1]{ extsuperscript{ extsuperscript{</p></blockquote>
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/03/14/using-visio-vector-diagram-in-Latex/">Latex中使用visio的矢量图(转载+修改）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-14T00:00:00+08:00" pubdate data-updated="true">Mar 14<span>th</span>, 2012</time>
-        
-         | <a href="/2012/03/14/using-visio-vector-diagram-in-Latex/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>我们知道，visio用来画流程图等专业图很方便，而Latex的专业排版效果是Word所不能比的，而Visio不支持导入eps和dvi格式的矢量图，而导出jpeg毕竟有质量损失，那么怎么才能在Latex中直接使用visio导出的矢量图呢？</p>
-
-<p>1. Visio可以保存为wmf，emf等矢量图形格式（word的默认插图格式），再转换为eps格式（可使用TpX，由本论坛得知早期版本貌似可直接保存eps）插入LaTeX。可转换后的eps图片格式不稳定，图形易错位；另外Visio使用Windows字体，转换后的eps图形只引用而不包含字体，插入LaTex后由于找不到对应字体，中文（或mathtype公式，特殊符号）会乱码。
-2. 用ps虚拟打印的方式虽然可以解决格式和乱码问题，但中文字符（或其他不支持的内容）会按位图处理，得不到完美的矢量图形。
-经过探索，将visio保存为pdf格式是最完美的解决方式，因为pdf文件保存了所有格式和字体信息。借助pdfcrop和ebb程序，调用graphicx宏包插入pdf格式图片，能够得到完美的visio矢量图形。</p>
-
-<p>注：
-1.导入的代码依然可以使用标准的fig标签，例如：
-egin{figure}</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -2071,6 +2110,10 @@ egin{figure}</p>
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
       </li>
     
@@ -2084,10 +2127,6 @@ egin{figure}</p>
     
       <li class="post">
         <a href="/2013/10/18/update-to-ubuntu-13-10/">升级到ubuntu13.10</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/16/user-script-to-get-coverage/">通过脚本统计代码覆盖率</a>
       </li>
     
   </ul>

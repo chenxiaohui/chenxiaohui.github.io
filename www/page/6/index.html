@@ -110,6 +110,60 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">IE8无法调试ActiveX控件的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>最近调ActiveX控件，发现总是无法停到一个断点去，这不坑爹呢？</p>
+
+<p>后来找来找去，发现IE8 默认是多进程工作的，通过修改注册表可以改为单进程工作，多进程的时候，启动的ie进程和加载要调试的ocx的ie进程不是一个进程，所以不能调试。</p>
+
+<p>注册表操作如下：</p>
+
+<blockquote><p>Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+&ldquo;TabProcGrowth&rdquo;=dword:00000000</p></blockquote>
+
+<p>参考文献：</p>
+
+<blockquote><p>[1] VC做的OCX控件，IE下断点调试问题,</p>
+
+<p>[2] IE8调试VC6的OCX控件不能进入断点问题解决方法</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/04/10/plan-to-help-you-run/">助跑计划，几个有才版本</a></h1>
     
     
@@ -1789,67 +1843,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/26/three-problems/">记三个小问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-26T00:00:00+08:00" pubdate data-updated="true">Jan 26<span>th</span>, 2011</time>
-        
-         | <a href="/2011/01/26/three-problems/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>今天遇到的三个小问题，这里记下来，留个备份吧。</p>
-
-<p>第一个是装机的时候想要是能自动安装软件到D盘就好了，省了每次手动填写安装路径的麻烦，解决方法其实很简单：</p>
-
-<blockquote><p>开始菜单里的“运行”，输入“regedit”，来运行注册表编辑器，展开
-“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion”分支。在右侧的窗口中，把“ProgramFilesDir”和“CommonFilesDir”字符串值改为其它目录即可</p></blockquote>
-
-<p>第二个问题是恢复数据库的时候，遇到一个错误提示：</p>
-
-<blockquote><p>System.Data.SqlClient.SqlError: 在对 ‘C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\BusinessDB.mdf’ 尝试 ‘RestoreContainer::ValidateTargetForCreation’ 时，操作系统返回了错误 ’5(拒绝访问)’</p></blockquote>
-
-<p>其实主要的问题在于没有对&#8221;C:\Program Files\Microsoft SQL Server\MSSQL.1\MSSQL\&ldquo;创建文件的权限（可以把它复制到data），这是SQL2005对文件夹的安全性限制。所以把还原路径换成别的即可。</p>
-
-<p>第三个问题是关于多windows系统安装的引导菜单修改，这个问题就更简单了，只需要在系统属性\高级\启动和故障恢复里，点手动编辑，之后的文件格式通俗易懂，不需要多说。</p>
-
-<p>最后鄙视一下360，客户端软件真是流氓的天下，只有流氓才TM能生存，360真是拿顾客当小白鼠了……</p>
-
-<p>参考文献：</p>
-
-<p>[1]通过注册表修改软件默认安装目录，</p>
-
-<p>[2]解决SQL Server 2005 还原数据库错误，</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/7/">&larr; Older</a></li>
@@ -1907,6 +1900,10 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
       </li>
     
@@ -1920,10 +1917,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     
       <li class="post">
         <a href="/2013/10/18/update-to-ubuntu-13-10/">升级到ubuntu13.10</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/16/user-script-to-get-coverage/">通过脚本统计代码覆盖率</a>
       </li>
     
   </ul>

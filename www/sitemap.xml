@@ -1283,8 +1283,12 @@
         <lastmod>2013-10-28T10:59:50+08:00</lastmod>
     </url>
     <url>
+        <loc>http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/</loc>
+        <lastmod>2013-10-29T13:52:21+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://cxh.me/blog/archives/</loc>
-        <lastmod>2013-10-29T12:30:47+08:00</lastmod>
+        <lastmod>2013-10-29T13:52:21+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/blog/categories/</loc>
@@ -1292,7 +1296,7 @@
     </url>
     <url>
         <loc>http://cxh.me/</loc>
-        <lastmod>2013-10-29T12:30:47+08:00</lastmod>
+        <lastmod>2013-10-29T13:52:21+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/pandoc/root_table.html</loc>
