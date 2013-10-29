@@ -30,7 +30,7 @@ categories: "Oceanbase"
 
   参数里面加-N表示不以daemon方式启动。
 
-  这样通过gdb可以启动rootserver，然后同样启动其他需要的server，就可以调试在gdb里面看到程序执行后停在断点的位置。启动脚本如下，这里我们只启动了chunkserver。断点命中的情况如图所示：
+  这样通过gdb可以启动rootserver，然后同样启动其他需要的server，就可以调试在gdb里面看到程序执行后停在断点的位置。启动脚本如下，这里我们只启动了chunkserver。
 
   	#!/bin/bash
 	rs_ip=10.235.162.8
@@ -52,6 +52,14 @@ categories: "Oceanbase"
 
 	#bin/rs_admin -r $rs_ip -p $rs_port set_obi_role -o OBI_MASTER
 	#bin/rs_admin -r $rs_ip -p $rs_port -t 60000000 boot_strap $no
+
+  断点命中的情况如图1所示：
+  
+  {% img img-polaroid center /images/2013-10/gdb_multi_server.png "图1：断点命中的情况" "图1：断点命中的情况" %}
+  
+  唯一的问题是gdb有时候会退出，如图2。感觉上是rpc超时了？
+
+  {% img img-polaroid center /images/2013-10 "图2：gdb退出" "图2：gdb退出" %}
 
   感谢玩大数据的[颜然师兄][2]提供非daemon方式启动的方法。
 
