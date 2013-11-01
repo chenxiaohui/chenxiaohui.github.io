@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-10-29T22:07:55+08:00</updated>
+  <updated>2013-11-01T18:47:13+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,158 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[如何构建按高可用系统（分享的笔记）]]></title>
+    <link href="http://cxh.me/2013/11/01/how-to-build-high-available-system/"/>
+    <updated>2013-11-01T18:42:00+08:00</updated>
+    <id>http://cxh.me/2013/11/01/how-to-build-high-available-system</id>
+    <content type="html"><![CDATA[<p>版权所有：<a href="">解伦师兄</a></p>
+
+<h3>介绍篇</h3>
+
+<p><strong>可用性vs可靠性</strong></p>
+
+<p>  可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。</p>
+
+<p>  可用性可靠性是系统的工程，设计开发，管理，运维等等。</p>
+
+<p>  宕机几大因素：软件-硬件-网络-人为</p>
+
+<p>  data loss的最大因素：drop table, 所以要做好充分的容错。</p>
+
+<!-- more -->
+
+
+<h3>设计篇</h3>
+
+<p><strong>减少故障发生的可能</strong></p>
+
+<p>  避免单点故障，防止扩散，有效的监控运维配合</p>
+
+<p>  常见的<strong>冗余</strong>设计。</p>
+
+<ul>
+<li>RAID,Replica,Erasure Code</li>
+<li>BackUp, Reassign,Retry</li>
+<li>Master-Slave,Mirror,RAC..</li>
+</ul>
+
+
+<p>  减少对外部系统强依赖</p>
+
+<ul>
+<li>缓存</li>
+<li>异步替代同步</li>
+</ul>
+
+
+<p>  对外部依赖不信任</p>
+
+<ul>
+<li>结果进行</li>
+<li>失败情况下failover（重试时间次数需要控制）</li>
+</ul>
+
+
+<p>  有效的内部监控</p>
+
+<p><strong>减少故障恢复时间</strong></p>
+
+<p>  无状态最好</p>
+
+<ul>
+<li>有状态定期做持久化（checkpoint/commitlog)</li>
+</ul>
+
+
+<p>  有效的故障隔离</p>
+
+<ul>
+<li>故障检测，黑白名单，流量分配</li>
+<li>黑名单要有恢复机制</li>
+</ul>
+
+
+<p><strong>减少损失</strong></p>
+
+<p>  过载保护</p>
+
+<ul>
+<li>发现故障，并限制资源</li>
+</ul>
+
+
+<p>  应用降级</p>
+
+<ul>
+<li>关闭部分不重要的功能(某些情况下用户也感觉不出来)</li>
+</ul>
+
+
+<p>  有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。</p>
+
+<h3>案例篇</h3>
+
+<p><strong>Twitter</strong></p>
+
+<p>  世界杯额时候twitter经常会时常挂掉</p>
+
+<ul>
+<li>memcache规划的问题</li>
+<li>cache也要注意设计</li>
+</ul>
+
+
+<p><strong>Foursquare</strong></p>
+
+<p>  数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)</p>
+
+<ul>
+<li>数据迁走之后有空洞，页不释放</li>
+<li>还好毕设的时候数据量不大</li>
+</ul>
+
+
+<p><strong>Amazon</strong></p>
+
+<p>  EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络</p>
+
+<ul>
+<li>相应超时，认为丢失副本</li>
+<li>副本复制，继续加剧网络问题</li>
+</ul>
+
+
+<p><strong>Weibo</strong></p>
+
+<p>  热点存在，cache失效，一瞬间所有访问db</p>
+
+<ul>
+<li>加锁，一个人获取内容回填cache之后就不会有人去访问db了</li>
+</ul>
+
+
+<p><strong>Facebook</strong></p>
+
+<p>  cache没取到就删除了原cache</p>
+
+<p><strong>OB</strong></p>
+
+<p>  客户端要做分流，业务高峰，超时严重，把cluster都加入黑名单，重试风暴</p>
+
+<h3>总结篇</h3>
+
+<p><strong>可用性</strong></p>
+
+<ul>
+<li>BASE:基本可用</li>
+<li>CAP:No CAP, No CP, A是很重要的</li>
+<li><a href="">20 Key High Availability Design Principles</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用gdb调试分布式系统（OB中的应用）]]></title>
@@ -1387,69 +1539,6 @@ make install
 <p>  另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
 
 <p>  ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的&hellip;.w</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[oceanbase源码分析-root_table_manager相关]]></title>
-    <link href="http://cxh.me/2013/09/26/root-table-manager/"/>
-    <updated>2013-09-26T12:15:00+08:00</updated>
-    <id>http://cxh.me/2013/09/26/root-table-manager</id>
-    <content type="html"><![CDATA[<p>记录一下root_table_manager相关类的阅读和心得。</p>
-
-<!-- more -->
-
-
-<h3>ObTableNameIterator</h3>
-
-<p>一个Iterator, 用于获取所有的TableName</p>
-
-<ul>
-<li><p>init</p>
-
-<p>初始化并调用scan_tables执行查询表名的sql语句</p></li>
-<li><p>scan_tables</p>
-
-<p>执行sql语句 &ldquo;select table_name, table_id from __all_table&rdquo; 来得到所有表的表名</p></li>
-<li><p>get_next</p>
-
-<p>获取下一个表名, 如果 table_idx_ &lt; 3 获取的是内部表的信息, 否则从sql执行结果中迭代返回普通表名</p>
-
-<p>table_idx_对应的表名分别是:</p>
-
-<p>&hellip;.</p></li>
-<li><p>internal_get</p>
-
-<p>获取内部表名</p></li>
-<li><p>normal_get</p>
-
-<p>获取普通表名</p></li>
-</ul>
-
-
-<h3>ObTableIdName</h3>
-
-<p>  顾名思义, TableId 和 TableName 的组合</p>
-
-<h3>ObTableSchemaIterator</h3>
-
-<p>  获取TableSchema的迭代器</p>
-
-<h3>ObRootSchemaService</h3>
-
-<p>  RootServer的Schema服务类, 提供rootserver所需的schema操作, 主要是读操作.</p>
-
-<p>  成员</p>
-
-<p>  方法</p>
-
-<pre><code>init
-写入
-</code></pre>
-
-<h3>RootTableService</h3>
-
-<p>  RootServer</p>
 ]]></content>
   </entry>
   

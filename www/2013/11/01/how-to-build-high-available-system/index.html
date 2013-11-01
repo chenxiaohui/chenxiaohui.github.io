@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>如何构建按高可用系统（分享的笔记） - CXH.ME</title>
+  <meta name="author" content="Harry Chen">
+  
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京（北厂环球车间OceanBase生产线）">
+  
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://cxh.me/2013/11/01/how-to-build-high-available-system">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/libs/jquery.js"></script>
+  <script src="/javascripts/libs/modernizr-2.0.js"></script>
+  <script src="/javascripts/libs/bootstrap.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="CXH.ME" type="application/atom+xml">
+  <link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/javascripts/google-code-prettify/prettify.js"></script>
+<link href="/stylesheets/doc.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+
+
+<body   >
+  <nav role="navigation"><div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+      <a class="brand" href="/">CXH.ME</a>
+
+      <div class="nav-collapse">
+        <ul class="nav">
+    <li><a href="/">Blog</a></li>
+    <li><a href="/blog/archives">Archives</a></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><a href="/category/ruan-jian-fa-bu">软件发布</a></li>
+            <li class="divider"></li>
+            <li><a href="/category/c-plus-plus">C++</a></li>
+            <li><a href="/category/dot-net">.Net</a></li>
+            <li><a href="/category/flex">Flex</a></li>
+            <li><a href="/category/ji-chu-li-lun">基础理论</a></li>
+            <li><a href="/category/latex">Latex</a></li>
+            <li><a href="/category/linux">Linux</a></li>
+            <li><a href="/category/mfc">MFC</a></li>
+            <li><a href="/category/oceanbase">Oceanbase</a></li>
+            <li><a href="/category/others">其他</a></li>
+            <li><a href="/category/php">PHP</a></li>
+            <li><a href="/category/python">Python</a></li>
+            <li><a href="/category/vim">vim</a></li>
+            <li><a href="/category/web">web相关</a></li>
+        </ul>
+    </li>
+    <li><a href="/category/ai-ti-ren-sheng">IT人生</a></li>
+    <li><a href="/category/shi-qing-bai-tai">世情百态</a></li>
+    <li><a href="/category/sui-bi">随笔</a></li>
+
+
+
+</ul>
+
+
+        <ul class="nav pull-right" data-subscription="rss">
+          <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+          
+        </ul>
+
+        
+          <form class="pull-right navbar-search" action="http://google.com/search" method="get">
+            <fieldset role="search">
+              <input type="hidden" name="q" value="site:cxh.me" />
+              <input class="search-query" type="text" name="q" results="0" placeholder="Search"/>
+            </fieldset>
+          </form>
+        
+      </div>
+    </div>
+  </div>
+</div>
+</nav>
+  <div class="container">
+    <div class="row-fluid">
+      
+<article class="hentry span12 well" role="article">
+
+  
+  <header class="page-header">
+    
+      <h2 class="entry-title">如何构建按高可用系统（分享的笔记）</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-01T18:42:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>版权所有：<a href="">解伦师兄</a></p>
+
+<h3>介绍篇</h3>
+
+<p><strong>可用性vs可靠性</strong></p>
+
+<p class="indent">可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。</p>
+
+<p class="indent">可用性可靠性是系统的工程，设计开发，管理，运维等等。</p>
+
+<p class="indent">宕机几大因素：软件-硬件-网络-人为</p>
+
+<p class="indent">data loss的最大因素：drop table, 所以要做好充分的容错。</p>
+
+<!-- more -->
+
+
+<h3>设计篇</h3>
+
+<p><strong>减少故障发生的可能</strong></p>
+
+<p class="indent">避免单点故障，防止扩散，有效的监控运维配合</p>
+
+<p class="indent">常见的<strong>冗余</strong>设计。</p>
+
+<ul>
+<li>RAID,Replica,Erasure Code</li>
+<li>BackUp, Reassign,Retry</li>
+<li>Master-Slave,Mirror,RAC..</li>
+</ul>
+
+
+<p class="indent">减少对外部系统强依赖</p>
+
+<ul>
+<li>缓存</li>
+<li>异步替代同步</li>
+</ul>
+
+
+<p class="indent">对外部依赖不信任</p>
+
+<ul>
+<li>结果进行</li>
+<li>失败情况下failover（重试时间次数需要控制）</li>
+</ul>
+
+
+<p class="indent">有效的内部监控</p>
+
+<p><strong>减少故障恢复时间</strong></p>
+
+<p class="indent">无状态最好</p>
+
+<ul>
+<li>有状态定期做持久化（checkpoint/commitlog)</li>
+</ul>
+
+
+<p class="indent">有效的故障隔离</p>
+
+<ul>
+<li>故障检测，黑白名单，流量分配</li>
+<li>黑名单要有恢复机制</li>
+</ul>
+
+
+<p><strong>减少损失</strong></p>
+
+<p class="indent">过载保护</p>
+
+<ul>
+<li>发现故障，并限制资源</li>
+</ul>
+
+
+<p class="indent">应用降级</p>
+
+<ul>
+<li>关闭部分不重要的功能(某些情况下用户也感觉不出来)</li>
+</ul>
+
+
+<p class="indent">有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。</p>
+
+<h3>案例篇</h3>
+
+<p><strong>Twitter</strong></p>
+
+<p class="indent">世界杯额时候twitter经常会时常挂掉</p>
+
+<ul>
+<li>memcache规划的问题</li>
+<li>cache也要注意设计</li>
+</ul>
+
+
+<p><strong>Foursquare</strong></p>
+
+<p class="indent">数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)</p>
+
+<ul>
+<li>数据迁走之后有空洞，页不释放</li>
+<li>还好毕设的时候数据量不大</li>
+</ul>
+
+
+<p><strong>Amazon</strong></p>
+
+<p class="indent">EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络</p>
+
+<ul>
+<li>相应超时，认为丢失副本</li>
+<li>副本复制，继续加剧网络问题</li>
+</ul>
+
+
+<p><strong>Weibo</strong></p>
+
+<p class="indent">热点存在，cache失效，一瞬间所有访问db</p>
+
+<ul>
+<li>加锁，一个人获取内容回填cache之后就不会有人去访问db了</li>
+</ul>
+
+
+<p><strong>Facebook</strong></p>
+
+<p class="indent">cache没取到就删除了原cache</p>
+
+<p><strong>OB</strong></p>
+
+<p class="indent">客户端要做分流，业务高峰，超时严重，把cluster都加入黑名单，重试风暴</p>
+
+<h3>总结篇</h3>
+
+<p><strong>可用性</strong></p>
+
+<ul>
+<li>BASE:基本可用</li>
+<li>CAP:No CAP, No CP, A是很重要的</li>
+<li><a href="">20 Key High Availability Design Principles</a></li>
+</ul>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+
+
+<!--<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>-->
+
+<hr/>
+<div class="author clear">
+        <div class="author_pic left pl20 pr20">
+            <script src="/javascripts/md5.js"></script>
+            <script type="text/javascript">
+                $(function(){
+                        $('.author_pic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=100' alt='Profile Picture' style='width: 100px;' class='img-polaroid'/>");
+                        });
+            </script>
+        </div>
+        <div class="author_info left">
+            <h3>Harry Chen</h3>
+            <p>北航本，清华硕，现就职于支付宝北京（北厂环球车间OceanBase生产线）</p>
+        </div>
+</div>
+<hr/>
+
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-01T18:42:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/oceanbase/'>Oceanbase</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+</div>
+
+    
+    
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS"></div>
+<script>
+  (function(){
+    var appid = 'cyqPuxR41',
+    conf = 'prod_9f8684e630c4c30cad7b1f0935cd62ab';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="Previous Post:
+        用gdb调试分布式系统（OB中的应用）">&laquo; 用gdb调试分布式系统（OB中的应用）</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo" class="page-footer"><hr>
+<p>
+  Copyright &copy; 2013 - Harry Chen -
+  <span class="credit">
+      Powered by <a href="http://octopress.org">Octopress</a> /
+                 <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
+  </span>
+  <span class="credit">Statistics 
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_5674020'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/stat.php%3Fid%3D5674020%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+
+ </span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+
+<script type="text/javascript" >
+<!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint && prettyPrint();
+      $('table').addClass('table')
+});
+-->
+</script>
+
+
+</body>
+</html>
