@@ -1,4 +1,4 @@
-body {
+html body {
     padding-bottom: 40px;
     padding-top: 65px;
     position: relative;
@@ -23,6 +23,7 @@ pre{
 h1, h1 a, h2, h2 a, h3, h3 a, h4, h4 a{ color: #333; text-shadow: rgba(50, 50, 50, .3) 1px 1px 3px; }
 .pl20{padding-left:20px}
 .pr20{padding-right:20px}
+.pt20{padding-top:20px}
 /*some common settings*/
 .left{float:left;}
 .right{float:right;}
