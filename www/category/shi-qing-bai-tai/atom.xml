@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 世情百态 | CXH.ME]]></title>
   <link href="http://cxh.me/category/shi-qing-bai-tai/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-06T21:29:10+08:00</updated>
+  <updated>2013-11-06T21:37:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -44,17 +44,17 @@
 
 <hr />
 
-<p>{% img /images/common/ask.jpg 200 &ldquo;are you kidding me&rdquo; %} 你家的土豪是坐公交的啊</p>
+<p><img src="/images/common/ask.jpg" width="200" title="&ldquo;are you kidding me&rdquo;" > 你家的土豪是坐公交的啊</p>
 
 <hr />
 
 <p>  好了，不管土豪的事情了，上几张照片。</p>
 
-<p>{% img img-polaroid center /images/2013-10/IMG_20131006_144718.jpg  &ldquo;这个是想表达什么&rdquo; &ldquo;这个是想表达什么&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/IMG_20131006_144718.jpg" title="&ldquo;这个是想表达什么&rdquo; &ldquo;这个是想表达什么&rdquo;" ></p>
 
-<p>{% img img-polaroid center /images/2013-10/IMG_20131006_145824.jpg &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/IMG_20131006_145824.jpg" title="&ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo;" ></p>
 
-<p>{% img img-polaroid center /images/2013-10/IMG_20131006_172509.jpg &ldquo;最震撼的其实是这个&rdquo; &ldquo;最震撼的其实是这个&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/IMG_20131006_172509.jpg" title="&ldquo;最震撼的其实是这个&rdquo; &ldquo;最震撼的其实是这个&rdquo;" ></p>
 
 <p>  这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
 
