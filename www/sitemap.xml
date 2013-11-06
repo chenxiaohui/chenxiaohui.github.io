@@ -1295,27 +1295,27 @@
         <lastmod>2013-11-06T21:56:05+08:00</lastmod>
     </url>
     <url>
+        <loc>http://cxh.me/blog/categories/</loc>
+        <lastmod>2013-11-06T21:56:05+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://cxh.me/blog/archives/</loc>
         <lastmod>2013-11-06T21:56:05+08:00</lastmod>
     </url>
     <url>
-        <loc>http://cxh.me/blog/categories/</loc>
-        <lastmod>2013-11-06T21:56:05+08:00</lastmod>
+        <loc>http://cxh.me/robots.txt</loc>
+        <lastmod>2013-10-04T16:17:55+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/</loc>
         <lastmod>2013-11-06T21:56:05+08:00</lastmod>
     </url>
     <url>
-        <loc>http://cxh.me/pandoc/root_table.html</loc>
-        <lastmod>2013-10-27T14:50:46+08:00</lastmod>
-    </url>
-    <url>
         <loc>http://cxh.me/pandoc/test.html</loc>
         <lastmod>2013-10-27T14:13:31+08:00</lastmod>
     </url>
     <url>
-        <loc>http://cxh.me/robots.txt</loc>
-        <lastmod>2013-10-04T16:17:55+08:00</lastmod>
+        <loc>http://cxh.me/pandoc/root_table.html</loc>
+        <lastmod>2013-10-27T14:50:46+08:00</lastmod>
     </url>
 </urlset>
