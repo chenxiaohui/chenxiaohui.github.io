@@ -109,6 +109,90 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/11/08/solution-to-locate-log-in-src/">Vim日志定位解决方案</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-08T21:31:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">做分布式系统看日志解决问题是基本功了，毕竟多个server跑在不同的机器上，即使用gdb能attach到某个进程上，或者<a href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="用gdb调试分布式系统（OB中的应用）">用非daemon模式启动并调试</a>但是case往往很复杂，难以用测试环境完全模拟case，所以大部分情况下还是需要看日志解决问题的。</p>
+
+<p class="indent">不过日志多了之后往往容易跟丢，在浩如烟海的日志里面定位到发生错误的地方也不是见容易的事情。这周大部分时间就费在这上面了（不过还是不熟）。期间写了一个简单的vim插件实现日志的定位。想法如下：</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/11/08/solution-to-locate-log-in-src/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-08T21:26:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a></h1>
     
     
@@ -1397,87 +1481,6 @@ fi
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/14/show-gitdiff-using-vimdiff/">用vimdiff来显示gitdiff</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-14T11:40:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
-
-<p>具体说来有两种办法:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/14/show-gitdiff-using-vimdiff/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/12/obstring-souce-analysis/">ObString源码分析</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-12T16:02:00+08:00" pubdate data-updated="true">Sep 12<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>ObString是oceanbase的源码类</p>
-
-<p>//TODO</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1533,6 +1536,14 @@ fi
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/08/solution-to-locate-log-in-src/">vim日志定位解决方案</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
@@ -1542,14 +1553,6 @@ fi
     
       <li class="post">
         <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/25/history-of-tian-chao/">(转)天朝六十年编年史</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/21/table-tablet-iterator/">Oceanbase迭代器说明</a>
       </li>
     
   </ul>

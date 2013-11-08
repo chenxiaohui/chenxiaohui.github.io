@@ -109,6 +109,88 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/05/22/install-vmware-tool-in-ubuntu-10.10/">在ubuntu10.10中安装VMWare Tool，遇到The Path &quot; &quot; Is Not Valid 的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-22T00:00:00+08:00" pubdate data-updated="true">May 22<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实包括很多版本的Linux，比如Fedora下安装VMwareTools都会出现这个问题，经过哥不懈的尝试和努力，最后总结出了这一类问题的最终解决方法，在各种情况下都适用，基本可以应对所有的此类问题，在此与大家共享：</p>
+
+<p>简单的说</p>
+
+<p>就是：</p>
+
+<p>升级VMware吧</p>
+
+<p>不客气。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/05/20/Obama-like-the-god/">神一样的奥巴马哈哈哈</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-20T00:00:00+08:00" pubdate data-updated="true">May 20<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/05/14/cannnot-you-install-the-headers/">万水千山总是情，预装下header行不行？</a></h1>
     
     
@@ -1673,110 +1755,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/28/about-data-binding-of-DataGridView-under-dotNet/">关于.Net下DataGridView绑定自定义数据结构的问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-28T00:00:00+08:00" pubdate data-updated="true">Jan 28<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>数据绑定是个非常有用的东东，经常在C 下写MVC结构程序的童鞋可能都苦于界面（View）和数据（Model）之间的一致，如果View单一而且需要做的一致性工作不多的话，我们经常会直接在Controller里写更新操作（如图1所示），而如果有多个View，数据同步复杂的话，经常需要手动实现一个观察者模式，每个对数据（Model）的原子操作都需要同时对View进行更新（如图2所示）。</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/1_thumb.jpg" title="临时1" alt="临时1" /><img src="http://www.roybit.com/wp-content/uploads/2011/01/3_thumb.jpg" title="临时3" alt="临时3" /></p>
-
-<p>图1 图2</p>
-
-<p>总的来说.Net平台设计还是非常优秀而人性化的，比如说数据绑定。数据绑定相当于自动实现了从Model到View的数据更新（如图3所示），而免去了自己管理数据一致和自己实现观察者模式的麻烦。同时，DataGridView控件的引入极大的方便了表格形式数据的显示和操作，这个比C 里德ListCtrl使用起来要方便很多。</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/2_thumb.jpg" title="临时2" alt="临时2" /></p>
-
-<p>图3</p>
-
-<p>扯了好多无关的东东，该进入正题了。我们要探讨的是DataGridView控件绑定自定义数据结构的问题。我们要实现的目的是绑定到一个List的结构里，而T可以自己定义。具体的代码不贴了，参考文献1里有一个比较简明的例子。一个比较突出的问题是List没有实现ISort接口，所以绑定后无法自动排序，参考文献2里有相应的解决方法，其中封装的BindingCollection泛型类可以直接作为List泛型的替代品来使用。</p>
-
-<p>本文主要探讨的问题是其中一个更小的问题。就是使用了BindingCollection之后绑定数据前后数据列会发生变化，如下所示：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/test_thumb.jpg" title="test" alt="test" /> 可见顺序发生了变化，这里没有项的增加，但是如果有没加入的列，DataGridView会自动添加一个列，这个问题很讨厌啊。试了好久之后，从MSDN里查到一个属性AutoGenerateColumns，这个属性在属性编辑器里没有可视化的编辑项，但是可以通过代码设置，所以只需要设置</p>
-
-<blockquote><p>dataGridClient.AutoGenerateColumns = false;</p></blockquote>
-
-<p>即可避免此问题。</p>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/01/1_thumb.jpg" title="临时1">1</a> datagridview如何绑定List，</p>
-
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/01/3_thumb.jpg" title="临时3">2</a> 解决DataGridView绑定List后不能排序的问题，</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/27/use-livewriter-to-write-blogs-on-cnblogs-and-csdn/">用LiveWriter写CNBlogs和CSDN的博客</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-27T00:00:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>习惯了LiveWriter写博客，于是想把各个地方的博客整合到一起，CNBlogs非常简单，只需要在添加帐户里选择WordPress填入用户名即可，CSDN非常麻烦，我试了好久没找到对应的组合，后来发现有高人指出应该使用Metaweblog，果然，方法见下：</p>
-
-<blockquote></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/7/">&larr; Older</a></li>
@@ -1834,6 +1812,14 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/08/solution-to-locate-log-in-src/">vim日志定位解决方案</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
@@ -1843,14 +1829,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     
       <li class="post">
         <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/25/history-of-tian-chao/">(转)天朝六十年编年史</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/21/table-tablet-iterator/">Oceanbase迭代器说明</a>
       </li>
     
   </ul>

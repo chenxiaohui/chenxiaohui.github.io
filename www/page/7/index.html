@@ -109,6 +109,110 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/01/28/about-data-binding-of-DataGridView-under-dotNet/">关于.Net下DataGridView绑定自定义数据结构的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-28T00:00:00+08:00" pubdate data-updated="true">Jan 28<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>数据绑定是个非常有用的东东，经常在C 下写MVC结构程序的童鞋可能都苦于界面（View）和数据（Model）之间的一致，如果View单一而且需要做的一致性工作不多的话，我们经常会直接在Controller里写更新操作（如图1所示），而如果有多个View，数据同步复杂的话，经常需要手动实现一个观察者模式，每个对数据（Model）的原子操作都需要同时对View进行更新（如图2所示）。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/1_thumb.jpg" title="临时1" alt="临时1" /><img src="http://www.roybit.com/wp-content/uploads/2011/01/3_thumb.jpg" title="临时3" alt="临时3" /></p>
+
+<p>图1 图2</p>
+
+<p>总的来说.Net平台设计还是非常优秀而人性化的，比如说数据绑定。数据绑定相当于自动实现了从Model到View的数据更新（如图3所示），而免去了自己管理数据一致和自己实现观察者模式的麻烦。同时，DataGridView控件的引入极大的方便了表格形式数据的显示和操作，这个比C 里德ListCtrl使用起来要方便很多。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/2_thumb.jpg" title="临时2" alt="临时2" /></p>
+
+<p>图3</p>
+
+<p>扯了好多无关的东东，该进入正题了。我们要探讨的是DataGridView控件绑定自定义数据结构的问题。我们要实现的目的是绑定到一个List的结构里，而T可以自己定义。具体的代码不贴了，参考文献1里有一个比较简明的例子。一个比较突出的问题是List没有实现ISort接口，所以绑定后无法自动排序，参考文献2里有相应的解决方法，其中封装的BindingCollection泛型类可以直接作为List泛型的替代品来使用。</p>
+
+<p>本文主要探讨的问题是其中一个更小的问题。就是使用了BindingCollection之后绑定数据前后数据列会发生变化，如下所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/test_thumb.jpg" title="test" alt="test" /> 可见顺序发生了变化，这里没有项的增加，但是如果有没加入的列，DataGridView会自动添加一个列，这个问题很讨厌啊。试了好久之后，从MSDN里查到一个属性AutoGenerateColumns，这个属性在属性编辑器里没有可视化的编辑项，但是可以通过代码设置，所以只需要设置</p>
+
+<blockquote><p>dataGridClient.AutoGenerateColumns = false;</p></blockquote>
+
+<p>即可避免此问题。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/01/1_thumb.jpg" title="临时1">1</a> datagridview如何绑定List，</p>
+
+<p><a href="http://www.roybit.com/wp-content/uploads/2011/01/3_thumb.jpg" title="临时3">2</a> 解决DataGridView绑定List后不能排序的问题，</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/01/27/use-livewriter-to-write-blogs-on-cnblogs-and-csdn/">用LiveWriter写CNBlogs和CSDN的博客</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-01-27T00:00:00+08:00" pubdate data-updated="true">Jan 27<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>习惯了LiveWriter写博客，于是想把各个地方的博客整合到一起，CNBlogs非常简单，只需要在添加帐户里选择WordPress填入用户名即可，CSDN非常麻烦，我试了好久没找到对应的组合，后来发现有高人指出应该使用Metaweblog，果然，方法见下：</p>
+
+<blockquote></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/01/27/an-article-from-the-web/">转一篇网络文章</a></h1>
     
     
@@ -1791,118 +1895,6 @@ End Sub
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/05/05/my-university-3/">我的大学（三）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>（六）</p>
-
-<p>我们总在做时间倒流的梦，于是一篇“回到97年”的穿越帖才引发这么多人的共鸣。“存在即合理”不是没有道理的。不是故事的结局不够好，只是我们对故事的要求太多。发生的事情我们无法改变，能做的也只有改变自己的态度。</p>
-
-<p>想想确实后悔，大一最忙的一段时间，让我荒废了。不过心智也在这个学期磨砺起来了。我做不到淡然，痛苦是依然存在的，只是被时间慢慢冲淡。三年的时间，想通了很多事，英雄不是自己要当的，往往是被环境逼迫的。世界吻我以痛，我还世界以歌，这多么牛掰？其实只是种无奈和抗争，因一点事而被打败，如何承担一个人的社会责任？何况面子上就过不去……</p>
-
-<p>大一下的课程不知道是哪位神人设计的，一周五十五节课，每天不是在教室，就是在去教室的路上。数分，物理，电路，C语言，高代，神一样的存在。用一句话形容大一下的生活，就是：在拉格朗日照耀下，有一条数学分溪，这条溪又汇成了解析几河，河边有座数理方城，城里有棵高等代树，很多人就挂在上面……</p>
-
-<p>（七）</p>
-
-<p>物理换了老师，沈嵘，一个很负责的老师。我至今记得她在最后一节的时候，讲过爱因斯坦对中国的评价：这是一个勤劳的，在奴役下呻吟的，但却是顽强的民族。沈嵘很平静的看着我们，目光让我感到一种母性的温暖和坚强。郎说，沈嵘有居里夫人的风度，我觉得很形象。都说科学的关怀，这就是最好的诠释。</p>
-
-<p>数分结课了，李卫国老师给我们鞠了个躬，全场掌声。我觉得一个老师能做到这个样子，也就很成功了，无论学生对这门课程是什么感情，无论他们学会学不会，这个老师得到了所有学生的尊重——师之大者。</p>
-
-<p>大一下印象最深刻的课程是金工实习。铣车磨钻，焊接数控，常见的都玩了一边。最后还做锤子，人手一把，因此而导致宿舍的危险系数直线增加。据说剩下的工业废料就让校方做成了TD线，来折磨一代又一代的北航学子。这个传说一度甚嚣尘上，不过我们是最后一届被迫跑过TD的人，坦白的说，还是挺有意思的。</p>
-
-<p>从大一下开始逃课，如果毛概不算的话。经常早晨醒来，从口袋里掏出6枚硬币，想着如果抛出去六个都是正面，我就去上课，思躇良久，还是算了，别冒这个险了……</p>
-
-<p>大一下赶上教学评估了。为了能按时上早晨的课，我们吃了一个周的压缩饼干。即使这样，我还是为数不多的几个对教学评估心存感激的人。如果不是教学评估，我大一就真得挂在数学分溪旁的高等代树上了。</p>
-
-<p>不过那个学期还是学了不少东西。除了强大的心理承受能力，我至少把C语言学会了。C语言毕竟是王道，而且去清华读研又多了一项生财讨MM之道——代写C语言作业。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/05/05/my-university-2/">我的大学（二）</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-05-05T00:00:00+08:00" pubdate data-updated="true">May 5<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>毛概貌似是最无聊的，去的不多，醒得更少，听的没有。倒是最后的展示课去了很多人，八仙过海，各显神通。那时候新媒体还没分出去，所以六系还没有显得这么荒凉。我们跟一个新媒体的寝室合拍一个话剧，写蒋介石的，借了几套国防生的衣服，笑场无数。郎钰泽有胡子的样子还真有点老蒋的意思。那张青天白日旗我也一直留着，毕竟这东西比较烫手，想扔也不敢……</p>
-
-<p>（四）</p>
-
-<p>大一的我们，已经有点学霸的意思了。我到现在还是挺好奇，这么帮人怎么会凑到一起。环境的影响作用还是挺大的，基本上看一个人，就能想象一个宿舍的氛围。那时候宿舍没有门禁，十一点半关门，楼管最早认识的一个人就是赵龙了，因为他总是上自习到在关门之后，再敲门回宿舍。主席说，一个人，熬几天夜不难，难得是天天熬夜。龙龙这四年一直用美国人作息时间严格要求自己，这是一种什么精神?——这是身在曹营心在汉的精神……</p>
-
-<p>大一其实算是个分水岭，进入大学的时候，我们要么是最优秀的一部分，要么是相当优秀的一部分，是金子总要发光的，但当满地都是金子的时候，我自己也不知道自己是哪颗了。不过有的人真的从那个学期就开始堕落了。每个人有自己的选择，不过回想从前的时候，如果发现日子总是那么苍白，是不是种悲哀?</p>
-
-<p>有时候觉得这句话挺对的：长恨人心不如水，等闲平地起波澜。生活如果一直这么过下去，那么未必不是件好事。一切悲剧的来源，都是对现实的不满。况且感情泛滥的时代里，寂寞是最常见的状态。我相信感情的无邪，也承认曾经的不成熟。无论怎样，人总是在痛苦中成长起来，少年多磨砺，本不是什么坏事。现在翻翻兜里那张好人卡，依然坚定地认为，我确实是个好人。</p>
-
-<p>（五）</p>
-
-<p>有人说，大学里没有甩人和被甩的经历，人生不完整。这个要求真是太高了，尤其在北航这样的地方。甩人是不可能的了，我连被甩的机会都没有。感情在没有得到肯定的时候就被好人卡无情的扼杀了。每当仰望蓝天的时候，我都由衷的感慨道，让我被甩一次吧……</p>
-
-<p>在大三的时候听说一个女生因感情问题跳荷花池了，被救起后嚎啕大哭。我们当时的反应都是这个女生的男朋友是怎样牛掰的一个人啊，让北航的女生要死要活的。不过荷花池自杀的难度也大了点，除去遥远的荷花池浮尸案，据说当年死的唯一一个兄弟是，跳下去没淹死，但死意已决，爬上来用板砖把自己拍晕了，然后，淹死了……</p>
-
-<p>后来我终于明白QQ是怎么来的了，世上本无聊，聊的人多了，就有了QQ。有人说男人只有一个QQ号，却加满了各种女人，而女人有好多QQ号，目的只是调戏同一个男人。不置可否。只是知道QQ看似寥落的上线人数背后有着庞大的隐身队伍，往往随便扔个炸弹就能炸出好多浅水者。寒冷的冬夜里，那小企鹅的跳动，毕竟温暖了许多人的心。不过我总把谁谁谁把我加为好友的消息看成谁谁谁把我加为好人了。敏感了……谢谢大家。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/8/">&larr; Older</a></li>
@@ -1960,6 +1952,14 @@ End Sub
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/08/solution-to-locate-log-in-src/">vim日志定位解决方案</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
@@ -1969,14 +1969,6 @@ End Sub
     
       <li class="post">
         <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/25/history-of-tian-chao/">(转)天朝六十年编年史</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/21/table-tablet-iterator/">Oceanbase迭代器说明</a>
       </li>
     
   </ul>

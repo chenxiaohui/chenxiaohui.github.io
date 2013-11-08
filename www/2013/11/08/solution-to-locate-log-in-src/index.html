@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>如何构建按高可用系统（分享的笔记） - CXH.ME</title>
+  <title>vim日志定位解决方案 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
   <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/11/01/how-to-build-high-available-system">
+  <link rel="canonical" href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -107,7 +107,7 @@
   
   <header class="page-header">
     
-      <h2 class="entry-title">如何构建按高可用系统（分享的笔记）</h2>
+      <h2 class="entry-title">Vim日志定位解决方案</h2>
     
     
       <p class="meta">
@@ -123,157 +123,108 @@
   
 
 
-<time datetime="2013-11-01T18:42:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+<time datetime="2013-11-08T21:31:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>版权所有：<a href="">解伦师兄</a></p>
+<div class="entry-content"><p class="indent">做分布式系统看日志解决问题是基本功了，毕竟多个server跑在不同的机器上，即使用gdb能attach到某个进程上，或者<a href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="用gdb调试分布式系统（OB中的应用）">用非daemon模式启动并调试</a>但是case往往很复杂，难以用测试环境完全模拟case，所以大部分情况下还是需要看日志解决问题的。</p>
 
-<h3>介绍篇</h3>
-
-<p><strong>可用性vs可靠性</strong></p>
-
-<p class="indent">可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。</p>
-
-<p class="indent">可用性可靠性是系统的工程，设计开发，管理，运维等等。</p>
-
-<p class="indent">宕机几大因素：软件-硬件-网络-人为</p>
-
-<p class="indent">data loss的最大因素：drop table, 所以要做好充分的容错。</p>
+<p class="indent">不过日志多了之后往往容易跟丢，在浩如烟海的日志里面定位到发生错误的地方也不是见容易的事情。这周大部分时间就费在这上面了（不过还是不熟）。期间写了一个简单的vim插件实现日志的定位。想法如下：</p>
 
 <!-- more -->
 
 
-<h3>设计篇</h3>
+<p class="indent">偶然发现通过deploy.py ob1.rs0.less打开less窗口之后按v键可以转到vim窗口，这就解决很多问题了，毕竟我可不想在less下实现什么功能。vim script就熟悉多了。</p>
 
-<p><strong>减少故障发生的可能</strong></p>
+<p class="indent">ob的log格式是这样的</p>
 
-<p class="indent">避免单点故障，防止扩散，有效的监控运维配合</p>
+<pre><code>[2013-11-08 20:02:23.698586] WARN  get_schema (ob_root_schema_service.cpp:296) [139800896067328] local schema not inited 
+</code></pre>
 
-<p class="indent">常见的<strong>冗余</strong>设计。</p>
+<p class="indent">可以看出关键的地方是打印日志的文件和行数，所以我们用正则\w+.c(pp)*:\d+（vim里需要转义）来匹配日志行，得到所在文件和行数之后用执行ssh命令去开发机的项目下find对应的文件，把找到的结果写入某个特定文件（~/.session)里面，之后写一个插件根据文件中的记录打开对应的文件并标红对应的行即可。</p>
+
+<p class="indent">定位log的vim脚本实现如下：</p>
+
+<pre><code>if !exists('g:project_base_dir')
+    let g:project_base_dir = '$HOME/dev $HOME/src'
+endif
+
+if !exists('g:user_name')
+    let g:user_name = 'xxxx'
+endif
+
+if !exists('g:server_ip')
+    let g:server_ip = 'xx.xx.xx.xx'
+endif
+
+function! LogSession() range
+    let filearr = []
+    for linenum in range(a:firstline, a:lastline)
+        let curr_line = getline(linenum)
+        let pos_str = matchstr(curr_line,'\(\w\+\)\.c\(pp\)*:\(\d\+\)')
+        let pos_arr = split(pos_str, ":")
+        if !empty(pos_arr)
+            let filename = pos_arr[0]
+            let linenum = pos_arr[1]
+            if index(filearr, filename) == -1
+                "generate file list
+                let session_cmd = "find ". g:project_base_dir ." -name ". filename .' -exec echo "{}"":'.linenum.'" &gt;&gt;~/.session \;'
+                let ssh_cmd = "!ssh ".g:user_name.'@'.g:server_ip." \'".session_cmd."\'"
+                echo ssh_cmd
+                execute ssh_cmd
+                execute ':call Vm_toggle_sign()'
+                call add(filearr, filename)
+            endif
+        endif
+    endfor
+endfunction
+</code></pre>
+
+<p class="indent">解释几点</p>
 
 <ul>
-<li>RAID,Replica,Erasure Code</li>
-<li>BackUp, Reassign,Retry</li>
-<li>Master-Slave,Mirror,RAC..</li>
+<li>g:project_base_dir定义源码所在目录，如果源码引用了其他的库，最好把其他库的源码目录一并指定。</li>
+<li>g:user_name 开发机用户名，这是你源码所在机器的用户名</li>
+<li>g:server_ip 开发机IP，这是你的源码所在机器的IP，保证能够无密码登录。</li>
 </ul>
 
 
-<p class="indent">减少对外部系统强依赖</p>
+<p class="indent">这样在测试机看log的less窗口里面按v进入vim（vim脚本需要部署到开发机和测试机各一份），然后在对应的行（或者多行）执行LogSession，对应的文件位置信息就被写入开发机的~/.session文件里面（这个应该可以配置，忘了做了）。</p>
 
-<ul>
-<li>缓存</li>
-<li>异步替代同步</li>
-</ul>
+<p class="indent">另开一个窗口ssh到开发及，打开.session，应该类似于如下：</p>
 
+<pre><code>/home/xxx.xx/dev/src/rootserver/ob_root_server.cpp:584
+/home/xxx.xx/dev/src/rootserver/ob_root_server.cpp:2183
+/home/xxx.xx/dev/src/rootserver/ob_root_inner_table_task.cpp:175
+</code></pre>
 
-<p class="indent">对外部依赖不信任</p>
+<p class="indent">定位到某一行调用插件打开代码就行，这就涉及到[前文所说的插件了][2]。按照快捷键打开对应的行就行。</p>
 
-<ul>
-<li>结果进行</li>
-<li>失败情况下failover（重试时间次数需要控制）</li>
-</ul>
+<p class="indent">之后在vimrc里面映射键就行了</p>
 
+<pre><code>map &lt;leader&gt;ss :call LogSession()&lt;cr&gt;
+nnoremap &lt;leader&gt;co :call OpenFileWithDefApp()&lt;cr&gt;
+let g:applist={
+        \'pdf':'evince',
+        \'png,gif,jpg':'eog',
+        \'rmvb,mkv,flv,avi,mp4,m4v':'mplayer',
+        \'rar':'!unrar l %',
+        \'epub':'!calibre %',
+        \'zip':'!unzip -O CP936 -l %',
+        \'pwd':'nautilus',
+        \'docx,xlsx,pptx,ppt':'libreoffice',
+        \'default':':e %'
+        \}
+</code></pre>
 
-<p class="indent">有效的内部监控</p>
+<p class="indent">截图如下：</p>
 
-<p><strong>减少故障恢复时间</strong></p>
+<p class="indent"><img class="img-polaroid center" src="/images/2013-11/three-log.png" title="log文件" alt="log文件"><p class="align-center">log文件</p></p>
 
-<p class="indent">无状态最好</p>
-
-<ul>
-<li>有状态定期做持久化（checkpoint/commitlog)</li>
-</ul>
-
-
-<p class="indent">有效的故障隔离</p>
-
-<ul>
-<li>故障检测，黑白名单，流量分配</li>
-<li>黑名单要有恢复机制</li>
-</ul>
-
-
-<p><strong>减少损失</strong></p>
-
-<p class="indent">过载保护</p>
-
-<ul>
-<li>发现故障，并限制资源</li>
-</ul>
-
-
-<p class="indent">应用降级</p>
-
-<ul>
-<li>关闭部分不重要的功能(某些情况下用户也感觉不出来)</li>
-</ul>
-
-
-<p class="indent">有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。</p>
-
-<h3>案例篇</h3>
-
-<p><strong>Twitter</strong></p>
-
-<p class="indent">世界杯额时候twitter经常会时常挂掉</p>
-
-<ul>
-<li>memcache规划的问题</li>
-<li>cache也要注意设计</li>
-</ul>
-
-
-<p><strong>Foursquare</strong></p>
-
-<p class="indent">数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)</p>
-
-<ul>
-<li>数据迁走之后有空洞，页不释放</li>
-<li>还好毕设的时候数据量不大</li>
-</ul>
-
-
-<p><strong>Amazon</strong></p>
-
-<p class="indent">EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络</p>
-
-<ul>
-<li>相应超时，认为丢失副本</li>
-<li>副本复制，继续加剧网络问题</li>
-</ul>
-
-
-<p><strong>Weibo</strong></p>
-
-<p class="indent">热点存在，cache失效，一瞬间所有访问db</p>
-
-<ul>
-<li>加锁，一个人获取内容回填cache之后就不会有人去访问db了</li>
-</ul>
-
-
-<p><strong>Facebook</strong></p>
-
-<p class="indent">cache没取到就删除了原cache</p>
-
-<p><strong>OB</strong></p>
-
-<p class="indent">客户端要做分流，业务高峰，超时严重，把cluster都加入黑名单，重试风暴</p>
-
-<h3>总结篇</h3>
-
-<p><strong>可用性</strong></p>
-
-<ul>
-<li>BASE:基本可用</li>
-<li>CAP:No CAP, No CP, A是很重要的</li>
-<li><a href="">20 Key High Availability Design Principles</a></li>
-</ul>
-
+<p class="indent"><img class="img-polaroid center" src="/images/2013-11/two-line.png" title="定位到对应的源码行" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
 </div>
 
 
@@ -314,7 +265,7 @@
   
 
 
-<time datetime="2013-11-01T18:42:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+<time datetime="2013-11-08T21:31:00+08:00" pubdate data-updated="true">Nov 8<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -362,14 +313,10 @@
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="Previous Post:
-        用gdb调试分布式系统（OB中的应用）">&laquo; 用gdb调试分布式系统（OB中的应用）</a></li>
+        href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/" title="Previous Post:
+        自己写的一个根据路径打开文件的插件">&laquo; 自己写的一个根据路径打开文件的插件</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/"
-        title="Next Post: 自己写的一个根据路径打开文件的插件">自己写的一个根据路径打开文件的插件
-        &raquo;</a></li>
       
     </ul>
   </footer>

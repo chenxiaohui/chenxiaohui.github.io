@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-07T13:57:47+08:00</updated>
+  <updated>2013-11-08T21:45:30+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,185 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自己写的一个根据路径打开文件的插件]]></title>
+    <link href="http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list/"/>
+    <updated>2013-11-08T21:26:00+08:00</updated>
+    <id>http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list</id>
+    <content type="html"><![CDATA[<p>这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim</p>
+
+<!-- more -->
+
+
+<pre><code>"=============================================================================
+"     FileName: filelist.vim
+"         Desc:
+"       Author: ChenXiaohui
+"        Email: sdqxcxh@gmail.com
+"     HomePage: http://www.cxh.me
+"      Version: 0.0.1
+"   LastChange: 2013-11-06 20:31:23
+"      History:
+"=============================================================================
+function! GetCmd(type,line)
+    let cmd=get(g:applist,a:type)
+    if empty(cmd)
+        let cmd=get(g:applist,'default')
+    endif
+    "no %
+    if cmd[0] != '!' &amp;&amp; cmd[0] != ':'
+        let cmd='!nohup '.cmd.' '.Trans(a:line).' &gt;/dev/null 2&gt;&amp;1 &amp;'
+    else
+        let cmd=substitute(cmd,'%',Trans(Trans(a:line)),'g')
+    endif
+
+    "let cmd=substitute(cmd,'%&lt;',a:line,'g')
+    return cmd
+endfunction
+
+function! OpenFileWithDefApp()
+    let cmd=''
+    let origin_line = Trim(Trim(getline("."),'\\'), ' ')
+
+    let idx = stridx(origin_line,':')
+    echo idx
+    if idx &gt; -1
+        let line = strpart(origin_line, 0, idx)
+        let linenum = strpart(origin_line, idx)
+    else
+        let line = origin_line
+    endif
+
+    if !filereadable(line)
+        "Directory
+        let cmd=GetCmd('pwd',line)
+    else
+        let idx=strridx(line,".")
+        "has no ext
+        if idx==-1
+            let cmd=GetCmd('default',line)
+        else
+            let fileExt = tolower(matchstr(line,'\.\w\+'))
+            let fileExt=tolower(strpart(fileExt,1))
+            for [exts,app] in items(g:applist)
+                let supportExt=split(exts,',')
+                if index(supportExt,fileExt)&gt;=0
+                    let cmd=GetCmd(exts,line)
+                endif
+            endfor
+        endif
+    endif
+
+    if empty(cmd)
+        let cmd=GetCmd('default',line)
+    endif
+    execute cmd
+    if exists('linenum')
+        execute linenum
+        execute ':call Vm_toggle_sign()'
+        "execute ':set cursorline'
+        "normal V
+    endif
+endf
+
+function! DelFile ()
+    let line=getline(".")
+    if !filereadable(line)
+        "echo "!rm -ri ".Trans(getline("."))
+        :execute "!rm -ri ".Trans(getline("."))
+    else
+        "echo "!rm -i ".Trans(getline("."))
+        :execute "!rm -i ".Trans(getline("."))
+    endif
+    :del
+endf
+
+function! CopyFile()
+    let cmd=''
+    let line=getline(".")
+
+    if !filereadable(line)
+        "Directory
+        let cmd='!cp -a'.Trans(line).' '.Trans(g:dst_dir)
+    else
+        let cmd='!cp '.Trans(line).' '.Trans(g:dst_dir)
+    endif
+    :execute cmd
+endf
+
+function! ChDir()
+    let cmd=''
+    let line=getline(".")
+
+    if !filereadable(line)
+        "Directory
+        let cmd=':cd '.Trans(line)
+    else
+        let cmd=':cd '.Trans(DirName(line))
+    endif
+    :execute cmd
+    ":echo cmd
+    :sh
+endf
+
+function! DirName(line)
+    let idx=strridx(a:line,'/')
+    return strpart(a:line,0,idx)
+endf
+
+function! Trans(line)
+    let line=Trim(a:line, ' ')
+    let line=substitute(line,"'","\\\\'","g")
+    let line=substitute(line,' ','\\ ','g')
+    let line=substitute(line,'!','\\!','g')
+    let line=substitute(line,'#','\\#','g')
+    let line=substitute(line,'&amp;','\\&amp;','g')
+    let line=substitute(line,'(','\\(','g')
+    let line=substitute(line,')','\\)','g')
+    return line
+    "return "'".line."'"
+    "return "'".substitute(a:line,"'","'\\\\''","g")."'"
+endf
+</code></pre>
+
+<p>  原理还是很简单的，分析当前行，得到文件路径，根据类型找到关联命令，然后替换关联命令得到最后的shell命令并执行。就是一堆转义比较罗嗦，在vimrc里面定义关联程序信息：</p>
+
+<pre><code>" plugin- deal with filelist
+nnoremap &lt;leader&gt;co :call OpenFileWithDefApp()&lt;cr&gt;
+nnoremap &lt;leader&gt;rm :call DelFile()&lt;cr&gt;
+nnoremap &lt;leader&gt;cd :call ChDir()&lt;cr&gt;
+nnoremap &lt;leader&gt;to :call CopyFile()&lt;cr&gt;
+let g:dst_dir="/media/cxh/MY MP3/"
+let g:applist={
+            \'pdf':'evince',
+            \'png,gif,jpg':'eog',
+            \'rmvb,mkv,flv,avi,mp4,m4v':'mplayer',
+            \'rar':'!unrar l %',
+            \'epub':'!calibre %',
+            \'zip':'!unzip -O CP936 -l %',
+            \'pwd':'nautilus',
+            \'docx,xlsx,pptx,ppt':'libreoffice',
+            \'default':':e %'
+            \}
+</code></pre>
+
+<p>  需要特别说明的是：</p>
+
+<ol>
+<li> 几个函数的作用分别是调用执行程序打开当前文件，删除，到当前文件所在路径下，和copy当前文件到制定的dst_dir（这个我主要用在替代windows下的发动到移动存储介质用了）</li>
+<li> applist是类型-程序关联数组，说明一下，%会被替换成当前行所指定的文件路径。如果applist里面的命令既不是!开头（shell执行）也不是:开头（vim内部命令），就会被转换成类似于：!nohup mplayer /media/xx.rmvb >/dev/null 2>&amp;1 &amp;的命令，相当于windows的调用默认程序打开。</li>
+<li> 支持这种形式的行号调用 xxx.cpp:123 默认用:e 打开之后会定位到对应行，然后标红，标红使用三种方式：<strong>visualmark</strong>, <strong>cursorline</strong>和<strong>normal V</strong>，第一种需要<a href="http://www.vim.org/scripts/script.php?script_id=1026" title="Visual Mark : Visual mark, similar to UltraEdit's bookmark">安装插件</a></li>
+</ol>
+
+
+<p>  钦此。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Visual Mark : Visual mark, similar to UltraEdit&rsquo;s bookmark, <a href="http://www.vim.org/scripts/script.php?script_id=1026">http://www.vim.org/scripts/script.php?script_id=1026</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress的一些技巧]]></title>
@@ -240,51 +419,6 @@ nnoremap x :bd!:call BufClose()</p></blockquote>
 <blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a> buf_it : Buffer list in statusline,</p>
 
 <p><a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">2</a> 在windows下给你的右键菜单添加"edit with vim"的方法,</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[文件查找利器&mdash;&mdash;FuzzyFinder]]></title>
-    <link href="http://cxh.me/2011/09/29/file-find-tool-fuzzy-finder/"/>
-    <updated>2011-09-29T00:00:00+08:00</updated>
-    <id>http://cxh.me/2011/09/29/file-find-tool-fuzzy-finder</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>这个东东太华丽了……相当VisualAssist的查找符号和查找文件，不过功能更强大，支持正则表达式，支持全文检索。</p>
-
-<blockquote><p>下载地址：</p>
-
-<p>需要的支持库：</p>
-
-<p>L9Library</p></blockquote>
-
-<p>另外，由于命令较多，可以配置一下命令提示，如下所示：</p>
-
-<pre><code>"fuzzyfinder
-"
-" F4和shift F4调用FuzzyFinder命令行菜单"
-"
-function! GetAllCommands()
-  redir =&gt; commands
-  silent command
-  redir END
-  return map((split(commands, "
-")[3:]),
-      \      '":" . matchstr(v:val, ''^....\zs\S*'')')
-endfunction
-
-" 自定义命令行
-let g:fuf_com_list=[':FufBuffer',':FufFile',':FufCoverageFile',':FufDir',
-            \':FufMruFile',':FufMruCmd',':FufBookmarkFile',
-            \':FufBookmarkDir',':FufTag',':FufBufferTag',
-            \':FufTaggedFile',':FufJumpList',':FufChangeList',
-            \':FufQuickfix',':FufLine',':FufHelp',
-            \":FufFile \=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]\",
-            \":FufDir \=expand('%:p:~')[:-1-len(expand('%:p:~:t'))]\",
-            \]
-nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', GetAllCommands())
-nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', g:fuf_com_list)
-</code></pre>
 ]]></content>
   </entry>
   

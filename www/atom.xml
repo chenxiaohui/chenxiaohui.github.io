@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-07T13:57:47+08:00</updated>
+  <updated>2013-11-08T21:45:30+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,288 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vim日志定位解决方案]]></title>
+    <link href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/"/>
+    <updated>2013-11-08T21:31:00+08:00</updated>
+    <id>http://cxh.me/2013/11/08/solution-to-locate-log-in-src</id>
+    <content type="html"><![CDATA[<p>  做分布式系统看日志解决问题是基本功了，毕竟多个server跑在不同的机器上，即使用gdb能attach到某个进程上，或者<a href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="用gdb调试分布式系统（OB中的应用）">用非daemon模式启动并调试</a>但是case往往很复杂，难以用测试环境完全模拟case，所以大部分情况下还是需要看日志解决问题的。</p>
+
+<p>  不过日志多了之后往往容易跟丢，在浩如烟海的日志里面定位到发生错误的地方也不是见容易的事情。这周大部分时间就费在这上面了（不过还是不熟）。期间写了一个简单的vim插件实现日志的定位。想法如下：</p>
+
+<!-- more -->
+
+
+<p>  偶然发现通过deploy.py ob1.rs0.less打开less窗口之后按v键可以转到vim窗口，这就解决很多问题了，毕竟我可不想在less下实现什么功能。vim script就熟悉多了。</p>
+
+<p>  ob的log格式是这样的</p>
+
+<pre><code>[2013-11-08 20:02:23.698586] WARN  get_schema (ob_root_schema_service.cpp:296) [139800896067328] local schema not inited 
+</code></pre>
+
+<p>  可以看出关键的地方是打印日志的文件和行数，所以我们用正则\w+.c(pp)*:\d+（vim里需要转义）来匹配日志行，得到所在文件和行数之后用执行ssh命令去开发机的项目下find对应的文件，把找到的结果写入某个特定文件（~/.session)里面，之后写一个插件根据文件中的记录打开对应的文件并标红对应的行即可。</p>
+
+<p>  定位log的vim脚本实现如下：</p>
+
+<pre><code>if !exists('g:project_base_dir')
+    let g:project_base_dir = '$HOME/dev $HOME/src'
+endif
+
+if !exists('g:user_name')
+    let g:user_name = 'xxxx'
+endif
+
+if !exists('g:server_ip')
+    let g:server_ip = 'xx.xx.xx.xx'
+endif
+
+function! LogSession() range
+    let filearr = []
+    for linenum in range(a:firstline, a:lastline)
+        let curr_line = getline(linenum)
+        let pos_str = matchstr(curr_line,'\(\w\+\)\.c\(pp\)*:\(\d\+\)')
+        let pos_arr = split(pos_str, ":")
+        if !empty(pos_arr)
+            let filename = pos_arr[0]
+            let linenum = pos_arr[1]
+            if index(filearr, filename) == -1
+                "generate file list
+                let session_cmd = "find ". g:project_base_dir ." -name ". filename .' -exec echo "{}"":'.linenum.'" &gt;&gt;~/.session \;'
+                let ssh_cmd = "!ssh ".g:user_name.'@'.g:server_ip." \'".session_cmd."\'"
+                echo ssh_cmd
+                execute ssh_cmd
+                execute ':call Vm_toggle_sign()'
+                call add(filearr, filename)
+            endif
+        endif
+    endfor
+endfunction
+</code></pre>
+
+<p>  解释几点</p>
+
+<ul>
+<li>g:project_base_dir定义源码所在目录，如果源码引用了其他的库，最好把其他库的源码目录一并指定。</li>
+<li>g:user_name 开发机用户名，这是你源码所在机器的用户名</li>
+<li>g:server_ip 开发机IP，这是你的源码所在机器的IP，保证能够无密码登录。</li>
+</ul>
+
+
+<p>  这样在测试机看log的less窗口里面按v进入vim（vim脚本需要部署到开发机和测试机各一份），然后在对应的行（或者多行）执行LogSession，对应的文件位置信息就被写入开发机的~/.session文件里面（这个应该可以配置，忘了做了）。</p>
+
+<p>  另开一个窗口ssh到开发及，打开.session，应该类似于如下：</p>
+
+<pre><code>/home/xxx.xx/dev/src/rootserver/ob_root_server.cpp:584
+/home/xxx.xx/dev/src/rootserver/ob_root_server.cpp:2183
+/home/xxx.xx/dev/src/rootserver/ob_root_inner_table_task.cpp:175
+</code></pre>
+
+<p>  定位到某一行调用插件打开代码就行，这就涉及到[前文所说的插件了][2]。按照快捷键打开对应的行就行。</p>
+
+<p>  之后在vimrc里面映射键就行了</p>
+
+<pre><code>map &lt;leader&gt;ss :call LogSession()&lt;cr&gt;
+nnoremap &lt;leader&gt;co :call OpenFileWithDefApp()&lt;cr&gt;
+let g:applist={
+        \'pdf':'evince',
+        \'png,gif,jpg':'eog',
+        \'rmvb,mkv,flv,avi,mp4,m4v':'mplayer',
+        \'rar':'!unrar l %',
+        \'epub':'!calibre %',
+        \'zip':'!unzip -O CP936 -l %',
+        \'pwd':'nautilus',
+        \'docx,xlsx,pptx,ppt':'libreoffice',
+        \'default':':e %'
+        \}
+</code></pre>
+
+<p>  截图如下：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/three-log.png" title="log文件" alt="log文件"><p class="align-center">log文件</p></p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/two-line.png" title="定位到对应的源码行" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自己写的一个根据路径打开文件的插件]]></title>
+    <link href="http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list/"/>
+    <updated>2013-11-08T21:26:00+08:00</updated>
+    <id>http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list</id>
+    <content type="html"><![CDATA[<p>这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim</p>
+
+<!-- more -->
+
+
+<pre><code>"=============================================================================
+"     FileName: filelist.vim
+"         Desc:
+"       Author: ChenXiaohui
+"        Email: sdqxcxh@gmail.com
+"     HomePage: http://www.cxh.me
+"      Version: 0.0.1
+"   LastChange: 2013-11-06 20:31:23
+"      History:
+"=============================================================================
+function! GetCmd(type,line)
+    let cmd=get(g:applist,a:type)
+    if empty(cmd)
+        let cmd=get(g:applist,'default')
+    endif
+    "no %
+    if cmd[0] != '!' &amp;&amp; cmd[0] != ':'
+        let cmd='!nohup '.cmd.' '.Trans(a:line).' &gt;/dev/null 2&gt;&amp;1 &amp;'
+    else
+        let cmd=substitute(cmd,'%',Trans(Trans(a:line)),'g')
+    endif
+
+    "let cmd=substitute(cmd,'%&lt;',a:line,'g')
+    return cmd
+endfunction
+
+function! OpenFileWithDefApp()
+    let cmd=''
+    let origin_line = Trim(Trim(getline("."),'\\'), ' ')
+
+    let idx = stridx(origin_line,':')
+    echo idx
+    if idx &gt; -1
+        let line = strpart(origin_line, 0, idx)
+        let linenum = strpart(origin_line, idx)
+    else
+        let line = origin_line
+    endif
+
+    if !filereadable(line)
+        "Directory
+        let cmd=GetCmd('pwd',line)
+    else
+        let idx=strridx(line,".")
+        "has no ext
+        if idx==-1
+            let cmd=GetCmd('default',line)
+        else
+            let fileExt = tolower(matchstr(line,'\.\w\+'))
+            let fileExt=tolower(strpart(fileExt,1))
+            for [exts,app] in items(g:applist)
+                let supportExt=split(exts,',')
+                if index(supportExt,fileExt)&gt;=0
+                    let cmd=GetCmd(exts,line)
+                endif
+            endfor
+        endif
+    endif
+
+    if empty(cmd)
+        let cmd=GetCmd('default',line)
+    endif
+    execute cmd
+    if exists('linenum')
+        execute linenum
+        execute ':call Vm_toggle_sign()'
+        "execute ':set cursorline'
+        "normal V
+    endif
+endf
+
+function! DelFile ()
+    let line=getline(".")
+    if !filereadable(line)
+        "echo "!rm -ri ".Trans(getline("."))
+        :execute "!rm -ri ".Trans(getline("."))
+    else
+        "echo "!rm -i ".Trans(getline("."))
+        :execute "!rm -i ".Trans(getline("."))
+    endif
+    :del
+endf
+
+function! CopyFile()
+    let cmd=''
+    let line=getline(".")
+
+    if !filereadable(line)
+        "Directory
+        let cmd='!cp -a'.Trans(line).' '.Trans(g:dst_dir)
+    else
+        let cmd='!cp '.Trans(line).' '.Trans(g:dst_dir)
+    endif
+    :execute cmd
+endf
+
+function! ChDir()
+    let cmd=''
+    let line=getline(".")
+
+    if !filereadable(line)
+        "Directory
+        let cmd=':cd '.Trans(line)
+    else
+        let cmd=':cd '.Trans(DirName(line))
+    endif
+    :execute cmd
+    ":echo cmd
+    :sh
+endf
+
+function! DirName(line)
+    let idx=strridx(a:line,'/')
+    return strpart(a:line,0,idx)
+endf
+
+function! Trans(line)
+    let line=Trim(a:line, ' ')
+    let line=substitute(line,"'","\\\\'","g")
+    let line=substitute(line,' ','\\ ','g')
+    let line=substitute(line,'!','\\!','g')
+    let line=substitute(line,'#','\\#','g')
+    let line=substitute(line,'&amp;','\\&amp;','g')
+    let line=substitute(line,'(','\\(','g')
+    let line=substitute(line,')','\\)','g')
+    return line
+    "return "'".line."'"
+    "return "'".substitute(a:line,"'","'\\\\''","g")."'"
+endf
+</code></pre>
+
+<p>  原理还是很简单的，分析当前行，得到文件路径，根据类型找到关联命令，然后替换关联命令得到最后的shell命令并执行。就是一堆转义比较罗嗦，在vimrc里面定义关联程序信息：</p>
+
+<pre><code>" plugin- deal with filelist
+nnoremap &lt;leader&gt;co :call OpenFileWithDefApp()&lt;cr&gt;
+nnoremap &lt;leader&gt;rm :call DelFile()&lt;cr&gt;
+nnoremap &lt;leader&gt;cd :call ChDir()&lt;cr&gt;
+nnoremap &lt;leader&gt;to :call CopyFile()&lt;cr&gt;
+let g:dst_dir="/media/cxh/MY MP3/"
+let g:applist={
+            \'pdf':'evince',
+            \'png,gif,jpg':'eog',
+            \'rmvb,mkv,flv,avi,mp4,m4v':'mplayer',
+            \'rar':'!unrar l %',
+            \'epub':'!calibre %',
+            \'zip':'!unzip -O CP936 -l %',
+            \'pwd':'nautilus',
+            \'docx,xlsx,pptx,ppt':'libreoffice',
+            \'default':':e %'
+            \}
+</code></pre>
+
+<p>  需要特别说明的是：</p>
+
+<ol>
+<li> 几个函数的作用分别是调用执行程序打开当前文件，删除，到当前文件所在路径下，和copy当前文件到制定的dst_dir（这个我主要用在替代windows下的发动到移动存储介质用了）</li>
+<li> applist是类型-程序关联数组，说明一下，%会被替换成当前行所指定的文件路径。如果applist里面的命令既不是!开头（shell执行）也不是:开头（vim内部命令），就会被转换成类似于：!nohup mplayer /media/xx.rmvb >/dev/null 2>&amp;1 &amp;的命令，相当于windows的调用默认程序打开。</li>
+<li> 支持这种形式的行号调用 xxx.cpp:123 默认用:e 打开之后会定位到对应行，然后标红，标红使用三种方式：<strong>visualmark</strong>, <strong>cursorline</strong>和<strong>normal V</strong>，第一种需要<a href="http://www.vim.org/scripts/script.php?script_id=1026" title="Visual Mark : Visual mark, similar to UltraEdit's bookmark">安装插件</a></li>
+</ol>
+
+
+<p>  钦此。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Visual Mark : Visual mark, similar to UltraEdit&rsquo;s bookmark, <a href="http://www.vim.org/scripts/script.php?script_id=1026">http://www.vim.org/scripts/script.php?script_id=1026</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[如何构建按高可用系统（分享的笔记）]]></title>
@@ -1474,71 +1756,6 @@ make install
 <p>  这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
 
 <p>  钦此。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[陌生的人, 请给我一支兰州]]></title>
-    <link href="http://cxh.me/2013/09/30/give-me-a-sigarette-of-lanzhou/"/>
-    <updated>2013-09-30T16:11:00+08:00</updated>
-    <id>http://cxh.me/2013/09/30/give-me-a-sigarette-of-lanzhou</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p>  普及一下:</p>
-
-<p>  兰州: 一种烟, 如图所示:</p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2013-9/lanzhou.jpg" width="200" title="兰州" ></p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2013-9/lanzhou2.jpg" width="200" title="兰州" ></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[oceanbase的库依赖问题]]></title>
-    <link href="http://cxh.me/2013/09/27/depend-problem-in-oceanbase/"/>
-    <updated>2013-09-27T16:15:00+08:00</updated>
-    <id>http://cxh.me/2013/09/27/depend-problem-in-oceanbase</id>
-    <content type="html"><![CDATA[<p>  今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
-
-<p>  最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
-
-<!-- more -->
-
-
-<pre><code>LDADD = libtest2.a \
-        libtest2.a 
-</code></pre>
-
-<p>  或者gcc命令</p>
-
-<pre><code>gcc –o test main.c libtest2.a libtest1.a
-</code></pre>
-
-<p>  这里编译的时候会认为libtest2.a依赖于libtest1.a, libtest2.a可以使用libtest1.a的接口，但是反过来会找不到符号。也就是会有会有&#8221;undefined reference to ***”的链接错误。</p>
-
-<p>  找了一下原因，主要是gcc链接顺序的问题，以下引自 <a href="http://www.cnblogs.com/wujianlundao/archive/2012/06/06/2538125.html" title="使用静态库链接程序">悟空不悟空的博客</a></p>
-
-<hr />
-
-<p>  原因是gcc在链接的时候，对于多个静态库或者.o文件是从前往后依次处理的，如果当前的静态库或.o文件中没有使用的符号，则往后继续寻找，而不会再往前查找。</p>
-
-<p>  下面是man gcc看到的说明：</p>
-
-<p>  -l library</p>
-
-<blockquote><p>  Search the library named library when linking.  (The second alternative with the library as a separate argument is only for POSIX compliance and is not recommended.)</p>
-
-<p> It makes a difference where in the command you write this option; the linker searches and processes libraries and object files in the order they are specified.  Thus, foo.o -lz bar.o searches library z after file foo.o but before bar.o.  If bar.o refers to functions in z, those functions may not be loaded.</p></blockquote>
-
-<p>  所以在使用一些依赖关系比较复杂的静态库时，我们可能会看到这样的使用方式：gcc –o test main.c libtest1.a libtest2.a libtest1.a。在链接序列中，一个静态库可能出现多次，以解决一些循环依赖。</p>
-
-<hr />
-
-<p>  另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
-
-<p>  ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的&hellip;.w</p>
 ]]></content>
   </entry>
   
