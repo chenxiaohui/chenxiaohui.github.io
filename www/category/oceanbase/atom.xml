@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-08T21:45:30+08:00</updated>
+  <updated>2013-11-08T21:49:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -112,7 +112,9 @@ let g:applist={
 
 <p>  <img class="img-polaroid center" src="/images/2013-11/three-log.png" title="&ldquo;log文件&rdquo; &ldquo;log文件&rdquo;" ></p>
 
-<p>  <img class="img-polaroid center" src="/images/2013-11/two-line.png" title="&ldquo;定位到对应的源码行&rdquo; &ldquo;定位到对应的源码行&rdquo;" ></p>
+<p>  <img class="img-polaroid center" src="/images/2013-11/one-line.png" title="&ldquo;定位到对应的源码行c&rdquo; &ldquo;定位到对应的源码行&rdquo;" ></p>
+
+<p>  <img class="img-polaroid center" src="/images/2013-11/two-line.png" title="&ldquo;定位到对应的源码行cpp&rdquo; &ldquo;定位到对应的源码行&rdquo;" ></p>
 ]]></content>
   </entry>
   

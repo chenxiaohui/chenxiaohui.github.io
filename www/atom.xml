@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-08T21:45:30+08:00</updated>
+  <updated>2013-11-08T21:49:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -112,7 +112,9 @@ let g:applist={
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/three-log.png" title="log文件" alt="log文件"><p class="align-center">log文件</p></p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/two-line.png" title="定位到对应的源码行" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/one-line.png" title="定位到对应的源码行c" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/two-line.png" title="定位到对应的源码行cpp" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
 ]]></content>
   </entry>
   

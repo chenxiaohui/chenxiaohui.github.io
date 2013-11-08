@@ -92,6 +92,8 @@ categories: "Oceanbase"
 
   {% img img-polaroid center /images/2013-11/three-log.png "log文件" "log文件" %}
 
-  {% img img-polaroid center /images/2013-11/two-line.png "定位到对应的源码行" "定位到对应的源码行" %}
+  {% img img-polaroid center /images/2013-11/one-line.png "定位到对应的源码行c" "定位到对应的源码行" %}
+
+  {% img img-polaroid center /images/2013-11/two-line.png "定位到对应的源码行cpp" "定位到对应的源码行" %}
 
 [1]: http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/ "用gdb调试分布式系统（OB中的应用）"
