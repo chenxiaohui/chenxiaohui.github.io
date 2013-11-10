@@ -1,0 +1,16 @@
+<section class="well">
+    <div class="profilepic align-center">
+        <script src="{{ root_url }}/javascripts/md5.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                    $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("{{ site.email | downcase }}") + "?s=160' alt='Profile Picture' style='width: 160px;' class='img-rounded' />");
+                    });
+        </script>
+    </div>
+    <hr/>
+
+    <ul id="about_me" class="nav nav-list">
+        <li class="nav-header">About Me</li>
+        <li>{{ site.description }}</li>
+    </ul>
+</section>
