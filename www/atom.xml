@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-10T15:12:49+08:00</updated>
+  <updated>2013-11-17T22:01:55+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,43 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于日志的比对]]></title>
+    <link href="http://cxh.me/2013/11/17/method-to-diff-log/"/>
+    <updated>2013-11-17T22:00:00+08:00</updated>
+    <id>http://cxh.me/2013/11/17/method-to-diff-log</id>
+    <content type="html"><![CDATA[<p>  有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何<a href="http://qianjigui.iteye.com/blog/368449" title="Vim日志定位解决方案">写个插件通过log来定位源码行</a>，这篇日志我们讨论一下如何快速定位自己的错误日志。</p>
+
+<p>  首先，前面的状况至少可以保证一点，你check一份新的代码或者回滚本地修改然后运行，得到的错误日志和你当前的错误日志是可比较的。也就是说，你的错误至少不会导致错误日志之中有巨大的变化。这样的话我们可以采取如下的策略比较错误日志。</p>
+
+<ol>
+<li> 得到当前的错误日志，假使命名为log.core</li>
+<li> check一份新的代码或者回滚本地修改，得到之前的错误日志，假使命名为log.ok</li>
+<li> 比较log.ok和log.core，分析日志的差别，得到本地修改导致的真实错误日志。</li>
+</ol>
+
+
+<p>  想法是很简单的，唯一的问题是OB日志里面是有时间戳的，这就导致没一行都有差异，那就太纠结了。我们可以用如下vim命令来去掉所有的时间戳。vim正则的转义规则见<a href="http://qianjigui.iteye.com/blog/368449" title="Vim 中的正则表达式">参考文献</a>。</p>
+
+<pre><code>map :lg :%s/\(^\[.\{-}\]\)\\|\(\[\d\+\]\)//g
+</code></pre>
+
+<p>  这里面唯一的风险是比如我们在中括号里面写的数字也会被剔除，好在我们只是比较日志差异，想要看原始日志大不了根据行号到完整版里面找去，而且这个概率不大。</p>
+
+<p>  <!-- more --></p>
+
+<p>  实际的效果是这样的。我在考虑要不要把所有的tsi错误都去掉。</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/logdiff.png" title="日志比较" alt="日志比较"><p class="align-center">日志比较</p></p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Vim 中的正则表达式, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p>
+
+<p>[2] Vim日志定位解决方案, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[vim日志定位解决方案]]></title>
@@ -535,6 +572,144 @@ bin/chunkserver -r $rs_ip:$rs_port -p $cs_port -n $appname -i $net $no_daemon
 
 <p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
 ]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Brightest Star In The Sky]]></title>
+    <link href="http://cxh.me/2013/10/27/brightest-star-in-the-sky/"/>
+    <updated>2013-10-27T00:00:00+08:00</updated>
+    <id>http://cxh.me/2013/10/27/brightest-star-in-the-sky</id>
+    <content type="html"><![CDATA[<!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, &#8216;Palatino Linotype&#8217;, Times, &#8216;Times New Roman&#8217;,
+              &#8220;Hiragino Sans GB&#8221;, &#8220;STXihei&#8221;, &#8220;微软雅黑&#8221;, serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: &#8221; (&#8221; attr(href) &#8220;)&#8221;; }
+  abbr[title]:after { content: &#8221; (&#8221; attr(title) &#8220;)&#8221;; }
+  .ir a:after, a[href^=&#8221;javascript:&#8221;]:after, a[href^=&#8221;#&#8221;]:after { content: &#8220;&#8221;; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>2013-10-27-brightest-star-in-the-sky</title></head><body><hr />
+<p>layout: post
+title: &#8220;夜空中最亮的星&#8221;
+date: 2013-10-27 10:41
+comments: true
+categories: &#8220;随笔&#8221;</p>
+<hr />
+<p><!-- more -->
+<embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p></body></html>]]></content>
   </entry>
   
   <entry>
@@ -1712,55 +1887,6 @@ make install
 <h3>参考文献：</h3>
 
 <blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[去了趟锦州]]></title>
-    <link href="http://cxh.me/2013/10/07/tourism-of-jinzhou/"/>
-    <updated>2013-10-07T18:34:00+08:00</updated>
-    <id>http://cxh.me/2013/10/07/tourism-of-jinzhou</id>
-    <content type="html"><![CDATA[<p>  去锦州的原因，其实是没搞到去其他的地方的票。</p>
-
-<p>  十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[狄仁杰之神都龙王]]></title>
-    <link href="http://cxh.me/2013/10/06/young-detective-dee-rise-of-the-sea-dragon/"/>
-    <updated>2013-10-06T20:21:00+08:00</updated>
-    <id>http://cxh.me/2013/10/06/young-detective-dee-rise-of-the-sea-dragon</id>
-    <content type="html"><![CDATA[<p>  抽空去看了一下。去看的原因倒是很简单，有人把它上升到中国大片的崛起的高度。大片看多了，崛起这事情，倒是值得去看一下。</p>
-
-<p>  坦白说比其他的拍的好多了，至少没什么硬伤，或者明显的硬伤，这让我很欣慰了，对的起票钱（折扣之后）。</p>
-
-<!-- more -->
-
-
-<p>  我不理解的是，这几年过去了，武侠怎么已经上升到法术的高度了，更让我不能理解的是，这么牛逼的一只<a href="http://baike.baidu.com/link?url=dWI58A0UeuCs95DyVPXFM-4bT9b4wQyRlXRSbA3o2u0ShtN1Rhum3rLMJSoKyGwO" title="蝠鲼">蝠鲼</a>（fú fèn，原谅我的猜测，那只怪物或许真是什么变异物种也说不定，比如随便从山海经里面拿一只出来就足够吓尿观众了），怎么就死在几只毒鱼下了呢，这是告诉我们食品安全刻不容缓么？</p>
-
-<p>  话说这么险恶的环境，狄大人能活下来真的是奇迹啊。为了救美女拿人头打赌的都是亡命徒啊，果然只有不怕死的才命大&hellip;</p>
-
-<p>  顺便逛了一下<a href="http://www.parkviewgreen.com/cn/" title="侨福芳草地">侨福芳草地</a>，好象是芳草地一周年还是怎么的，里面布满了各种艺术雕塑。有种进了798的感觉，但是798毕竟厂房了一点，这才是艺术品该待的地方嘛。没准哪个土豪逛着逛着看上一个就掏钱买了呢，要知道可不是所有的土豪都愿意转两趟公交去大山桥然后走200米左右跑798那堆厂房去。</p>
-
-<hr />
-
-<p><img src="http://cxh.me/images/common/ask.jpg" width="200" title="&#34;are you kidding me&#34;" alt="&#34;are you kidding me&#34;"> 你家的土豪是坐公交的啊</p>
-
-<hr />
-
-<p>  好了，不管土豪的事情了，上几张照片。</p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_144718.jpg" title="这个是想表达什么" alt="这个是想表达什么"><p class="align-center">这个是想表达什么</p></p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_145824.jpg" title="话说这个狗狗还是挺可爱的嘛" alt="话说这个狗狗还是挺可爱的嘛"><p class="align-center">话说这个狗狗还是挺可爱的嘛</p></p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2013-10/IMG_20131006_172509.jpg" title="最震撼的其实是这个" alt="最震撼的其实是这个"><p class="align-center">最震撼的其实是这个</p></p>
-
-<p>  这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
-
-<p>  钦此。</p>
 ]]></content>
   </entry>
   

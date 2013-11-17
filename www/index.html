@@ -110,6 +110,63 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/11/17/method-to-diff-log/">关于日志的比对</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-17T22:00:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何<a href="http://qianjigui.iteye.com/blog/368449" title="Vim日志定位解决方案">写个插件通过log来定位源码行</a>，这篇日志我们讨论一下如何快速定位自己的错误日志。</p>
+
+<p class="indent">首先，前面的状况至少可以保证一点，你check一份新的代码或者回滚本地修改然后运行，得到的错误日志和你当前的错误日志是可比较的。也就是说，你的错误至少不会导致错误日志之中有巨大的变化。这样的话我们可以采取如下的策略比较错误日志。</p>
+
+<blockquote><ol>
+<li> 得到当前的错误日志，假使命名为log.core</li>
+<li> check一份新的代码或者回滚本地修改，得到之前的错误日志，假使命名为log.ok</li>
+<li> 比较log.ok和log.core，分析日志的差别，得到本地修改导致的真实错误日志。</li>
+</ol></blockquote>
+
+
+<p class="indent">想法是很简单的，唯一的问题是OB日志里面是有时间戳的，这就导致没一行都有差异，那就太纠结了。我们可以用如下vim命令来去掉所有的时间戳。vim正则的转义规则见<a href="http://qianjigui.iteye.com/blog/368449" title="Vim 中的正则表达式">参考文献</a>。</p>
+
+<pre><code>map :lg :%s/\(^\[.\{-}\]\)\\|\(\[\d\+\]\)//g
+</code></pre>
+
+<p class="indent">这里面唯一的风险是比如我们在中括号里面写的数字也会被剔除，好在我们只是比较日志差异，想要看原始日志大不了根据行号到完整版里面找去，而且这个概率不大。</p>
+
+<p class="indent"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/11/17/method-to-diff-log/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/11/08/solution-to-locate-log-in-src/">Vim日志定位解决方案</a></h1>
     
     
@@ -323,6 +380,174 @@
 
 
   <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/10/27/brightest-star-in-the-sky/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/10/27/brightest-star-in-the-sky/">Brightest Star in the Sky</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-27T00:00:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><!DOCTYPE html><html><head><meta charset="utf-8"><style>html { font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+
+body{
+  color:#444;
+  font-family:Georgia, Palatino, &#8216;Palatino Linotype&#8217;, Times, &#8216;Times New Roman&#8217;,
+              &#8220;Hiragino Sans GB&#8221;, &#8220;STXihei&#8221;, &#8220;微软雅黑&#8221;, serif;
+  font-size:12px;
+  line-height:1.5em;
+  background:#fefefe;
+  width: 45em;
+  margin: 10px auto;
+  padding: 1em;
+  outline: 1300px solid #FAFAFA;
+}
+
+a{ color: #0645ad; text-decoration:none;}
+a:visited{ color: #0b0080; }
+a:hover{ color: #06e; }
+a:active{ color:#faa700; }
+a:focus{ outline: thin dotted; }
+a:hover, a:active{ outline: 0; }
+
+span.backtick {
+  border:1px solid #EAEAEA;
+  border-radius:3px;
+  background:#F8F8F8;
+  padding:0 3px 0 3px;
+}
+
+::-moz-selection{background:rgba(255,255,0,0.3);color:#000}
+::selection{background:rgba(255,255,0,0.3);color:#000}
+
+a::-moz-selection{background:rgba(255,255,0,0.3);color:#0645ad}
+a::selection{background:rgba(255,255,0,0.3);color:#0645ad}
+
+p{
+margin:1em 0;
+}
+
+img{
+max-width:100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+font-weight:normal;
+color:#111;
+line-height:1em;
+}
+h4,h5,h6{ font-weight: bold; }
+h1{ font-size:2.5em; }
+h2{ font-size:2em; border-bottom:1px solid silver; padding-bottom: 5px; }
+h3{ font-size:1.5em; }
+h4{ font-size:1.2em; }
+h5{ font-size:1em; }
+h6{ font-size:0.9em; }
+
+blockquote{
+color:#666666;
+margin:0;
+padding-left: 3em;
+border-left: 0.5em #EEE solid;
+}
+hr { display: block; height: 2px; border: 0; border-top: 1px solid #aaa;border-bottom: 1px solid #eee; margin: 1em 0; padding: 0; }
+
+
+pre , code, kbd, samp { 
+  color: #000; 
+  font-family: monospace; 
+  font-size: 0.88em; 
+  border-radius:3px;
+  background-color: #F8F8F8;
+  border: 1px solid #CCC; 
+}
+pre { white-space: pre; white-space: pre-wrap; word-wrap: break-word; padding: 5px 12px;}
+pre code { border: 0px !important; padding: 0;}
+code { padding: 0 3px 0 3px; }
+
+b, strong { font-weight: bold; }
+
+dfn { font-style: italic; }
+
+ins { background: #ff9; color: #000; text-decoration: none; }
+
+mark { background: #ff0; color: #000; font-style: italic; font-weight: bold; }
+
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
+sup { top: -0.5em; }
+sub { bottom: -0.25em; }
+
+ul, ol { margin: 1em 0; padding: 0 0 0 2em; }
+li p:last-child { margin:0 }
+dd { margin: 0 0 0 2em; }
+
+img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
+
+table { border-collapse: collapse; border-spacing: 0; }
+td { vertical-align: top; }
+
+@media only screen and (min-width: 480px) {
+body{font-size:14px;}
+}
+
+@media only screen and (min-width: 768px) {
+body{font-size:16px;}
+}
+
+@media print {
+  * { background: transparent !important; color: black !important; filter:none !important; -ms-filter: none !important; }
+  body{font-size:12pt; max-width:100%; outline:none;}
+  a, a:visited { text-decoration: underline; }
+  hr { height: 1px; border:0; border-bottom:1px solid black; }
+  a[href]:after { content: &#8221; (&#8221; attr(href) &#8220;)&#8221;; }
+  abbr[title]:after { content: &#8221; (&#8221; attr(title) &#8220;)&#8221;; }
+  .ir a:after, a[href^=&#8221;javascript:&#8221;]:after, a[href^=&#8221;#&#8221;]:after { content: &#8220;&#8221;; }
+  pre, blockquote { border: 1px solid #999; padding-right: 1em; page-break-inside: avoid; }
+  tr, img { page-break-inside: avoid; }
+  img { max-width: 100% !important; }
+  @page :left { margin: 15mm 20mm 15mm 10mm; }
+  @page :right { margin: 15mm 10mm 15mm 20mm; }
+  p, h2, h3 { orphans: 3; widows: 3; }
+  h2, h3 { page-break-after: avoid; }
+}
+</style><title>2013-10-27-brightest-star-in-the-sky</title></head><body><hr />
+<p>layout: post
+title: &#8220;夜空中最亮的星&#8221;
+date: 2013-10-27 10:41
+comments: true
+categories: &#8220;随笔&#8221;</p>
+<hr />
+<p></div>
   
   
     <footer>
@@ -1399,92 +1624,6 @@ fi
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T12:54:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>只是想起一首老歌:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/15/to-be-a-hero/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/14/tricks-about-octopress/">Octopress的一些技巧</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-14T15:03:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
-
-<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
-
-<p>主要说下面几个小技巧:</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/14/tricks-about-octopress/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1535,6 +1674,10 @@ fi
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/17/method-to-diff-log/">关于日志的比对</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/08/solution-to-locate-log-in-src/">vim日志定位解决方案</a>
       </li>
     
@@ -1548,10 +1691,6 @@ fi
     
       <li class="post">
         <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
       </li>
     
   </ul>

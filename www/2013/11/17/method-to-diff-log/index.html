@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>夜空中最亮的星 - CXH.ME</title>
+  <title>关于日志的比对 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
   <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/10/27/brightest-star-in-the-sky">
+  <link rel="canonical" href="http://cxh.me/2013/11/17/method-to-diff-log">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -108,7 +108,7 @@
   
   <header class="page-header">
     
-      <h2 class="entry-title">夜空中最亮的星</h2>
+      <h2 class="entry-title">关于日志的比对</h2>
     
     
       <p class="meta">
@@ -124,17 +124,42 @@
   
 
 
-<time datetime="2013-10-27T10:41:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
+<time datetime="2013-11-17T22:00:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><!-- more -->
+<div class="entry-content"><p class="indent">有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何<a href="http://qianjigui.iteye.com/blog/368449" title="Vim日志定位解决方案">写个插件通过log来定位源码行</a>，这篇日志我们讨论一下如何快速定位自己的错误日志。</p>
+
+<p class="indent">首先，前面的状况至少可以保证一点，你check一份新的代码或者回滚本地修改然后运行，得到的错误日志和你当前的错误日志是可比较的。也就是说，你的错误至少不会导致错误日志之中有巨大的变化。这样的话我们可以采取如下的策略比较错误日志。</p>
+
+<blockquote><ol>
+<li> 得到当前的错误日志，假使命名为log.core</li>
+<li> check一份新的代码或者回滚本地修改，得到之前的错误日志，假使命名为log.ok</li>
+<li> 比较log.ok和log.core，分析日志的差别，得到本地修改导致的真实错误日志。</li>
+</ol></blockquote>
 
 
-<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+<p class="indent">想法是很简单的，唯一的问题是OB日志里面是有时间戳的，这就导致没一行都有差异，那就太纠结了。我们可以用如下vim命令来去掉所有的时间戳。vim正则的转义规则见<a href="http://qianjigui.iteye.com/blog/368449" title="Vim 中的正则表达式">参考文献</a>。</p>
+
+<pre><code>map :lg :%s/\(^\[.\{-}\]\)\\|\(\[\d\+\]\)//g
+</code></pre>
+
+<p class="indent">这里面唯一的风险是比如我们在中括号里面写的数字也会被剔除，好在我们只是比较日志差异，想要看原始日志大不了根据行号到完整版里面找去，而且这个概率不大。</p>
+
+<p class="indent"><!-- more --></p>
+
+<p class="indent">实际的效果是这样的。我在考虑要不要把所有的tsi错误都去掉。</p>
+
+<p class="indent"><img class="img-polaroid center" src="/images/2013-11/logdiff.png" title="日志比较" alt="日志比较"><p class="align-center">日志比较</p></p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Vim 中的正则表达式, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p>
+
+<p>[2] Vim日志定位解决方案, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p></blockquote>
 </div>
 
 
@@ -175,12 +200,12 @@
   
 
 
-<time datetime="2013-10-27T10:41:00+08:00" pubdate data-updated="true">Oct 27<span>th</span>, 2013</time>
+<time datetime="2013-11-17T22:00:00+08:00" pubdate data-updated="true">Nov 17<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/category/sui-bi/'>随笔</a>
+    <a class='category' href='/category/oceanbase/'>Oceanbase</a>
   
 </span>
 
@@ -223,14 +248,10 @@
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/10/27/brightest-star-in-the-sky/" title="Previous Post:
-        Brightest Star In The Sky">&laquo; Brightest Star In The Sky</a></li>
+        href="/2013/11/08/solution-to-locate-log-in-src/" title="Previous Post:
+        vim日志定位解决方案">&laquo; vim日志定位解决方案</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/"
-        title="Next Post: 用gdb调试分布式系统（OB中的应用）">用gdb调试分布式系统（OB中的应用）
-        &raquo;</a></li>
       
     </ul>
   </footer>

@@ -110,6 +110,111 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/09/02/all-maps-in-douban-alpha-city/">貌似是豆瓣alpha城全部的地图了</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-02T00:00:00+08:00" pubdate data-updated="true">Sep 2<span>nd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/thumb.png" title="地图" alt="地图" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/08/31/skin-magic-linking-in-winsdk-program/">SkinMagic在WinSDK程序中的链接</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-31T00:00:00+08:00" pubdate data-updated="true">Aug 31<span>st</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实这种诡异的搭我配估计没人会遇到。我只是想在SDK程序里做一下美化而已。</p>
+
+<p>SkinMagic在MFC程序里的使用还是很常见的，网上代码有的是，至于大家手里的SkinMagic库，恐怕没有几个是正版的吧？有木有有木有！</p>
+
+<p>其实在SDK下使用SkinMagic还是比较简单的事情，主要解决两个问题：</p>
+
+<blockquote><ol>
+<li> 库的链接</li>
+<li> 皮肤的导入</li>
+</ol></blockquote>
+
+
+<p>第一个其实好说，注意InitSkinMagicLib传入WinMain的hInstance：</p>
+
+<pre><code>VERIFY( 1 == InitSkinMagicLib(hInstance, NULL , NULL, NULL ));
+VERIFY( 1 == LoadSkinFromResource(NULL,MAKEINTRESOURCE(IDR_SKIN5),"skin"));
+VERIFY( 1 == SetDialogSkin( "Dialog" ) );
+</code></pre>
+
+<p>然后记得导入库就行</p>
+
+<pre><code>#pragma  comment(lib,"SkinMagicTrial")
+#include "SkinMagicLib.h"
+</code></pre>
+
+<p>第二个问题，由于是SDK程序，所以需要手动添加资源，然后在资源里建立SKIN项，再导入皮肤，这时候VS会自动建立resource.h文件。</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/08/image_thumb.png" title="image" alt="image" /> 然后就OK啦。如果自己建立窗口，记得对ShowWindow之前调用一下SetWindowSkin。我只弹了个对话框，效果如下</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/08/image_thumb1.png" title="image" alt="image" /></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/">清华大学软件学院MSE开题报告Latex模板</a></h1>
     
     
@@ -1455,104 +1560,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/12/hacker-and-painter-first-chapter/">《黑客与画家》第一章文摘</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-12T00:00:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>《黑客与画家》第一章貌似跟创业没什么关系，甚至跟黑客和画家都没什么关系。</p>
-
-<p>第一章题目是：为什么书呆子不受欢迎，实际上揭示了一个让人不安的事实——学校里的竞争往往比想象的更为激烈，并且这里面智力或者成绩在里面所占的比例其实很少。智力在大家心中的分量远不如相貌魅力和运动能力所占的分量重，而且，在任何情况下，如果聪明真的另他人嫉妒，这反而会招来女生，因为女生喜欢被其他男生嫉妒的男生。</p>
-
-<p>摘录两段文字：</p>
-
-<p>一群孩子成群结伙地欺负你，并不是因为你做错了什么，而是这一伙人需要找一件事情一起干，这就好像一群人成群结伙地去打猎一样，他们实际上并不恨你，他们只是需要一个共同的目标。</p>
-
-<p>公立学校的老师很像监狱的狱卒，看管监狱的人主要关心的是犯人都待在自己应该的位置上，然后让犯人有东西吃，尽量不发生斗殴和伤害事件，就可以了，除此之外，他们一件事情也不愿意多管。没必要自找麻烦，所以，他们就听人犯人内部行程各种各样的小集团。根据我读到的材料，犯人内部的关系是扭曲，野蛮和无孔不入的。在这种人际关系的最底层可不是好玩的事。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/09/two-kinds-of-business-man/">两种生意人</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-09T00:00:00+08:00" pubdate data-updated="true">Aug 9<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<blockquote><p><img src="http://www.roybit.com/wp-content/uploads/2011/08/6bfea9d3tw1djuw88fas7j_thumb.jpg" title="6bfea9d3tw1djuw88fas7j" alt="6bfea9d3tw1djuw88fas7j" /></p>
-
-<p><a href="http://weibo.com/laserstone">@張開磊<img src="http://img.t.sinajs.cn/t35/style/images/common/transparent.gif" title="新浪个人认证" alt="transparent.gif" /></a>：【镜子】 年广久对自己的评价是：大错不犯，小错不断。而许多跟他有过往来的人则说他：小事精刁，大事糊涂。</p></blockquote>
-
-<p>张开磊的一个微博，评价年广久，还是很精辟的。年广久差不多是新中国最早一批生意人了，在各类运动和文革中备受抨击，又在改革开放的浪潮里乘风破浪，最终在新的商业浪潮里华丽落幕。某种意义上说，一个人的成功失败往往跟性格有关，成也萧何败萧何。年广久算是中国传统生意人比较典型的代表了。</p>
-
-<p>从性格上讲年广久确实是聪明人，虽然没文化，但是善于从市场里学习。年广久最著名的一句话就是：市场学是从市场里学到的，不是从书本里学到的，至理名言。另外，这人性格非常坚韧，跌倒了爬起，失败了再来，一生坐牢三次，风风雨雨经历无数，但还是壮心不已。这两点也算是成功者必备了。</p>
-
-<p>年广久事业没落的原因，个人觉得大概有如下两点：首先，刚愎自用，这也是中国很多民间企业家的共性，尤其对新的市场模式，新的技术和现在客户的心理缺乏必要的了解，仍然固守老的套路，这就决定了必然被新兴的商业浪潮所淘汰。另外，企业家族化，这也是中国绝大多数民间企业家的共性，这与中国的文化传统有关，但是纵观世界，家族化乃至公有化就没有搞得好的，不引进现代的企业管理，终究做不大。</p>
-
-<p>所以有一句总结年广久的话，还是比较精辟的：无大智慧，耍小聪明。共勉之，对事不对人。</p>
-
-<blockquote><p>参考文献：</p>
-
-<p>改革开放印迹：三次被小平点名的&#8221;傻子&#8221;年广久</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/5/">&larr; Older</a></li>
@@ -1605,6 +1612,10 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/17/method-to-diff-log/">关于日志的比对</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/08/solution-to-locate-log-in-src/">vim日志定位解决方案</a>
       </li>
     
@@ -1618,10 +1629,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
       </li>
     
   </ul>

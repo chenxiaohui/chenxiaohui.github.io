@@ -110,6 +110,92 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:54:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>只是想起一首老歌:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/to-be-a-hero/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2013/09/14/tricks-about-octopress/">Octopress的一些技巧</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-14T15:03:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
+
+<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
+
+<p>主要说下面几个小技巧:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/14/tricks-about-octopress/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/09/14/show-gitdiff-using-vimdiff/">用vimdiff来显示gitdiff</a></h1>
     
     
@@ -1768,165 +1854,6 @@ cout</p></blockquote>
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/04/02/some-problems-about-apache-address-rewrite/">Apache地址重写的几个问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-02T00:00:00+08:00" pubdate data-updated="true">Apr 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。</p>
-
-<p>首先要打开rewrite模块windows下的配置是</p>
-
-<blockquote><p>LoadModule rewrite_module modules/mod_rewrite.so</p></blockquote>
-
-<p>httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。</p>
-
-<p>.htaccess的则放到相应目录下或者根目录即可这是VPS里常用的一种方式毕竟作为一个VPS购买者不可能要求提供商去更改全局配置文件。这种方式需要注意的有如下两点</p>
-
-<p>首先.htaccess要想起作用必须要在httpd.conf中相应的Directory标签下配置AllowOverride All默认是None其次是windows下这种无文件名仅有扩展名的文件是无法直接生成的可以在cmd窗口下使用copy con命令来生成这命令也有年头了我小学的时候还学过光阴荏苒啊扯远了…Ctrl Z保存。</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image" alt="image" /></p>
-
-<p>然后我们说一下几个概念。</p>
-
-<p>首先是RewriteEngine这是地址重写的引擎可以方便的设置为On或者Off来启用和关闭引擎。</p>
-
-<p>其次是RewriteCond地址重写的条件符合这个条件的才进行表达式判断和重写这样能有效减少匹配的条数提高重写效率。</p>
-
-<p>最后是RewriteBase和RewriteRuleRewriteBase指明重定向地址的基础即RewriteRule后一部分重定向地址会拼合上RewriteBase合成一个完整的重定向地址。这在一个web容器下有多个网站的时候比较有用。</p>
-
-<p>RewriteRule才是我们讨论的主要话题。RewriteRule实现把符合表达式的地址重定向到另一个地址的功能RewriteRule的语法类似于下面</p>
-
-<blockquote><p>RewriteRule ^forum-([0-9] )&ndash;([0-9] )&#46;html$ forumdisplay.php?fid=$1&amp;page=$2</p></blockquote>
-
-<p>RewriteRule紧跟着判断表达式之后是需要重定向的位置正则表达式()会捕获一个分组然后通过$n引用这个分组从而实现地址重写。RewriteRule匹配的开始位置是整个URL去掉当前目录后剩下的部分比如我在/discuz配置上面所示的RewriteRule然后输入一个URL-<a href="http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82">http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82</a></p>
-
-<blockquote><p>RewriteRule ^(.*)/forum-([0-9] )&ndash;([0-9] )&#46;html$ rewrite.php?param=$1</p>
-
-<p>注在rewrite.php里打印一下GET[&lsquo;param’]参数</p></blockquote>
-
-<p>另外这里需要说明的是如果我定义了</p>
-
-<blockquote><p>RewriteBase /discuz</p></blockquote>
-
-<p>那么前面的<sup>forum</sup>-([0-9] )&ndash;([0-9] )&#46;html$不受影响但是后面会变成/discuz/forumdisplay.php?fid=$1&amp;page=$2。不过RewriteBase并不是必须的若有指定RewriteBase结果为RewriteBase 重定向地址否则为当前目录 重定向地址。这里当前目录指的是.htaccess所在目录使用.htaccess的时候或者Directory标签指定的目录使用httpd.conf的时候。</p>
-
-<p>以上操作在windows下测试通过。</p>
-
-<p>参考文献</p>
-
-<p><a href="http://www.roybit.com/wp-content/uploads/2012/04/image_thumb.png" title="image">1</a>Apache中RewriteCond规则参数介绍</p>
-
-<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">http://hi.baidu.com/һ/blog/item/ace7f14e19851cc4d0c86af2.html</a></p>
-
-<p><a href="http://hi.baidu.com/%D2%BB/blog/item/ace7f14e19851cc4d0c86af2.html">2</a>RewriteRule-htaccess详细语法使用教程</p>
-
-<p><a href="http://www.3code.cn/rewriterule-htaccess%E8%AF%A6%E7%BB%86%E8%AF%AD%E6%B3%95%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">http://www.3code.cn/rewriterule-htaccess详细语法使用教程/</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/03/31/some-problems-about-doxygen/">Doxygen几个小问题，mark一下</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-03-31T00:00:00+08:00" pubdate data-updated="true">Mar 31<span>st</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>首先是在Visual Assist X中的配置，在Snippet Editor窗口修改一下file header的snippet和Refactor Document Method的snippet.</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb5.png" title="image" alt="image" /></p>
-
-<p>设置分别如下</p>
-
-<p>file header</p>
-
-<p>/<em>*
-* @file $FILE_BASE$.$FILE_EXT$
-* @Synopsis $end$
-* @author 你的名字,你的邮箱
-* @version $version$
-* @date $DAY$:$MONTH$:$YEAR$
-</em>/</p>
-
-<p>Refactor Document Method</p>
-
-<p>/<em> —————————————————————————-</em>/
-/<em><em>
-* @Synopsis $SymbolName$
-* $end$
-* @Param $MethodArg$
-*
-* @Returns $SymbolType$
-</em>/
-/</em> —————————————————————————-*/
-然后记得DoxygenWizard的这个工作目录是一定要点选的，这里有个触发，如果直接复制路径进去是无法run doxygen的。</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb6.png" title="image" alt="image" /></p>
-
-<p>最后是中文编码的问题，如果你的项目是GBK编码，那么要防止乱码必须要做的事情是设置工程为UTF-8编码，而设置输入为GBK。切记。</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb7.png" title="image" alt="image" /></p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb8.png" title="image" alt="image" /></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1979,6 +1906,10 @@ cout</p></blockquote>
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/17/method-to-diff-log/">关于日志的比对</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/08/solution-to-locate-log-in-src/">vim日志定位解决方案</a>
       </li>
     
@@ -1992,10 +1923,6 @@ cout</p></blockquote>
     
       <li class="post">
         <a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">用gdb调试分布式系统（OB中的应用）</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/10/27/brightest-star-in-the-sky/">夜空中最亮的星</a>
       </li>
     
   </ul>
