@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "vim日志定位解决方案"
+title: "分布式调试系列之:vim日志定位解决方案"
 date: 2013-11-08 21:31
 comments: true
 categories: "Oceanbase"

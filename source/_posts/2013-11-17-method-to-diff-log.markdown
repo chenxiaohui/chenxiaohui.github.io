@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "关于日志的比对"
+title: "分布式调试系列：关于日志的比对"
 date: 2013-11-17 22:00
 comments: true
 categories: "Oceanbase"

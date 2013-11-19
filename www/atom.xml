@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-17T22:10:22+08:00</updated>
+  <updated>2013-11-19T17:43:01+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,73 @@
 
   
   <entry>
-    <title type="html"><![CDATA[关于日志的比对]]></title>
+    <title type="html"><![CDATA[分布式调试之导入import文件]]></title>
+    <link href="http://cxh.me/2013/11/19/vim-script-to-find-import-file/"/>
+    <updated>2013-11-19T17:41:00+08:00</updated>
+    <id>http://cxh.me/2013/11/19/vim-script-to-find-import-file</id>
+    <content type="html"><![CDATA[<p>  最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：</p>
+
+<!-- more -->
+
+
+<pre><code>if !exists('g:base_dir_mark')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:base_dir_mark = 'tags'
+endif
+
+if !exists('g:strip_prefix_arr')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:strip_prefix_arr = ['rootserver', 'root_table']
+endif
+
+if !exists('g:import_token')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:import_token = 'import "%s"'
+endif
+
+function! GetImportFile()
+    let filepath = expand("%:p")
+    let base_dir = GetBaseDirectory() . 'src/'
+    let idx = stridx(filepath, base_dir)
+    if idx == 0
+        let import_file_name = strpart(filepath, len(base_dir))
+        let import_cmd = substitute(g:import_token, '%s', import_file_name, 'g')
+        for prefix in g:strip_prefix_arr
+            let import_cmd = substitute(import_cmd, prefix.'/', '', 'g')
+        endfor
+        let @" = import_cmd
+        echo import_cmd
+    endif
+endf
+
+function! GetBaseDirectory()
+    let max = 5
+    let dir = getcwd()
+    let i = 0
+    while isdirectory(dir) &amp;&amp; i &lt; max
+        if filereadable(dir .'/'. g:base_dir_mark)
+            return dir.'/'
+        endif
+        let idx = strridx(dir, '/')
+        let dir = dir[:idx-1]
+        let i = i + 1
+    endwhile
+    return ''
+endf
+</code></pre>
+
+<p>  前提是配置好你的ctags，然后在系统根目录下用</p>
+
+<pre><code>ctags -R * //其他语言
+ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
+</code></pre>
+
+<p>  生成tags，插件会去去找tags文件，然后把找到的位置定义为项目目录，之后的引用路径会按照这路径来生成相对路径。strip_prefix_arr制定要去掉的前缀，比如我们的路径是/home/dev/src/rootserver/xxx.h，tags生成在dev下，按照base_dir_mark/src去掉项目路径得到 rootserver/xxx.h，根据strip_prefix_arr去掉rootserver，最后得到import &ldquo;xxx.h&#8221;。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分布式调试系列：关于日志的比对]]></title>
     <link href="http://cxh.me/2013/11/17/method-to-diff-log/"/>
     <updated>2013-11-17T22:00:00+08:00</updated>
     <id>http://cxh.me/2013/11/17/method-to-diff-log</id>
@@ -51,7 +117,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[vim日志定位解决方案]]></title>
+    <title type="html"><![CDATA[分布式调试系列之:vim日志定位解决方案]]></title>
     <link href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/"/>
     <updated>2013-11-08T21:31:00+08:00</updated>
     <id>http://cxh.me/2013/11/08/solution-to-locate-log-in-src</id>
@@ -487,7 +553,7 @@ let g:applist={
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[用gdb调试分布式系统（OB中的应用）]]></title>
+    <title type="html"><![CDATA[分布式调试系列：用gdb调试分布式系统]]></title>
     <link href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/"/>
     <updated>2013-10-29T13:40:00+08:00</updated>
     <id>http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob</id>
@@ -1749,17 +1815,6 @@ make install
 <h3>参考文献：</h3>
 
 <blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[去了趟锦州]]></title>
-    <link href="http://cxh.me/2013/10/07/tourism-of-jinzhou/"/>
-    <updated>2013-10-07T18:34:00+08:00</updated>
-    <id>http://cxh.me/2013/10/07/tourism-of-jinzhou</id>
-    <content type="html"><![CDATA[<p>  去锦州的原因，其实是没搞到去其他的地方的票。</p>
-
-<p>  十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
 ]]></content>
   </entry>
   

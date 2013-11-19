@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "用gdb调试分布式系统（OB中的应用）"
+title: "分布式调试系列：用gdb调试分布式系统"
 date: 2013-10-29 13:40
 comments: true
 categories: "Oceanbase"

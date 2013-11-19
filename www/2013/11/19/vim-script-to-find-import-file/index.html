@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>如何构建按高可用系统（分享的笔记） - CXH.ME</title>
+  <title>分布式调试之导入import文件 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
   <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/11/01/how-to-build-high-available-system">
+  <link rel="canonical" href="http://cxh.me/2013/11/19/vim-script-to-find-import-file">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -108,7 +108,7 @@
   
   <header class="page-header">
     
-      <h2 class="entry-title">如何构建按高可用系统（分享的笔记）</h2>
+      <h2 class="entry-title">分布式调试之导入import文件</h2>
     
     
       <p class="meta">
@@ -124,157 +124,71 @@
   
 
 
-<time datetime="2013-11-01T18:42:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+<time datetime="2013-11-19T17:41:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>版权所有：<a href="">解伦师兄</a></p>
-
-<h3>介绍篇</h3>
-
-<p><strong>可用性vs可靠性</strong></p>
-
-<p class="indent">可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。</p>
-
-<p class="indent">可用性可靠性是系统的工程，设计开发，管理，运维等等。</p>
-
-<p class="indent">宕机几大因素：软件-硬件-网络-人为</p>
-
-<p class="indent">data loss的最大因素：drop table, 所以要做好充分的容错。</p>
+<div class="entry-content"><p class="indent">最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：</p>
 
 <!-- more -->
 
 
-<h3>设计篇</h3>
+<pre><code>if !exists('g:base_dir_mark')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:base_dir_mark = 'tags'
+endif
 
-<p><strong>减少故障发生的可能</strong></p>
+if !exists('g:strip_prefix_arr')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:strip_prefix_arr = ['rootserver', 'root_table']
+endif
 
-<p class="indent">避免单点故障，防止扩散，有效的监控运维配合</p>
+if !exists('g:import_token')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:import_token = 'import "%s"'
+endif
 
-<p class="indent">常见的<strong>冗余</strong>设计。</p>
+function! GetImportFile()
+    let filepath = expand("%:p")
+    let base_dir = GetBaseDirectory() . 'src/'
+    let idx = stridx(filepath, base_dir)
+    if idx == 0
+        let import_file_name = strpart(filepath, len(base_dir))
+        let import_cmd = substitute(g:import_token, '%s', import_file_name, 'g')
+        for prefix in g:strip_prefix_arr
+            let import_cmd = substitute(import_cmd, prefix.'/', '', 'g')
+        endfor
+        let @" = import_cmd
+        echo import_cmd
+    endif
+endf
 
-<ul>
-<li>RAID,Replica,Erasure Code</li>
-<li>BackUp, Reassign,Retry</li>
-<li>Master-Slave,Mirror,RAC..</li>
-</ul>
+function! GetBaseDirectory()
+    let max = 5
+    let dir = getcwd()
+    let i = 0
+    while isdirectory(dir) &amp;&amp; i &lt; max
+        if filereadable(dir .'/'. g:base_dir_mark)
+            return dir.'/'
+        endif
+        let idx = strridx(dir, '/')
+        let dir = dir[:idx-1]
+        let i = i + 1
+    endwhile
+    return ''
+endf
+</code></pre>
 
+<p class="indent">前提是配置好你的ctags，然后在系统根目录下用</p>
 
-<p class="indent">减少对外部系统强依赖</p>
+<pre><code>ctags -R * //其他语言
+ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
+</code></pre>
 
-<ul>
-<li>缓存</li>
-<li>异步替代同步</li>
-</ul>
-
-
-<p class="indent">对外部依赖不信任</p>
-
-<ul>
-<li>结果进行</li>
-<li>失败情况下failover（重试时间次数需要控制）</li>
-</ul>
-
-
-<p class="indent">有效的内部监控</p>
-
-<p><strong>减少故障恢复时间</strong></p>
-
-<p class="indent">无状态最好</p>
-
-<ul>
-<li>有状态定期做持久化（checkpoint/commitlog)</li>
-</ul>
-
-
-<p class="indent">有效的故障隔离</p>
-
-<ul>
-<li>故障检测，黑白名单，流量分配</li>
-<li>黑名单要有恢复机制</li>
-</ul>
-
-
-<p><strong>减少损失</strong></p>
-
-<p class="indent">过载保护</p>
-
-<ul>
-<li>发现故障，并限制资源</li>
-</ul>
-
-
-<p class="indent">应用降级</p>
-
-<ul>
-<li>关闭部分不重要的功能(某些情况下用户也感觉不出来)</li>
-</ul>
-
-
-<p class="indent">有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。</p>
-
-<h3>案例篇</h3>
-
-<p><strong>Twitter</strong></p>
-
-<p class="indent">世界杯额时候twitter经常会时常挂掉</p>
-
-<ul>
-<li>memcache规划的问题</li>
-<li>cache也要注意设计</li>
-</ul>
-
-
-<p><strong>Foursquare</strong></p>
-
-<p class="indent">数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)</p>
-
-<ul>
-<li>数据迁走之后有空洞，页不释放</li>
-<li>还好毕设的时候数据量不大</li>
-</ul>
-
-
-<p><strong>Amazon</strong></p>
-
-<p class="indent">EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络</p>
-
-<ul>
-<li>相应超时，认为丢失副本</li>
-<li>副本复制，继续加剧网络问题</li>
-</ul>
-
-
-<p><strong>Weibo</strong></p>
-
-<p class="indent">热点存在，cache失效，一瞬间所有访问db</p>
-
-<ul>
-<li>加锁，一个人获取内容回填cache之后就不会有人去访问db了</li>
-</ul>
-
-
-<p><strong>Facebook</strong></p>
-
-<p class="indent">cache没取到就删除了原cache</p>
-
-<p><strong>OB</strong></p>
-
-<p class="indent">客户端要做分流，业务高峰，超时严重，把cluster都加入黑名单，重试风暴</p>
-
-<h3>总结篇</h3>
-
-<p><strong>可用性</strong></p>
-
-<ul>
-<li>BASE:基本可用</li>
-<li>CAP:No CAP, No CP, A是很重要的</li>
-<li><a href="">20 Key High Availability Design Principles</a></li>
-</ul>
-
+<p class="indent">生成tags，插件会去去找tags文件，然后把找到的位置定义为项目目录，之后的引用路径会按照这路径来生成相对路径。strip_prefix_arr制定要去掉的前缀，比如我们的路径是/home/dev/src/rootserver/xxx.h，tags生成在dev下，按照base_dir_mark/src去掉项目路径得到 rootserver/xxx.h，根据strip_prefix_arr去掉rootserver，最后得到import &ldquo;xxx.h&#8221;。</p>
 </div>
 
 
@@ -315,7 +229,7 @@
   
 
 
-<time datetime="2013-11-01T18:42:00+08:00" pubdate data-updated="true">Nov 1<span>st</span>, 2013</time>
+<time datetime="2013-11-19T17:41:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
       
 
 <span class="categories">
@@ -363,14 +277,10 @@
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="Previous Post:
-        分布式调试系列：用gdb调试分布式系统">&laquo; 分布式调试系列：用gdb调试分布式系统</a></li>
+        href="/2013/11/17/method-to-diff-log/" title="Previous Post:
+        分布式调试系列：关于日志的比对">&laquo; 分布式调试系列：关于日志的比对</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/"
-        title="Next Post: 自己写的一个根据路径打开文件的插件">自己写的一个根据路径打开文件的插件
-        &raquo;</a></li>
       
     </ul>
   </footer>
