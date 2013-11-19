@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-19T17:43:23+08:00</updated>
+  <updated>2013-11-19T21:48:49+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,13 +14,39 @@
 
   
   <entry>
+    <title type="html"><![CDATA[关于得到当前执行文件所在的目录]]></title>
+    <link href="http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program/"/>
+    <updated>2013-11-19T21:47:00+08:00</updated>
+    <id>http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program</id>
+    <content type="html"><![CDATA[<p>  今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。</p>
+
+<p>  首先，直接 realpath(&ldquo;./&rdquo;) 和 getcwd 获取的都是当前路径，也就是当前shell所在的路径。<strong>FILE</strong>获取的是文件名，不包含路径，而且是编译过程确定的，最简单的办法当然是argv[0]，但是在test_case(gtest)里面不方便传来传去，后来发现最好的办法是这样的：</p>
+
+<pre><code>#include "libgen.h"
+#define MAX_PATH_SIZE 100
+char current_absolute_path[MAX_PATH_SIZE] = {'\0'};
+if (readlink("/proc/self/exe", current_absolute_path, MAX_PATH_SIZE - 1) &lt; 0)
+{
+  //error
+}
+else
+{
+  sprintf(current_absolute_path, "%s/%s", dirname(current_absolute_path), schema_file_name);
+}
+</code></pre>
+
+<p>  这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[升级到ubuntu13.10]]></title>
     <link href="http://cxh.me/2013/10/18/update-to-ubuntu-13-10/"/>
     <updated>2013-10-18T10:49:00+08:00</updated>
     <id>http://cxh.me/2013/10/18/update-to-ubuntu-13-10</id>
     <content type="html"><![CDATA[<p>  Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
 
-<p>{% img img-polaroid center /images/2013-10/ubuntu13_10.jpg &ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
 ]]></content>
   </entry>
   
@@ -54,7 +80,7 @@
 
 <h3>截图</h3>
 
-<p>{% img img-ploaroid center /images/2013-10/htop.png  &ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo; %}</p>
+<p><img class="img-ploaroid center" src="/images/2013-10/htop.png" title="&ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo;" ></p>
 
 <h3>安装</h3>
 
@@ -178,25 +204,6 @@ fi
 </code></pre>
 
 <p>然后同上Update Grub就可以了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[清华大学软件学院MSE开题报告Latex模板]]></title>
-    <link href="http://cxh.me/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/"/>
-    <updated>2011-08-31T00:00:00+08:00</updated>
-    <id>http://cxh.me/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>使用请先编译BIB文件（参考文献），然后直接生成pdflatex（windows下），用Linux的孩纸请自行抉择。</p>
-
-<blockquote><p>bibtex %1</p>
-
-<p>pdflatex %1.tex</p></blockquote>
-
-<p>没找到表格分散对齐的命令，只能手动填充空格了。</p>
-
-<p>在CTex下测试通过。下载链接：<a href="http://www.roybit.com/wp-content/uploads/2011/08/docs.rar" title="docs">here</a></p>
 ]]></content>
   </entry>
   

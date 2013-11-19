@@ -110,6 +110,59 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-19T21:47:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。</p>
+
+<p class="indent">首先，直接 realpath(&ldquo;./&rdquo;) 和 getcwd 获取的都是当前路径，也就是当前shell所在的路径。<strong>FILE</strong>获取的是文件名，不包含路径，而且是编译过程确定的，最简单的办法当然是argv[0]，但是在test_case(gtest)里面不方便传来传去，后来发现最好的办法是这样的：</p>
+
+<pre><code>#include "libgen.h"
+#define MAX_PATH_SIZE 100
+char current_absolute_path[MAX_PATH_SIZE] = {'\0'};
+if (readlink("/proc/self/exe", current_absolute_path, MAX_PATH_SIZE - 1) &lt; 0)
+{
+  //error
+}
+else
+{
+  sprintf(current_absolute_path, "%s/%s", dirname(current_absolute_path), schema_file_name);
+}
+</code></pre>
+
+<p class="indent">这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a></h1>
     
     
@@ -1456,47 +1509,6 @@ fi
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">oceanbase源码分析-RootServer主要框架</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T12:55:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这里记录一下RootServer主要框架的阅读和心得。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1547,6 +1559,10 @@ fi
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
@@ -1560,10 +1576,6 @@ fi
     
       <li class="post">
         <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
   </ul>

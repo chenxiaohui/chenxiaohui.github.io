@@ -5,10 +5,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: C++ - CXH.ME</title>
+  <title>关于得到当前执行文件所在的目录 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
-  <meta name="description" content="Category: C++">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.mecategory/c-plus-plus">
+  <link rel="canonical" href="http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -103,157 +103,148 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span12 well" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: C++</h1>
+    
+      <h2 class="entry-title">关于得到当前执行文件所在的目录</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-19T21:47:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p class="indent">今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。</p>
 
-  
-  <h1>2013</h1>
+<p class="indent">首先，直接 realpath(&ldquo;./&rdquo;) 和 getcwd 获取的都是当前路径，也就是当前shell所在的路径。<strong>FILE</strong>获取的是文件名，不包含路径，而且是编译过程确定的，最简单的办法当然是argv[0]，但是在test_case(gtest)里面不方便传来传去，后来发现最好的办法是这样的：</p>
 
-<article>
-  <div class="well">
+<pre><code>#include "libgen.h"
+#define MAX_PATH_SIZE 100
+char current_absolute_path[MAX_PATH_SIZE] = {'\0'};
+if (readlink("/proc/self/exe", current_absolute_path, MAX_PATH_SIZE - 1) &lt; 0)
+{
+  //error
+}
+else
+{
+  sprintf(current_absolute_path, "%s/%s", dirname(current_absolute_path), schema_file_name);
+}
+</code></pre>
 
-<h3><a href="/2013/09/02/cplusplus-primer-book-review/">C++ Primer 读书笔记</a></h3>
-<time datetime="2013-09-02T12:55:00+08:00" pubdate><span class='month'>Sep</span> <span class='day'>02</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/c-plus-plus/'>C++</a></span>
-</footer>
-
+<p class="indent">这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
 </div>
 
-</article>
+
+  <footer>
+    <p class="meta">
+      
+
+
+<!--<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>-->
+
+<hr/>
+<div class="author clear">
+        <div class="author_pic left pl20 pr20">
+            <script src="/javascripts/md5.js"></script>
+            <script type="text/javascript">
+                $(function(){
+                        $('.author_pic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=100' alt='Profile Picture' style='width: 100px;' class='img-polaroid'/>");
+                        });
+            </script>
+        </div>
+        <div class="author_info left">
+            <h3>Harry Chen</h3>
+            <p>北航本，清华硕，现就职于支付宝北京</p>
+        </div>
+</div>
+<hr/>
+
+
+      
+
+
+
+
+
 
 
 
   
-  <h1>2012</h1>
-
-<article>
-  <div class="well">
-
-<h3><a href="/2012/10/16/recommand-two-stl-learning-resource/">推荐两个STL学习资源</a></h3>
-<time datetime="2012-10-16T00:00:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>16</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/c-plus-plus/'>C++</a></span>
-</footer>
-
-</div>
-
-</article>
 
 
+<time datetime="2013-11-19T21:47:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
+      
 
-<article>
-  <div class="well">
-
-<h3><a href="/2012/10/16/problems-of-two-dimension-string-array/">二维字符串数组的问题</a></h3>
-<time datetime="2012-10-16T00:00:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>16</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/c-plus-plus/'>C++</a></span>
-</footer>
-
-</div>
-
-</article>
-
-
-
-<article>
-  <div class="well">
-
-<h3><a href="/2012/10/08/problems-about-length-variable-array/">变长数组的问题</a></h3>
-<time datetime="2012-10-08T00:00:00+08:00" pubdate><span class='month'>Oct</span> <span class='day'>08</span> <span class='year'>2012</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/c-plus-plus/'>C++</a></span>
-</footer>
-
-</div>
-
-</article>
-
-</div>
-
+<span class="categories">
   
-</article>
-
-<aside class="sidebar-nav span3">
+    <a class='category' href='/category/linux/'>Linux</a>
   
-    <section class="well">
-    <div class="profilepic align-center">
-        <img src="/images/common/cxh.jpeg" alt="cxh.me" width="160px" class="img-rounded"/>
-    </div>
-    <hr/>
+</span>
 
-    <ul id="about_me" class="nav nav-list">
-        <li class="nav-header">About Me</li>
-        <li>北航本，清华硕，现就职于支付宝北京</li>
-    </ul>
-</section>
-<section class="well">
-    <ul id="profile" class="nav nav-list">
-        <li class="nav-header">Profile</li>
-        <li><a href="https://github.com/chenxiaohui/">GitHub</a></li>
-        <li><a href="http://weibo.com/sdqxcxh/">Weibo</a></li>
-        <li><a href="http://renren.com/sdqxcxh/">Renren</a></li>
-        <li><a href="https://twitter.com/sdqxcxh/">Twitter</a></li>
-        <li><a href="https://facebook.com/sdqxcxh/">Facebook</a></li>
-    </ul>
-</section>
-<section class="well">
-    <ul id="feeling" class="nav nav-list">
-        <li class="nav-header">一点心情</li>
-    </ul>
-    <p></p>
-    <img src="/images/common/star_in_the_sky.jpg" class="notice_pic img-polaroid" alt="每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行" />
-    <p></p>
-    <p class="indent">
-        每当我找不到存在的意义，每当我迷失在黑夜里，夜空中最亮的星，请照亮我前行
+
     </p>
-    <p class="align-right">
-        ——《夜空中最亮的星》
-    </p>
-</section>
-<section class="well">
-  <ul id="recent_posts" class="nav nav-list">
-    <li class="nav-header">Recent Posts</li>
     
-      <li class="post">
-        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
-      </li>
+      <div class="sharing">
     
-      <li class="post">
-        <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
-      </li>
     
-      <li class="post">
-        <a href="/2013/11/17/method-to-diff-log/">分布式调试系列：关于日志的比对</a>
-      </li>
     
-      <li class="post">
-        <a href="/2013/11/08/solution-to-locate-log-in-src/">分布式调试系列之:vim日志定位解决方案</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
-      </li>
-    
-  </ul>
-</section>
 
-  
-</aside>
+    
+</div>
+
+    
+    
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <!--高速版，加载速度快，使用前需测试页面的兼容性-->
+<div id="SOHUCS"></div>
+<script>
+  (function(){
+    var appid = 'cyqPuxR41',
+    conf = 'prod_9f8684e630c4c30cad7b1f0935cd62ab';
+    var doc = document,
+    s = doc.createElement('script'),
+    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+    s.type = 'text/javascript';
+    s.charset = 'utf-8';
+    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
+    h.insertBefore(s,h.firstChild);
+    window.SCS_NO_IFRAME = true;
+  })()
+</script>
+
+    </section>
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2013/11/19/vim-script-to-find-import-file/" title="Previous Post:
+        分布式调试之导入import文件">&laquo; 分布式调试之导入import文件</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
+</article>
 
 
     </div>

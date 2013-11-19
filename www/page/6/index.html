@@ -110,6 +110,67 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/05/29/binding-Flash-resource-in-Flex/">关于Flex绑定Flash资源</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>很多时候我们需要在Flex里使用Flash的资源，大家的习惯可能是用Flash的一个扩展导出一个原件为SWC，然后在Flex里引用，但是问题是一者SWC太多，二者Flash按钮不能导出（至少CS4还不行）。我们这里提供一种简单的基于绑定的导出方式。</p>
+
+<p>首先在Flash里选择为ActionScript导出（右键，属性里），然后编译SWF文件，之后我们直接用代码引用SWF文件里的原件，并引用为Image控件的source。代码如下</p>
+
+<pre><code>package assets
+{
+    import mx.controls.Image;
+
+    public class DiceOne extends Image
+    {
+        [Embed(source="../res/dice.swf",symbol="DiceOne")]
+        [Bindable]
+        public var img:Class;
+
+        public function DiceOne()
+        {
+            super();
+            source=img;
+        }
+    }
+}
+</code></pre>
+
+<p>这样就可以把这个原件像一个Sprite或者MovieClip一样引用了。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/05/24/beijing-estate-market/">北京房事</a></h1>
     
     
@@ -1612,96 +1673,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/01/30/tcp-subpackage-design-with-length-separator-and-veryfication/">长度、分隔符加校验的TCP分包设计(C#)</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-01-30T00:00:00+08:00" pubdate data-updated="true">Jan 30<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>我们做TCP程序的时候最经常遇到的问题就是分包，这也是激动人心的程序开发（可能你不这么认为）中最不激动人心的一部分，换句话说，确实挺枯燥的。</p>
-
-<p>这里简要说一下分包问题的来源吧，毕竟有人并没做过TCP。TCP或者说流式套接字都会面临一个同样的问题，就是逻辑上我们会引入报文或包的概念，通过报文传播消息，但是基于流的套接字不会在套接字层区分这个概念。传递来传递去的东西永远是一串串的char（抑或byte），不会有人告诉你从一个报文是从哪里开始到哪里结束，而且一个报文可能被拆成两部分传递。所以，我们要分包。</p>
-
-<p>分包其实是个挺常见的问题，从Socket到串口，只要做流式套接字，都要在底层实现一个分包机制，然后给上层一个接口，实现对底层的透明。大体有如下两种常见的方式</p>
-
-<blockquote><ol>
-<li> 特殊字符做分界符：比如，之间的认为是一个完整报文。</li>
-<li> 长度前缀：在报文前加一个长度信息，指明报文的长度。</li>
-</ol></blockquote>
-
-
-<p>两种方式的利弊如下表：</p>
-
-<p>方式
-利
-弊</p>
-
-<p>特殊字符
-如果有错位或丢失，不影响下一个报文
-报文内容里不能出现分界符，否则要做相应的置换</p>
-
-<p>长度前缀
-报文内容无关，可以出现任何字符
-假如有错位或丢失，以后的报文都会找不到长度信息位置</p>
-
-<p>这里稍作说明，关于分界符的置换，大概的做法是：假如分界符是#，正文里出现的#都置换成##，然后按照单一的#为分界符进行分界，最后把##置换回#。相当繁琐的一个过程。</p>
-
-<p>所以，有没有一种方法，能即不受丢失错位影响，又可以兼容所有字符呢？答案是肯定的。（这句型是如此的NC，以至于所有的电视购物都少不了）</p>
-
-<p>本文我们探讨一种特殊字符 长度前缀的定界方式，并且加入校验机制而保证报文的正确性。具体报文设计是这样的</p>
-
-<p>开始符号
-长度信息
-报文正文
-[校验信息]
-结束符号</p>
-
-<p>其中校验信息是可选的，本文的实现里是使用C#的序列化反序列化机制<a href="http://www.roybit.com/wp-content/uploads/2011/01/thumb.jpg" title="未命名">1</a>进行校验，能反序列化则证明报文无误，否则有误。如果选择校验，大可用MD5等算法进行校验。</p>
-
-<p>算法伪代码不再给出，源码已经相当通俗易懂了（至少我是这么觉得）。定界过程需要处理的问题确实很多，尤其需要考虑拼包，一个包拆成几部分而只有第一部分携带了长度信息，这就是很纠结的问题。（话说不画图说明真的是很没有职业道德的行为，但是我真没找到比较方便的可以画这种图的Latex代码，或者工具）</p>
-
-<p>主程序里Debug函数是专门测试各种情况的，有兴趣可以自己测一下，如果有我没考虑到的情况请<strong>火速</strong>通知我，非常感谢。无聊贴一下程序截图吧</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/01/thumb.jpg" title="未命名" alt="未命名" /></p>
-
-<p>本文源码下载： <a href="http://www.roybit.com/wp-content/uploads/2011/01/TCPResolvePacket.rar">源码下载</a></p>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/01/thumb.jpg" title="未命名">1</a> 可扩展多线程异步Socket服务器框架EMTASS 2.0，</p>
-
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/01/TCPResolvePacket.rar">2</a> 关于C#序列化结果的长度获取，</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/7/">&larr; Older</a></li>
@@ -1754,6 +1725,10 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
@@ -1767,10 +1742,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     
       <li class="post">
         <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
   </ul>

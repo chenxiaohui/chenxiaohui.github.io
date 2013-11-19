@@ -110,6 +110,47 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">oceanbase源码分析-RootServer主要框架</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-15T12:55:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里记录一下RootServer主要框架的阅读和心得。</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/09/15/to-be-a-hero/">普通英雄</a></h1>
     
     
@@ -1755,105 +1796,6 @@ public:
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/04/07/about-const-and-pointer/">关于const和指针的专题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-07T00:00:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。</p>
-
-<p>首先是几种const与指针组合的区分，比如：</p>
-
-<blockquote><p>int b = 500;
-const int<em> a = &b; [1]
-int const </em>a = &b; [2]
-int<em> const a = &b; [3]
-const int</em> const a = &b; [4]</p></blockquote>
-
-<p>[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。</p>
-
-<p>至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。</p>
-
-<blockquote><h1>include</h1>
-
-<p>using namespace std;</p>
-
-<p>int main(int argc,char<em> argv[])
-{
-int a=1;
-const int </em>b=&a;
-<em>b ;//成立
-(</em>b) ;//编译器错误
-}</p></blockquote>
-
-<p>那么我们能不能突破const去修改一个值呢？虽然这件事情本身并没有多大意义，但是还是可以做的。我们可以用const_cast来去掉一个const或者volatile限制。const_cast的作用主要分如下三种：</p>
-
-<blockquote><p>转化一个常量指针为非常量指针</p>
-
-<p>转化一个常量引用为非常量引用</p>
-
-<p>转化一个常量对象为非常量对象</p></blockquote>
-
-<p>至于例子</p>
-
-<p>我们举如下一个例子：</p>
-
-<blockquote><h1>include</h1>
-
-<p>using namespace std;</p>
-
-<p>class Test
-{
-public:
-const int a ;
-Test(int b):a(b)
-{</p>
-
-<p>}
-};</p>
-
-<p>int main(int argc,char<em> argv[])
-{
-Test t(1);
-//t.a=2;//出错
-int b=const_cast(t.a);
-int&amp; c=const_cast(t.a);
-int</em> d=const_cast(&amp;t.a);
-b=2;
-c=3;
-cout</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1906,6 +1848,10 @@ cout</p></blockquote>
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
@@ -1919,10 +1865,6 @@ cout</p></blockquote>
     
       <li class="post">
         <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
   </ul>

@@ -110,6 +110,105 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/04/07/about-const-and-pointer/">关于const和指针的专题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-07T00:00:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。</p>
+
+<p>首先是几种const与指针组合的区分，比如：</p>
+
+<blockquote><p>int b = 500;
+const int<em> a = &b; [1]
+int const </em>a = &b; [2]
+int<em> const a = &b; [3]
+const int</em> const a = &b; [4]</p></blockquote>
+
+<p>[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。</p>
+
+<p>至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+int a=1;
+const int </em>b=&a;
+<em>b ;//成立
+(</em>b) ;//编译器错误
+}</p></blockquote>
+
+<p>那么我们能不能突破const去修改一个值呢？虽然这件事情本身并没有多大意义，但是还是可以做的。我们可以用const_cast来去掉一个const或者volatile限制。const_cast的作用主要分如下三种：</p>
+
+<blockquote><p>转化一个常量指针为非常量指针</p>
+
+<p>转化一个常量引用为非常量引用</p>
+
+<p>转化一个常量对象为非常量对象</p></blockquote>
+
+<p>至于例子</p>
+
+<p>我们举如下一个例子：</p>
+
+<blockquote><h1>include</h1>
+
+<p>using namespace std;</p>
+
+<p>class Test
+{
+public:
+const int a ;
+Test(int b):a(b)
+{</p>
+
+<p>}
+};</p>
+
+<p>int main(int argc,char<em> argv[])
+{
+Test t(1);
+//t.a=2;//出错
+int b=const_cast(t.a);
+int&amp; c=const_cast(t.a);
+int</em> d=const_cast(&amp;t.a);
+b=2;
+c=3;
+cout</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/04/02/some-problems-about-apache-address-rewrite/">Apache地址重写的几个问题</a></h1>
     
     
@@ -2227,47 +2326,6 @@ set termencoding=utf-8
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/09/03/unity-supports-3d-games-import-to-flash/">Unity已支持将3D游戏导出成Flash</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-03T00:00:00+08:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p><a href="http://unity3d.com/"> Unity</a>是一款支持跨平台开发的3D游戏开发工具，生成的游戏可以导出到 包括iOS, Android, PS3, Wii, XBox360在内的众多平台。<a href="http://v.youku.com/v_show/id_XMzAxMDEzMDI0.html">近日Unity发布了一则视频</a>， 演示了将Unity3D游戏导出到Flash，并运行在<a href="http://labs.adobe.com/downloads/flashplayer11.html">Flashplayer11 beta版</a>上的效果。</p>
-
-<p>游戏虽然不如运行在Unity原生平台流畅，但也已远远超出人们对Flashplayer 3D性能的预期了。看起来，Flashplayer11确实朝3D这个方向迈出了一大步。
-该版本的Uinty还未正式发布，但如果你已经安装了Flashplayer11，可以先试试Adobe推荐的<a href="http://molehill.zombietycoon.com/">3D演示游戏</a>。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -2320,6 +2378,10 @@ set termencoding=utf-8
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
@@ -2333,10 +2395,6 @@ set termencoding=utf-8
     
       <li class="post">
         <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
   </ul>

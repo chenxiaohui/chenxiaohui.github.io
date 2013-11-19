@@ -110,6 +110,56 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/08/12/hacker-and-painter-second-chapter/">《黑客与画家》第二章文摘</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-12T00:00:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>为了配合论文研究性的主题，你很容易就把工作重点从开发优美的软件转移为开发一起丑陋的东西。</p>
+
+<p>一般来说，理论上，你需要知道如何计算“时间复杂度”和“空间复杂度”，如果你要写一个解析器，可能还需要知道状态机的概念，除此之外，并不需要知道太多的理论。</p>
+
+<p>我现在认为，大学里教给我的编程方法都是错的。你把整个程序想清楚的时间应该是在编写代码的同时，而不是在编写代码之前，这与作家，画家和建筑师的做法完全一样。</p>
+
+<p>真正竞争软件设计的战场是新兴领域的市场，这里还没有人建立过防御工事，只要你能做出大胆的设计，右一个人或一批人同时负责设计和实现产品，你就能在这里战胜大公司。微软公司自己一开始就是这样走向成功的。苹果公司和惠普公司也是如此，我觉得几乎所有的创业公司都是这样取得成功的。</p>
+
+<p>黑客如何才能做自己喜欢的事情，我认为问题的解决方法是一个几乎所有创业者这知道的方法：找一份养家糊口的“白天工作”。</p>
+
+<p>我们面试程序员的时候，主要关注的事情就是业余时间他们写了什么软件，因为如果你不爱一件事情，你不可能把它做的真正优秀。要是你很热爱编程，你就不可避免的要开发自己的项目。</p>
+
+<p>如果黑客只是一个负责实现领导意志的技术工人，职责就是根据规格书写代码，那么他其实与一个挖水沟的工人是一样的，从这头挖到那头，仅此而已。但是如果黑客是一个创作者，他从事的事就不是机械性的工作，他必须具备灵感。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/08/12/hacker-and-painter-first-chapter/">《黑客与画家》第一章文摘</a></h1>
     
     
@@ -1483,67 +1533,6 @@ namespace testMessage
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/05/29/binding-Flash-resource-in-Flex/">关于Flex绑定Flash资源</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>很多时候我们需要在Flex里使用Flash的资源，大家的习惯可能是用Flash的一个扩展导出一个原件为SWC，然后在Flex里引用，但是问题是一者SWC太多，二者Flash按钮不能导出（至少CS4还不行）。我们这里提供一种简单的基于绑定的导出方式。</p>
-
-<p>首先在Flash里选择为ActionScript导出（右键，属性里），然后编译SWF文件，之后我们直接用代码引用SWF文件里的原件，并引用为Image控件的source。代码如下</p>
-
-<pre><code>package assets
-{
-    import mx.controls.Image;
-
-    public class DiceOne extends Image
-    {
-        [Embed(source="../res/dice.swf",symbol="DiceOne")]
-        [Bindable]
-        public var img:Class;
-
-        public function DiceOne()
-        {
-            super();
-            source=img;
-        }
-    }
-}
-</code></pre>
-
-<p>这样就可以把这个原件像一个Sprite或者MovieClip一样引用了。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/6/">&larr; Older</a></li>
@@ -1596,6 +1585,10 @@ namespace testMessage
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
@@ -1609,10 +1602,6 @@ namespace testMessage
     
       <li class="post">
         <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/01/how-to-build-high-available-system/">如何构建按高可用系统（分享的笔记）</a>
       </li>
     
   </ul>
