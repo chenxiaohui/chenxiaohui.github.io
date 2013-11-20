@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-19T21:48:49+08:00</updated>
+  <updated>2013-11-20T10:52:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于ob代码规范里面的行末空格]]></title>
+    <link href="http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end/"/>
+    <updated>2013-11-20T10:50:00+08:00</updated>
+    <id>http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end</id>
+    <content type="html"><![CDATA[<p>  行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：</p>
+
+<pre><code>" 删除所有行未尾空格
+nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
+"显示空格
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@&lt;!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+augroup END
+</code></pre>
+
+<p>  这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于得到当前执行文件所在的目录]]></title>
@@ -1685,80 +1710,6 @@ e first_tablet_entry's tablet. err=-54
 <p>如果split的时候一个tablet已经置位MIN/MAX了，现在分裂的时候后一部分（原tablet split之后的那部分）已经不是MIN-MAX，但是置位还在，就悲催了。</p>
 
 <p>钦此。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[post-review在svn和git共同存在下的冲突问题]]></title>
-    <link href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/"/>
-    <updated>2013-10-11T21:24:00+08:00</updated>
-    <id>http://cxh.me/2013/10/11/post-review-conflict-under-git-svn</id>
-    <content type="html"><![CDATA[<p>  有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
-
-<ul>
-<li>不习惯某种版本管理工具，希望通过另一种熟悉的版本管理工具进行管理</li>
-<li>有些特性是其他的版本管理工具所没有的</li>
-<li>开发的版本管理和自己的分支管理策略之间有冲突，开发的版本库不允许随便建立测试分支</li>
-</ul>
-
-
-<!-- more -->
-
-
-<p>  具体到一种情况下，比如我们有一个svn的版本库，版本管理策略比较严格，而我们需要做一些有风险的本地开发的时候，都原意建立一个test分支，开发确定没有问题之后再合并到master分支，但是现实的情况不允许我们随便建立丢弃分支。这样就可以通过加入一个git的版本管理来实现。</p>
-
-<p>  比如我们建立了一个新的版本库（repository）</p>
-
-<pre><code>mkdir repository.git &amp;&amp; cd repository.git &amp;&amp; git init --bare
-</code></pre>
-
-<p>  然后checkout了版本并使当前项目加入版本管理，这里我只会一个笨办法，checkout一个空的，然后mv .git目录进去，有空再研究别的方法。</p>
-
-<p>  之后所有的修改都可以通过git进行管理了，git的version control文件只存在于根目录下，所以也不会污染原有版本库。</p>
-
-<p>  但是post-review的时候就有问题了我们明明有修改，但是post-review总是报错：</p>
-
-<pre><code>  There don't seem to be any diffs!
-</code></pre>
-
-<p>  这到底是什么问题呢，启动debug模式运行post-review，结果如下：</p>
-
-<pre><code>&gt;&gt;&gt; RBTools 0.5
-&gt;&gt;&gt; Python 2.6.6 (r266:84292, May  1 2012, 13:52:17) 
-[GCC 4.4.6 20110731 (Red Hat 4.4.6-3)]
-&gt;&gt;&gt; Running on Linux-2.6.32-220.el6.x86_64-x86_64-with-redhat-6.2-Santiago
-&gt;&gt;&gt; Home = /xxx
-&gt;&gt;&gt; Current Directory = /xxx
-&gt;&gt;&gt; Checking the repository type. Errors shown below are mostly harmless.
-DEBUG:root:Checking for a Bazaar repository...
-DEBUG:root:Checking for a CVS repository...
-DEBUG:root:Checking for a ClearCase repository...
-DEBUG:root:Checking for a Git repository...
-DEBUG:root:Running: git rev-parse --git-dir
-DEBUG:root:Running: git config core.bare
-DEBUG:root:Running: git rev-parse --show-toplevel
-DEBUG:root:Running: git symbolic-ref -q HEAD
-DEBUG:root:Running: git config --get branch.master.merge
-DEBUG:root:Running: git config --get branch.master.remote
-DEBUG:root:Running: git config --get remote.origin.url
-DEBUG:root:repository info: Path: /xxx.git, Base path: , Supports changesets: False
-&gt;&gt;&gt; Finished checking the repository type.
-&gt;&gt;&gt; HTTP GETting api/info/
-DEBUG:root:Running: git merge-base origin/master refs/heads/master
-DEBUG:root:Running: git diff --no-color --full-index --no-ext-diff --ignore-submodules --no-renames 43351ae337ca18c3f00660c9d565b18a5e904e66..refs/heads/master
-There don't seem to be any diffs!
-</code></pre>
-
-<p>  可以看到，git的检测优先于subversion，这样当前版本库被当作git管理的版本库来处理了，所以才没有变更。</p>
-
-<p>  解决办法有两个，要么修改RBTool的代码，更改检测优先级，或者post-review之前运行</p>
-
-<pre><code>mv .git git
-</code></pre>
-
-<p>  这足够骗过RBTool了。</p>
-
-<p>  钦此。</p>
 ]]></content>
   </entry>
   

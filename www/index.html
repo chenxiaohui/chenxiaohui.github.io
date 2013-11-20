@@ -110,6 +110,58 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-20T10:50:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：</p>
+
+<pre><code>" 删除所有行未尾空格
+nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
+"显示空格
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@&lt;!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+augroup END
+</code></pre>
+
+<p class="indent">这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a></h1>
     
     
@@ -1460,55 +1512,6 @@ fi
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-15T18:29:00+08:00" pubdate data-updated="true">Sep 15<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的引入可以减少对于数据库等的请求, 从而减少应用响应时间, 提高吞吐量. 国外类似的实现有Redis等. 国内有淘宝自主研发的tair系统等.</p>
-
-<p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
-
-<h2>基本源码结构</h2>
-
-<p>主要的源码有:</p>
-
-<ul>
-<li>memcached.c: 系统入口, 并完成初始化等工作, 通过libevent建立连接, 并</li>
-</ul>
-
-
-<p>//TODO</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1559,6 +1562,10 @@ fi
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
       </li>
     
@@ -1572,10 +1579,6 @@ fi
     
       <li class="post">
         <a href="/2013/11/08/solution-to-locate-log-in-src/">分布式调试系列之:vim日志定位解决方案</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
       </li>
     
   </ul>

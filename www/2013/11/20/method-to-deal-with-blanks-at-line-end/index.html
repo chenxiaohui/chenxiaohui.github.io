@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>关于得到当前执行文件所在的目录 - CXH.ME</title>
+  <title>关于ob代码规范里面的行末空格 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
   <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program">
+  <link rel="canonical" href="http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -108,7 +108,7 @@
   
   <header class="page-header">
     
-      <h2 class="entry-title">关于得到当前执行文件所在的目录</h2>
+      <h2 class="entry-title">关于ob代码规范里面的行末空格</h2>
     
     
       <p class="meta">
@@ -124,31 +124,30 @@
   
 
 
-<time datetime="2013-11-19T21:47:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
+<time datetime="2013-11-20T10:50:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p class="indent">今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。</p>
+<div class="entry-content"><p class="indent">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：</p>
 
-<p class="indent">首先，直接 realpath(&ldquo;./&rdquo;) 和 getcwd 获取的都是当前路径，也就是当前shell所在的路径。<strong>FILE</strong>获取的是文件名，不包含路径，而且是编译过程确定的，最简单的办法当然是argv[0]，但是在test_case(gtest)里面不方便传来传去，后来发现最好的办法是这样的：</p>
-
-<pre><code>#include "libgen.h"
-#define MAX_PATH_SIZE 100
-char current_absolute_path[MAX_PATH_SIZE] = {'\0'};
-if (readlink("/proc/self/exe", current_absolute_path, MAX_PATH_SIZE - 1) &lt; 0)
-{
-  //error
-}
-else
-{
-  sprintf(current_absolute_path, "%s/%s", dirname(current_absolute_path), schema_file_name);
-}
+<pre><code>" 删除所有行未尾空格
+nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
+"显示空格
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@&lt;!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+augroup END
 </code></pre>
 
-<p class="indent">这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
+<p class="indent">这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
 </div>
 
 
@@ -189,12 +188,12 @@ else
   
 
 
-<time datetime="2013-11-19T21:47:00+08:00" pubdate data-updated="true">Nov 19<span>th</span>, 2013</time>
+<time datetime="2013-11-20T10:50:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/category/linux/'>Linux</a>
+    <a class='category' href='/category/oceanbase/'>Oceanbase</a>
   
 </span>
 
@@ -237,14 +236,10 @@ else
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/11/19/vim-script-to-find-import-file/" title="Previous Post:
-        分布式调试之导入import文件">&laquo; 分布式调试之导入import文件</a></li>
+        href="/2013/11/19/method-to-get-absolute-path-of-current-program/" title="Previous Post:
+        关于得到当前执行文件所在的目录">&laquo; 关于得到当前执行文件所在的目录</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/11/20/method-to-deal-with-blanks-at-line-end/"
-        title="Next Post: 关于ob代码规范里面的行末空格">关于ob代码规范里面的行末空格
-        &raquo;</a></li>
       
     </ul>
   </footer>

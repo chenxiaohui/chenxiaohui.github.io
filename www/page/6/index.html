@@ -110,6 +110,160 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/05/29/difference-between-Flex-and-dotNet-event/">关于Flex和.NET自定义事件的比较</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>实际上大多数语言，或者说大多数框架的消息机制是类似的。Flex和.NET(c#为例)的消息机制可以做为一个例子说明。如下我们给出一个简单的Flex自定义消息和.NET自定义消息的例子，不同的是，.NET下消息是通过代理(delegate)给出的，而Flex这个超像java的东东还是一如既往的用观察模式去AddEventListener，不过这种差别应该都是语言层的差别，就实现机制应该没什么不一样的，毕竟消息这种东西嘛，到头来都是观察模式，授人以柄，供其调用。</p>
+
+<p>两者的不同点其实也挺值得玩味的，Flex是弱类型语言，类型弱得连函数都若有如无，所以不需要定义事件处理句柄的类型（我的理解），而C#各个event自己管理，所以也不需要用一个类似于Flex消息类型的东西去界定这是哪个消息。</p>
+
+<p>世界如此有爱。</p>
+
+<p>Flex自定义消息例子</p>
+
+<pre><code>EventType.as：定义了消息类型，类似于一个枚举
+package event
+{
+    public final class EventType
+    {
+        public static const TableClickEvent:String="TableClick";
+    }
+}
+TableEvent.as：定义了消息本身，继承自Event,自定义了一个参数传递一个value
+package event
+{
+    import flash.events.Event;
+
+    public class TableEvent extends Event
+    {
+        public var value:int=0;
+        public function TableEvent(type:String, value:int,bubbles:Boolean=false, cancelable:Boolean=false)
+        {
+            super(type, bubbles, cancelable);
+            this.value=value;
+        }
+
+    }
+}
+Table.as：分发消息的类，也就是消息源
+package msg
+{
+    import event.*;
+
+    import flash.events.EventDispatcher;
+    public class Table extends EventDispatcher
+    {
+        public function Table()
+        {
+        }
+        public function TableClick():void
+        {
+            dispatchEvent(new TableEvent(EventType.TableClickEvent,1));
+        }
+    }
+}
+监听消息的代码：
+public var table:Table;
+table=new Table();
+table.addEventListener(EventType.TableClickEvent,TableClick);
+table.TableClick();
+</code></pre>
+
+<p>应该比较通俗易懂，不做解释</p>
+
+<p>下面给出.NET下自定义消息的一个例子：</p>
+
+<pre><code>MyEvent.cs自定义消息分发类，自定义了一个delegate指定消息句柄类型:
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace testMessage
+{
+    class MyEvent
+    {
+        public delegate void MyEventHandler(MyEventArgs e);
+        public event MyEventHandler handler;
+        public void Click()
+        {
+            if (handler != null)
+                handler(new MyEventArgs("helloworld"));
+        }
+      }
+}
+MyEventArgs.cs消息类型定义
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace testMessage
+{
+    class MyEventArgs:EventArgs
+    {
+        public String strMessage;
+        public MyEventArgs(string message)
+        {
+            strMessage = message;
+        }
+    }
+}
+消息监听类：
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace testMessage
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            MyEvent eve = new MyEvent();
+            eve.handler =new MyEvent.MyEventHandler(eve_handler);
+            eve.Click();
+        }
+
+        static void eve_handler(MyEventArgs e)
+        {
+            Console.WriteLine(e.strMessage);
+        }
+    }
+}
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/05/29/binding-Flash-resource-in-Flex/">关于Flex绑定Flash资源</a></h1>
     
     
@@ -1600,79 +1754,6 @@ public void Msg(string message)
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/02/04/improvement-on-tcp-subpackage-mechanism-implement/">对&ldquo;基于长度和定界符带校验的TCP分包方式&rdquo;的一些改进</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-02-04T00:00:00+08:00" pubdate data-updated="true">Feb 4<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>“长度、分隔符加校验的TCP分包设计(C#)”<a href="http://www.roybit.com/wp-content/uploads/2011/02/Client.cs">1</a>一文提出了一种综合长度和特殊字符定界两种TCP分包方式的新的分包方式，原文给出的实现没有考虑长度字符被分开两次传播的情况，同时原算法没有明确的算法描述，基于多种情况的综合，容易遗漏，这里给出改进后的算法：</p>
-
-<blockquote><ol>
-<li> 如果WaitForLength置位，则拼上原来的字段，凑齐长度字段信息。</li>
-<li> 如果LeftLength不为0，则判断剩余缓冲区是否包含了报文剩余部分，如果包含则拼合字段，判断结尾是不是结束定界符>，否则拼合剩余缓冲区，LeftLength更新。</li>
-<li> 找到一个开始定界符，否则拼合剩余缓冲区，等待下次数据到达。</li>
-</ol></blockquote>
-
-
-<p>总的来说，就是通过开始定界符标定一个报文的开始，通过长度字段得到报文的结尾位置，通过结尾位置是不是结束定界符>判断一个报文是不是完整，如不完整则继续找寻下个开始定界符。</p>
-
-<p>报文的正确新校验仍通过C#的反序列化机制。源码只更新了<a href="http://www.roybit.com/wp-content/uploads/2011/02/Client.cs">Client.cs</a>，测试代码如下：</p>
-
-<pre><code>byte[] buffer1 = new byte[] { 60, 0, 0, 0, 10, 44, 43, 43, 43, 43, 44, 62, };//第一个报文
-byte[] buffer2 = new byte[] { 60, 0, 0, };//第二个报文
-byte[] buffer3 = new byte[] { 0, 7, 43, 43, 43, 62, 60, 0, 0, 0, 10, 44, 45, 45, 45, 45, 44, 62 };//第三个报文
-
-//第一个报文
-Array.Copy(buffer1, 0, client.m_receiveBuffer, 0, buffer1.Length);//拷贝到接收缓冲区
-client.ResolveSessionBuffer(buffer1.Length);
-Array.Clear(client.m_receiveBuffer,0,client.m_receiveBuffer.Length);
-
-//第二个报文
-Array.Copy(buffer2, 0, client.m_receiveBuffer, 3, buffer2.Length);//拷贝到接受缓冲区
-client.ResolveSessionBuffer(buffer2.Length);
-Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
-
-//第三个报文
-Array.Copy(buffer3, 0, client.m_receiveBuffer, 3, buffer3.Length);//拷贝到接收缓冲区
-client.ResolveSessionBuffer(buffer3.Length);
-Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
-</code></pre>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/Client.cs">1</a> 长度、分隔符加校验的TCP分包设计(C#)，</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/7/">&larr; Older</a></li>
@@ -1725,6 +1806,10 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
       </li>
     
@@ -1738,10 +1823,6 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
     
       <li class="post">
         <a href="/2013/11/08/solution-to-locate-log-in-src/">分布式调试系列之:vim日志定位解决方案</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
       </li>
     
   </ul>

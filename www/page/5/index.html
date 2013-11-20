@@ -110,6 +110,52 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/08/12/the-story-of-first-generation-of-chinese-programmer/">中国第一代程序员列传</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-08-12T00:00:00+08:00" pubdate data-updated="true">Aug 12<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>不贴原文了，详见</p>
+
+<p>中国最早的一代程序员了，也代表了软件英雄时代的辉煌。</p>
+
+<p>文摘：</p>
+
+<p>求伯君十年不倒，原因在于他一直走着一条和一般程序员不同的路。大多数优秀程序员大都选择了自己创业或者合伙创业的道路，而求伯君则一出道就碾转于四通、 金山、方正这样的大公司，这些经历使求伯君具备了大公司的眼界和胸怀。这是求伯君高于同时代程序员的本质原因。</p>
+
+<p>朱崇君曾表示:“现实环境下的中国程序员不仅要写 好程序，而且还要学会经营。尽管理论上说，写程序的只管写好程序，搞市场的只管搞好市场，这是社会的分工进步。但在目前的中国，如果程序员最后不想落到为 别人打工的地步，还是要学会自己经营。你整天在琢磨程序，而你在公司中却整天被别人琢磨，最终吃亏的必定是你。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/08/12/hacker-and-painter-second-chapter/">《黑客与画家》第二章文摘</a></h1>
     
     
@@ -1379,160 +1425,6 @@
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/05/29/difference-between-Flex-and-dotNet-event/">关于Flex和.NET自定义事件的比较</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-29T00:00:00+08:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>实际上大多数语言，或者说大多数框架的消息机制是类似的。Flex和.NET(c#为例)的消息机制可以做为一个例子说明。如下我们给出一个简单的Flex自定义消息和.NET自定义消息的例子，不同的是，.NET下消息是通过代理(delegate)给出的，而Flex这个超像java的东东还是一如既往的用观察模式去AddEventListener，不过这种差别应该都是语言层的差别，就实现机制应该没什么不一样的，毕竟消息这种东西嘛，到头来都是观察模式，授人以柄，供其调用。</p>
-
-<p>两者的不同点其实也挺值得玩味的，Flex是弱类型语言，类型弱得连函数都若有如无，所以不需要定义事件处理句柄的类型（我的理解），而C#各个event自己管理，所以也不需要用一个类似于Flex消息类型的东西去界定这是哪个消息。</p>
-
-<p>世界如此有爱。</p>
-
-<p>Flex自定义消息例子</p>
-
-<pre><code>EventType.as：定义了消息类型，类似于一个枚举
-package event
-{
-    public final class EventType
-    {
-        public static const TableClickEvent:String="TableClick";
-    }
-}
-TableEvent.as：定义了消息本身，继承自Event,自定义了一个参数传递一个value
-package event
-{
-    import flash.events.Event;
-
-    public class TableEvent extends Event
-    {
-        public var value:int=0;
-        public function TableEvent(type:String, value:int,bubbles:Boolean=false, cancelable:Boolean=false)
-        {
-            super(type, bubbles, cancelable);
-            this.value=value;
-        }
-
-    }
-}
-Table.as：分发消息的类，也就是消息源
-package msg
-{
-    import event.*;
-
-    import flash.events.EventDispatcher;
-    public class Table extends EventDispatcher
-    {
-        public function Table()
-        {
-        }
-        public function TableClick():void
-        {
-            dispatchEvent(new TableEvent(EventType.TableClickEvent,1));
-        }
-    }
-}
-监听消息的代码：
-public var table:Table;
-table=new Table();
-table.addEventListener(EventType.TableClickEvent,TableClick);
-table.TableClick();
-</code></pre>
-
-<p>应该比较通俗易懂，不做解释</p>
-
-<p>下面给出.NET下自定义消息的一个例子：</p>
-
-<pre><code>MyEvent.cs自定义消息分发类，自定义了一个delegate指定消息句柄类型:
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace testMessage
-{
-    class MyEvent
-    {
-        public delegate void MyEventHandler(MyEventArgs e);
-        public event MyEventHandler handler;
-        public void Click()
-        {
-            if (handler != null)
-                handler(new MyEventArgs("helloworld"));
-        }
-      }
-}
-MyEventArgs.cs消息类型定义
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace testMessage
-{
-    class MyEventArgs:EventArgs
-    {
-        public String strMessage;
-        public MyEventArgs(string message)
-        {
-            strMessage = message;
-        }
-    }
-}
-消息监听类：
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace testMessage
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            MyEvent eve = new MyEvent();
-            eve.handler =new MyEvent.MyEventHandler(eve_handler);
-            eve.Click();
-        }
-
-        static void eve_handler(MyEventArgs e)
-        {
-            Console.WriteLine(e.strMessage);
-        }
-    }
-}
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/6/">&larr; Older</a></li>
@@ -1585,6 +1477,10 @@ namespace testMessage
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
       </li>
     
@@ -1598,10 +1494,6 @@ namespace testMessage
     
       <li class="post">
         <a href="/2013/11/08/solution-to-locate-log-in-src/">分布式调试系列之:vim日志定位解决方案</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a>
       </li>
     
   </ul>
