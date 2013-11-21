@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-21T17:32:39+08:00</updated>
+  <updated>2013-11-21T17:37:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -177,7 +177,7 @@ ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[分布式调试系列之:vim日志定位解决方案]]></title>
+    <title type="html"><![CDATA[分布式调试之vim日志定位解决方案]]></title>
     <link href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/"/>
     <updated>2013-11-08T21:31:00+08:00</updated>
     <id>http://cxh.me/2013/11/08/solution-to-locate-log-in-src</id>
@@ -613,7 +613,7 @@ let g:applist={
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[分布式调试系列：用gdb调试分布式系统]]></title>
+    <title type="html"><![CDATA[分布式调试之用gdb调试分布式系统]]></title>
     <link href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/"/>
     <updated>2013-10-29T13:40:00+08:00</updated>
     <id>http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob</id>
