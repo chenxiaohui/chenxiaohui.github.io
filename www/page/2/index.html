@@ -110,6 +110,56 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-sources-analyze-roottable/">oceanbase源码分析-Rowkey相关</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-16T12:55:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>这里分析一下ObRowkey相关的源码.</p>
+
+<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
+
+<ul>
+<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
+<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
+<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
+</ul>
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/16/oceanbase-sources-analyze-roottable/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/09/15/memcached-source-analysis/">Memcached源码分析-内存管理</a></h1>
     
     
@@ -1635,91 +1685,6 @@ namespace testThread
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/">C++变量的初始化方式</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-04-09T00:00:00+08:00" pubdate data-updated="true">Apr 9<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>写这个问题是受微软今年实习生招聘的一道笔试题启发，上一篇博客好像提到了。之前还真没细想过这些事情。</p>
-
-<p>首先把需要初始化的成员变量分为几类：</p>
-
-<blockquote><p>一般变量(int)</p>
-
-<p>静态成员变量(static int)</p>
-
-<p>常量(const int )</p>
-
-<p>静态常量(static const int)</p></blockquote>
-
-<p>对应的初始化方式是：</p>
-
-<blockquote><p>一般变量可以在初始化列表里或者构造函数里初始化，不能直接初始化或者类外初始化</p>
-
-<p>静态成员变量必须在类外初始化</p>
-
-<p>常量必须在初始化列表里初始化</p>
-
-<p>静态常量必须只能在定义的时候初始化</p></blockquote>
-
-<p>举一个简单的例子</p>
-
-<blockquote><h1>include</h1>
-
-<h1>include</h1>
-
-<p>using namespace std;
-class Test
-{
-private:
-int a;
-static int b;
-const int c;
-static const int d=4;
-public:
-Test():c(3)//,a(1)或者在初始化列表里初始化
-{
-a=1;
-}
-};
-int Test::b=2;</p>
-
-<p>void main()
-{
-Test t;
-}</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1772,6 +1737,10 @@ Test t;
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
       </li>
     
@@ -1785,10 +1754,6 @@ Test t;
     
       <li class="post">
         <a href="/2013/11/17/method-to-diff-log/">分布式调试系列：关于日志的比对</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/08/solution-to-locate-log-in-src/">分布式调试系列之:vim日志定位解决方案</a>
       </li>
     
   </ul>

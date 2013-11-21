@@ -110,6 +110,42 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-21T17:31:00+08:00" pubdate data-updated="true">Nov 21<span>st</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a></h1>
     
     
@@ -1462,56 +1498,6 @@ fi
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/16/oceanbase-sources-analyze-roottable/">oceanbase源码分析-Rowkey相关</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-16T12:55:00+08:00" pubdate data-updated="true">Sep 16<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>这里分析一下ObRowkey相关的源码.</p>
-
-<p> 引用<a href="http://blog.csdn.net/maray/article/details/9731113" title="OceanBase里面的rowkey是什么概念，是由哪些要素构成的？">晓楚师兄的一段话</a>:</p>
-
-<ul>
-<li>Rowkey是OceanBase诞生之初就引入的概念，最终被确立是在OceanBase 0.3。</li>
-<li>为了便于理解，不妨把OceanBase想象成一个Key-Value系统，Rowkey就是Key，Value就是返回的行数据。</li>
-<li>如果你对mysql数据库熟悉，那么不妨把Rowkey理解成primary key，它就是那几个主键列的组合，列的顺序与primary key中定义的顺序一致。</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/16/oceanbase-sources-analyze-roottable/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1562,6 +1548,10 @@ fi
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
       </li>
     
@@ -1575,10 +1565,6 @@ fi
     
       <li class="post">
         <a href="/2013/11/17/method-to-diff-log/">分布式调试系列：关于日志的比对</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/08/solution-to-locate-log-in-src/">分布式调试系列之:vim日志定位解决方案</a>
       </li>
     
   </ul>

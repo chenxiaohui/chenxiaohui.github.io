@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>关于ob代码规范里面的行末空格 - CXH.ME</title>
+  <title>分布式调试系列之行为模拟 - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
   <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end">
+  <link rel="canonical" href="http://cxh.me/2013/11/21/use-mock-to-debug">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -108,7 +108,7 @@
   
   <header class="page-header">
     
-      <h2 class="entry-title">关于ob代码规范里面的行末空格</h2>
+      <h2 class="entry-title">分布式调试系列之行为模拟</h2>
     
     
       <p class="meta">
@@ -124,30 +124,14 @@
   
 
 
-<time datetime="2013-11-20T10:50:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
+<time datetime="2013-11-21T17:31:00+08:00" pubdate data-updated="true">Nov 21<span>st</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p class="indent">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：</p>
-
-<pre><code>" 删除所有行未尾空格
-nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
-"显示空格
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-augroup ExtraWhitespaceGroup
-    autocmd!
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@&lt;!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
-augroup END
-</code></pre>
-
-<p class="indent">这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
+<div class="entry-content"><p class="indent">最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</p>
 </div>
 
 
@@ -188,7 +172,7 @@ augroup END
   
 
 
-<time datetime="2013-11-20T10:50:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2013</time>
+<time datetime="2013-11-21T17:31:00+08:00" pubdate data-updated="true">Nov 21<span>st</span>, 2013</time>
       
 
 <span class="categories">
@@ -236,14 +220,10 @@ augroup END
     <ul class="pager">
       
       <li class="previous"><a class="basic-alignment left"
-        href="/2013/11/19/method-to-get-absolute-path-of-current-program/" title="Previous Post:
-        关于得到当前执行文件所在的目录">&laquo; 关于得到当前执行文件所在的目录</a></li>
+        href="/2013/11/20/method-to-deal-with-blanks-at-line-end/" title="Previous Post:
+        关于ob代码规范里面的行末空格">&laquo; 关于ob代码规范里面的行末空格</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
-      
-      <li class="next"><a class="basic-alignment right" href="/2013/11/21/use-mock-to-debug/"
-        title="Next Post: 分布式调试系列之行为模拟">分布式调试系列之行为模拟
-        &raquo;</a></li>
       
     </ul>
   </footer>
