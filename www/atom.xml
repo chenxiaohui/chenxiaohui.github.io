@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-22T20:07:46+08:00</updated>
+  <updated>2013-11-23T20:21:40+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,272 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Effective C++ 读书笔记]]></title>
+    <link href="http://cxh.me/2013/11/23/effective-notes/"/>
+    <updated>2013-11-23T16:41:00+08:00</updated>
+    <id>http://cxh.me/2013/11/23/effective-notes</id>
+    <content type="html"><![CDATA[<p>  Effective前面有几节是说构造析构赋值过程中基类和派生类的调用关系的，做了一个综合一点的例子，来验证一下这个问题。代码如下，话说贴代码是在是很没溜的做法，尤其是如果在出版的书中看到的话，这种行为基本属于骗稿费的&hellip;</p>
+
+<!-- more -->
+
+
+<p>  <strong>object.h</strong></p>
+
+<pre><code>#ifndef OCEANBASE_OBJECT_H_
+#define OCEANBASE_OBJECT_H_
+
+#include "base_object.h"
+class Object: public BaseObject
+{
+  public:
+    Object ();
+    Object (int magic);
+    Object (const Object &amp; obj);
+    virtual ~Object ();
+    virtual void print_info();
+    Object&amp; operator= (const Object&amp; obj);
+    const int &amp; get_magic() const;
+    const int &amp; get_magic();
+  private:
+    /* data */
+    int magic_;
+};
+
+#endif //OCEANBASE_OBJECT_H_
+</code></pre>
+
+<p>  <strong>object.cpp</strong></p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include "object.h"
+
+Object::Object():magic_(0)
+{
+  printf("construct in derived \n");
+}
+
+Object::Object (int magic):magic_(magic), BaseObject(magic)
+{
+  printf("construct in derived with magic\n");
+}
+
+Object::Object (const Object &amp; obj)
+  : BaseObject(obj)
+{
+  printf("copy construct in derived\n");
+  magic_ = obj.magic_;
+}
+
+Object::~Object()
+{
+  printf("destructor in derived\n");
+}
+
+const int &amp; Object::get_magic() const
+{
+  printf("const\n");
+  return magic_;
+}
+
+const int &amp; Object::get_magic()
+{
+  printf("non const\n");
+  return magic_;
+}
+
+Object&amp; Object::operator= (const Object&amp; obj)
+{
+  printf("operator = in derived\n");
+  //BaseObject::operator =(obj);
+  magic_ = obj.magic_;
+}
+
+void Object::print_info()
+{
+  BaseObject::print_info();
+  printf("derived:magic_%d\n", magic_);
+}
+</code></pre>
+
+<p>  <strong>base_object.h</strong></p>
+
+<pre><code>#ifndef OCEANBASE_BASE_OBJECT_H_
+#define OCEANBASE_BASE_OBJECT_H_
+class BaseObject
+{
+  public:
+    BaseObject ();
+    BaseObject (int base_magic);
+    BaseObject (const BaseObject &amp;obj);
+    virtual ~BaseObject ();
+    //BaseObject &amp; operator= (const BaseObject &amp; obj);
+    virtual void print_info();
+  private:
+    /* data */
+    int base_magic_;
+};
+
+#endif //OCEANBASE_BASE_OBJECT_H_
+</code></pre>
+
+<p>  <strong>base_object.cpp</strong></p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include "base_object.h"
+BaseObject::BaseObject():base_magic_(0)
+{
+  printf("construct in base\n");
+}
+
+BaseObject::BaseObject(int base_magic):base_magic_(base_magic)
+{
+  printf("construct in base with magic\n");
+}
+
+BaseObject::BaseObject (const BaseObject &amp;obj)
+{
+  printf("copy construct in base\n");
+  base_magic_ = obj.base_magic_;
+}
+
+BaseObject::~BaseObject()
+{
+  printf("destructor in base\n");
+}
+
+//BaseObject &amp; BaseObject::operator= (const BaseObject &amp; obj)
+//{
+  //printf("operator = in base\n");
+  //base_magic_ =  obj.base_magic_;
+//}
+
+void BaseObject::print_info()
+{
+  printf("base_object: base_magic_%d\n", base_magic_);
+}
+</code></pre>
+
+<p>  <strong>main.cpp</strong></p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include "object.h"
+int main(int argc, const char *argv[])
+{
+  printf("\n");
+  printf("obj1\n");
+  Object obj1(1);
+
+  printf("\n");
+  printf("obj2\n");
+  Object obj2(2);
+
+  printf("\n");
+  obj2=obj1;
+
+  printf("\n");
+  printf("obj1.print_info()\n");
+  obj1.print_info();
+
+  printf("\n");
+  printf("obj2.print_info()\n");
+  obj2.print_info();
+
+  printf("\n");
+  return 0;
+}
+</code></pre>
+
+<p>  <strong>Makefile</strong></p>
+
+<pre><code>objects= main.o object.o base_object.o
+outfile= out
+flag= -g
+cc= g++
+
+$(outfile):$(objects)
+    $(cc) $(flag) -o $(outfile) $(objects)
+
+object.o:object.h
+base_object.o:base_object.h
+main.o:object.h base_object.h
+
+
+.PHONY:clean
+clean:
+    -rm -f $(outfile) $(objects)
+</code></pre>
+
+<p>执行结果是：</p>
+
+<pre><code>obj1
+construct in base with magic
+construct in derived with magic
+
+obj2
+construct in base with magic
+construct in derived with magic
+
+operator = in derived
+
+obj1.print_info()
+base_object: base_magic_1
+derived:magic_1
+
+obj2.print_info()
+base_object: base_magic_2
+derived:magic_1
+
+destructor in derived
+destructor in base
+destructor in derived
+destructor in base
+</code></pre>
+
+<p>  可以自行调整并执行，主要说明几个问题而已：</p>
+
+<ol>
+<li> Object c2=c1;这种会被编译器优化成拷贝构造，中间不会有=运算符的调用。</li>
+<li> 没有显式声明的时候编译器为类生成默认构造函数，没有显示指明的情况下派生类构造函数自动调用基类的默认构造函数，如果基类有需要初始化的一定要手动声明并调用带参构造函数。</li>
+<li> 没有显式声明的时候编译器为类生成默认拷贝构造函数，没有指明的情况下拷贝构造的时候派生类不会调用基类的拷贝构造，只会调用基类的默认构造函数来内部的基类对象，所以需要自己调用基类的拷贝构造。</li>
+<li> 编译器不会为=运算符自动生成重载，=运算符也不调用基类的=运算符重载，所以需要自己声明并调用，这也是书中强调的。</li>
+</ol>
+
+
+<p>  总结一下如下表：</p>
+
+<p>   <table>
+<caption>表1 总结下对象生成类的函数的编译器行为</caption>
+<thead>
+<tr class="header">
+<th align="center">函数</th>
+<th align="center">没有声明的情况下是否自动生成</th>
+<th align="center">是否默认调用基类的对应函数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">构造函数</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+<tr class="even">
+<td align="center">拷贝构造</td>
+<td align="center">是</td>
+<td align="center">否,调用基类默认构造函数构造基类对象</td>
+</tr>
+<tr class="odd">
+<td align="center">等号运算符重载</td>
+<td align="center">否</td>
+<td align="center">否</td>
+</tr>
+</tbody>
+</table></p>
+
+<p>  注：虽然应该是c++标准，但是还是限制一下编译器版本吧，在gcc4.4.6下验证通过（ob的编译器版本）</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[分布式调试系列之行为模拟]]></title>
@@ -1583,50 +1849,6 @@ noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
 <p>  其实很简单，只要不保存退出，就会有提示了。保存退出才会直接提交的。放心。</p>
 
 <p>  钦此。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[几个svn的问题]]></title>
-    <link href="http://cxh.me/2013/10/12/several-svn-problems/"/>
-    <updated>2013-10-12T19:27:00+08:00</updated>
-    <id>http://cxh.me/2013/10/12/several-svn-problems</id>
-    <content type="html"><![CDATA[<h3>误用rm删除了未提交文件</h3>
-
-<p>  经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：</p>
-
-<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before_revert.png" title="直接用rm删除的文件" alt="直接用rm删除的文件"><p class="align-center">直接用rm删除的文件</p></p>
-
-<!-- more -->
-
-
-<p>  解决办法也很简单，我们直接:</p>
-
-<pre><code>svn revert ob_alive_table_tablet_iter.h
-</code></pre>
-
-<p>  这时候文件并不会被恢复，但是svn status上已经显示删除了，post-review不会再报错，如下图所示：</p>
-
-<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/after_revert.png" title="revert之后" alt="revert之后"><p class="align-center">revert之后</p></p>
-
-<h3>版本控制中移除文件</h3>
-
-<p>  经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的，毕竟我还要再跑一遍automake。</p>
-
-<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before-rm.png" title="错误的把Makefile.in加入版本控制" alt="错误的把Makefile.in加入版本控制"><p class="align-center">错误的把Makefile.in加入版本控制</p></p>
-
-<p>  其实 svn rm 提供了keep-local选项来保留本地副本：</p>
-
-<pre><code>svn rm Makefile.in --keep-local
-</code></pre>
-
-<p>  执行之后的版本库状态如下图：</p>
-
-<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/before-rm.png" title="版本控制的状态" alt="版本控制的状态"><p class="align-center">版本控制的状态</p></p>
-
-<p>  从文件管理里面看，这个本地副本依然存在，如下图：</p>
-
-<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/ll-result.png" title="文件管理里的情况" alt="文件管理里的情况"><p class="align-center">文件管理里的情况</p></p>
 ]]></content>
   </entry>
   

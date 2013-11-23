@@ -110,6 +110,57 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/">记ThinkPad某些型号下Linux报Unable to Enumerate USB Device错误的问题</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-14T00:00:00+08:00" pubdate data-updated="true">Apr 14<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报</p>
+
+<pre><code>Unable to enumerate USB device…..
+</code></pre>
+
+<p>的错误，而在某些Linux版本（比如pinguy os）下会不停提示Device Recognized和Device Removed，有人提供了如[1]的解决方案，但是好像在pinguy os 下并无效果，而且这实际上就是禁用了usb2.0，还有人直接禁用了全部usb。</p>
+
+<p>这里面好像有硬件问题，但是如果是Thinkpad系普遍的问题的话，也就有点说不过去了，硬件不检测好就出场，这也不是Thinkpad的风格。后来想到会不会是指纹识别的问题，于是在BIOS里禁用指纹识别，一切OK。反正这是实验室的笔记本，也不能存我自己的指纹吧。</p>
+
+<p>后来证实其实是指纹识别坏了…还好在保修内…</p>
+
+<h2>参考文献：</h2>
+
+<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/">C++变量的初始化方式</a></h1>
     
     
@@ -2383,59 +2434,6 @@ nnoremap  :MBEbp
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/">FencView插件在windows下的配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-23T00:00:00+08:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>坦白的讲，我没觉得这插件有什么用……</p>
-
-<p>FencView的作用是Auto detect the file encoding. 自动探测编码，防止乱码的插件。但是_vimrc设置了内部编码之后，至少在Windows下我没遇到什么明显的乱码……</p>
-
-<pre><code>set encoding=utf-8
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 " 如果你要打开的文件编码不在此列，那就添加进去
-set termencoding=utf-8
-</code></pre>
-
-<p>Windows下这插件主要的问题是找不到iconv，也正常，这么华丽丽的编码转换工具必然是linux下的，不过我们可以下载Libiconv for Windows，这样就可以在win下使用iconv了，下载地址如下：</p>
-
-<p>然后记得配置一下环境变量</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/image_thumb2.png" title="image" alt="image" /></p>
-
-<p>当然你可能遇到找不到库的问题……去刚才的页面下载Dependencies吧</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -2488,6 +2486,10 @@ set termencoding=utf-8
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
       </li>
     
@@ -2501,10 +2503,6 @@ set termencoding=utf-8
     
       <li class="post">
         <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/17/method-to-diff-log/">分布式调试系列：关于日志的比对</a>
       </li>
     
   </ul>
