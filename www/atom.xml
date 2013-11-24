@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-23T20:21:40+08:00</updated>
+  <updated>2013-11-24T20:21:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -438,7 +438,7 @@ ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
 
 <blockquote><p>[1] Vim 中的正则表达式, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p>
 
-<p>[2] Vim日志定位解决方案, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p></blockquote>
+<p>[2] Vim日志定位解决方案, <a href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/">http://cxh.me/2013/11/08/solution-to-locate-log-in-src/</a></p></blockquote>
 ]]></content>
   </entry>
   
