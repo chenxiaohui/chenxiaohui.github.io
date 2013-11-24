@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: 其他 | CXH.ME]]></title>
+  <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-11-24T20:51:31+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Thinking In Java读书笔记]]></title>
+    <link href="http://cxh.me/2013/11/24/thinking-in-java-notes/"/>
+    <updated>2013-11-24T20:32:00+08:00</updated>
+    <id>http://cxh.me/2013/11/24/thinking-in-java-notes</id>
+    <content type="html"><![CDATA[<p>  静态成员只有被引用（首次生成所在类的对象或者被首次访问，即使从为生成过那个类的对象）的时候才会初始化。</p>
+
+<p>  一般情况下Java成员变量初始化顺序是，静态成员/静态快->直接初始化的类成员->构造函数</p>
+
+<p>  一个简单的例子如下:</p>
+
+<!-- more -->
+
+
+<p>  <strong>Cup.java</strong></p>
+
+<pre><code>public class Cup {
+    public Cup(int i)
+    {
+        System.out.println("constructor" + i);
+    }
+}
+</code></pre>
+
+<p>  <strong>TestJava.java</strong></p>
+
+<pre><code>public class TestJava {
+    public Cup cup;
+    public Cup cup3 = new Cup(3);
+    public static Cup cup1 = new Cup(1);
+    public static Cup cup2;
+    static{
+        cup2 = new Cup(2);
+    }
+    public TestJava(){
+        cup = new Cup(0);
+    }
+    public static void main(String[] args) {
+        new TestJava();
+    }
+}
+</code></pre>
+
+<p>  <strong>执行结果是</strong></p>
+
+<pre><code>constructor1
+constructor2
+constructor3
+constructor0
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

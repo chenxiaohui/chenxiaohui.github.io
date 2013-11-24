@@ -110,6 +110,100 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">简短总结一下C#里跨线程更新UI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-16T00:00:00+08:00" pubdate data-updated="true">Apr 16<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用</p>
+
+<pre><code>Control.CheckForIllegalCrossThreadCalls = false;
+</code></pre>
+
+<p>来关闭跨线程检测。但是这样做有一定的风险，容易让程序崩溃。</p>
+
+<p>最好的办法是通过Invoke，这篇博客只是提供一个示例，至于那些线程同步、Invoke和BeginInvoke，Invoke底层实现神马的，有空再说吧。</p>
+
+<p>一个简单的例子如下：（注，Form1 加入了一个名为txt的TextBox）</p>
+
+<pre><code>using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+using System.Threading;
+
+namespace testThread
+{
+    public partial class Form1 : Form
+    {
+        private delegate void InvokeCallback(string msg); //定义回调函数（代理）格式
+        public Form1()
+        {
+            InitializeComponent();
+            Control.CheckForIllegalCrossThreadCalls = false;//关闭跨线程调用检测
+            MyMessage m = new MyMessage();//一个消息源
+            //启动一个线程，把界面对象传递过去
+            Thread t = new Thread(new ParameterizedThreadStart(m.Test));
+            t.Start((object)this);
+        }
+        //Invoke回调函数
+        public void UpdateText(string text)
+        {
+            if (txt.InvokeRequired)//当前线程不是创建线程
+                txt.Invoke(new InvokeCallback(UpdateText),new object[]{text});//回调
+            else//当前线程是创建线程（界面线程）
+                txt.Text = text;//直接更新
+        }
+    }
+    //消息源
+    class MyMessage
+    {
+        public void Test(object para)
+        {
+            Form1 form = (Form1)para;
+            form.UpdateText("测试");
+        }
+    }
+}
+</code></pre>
+
+<p>上面的例子很简单，主要是需要判断一下当前线程是不是控件的创建线程，如果是就直接更新，否则建立一个Invoke对象，设置好代理和参数，然后调用Invoke。需要注意的是建立线程的时候如果需要传参数，应该通过ParameterizedThreadStart建立并且以object格式传递参数。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/">记ThinkPad某些型号下Linux报Unable to Enumerate USB Device错误的问题</a></h1>
     
     
@@ -2348,92 +2442,6 @@ AddType application/x-httpd-php .php  .php4 .php5 .html
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/09/23/improvements-of-minibuf-explorer-plugin/">Vim 的MiniBufExplorer插件改进</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-23T00:00:00+08:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>首先，VI(M)是一种信仰。</p>
-
-<p>然后扯一下关于MiniBufExplorer插件，主要的作用是实现缓冲区之间的切换，比BufExplorer更加小巧，界面如图所示，下载链接在这里</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/image_thumb.png" title="image" alt="image" /></p>
-
-<p>这个插件在windows下使用的问题主要是在切换的时候会切换到一个No Name的初始缓冲区，这样我本来打开了三个文件，却总在四个文件直接来回切换，同时默认的:bd删除缓冲区命令和:q关闭文件命令在windows下也存在一些问题，:bd不能关闭最后的窗口，:q又直接关闭几个缓冲区。</p>
-
-<p>针对如上问题，做以下的改进</p>
-
-<blockquote><p>1 修改MiniBufExplorer插件的切换代码，切换时不停留在No Name缓冲区</p>
-
-<p>2 在_vimrc文件中重新绑定关闭快捷键的代码，加入窗口数的判断</p></blockquote>
-
-<p>针对第一个问题，我们修改minibufexpl.vim里的如下代码</p>
-
-<pre><code>" Skip any non-modifiable buffers, but don't cycle forever
-" This should stop us from stopping in any of the [Explorers]
-while (getbufvar(l:curBuf, '&amp;modifiable') == 0 || bufname('%')=='') &amp;&amp; l:origBuf != l:curBuf
-</code></pre>
-
-<p>主要是bufname为空（初始缓冲区）的时候再跳转一次。</p>
-
-<p>针对第二个问题，我们在_vimrc文件中重定义绑定和退出函数</p>
-
-<pre><code>" 如果只有一个窗口，那么直接退出
-function! CustomExit()
-    if (winbufnr(2) == -1)
-        q
-    else
-        bd
-    endif
-endfunction
-
-nmap wq :w:call CustomExit()
-nmap q :call CustomExit()
-nmap w :w
-nmap x :bd!:call CustomExit()
-
-
-nnoremap  :MBEbn
-nnoremap  :MBEbp
-</code></pre>
-
-<p>最后，为了windows下使用方便，可以配置一下右键，请在regedit中添加如下项，然后默认值设置为&#8221;E:\Vim im73\gvim.exe&#8221; -p –remote-silent &ldquo;%1&#8221;，gvim路径请自行修改</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/09/image_thumb1.png" title="image" alt="image" /></p>
-
-<p>这样就可以用右键菜单打开gvim，打开两个以上文件的时候，可以用shift l shift h切换左右菜单，q退出文件等等。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -2486,6 +2494,10 @@ nnoremap  :MBEbp
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
       </li>
     
@@ -2499,10 +2511,6 @@ nnoremap  :MBEbp
     
       <li class="post">
         <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
   </ul>

@@ -110,6 +110,51 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/11/24/thinking-in-java-notes/">Thinking in Java读书笔记</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-11-24T20:32:00+08:00" pubdate data-updated="true">Nov 24<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">静态成员只有被引用（首次生成所在类的对象或者被首次访问，即使从为生成过那个类的对象）的时候才会初始化。</p>
+
+<p class="indent">一般情况下Java成员变量初始化顺序是，静态成员/静态快->直接初始化的类成员->构造函数</p>
+
+<p class="indent">一个简单的例子如下:</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/11/24/thinking-in-java-notes/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a></h1>
     
     
@@ -1426,79 +1471,6 @@ else
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/">防止通过rm误删文件</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-22T20:46:00+08:00" pubdate data-updated="true">Sep 22<span>nd</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p class="indent">相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
-
-<p class="indent">为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
-
-<p class="indent">这里我们首先建立如下脚本:</p>
-
-<pre><code>#!/bin/sh 
-dirpath=/tmp/recycle_$USER # find a place for recycle
-now=`date +%Y%m%d_%H_%M_%S_`  
-arg=$1
-if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # compatible with /bin/rm
-    shift
-    arg=$1
-elif [ -d $arg ]; then # is a directory
-    echo "rm: cannot remove '$arg': Is a directory"
-    exit
-fi
-filename=${now}$arg # add a timestamp for files deleted
-if [ ! -d ${dirpath} ];then  
-    /bin/mkdir -p ${dirpath} 
-    chmod 777 ${dirpath} 
-fi 
-/bin/mv $arg ${dirpath}/${filename} # move to trash
-</code></pre>
-
-<p class="indent">然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
-
-<pre><code>export PATH=$HOME/bin:$PATH
-</code></pre>
-
-<p class="indent">最后记得给rm加权限就行</p>
-
-<p class="indent">需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
-
-<pre><code>alias rm='rm -i --preserve-root' 
-</code></pre>
-
-<p class="indent">就需要把上面的$1都改成$3, 钦此.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1549,6 +1521,10 @@ fi
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
       </li>
     
@@ -1562,10 +1538,6 @@ fi
     
       <li class="post">
         <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/19/vim-script-to-find-import-file/">分布式调试之导入import文件</a>
       </li>
     
   </ul>

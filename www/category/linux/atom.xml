@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-11-24T20:21:46+08:00</updated>
+  <updated>2013-11-24T20:51:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -46,7 +46,7 @@ else
     <id>http://cxh.me/2013/10/18/update-to-ubuntu-13-10</id>
     <content type="html"><![CDATA[<p>  Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
 
-<p><img class="img-polaroid center" src="/images/2013-10/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
+<p>{% img img-polaroid center /images/2013-10/ubuntu13_10.jpg &ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo; %}</p>
 ]]></content>
   </entry>
   
@@ -80,7 +80,7 @@ else
 
 <h3>截图</h3>
 
-<p><img class="img-ploaroid center" src="/images/2013-10/htop.png" title="&ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo;" ></p>
+<p>{% img img-ploaroid center /images/2013-10/htop.png  &ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo; %}</p>
 
 <h3>安装</h3>
 
