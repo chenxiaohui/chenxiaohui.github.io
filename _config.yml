@@ -111,7 +111,7 @@ delicious_count: 3
 
 # Disqus Comments
 disqus_short_name: harrychen
-disqus_show_comment_count:
+disqus_show_comment_count: 10
 
 # Google Analytics
 google_analytics_tracking_id:
