@@ -451,28 +451,13 @@ destructor in base
 
     
     
-    
-    
     <section>
       <h1>Comments</h1>
-      <!--高速版，加载速度快，使用前需测试页面的兼容性-->
-<div id="SOHUCS"></div>
-<script>
-  (function(){
-    var appid = 'cyqPuxR41',
-    conf = 'prod_9f8684e630c4c30cad7b1f0935cd62ab';
-    var doc = document,
-    s = doc.createElement('script'),
-    h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
-    s.type = 'text/javascript';
-    s.charset = 'utf-8';
-    s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid;
-    h.insertBefore(s,h.firstChild);
-    window.SCS_NO_IFRAME = true;
-  })()
-</script>
-
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
     </section>
+    
+    
     
     <ul class="pager">
       
@@ -506,6 +491,22 @@ destructor in base
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'harrychen';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cxh.me/2013/11/23/effective-notes/';
+        var disqus_url = 'http://cxh.me/2013/11/23/effective-notes/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 
