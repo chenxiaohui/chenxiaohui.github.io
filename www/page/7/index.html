@@ -8,7 +8,7 @@
   <title>CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
-  <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京 大数据,分布式,金融互联网">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -104,6 +104,60 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/02/23/analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/">&ldquo;违反并发性: UpdateCommand 影响了预期1条记录中的0条&rdquo;原因分析</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-23T00:00:00+08:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>该问题出现在使用DataAdapter自动对DataTable(或DataSet)进行更新的时候，具体情形是：通过界面添加了一条记录，然后调用DataAdapter的Update方法更新了数据，之后又修改或删除了这条记录。</p>
+
+<p>原因网上有很多说法，大部分的分析我感觉是扯淡，其实主要的原因是自增长字段的值没有跟数据库同步<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a>，即前台的记录里添加了一条记录，但是程序不知道自增长的ID字段应该填充多少，用户也不可能指定这个ID，更新了之后数据库自动填充了自增长ID，但是前台对应的DataTable(或DataSet)里却没有同步更新，从而导致DataAdapter不知道根据什么字段来定位修改的记录，因而出错。</p>
+
+<p>具体的解决方法参考<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a>一文中给出了一种方法，即每次插入记录的时候去服务器查询自增长种子值，然后把结果放到DataTable对应自增长ID列的AutoIncrementSeed属性里，主要的问题有如下两点：</p>
+
+<blockquote><ol>
+<li> 我不知道怎么获取……SQLServer里可以用DBCC CheckIdent([User],NoReseed)语句，但是这个语句在代码里貌似是不返回结果的。</li>
+<li> 如果两个用户同时操作，比如A添加了一条记录未提交，B也添加了一条记录，这时两个用户的AutoIncrementSeed是一样的，之后也会存在更新的并发问题。</li>
+</ol></blockquote>
+
+
+<p>其实最简单的解决方法就是每次更新之后把新的记录返回一下，替换当前DataTable，问题不就解决了么。参见<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">代码</a></p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a> Access自动编号 违反并发性原因解析,</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article class="well">
@@ -1946,60 +2000,6 @@ End Sub
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/06/28/walking-away/">渐行渐远</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-06-28T00:00:00+08:00" pubdate data-updated="true">Jun 28<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p><img src="http://fmn.xnimg.cn/fmn041/20100628/0635/b_large_rAkA_639900000e452d10.jpg" alt="" /></p>
-
-<p>曾经觉得毕业的时候我不会吐也不会哭，结果吐的一塌糊涂，哭的一发不可收拾。</p>
-
-<p>青春是一场放肆的狂欢。醉饮欢歌，挥不去离愁万点，举杯相祝，却发觉手中不是美酒，点点是离人泪。</p>
-
-<p>七月，还未离别，已开始想念。放不下熟悉的校园，放不下熟悉的老师同学，放不下四年的欢乐悲伤。四年，北航让我们学会宽容，领会坚忍，品味寂寞，体会欢乐与悲伤。爱过，恨过，哭过，笑过，我们在奋斗中挥洒着汗水，在拼搏中体验着百味人生。</p>
-
-<p>然而，这一切毕竟要离开了。我曾不止一次想象离别的情景，却总无力面对。悄悄是别离的笙箫，或许清晨醒来，周围已少了一个熟悉的身影，多了一张告别的纸条。独自站立在空旷的宿舍楼，我不知道那是怎样一种落寞。</p>
-
-<p>人生天地间，忽如远行客。人在旅途，总有停留，总要离开。挥手告别的时候，有朋友相送，有别酒，有离歌，就是最大的幸福。</p>
-
-<p>依然独自远行的朋友们，让我们一起远行天下，品味寂寞，追寻幸福。</p>
-
-<p>已经在一起的朋友们，缘分不易，相守更难，祝相伴永远，一生平安。</p>
-
-<p>祝所有的朋友、同学，一帆风顺，一路平安，在人生的道路上，渐行渐远，走向一个又一个辉煌！</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/8/">&larr; Older</a></li>
@@ -2020,7 +2020,7 @@ End Sub
 
     <ul id="about_me" class="nav nav-list">
         <li class="nav-header">About Me</li>
-        <li>北航本，清华硕，现就职于支付宝北京</li>
+        <li>北航本，清华硕，现就职于支付宝北京<br/> 大数据,分布式,金融互联网</li>
     </ul>
 </section>
 <section class="well">
@@ -2052,6 +2052,10 @@ End Sub
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/29/cdn-summarize/">总结一下各种免费cdn</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
       </li>
     
@@ -2065,10 +2069,6 @@ End Sub
     
       <li class="post">
         <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
       </li>
     
   </ul>

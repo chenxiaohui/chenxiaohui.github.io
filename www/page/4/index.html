@@ -8,7 +8,7 @@
   <title>CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
-  <meta name="description" content="北航本，清华硕，现就职于支付宝北京">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京 大数据,分布式,金融互联网">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -104,6 +104,93 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/09/23/php-apache-mysql-configuration-under-windows-x64/">Windows下64位PHP+Mysql+Apache的安装配置</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-23T00:00:00+08:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>实际上和32的差别并不大，写这篇文章的主要目的是给出可行的下载地址。</p>
+
+<blockquote><p>PHPx64</p>
+
+<p>Apachex64</p>
+
+<p>Mysqlx64</p>
+
+<p><a href="http://dl-sh-ocn-1.pchome.net/0t/fw/mysql-essential-5.0.90-winx64.rar" title="http://dl-sh-ocn-1.pchome.net/0t/fw/mysql-essential-5.0.90-winx64.rar">http://dl-sh-ocn-1.pchome.net/0t/fw/mysql-essential-5.0.90-winx64.rar
+</a></p></blockquote>
+
+<p>然后安装mysql，apache和php直接解压就行，php.ini做如下几处修改</p>
+
+<pre><code>#扩展目录
+extension_dir = "../php/ext"
+#mysql扩展
+extension=php_mysql.dll
+#剩下的酌情自己配置
+</code></pre>
+
+<p>httpd.conf做如下几处修改</p>
+
+<pre><code>#主目录
+ServerRoot "D:/Program Files/httpd-2.2-x64"
+#LoadPHP的模块
+LoadModule php5_module "D:/Program Files/php/php5apache2_2.dll"
+PHPIniDir "D:/Program Files/php/"
+#文档目录
+DocumentRoot "d:/temporary/php"
+#文档目录的权限配置
+
+#默认访问文件名
+DirectoryIndex index.php default.php index.html
+#解析文档类型，这里很重要，否则无法解析php
+AddType application/x-httpd-php .php  .php4 .php5 .html
+</code></pre>
+
+<p>拷贝libmysql.dll（mysql的bin目录下）到system32和apache的bin目录。</p>
+
+<p>以管理员身份运行命令行，执行如下命令</p>
+
+<blockquote><p>httpd -k install</p></blockquote>
+
+<p>在执行 httpd -k install 的时候，显示 The Apache2.2 service is successfully installed 表明已经安装成功。</p>
+
+<p>然后执行</p>
+
+<blockquote><p>httpd -k start</p></blockquote>
+
+<p>启动apache即可。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article class="well">
@@ -1584,42 +1671,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/15/zz-ways-to-play-fruit-ninja/">Zz:过去玩水果忍者的方式真是弱爆了！少侠好刀法！！</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-15T00:00:00+08:00" pubdate data-updated="true">Aug 15<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/5/">&larr; Older</a></li>
@@ -1640,7 +1691,7 @@ ec(test.prototype.age);
 
     <ul id="about_me" class="nav nav-list">
         <li class="nav-header">About Me</li>
-        <li>北航本，清华硕，现就职于支付宝北京</li>
+        <li>北航本，清华硕，现就职于支付宝北京<br/> 大数据,分布式,金融互联网</li>
     </ul>
 </section>
 <section class="well">
@@ -1672,6 +1723,10 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2013/11/29/cdn-summarize/">总结一下各种免费cdn</a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
       </li>
     
@@ -1685,10 +1740,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
       </li>
     
   </ul>

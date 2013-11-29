@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: web相关 | CXH.ME]]></title>
+  <link href="http://cxh.me/category/webxiang-guan/atom.xml" rel="self"/>
+  <link href="http://cxh.me/"/>
+  <updated>2013-11-29T21:02:53+08:00</updated>
+  <id>http://cxh.me/</id>
+  <author>
+    <name><![CDATA[Harry Chen]]></name>
+    <email><![CDATA[sdqxcxh@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[总结一下各种免费cdn]]></title>
+    <link href="http://cxh.me/2013/11/29/cdn-summarize/"/>
+    <updated>2013-11-29T20:58:00+08:00</updated>
+    <id>http://cxh.me/2013/11/29/cdn-summarize</id>
+    <content type="html"><![CDATA[<p>  最近在博客上加了cdn
+  百度加速宝
+  cloudfare
+  <a href="http://anquanbao.com/">http://anquanbao.com/</a>
+  dnspod
+  360网站卫士</p>
+
+<p>  虽然速度不一定尽如人意，但是看着分布于世界各地的dns解析IP，顿时有种君临天下的感觉啊&hellip;</p>
+]]></content>
+  </entry>
+  
+</feed>
