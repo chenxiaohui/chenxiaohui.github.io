@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-12-04T21:27:38+08:00</updated>
+  <updated>2013-12-30T10:49:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -174,33 +174,34 @@ public:
     <link href="http://cxh.me/2012/04/07/about-const-and-pointer/"/>
     <updated>2012-04-07T00:00:00+08:00</updated>
     <id>http://cxh.me/2012/04/07/about-const-and-pointer</id>
-    <content type="html"><![CDATA[<h1></h1>
+    <content type="html"><![CDATA[<p>#</p>
 
 <p>const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。</p>
 
 <p>首先是几种const与指针组合的区分，比如：</p>
 
-<blockquote><p>int b = 500;
-const int<em> a = &b; [1]
-int const </em>a = &b; [2]
-int<em> const a = &b; [3]
-const int</em> const a = &b; [4]</p></blockquote>
+<pre><code>int b = 500;
+const int* a = &amp;b; [1]
+int const *a = &amp;b; [2]
+int* const a = &amp;b; [3]
+const int* const a = &amp;b; [4]
+</code></pre>
 
 <p>[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。</p>
 
 <p>至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。</p>
 
-<blockquote><h1>include</h1>
+<pre><code>#include
+using namespace std;
 
-<p>using namespace std;</p>
-
-<p>int main(int argc,char<em> argv[])
+int main(int argc,char* argv[])
 {
 int a=1;
-const int </em>b=&a;
-<em>b ;//成立
-(</em>b) ;//编译器错误
-}</p></blockquote>
+const int *b=&amp;a;
+*b ;//成立
+(*b) ;//编译器错误
+}
+</code></pre>
 
 <p>那么我们能不能突破const去修改一个值呢？虽然这件事情本身并没有多大意义，但是还是可以做的。我们可以用const_cast来去掉一个const或者volatile限制。const_cast的作用主要分如下三种：</p>
 
@@ -214,30 +215,30 @@ const int </em>b=&a;
 
 <p>我们举如下一个例子：</p>
 
-<blockquote><h1>include</h1>
+<pre><code>#include
+using namespace std;
 
-<p>using namespace std;</p>
-
-<p>class Test
+class Test
 {
 public:
 const int a ;
 Test(int b):a(b)
-{</p>
+{
 
-<p>}
-};</p>
+ }
+};
 
-<p>int main(int argc,char<em> argv[])
+ int main(int argc,char* argv[])
 {
 Test t(1);
 //t.a=2;//出错
 int b=const_cast(t.a);
 int&amp; c=const_cast(t.a);
-int</em> d=const_cast(&amp;t.a);
+int* d=const_cast(&amp;t.a);
 b=2;
 c=3;
-cout</p></blockquote>
+cout
+</code></pre>
 ]]></content>
   </entry>
   
