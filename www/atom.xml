@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2013-12-30T10:49:46+08:00</updated>
+  <updated>2014-01-06T22:00:28+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/01/06/wangyin-words/"/>
+    <updated>2014-01-06T21:59:00+08:00</updated>
+    <id>http://cxh.me/2014/01/06/wangyin-words</id>
+    <content type="html"><![CDATA[<p>王垠虽然挺扯，这段话还是有道理的：</p>
+
+<p>我对清华，还有 Princeton，Harvard，MIT，Stanford，Berkeley，CMU 等学校的学生都有了解。这些所谓的“世界一流大学”或者“世界一流大学 wannabee”差不多都是类似的气氛。你冲着它们的名气和“关系网”挤破了头皮进去，然后就每天有人在你耳边对其它人感叹：哇，他好牛啊！发了好多 paper，还得了XX奖。跟参加传销大会似的，让你怀疑这些人还有没有自尊。然后就是填鸭式的教育，无止境的作业和考试，让你感觉他们不是在“教育”你，而是在“筛选”你。这种筛选总是筛掉最差的，但也筛掉最好的。因为最好的学生能意识到你在干什么，他们不给你筛选他们的机会。一旦发现其实没学到东西，中途就辍学出去创业了。所以剩下来的就是最一般的，循规蹈矩听话的。在这样的环境里，你感觉不到真正的智慧和真知的存在。GRE 考试所鼓吹的什么“批判性思维”（critical thinking ）在美国大学里其实是相当缺乏的。学生们只不过是在被培训成为某些其他人的工具，他们具有固定的思维定势，像是一个模子倒出来的。他们不是真正的创造者和开拓者。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Thinking In Java读书笔记]]></title>
@@ -1725,129 +1736,6 @@ AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
 <h3>撤销之后恢复</h3>
 
 <p>  git-reset如果执行之后，再想回退到指定版本。//TODO</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[svn vim 整合方案]]></title>
-    <link href="http://cxh.me/2013/10/15/svn-vim-integration/"/>
-    <updated>2013-10-15T11:53:00+08:00</updated>
-    <id>http://cxh.me/2013/10/15/svn-vim-integration</id>
-    <content type="html"><![CDATA[<p>  这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
-
-<p>  遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
-
-<!-- more -->
-
-
-<pre><code>alias sta='st|grep ^A '
-alias stm='st|grep ^M '
-alias std='st|grep ^D '
-alias po='echo "#!/bin/sh" &gt;post-review.sh &amp;&amp; echo "post-review \\" &gt;&gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; std &gt;&gt;post-review.sh; stm &gt;&gt; post-review.sh ; vi post-review.sh'
-</code></pre>
-
-<p>  之后可以得到类似如下所示的post-review.sh，当然这个是不能直接运行的。</p>
-
-<pre><code>#!/bin/sh
-post-review \
-M       tests/rootserver/root_table/iterator/test_ob_server_tablet_iter.cpp
-M       tests/rootserver/root_table/iterator/test_ob_root_replica_iter.cpp
-M       tests/rootserver/root_table/iterator/test_ob_server_replica_iter.cpp
-M       tests/rootserver/root_table/iterator/test_iterator_base.h
-M       tests/rootserver/root_table/iterator/Makefile.am
-M       tests/rootserver/root_table/iterator/test_ob_root_table_iter.cpp
-M       tests/rootserver/root_table/iterator/run.sh
-M       tests/rootserver/root_table/iterator/test_ob_alive_root_table_iter.cpp
-</code></pre>
-
-<p>  我们面临两个问题：</p>
-
-<blockquote><ol>
-<li>每行的格式都略有差别，比如前面有A/M/D标记，后面没有续行符号\，没有空格什么的。</li>
-<li>需要能够针对每一行或者多行进行svn操作（svn diff/revert 应该是最常见的操作）</li>
-</ol>
-</blockquote>
-
-<p>  这里我们通过vim脚本实现如下的功能：</p>
-
-<p>  svn.vim 实现如下</p>
-
-<pre><code>function! StripSVN() range
-    "Step through each line in the range...
-    for linenum in range(a:firstline, a:lastline)
-        "Replace loose ampersands (as in DeAmperfy())...
-        let curr_line   = getline(linenum)
-        let replacement = substitute(curr_line,'^\(A\|M\|D\)','','g')
-        call setline(linenum, replacement." \\")
-    endfor
-    call cursor(linenum)
-    "Report what was done...
-    if a:lastline &gt; a:firstline
-        echo "Strip Svn" (a:lastline - a:firstline + 1) "lines"
-    endif
-endfunction
-function! SVNCommand(cmd, prompt, combine) range
-    if a:prompt
-        let sure = input("Are you sure? (y/n) ")
-        if sure != 'y'
-            return
-        endif
-    endif
-    let cmd = '!svn '.a:cmd
-    for linenum in range(a:firstline, a:lastline)
-        "Replace loose ampersands (as in DeAmperfy())...
-        let curr_line   = getline(linenum)
-        let replacement = substitute(curr_line,'^\(A\|M\)','','g')
-        let replacement = Trim(Trim(replacement,'\\'),' ')
-        if a:combine
-           let cmd = cmd.' '.replacement.' '
-        else
-            let cmd = '!svn ' . a:cmd. ' ' . replacement
-            execute cmd
-            "echo cmd
-        endif
-    endfor
-    if a:combine
-        execute cmd
-        "echo cmd
-    endif
-endfunction
-</code></pre>
-
-<p>  第一个函数处理每行的格式，第二个函数读取每行的内容，生成命令并执行，prompt=1 的时候会提示并让用户确认， combine=1 的时候所有行会拼成一条执行，否则每行执行一次。</p>
-
-<p>  然后在vimrc中添加：</p>
-
-<pre><code>noremap &lt;leader&gt;sp :call StripSVN()&lt;CR&gt;
-noremap &lt;leader&gt;sf :call SVNCommand("diff", 0 ,1)&lt;cr&gt;
-noremap &lt;leader&gt;sr :call SVNCommand("revert", 1 ,0)&lt;cr&gt;dd
-noremap &lt;leader&gt;sl :call SVNCommand("log", 0 ,0)&lt;cr&gt;
-noremap &lt;leader&gt;sa :call SVNCommand("add", 0 ,1)&lt;cr&gt;
-noremap &lt;leader&gt;sb :call SVNCommand("blame", 0 ,1)&lt;cr&gt;
-noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
-</code></pre>
-
-<p>  这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
-
-<hr />
-
-<p>  其实偶然发现我好像没说怎么用，大致流程是这样的：</p>
-
-<blockquote><ol>
-<li>po(alias)，生成修改列表</li>
-<li>在每个行，或者选中多个行执行svn命令(<leader>sf,<leader>sr什么的)，查看diff啊，回滚啊，查看log啊，查看blame啊</li>
-<li>提交前选中所有行执行<leader>sp， 去掉行首的A/M/D标记，在行尾加续行符</li>
-<li>执行post-review.sh提交</li>
-</ol>
-</blockquote>
-
-<hr />
-
-<p>参考文献：</p>
-
-<blockquote><p>[1] SVN 命令参考（svn command reference）, <a href="http://riaoo.com/subpages/svn_cmd_reference.html">http://riaoo.com/subpages/svn_cmd_reference.html</a></p>
-
-<p>[2] 使用脚本编写 Vim 编辑器, <a href="http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/">http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/</a></p></blockquote>
 ]]></content>
   </entry>
   

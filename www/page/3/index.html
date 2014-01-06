@@ -110,6 +110,67 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/">深入解析C++输入输出运算符重载</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-07T00:00:00+08:00" pubdate data-updated="true">May 7<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。</p>
+
+<p>我们以输出运算符为例。首先输出运算符重载的一般形式是</p>
+
+<pre><code>friend ostream&amp; operator(CArchive&amp; ar, CObject*&amp; pOb);
+</code></pre>
+
+<p>于是才发觉ostream并不是必需的，换句话说，从语法上讲，ostream的位置放什么类都可以，只不过语义上要行得通。而友元的重载从语法上讲也不是必须的，比如可以依然用成员函数重载，函数定义变成如下的格式</p>
+
+<pre><code>ostream&amp; operator&gt;&gt;(ostream&amp; o);
+</code></pre>
+
+<p>使用的时候只能用object>>cout（或者cout>>object这就太别扭了）形式了，并且不可能连续使用了（比如obj1>>obj2>>cout），这违背了C 规范，但是语法上是的过得去的。</p>
+
+<p>举一个简单而诡异的例子（原谅我这里诡异的代码风格，只是个演示）</p>
+
+<pre><code>#include "stdafx.h"
+#include 
+using namespace std;
+class output
+{
+public:
+    output&amp; operator
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">简短总结一下C#里跨线程更新UI</a></h1>
     
     
@@ -2356,93 +2417,6 @@ endfunction
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/09/23/php-apache-mysql-configuration-under-windows-x64/">Windows下64位PHP+Mysql+Apache的安装配置</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-23T00:00:00+08:00" pubdate data-updated="true">Sep 23<span>rd</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>实际上和32的差别并不大，写这篇文章的主要目的是给出可行的下载地址。</p>
-
-<blockquote><p>PHPx64</p>
-
-<p>Apachex64</p>
-
-<p>Mysqlx64</p>
-
-<p><a href="http://dl-sh-ocn-1.pchome.net/0t/fw/mysql-essential-5.0.90-winx64.rar" title="http://dl-sh-ocn-1.pchome.net/0t/fw/mysql-essential-5.0.90-winx64.rar">http://dl-sh-ocn-1.pchome.net/0t/fw/mysql-essential-5.0.90-winx64.rar
-</a></p></blockquote>
-
-<p>然后安装mysql，apache和php直接解压就行，php.ini做如下几处修改</p>
-
-<pre><code>#扩展目录
-extension_dir = "../php/ext"
-#mysql扩展
-extension=php_mysql.dll
-#剩下的酌情自己配置
-</code></pre>
-
-<p>httpd.conf做如下几处修改</p>
-
-<pre><code>#主目录
-ServerRoot "D:/Program Files/httpd-2.2-x64"
-#LoadPHP的模块
-LoadModule php5_module "D:/Program Files/php/php5apache2_2.dll"
-PHPIniDir "D:/Program Files/php/"
-#文档目录
-DocumentRoot "d:/temporary/php"
-#文档目录的权限配置
-
-#默认访问文件名
-DirectoryIndex index.php default.php index.html
-#解析文档类型，这里很重要，否则无法解析php
-AddType application/x-httpd-php .php  .php4 .php5 .html
-</code></pre>
-
-<p>拷贝libmysql.dll（mysql的bin目录下）到system32和apache的bin目录。</p>
-
-<p>以管理员身份运行命令行，执行如下命令</p>
-
-<blockquote><p>httpd -k install</p></blockquote>
-
-<p>在执行 httpd -k install 的时候，显示 The Apache2.2 service is successfully installed 表明已经安装成功。</p>
-
-<p>然后执行</p>
-
-<blockquote><p>httpd -k start</p></blockquote>
-
-<p>启动apache即可。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -2495,6 +2469,10 @@ AddType application/x-httpd-php .php  .php4 .php5 .html
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/01/06/wangyin-words/"></a>
+      </li>
+    
+      <li class="post">
         <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
       </li>
     
@@ -2510,10 +2488,6 @@ AddType application/x-httpd-php .php  .php4 .php5 .html
         <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
       </li>
     
-      <li class="post">
-        <a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">关于得到当前执行文件所在的目录</a>
-      </li>
-    
   </ul>
 </section>
 
@@ -2524,7 +2498,7 @@ AddType application/x-httpd-php .php  .php4 .php5 .html
   </div>
   <footer role="contentinfo" class="page-footer"><hr>
 <p>
-  Copyright &copy; 2013 - Harry Chen -
+  Copyright &copy; 2014 - Harry Chen -
   <span class="credit">
       Powered by <a href="http://octopress.org">Octopress</a> /
                  <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a> -
