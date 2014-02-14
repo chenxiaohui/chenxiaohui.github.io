@@ -8,7 +8,7 @@
   <title>CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
-  <meta name="description" content="北航本，清华硕，现就职于支付宝北京。方向分布式数据库。 文人、侠客，后沦为程序员">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京。方向分布式数据库。 洒家是文人，沦为程序员的">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -104,6 +104,63 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-14T21:32:00+08:00" pubdate data-updated="true">Feb 14<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。</p>
+
+<pre><code>"plugin-写一个线程的log到单独文件
+function! ThreadLog()
+    let file = readfile(expand("%:p"))
+    let pattern = expand('&lt;cword&gt;')
+    let matches = []
+    for line in file
+        let match = matchstr(line, pattern)
+        if(!empty(match))
+           call add(matches, line)
+        endif
+    endfor
+    let s:filename= pattern . '.log'
+    call writefile(matches, s:filename )
+endf
+nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
+</code></pre>
+
+<p class="indent">使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。</p>
+
+<p class="indent">好久没写博客了，甚觉我已经离文人很远了。在这个欢乐祥和的日子里，实在是觉得生活充满了顾虑。人生就是这么多矛盾啊，不确定是种状态，确定也是种状态，想想之所以依然这么漂泊着，也就是应了一句话：青春逝去，认输之前。当然了，我觉得我还挺青春的。青春这东西，最重要的不是外表，阳光，积极向上什么的。这都是表面。青春是变革，至少是变革的勇气。</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article class="well">
@@ -1427,49 +1484,6 @@ else
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/27/depend-problem-in-oceanbase/">Oceanbase的库依赖问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-27T16:15:00+08:00" pubdate data-updated="true">Sep 27<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p class="indent">今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
-
-<p class="indent">最后请教了 <a href="http://weibo.com/cangzhou" title="Leverly">解伦师兄</a> ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/27/depend-problem-in-oceanbase/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1488,7 +1502,7 @@ else
 
     <ul id="about_me" class="nav nav-list">
         <li class="nav-header">About Me</li>
-        <li>北航本，清华硕，现就职于支付宝北京。方向分布式数据库。<br/>  文人、侠客，后沦为程序员</li>
+        <li>北航本，清华硕，现就职于支付宝北京。方向分布式数据库。<br/>  洒家是文人，沦为程序员的</li>
     </ul>
 </section>
 <section class="well">
@@ -1520,6 +1534,10 @@ else
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/06/wangyin-words/">转载王垠的一段话</a>
       </li>
     
@@ -1533,10 +1551,6 @@ else
     
       <li class="post">
         <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
       </li>
     
   </ul>

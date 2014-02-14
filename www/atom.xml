@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-01-06T22:05:31+08:00</updated>
+  <updated>2014-02-14T21:44:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用来把一个线程的日志输出到单独文件的脚本]]></title>
+    <link href="http://cxh.me/2014/02/14/vim-script-to-write-thread-log/"/>
+    <updated>2014-02-14T21:32:00+08:00</updated>
+    <id>http://cxh.me/2014/02/14/vim-script-to-write-thread-log</id>
+    <content type="html"><![CDATA[<p>  很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。</p>
+
+<pre><code>"plugin-写一个线程的log到单独文件
+function! ThreadLog()
+    let file = readfile(expand("%:p"))
+    let pattern = expand('&lt;cword&gt;')
+    let matches = []
+    for line in file
+        let match = matchstr(line, pattern)
+        if(!empty(match))
+           call add(matches, line)
+        endif
+    endfor
+    let s:filename= pattern . '.log'
+    call writefile(matches, s:filename )
+endf
+nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
+</code></pre>
+
+<p>  使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。</p>
+
+<p>  好久没写博客了，甚觉我已经离文人很远了。在这个欢乐祥和的日子里，实在是觉得生活充满了顾虑。人生就是这么多矛盾啊，不确定是种状态，确定也是种状态，想想之所以依然这么漂泊着，也就是应了一句话：青春逝去，认输之前。当然了，我觉得我还挺青春的。青春这东西，最重要的不是外表，阳光，积极向上什么的。这都是表面。青春是变革，至少是变革的勇气。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[转载王垠的一段话]]></title>
@@ -1710,34 +1740,6 @@ AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
 <p>[3] Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
 
 <p>[4] [整理] gcov lcov 覆盖c/c++项目入门, <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[git reset和git revert]]></title>
-    <link href="http://cxh.me/2013/10/15/git-reset-revert/"/>
-    <updated>2013-10-15T14:50:00+08:00</updated>
-    <id>http://cxh.me/2013/10/15/git-reset-revert</id>
-    <content type="html"><![CDATA[<h3>git reset 作用</h3>
-
-<p>  git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
-
-<p><img class="img-ploaroid center" src="http://cxh.me/images/2013-10/git-reset.png" title="git-reset三种方式" alt="git-reset三种方式"><p class="align-center">git-reset三种方式</p></p>
-
-<blockquote><ul>
-<li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>
-<li>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</li>
-<li>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</li>
-</ul>
-</blockquote>
-
-<h3>git revert 作用</h3>
-
-<p>  git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
-
-<h3>撤销之后恢复</h3>
-
-<p>  git-reset如果执行之后，再想回退到指定版本。//TODO</p>
 ]]></content>
   </entry>
   

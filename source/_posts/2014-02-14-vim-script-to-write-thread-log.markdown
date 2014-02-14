@@ -8,7 +8,7 @@ categories: "Oceanbase"
 
   很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。
 
-	"{{{ plugin-写一个线程的log到单独文件
+	"plugin-写一个线程的log到单独文件
 	function! ThreadLog()
 	    let file = readfile(expand("%:p"))
 	    let pattern = expand('<cword>')
@@ -23,7 +23,7 @@ categories: "Oceanbase"
 	    call writefile(matches, s:filename )
 	endf
 	nmap <leader>th :call ThreadLog()<cr>
-	"}}}
+	
 
   使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。
 

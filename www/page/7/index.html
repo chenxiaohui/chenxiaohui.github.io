@@ -8,7 +8,7 @@
   <title>CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
-  <meta name="description" content="北航本，清华硕，现就职于支付宝北京。方向分布式数据库。 文人、侠客，后沦为程序员">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京。方向分布式数据库。 洒家是文人，沦为程序员的">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -104,6 +104,70 @@
     <div class="row-fluid">
       <div class="span9">
   
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2011/02/24/message-box-like-qq-or-msn/">仿QQ、MSN消息提示窗口的实现（C#）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>前言：我们在QQ、MSN、飞信等即时通信软件中经常看到消息弹出提示，即屏幕右下角弹出一个消息提示框，然后过一段时间隐去（有时候也不隐去，比如一个艰难的决定）。这种提示方式在消息通信中比弹MessageBox更符合用户习惯，前者往往阻碍用户正常操作。我们尝试在.Net下模拟这种方式。</p>
+
+<p>坦白的说核心代码是某位大牛（John O’Byrne）写的，另一位大牛Patrick Vanden Driessche 修改了部分代码，我在此基础上增加了对多弹框的支持，文后附了原代码和我修改之后的代码。</p>
+
+<p>多弹框的实现部分主要写了一个PlaceManager类每次从0下标开始检测哪个位置可用，然后在这个位置弹出消息提示框，消息提示框隐掉之后再回收这个位置。</p>
+
+<p>考虑到同时弹出两个及两个以上框的几率非常小，同时建立TaskbarNotifier窗口的过程资源消耗较多，程序里默认建立了一个TaskbarNotifier的对象，每次检测如果这个对象没有被使用则直接填入标题和内容并弹出，否则新建一个TaskbarNotifier对象再弹出。没有做使用概率的分析，大家如果觉得一个不够用可以默认多建立几个。</p>
+
+<p>Demo里弹出消息提示框是在界面线程里，如果不是界面线程则会有问题，即使取消了CheckForIllegalCrossThreadCalls依然不行，这时需要在界面类里添加代理方法，使用代理方法弹出消息，具体代码如下所示，这问题也困扰了我好久：</p>
+
+<pre><code>delegate void PromptMessage(string message);
+public void Msg(string message)
+{
+    PromptMessage call = new PromptMessage(PromptMsg);
+    this.Invoke(call, new object[] { message });
+}
+</code></pre>
+
+<p>程序界面如图1所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb3.png" title="未命名" alt="未命名" /> 图2 程序界面</p>
+
+<p>点击<a href="http://www.roybit.com/wp-content/uploads/2011/02/TaskbarNotifier.rar">这里</a>下载源程序代码，<a href="http://www.roybit.com/wp-content/uploads/2011/02/TestQQNotify.rar">这里</a>下载我添加了多窗口提示后的代码。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb3.png" title="未命名">1</a> TaskbarNotifier代码，Created by John O’Byrne，2002-12-2，Modified by Patrick Vanden Driessche ，2003-1-11</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article class="well">
@@ -1938,68 +2002,6 @@ findstr "Correctly")
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/07/27/life-is-like-a-function/">Life Is Like a Function</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-07-27T00:00:00+08:00" pubdate data-updated="true">Jul 27<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<pre><code>void Life()
-{
-     while (1)
-    {
-          Work();
-          if(!bJobCompleted)
-             ExtraWork();
-          Sleep();
-     }
-}
-</code></pre>
-
-<p>上班下班加班，每天往返，日子过得无比简单。这让我觉得能换种生活状态是最大的幸福。Life is like a box of chocolate, you never know what you are going to get。如此最好。</p>
-
-<pre><code>Plus:my beloved VB Version
-Sub Life()
-While True
-    Call Work
-    If (bJobCompleted = False) Then
-        Call ExtraWork
-    End If
-    Call Sleep
-Wend
-End Sub
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/8/">&larr; Older</a></li>
@@ -2020,7 +2022,7 @@ End Sub
 
     <ul id="about_me" class="nav nav-list">
         <li class="nav-header">About Me</li>
-        <li>北航本，清华硕，现就职于支付宝北京。方向分布式数据库。<br/>  文人、侠客，后沦为程序员</li>
+        <li>北航本，清华硕，现就职于支付宝北京。方向分布式数据库。<br/>  洒家是文人，沦为程序员的</li>
     </ul>
 </section>
 <section class="well">
@@ -2052,6 +2054,10 @@ End Sub
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/01/06/wangyin-words/">转载王垠的一段话</a>
       </li>
     
@@ -2065,10 +2071,6 @@ End Sub
     
       <li class="post">
         <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">关于ob代码规范里面的行末空格</a>
       </li>
     
   </ul>
