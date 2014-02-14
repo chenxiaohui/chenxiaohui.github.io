@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-01-06T22:05:31+08:00</updated>
+  <updated>2014-02-14T21:41:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -248,8 +248,7 @@ destructor in base
 
 <p>  总结一下如下表：</p>
 
-<p>   <p>函数 没有声明的情况下是否自动生成 是否默认调用基类的对应函数 ------------- -------------------------- -------------------------------- 构造函数 是 是 拷贝构造 是 否,调用基类默认构造函数构造基类对象 等号运算符重载 否 否 ------------------------------------------------------------------------------ : 表1 总结下对象生成类的函数的编译器行为</p>
-</p>
+<p>   {% pandoc cpp_construct.md %}</p>
 
 <p>  注：虽然应该是c++标准，但是还是限制一下编译器版本吧，在gcc4.4.6下验证通过（ob的编译器版本）</p>
 ]]></content>
