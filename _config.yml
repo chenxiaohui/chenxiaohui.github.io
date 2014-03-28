@@ -65,6 +65,7 @@ sidebar: false
 default_asides: [
     custom/asides/about.html,
     custom/asides/profile.html,
+    custom/asides/refs.html,
     custom/asides/notice.html,
     asides/recent_posts.html
     ]

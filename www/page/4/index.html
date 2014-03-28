@@ -110,6 +110,88 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/09/24/auto-exit-problem-of-nerd-tree-plugin/">Nerd_Tree插件自动退出</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-09-24T00:00:00+08:00" pubdate data-updated="true">Sep 24<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>我们知道（不知道也没事）Taglist插件有自动退出功能，即只剩下一个文件的时候，即使Taglist窗口开着，在主窗口用:q的时候会同时退出Taglist窗口，而Nerd_Tree默认并没有这个功能，我们可以仿照Taglist插件来给Nerd_Tree插件天上这个功能。</p>
+
+<p>首先插入如下代码</p>
+
+<pre><code>" Exit Vim itself if only the taglist window is present (optional)
+let s:NERDTreeBufName = 'NERD_tree_'
+    augroup Exit_onlywindow
+        "当进入Nerd_Tree的buffer时也检测是否需要退出
+        exec "autocmd BufEnter ". s:NERDTreeBufName .
+        \"* call :Tlist_Window_Exit_Only_Window()"
+        autocmd BufEnter __Tag_List__ nested
+        \ call s:Tlist_Window_Exit_Only_Window()
+    augroup end
+</code></pre>
+
+<p>然后把Tlist_Window_Exit_Only_Window的函数拷贝进去</p>
+
+<pre><code>" Tlist_Window_Exit_Only_Window
+" If the 'Tlist_Exit_OnlyWindow' option is set, then exit Vim if only the
+" taglist window is present.
+function! s:Tlist_Window_Exit_Only_Window()
+    " Before quitting Vim, delete the taglist buffer so that
+    " the '0 mark is correctly set to the previous buffer.
+    if v:version &lt; 700
+    if winbufnr(2) == -1
+        bdelete
+        quit
+    endif
+    else
+    if winbufnr(2) == -1
+        if tabpagenr('$') == 1
+        " Only one tag page is present
+        bdelete
+        quit
+        else
+        " More than one tab page is present. Close only the current
+        " tab page
+        close
+        endif
+    endif
+    endif
+endfunction
+</code></pre>
+
+<p>OK了，看看效果吧</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/09/24/an-interesting-story-about-vi/">关于VI的一则趣事</a></h1>
     
     
@@ -1612,44 +1694,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/an-article-about-baidu/">转一篇关于baidu的帖子</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>央视曝光百度推广链接内幕真相:诚信与利益 孰轻孰重</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/5/">&larr; Older</a></li>
@@ -1684,6 +1728,15 @@ ec(test.prototype.age);
     </ul>
 </section>
 <section class="well">
+    <ul id="refs" class="nav nav-list">
+        <li class="nav-header">Blogroll</li>
+        <li><a href="http://nxn.me">左手科技右手人文</a></li>
+        <li><a href="http://yiguid.com/">大顾的博客</a></li>
+        <li><a href="http://www.chunhuiwang.com">Charles Wang 的传说</a></li>
+        <li><a href="http://wukan.me/">阿倫的孤獨星球</a></li>
+    </ul>
+</section>
+<section class="well">
     <ul id="feeling" class="nav nav-list">
         <li class="nav-header">一点心情</li>
     </ul>
@@ -1702,6 +1755,10 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/02/26/fog-in-beijing/"></a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
       </li>
     
@@ -1715,10 +1772,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
       </li>
     
   </ul>

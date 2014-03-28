@@ -110,6 +110,45 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-09-30T16:11:00+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">阅读全文</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2013/09/27/depend-problem-in-oceanbase/">Oceanbase的库依赖问题</a></h1>
     
     
@@ -1562,60 +1601,6 @@ nnoremap x :call BufClose(1)
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2012/05/10/appendix-to-const-pointer/">关于Const指针的一点补充</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-05-10T00:00:00+08:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>OsChina上一个朋友给出的例子，很能说明问题：</p>
-
-<pre><code>typedef char * CharPtr;
-const CharPtr mycharptr = "Hello, World";
-mycharptr[0]='h'; //OK[1]
-mycharptr = "It's Wrong"; //Err[2]
-</code></pre>
-
-<p>如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char <em>是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char</em>被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它的赋值肯定会引起编译错误，而[0]这种寻址并不影响。</p>
-
-<p>不过，如果把typedef 改为宏替换（如下），事情就不一样了，毕竟宏替换只是一种替换而已，不会引起编译器的检查，编译之前，CharPtr就已经被替换掉了。</p>
-
-<pre><code>#define CharPtr char *
-const CharPtr mycharptr = "Hello, World";
-mycharptr[0]='h'; //Err
-mycharptr = "It's Wrong"; //OK
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/3/">&larr; Older</a></li>
@@ -1650,6 +1635,15 @@ mycharptr = "It's Wrong"; //OK
     </ul>
 </section>
 <section class="well">
+    <ul id="refs" class="nav nav-list">
+        <li class="nav-header">Blogroll</li>
+        <li><a href="http://nxn.me">左手科技右手人文</a></li>
+        <li><a href="http://yiguid.com/">大顾的博客</a></li>
+        <li><a href="http://www.chunhuiwang.com">Charles Wang 的传说</a></li>
+        <li><a href="http://wukan.me/">阿倫的孤獨星球</a></li>
+    </ul>
+</section>
+<section class="well">
     <ul id="feeling" class="nav nav-list">
         <li class="nav-header">一点心情</li>
     </ul>
@@ -1668,6 +1662,10 @@ mycharptr = "It's Wrong"; //OK
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/02/26/fog-in-beijing/"></a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
       </li>
     
@@ -1681,10 +1679,6 @@ mycharptr = "It's Wrong"; //OK
     
       <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
       </li>
     
   </ul>
