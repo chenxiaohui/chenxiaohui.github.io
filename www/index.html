@@ -110,6 +110,57 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-18T20:54:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent"> 数据库的实现里面很重要的两个功能就是Limit和Offset,在web里面，这是分页的基本功能依赖。对于用户来说，一屏不可能显示全部的数据，所以数据请求可以拆散成多个，每次从上次的offset开始读取下一个limit的数据。有些情况下， 我们不需要知道一共有多少数据，只需要循环获取并统计期望的数据和得到的数据，直到两个不匹配。在实际web使用中，这种策略一般不使用，因为预先知道分页数。当然我也真见过这么用的，这nm简直就是无底洞。不知道点到什么时候是个头。</p>
+
+<p class="indent"> 相应的，正常的策略我们是需要知道数据有多少页的。也就有如下几种策略：</p>
+
+<ol>
+<li>. 最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。</li>
+<li>. 发一条count()先统计所有数据，然后计算分页数。 很多分页控件都直接支持count参数，分页会计算offset。</li>
+<li>. 数据量非常大的情况下，count()也会造成额外的开销。也就有如下几种方式优化。
+
+<blockquote><ol>
+<li> 单独一张表存储count()，每次有插入数据的时候都同时更新count()，插入过程可以做成存储过程减少网络开销。或者其实我们需要的只是分页数，而每屏显示的数量往往又是固定的，可以直接存分页数。</li>
+<li> 有时候自增长ID也可以直接用来做这个。当然问题是不能删数据。</li>
+</ol></blockquote>
+</li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a></h1>
     
     
@@ -1445,45 +1496,6 @@ else
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">陌生的人, 请给我一支兰州</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-09-30T16:11:00+08:00" pubdate data-updated="true">Sep 30<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1544,6 +1556,10 @@ else
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
       </li>
     
@@ -1557,10 +1573,6 @@ else
     
       <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
       </li>
     
   </ul>

@@ -110,6 +110,60 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/05/10/appendix-to-const-pointer/">关于Const指针的一点补充</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-10T00:00:00+08:00" pubdate data-updated="true">May 10<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>OsChina上一个朋友给出的例子，很能说明问题：</p>
+
+<pre><code>typedef char * CharPtr;
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //OK[1]
+mycharptr = "It's Wrong"; //Err[2]
+</code></pre>
+
+<p>如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char <em>是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char</em>被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它的赋值肯定会引起编译错误，而[0]这种寻址并不影响。</p>
+
+<p>不过，如果把typedef 改为宏替换（如下），事情就不一样了，毕竟宏替换只是一种替换而已，不会引起编译器的检查，编译之前，CharPtr就已经被替换掉了。</p>
+
+<pre><code>#define CharPtr char *
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //Err
+mycharptr = "It's Wrong"; //OK
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值</a></h1>
     
     
@@ -2357,88 +2411,6 @@ nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', g:fuf_com_list)
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/09/24/auto-exit-problem-of-nerd-tree-plugin/">Nerd_Tree插件自动退出</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-24T00:00:00+08:00" pubdate data-updated="true">Sep 24<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>我们知道（不知道也没事）Taglist插件有自动退出功能，即只剩下一个文件的时候，即使Taglist窗口开着，在主窗口用:q的时候会同时退出Taglist窗口，而Nerd_Tree默认并没有这个功能，我们可以仿照Taglist插件来给Nerd_Tree插件天上这个功能。</p>
-
-<p>首先插入如下代码</p>
-
-<pre><code>" Exit Vim itself if only the taglist window is present (optional)
-let s:NERDTreeBufName = 'NERD_tree_'
-    augroup Exit_onlywindow
-        "当进入Nerd_Tree的buffer时也检测是否需要退出
-        exec "autocmd BufEnter ". s:NERDTreeBufName .
-        \"* call :Tlist_Window_Exit_Only_Window()"
-        autocmd BufEnter __Tag_List__ nested
-        \ call s:Tlist_Window_Exit_Only_Window()
-    augroup end
-</code></pre>
-
-<p>然后把Tlist_Window_Exit_Only_Window的函数拷贝进去</p>
-
-<pre><code>" Tlist_Window_Exit_Only_Window
-" If the 'Tlist_Exit_OnlyWindow' option is set, then exit Vim if only the
-" taglist window is present.
-function! s:Tlist_Window_Exit_Only_Window()
-    " Before quitting Vim, delete the taglist buffer so that
-    " the '0 mark is correctly set to the previous buffer.
-    if v:version &lt; 700
-    if winbufnr(2) == -1
-        bdelete
-        quit
-    endif
-    else
-    if winbufnr(2) == -1
-        if tabpagenr('$') == 1
-        " Only one tag page is present
-        bdelete
-        quit
-        else
-        " More than one tab page is present. Close only the current
-        " tab page
-        close
-        endif
-    endif
-    endif
-endfunction
-</code></pre>
-
-<p>OK了，看看效果吧</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -2501,6 +2473,10 @@ endfunction
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
       </li>
     
@@ -2514,10 +2490,6 @@ endfunction
     
       <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
       </li>
     
   </ul>

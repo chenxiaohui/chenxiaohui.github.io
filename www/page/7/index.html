@@ -110,6 +110,68 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/02/24/multi-table-operation-with-local-cache/">基于本地缓存的多表级联操作的实现（C#）</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-02-24T00:00:00+08:00" pubdate data-updated="true">Feb 24<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>背景：数据库操作中我们经常会遇到级联修改的问题，在之前的一篇文章<a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png" title="视图结构">1</a>里我们探讨了多表级联的一种实现方式，这篇文章我们将探讨另一种实现方式，即通过本地缓存的方式，避免不必要的存储过程。</p>
+
+<p>定义：</p>
+
+<blockquote><p>事实表：中央表，它包含联系事实与维度表的数字度量值和键。简单说，事实表包括各个维度的ID。</p>
+
+<p>维表：述事实数据表中的数据。维度表包含创建维度所基于的数据。</p></blockquote>
+
+<p>首先，我们的条件是，级联不是很复杂，存在一张事实表和若干维表，通过单ID将事实表和维表进行级联。思路是：首先本地缓存维表的所有数据，然后将事实表的数据绑定到DataGridView上，将ID列设置为DataGridViewComboBoxColumn，绑定相应的维表，指定值字段和显示字段，让结果自动对应。</p>
+
+<p>举个简单的例子：订单数据库，包含Customers，Products和Orders三个表，之间的逻辑关系如图1所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png" title="视图结构" alt="视图结构" />图1 数据库表结构关系</p>
+
+<p>程序运行截图如图2所示：</p>
+
+<p><img src="http://www.roybit.com/wp-content/uploads/2011/02/thumb2.png" title="程序" alt="程序" /></p>
+
+<p>图2 程序运行截图</p>
+
+<p>具体的见<a href="http://www.roybit.com/wp-content/uploads/2011/02/testDataUpdate.rar">代码</a>，不再赘述。</p>
+
+<p>参考文献：</p>
+
+<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png" title="视图结构">1</a> 多表级联增删查改操作的实现，</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/02/24/message-box-like-qq-or-msn/">仿QQ、MSN消息提示窗口的实现（C#）</a></h1>
     
     
@@ -1962,46 +2024,6 @@ findstr "Correctly")
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2010/08/20/control-on-high-heel-shoes/">高跟鞋管制</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2010-08-20T00:00:00+08:00" pubdate data-updated="true">Aug 20<span>th</span>, 2010</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>今天坐地铁回校，在下地铁的时候看到一个姐姐穿着高跟鞋款款走过，鞋跟足有10公分，白光闪闪，不寒而栗。这要是飞起一脚，不死也残。想国家天天查管制刀具，怎么就没有查高跟鞋跟的。都说女人是最危险的武器，单高跟鞋就够影响治安了。强烈建议国家在管制了菜刀，水果刀，裁纸刀和转笔刀之后，加入一条，高跟鞋跟不得高于5公分,尖端不得细于食指,初速不得超过10m/s…..</p>
-
-<p>这才是和谐社会。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/8/">&larr; Older</a></li>
@@ -2064,6 +2086,10 @@ findstr "Correctly")
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
       </li>
     
@@ -2077,10 +2103,6 @@ findstr "Correctly")
     
       <li class="post">
         <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/21/use-mock-to-debug/">分布式调试系列之行为模拟</a>
       </li>
     
   </ul>

@@ -5,10 +5,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: 其他 - CXH.ME</title>
+  <title>OB的Offset和Limit - CXH.ME</title>
   <meta name="author" content="Harry Chen">
   
-  <meta name="description" content="Category: 其他">
+  <meta name="description" content="北航本，清华硕，现就职于支付宝北京。方向分布式数据库。 老子是文人，沦为程序员的">
   
 
   <meta name="HandheldFriendly" content="True">
@@ -16,7 +16,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://cxh.mecategory/qi-ta">
+  <link rel="canonical" href="http://cxh.me/2014/04/18/offset-and-limit-in-ob">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/bootstrap/bootstrap.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/bootstrap/responsive.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -103,116 +103,131 @@
   <div class="container">
     <div class="row-fluid">
       
-<article role="article" class="span9">
+<article class="hentry span12 well" role="article">
 
   
   <header class="page-header">
-    <h1 class="entry-title">Category: 其他</h1>
+    
+      <h2 class="entry-title">OB的Offset和Limit</h2>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-04-18T20:54:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p class="indent"> 数据库的实现里面很重要的两个功能就是Limit和Offset,在web里面，这是分页的基本功能依赖。对于用户来说，一屏不可能显示全部的数据，所以数据请求可以拆散成多个，每次从上次的offset开始读取下一个limit的数据。有些情况下， 我们不需要知道一共有多少数据，只需要循环获取并统计期望的数据和得到的数据，直到两个不匹配。在实际web使用中，这种策略一般不使用，因为预先知道分页数。当然我也真见过这么用的，这nm简直就是无底洞。不知道点到什么时候是个头。</p>
 
-  
-  <h1>2013</h1>
+<p class="indent"> 相应的，正常的策略我们是需要知道数据有多少页的。也就有如下几种策略：</p>
 
-<article>
-  <div class="well">
+<ol>
+<li>. 最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。</li>
+<li>. 发一条count()先统计所有数据，然后计算分页数。 很多分页控件都直接支持count参数，分页会计算offset。</li>
+<li>. 数据量非常大的情况下，count()也会造成额外的开销。也就有如下几种方式优化。
 
-<h3><a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a></h3>
-<time datetime="2013-11-24T20:32:00+08:00" pubdate><span class='month'>Nov</span> <span class='day'>24</span> <span class='year'>2013</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/category/qi-ta/'>其他</a></span>
-</footer>
-
-</div>
-
-</article>
+<blockquote><ol>
+<li> 单独一张表存储count()，每次有插入数据的时候都同时更新count()，插入过程可以做成存储过程减少网络开销。或者其实我们需要的只是分页数，而每屏显示的数量往往又是固定的，可以直接存分页数。</li>
+<li> 有时候自增长ID也可以直接用来做这个。当然问题是不能删数据。</li>
+</ol></blockquote>
+</li>
+</ol>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
+
+
+<!--<span class="byline author vcard">Posted by <span class="fn">Harry Chen</span></span>-->
+
+<hr/>
+<div class="author clear">
+        <div class="author_pic left pl20 pr20">
+            <script src="/javascripts/md5.js"></script>
+            <script type="text/javascript">
+                $(function(){
+                        $('.author_pic').append("<img src='http://www.gravatar.com/avatar/" + MD5("sdqxcxh@gmail.com") + "?s=100' alt='Profile Picture' style='width: 100px;' class='img-polaroid'/>");
+                        });
+            </script>
+        </div>
+        <div class="author_info left">
+            <h3>Harry Chen</h3>
+            <p>北航本，清华硕，现就职于支付宝北京。方向分布式数据库。<br/> 老子是文人，沦为程序员的</p>
+        </div>
+</div>
+<hr/>
+
+
+      
+
+
+
+
+
+
+
+
   
+
+
+<time datetime="2014-04-18T20:54:00+08:00" pubdate data-updated="true">Apr 18<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/category/oceanbase/'>Oceanbase</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+    
+    
+    
+
+    
+</div>
+
+    
+    
+    <section>
+      <h1>Comments</h1>
+      <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+    </section>
+    
+    
+    
+    <ul class="pager">
+      
+      <li class="previous"><a class="basic-alignment left"
+        href="/2014/02/14/vim-script-to-write-thread-log/" title="Previous Post:
+        用来把一个线程的日志输出到单独文件的脚本">&laquo; 用来把一个线程的日志输出到单独文件的脚本</a></li>
+      
+      <li><a href="/blog/archives">Blog Archives</a></li>
+      
+    </ul>
+  </footer>
 </article>
-
-<aside class="sidebar-nav span3">
-  
-    <section class="well">
-    <div class="profilepic align-center">
-        <img src="/images/common/cxh.jpeg" alt="cxh.me" width="160px" class="img-rounded"/>
-    </div>
-    <hr/>
-
-    <ul id="about_me" class="nav nav-list">
-        <li class="nav-header">About Me</li>
-        <li>北航本，清华硕，现就职于支付宝北京。方向分布式数据库。<br/> 老子是文人，沦为程序员的</li>
-    </ul>
-</section>
-<section class="well">
-    <ul id="profile" class="nav nav-list">
-        <li class="nav-header">Profile</li>
-        <li><a href="https://github.com/chenxiaohui/">GitHub</a></li>
-        <li><a href="http://weibo.com/sdqxcxh/">Weibo</a></li>
-        <li><a href="http://renren.com/sdqxcxh/">Renren</a></li>
-        <li><a href="https://twitter.com/sdqxcxh/">Twitter</a></li>
-        <li><a href="https://facebook.com/sdqxcxh/">Facebook</a></li>
-    </ul>
-</section>
-<section class="well">
-    <ul id="refs" class="nav nav-list">
-        <li class="nav-header">Blogroll</li>
-        <li><a href="http://nxn.me">那些年</a></li>
-        <li><a href="http://yiguid.com/">大顾的博客</a></li>
-        <li><a href="http://www.chunhuiwang.com">Charles Wang 的传说</a></li>
-        <li><a href="http://wukan.me/">阿倫的孤獨星球</a></li>
-        <li><a href="http://www.yuzelang.com/">狼的博客</a></li>
-    </ul>
-</section>
-<section class="well">
-    <ul id="feeling" class="nav nav-list">
-        <li class="nav-header">一点心情</li>
-    </ul>
-    <p></p>
-    <img src="/images/common/ambition.jpg" class="notice_pic img-polaroid" alt="当你的才华还撑不起你的野心时，那你就应该静下心来学习。" />
-    <p></p>
-    <p class="indent">
-        当你的才华还撑不起你的野心时，那你就应该静下心来学习。
-    </p>
-    <p class="align-right">
-        ———from weibo
-    </p>
-</section>
-<section class="well">
-  <ul id="recent_posts" class="nav nav-list">
-    <li class="nav-header">Recent Posts</li>
-    
-      <li class="post">
-        <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/06/wangyin-words/">转载王垠的一段话</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
-      </li>
-    
-  </ul>
-</section>
-
-  
-</aside>
 
 
     </div>
@@ -235,7 +250,10 @@
       var disqus_shortname = 'harrychen';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://cxh.me/2014/04/18/offset-and-limit-in-ob/';
+        var disqus_url = 'http://cxh.me/2014/04/18/offset-and-limit-in-ob/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

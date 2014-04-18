@@ -1335,6 +1335,10 @@
         <lastmod>2014-02-14T21:43:29+08:00</lastmod>
     </url>
     <url>
+        <loc>http://cxh.me/2014/04/18/offset-and-limit-in-ob/</loc>
+        <lastmod>2014-04-18T21:09:08+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://cxh.me/404.html</loc>
         <lastmod>2013-11-06T21:56:05+08:00</lastmod>
     </url>
@@ -1344,7 +1348,7 @@
     </url>
     <url>
         <loc>http://cxh.me/blog/archives/</loc>
-        <lastmod>2014-02-14T21:43:29+08:00</lastmod>
+        <lastmod>2014-04-18T21:09:08+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/robots.txt</loc>
@@ -1352,7 +1356,7 @@
     </url>
     <url>
         <loc>http://cxh.me/</loc>
-        <lastmod>2014-02-14T21:43:29+08:00</lastmod>
+        <lastmod>2014-04-18T21:09:08+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/pandoc/test.html</loc>
