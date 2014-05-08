@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: OceanBase | CXH.ME]]></title>
+  <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-04-18T21:09:15+08:00</updated>
+  <updated>2014-05-08T10:03:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,15 +14,156 @@
 
   
   <entry>
-    <title type="html"><![CDATA[OceanBase源码分析-tablet相关]]></title>
-    <link href="http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet/"/>
-    <updated>2013-09-16T15:49:00+08:00</updated>
-    <id>http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet</id>
-    <content type="html"><![CDATA[<h3>ObRootTabletInfo</h3>
+    <title type="html"><![CDATA[OB的Offset和Limit]]></title>
+    <link href="http://cxh.me/2014/04/18/offset-and-limit-in-ob/"/>
+    <updated>2014-04-18T20:54:00+08:00</updated>
+    <id>http://cxh.me/2014/04/18/offset-and-limit-in-ob</id>
+    <content type="html"><![CDATA[<p>   数据库的实现里面很重要的两个功能就是Limit和Offset,在web里面，这是分页的基本功能依赖。对于用户来说，一屏不可能显示全部的数据，所以数据请求可以拆散成多个，每次从上次的offset开始读取下一个limit的数据。有些情况下， 我们不需要知道一共有多少数据，只需要循环获取并统计期望的数据和得到的数据，直到两个不匹配。在实际web使用中，这种策略一般不使用，因为预先知道分页数。当然我也真见过这么用的，这nm简直就是无底洞。不知道点到什么时候是个头。</p>
 
-<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
+<p>   相应的，正常的策略我们是需要知道数据有多少页的。也就有如下几种策略：</p>
 
-<p>//TODO</p>
+<ol>
+<li>. 最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。</li>
+<li>. 发一条count()先统计所有数据，然后计算分页数。 很多分页控件都直接支持count参数，分页会计算offset。</li>
+<li>. 数据量非常大的情况下，count()也会造成额外的开销。也就有如下几种方式优化。
+
+<ol>
+<li> 单独一张表存储count()，每次有插入数据的时候都同时更新count()，插入过程可以做成存储过程减少网络开销。或者其实我们需要的只是分页数，而每屏显示的数量往往又是固定的，可以直接存分页数。</li>
+<li> 有时候自增长ID也可以直接用来做这个。当然问题是不能删数据。</li>
+</ol>
+</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用来把一个线程的日志输出到单独文件的脚本]]></title>
+    <link href="http://cxh.me/2014/02/14/vim-script-to-write-thread-log/"/>
+    <updated>2014-02-14T21:32:00+08:00</updated>
+    <id>http://cxh.me/2014/02/14/vim-script-to-write-thread-log</id>
+    <content type="html"><![CDATA[<p>  很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。</p>
+
+<pre><code>"plugin-写一个线程的log到单独文件
+function! ThreadLog()
+    let file = readfile(expand("%:p"))
+    let pattern = expand('&lt;cword&gt;')
+    let matches = []
+    for line in file
+        let match = matchstr(line, pattern)
+        if(!empty(match))
+           call add(matches, line)
+        endif
+    endfor
+    let s:filename= pattern . '.log'
+    call writefile(matches, s:filename )
+endf
+nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
+</code></pre>
+
+<p>  使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。</p>
+
+<p>  好久没写博客了，甚觉我已经离文人很远了。在这个欢乐祥和的日子里，实在是觉得生活充满了顾虑。人生就是这么多矛盾啊，不确定是种状态，确定也是种状态，想想之所以依然这么漂泊着，也就是应了一句话：青春逝去，认输之前。当然了，我觉得我还挺青春的。青春这东西，最重要的不是外表，阳光，积极向上什么的。这都是表面。青春是变革，至少是变革的勇气。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分布式调试系列之行为模拟]]></title>
+    <link href="http://cxh.me/2013/11/21/use-mock-to-debug/"/>
+    <updated>2013-11-21T17:31:00+08:00</updated>
+    <id>http://cxh.me/2013/11/21/use-mock-to-debug</id>
+    <content type="html"><![CDATA[<p>  最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于ob代码规范里面的行末空格]]></title>
+    <link href="http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end/"/>
+    <updated>2013-11-20T10:50:00+08:00</updated>
+    <id>http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end</id>
+    <content type="html"><![CDATA[<p>  行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：</p>
+
+<pre><code>" 删除所有行未尾空格
+nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
+"显示空格
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@&lt;!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+augroup END
+</code></pre>
+
+<p>  这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分布式调试之导入import文件]]></title>
+    <link href="http://cxh.me/2013/11/19/vim-script-to-find-import-file/"/>
+    <updated>2013-11-19T17:41:00+08:00</updated>
+    <id>http://cxh.me/2013/11/19/vim-script-to-find-import-file</id>
+    <content type="html"><![CDATA[<p>  最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：</p>
+
+<!-- more -->
+
+
+<pre><code>if !exists('g:base_dir_mark')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:base_dir_mark = 'tags'
+endif
+
+if !exists('g:strip_prefix_arr')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:strip_prefix_arr = ['rootserver', 'root_table']
+endif
+
+if !exists('g:import_token')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:import_token = 'import "%s"'
+endif
+
+function! GetImportFile()
+    let filepath = expand("%:p")
+    let base_dir = GetBaseDirectory() . 'src/'
+    let idx = stridx(filepath, base_dir)
+    if idx == 0
+        let import_file_name = strpart(filepath, len(base_dir))
+        let import_cmd = substitute(g:import_token, '%s', import_file_name, 'g')
+        for prefix in g:strip_prefix_arr
+            let import_cmd = substitute(import_cmd, prefix.'/', '', 'g')
+        endfor
+        let @" = import_cmd
+        echo import_cmd
+    endif
+endf
+
+function! GetBaseDirectory()
+    let max = 5
+    let dir = getcwd()
+    let i = 0
+    while isdirectory(dir) &amp;&amp; i &lt; max
+        if filereadable(dir .'/'. g:base_dir_mark)
+            return dir.'/'
+        endif
+        let idx = strridx(dir, '/')
+        let dir = dir[:idx-1]
+        let i = i + 1
+    endwhile
+    return ''
+endf
+</code></pre>
+
+<p>  前提是配置好你的ctags，然后在系统根目录下用</p>
+
+<pre><code>ctags -R * //其他语言
+ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
+</code></pre>
+
+<p>  生成tags，插件会去去找tags文件，然后把找到的位置定义为项目目录，之后的引用路径会按照这路径来生成相对路径。strip_prefix_arr制定要去掉的前缀，比如我们的路径是/home/dev/src/rootserver/xxx.h，tags生成在dev下，按照base_dir_mark/src去掉项目路径得到 rootserver/xxx.h，根据strip_prefix_arr去掉rootserver，最后得到import &ldquo;xxx.h"。</p>
 ]]></content>
   </entry>
   
