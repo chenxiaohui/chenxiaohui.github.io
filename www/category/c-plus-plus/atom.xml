@@ -4,7 +4,11 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
+<<<<<<< HEAD
   <updated>2014-05-15T20:41:37+08:00</updated>
+=======
+  <updated>2014-05-03T20:20:23+08:00</updated>
+>>>>>>> d27f7d56eac042edde949de92f2a8329b16d3d97
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -248,7 +252,33 @@ destructor in base
 
 <p>  总结一下如下表：</p>
 
-<p>   <p>函数 没有声明的情况下是否自动生成 是否默认调用基类的对应函数 ------------- -------------------------- -------------------------------- 构造函数 是 是 拷贝构造 是 否,调用基类默认构造函数构造基类对象 等号运算符重载 否 否 ------------------------------------------------------------------------------ : 表1 总结下对象生成类的函数的编译器行为</p>
+<p>   <table>
+<caption>表1 总结下对象生成类的函数的编译器行为</caption>
+<thead>
+<tr class="header">
+<th align="center">函数</th>
+<th align="center">没有声明的情况下是否自动生成</th>
+<th align="center">是否默认调用基类的对应函数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">构造函数</td>
+<td align="center">是</td>
+<td align="center">是</td>
+</tr>
+<tr class="even">
+<td align="center">拷贝构造</td>
+<td align="center">是</td>
+<td align="center">否,调用基类默认构造函数构造基类对象</td>
+</tr>
+<tr class="odd">
+<td align="center">等号运算符重载</td>
+<td align="center">否</td>
+<td align="center">否</td>
+</tr>
+</tbody>
+</table>
 </p>
 
 <p>  注：虽然应该是c++标准，但是还是限制一下编译器版本吧，在gcc4.4.6下验证通过（ob的编译器版本）</p>
