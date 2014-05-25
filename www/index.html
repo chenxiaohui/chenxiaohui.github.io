@@ -138,12 +138,48 @@
 <ol>
 <li><p> <a href="http://wemaker.cc/60" title="树莓派GPIO引脚详解">引脚定义</a></p></li>
 <li><p> <a href="http://s.mile77.com/?p=2039">传感器教程1</a></p></li>
-<li><p> <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html" title="Raspberry Pi 使用DS18B20温度传感器">传感器教程2</a></p></li>
+<li><p> <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html" title="Raspberry Pi 使用DS18B20温度传感器">传感器教程2</a>
+鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
+芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。</p></li>
 </ol>
 
 
-<p class="indent">鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
-芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。</p>
+<p class="indent">整个过程可以按照教程1，2 对应针脚完成，如果顺利基本一次成功。别人的知识产权我就不好摘录了。但是代码我优化了一下，硬件工程师的代码果然是写的异常粗犷。修改后的代码如下：</p>
+
+<pre><code>#!/usr/bin/python
+#coding=utf-8
+#Filename:temperature.py
+import os,datetime,time
+
+def calc_temperature(filename):
+    res = 0
+    valid_count = 0
+    for i in range(0,5):
+        with open(filename) as tfile:
+            text = tfile.read()
+        lines = text.split("\n")
+        firstline, secondline = lines[0], lines[1]
+        crc = firstline.split(" ")[11]
+        if crc == 'YES':
+            temperaturedata = secondline.split(" ")[9]
+            temperature = float(temperaturedata[2:])
+            temperature = temperature / 1000
+            valid_count += 1
+            res += temperature
+            print temperature
+        else:
+            with open(os.path.expanduser("~/sys.log"), "a") as err:
+                err.write("CRC Error: %s\n%s\n" % (datetime.datetime.now().strftime("%Y/%M/%d-%H:%M:%S"), text))
+        time.sleep(0.2)
+    return res/valid_count if valid_count &gt; 0 else -1
+
+#temperature = calc_temperature("input.txt")
+temperature = calc_temperature("/sys/bus/w1/devices/28-000005e31fe6/w1_slave")
+if temperature &gt; 0:
+    res = '{"value":%f}' %temperature
+    with open(os.path.expanduser('~/datafile.txt'), 'w') as output:
+        output.write(res)
+</code></pre>
 
 </div>
   
