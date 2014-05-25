@@ -9,7 +9,7 @@ categories: "Oceanbase"
 版权所有：[解伦师兄][1]
 
 ###介绍篇
-  
+
 **可用性vs可靠性**
 
   可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。
@@ -21,15 +21,16 @@ categories: "Oceanbase"
   data loss的最大因素：drop table, 所以要做好充分的容错。
 
 <!-- more -->
+
 ###设计篇
-  
+
 **减少故障发生的可能**
-  
+
   避免单点故障，防止扩散，有效的监控运维配合
 
 
   常见的**冗余**设计。
-  
+
   * RAID,Replica,Erasure Code
   * BackUp, Reassign,Retry
   * Master-Slave,Mirror,RAC..
@@ -40,7 +41,7 @@ categories: "Oceanbase"
   * 异步替代同步
 
   对外部依赖不信任
-  
+
   * 结果进行
   * 失败情况下failover（重试时间次数需要控制）
 
@@ -58,7 +59,7 @@ categories: "Oceanbase"
   * 黑名单要有恢复机制
 
 **减少损失**
-  
+
   过载保护
 
   * 发现故障，并限制资源
@@ -73,7 +74,7 @@ categories: "Oceanbase"
 
 **Twitter**
 
-  世界杯额时候twitter经常会时常挂掉
+  世界杯的时候twitter经常会时常挂掉
 
   * memcache规划的问题
   * cache也要注意设计
@@ -84,9 +85,9 @@ categories: "Oceanbase"
 
   * 数据迁走之后有空洞，页不释放
   * 还好毕设的时候数据量不大
-  
+
 **Amazon**
-  
+
   EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络
 
   * 相应超时，认为丢失副本
@@ -109,12 +110,12 @@ categories: "Oceanbase"
 ###总结篇
 
 **可用性**
-  
+
   * BASE:基本可用
   * CAP:No CAP, No CP, A是很重要的
   * [20 Key High Availability Design Principles][2]
 
-[1]: 
+[1]:
 [2]:
 [3]:
 

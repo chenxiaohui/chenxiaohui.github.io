@@ -1288,7 +1288,7 @@
     </url>
     <url>
         <loc>http://cxh.me/2013/11/01/how-to-build-high-available-system/</loc>
-        <lastmod>2013-11-06T21:56:05+08:00</lastmod>
+        <lastmod>2014-05-22T11:05:55+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list/</loc>
@@ -1339,6 +1339,10 @@
         <lastmod>2014-04-18T21:09:08+08:00</lastmod>
     </url>
     <url>
+        <loc>http://cxh.me/2014/05/25/pi-temperature-sensor/</loc>
+        <lastmod>2014-05-25T14:39:56+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://cxh.me/404.html</loc>
         <lastmod>2013-11-06T21:56:05+08:00</lastmod>
     </url>
@@ -1348,7 +1352,7 @@
     </url>
     <url>
         <loc>http://cxh.me/blog/archives/</loc>
-        <lastmod>2014-04-18T21:09:08+08:00</lastmod>
+        <lastmod>2014-05-25T14:39:56+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/robots.txt</loc>
@@ -1356,7 +1360,7 @@
     </url>
     <url>
         <loc>http://cxh.me/</loc>
-        <lastmod>2014-04-18T21:09:08+08:00</lastmod>
+        <lastmod>2014-05-25T14:39:56+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/pandoc/test.html</loc>

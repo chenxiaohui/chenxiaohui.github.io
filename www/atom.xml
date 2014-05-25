@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-05-03T20:20:23+08:00</updated>
+  <updated>2014-05-25T14:40:33+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,85 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用树莓派和DS18B20监控温度变化]]></title>
+    <link href="http://cxh.me/2014/05/25/pi-temperature-sensor/"/>
+    <updated>2014-05-25T14:16:00+08:00</updated>
+    <id>http://cxh.me/2014/05/25/pi-temperature-sensor</id>
+    <content type="html"><![CDATA[<p>  基本的教程在这里:</p>
+
+<ol>
+<li><p> <a href="http://wemaker.cc/60" title="树莓派GPIO引脚详解">引脚定义</a></p></li>
+<li><p> <a href="http://s.mile77.com/?p=2039">传感器教程1</a></p></li>
+<li><p> <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html" title="Raspberry Pi 使用DS18B20温度传感器">传感器教程2</a></p></li>
+</ol>
+
+
+<p>  鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
+芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。</p>
+
+<!--more-->
+
+
+<p>  整个过程可以按照教程1，2 对应针脚完成，如果顺利基本一次成功。别人的知识产权我就不好摘录了。但是代码我优化了一下，硬件工程师的代码果然是写的异常粗犷。修改后的代码如下：</p>
+
+<pre><code>#!/usr/bin/python
+#coding=utf-8
+#Filename:temperature.py
+import os,datetime,time
+
+def calc_temperature(filename):
+    res = 0
+    valid_count = 0
+    for i in range(0,5):
+        with open(filename) as tfile:
+            text = tfile.read()
+        lines = text.split("\n")
+        firstline, secondline = lines[0], lines[1]
+        crc = firstline.split(" ")[11]
+        if crc == 'YES':
+            temperaturedata = secondline.split(" ")[9]
+            temperature = float(temperaturedata[2:])
+            temperature = temperature / 1000
+            valid_count += 1
+            res += temperature
+            print temperature
+        else:
+            with open(os.path.expanduser("~/sys.log"), "a") as err:
+                err.write("CRC Error: %s\n%s\n" % (datetime.datetime.now().strftime("%Y/%M/%d-%H:%M:%S"), text))
+        time.sleep(0.2)
+    return res/valid_count if valid_count &gt; 0 else -1
+
+#temperature = calc_temperature("input.txt")
+temperature = calc_temperature("/sys/bus/w1/devices/28-000005e31fe6/w1_slave")
+if temperature &gt; 0:
+    res = '{"value":%f}' %temperature
+    with open(os.path.expanduser('~/datafile.txt'), 'w') as output:
+        output.write(res)
+</code></pre>
+
+<p>  上传的脚本依然可以用教程里面的。Yeelink居然是一家青岛的公司，感慨省里总算有点互联网的公司了，当然网站做的是挺粗糙的。Yeelink的android手机端一直提示我登录密码出错。重置了也不行。后来发现登陆的时候不是邮箱&hellip;那你网站干嘛又能用邮箱登陆我擦&hellip;.</p>
+
+<p>  温度曲线的图片如下：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014-5/before.png" title="温度曲线" alt="温度曲线"><p class="align-center">温度曲线</p></p>
+
+<p>  开始的程序没有考虑求平均，不知道会不会有临时跳变的瞬间值。后来加了平均值之后发现多次取的结果是不一样，但是不清楚这个芯片采集的周期是多少。多次平均的结果如下所示：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014-5/data.png" title="多次平均的结果" alt="多次平均的结果"><p class="align-center">多次平均的结果</p></p>
+
+<p>  ps: 公司周末真热&hellip;.</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 树莓派GPIO引脚详解, <a href="http://wemaker.cc/60">http://wemaker.cc/60</a></p>
+
+<p>[2] 树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度“, <a href="http://s.mile77.com/?p=2039">http://s.mile77.com/?p=2039</a></p>
+
+<p>[3] Raspberry Pi 使用DS18B20温度传感器, <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html">http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OB的Offset和Limit]]></title>
@@ -941,7 +1020,7 @@ let g:applist={
 
 <p><strong>Twitter</strong></p>
 
-<p>  世界杯额时候twitter经常会时常挂掉</p>
+<p>  世界杯的时候twitter经常会时常挂掉</p>
 
 <ul>
 <li>memcache规划的问题</li>
@@ -1690,15 +1769,6 @@ alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
 <p>  针对这种问题，我们的解决方法就是：</p>
 
 <p>  <strong>作死地按f5</strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[linux下挂载ntfs分区的问题/draft]]></title>
-    <link href="http://cxh.me/2013/10/16/linux-mount-ntfs/"/>
-    <updated>2013-10-16T10:29:00+08:00</updated>
-    <id>http://cxh.me/2013/10/16/linux-mount-ntfs</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   

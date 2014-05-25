@@ -110,6 +110,44 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2012/05/25/memory-of-tomorrow/">明天的记忆</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-25T00:00:00+08:00" pubdate data-updated="true">May 25<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>孙燕姿的MV，看了好多遍</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2012/05/10/appendix-to-const-pointer/">关于Const指针的一点补充</a></h1>
     
     
@@ -2339,78 +2377,6 @@ panel1.AutoScrollPosition = p;</p></blockquote>
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/09/29/file-find-tool-fuzzy-finder/">文件查找利器&mdash;&mdash;FuzzyFinder</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-09-29T00:00:00+08:00" pubdate data-updated="true">Sep 29<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>这个东东太华丽了……相当VisualAssist的查找符号和查找文件，不过功能更强大，支持正则表达式，支持全文检索。</p>
-
-<blockquote><p>下载地址：</p>
-
-<p>需要的支持库：</p>
-
-<p>L9Library</p></blockquote>
-
-<p>另外，由于命令较多，可以配置一下命令提示，如下所示：</p>
-
-<pre><code>"fuzzyfinder
-"
-" F4和shift F4调用FuzzyFinder命令行菜单"
-"
-function! GetAllCommands()
-  redir =&gt; commands
-  silent command
-  redir END
-  return map((split(commands, "
-")[3:]),
-      \      '":" . matchstr(v:val, ''^....\zs\S*'')')
-endfunction
-
-" 自定义命令行
-let g:fuf_com_list=[':FufBuffer',':FufFile',':FufCoverageFile',':FufDir',
-            \':FufMruFile',':FufMruCmd',':FufBookmarkFile',
-            \':FufBookmarkDir',':FufTag',':FufBufferTag',
-            \':FufTaggedFile',':FufJumpList',':FufChangeList',
-            \':FufQuickfix',':FufLine',':FufHelp',
-            \":FufFile \=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]\",
-            \":FufDir \=expand('%:p:~')[:-1-len(expand('%:p:~:t'))]\",
-            \]
-nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', GetAllCommands())
-nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', g:fuf_com_list)
-</code></pre>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/4/">&larr; Older</a></li>
@@ -2473,6 +2439,10 @@ nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', g:fuf_com_list)
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/05/25/pi-temperature-sensor/">用树莓派和DS18B20监控温度变化</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
       </li>
     
@@ -2486,10 +2456,6 @@ nnoremap   :call fuf#givencmd#launch('', 0, '选择命令&gt;', g:fuf_com_list)
     
       <li class="post">
         <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/23/effective-notes/">Effective C++ 读书笔记</a>
       </li>
     
   </ul>
