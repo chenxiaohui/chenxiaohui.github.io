@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-05-25T14:53:54+08:00</updated>
+  <updated>2014-05-25T14:56:01+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -23,11 +23,12 @@
 <ol>
 <li><p> <a href="http://wemaker.cc/60" title="树莓派GPIO引脚详解">引脚定义</a></p></li>
 <li><p> <a href="http://s.mile77.com/?p=2039">传感器教程1</a></p></li>
-<li><p> <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html" title="Raspberry Pi 使用DS18B20温度传感器">传感器教程2</a>
-鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
-芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。</p></li>
+<li><p> <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html" title="Raspberry Pi 使用DS18B20温度传感器">传感器教程2</a></p></li>
 </ol>
 
+
+<p>  鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
+芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。</p>
 
 <p>  整个过程可以按照教程1，2 对应针脚完成，如果顺利基本一次成功。别人的知识产权我就不好摘录了。但是代码我优化了一下，硬件工程师的代码果然是写的异常粗犷。修改后的代码如下：</p>
 
