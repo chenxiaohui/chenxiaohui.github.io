@@ -69,7 +69,7 @@ categories: "其他"
   ps: 公司周末真热....
 
 [1]: http://wemaker.cc/60   "树莓派GPIO引脚详解"
-[2]: http://s.mile77.com/?p=2039  "树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度“
+[2]: http://s.mile77.com/?p=2039  "树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度"
 [3]: http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html  "Raspberry Pi 使用DS18B20温度传感器"
 
 
@@ -77,6 +77,6 @@ categories: "其他"
 
 >\[1] 树莓派GPIO引脚详解, <http://wemaker.cc/60>
 
->\[2] 树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度“, <http://s.mile77.com/?p=2039>
+>\[2] 树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度, <http://s.mile77.com/?p=2039>
 
 >\[3] Raspberry Pi 使用DS18B20温度传感器, <http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html>
