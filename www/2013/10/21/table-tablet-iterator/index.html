@@ -154,18 +154,18 @@
 
 <p><strong>断言失败</strong>：</p>
 
-<blockquote><ol>
+<ol>
 <li> 接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)</li>
 <li> sql查询结果为空</li>
-</ol></blockquote>
+</ol>
 
 
 <p><strong>OB_ITER_END</strong>：</p>
 
-<blockquote><ol>
+<ol>
 <li> 迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。</li>
 <li> 如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。</li>
-</ol></blockquote>
+</ol>
 
 
 <p><strong>OB_NOT_INIT</strong>:</p>
@@ -186,10 +186,10 @@
 
 <p><strong>OB_TABLE_NOT_EXIST</strong>：</p>
 
-<blockquote><ol>
+<ol>
 <li> 获得表schema的时候发现schema中不存在这张表</li>
 <li> 查询到的结果有空洞（某个范围下没有当前表的tablet）</li>
-</ol></blockquote>
+</ol>
 
 
 <p><strong>OB_NO_RESULT</strong>：</p>
@@ -198,20 +198,20 @@
 
 <p><strong>OB_ERROR</strong>：可能情况</p>
 
-<blockquote><ol>
+<ol>
 <li> 当前表的元数据表没有指定</li>
 <li> 获取root_table_name的时候写入失败</li>
 <li> proxy读取tablet的时候结果加入返回列表的时候失败。</li>
 <li> proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）</li>
-</ol></blockquote>
+</ol>
 
 
 <p><strong>OB_ENTRY_NOT_EXIST</strong>：</p>
 
-<blockquote><ol>
+<ol>
 <li> 当前表的元数据表schema不存在。</li>
 <li> tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet</li>
-</ol></blockquote>
+</ol>
 
 
 <p><strong>OB_SCHEMA_ERROR</strong>：</p>
@@ -300,7 +300,7 @@
 
 <h3>实现机理</h3>
 
-<blockquote><ol>
+<ol>
 <li> 首先置type为both_iter,两个迭代器都前进一步</li>
 <li> 如果left_iter的结果> right_iter，吐出right_iter的结果，置type为LEFT_ITER，保存两个结果。</li>
 <li> 同理如果right>left,吐出right_iter的结果，置type为RIGHT_ITER,保存两个结果。</li>
@@ -309,7 +309,7 @@
 <li> 如果有单边迭代器中止，比如左边，则置type=RIGHT_ITER, 迭代到结束，反之亦然。</li>
 <li> 正常中止条件：两边迭代器都中止。</li>
 <li> OB_ITER_END情况下type返回值决定了哪边先结束。</li>
-</ol></blockquote>
+</ol>
 
 </div>
 

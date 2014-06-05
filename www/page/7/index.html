@@ -315,10 +315,10 @@ public void Msg(string message)
 
 <p>具体的解决方法参考<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a>一文中给出了一种方法，即每次插入记录的时候去服务器查询自增长种子值，然后把结果放到DataTable对应自增长ID列的AutoIncrementSeed属性里，主要的问题有如下两点：</p>
 
-<blockquote><ol>
+<ol>
 <li> 我不知道怎么获取……SQLServer里可以用DBCC CheckIdent([User],NoReseed)语句，但是这个语句在代码里貌似是不返回结果的。</li>
 <li> 如果两个用户同时操作，比如A添加了一条记录未提交，B也添加了一条记录，这时两个用户的AutoIncrementSeed是一样的，之后也会存在更新的并发问题。</li>
-</ol></blockquote>
+</ol>
 
 
 <p>其实最简单的解决方法就是每次更新之后把新的记录返回一下，替换当前DataTable，问题不就解决了么。参见<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">代码</a></p>
@@ -552,11 +552,11 @@ public void Msg(string message)
 
 <p>“长度、分隔符加校验的TCP分包设计(C#)”<a href="http://www.roybit.com/wp-content/uploads/2011/02/Client.cs">1</a>一文提出了一种综合长度和特殊字符定界两种TCP分包方式的新的分包方式，原文给出的实现没有考虑长度字符被分开两次传播的情况，同时原算法没有明确的算法描述，基于多种情况的综合，容易遗漏，这里给出改进后的算法：</p>
 
-<blockquote><ol>
+<ol>
 <li> 如果WaitForLength置位，则拼上原来的字段，凑齐长度字段信息。</li>
 <li> 如果LeftLength不为0，则判断剩余缓冲区是否包含了报文剩余部分，如果包含则拼合字段，判断结尾是不是结束定界符>，否则拼合剩余缓冲区，LeftLength更新。</li>
 <li> 找到一个开始定界符，否则拼合剩余缓冲区，等待下次数据到达。</li>
-</ol></blockquote>
+</ol>
 
 
 <p>总的来说，就是通过开始定界符标定一个报文的开始，通过长度字段得到报文的结尾位置，通过结尾位置是不是结束定界符>判断一个报文是不是完整，如不完整则继续找寻下个开始定界符。</p>
@@ -629,10 +629,10 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
 <p>分包其实是个挺常见的问题，从Socket到串口，只要做流式套接字，都要在底层实现一个分包机制，然后给上层一个接口，实现对底层的透明。大体有如下两种常见的方式</p>
 
-<blockquote><ol>
+<ol>
 <li> 特殊字符做分界符：比如，之间的认为是一个完整报文。</li>
 <li> 长度前缀：在报文前加一个长度信息，指明报文的长度。</li>
-</ol></blockquote>
+</ol>
 
 
 <p>两种方式的利弊如下表：</p>
@@ -955,11 +955,11 @@ Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
 <p>看完之后又两个突出的感觉:</p>
 
-<blockquote><ol>
+<ol>
 <li> 穷人的孩子早当家</li>
 <li> 成功的创业者貌似都没有读完学位，无论是大学还是研究生，such as 乔布斯乔大爷和盖茨大爷，以及facebook的创始人马克·扎克伯格。</li>
 <li> 所以，奋发图强，争取早日退学才是王道啊。</li>
-</ol></blockquote>
+</ol>
 
 </div>
   
@@ -1688,12 +1688,12 @@ ps:&ldquo;一开到北京&#8221;之前明显有一句tmd，但是字幕给和谐
 
 <p>关于C#序列化的文章真的是好多，但是内容大致一样，主要分四类：</p>
 
-<blockquote><ol>
+<ol>
 <li> BinarySerialize</li>
 <li> SoapSerialize</li>
 <li> XmlSerialize</li>
 <li> JSON.Net和DataContractJsonSerializer</li>
-</ol></blockquote>
+</ol>
 
 
 <p>最近的一个项目需要使用Socket进行通信，所以必然涉及序列化的问题。使用BinarySerialize序列化之后发现无论如何获取不了序列化后的实际长度，代码如下</p>

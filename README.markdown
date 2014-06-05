@@ -36,3 +36,64 @@ THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 #### If you want to be awesome.
 - Proudly display the 'Powered by Octopress' credit in the footer.
 - Add your site to the Wiki so we can watch the community grow.
+
+
+##  Modify (by Chenxiaohui)
+
+### pandoc support
+
+create a markdown file in source/pandoc, use {% pandoc test.md %} to include this file in. Blog will generate html from this markdown and include the html.
+
+### indent support
+
+lines start with two spaces will generate a two-word indent. eg:
+
+    no indent
+
+      indent
+
+      * item (space will be ignored)
+
+    > * indent item
+
+effect
+
+    ![effect](effect.png "effect")
+
+### image support
+
+there are three kind of image syntax:
+
+     {% img  /images/2014-5 "title text" "title text" %}
+     {% img img-polaroid center /images/2013-10 "title text" "title text" %}
+     ![alt](url "title")
+
+img src directory is source/images/
+
+rsz.sh helps you  resize file
+
+### refs
+
+ref has three types:
+
+    [1]: url   "alt"
+    [2]:
+    [3]:
+
+    [id]: mailto:url   "alt"
+    [id]
+
+    [id]: url   "alt"
+    [id]
+
+sublime snippets helps to make refs. and generateref plugin helps to make refs list.
+
+
+### more
+
+<!--more--> separates page
+
+
+### isolate, integrate
+
+isolate moves other docs into stash, integrate moves stashs to posts

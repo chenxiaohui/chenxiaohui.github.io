@@ -1,0 +1,32 @@
+#!/bin/bash
+
+quality=85
+select method in "decrease quality" "resize" "do nothing"; do
+    break
+done
+echo "do" $method
+if [ "$method" = "decrease quality" ]; then
+    if [ $# = 1 ]; then
+        convert -strip +profile "*" -quality $quality $1 $1
+    else
+        find . -iname "*.png" -size +200k -exec convert -strip +profile "*" -quality $quality {} {} \;
+        find . -iname "*.jpg" -size +200k -exec convert -strip +profile "*" -quality $quality {} {} \;
+    fi
+elif [ "$method" = "resize" ]; then
+    select size in "800x600" "180x135" "custom"; do
+        break
+    done
+    if [ $size = "custom" ]; then
+        read $size
+    fi
+    if [ $# = 1 ]; then
+        convert $1 -resize $size $1
+    else
+        for i in `find . -size +200k`
+            do
+                echo "resize image $i to 800x600"
+                convert $i -resize $size $i
+        done
+    fi
+fi
+

@@ -139,10 +139,10 @@
 
 <p>具体的解决方法参考<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">1</a>一文中给出了一种方法，即每次插入记录的时候去服务器查询自增长种子值，然后把结果放到DataTable对应自增长ID列的AutoIncrementSeed属性里，主要的问题有如下两点：</p>
 
-<blockquote><ol>
+<ol>
 <li> 我不知道怎么获取……SQLServer里可以用DBCC CheckIdent([User],NoReseed)语句，但是这个语句在代码里貌似是不返回结果的。</li>
 <li> 如果两个用户同时操作，比如A添加了一条记录未提交，B也添加了一条记录，这时两个用户的AutoIncrementSeed是一样的，之后也会存在更新的并发问题。</li>
-</ol></blockquote>
+</ol>
 
 
 <p>其实最简单的解决方法就是每次更新之后把新的记录返回一下，替换当前DataTable，问题不就解决了么。参见<a href="http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar">代码</a></p>
