@@ -55,6 +55,7 @@ lines start with two spaces will generate a two-word indent. eg:
       * item (space will be ignored)
 
     > * indent item
+      * indent item 2
 
 effect
 
@@ -97,3 +98,16 @@ sublime snippets helps to make refs. and generateref plugin helps to make refs l
 ### isolate, integrate
 
 isolate moves other docs into stash, integrate moves stashs to posts
+
+
+### hiearchy
+
+    # first
+    ## sec
+    ## third
+    ** bold **
+    no indent
+    * item
+      indent
+      > * indent item
+

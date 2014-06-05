@@ -156,28 +156,28 @@
 
 <p class="indent">常见的<strong>冗余</strong>设计。</p>
 
-<ul>
+<blockquote><ul>
 <li>RAID,Replica,Erasure Code</li>
 <li>BackUp, Reassign,Retry</li>
 <li>Master-Slave,Mirror,RAC..</li>
 </ul>
-
+</blockquote>
 
 <p class="indent">减少对外部系统强依赖</p>
 
-<ul>
+<blockquote><ul>
 <li>缓存</li>
 <li>异步替代同步</li>
 </ul>
-
+</blockquote>
 
 <p class="indent">对外部依赖不信任</p>
 
-<ul>
+<blockquote><ul>
 <li>结果进行</li>
 <li>失败情况下failover（重试时间次数需要控制）</li>
 </ul>
-
+</blockquote>
 
 <p class="indent">有效的内部监控</p>
 
@@ -185,34 +185,34 @@
 
 <p class="indent">无状态最好</p>
 
-<ul>
+<blockquote><ul>
 <li>有状态定期做持久化（checkpoint/commitlog)</li>
 </ul>
-
+</blockquote>
 
 <p class="indent">有效的故障隔离</p>
 
-<ul>
+<blockquote><ul>
 <li>故障检测，黑白名单，流量分配</li>
 <li>黑名单要有恢复机制</li>
 </ul>
-
+</blockquote>
 
 <p><strong>减少损失</strong></p>
 
 <p class="indent">过载保护</p>
 
-<ul>
+<blockquote><ul>
 <li>发现故障，并限制资源</li>
 </ul>
-
+</blockquote>
 
 <p class="indent">应用降级</p>
 
-<ul>
+<blockquote><ul>
 <li>关闭部分不重要的功能(某些情况下用户也感觉不出来)</li>
 </ul>
-
+</blockquote>
 
 <p class="indent">有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。</p>
 
@@ -222,40 +222,40 @@
 
 <p class="indent">世界杯的时候twitter经常会时常挂掉</p>
 
-<ul>
+<blockquote><ul>
 <li>memcache规划的问题</li>
 <li>cache也要注意设计</li>
 </ul>
-
+</blockquote>
 
 <p><strong>Foursquare</strong></p>
 
 <p class="indent">数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)</p>
 
-<ul>
+<blockquote><ul>
 <li>数据迁走之后有空洞，页不释放</li>
 <li>还好毕设的时候数据量不大</li>
 </ul>
-
+</blockquote>
 
 <p><strong>Amazon</strong></p>
 
 <p class="indent">EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络</p>
 
-<ul>
+<blockquote><ul>
 <li>相应超时，认为丢失副本</li>
 <li>副本复制，继续加剧网络问题</li>
 </ul>
-
+</blockquote>
 
 <p><strong>Weibo</strong></p>
 
 <p class="indent">热点存在，cache失效，一瞬间所有访问db</p>
 
-<ul>
+<blockquote><ul>
 <li>加锁，一个人获取内容回填cache之后就不会有人去访问db了</li>
 </ul>
-
+</blockquote>
 
 <p><strong>Facebook</strong></p>
 
@@ -269,12 +269,12 @@
 
 <p><strong>可用性</strong></p>
 
-<ul>
+<blockquote><ul>
 <li>BASE:基本可用</li>
 <li>CAP:No CAP, No CP, A是很重要的</li>
 <li><a href="">20 Key High Availability Design Principles</a></li>
 </ul>
-
+</blockquote>
 </div>
 
 

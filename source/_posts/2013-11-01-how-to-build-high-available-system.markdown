@@ -31,18 +31,18 @@ categories: "Oceanbase"
 
   常见的**冗余**设计。
 
-  * RAID,Replica,Erasure Code
+>  * RAID,Replica,Erasure Code
   * BackUp, Reassign,Retry
   * Master-Slave,Mirror,RAC..
 
   减少对外部系统强依赖
 
-  * 缓存
+>  * 缓存
   * 异步替代同步
 
   对外部依赖不信任
 
-  * 结果进行
+>  * 结果进行
   * 失败情况下failover（重试时间次数需要控制）
 
   有效的内部监控
@@ -51,22 +51,22 @@ categories: "Oceanbase"
 
   无状态最好
 
-  * 有状态定期做持久化（checkpoint/commitlog)
+>  * 有状态定期做持久化（checkpoint/commitlog)
 
   有效的故障隔离
 
-  * 故障检测，黑白名单，流量分配
+>  * 故障检测，黑白名单，流量分配
   * 黑名单要有恢复机制
 
 **减少损失**
 
   过载保护
 
-  * 发现故障，并限制资源
+>  * 发现故障，并限制资源
 
   应用降级
 
-  * 关闭部分不重要的功能(某些情况下用户也感觉不出来)
+>   * 关闭部分不重要的功能(某些情况下用户也感觉不出来)
 
   有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。
 
@@ -76,28 +76,28 @@ categories: "Oceanbase"
 
   世界杯的时候twitter经常会时常挂掉
 
-  * memcache规划的问题
-  * cache也要注意设计
+>  * memcache规划的问题
+*   cache也要注意设计
 
 **Foursquare**
 
   数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)
 
-  * 数据迁走之后有空洞，页不释放
+>  * 数据迁走之后有空洞，页不释放
   * 还好毕设的时候数据量不大
 
 **Amazon**
 
   EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络
 
-  * 相应超时，认为丢失副本
+>  * 相应超时，认为丢失副本
   * 副本复制，继续加剧网络问题
 
 **Weibo**
 
   热点存在，cache失效，一瞬间所有访问db
 
-  * 加锁，一个人获取内容回填cache之后就不会有人去访问db了
+>  * 加锁，一个人获取内容回填cache之后就不会有人去访问db了
 
 **Facebook**
 
@@ -111,7 +111,7 @@ categories: "Oceanbase"
 
 **可用性**
 
-  * BASE:基本可用
+>  * BASE:基本可用
   * CAP:No CAP, No CP, A是很重要的
   * [20 Key High Availability Design Principles][2]
 
