@@ -31,9 +31,9 @@ categories: "Oceanbase"
 
   常见的**冗余**设计。
 
->  * RAID,Replica,Erasure Code
-  * BackUp, Reassign,Retry
-  * Master-Slave,Mirror,RAC..
+>* RAID,Replica,Erasure Code
+* BackUp, Reassign,Retry
+* Master-Slave,Mirror,RAC..
 
   减少对外部系统强依赖
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 软件发布 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ruan-jian-fa-bu/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-05T17:55:30+08:00</updated>
+  <updated>2014-06-05T18:45:45+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/06/05/ceshi/"/>
+    <updated>2014-06-05T18:03:00+08:00</updated>
+    <id>http://cxh.me/2014/06/05/ceshi</id>
+    <content type="html"><![CDATA[<ul>
+<li>item</li>
+<li>item</li>
+<li>item</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[支持上传文件的xhEditor for Typecho EX插件]]></title>

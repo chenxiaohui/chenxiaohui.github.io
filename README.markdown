@@ -44,6 +44,8 @@ THE SOFTWARE IS PROVIDED ‘AS IS’, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 create a markdown file in source/pandoc, use {% pandoc test.md %} to include this file in. Blog will generate html from this markdown and include the html.
 
+use snippets tab to create table, pan to insert pandoc syntax
+
 ### indent support
 
 lines start with two spaces will generate a two-word indent. eg:
@@ -72,6 +74,8 @@ there are three kind of image syntax:
 img src directory is source/images/
 
 rsz.sh helps you  resize file
+
+use img/im snippets to create table
 
 ### refs
 
@@ -111,3 +115,6 @@ isolate moves other docs into stash, integrate moves stashs to posts
       indent
       > * indent item
 
+### octopress sublime plugin
+
+isolate/generate/preview is useful
