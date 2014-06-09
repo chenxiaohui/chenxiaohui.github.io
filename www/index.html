@@ -110,6 +110,80 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2014/06/09/defensive-strategy/">常见的防御性编程策略</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-09T11:51:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p class="indent">针对出错之后不能恢复的情况，最好的办法是写另外一个对象，确认成功之后原子的交换对象。同时也能避免对一个对象的修改持锁时间过长。这种思路广泛用在很多地方。</p>
+
+<ol>
+<li> 保存备份文件，当前的文件有可能有人在读在写，所以每次线程都写一个单独的备份文件，最后原子的覆盖之前的文件。</li>
+<li> 升级系统。自动升级的时候下载了新的可执行文件，然后删除原来的文件，替换成下载文件。当然估计不会有人直接覆盖之前的文件。</li>
+<li> 一些NOSQL的冻结。OB里面比较典型的就是UpdateServer的内存冻结，当然是copy on write实现的，最后原子的切换B树的根指针。主要是为了minor fqreeze的时候依然能提供写入服务。</li>
+<li> =运算符重载的时候，如果当前类持有的对象先释放了，但是又没能成功复制需要拷贝的对象，就会有悬空的风险。effective c++里面给了一种实现方式，就是先生成一份拷贝，再swap。</li>
+</ol>
+
+
+<p>一个简单的例子如下：</p>
+
+<pre><code>int do_checkpoint()
+{
+  int ret = OB_SUCCESS;
+  if (enable_backup_)
+  {
+    if (OB_SUCCESS != (ret = write_to_file(tmp_file_path_)))
+    {
+      TBSYS_LOG(WARN, "failed to write schema backup file:ret[%d]", ret);
+    }
+    else
+    {
+      //copy tmp to schema.ini
+      unlink(schema_file_path_);
+      if (0 == rename(tmp_file_path_, schema_file_path_))
+      {
+        TBSYS_LOG(INFO, "save schema to backup succ. refresh_times_:%ld", refresh_times_);
+      }
+      else
+      {
+        TBSYS_LOG(WARN, "rename new schema file failed:ret[%d]", ret);
+        ret = OB_ERR_UNEXPECTED;
+      }
+    }
+  }
+  return ret;
+}
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/">vim7.4 && Vimgdb编译</a></h1>
     
     
@@ -1595,54 +1669,6 @@ else
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/10/11/post-review-conflict-under-git-svn/">Post-review在svn和git共同存在下的冲突问题</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-11T21:24:00+08:00" pubdate data-updated="true">Oct 11<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p class="indent">有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如</p>
-
-<ul>
-<li>不习惯某种版本管理工具，希望通过另一种熟悉的版本管理工具进行管理</li>
-<li>有些特性是其他的版本管理工具所没有的</li>
-<li>开发的版本管理和自己的分支管理策略之间有冲突，开发的版本库不允许随便建立测试分支</li>
-</ul>
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/10/11/post-review-conflict-under-git-svn/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1704,6 +1730,10 @@ else
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/06/09/defensive-strategy/">常见的防御性编程策略</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/">vim7.4 && vimgdb编译</a>
       </li>
     
@@ -1717,10 +1747,6 @@ else
     
       <li class="post">
         <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
       </li>
     
   </ul>
