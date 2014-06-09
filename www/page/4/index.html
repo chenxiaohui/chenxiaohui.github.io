@@ -110,6 +110,58 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/">关于.NET中的AutoScrollPosition属性</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-11-13T00:00:00+08:00" pubdate data-updated="true">Nov 13<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>今天写一个能滚动的PictureBox，PictureBox默认没有滚动条，所以又两种实现方式，要么在PictureBox外套一个规定大小的Panel，然后设置Panel有滚动条，要么单独做一个UserControl，自己管理重绘。</p>
+
+<p>但是都发现一个问题，我写拖动的代码的时候，获得了两次拖动事件之间的移动距离，然后想加到AutoScrollPosition属性上，控制滚动，但是总会跳回原点。经过了无数次艰苦卓绝的测试，最后发现一个哭笑不得的问题。</p>
+
+<p>.Net实在太智能了，智能的你都想不到他智能哪里去了。</p>
+
+<blockquote><p>Point p = new Point(20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>上面这句会设定有滚动20个像素</p>
+
+<blockquote><p>Point p = new Point(-20, 0);
+panel1.AutoScrollPosition = p;</p></blockquote>
+
+<p>下面这句会调回原点，原因是你设置AutoScrollPosition=20的时候，.NET自动给20加了一个符号，AutoScrollPosition变成了-20，这都好理解，问题是你累加AutoScrollPosition的时候，开始是20，取出来就变成-20，于是你再加20，刚好回原点。这是一个多么奇葩的结果，你跟一个人说，滚，然后他努力的每次向前移动20cm，结果他在原地振动了……</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2011/10/27/safe-to-go-out-in-team/">爆笑比利时公益广告，还是组队出门比较安全！(zz From ipc.me）</a></h1>
     
     
@@ -1726,52 +1778,6 @@ ec(test.prototype.age);
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2011/08/16/the-idea-of-people-of-two-generation/">关于两代人的理念</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-08-16T00:00:00+08:00" pubdate data-updated="true">Aug 16<span>th</span>, 2011</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>回了趟家，越发觉得两代人的理念迥异。</p>
-
-<p>山东人确实厚道，这确实是事实，在北京混迹很久了之后回去觉得山东人真是一点心眼都没有。上海问路据说是要钱的，北京问路肯定会给你指，只不过北京人习惯贫几句，在山东问路人能把你带过去……</p>
-
-<p>但是直接导致的问题就是山东整体还是思想保守。顾维钧先生在巴黎和会上阐述为什么中国不能失去山东，说了一句非常精彩的话：山东之于中国，相当于耶路撒冷之于西方。这就把齐鲁之地，孔孟之乡上升到了中国人精神家园的高度。值得欣慰的是，山东还保留着孔孟遗风，值得深思的是，山东有两个比较重要的问题：新思想进不来，人走不出去。</p>
-
-<p>很早的时候山东台有个节目叫天南地北山东人，山东人确实天南地北，但是大多数在省里。举个简单的例子，鲁菜号称八大菜系之一，到省外找找，除了湘菜就是川菜或者粤菜，你永远看不到鲁菜的影子。大多数山东家长的想法也是，如果孩子分数不高，宁可报省里比较差的学校也不愿出省找个好点的学校，工作也是只要省里混得下去，绝不出省。闯关东的都是活不下去的，但凡省里有口饭吃，就不北上；而下南洋的，真不见得都是活不下去的。</p>
-
-<p>不过我觉得我们这一代的想法还是变了不少。也许是我比较另类吧。我们的上一辈的想法多半是保守，求安稳，而我们这一代已经开始慢慢追求开拓和探索。中国人的精神普遍还是保守。英国人从不忌讳皇家海军出身于皇家海盗的事实，很多人崇拜海盗的冒险精神，而中国人绝没有说自己爷爷是土匪的。这或许是中国社会整体缺失的精神。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/5/">&larr; Older</a></li>
@@ -1835,6 +1841,10 @@ ec(test.prototype.age);
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/06/09/oceanbase-introduction-note/"></a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/06/09/defensive-strategy/">常见的防御性编程策略</a>
       </li>
     
@@ -1848,10 +1858,6 @@ ec(test.prototype.age);
     
       <li class="post">
         <a href="/2014/05/25/pi-temperature-sensor/">用树莓派和DS18B20监控温度变化</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/18/offset-and-limit-in-ob/">OB的Offset和Limit</a>
       </li>
     
   </ul>

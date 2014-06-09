@@ -300,68 +300,29 @@ ID 取值约定如下:要求 User Table ID 从 3000 以后取值。</p>
 <p>如下所示：</p>
 
 <table>
-<caption>表1 内部表表名和ID对应关系</caption>
-<col width="27%" />
-<col width="32%" />
-<col width="39%" />
+<caption>表1 总结下对象生成类的函数的编译器行为</caption>
 <thead>
 <tr class="header">
-<th align="left">Table Type</th>
-<th align="left">Table Name</th>
-<th align="center">Table ID</th>
+<th align="center">函数</th>
+<th align="center">没有声明的情况下是否自动生成</th>
+<th align="center">是否默认调用基类的对应函数</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">User Table</td>
-<td align="left">User Table Name</td>
-<td align="center">User Table ID</td>
+<td align="center">构造函数</td>
+<td align="center">是</td>
+<td align="center">是</td>
 </tr>
 <tr class="even">
-<td align="left">User Meta Table</td>
-<td align="left">__User Table ID.META</td>
-<td align="center">User Table ID – 1</td>
+<td align="center">拷贝构造</td>
+<td align="center">是</td>
+<td align="center">否,调用基类默认构造函数构造基类对象</td>
 </tr>
 <tr class="odd">
-<td align="left">User Root Table</td>
-<td align="left">__User Table ID.ROOT</td>
-<td align="center">User Table ID – 2</td>
-</tr>
-<tr class="even">
-<td align="left">First Root Table</td>
-<td align="left">__first_root_table</td>
-<td align="center">111</td>
-</tr>
-</tbody>
-</table>
-
-
-<table>
-<caption>表2 Rowkey构成规则</caption>
-<col width="27%" />
-<col width="72%" />
-<thead>
-<tr class="header">
-<th align="left">Table Type</th>
-<th align="center">Table Rowkey</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">User Table</td>
-<td align="center">User Table Rowkey Columns</td>
-</tr>
-<tr class="even">
-<td align="left">User Meta Table</td>
-<td align="center">Cluster ID + Userr Table ID + User Table Rowkey Columns</td>
-</tr>
-<tr class="odd">
-<td align="left">User Root Table</td>
-<td align="center">Cluster ID + User Meta Table ID + User Table ID + User Table Rowkey Columns</td>
-</tr>
-<tr class="even">
-<td align="left">First Root Table</td>
-<td align="center">Cluster ID + User Root Table ID</td>
+<td align="center">等号运算符重载</td>
+<td align="center">否</td>
+<td align="center">否</td>
 </tr>
 </tbody>
 </table>
