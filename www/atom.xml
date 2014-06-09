@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-09T20:54:43+08:00</updated>
+  <updated>2014-06-09T20:57:05+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -159,12 +159,15 @@
 
 <h3>oceanbase数据校验</h3>
 
-<p>磁盘读写，每个记录带64位CRC
-网络传输：每个网络包带64位CRC
-多副本多个crc
-修改增量多副本：64位CRC校验
-redolog：每条带64位crc
-每个表每个列64位crc</p>
+<ul>
+<li>磁盘读写，每个记录带64位CRC</li>
+<li>网络传输：每个网络包带64位CRC</li>
+<li>多副本多个crc</li>
+<li>修改增量多副本：64位CRC校验</li>
+<li>redolog：每条带64位crc</li>
+<li>每个表每个列64位crc</li>
+</ul>
+
 
 <p>灰度升级</p>
 
