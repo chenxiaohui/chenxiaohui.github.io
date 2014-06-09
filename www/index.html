@@ -110,7 +110,7 @@
       
   <header class="page-header">
     
-      <h2 class="entry-title"><a href="/2014/06/09/oceanbase-introduction-note/"></a></h1>
+      <h2 class="entry-title"><a href="/2014/06/09/oceanbase-introduction-note/">Oceanbase简介 - 笔记</a></h1>
     
     
       <p class="meta">
@@ -133,9 +133,46 @@
   </header>
 
 
-  <div class="entry-content">
+  <div class="entry-content"><h1>数据库简介</h1>
+
+<h2>数据库的特点</h2>
+
+<ul>
+<li>原子性 ： 一笔账，要么转了，要么没转</li>
+<li>一致性 ： 出账入账必须一致</li>
+<li>隔离性 ： 多人转账不得相互影响</li>
+<li>持久性 ： 转账一旦发生，持久存在</li>
+</ul>
+
+
+<p>还有两个：</p>
+
+<ul>
+<li>高可用</li>
+<li>高性能</li>
+</ul>
+
+
+<h2>数据库 vs 计算机</h2>
+
+<p>服务器：处理器，内存，磁盘，网卡</p>
+
+<ul>
+<li>原子性：计算机只能保证寄存器的原子</li>
+<li>一致性：单个服务器上数据一致性比较好做</li>
+<li>隔离性：多个事务串行处理隔离性不好做</li>
+<li>持久性：磁盘或者固态盘才有持久性</li>
+<li>高可用：磁盘年均故障率1%-3%，单个磁盘可用率99%-99.9%</li>
+<li>高性能：服务器性能</li>
+</ul>
+
+
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/2014/06/09/oceanbase-introduction-note/">阅读全文</a>
+    </footer>
   
 
 
@@ -1718,7 +1755,7 @@ else
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
-        <a href="/2014/06/09/oceanbase-introduction-note/"></a>
+        <a href="/2014/06/09/oceanbase-introduction-note/">Oceanbase简介 - 笔记</a>
       </li>
     
       <li class="post">

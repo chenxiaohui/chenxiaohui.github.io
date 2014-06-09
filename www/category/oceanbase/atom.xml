@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
+  <title><![CDATA[Category: OceanBase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-09T19:33:34+08:00</updated>
+  <updated>2014-06-09T20:54:43+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,167 +14,15 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
-    <link href="http://cxh.me/2014/06/09/oceanbase-introduction-note/"/>
-    <updated>2014-06-09T19:01:00+08:00</updated>
-    <id>http://cxh.me/2014/06/09/oceanbase-introduction-note</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[常见的防御性编程策略]]></title>
-    <link href="http://cxh.me/2014/06/09/defensive-strategy/"/>
-    <updated>2014-06-09T11:51:00+08:00</updated>
-    <id>http://cxh.me/2014/06/09/defensive-strategy</id>
-    <content type="html"><![CDATA[<p>  针对出错之后不能恢复的情况，最好的办法是写另外一个对象，确认成功之后原子的交换对象。同时也能避免对一个对象的修改持锁时间过长。这种思路广泛用在很多地方。</p>
+    <title type="html"><![CDATA[OceanBase源码分析-tablet相关]]></title>
+    <link href="http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet/"/>
+    <updated>2013-09-16T15:49:00+08:00</updated>
+    <id>http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet</id>
+    <content type="html"><![CDATA[<h3>ObRootTabletInfo</h3>
 
-<ol>
-<li> 保存备份文件，当前的文件有可能有人在读在写，所以每次线程都写一个单独的备份文件，最后原子的覆盖之前的文件。</li>
-<li> 升级系统。自动升级的时候下载了新的可执行文件，然后删除原来的文件，替换成下载文件。当然估计不会有人直接覆盖之前的文件。</li>
-<li> 一些NOSQL的冻结。OB里面比较典型的就是UpdateServer的内存冻结，当然是copy on write实现的，最后原子的切换B树的根指针。主要是为了minor fqreeze的时候依然能提供写入服务。</li>
-<li> =运算符重载的时候，如果当前类持有的对象先释放了，但是又没能成功复制需要拷贝的对象，就会有悬空的风险。effective c++里面给了一种实现方式，就是先生成一份拷贝，再swap。</li>
-</ol>
+<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
 
-
-<p>一个简单的例子如下：</p>
-
-<pre><code>int do_checkpoint()
-{
-  int ret = OB_SUCCESS;
-  if (enable_backup_)
-  {
-    if (OB_SUCCESS != (ret = write_to_file(tmp_file_path_)))
-    {
-      TBSYS_LOG(WARN, "failed to write schema backup file:ret[%d]", ret);
-    }
-    else
-    {
-      //copy tmp to schema.ini
-      unlink(schema_file_path_);
-      if (0 == rename(tmp_file_path_, schema_file_path_))
-      {
-        TBSYS_LOG(INFO, "save schema to backup succ. refresh_times_:%ld", refresh_times_);
-      }
-      else
-      {
-        TBSYS_LOG(WARN, "rename new schema file failed:ret[%d]", ret);
-        ret = OB_ERR_UNEXPECTED;
-      }
-    }
-  }
-  return ret;
-}
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[总结Oceanbase编码中需要注意的一些细节]]></title>
-    <link href="http://cxh.me/2014/06/09/oceanbase-cplusplus-note/"/>
-    <updated>2014-06-09T10:38:00+08:00</updated>
-    <id>http://cxh.me/2014/06/09/oceanbase-cplusplus-note</id>
-    <content type="html"><![CDATA[<ol>
-<li><p>所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：</p>
-
-<pre><code> if (it != NULL)
- {
-     xxx
- }
- else
- {
-     it不能再使用了
- }
-</code></pre></li>
-<li><p>不要使用strcpy而应该使用strncpy。</p></li>
-<li><p>所有成员函数都应该考虑是否为const函数.</p></li>
-<li><p>所有函数都需要判断传入值是否有效。</p></li>
-<li><p>有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如：</p>
-
-<pre><code> //这样是很容易造成问题的
- int * xxx(xxx)
- {
-     int* it = NULL;
-     for(int * it =xxx;it != xxx; it ++)
-     {}
- }
- //而应该这样
- int * xxx(xxx)
- {
-     int* ret = NULL;
-     for (int * it = xxx; it != xx; it++)
-     {ret = it}
-     return ret;
- }
-</code></pre></li>
-<li><p>所有的错误码都需要向上抛出。错误码不能被隐藏，任何语句执行的前提条件都是之前没有错误。循环尤其需要注意。如：</p>
-
-<pre><code> for (int i = 0; i &lt; xx; i++)
- {
-     xxx
- }
- //需要改成
- for (OB_SUCCESS == ret &amp;&amp; int i = 0; i &lt; xx; i++)
- {
-     xxx
- }
-</code></pre></li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OB的Offset和Limit]]></title>
-    <link href="http://cxh.me/2014/04/18/offset-and-limit-in-ob/"/>
-    <updated>2014-04-18T20:54:00+08:00</updated>
-    <id>http://cxh.me/2014/04/18/offset-and-limit-in-ob</id>
-    <content type="html"><![CDATA[<p>   数据库的实现里面很重要的两个功能就是Limit和Offset,在web里面，这是分页的基本功能依赖。对于用户来说，一屏不可能显示全部的数据，所以数据请求可以拆散成多个，每次从上次的offset开始读取下一个limit的数据。有些情况下， 我们不需要知道一共有多少数据，只需要循环获取并统计期望的数据和得到的数据，直到两个不匹配。在实际web使用中，这种策略一般不使用，因为预先知道分页数。当然我也真见过这么用的，这nm简直就是无底洞。不知道点到什么时候是个头。</p>
-
-<p>   相应的，正常的策略我们是需要知道数据有多少页的。也就有如下几种策略：</p>
-
-<ol>
-<li>. 最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。</li>
-<li>. 发一条count()先统计所有数据，然后计算分页数。 很多分页控件都直接支持count参数，分页会计算offset。</li>
-<li>. 数据量非常大的情况下，count()也会造成额外的开销。也就有如下几种方式优化。
-
-<ol>
-<li> 单独一张表存储count()，每次有插入数据的时候都同时更新count()，插入过程可以做成存储过程减少网络开销。或者其实我们需要的只是分页数，而每屏显示的数量往往又是固定的，可以直接存分页数。</li>
-<li> 有时候自增长ID也可以直接用来做这个。当然问题是不能删数据。</li>
-</ol>
-</li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用来把一个线程的日志输出到单独文件的脚本]]></title>
-    <link href="http://cxh.me/2014/02/14/vim-script-to-write-thread-log/"/>
-    <updated>2014-02-14T21:32:00+08:00</updated>
-    <id>http://cxh.me/2014/02/14/vim-script-to-write-thread-log</id>
-    <content type="html"><![CDATA[<p>  很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。</p>
-
-<pre><code>"plugin-写一个线程的log到单独文件
-function! ThreadLog()
-    let file = readfile(expand("%:p"))
-    let pattern = expand('&lt;cword&gt;')
-    let matches = []
-    for line in file
-        let match = matchstr(line, pattern)
-        if(!empty(match))
-           call add(matches, line)
-        endif
-    endfor
-    let s:filename= pattern . '.log'
-    call writefile(matches, s:filename )
-endf
-nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
-</code></pre>
-
-<p>  使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。</p>
-
-<p>  好久没写博客了，甚觉我已经离文人很远了。在这个欢乐祥和的日子里，实在是觉得生活充满了顾虑。人生就是这么多矛盾啊，不确定是种状态，确定也是种状态，想想之所以依然这么漂泊着，也就是应了一句话：青春逝去，认输之前。当然了，我觉得我还挺青春的。青春这东西，最重要的不是外表，阳光，积极向上什么的。这都是表面。青春是变革，至少是变革的勇气。</p>
+<p>//TODO</p>
 ]]></content>
   </entry>
   
