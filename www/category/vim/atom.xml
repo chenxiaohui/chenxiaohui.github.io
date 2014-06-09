@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-06T13:55:13+08:00</updated>
+  <updated>2014-06-09T10:54:53+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vim7.4 && vimgdb编译]]></title>
+    <link href="http://cxh.me/2014/06/09/vim7-dot-4-and-vimgdb-compile/"/>
+    <updated>2014-06-09T10:52:00+08:00</updated>
+    <id>http://cxh.me/2014/06/09/vim7-dot-4-and-vimgdb-compile</id>
+    <content type="html"><![CDATA[<p>首先，你下载的vim7.4代码的一般结构跟常见的工程是不一样的，主要体现在configure不会生成Makefile，make的时候是通过Makefile的配置生成config.h的，也就是说你想的好好的希望如下操作：</p>
+
+<pre><code> ./configure --prefix=$HOME --with-features=huge --enable-multibyte --enable-pythoninterp --enable-cscope --enable-fontset --enable-gdb --enable-largefile \
+ --enable-gui=gnome2 \
+ --enable-luainterp \
+ --enable-tclinterp \
+ --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu  #编译配置
+ --with-lua-prefix=/usr/local/bin/lua
+
+    make &amp;&amp; make install
+</code></pre>
+
+<p>来编译的话，那么实际配置跟上面configure里面是没有关系的。</p>
+
+<p>所以你需要做的是修改Makefile，打开必要的开关，比如安装目录</p>
+
+<p>其他的操作按如下步骤就行，摘自[larrupingpig/vimgdb-for-vim7.4][<a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a> &ldquo;vimgdb&rdquo;]：</p>
+
+<h3>vimgdb install</h3>
+
+<p>You need:</p>
+
+<p>&lt;vim-7.4.tar.bz2 <a href="http://www.vim.org/sources.php">http://www.vim.org/sources.php</a>></p>
+
+<p>&lt;vimgdb-for-vim7.4 (this patch) <a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a>></p>
+
+<p>Untar all files, apply the patch and make Vim:</p>
+
+<pre><code>tar xjvf vim-7.4.tar.bz2 -C /tmp
+
+tar xzvf vimgdb-for-vim7.4.tar.gz -C /tmp
+
+cd /tmp
+
+patch -p0 &lt; vimgdb-for-vim7.4/vim74.patch
+
+cd vim74/src
+
+make
+
+sudo make install
+</code></pre>
+
+<h3>Install vimGdb runtime:</h3>
+
+<p>Copy the file vimgdb_runtime found in the vimgdb tarball, to your runtime path. To find your runtime path location execute the vim command (this is usually $HOME/.vim): :set runtimepath?</p>
+
+<pre><code>cp -rf /tmp/vimgdb-for-vim7.4/vimgdb_runtime/* ~/.vim
+</code></pre>
+
+<p>Change to the doc directory, start Vim and run the &ldquo;:helptags .&rdquo; command to process the taglist help file. Without this step, you cannot jump to the taglist help topics. You can now use the &ldquo;:help vimgdb&rdquo; command to get the vimGdb documentation.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[自己写的一个根据路径打开文件的插件]]></title>
@@ -359,66 +418,6 @@ nnoremap x :call BufClose(1)
 <blockquote><p><a href="https://github.com/BitRobt" title="Bitrobt">1</a> buf_it : Buffer list in statusline,</p>
 
 <p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图">2</a> 在windows下给你的右键菜单添加”edit with vim”的方法,</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[发布VIM缓冲区切换插件buf_it升级版]]></title>
-    <link href="http://cxh.me/2012/03/28/publish-the-vim-buffer-management-plugin/"/>
-    <updated>2012-03-28T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/03/28/publish-the-vim-buffer-management-plugin</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>VIM默认使用的过程中有一个重要的问题，就是打开多个文件的时候无法可视化看到打开的文件，并在这些文件中切换。MiniBufExplorer是一个常用的buffer切换插件，但是这个插件在Windows下使用的时候有许多问题，同时也太繁琐。buf_it<a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a>则实现了轻量的buffer管理，但是buf_it同样在windows下有许多问题，而buf_it的退出机制也会出现只想关闭一个文件确关闭了整个vim的情况。</p>
-
-<p>基于这两个问题，我修改了buf_it插件，这里共享出来，欢迎大家提意见。先给张图</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image" alt="image" /></p>
-
-<p>修改：</p>
-
-<blockquote><p>1 windows下使用GVIM优化，方式多开一个空白缓冲区，windows下gvim右键配置见参考文献2</p>
-
-<p>2 增加自定义退出方式</p>
-
-<p>3 修改了部分快捷键，只是个人习惯，可无视之</p></blockquote>
-
-<p>安装：</p>
-
-<blockquote><p>直接扔到plugin目录就行，原作者没写doc，那我也不写啦。</p></blockquote>
-
-<p>配置：</p>
-
-<blockquote><p>nnoremap wq :w:call BufClose()
-nnoremap q :call BufClose()
-nnoremap w :w
-nnoremap x :bd!:call BufClose()</p></blockquote>
-
-<p>使用：</p>
-
-<blockquote><p>shift h,l ：左右切换tab</p>
-
-<p>be ：BufEcho 显示当前缓冲区名字</p>
-
-<p>bo ：只保留当前缓冲区，其他的都关掉</p>
-
-<p>alt i : 切换到序号为i的缓冲区</p>
-
-<p>wq: 保存关闭当前缓冲区并退出</p>
-
-<p>q: 关闭当前缓冲区并退出</p>
-
-<p>w: 保存当前缓冲区</p>
-
-<p>x: 不保存关闭当前缓冲区</p></blockquote>
-
-<p>下载:<a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">buf_it</a></p>
-
-<p>参考文献：</p>
-
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="image">1</a> buf_it : Buffer list in statusline,</p>
-
-<p><a href="http://www.roybit.com/wp-content/uploads/2012/03/buf_it.rar">2</a> 在windows下给你的右键菜单添加"edit with vim"的方法,</p></blockquote>
 ]]></content>
   </entry>
   

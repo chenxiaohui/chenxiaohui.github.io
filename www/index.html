@@ -110,6 +110,181 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/">vim7.4 && Vimgdb编译</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-09T10:52:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>首先，你下载的vim7.4代码的一般结构跟常见的工程是不一样的，主要体现在configure不会生成Makefile，make的时候是通过Makefile的配置生成config.h的，也就是说你想的好好的希望如下操作：</p>
+
+<pre><code> ./configure --prefix=$HOME --with-features=huge --enable-multibyte --enable-pythoninterp --enable-cscope --enable-fontset --enable-gdb --enable-largefile \
+ --enable-gui=gnome2 \
+ --enable-luainterp \
+ --enable-tclinterp \
+ --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu  #编译配置
+ --with-lua-prefix=/usr/local/bin/lua
+
+    make &amp;&amp; make install
+</code></pre>
+
+<p>来编译的话，那么实际配置跟上面configure里面是没有关系的。</p>
+
+<p>所以你需要做的是修改Makefile，打开必要的开关，比如安装目录</p>
+
+<p>其他的操作按如下步骤就行，摘自[larrupingpig/vimgdb-for-vim7.4][<a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a> &ldquo;vimgdb&rdquo;]：</p>
+
+<h3>vimgdb install</h3>
+
+<p>You need:</p>
+
+<p>&lt;vim-7.4.tar.bz2 <a href="http://www.vim.org/sources.php">http://www.vim.org/sources.php</a>></p>
+
+<p>&lt;vimgdb-for-vim7.4 (this patch) <a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a>></p>
+
+<p>Untar all files, apply the patch and make Vim:</p>
+
+<pre><code>tar xjvf vim-7.4.tar.bz2 -C /tmp
+
+tar xzvf vimgdb-for-vim7.4.tar.gz -C /tmp
+
+cd /tmp
+
+patch -p0 &lt; vimgdb-for-vim7.4/vim74.patch
+
+cd vim74/src
+
+make
+
+sudo make install
+</code></pre>
+
+<h3>Install vimGdb runtime:</h3>
+
+<p>Copy the file vimgdb_runtime found in the vimgdb tarball, to your runtime path. To find your runtime path location execute the vim command (this is usually $HOME/.vim): :set runtimepath?</p>
+
+<pre><code>cp -rf /tmp/vimgdb-for-vim7.4/vimgdb_runtime/* ~/.vim
+</code></pre>
+
+<p>Change to the doc directory, start Vim and run the &ldquo;:helptags .&rdquo; command to process the taglist help file. Without this step, you cannot jump to the taglist help topics. You can now use the &ldquo;:help vimgdb&rdquo; command to get the vimGdb documentation.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2014/06/09/oceanbase-cplusplus-note/">总结Oceanbase编码中需要注意的一些细节</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-06-09T10:38:00+08:00" pubdate data-updated="true">Jun 9<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>C++编程中需要注意的问题</p>
+
+<ol>
+<li><p>所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：</p>
+
+<p> if (it != NULL)
+ {
+     xxx
+ }
+ else
+ {
+     it不能再使用了
+ }</p></li>
+<li><p>不要使用strcpy而应该使用strncpy。</p></li>
+<li>所有成员函数都应该考虑是否为const函数.</li>
+<li>所有函数都需要判断传入值是否有效。</li>
+<li><p>有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如这样是很容易造成问题的：</p>
+
+<p> int * xxx(xxx)
+ {
+     int* it = NULL;
+     for(int * it =xxx;it != xxx; it ++)
+     {}
+ }</p></li>
+</ol>
+
+
+<p>而应该这样</p>
+
+<pre><code>int * xxx(xxx)
+{
+    int* ret = NULL;
+    for (int * it = xxx; it != xx; it++)
+    {ret = it}
+    return ret;
+}
+</code></pre>
+
+<ol>
+<li>所有的错误码都需要向上抛出。错误码不能被隐藏，任何语句执行的前提条件都是之前没有错误。循环尤其需要注意。如：
+ for (int i = 0; i &lt; xx; i++)
+ {
+     xxx
+ }</li>
+</ol>
+
+
+<p>需要改成</p>
+
+<pre><code>for (OB_SUCCESS == ret &amp;&amp; int i = 0; i &lt; xx; i++)
+{
+    xxx
+}
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2014/05/25/pi-temperature-sensor/">用树莓派和DS18B20监控温度变化</a></h1>
     
     
@@ -1462,85 +1637,6 @@ else
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/10/10/the-best-monitor-under-linux-htop/">霸气风骚的系统监视器htop</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-10T20:12:00+08:00" pubdate data-updated="true">Oct 10<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/10/10/the-best-monitor-under-linux-htop/">阅读全文</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2013/10/07/tourism-of-jinzhou/">去了趟锦州</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-10-07T18:34:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p class="indent">去锦州的原因，其实是没搞到去其他的地方的票。</p>
-
-<p class="indent">十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/2/">&larr; Older</a></li>
@@ -1602,6 +1698,14 @@ else
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/">vim7.4 && vimgdb编译</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/06/09/oceanbase-cplusplus-note/">总结Oceanbase编码中需要注意的一些细节</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/25/pi-temperature-sensor/">用树莓派和DS18B20监控温度变化</a>
       </li>
     
@@ -1611,14 +1715,6 @@ else
     
       <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/06/wangyin-words/">转载王垠的一段话</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
       </li>
     
   </ul>

@@ -110,6 +110,115 @@
       
   <header class="page-header">
     
+      <h2 class="entry-title"><a href="/2010/11/20/weka-command-line-script/">Weka命令行脚本</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-11-20T00:00:00+08:00" pubdate data-updated="true">Nov 20<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>例如获取Bagging方法numExecutionSlots=1,2,3,4,5时，训练集image_train.arff上的正确率和测试集image_test.arff上的正确率，可以使用如下批处理：</p>
+
+<pre><code>@echo off
+
+for /l %%i in (1,1,5) do (
+echo numExecutionSlots=%%i
+
+java weka.classifiers.meta.Bagging -t image_train.arff -d train.model
+-v -P 100 -S 1 -num-slots %%i -I 10 -W weka.classifiers.trees.REPTree
+ -- -M 2 -V 0.0010 -N 3 -S 1 -L -1|findstr "Correctly"
+
+java weka.classifiers.meta.Bagging -l train.model -T image_test.arff|
+findstr "Correctly")
+</code></pre>
+
+<p>-v(不输出静态信息)之后到|findstr之前的部分可以在界面上配好然后右键拷贝到剪贴板</p>
+
+<p>结果第一行为训练集正确率，第二行为测试集正确率</p>
+
+<p><img src="http://fmn.rrimg.com/fmn049/20101120/2005/b_large_e8kG_3ec00001ddd55c15.jpg" alt="" /></p>
+
+<p>weka3.7.2下测试通过</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
+      <h2 class="entry-title"><a href="/2010/10/05/some-bugs-of-life/">关于人生的一些Bug</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2010-10-05T00:00:00+08:00" pubdate data-updated="true">Oct 5<span>th</span>, 2010</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h1></h1>
+
+<p>很多时候我总在思考活着的价值，这个命题最大的问题在于无论举出什么正面的例子总有反例可以推翻，价值的多元化是件好事也是件坏事….想到最后觉得思考本身就是活着的价值…</p>
+
+<p>这个无耻的悖论…</p>
+
+<p>所以生活中很多事情是无解的。我们在解的过程中耗费了大部分的时间。陷入思维的死循环是挺无奈的事情。而你又不愿意去线性的对待一切事情。What a fucking problem。</p>
+
+<p>一切事情都有其存在的根本，如果你回头去想这个基础所成立的理由，会发觉事情不是想象的那么理所当然。你要上学，工作，买房，买车，结婚，生孩子，一切的基础来自于对物质底线的试图保有。而实际的情况下，很多人也快乐的流浪在这个世界。生活越发深入一个分支之后，想跳出往往越发困难。大多数情况下，选择是单一的，你的抉择树在达到一定深度之后不得不继续深入下去，良序而无环。</p>
+
+<p>同样，你所拥有的东西越多，风险和压力就越大。物质的追逐就好像压栈，一层一层堆积起来，有种莫名的快感。maybe。而于此同时，溢出的风险就越大。执着于物大概分两类：一类是贪心的递归，不定什么时候就溢出而崩掉；一类是费尽心机自己管理堆栈，于是如临深渊，如履薄冰，遇上堆栈不平衡就前功尽弃了。</p>
+
+<p>So，最理想的情况莫过于回溯，人生之大，大不过一个搜索空间。能进能退，乃真正法器。有深度搜索的勇气和能力，也有广度搜索的兴致与收获，关键时刻更能当机立断，剪枝回溯。从而物质的积累不成为必然的条件，遍历人生，而得真谛。</p>
+
+<p>确是人生理想啊。</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article class="well">
+      
+  <header class="page-header">
+    
       <h2 class="entry-title"><a href="/2010/08/21/about-mail-server/">关于邮件服务器</a></h1>
     
     
@@ -1578,84 +1687,6 @@ End Sub
 
     </article>
   
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2009/09/19/indifferent/">淡然</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-19T00:00:00+08:00" pubdate data-updated="true">Sep 19<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>为了结果纠结了一个月，来回跑手续，准备面试，准备材料，最终定下来的时候反倒没什么惊喜了。过程中最深刻的体会到了一句话的重要性：顺，不妄喜，逆，不惶馁，安，不奢逸，危，不惊惧，胸有惊雷而面如平湖者，可拜上将军。</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article class="well">
-      
-  <header class="page-header">
-    
-      <h2 class="entry-title"><a href="/2009/09/14/history-is-the-major-judge/">历史是最大的清算者</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2009-09-14T00:00:00+08:00" pubdate data-updated="true">Sep 14<span>th</span>, 2009</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1></h1>
-
-<p>这是读《朱元璋》最大的感受。读历史还是很有意思的，从旁观者的角度去看待历史人物，历史事件，就会觉得很多事情非常明晰。是非得失或许只有在这个时候是最接近于明确的。用钱钟书的话说，有种衣锦还乡的感觉。或许不同的人看朱元璋就会有完全不同的评价，但是具体到很多事件，我们可能还是能得到一些比较一致的评价的。比如不该杀苏妲己，不该杀徐达等等。朱元璋毕竟是那个时代的人物，跳不出那个价值取向的范围，但是我们作为现代人，还是可以从中得到很多教训的。时代在变，价值观念在变，但有些东西是不变的，这也是为什么我们可以从历史中得到借鉴的原因。原则上说，我不喜欢朱元璋，不喜欢他的残忍阴狠，但是不得不承认，他童年极为坎坷，对元朝那么憎恨也正常。不过他这个人确实是非常有能力的一个人，从一个潦倒的僧人，成为一个布衣天子，其历程本来就是个传奇。这里不想写朱元璋，我还没有那个水平。只是写写对待历史的态度，我依然相信价值观念里有相对稳定，以至不变的东西，虽然不一定与现行的价值观念完全契合。我们读历史，最大的作用，就是对各种历史事件作出自己的评价，从中找寻相对稳定的价值取向，以树立起一个经得起历史推敲的价值观，并以此指导我们的人生。这或许是历史能给人最大的教益了。把自己放到历史人物的角度，穿越时间的阻隔，作出自己的选择，这就是我们应该有的态度。</p>
-
-<p>记得有人说过，一切历史都是近代史。我一直觉得这话有很多理解，不过主要的含义还是，历史是会对现实造成影响的。这也是我们读历史的目的，用历史的智慧，指导现实的生活，从而得到一个经得起推敲的人生。</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <ul class="pager">
     
     <li class="previous"><a href="/page/9/">&larr; Older</a></li>
@@ -1719,6 +1750,14 @@ End Sub
     <li class="nav-header">Recent Posts</li>
     
       <li class="post">
+        <a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/">vim7.4 && vimgdb编译</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/06/09/oceanbase-cplusplus-note/">总结Oceanbase编码中需要注意的一些细节</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/05/25/pi-temperature-sensor/">用树莓派和DS18B20监控温度变化</a>
       </li>
     
@@ -1728,14 +1767,6 @@ End Sub
     
       <li class="post">
         <a href="/2014/02/14/vim-script-to-write-thread-log/">用来把一个线程的日志输出到单独文件的脚本</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/06/wangyin-words/">转载王垠的一段话</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/11/24/thinking-in-java-notes/">Thinking In Java读书笔记</a>
       </li>
     
   </ul>

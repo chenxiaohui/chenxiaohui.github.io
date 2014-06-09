@@ -1343,6 +1343,14 @@
         <lastmod>2014-06-05T17:42:16+08:00</lastmod>
     </url>
     <url>
+        <loc>http://cxh.me/2014/06/09/oceanbase-cplusplus-note/</loc>
+        <lastmod>2014-06-09T10:49:58+08:00</lastmod>
+    </url>
+    <url>
+        <loc>http://cxh.me/2014/06/09/vim7-dot-4-and-vimgdb-compile/</loc>
+        <lastmod>2014-06-09T10:53:20+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://cxh.me/404.html</loc>
         <lastmod>2013-11-06T21:56:05+08:00</lastmod>
     </url>
@@ -1352,7 +1360,7 @@
     </url>
     <url>
         <loc>http://cxh.me/blog/archives/</loc>
-        <lastmod>2014-06-05T18:03:35+08:00</lastmod>
+        <lastmod>2014-06-09T10:53:20+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/robots.txt</loc>
@@ -1360,7 +1368,7 @@
     </url>
     <url>
         <loc>http://cxh.me/</loc>
-        <lastmod>2014-06-05T18:03:35+08:00</lastmod>
+        <lastmod>2014-06-09T10:53:20+08:00</lastmod>
     </url>
     <url>
         <loc>http://cxh.me/pandoc/test.html</loc>
