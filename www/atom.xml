@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-09T10:54:53+08:00</updated>
+  <updated>2014-06-09T11:04:53+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,7 +18,7 @@
     <link href="http://cxh.me/2014/06/09/vim7-dot-4-and-vimgdb-compile/"/>
     <updated>2014-06-09T10:52:00+08:00</updated>
     <id>http://cxh.me/2014/06/09/vim7-dot-4-and-vimgdb-compile</id>
-    <content type="html"><![CDATA[<p>首先，你下载的vim7.4代码的一般结构跟常见的工程是不一样的，主要体现在configure不会生成Makefile，make的时候是通过Makefile的配置生成config.h的，也就是说你想的好好的希望如下操作：</p>
+    <content type="html"><![CDATA[<p>  首先，你下载的vim7.4代码的一般结构跟常见的工程是不一样的，主要体现在configure不会生成Makefile，make的时候是通过Makefile的配置生成config.h的，也就是说你想的好好的希望如下操作：</p>
 
 <pre><code> ./configure --prefix=$HOME --with-features=huge --enable-multibyte --enable-pythoninterp --enable-cscope --enable-fontset --enable-gdb --enable-largefile \
  --enable-gui=gnome2 \
@@ -30,19 +30,32 @@
     make &amp;&amp; make install
 </code></pre>
 
-<p>来编译的话，那么实际配置跟上面configure里面是没有关系的。</p>
+<p>  来编译的话，那么实际配置跟上面configure里面是没有关系的。</p>
 
-<p>所以你需要做的是修改Makefile，打开必要的开关，比如安装目录</p>
+<p>  以你需要做的是修改Makefile，打开必要的开关，比如安装目录，lua支持什么的</p>
 
-<p>其他的操作按如下步骤就行，摘自[larrupingpig/vimgdb-for-vim7.4][<a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a> &ldquo;vimgdb&rdquo;]：</p>
+<pre><code># Uncomment the next line to install Vim in your home directory.
+prefix = $(HOME)
+# LUA
+# Uncomment one of these when you want to include the Lua interface.
+# First one is for static linking, second one for dynamic loading.
+# Use --with-luajit if you want to use LuaJIT instead of Lua.
+# Set PATH environment variable to find lua or luajit executable.
+CONF_OPT_LUA = --enable-luainterp
+#CONF_OPT_LUA = --enable-luainterp=dynamic
+#CONF_OPT_LUA = --enable-luainterp --with-luajit
+#CONF_OPT_LUA = --enable-luainterp=dynamic --with-luajit
+</code></pre>
+
+<p>  其他的操作按如下步骤就行，摘自<a href="https://github.com/larrupingpig/vimgdb-for-vim7.4" title="vimgdb">larrupingpig/vimgdb-for-vim7.4</a>：</p>
 
 <h3>vimgdb install</h3>
 
 <p>You need:</p>
 
-<p>&lt;vim-7.4.tar.bz2 <a href="http://www.vim.org/sources.php">http://www.vim.org/sources.php</a>></p>
+<p>  vim-7.4.tar.bz2 <a href="http://www.vim.org/sources.php">http://www.vim.org/sources.php</a></p>
 
-<p>&lt;vimgdb-for-vim7.4 (this patch) <a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a>></p>
+<p>  vimgdb-for-vim7.4 (this patch) <a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a></p>
 
 <p>Untar all files, apply the patch and make Vim:</p>
 
@@ -63,12 +76,12 @@ sudo make install
 
 <h3>Install vimGdb runtime:</h3>
 
-<p>Copy the file vimgdb_runtime found in the vimgdb tarball, to your runtime path. To find your runtime path location execute the vim command (this is usually $HOME/.vim): :set runtimepath?</p>
+<p>  Copy the file vimgdb_runtime found in the vimgdb tarball, to your runtime path. To find your runtime path location execute the vim command (this is usually $HOME/.vim): :set runtimepath?</p>
 
 <pre><code>cp -rf /tmp/vimgdb-for-vim7.4/vimgdb_runtime/* ~/.vim
 </code></pre>
 
-<p>Change to the doc directory, start Vim and run the &ldquo;:helptags .&rdquo; command to process the taglist help file. Without this step, you cannot jump to the taglist help topics. You can now use the &ldquo;:help vimgdb&rdquo; command to get the vimGdb documentation.</p>
+<p>  Change to the doc directory, start Vim and run the &ldquo;:helptags .&rdquo; command to process the taglist help file. Without this step, you cannot jump to the taglist help topics. You can now use the &ldquo;:help vimgdb&rdquo; command to get the vimGdb documentation.</p>
 ]]></content>
   </entry>
   
@@ -77,9 +90,7 @@ sudo make install
     <link href="http://cxh.me/2014/06/09/oceanbase-cplusplus-note/"/>
     <updated>2014-06-09T10:38:00+08:00</updated>
     <id>http://cxh.me/2014/06/09/oceanbase-cplusplus-note</id>
-    <content type="html"><![CDATA[<p>C++编程中需要注意的问题</p>
-
-<ol>
+    <content type="html"><![CDATA[<ol>
 <li><p>所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：</p>
 
 <p> if (it != NULL)
@@ -91,8 +102,8 @@ sudo make install
      it不能再使用了
  }</p></li>
 <li><p>不要使用strcpy而应该使用strncpy。</p></li>
-<li>所有成员函数都应该考虑是否为const函数.</li>
-<li>所有函数都需要判断传入值是否有效。</li>
+<li><p>所有成员函数都应该考虑是否为const函数.</p></li>
+<li><p>所有函数都需要判断传入值是否有效。</p></li>
 <li><p>有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如这样是很容易造成问题的：</p>
 
 <p> int * xxx(xxx)
@@ -116,11 +127,12 @@ sudo make install
 </code></pre>
 
 <ol>
-<li>所有的错误码都需要向上抛出。错误码不能被隐藏，任何语句执行的前提条件都是之前没有错误。循环尤其需要注意。如：
- for (int i = 0; i &lt; xx; i++)
+<li><p>所有的错误码都需要向上抛出。错误码不能被隐藏，任何语句执行的前提条件都是之前没有错误。循环尤其需要注意。如：</p>
+
+<p> for (int i = 0; i &lt; xx; i++)
  {
      xxx
- }</li>
+ }</p></li>
 </ol>
 
 
