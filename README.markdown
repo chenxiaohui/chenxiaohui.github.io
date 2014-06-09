@@ -118,3 +118,13 @@ isolate moves other docs into stash, integrate moves stashs to posts
 ### octopress sublime plugin
 
 isolate/generate/preview is useful
+
+### exceptions
+
+if needs to write code in item list, use double indent. eg:
+
+* item
+        code
+        {
+        }
+* item
