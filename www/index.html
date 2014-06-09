@@ -166,13 +166,13 @@ CONF_OPT_LUA = --enable-luainterp
 
 <h3>vimgdb install</h3>
 
-<p>You need:</p>
+<p class="indent">You need:</p>
 
 <p class="indent">vim-7.4.tar.bz2 <a href="http://www.vim.org/sources.php">http://www.vim.org/sources.php</a></p>
 
 <p class="indent">vimgdb-for-vim7.4 (this patch) <a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a></p>
 
-<p>Untar all files, apply the patch and make Vim:</p>
+<p class="indent">Untar all files, apply the patch and make Vim:</p>
 
 <pre><code>tar xjvf vim-7.4.tar.bz2 -C /tmp
 
@@ -235,56 +235,50 @@ sudo make install
   <div class="entry-content"><ol>
 <li><p>所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：</p>
 
-<p> if (it != NULL)
+<pre><code> if (it != NULL)
  {
      xxx
  }
  else
  {
      it不能再使用了
- }</p></li>
+ }
+</code></pre></li>
 <li><p>不要使用strcpy而应该使用strncpy。</p></li>
 <li><p>所有成员函数都应该考虑是否为const函数.</p></li>
 <li><p>所有函数都需要判断传入值是否有效。</p></li>
-<li><p>有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如这样是很容易造成问题的：</p>
+<li><p>有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如：</p>
 
-<p> int * xxx(xxx)
+<pre><code> //这样是很容易造成问题的
+ int * xxx(xxx)
  {
      int* it = NULL;
      for(int * it =xxx;it != xxx; it ++)
      {}
- }</p></li>
-</ol>
-
-
-<p>而应该这样</p>
-
-<pre><code>int * xxx(xxx)
-{
-    int* ret = NULL;
-    for (int * it = xxx; it != xx; it++)
-    {ret = it}
-    return ret;
-}
-</code></pre>
-
-<ol>
+ }
+ //而应该这样
+ int * xxx(xxx)
+ {
+     int* ret = NULL;
+     for (int * it = xxx; it != xx; it++)
+     {ret = it}
+     return ret;
+ }
+</code></pre></li>
 <li><p>所有的错误码都需要向上抛出。错误码不能被隐藏，任何语句执行的前提条件都是之前没有错误。循环尤其需要注意。如：</p>
 
-<p> for (int i = 0; i &lt; xx; i++)
+<pre><code> for (int i = 0; i &lt; xx; i++)
  {
      xxx
- }</p></li>
+ }
+ //需要改成
+ for (OB_SUCCESS == ret &amp;&amp; int i = 0; i &lt; xx; i++)
+ {
+     xxx
+ }
+</code></pre></li>
 </ol>
 
-
-<p>需要改成</p>
-
-<pre><code>for (OB_SUCCESS == ret &amp;&amp; int i = 0; i &lt; xx; i++)
-{
-    xxx
-}
-</code></pre>
 </div>
   
   

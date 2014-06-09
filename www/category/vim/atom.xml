@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-09T11:04:53+08:00</updated>
+  <updated>2014-06-09T11:43:51+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -51,13 +51,13 @@ CONF_OPT_LUA = --enable-luainterp
 
 <h3>vimgdb install</h3>
 
-<p>You need:</p>
+<p>  You need:</p>
 
 <p>  vim-7.4.tar.bz2 <a href="http://www.vim.org/sources.php">http://www.vim.org/sources.php</a></p>
 
 <p>  vimgdb-for-vim7.4 (this patch) <a href="https://github.com/larrupingpig/vimgdb-for-vim7.4">https://github.com/larrupingpig/vimgdb-for-vim7.4</a></p>
 
-<p>Untar all files, apply the patch and make Vim:</p>
+<p>  Untar all files, apply the patch and make Vim:</p>
 
 <pre><code>tar xjvf vim-7.4.tar.bz2 -C /tmp
 

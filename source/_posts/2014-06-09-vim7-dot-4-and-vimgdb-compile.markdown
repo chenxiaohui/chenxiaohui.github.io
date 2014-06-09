@@ -37,13 +37,13 @@ categories: "vim"
 
 ### vimgdb install
 
-You need:
+  You need:
 
   vim-7.4.tar.bz2 <http://www.vim.org/sources.php>
 
   vimgdb-for-vim7.4 (this patch) <https://github.com/larrupingpig/vimgdb-for-vim7.4>
 
-Untar all files, apply the patch and make Vim:
+  Untar all files, apply the patch and make Vim:
 
 	tar xjvf vim-7.4.tar.bz2 -C /tmp
 
