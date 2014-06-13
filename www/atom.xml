@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-13T20:10:08+08:00</updated>
+  <updated>2014-06-13T20:12:05+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,204 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[分布式选主-笔记]]></title>
+    <link href="http://cxh.me/2014/06/10/distributed-selection/"/>
+    <updated>2014-06-10T21:08:00+08:00</updated>
+    <id>http://cxh.me/2014/06/10/distributed-selection</id>
+    <content type="html"><![CDATA[<h2>数据库主备复制</h2>
+
+<p>同步模式</p>
+
+<ul>
+<li>备机是否写盘之后应答</li>
+<li>性能收主备机之间通讯距离，网络抖动影响</li>
+</ul>
+
+
+<p>异步模式</p>
+
+<ul>
+<li>主机不等待备机的应答</li>
+<li>性能最优，可能造成数据丢失不一致</li>
+</ul>
+
+
+<p>半异步</p>
+
+<ul>
+<li>超过多数成功则返回</li>
+<li>奇数台机器才可以</li>
+<li>3/5 > 2/3 > 2/2</li>
+</ul>
+
+
+<!--more-->
+
+
+<h2>网络</h2>
+
+<ul>
+<li>任意两个进程可以传递消息</li>
+<li>进程有本地物理时钟 时钟使用NTP同步</li>
+<li>超时有上限</li>
+<li>进程不会发错误的消息</li>
+</ul>
+
+
+<h2>分布式选举基本问题</h2>
+
+<p>不可靠的机群实现可靠的协议，通过投票的方案</p>
+
+<ul>
+<li>任意时刻只能有一个主</li>
+<li>要容忍网络分区</li>
+<li>Leader Lease，选主要等待上个主的lease过期</li>
+<li>Lease周期的长短</li>
+</ul>
+
+
+<p>Paxos要求</p>
+
+<ol>
+<li>成员不能说假话（非拜占庭）</li>
+<li>单个成员说话不能相互矛盾（投票给A了不能投票给B）</li>
+<li>修改需要多数成员同意</li>
+</ol>
+
+
+<p>实现</p>
+
+<ol>
+<li>记住自己在lease周期的投票</li>
+<li>重启等待一个lease周期不投票</li>
+<li>多个人都想成为主的时候</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase事务引擎-笔记]]></title>
+    <link href="http://cxh.me/2014/06/10/o-transaction/"/>
+    <updated>2014-06-10T19:39:00+08:00</updated>
+    <id>http://cxh.me/2014/06/10/o-transaction</id>
+    <content type="html"><![CDATA[<h2>外存数据库的特点</h2>
+
+<p>每次写入需要读取一个完整单元，不同的块做不同的修改，再写回硬盘</p>
+
+<h2>oceanbase的特点</h2>
+
+<p>本质上差不多，但是快大小不一样，但是增量数据(修改点)集中存储。可以更好的利用内存，利用低峰期合并到内存。但是每次需要读取静态数据和修改。</p>
+
+<p>相对来讲，优化了写入，牺牲了部分读取（完全命中bloomfilter的可以不读静态，相当于内存数据库，不存在动态数据的查询相当于传统数据库）。</p>
+
+<!--more-->
+
+
+<h2>业界的内存数据库</h2>
+
+<ul>
+<li>VoltDB</li>
+<li>MemSQL</li>
+</ul>
+
+
+<p>内存数据库很贵</p>
+
+<h2>存储事务引擎</h2>
+
+<ul>
+<li>hash索引：散列存储，单点查询更快</li>
+<li>B+树索引：顺序索引，范围查询</li>
+</ul>
+
+
+<h2>更新流程</h2>
+
+<ul>
+<li>根据主键找到行所在位置</li>
+<li>加锁</li>
+</ul>
+
+
+<h3>多版本并发控制</h3>
+
+<p>针对高并发的请求，分配在一个队列里面，排队，不需要抢锁。线程可以省下来给其他</p>
+
+<p>通过 /<em>hot_spot</em>/的hint实现，交给用户决定</p>
+
+<h3>写日志的性能瓶颈</h3>
+
+<p>每次写两条日志，保证两台备机写成功，1333条每秒</p>
+
+<p>只能通过软件上的改变，group commit</p>
+
+<p>每次commit合并多个写日志请求。</p>
+
+<p>条件：</p>
+
+<ul>
+<li>空闲的时候直接commit。有日志来的时候判断没有日志在写，就提交。</li>
+<li>聚集到一个阈值的时候写。有日志在写，就放到buffer里面。直到达到阈值。</li>
+<li>如果第一个写完日志，系统空闲，就写日志。</li>
+</ul>
+
+
+<h3>总结</h3>
+
+<ul>
+<li>内存数据库+分布式系统的设计</li>
+<li>mvcc的实现</li>
+<li>group commit</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[记一个实际中遇到的覆盖问题]]></title>
+    <link href="http://cxh.me/2014/06/10/an-overwrite-problem-in-cplusplus/"/>
+    <updated>2014-06-10T19:32:00+08:00</updated>
+    <id>http://cxh.me/2014/06/10/an-overwrite-problem-in-cplusplus</id>
+    <content type="html"><![CDATA[<p>  工作中遇到一个继承结构如下：</p>
+
+<pre><code>ObServerSchemaService : init_core_schema(const ObSchemaManagerV2 &amp;schema)
+         |
+ObRootSchemaSerivice : init_core_schema()
+</code></pre>
+
+<p>  基类的init_core_schema接收一个核心表的schema，而这个schema往往是从rootserver传过来的，所以下面的子类RootSchemaService不需要传参，直接自己生成就好了。</p>
+
+<p>  问题是如果在ObRootSchemaService的对象上想要调用ObServerSchemaService的init_core_schema函数会报错。因为命名空间上Root的会覆盖Server的，哪怕只是同名的数据成员也会隐藏基类的成员函数。比如：</p>
+
+<pre><code>struct TableSchema
+{
+  const static int version_ = 1;
+  int mem_version()
+  {
+    return version_;
+  }
+};
+
+struct ExTableSchema: TableSchema
+{
+  int mem_version;
+};
+int main(void)
+{
+  ExTableSchema schema;
+  schema.mem_version();
+}
+</code></pre>
+
+<p>  解决方法很简单，直接指明命名空间就行了</p>
+
+<pre><code>schema.TableSchema::mem_version();
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Oceanbase简介 - 笔记]]></title>
@@ -1272,246 +1470,6 @@ let g:applist={
 <h3>参考文献:</h3>
 
 <blockquote><p>[1] Visual Mark : Visual mark, similar to UltraEdit&rsquo;s bookmark, <a href="http://www.vim.org/scripts/script.php?script_id=1026">http://www.vim.org/scripts/script.php?script_id=1026</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[如何构建按高可用系统（分享的笔记）]]></title>
-    <link href="http://cxh.me/2013/11/01/how-to-build-high-available-system/"/>
-    <updated>2013-11-01T18:42:00+08:00</updated>
-    <id>http://cxh.me/2013/11/01/how-to-build-high-available-system</id>
-    <content type="html"><![CDATA[<p>版权所有：<a href="">解伦师兄</a></p>
-
-<h3>介绍篇</h3>
-
-<p><strong>可用性vs可靠性</strong></p>
-
-<p>  可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。</p>
-
-<p>  可用性可靠性是系统的工程，设计开发，管理，运维等等。</p>
-
-<p>  宕机几大因素：软件-硬件-网络-人为</p>
-
-<p>  data loss的最大因素：drop table, 所以要做好充分的容错。</p>
-
-<!-- more -->
-
-
-<h3>设计篇</h3>
-
-<p><strong>减少故障发生的可能</strong></p>
-
-<p>  避免单点故障，防止扩散，有效的监控运维配合</p>
-
-<p>  常见的<strong>冗余</strong>设计。</p>
-
-<blockquote><ul>
-<li>RAID,Replica,Erasure Code</li>
-<li>BackUp, Reassign,Retry</li>
-<li>Master-Slave,Mirror,RAC..</li>
-</ul>
-</blockquote>
-
-<p>  减少对外部系统强依赖</p>
-
-<blockquote><ul>
-<li>缓存</li>
-<li>异步替代同步</li>
-</ul>
-</blockquote>
-
-<p>  对外部依赖不信任</p>
-
-<blockquote><ul>
-<li>结果进行</li>
-<li>失败情况下failover（重试时间次数需要控制）</li>
-</ul>
-</blockquote>
-
-<p>  有效的内部监控</p>
-
-<p><strong>减少故障恢复时间</strong></p>
-
-<p>  无状态最好</p>
-
-<blockquote><ul>
-<li>有状态定期做持久化（checkpoint/commitlog)</li>
-</ul>
-</blockquote>
-
-<p>  有效的故障隔离</p>
-
-<blockquote><ul>
-<li>故障检测，黑白名单，流量分配</li>
-<li>黑名单要有恢复机制</li>
-</ul>
-</blockquote>
-
-<p><strong>减少损失</strong></p>
-
-<p>  过载保护</p>
-
-<blockquote><ul>
-<li>发现故障，并限制资源</li>
-</ul>
-</blockquote>
-
-<p>  应用降级</p>
-
-<blockquote><ul>
-<li>关闭部分不重要的功能(某些情况下用户也感觉不出来)</li>
-</ul>
-</blockquote>
-
-<p>  有个故事：二战的时候（好背景），坦克设计的时候每次发射炮弹，都会有电磁波导致所有软件挂掉，所以故障恢复就很重要。</p>
-
-<h3>案例篇</h3>
-
-<p><strong>Twitter</strong></p>
-
-<p>  世界杯的时候twitter经常会时常挂掉</p>
-
-<blockquote><ul>
-<li>memcache规划的问题</li>
-<li>cache也要注意设计</li>
-</ul>
-</blockquote>
-
-<p><strong>Foursquare</strong></p>
-
-<p>  数据不均，mongodb数据量超过内存之后性能非常差(mmap的问题)</p>
-
-<blockquote><ul>
-<li>数据迁走之后有空洞，页不释放</li>
-<li>还好毕设的时候数据量不大</li>
-</ul>
-</blockquote>
-
-<p><strong>Amazon</strong></p>
-
-<p>  EBS主网络走数据，备网络走控制，操作失误，主网络切到备网络</p>
-
-<blockquote><ul>
-<li>相应超时，认为丢失副本</li>
-<li>副本复制，继续加剧网络问题</li>
-</ul>
-</blockquote>
-
-<p><strong>Weibo</strong></p>
-
-<p>  热点存在，cache失效，一瞬间所有访问db</p>
-
-<blockquote><ul>
-<li>加锁，一个人获取内容回填cache之后就不会有人去访问db了</li>
-</ul>
-</blockquote>
-
-<p><strong>Facebook</strong></p>
-
-<p>  cache没取到就删除了原cache</p>
-
-<p><strong>OB</strong></p>
-
-<p>  客户端要做分流，业务高峰，超时严重，把cluster都加入黑名单，重试风暴</p>
-
-<h3>总结篇</h3>
-
-<p><strong>可用性</strong></p>
-
-<blockquote><ul>
-<li>BASE:基本可用</li>
-<li>CAP:No CAP, No CP, A是很重要的</li>
-<li><a href="">20 Key High Availability Design Principles</a></li>
-</ul>
-</blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式调试之用gdb调试分布式系统]]></title>
-    <link href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/"/>
-    <updated>2013-10-29T13:40:00+08:00</updated>
-    <id>http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob</id>
-    <content type="html"><![CDATA[<p>  分布式系统开发的时候我们最经常遇到的问题就是，从一个server发送了一条报文之后怎么在另一个server查看这条报文的处理逻辑是否正确，单机的debug都不是问题，但是多机debug怎么做呢？</p>
-
-<p>  在ob团队里面，正常情况下我们有如下三种方式处理这些问题：</p>
-
-<ol>
-<li> 做mock，写单测，隔离开集群环境</li>
-<li> 加调试日志，部署集群环境，看日志。</li>
-<li> 非daemon模式下通过gdb调试。</li>
-</ol>
-
-
-<p>  这里我们详细说一下第三种。这也是最有效果的一种。</p>
-
-<!-- more -->
-
-
-<p>  需要强调的是，正常情况下ob启动之后各个server会以守护进程方式运行，这时候如果用gdb启动server的话，gdb不知道在fork之后跟哪个进程，而在我测试下，<a href="http://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/" title="使用 GDB 调试多进程程序">set follow-fork-mode</a>貌似也没成功过。</p>
-
-<p>  所以最好的方法是直接不要通过守护进程启动，我们在部署ob到home目录下，集群名用ob1，.gdbinit里面写入：</p>
-
-<pre><code>cd ~/ob1
-file bin/rootserver
-set args -r 10.235.162.8:3500 -R 10.235.162.8:3500 -i eth0 -C 1 -N
-break "/home/xiaohui.cpc/roottable_dev/src/rootserver/ob_root_worker.cpp:2053"
-break "/home/xiaohui.cpc/roottable_dev/src/rootserver/ob_root_worker.cpp:941"
-</code></pre>
-
-<p>  参数里面加-N表示不以daemon方式启动。</p>
-
-<p>  这样通过gdb可以启动rootserver，然后同样启动其他需要的server，就可以调试在gdb里面看到程序执行后停在断点的位置。启动脚本如下，这里我们只启动了chunkserver。</p>
-
-<pre><code>#!/bin/bash
-rs_ip=10.235.162.8
-rs_port=3500
-cs_port=3501
-ups_port=3502
-ms_port=3503
-freeze_port=3504
-mysql_port=3505
-net=bond0
-appname=ob1.xiaohui.cpc
-no_daemon=-N
-
-#bin/rootserver -r $rs_ip:$rs_port -R $rs_ip:$rs_port -i $net -C 1 $no_daemon
-bin/chunkserver -r $rs_ip:$rs_port -p $cs_port -n $appname -i $net $no_daemon
-
-#bin/updateserver -r $rs_ip:$rs_port -p $ups_port -m $freeze_port -i $net $no_daemon
-#bin/mergeserver -r $rs_ip:$rs_port -p $ms_port -z $mysql_port -i $net $no_daemon
-
-#bin/rs_admin -r $rs_ip -p $rs_port set_obi_role -o OBI_MASTER
-#bin/rs_admin -r $rs_ip -p $rs_port -t 60000000 boot_strap $no
-</code></pre>
-
-<p>  断点命中的情况如图1所示：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-10/gdb_multi_server.png" title="图1：断点命中的情况" alt="图1：断点命中的情况"><p class="align-center">图1：断点命中的情况</p></p>
-
-<p>  唯一的问题是gdb有时候会退出，如图2。感觉上是rpc超时了？</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-10/gdb_quit.png" title="图2：gdb退出" alt="图2：gdb退出"><p class="align-center">图2：gdb退出</p></p>
-
-<p>  感谢玩大数据的<a href="http://weibo.com/hanfooo" title="韩富晟 支付宝颜然，玩大数据的，OceanBase工程师">颜然师兄</a>提供非daemon方式启动的方法。</p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 使用 GDB 调试多进程程序, <a href="http://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/">http://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/</a></p>
-
-<p>[2] 韩富晟 支付宝颜然，玩大数据的，OceanBase工程师, <a href="http://weibo.com/hanfooo">http://weibo.com/hanfooo</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[夜空中最亮的星]]></title>
-    <link href="http://cxh.me/2013/10/27/brightest-star-in-the-sky/"/>
-    <updated>2013-10-27T10:41:00+08:00</updated>
-    <id>http://cxh.me/2013/10/27/brightest-star-in-the-sky</id>
-    <content type="html"><![CDATA[<!-- more -->
-
-
-<p><embed src="http://player.yinyuetai.com/video/player/617278/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
 ]]></content>
   </entry>
   
