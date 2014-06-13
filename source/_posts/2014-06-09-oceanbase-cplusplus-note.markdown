@@ -52,3 +52,5 @@ categories: "Oceanbase"
 		{
 			xxx
 		}
+		
+1. ObArray等动态表结构使用前尽量reserve.
