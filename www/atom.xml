@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-15T13:53:24+08:00</updated>
+  <updated>2014-06-15T15:00:14+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -39,6 +39,9 @@
 <li> all_column查询， 二分找到对应的TableSchema，填入Column，10+s</li>
 <li> all_join查询，二分找到对应的TableSchema，填入JoinInfo，0.xs，忘了</li>
 </ul>
+
+
+<!--more-->
 
 
 <p>   问题很明显出在第一个上面。Perf分析一下程序执行过程，发现大量时间耗费在TableSchema的Operator=上面。我们的编程习惯是自己实现Operator=，拷贝构造直接调用自己的=重载。所以要么是拷贝构造占用了大量时间，要么是赋值占用了大量时间。</p>

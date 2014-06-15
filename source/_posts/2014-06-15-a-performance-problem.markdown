@@ -24,6 +24,8 @@ categories: "Oceanbase"
    - all_column查询， 二分找到对应的TableSchema，填入Column，10+s
    - all_join查询，二分找到对应的TableSchema，填入JoinInfo，0.xs，忘了
 
+<!--more-->
+
    问题很明显出在第一个上面。Perf分析一下程序执行过程，发现大量时间耗费在TableSchema的Operator=上面。我们的编程习惯是自己实现Operator=，拷贝构造直接调用自己的=重载。所以要么是拷贝构造占用了大量时间，要么是赋值占用了大量时间。
 
    同时，在命令行执行一下SQL查询，发现第一条SQL查询花费1s左右，而第二条花费10s，第三条表里没有数据。从数据量来看，大概也是这个数量级，因为column表里面存放所有table的列信息，意味着平均每个表有10个列。这条SQL在客户端默认的超时时间下会直接Timeout。
