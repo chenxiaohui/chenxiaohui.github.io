@@ -43,3 +43,7 @@ categories: "Oceanbase"
    后续就需要分析SQL查询是否能加快了。当然我把_all_column加入TableSchema的那个过程也reserve了一下，避免TableSchema里面column数组在每次push一个列的时候引起扩展，因为平均看，一个table所包含的平均列数也就10左右。性能待测试。
 
    从这个问题吸取的教训就是，动态表能之前确定长度的最好直接Reserve，否则相当于有多次申请内存-析构-拷贝构造（或赋值，我们之前是赋值）-释放内存的开销。同时，Perf是个好工具，虽然我还不是很熟悉。
+
+   关于vector的扩容见[这里][1]
+
+   [1]: http://blog.csdn.net/sodickbird/article/details/4594907 "深入浅出vector resize/reserve"
