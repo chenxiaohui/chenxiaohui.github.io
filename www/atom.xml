@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-15T15:00:14+08:00</updated>
+  <updated>2014-06-16T20:03:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[c/c++ 文件/流读取函数总结]]></title>
+    <link href="http://cxh.me/2014/06/16/c-cpp-file-stream-operation-function/"/>
+    <updated>2014-06-16T20:00:00+08:00</updated>
+    <id>http://cxh.me/2014/06/16/c-cpp-file-stream-operation-function</id>
+    <content type="html"><![CDATA[<h3>针对文本文件的，  c++主要有如下几种吧</h3>
+
+<ol>
+<li><p>getline： 实现上，输入istream流，需要支持特定traits的迭代器。从流里面每次一行读入string，遇到delim结束。</p>
+
+<pre><code>   template&lt;typename _CharT, typename _Traits, typename _Alloc&gt;
+     basic_istream&lt;_CharT,_Traits&gt;&amp;
+     getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
+         basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str, _CharT __delim);
+
+   template&lt;typename _CharT, typename _Traits, typename _Alloc&gt;
+     inline basic_istream&lt;_CharT,_Traits&gt;&amp;
+     getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
+         basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str);
+</code></pre></li>
+<li><p>stream.get/put：分为如下几种类型。</p>
+
+<ol>
+<li>不接收参数的直接返回结果</li>
+<li>接收一个char类型的参数</li>
+<li>接收一个缓冲区和缓冲区大小，读取结果直到遇到delim，默认回车符</li>
+<li><p>put直接输入一个字符</p>
+
+<pre><code>   int_type 
+   get(void);
+
+   __istream_type&amp; 
+   get(char_type&amp; __c);
+
+   __istream_type&amp; 
+   get(char_type* __s, streamsize __n, char_type __delim);
+
+   inline __istream_type&amp; 
+   get(char_type* __s, streamsize __n)
+
+   __istream_type&amp;
+   get(__streambuf_type&amp; __sb, char_type __delim);
+
+   inline __istream_type&amp;
+   get(__streambuf_type&amp; __sb)
+
+   // Unformatted output:
+   __ostream_type&amp; 
+   put(char_type __c);
+</code></pre></li>
+</ol>
+</li>
+<li><p>stream.getline()：接收一个缓冲区和缓冲区大小，读取结果直到遇到delim，默认回车符</p>
+
+<pre><code>   __istream_type&amp; 
+   getline(char_type* __s, streamsize __n, char_type __delim);
+
+   inline __istream_type&amp; 
+   getline(char_type* __s, streamsize __n)
+</code></pre></li>
+<li><p>stream.read/stream.write()： 二进制操作，读写一段数据。</p>
+
+<pre><code>   __istream_type&amp; 
+   read(char_type* __s, streamsize __n);
+
+   streamsize 
+   readsome(char_type* __s, streamsize __n);
+
+   __ostream_type&amp; 
+   write(const char_type* __s, streamsize __n);
+</code></pre></li>
+<li><p>输入输出运算</p></li>
+</ol>
+
+
+<h3>c大概有如下几个：</h3>
+
+<ol>
+<li> fgetc/fputc</li>
+<li> fgets/fputs</li>
+<li> fscanf/fprintf</li>
+<li><p> fread/fwrite</p>
+
+<pre><code>__STDIO_INLINE _IO_ssize_t
+getline (char **__lineptr, size_t *__n, FILE *__stream)
+</code></pre></li>
+</ol>
+
+
+<p>  另外，stdio.h里也有getline的实现，传入一个FILE指针。</p>
+
+<p>  这里就不详述了，详见：
+  <a href="http://zhaoyuqiang.blog.51cto.com/6328846/1296902">http://zhaoyuqiang.blog.51cto.com/6328846/1296902</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[记工作中遇到的一个性能问题]]></title>
@@ -1242,111 +1338,6 @@ ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
 <blockquote><p>[1] Vim 中的正则表达式, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p>
 
 <p>[2] Vim日志定位解决方案, <a href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/">http://cxh.me/2013/11/08/solution-to-locate-log-in-src/</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式调试之vim日志定位解决方案]]></title>
-    <link href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/"/>
-    <updated>2013-11-08T21:31:00+08:00</updated>
-    <id>http://cxh.me/2013/11/08/solution-to-locate-log-in-src</id>
-    <content type="html"><![CDATA[<p>  做分布式系统看日志解决问题是基本功了，毕竟多个server跑在不同的机器上，即使用gdb能attach到某个进程上，或者<a href="http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/" title="用gdb调试分布式系统（OB中的应用）">用非daemon模式启动并调试</a>但是case往往很复杂，难以用测试环境完全模拟case，所以大部分情况下还是需要看日志解决问题的。</p>
-
-<p>  不过日志多了之后往往容易跟丢，在浩如烟海的日志里面定位到发生错误的地方也不是见容易的事情。这周大部分时间就费在这上面了（不过还是不熟）。期间写了一个简单的vim插件实现日志的定位。想法如下：</p>
-
-<!-- more -->
-
-
-<p>  偶然发现通过deploy.py ob1.rs0.less打开less窗口之后按v键可以转到vim窗口，这就解决很多问题了，毕竟我可不想在less下实现什么功能。vim script就熟悉多了。</p>
-
-<p>  ob的log格式是这样的</p>
-
-<pre><code>[2013-11-08 20:02:23.698586] WARN  get_schema (ob_root_schema_service.cpp:296) [139800896067328] local schema not inited 
-</code></pre>
-
-<p>  可以看出关键的地方是打印日志的文件和行数，所以我们用正则\w+.c(pp)*:\d+（vim里需要转义）来匹配日志行，得到所在文件和行数之后用执行ssh命令去开发机的项目下find对应的文件，把找到的结果写入某个特定文件（~/.session)里面，之后写一个插件根据文件中的记录打开对应的文件并标红对应的行即可。</p>
-
-<p>  定位log的vim脚本实现如下：</p>
-
-<pre><code>if !exists('g:project_base_dir')
-    let g:project_base_dir = '$HOME/dev $HOME/src'
-endif
-
-if !exists('g:user_name')
-    let g:user_name = 'xxxx'
-endif
-
-if !exists('g:server_ip')
-    let g:server_ip = 'xx.xx.xx.xx'
-endif
-
-function! LogSession() range
-    let filearr = []
-    for linenum in range(a:firstline, a:lastline)
-        let curr_line = getline(linenum)
-        let pos_str = matchstr(curr_line,'\(\w\+\)\.c\(pp\)*:\(\d\+\)')
-        let pos_arr = split(pos_str, ":")
-        if !empty(pos_arr)
-            let filename = pos_arr[0]
-            let linenum = pos_arr[1]
-            if index(filearr, filename) == -1
-                "generate file list
-                let session_cmd = "find ". g:project_base_dir ." -name ". filename .' -exec echo "{}"":'.linenum.'" &gt;&gt;~/.session \;'
-                let ssh_cmd = "!ssh ".g:user_name.'@'.g:server_ip." \'".session_cmd."\'"
-                echo ssh_cmd
-                execute ssh_cmd
-                execute ':call Vm_toggle_sign()'
-                call add(filearr, filename)
-            endif
-        endif
-    endfor
-endfunction
-</code></pre>
-
-<p>  解释几点</p>
-
-<ul>
-<li>g:project_base_dir定义源码所在目录，如果源码引用了其他的库，最好把其他库的源码目录一并指定。</li>
-<li>g:user_name 开发机用户名，这是你源码所在机器的用户名</li>
-<li>g:server_ip 开发机IP，这是你的源码所在机器的IP，保证能够无密码登录。</li>
-</ul>
-
-
-<p>  这样在测试机看log的less窗口里面按v进入vim（vim脚本需要部署到开发机和测试机各一份），然后在对应的行（或者多行）执行LogSession，对应的文件位置信息就被写入开发机的~/.session文件里面（这个应该可以配置，忘了做了）。</p>
-
-<p>  另开一个窗口ssh到开发及，打开.session，应该类似于如下：</p>
-
-<pre><code>/home/xxx.xx/dev/src/rootserver/ob_root_server.cpp:584
-/home/xxx.xx/dev/src/rootserver/ob_root_server.cpp:2183
-/home/xxx.xx/dev/src/rootserver/ob_root_inner_table_task.cpp:175
-</code></pre>
-
-<p>  定位到某一行调用插件打开代码就行，这就涉及到[前文所说的插件了][2]。按照快捷键打开对应的行就行。</p>
-
-<p>  之后在vimrc里面映射键就行了</p>
-
-<pre><code>map &lt;leader&gt;ss :call LogSession()&lt;cr&gt;
-nnoremap &lt;leader&gt;co :call OpenFileWithDefApp()&lt;cr&gt;
-let g:applist={
-        \'pdf':'evince',
-        \'png,gif,jpg':'eog',
-        \'rmvb,mkv,flv,avi,mp4,m4v':'mplayer',
-        \'rar':'!unrar l %',
-        \'epub':'!calibre %',
-        \'zip':'!unzip -O CP936 -l %',
-        \'pwd':'nautilus',
-        \'docx,xlsx,pptx,ppt':'libreoffice',
-        \'default':':e %'
-        \}
-</code></pre>
-
-<p>  截图如下：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/three-log.png" title="log文件" alt="log文件"><p class="align-center">log文件</p></p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/one-line.png" title="定位到对应的源码行c" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/two-line.png" title="定位到对应的源码行cpp" alt="定位到对应的源码行"><p class="align-center">定位到对应的源码行</p></p>
 ]]></content>
   </entry>
   
