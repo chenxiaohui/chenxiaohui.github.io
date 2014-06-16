@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:03:12+08:00</updated>
+  <updated>2014-06-16T20:04:34+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -33,6 +33,13 @@
      getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
          basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str);
 </code></pre></li>
+</ol>
+
+
+<!--more-->
+
+
+<ol>
 <li><p>stream.get/put：分为如下几种类型。</p>
 
 <ol>

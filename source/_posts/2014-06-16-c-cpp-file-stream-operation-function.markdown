@@ -21,6 +21,8 @@ categories: "C++"
 		    getline(basic_istream<_CharT, _Traits>& __is,
 			    basic_string<_CharT, _Traits, _Alloc>& __str);
 
+<!--more-->
+
 2. stream.get/put：分为如下几种类型。
 	
 	1. 不接收参数的直接返回结果
