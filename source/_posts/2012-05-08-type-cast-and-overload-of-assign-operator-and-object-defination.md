@@ -64,42 +64,6 @@ mkd_text:
     
 ###参考文献
     
-    >C++笔记（1）explicit构造函数
+    > C++笔记（1）explicit构造函数
     
-    ><http://www.cnblogs.com/cutepig/archive/2009/01/14/1375917.html>
-categories:
-  - MFC
-tags:
-  - 强制类型转换
-  - 构造函数
-  - 赋值运算符
-  - 运算符重载
-format: standard
----
-# 
-
-这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。
-
-首先是强制类型转换运算符的重载，作用是当前对象向其他类型的转换，常见的形式是
-
-
-    operator int();
-    Integer::operator int()
-    {
-        return x;
-    }
-
-
-调用方式类似于
-
-
-    Integer c(10);
-    int a=c;
-
-
-在函数调用的时候，类型转换的重载也会被隐式调用，比如下面一种情况
-
-
-    void print(int n)
-    {
-        cout
+    > <http://www.cnblogs.com/cutepig/archive/2009/01/14/1375917.html>
