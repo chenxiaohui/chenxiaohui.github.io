@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:12:21+08:00</updated>
+  <updated>2014-06-16T20:35:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -46,7 +46,8 @@
 <li>不接收参数的直接返回结果</li>
 <li>接收一个char类型的参数</li>
 <li>接收一个缓冲区和缓冲区大小，读取结果直到遇到delim，默认回车符</li>
-<li><p>put直接输入一个字符</p>
+<li>put直接输入一个字符</li>
+<li><p>get 系的函数都不会ignore delim分隔符的，读到行尾需要手动ignore回车</p>
 
 <pre><code>   int_type 
    get(void);
@@ -109,7 +110,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 </ol>
 
 
-<p>  另外，stdio.h里也有getline的实现，传入一个FILE指针。</p>
+<p>  另外，stdio.h里也有getline的实现，传入一个FILE指针。需要注意的是传入的char **指针是会被申请内存并赋值的。所以需要自己释放。</p>
 
 <p>  这里就不详述了，详见：
   <a href="http://zhaoyuqiang.blog.51cto.com/6328846/1296902">http://zhaoyuqiang.blog.51cto.com/6328846/1296902</a></p>

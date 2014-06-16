@@ -29,6 +29,7 @@ categories: "C++"
 	2. 接收一个char类型的参数
 	3. 接收一个缓冲区和缓冲区大小，读取结果直到遇到delim，默认回车符
 	4. put直接输入一个字符
+	5. get 系的函数都不会ignore delim分隔符的，读到行尾需要手动ignore回车
 
 		      int_type 
 		      get(void);
@@ -84,7 +85,7 @@ categories: "C++"
 		__STDIO_INLINE _IO_ssize_t
 		getline (char **__lineptr, size_t *__n, FILE *__stream)
 
-  另外，stdio.h里也有getline的实现，传入一个FILE指针。
+  另外，stdio.h里也有getline的实现，传入一个FILE指针。需要注意的是传入的char **指针是会被申请内存并赋值的。所以需要自己释放。
  
   这里就不详述了，详见：
   <http://zhaoyuqiang.blog.51cto.com/6328846/1296902>
