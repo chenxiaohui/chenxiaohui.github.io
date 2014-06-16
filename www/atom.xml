@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:04:34+08:00</updated>
+  <updated>2014-06-16T20:12:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -176,7 +176,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
     <link href="http://cxh.me/2014/06/10/distributed-selection/"/>
     <updated>2014-06-10T21:08:00+08:00</updated>
     <id>http://cxh.me/2014/06/10/distributed-selection</id>
-    <content type="html"><![CDATA[<h2>数据库主备复制</h2>
+    <content type="html"><![CDATA[<h3>数据库主备复制</h3>
 
 <p>同步模式</p>
 
@@ -206,7 +206,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 <!--more-->
 
 
-<h2>网络</h2>
+<h3>网络</h3>
 
 <ul>
 <li>任意两个进程可以传递消息</li>
@@ -216,7 +216,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 </ul>
 
 
-<h2>分布式选举基本问题</h2>
+<h3>分布式选举基本问题</h3>
 
 <p>不可靠的机群实现可靠的协议，通过投票的方案</p>
 
@@ -253,11 +253,11 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
     <link href="http://cxh.me/2014/06/10/o-transaction/"/>
     <updated>2014-06-10T19:39:00+08:00</updated>
     <id>http://cxh.me/2014/06/10/o-transaction</id>
-    <content type="html"><![CDATA[<h2>外存数据库的特点</h2>
+    <content type="html"><![CDATA[<h3>外存数据库的特点</h3>
 
 <p>每次写入需要读取一个完整单元，不同的块做不同的修改，再写回硬盘</p>
 
-<h2>oceanbase的特点</h2>
+<h3>oceanbase的特点</h3>
 
 <p>本质上差不多，但是快大小不一样，但是增量数据(修改点)集中存储。可以更好的利用内存，利用低峰期合并到内存。但是每次需要读取静态数据和修改。</p>
 
@@ -266,7 +266,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 <!--more-->
 
 
-<h2>业界的内存数据库</h2>
+<h3>业界的内存数据库</h3>
 
 <ul>
 <li>VoltDB</li>
@@ -276,7 +276,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 
 <p>内存数据库很贵</p>
 
-<h2>存储事务引擎</h2>
+<h3>存储事务引擎</h3>
 
 <ul>
 <li>hash索引：散列存储，单点查询更快</li>
@@ -284,7 +284,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 </ul>
 
 
-<h2>更新流程</h2>
+<h3>更新流程</h3>
 
 <ul>
 <li>根据主键找到行所在位置</li>
@@ -292,7 +292,7 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 </ul>
 
 
-<h3>多版本并发控制</h3>
+<h4>多版本并发控制</h4>
 
 <p>针对高并发的请求，分配在一个队列里面，排队，不需要抢锁。线程可以省下来给其他</p>
 
@@ -376,7 +376,7 @@ int main(void)
     <id>http://cxh.me/2014/06/09/oceanbase-introduction-note</id>
     <content type="html"><![CDATA[<h1>数据库简介</h1>
 
-<h2>数据库的特点</h2>
+<h3>数据库的特点</h3>
 
 <ul>
 <li>原子性 ： 一笔账，要么转了，要么没转</li>
@@ -394,7 +394,7 @@ int main(void)
 </ul>
 
 
-<h2>数据库 vs 计算机</h2>
+<h3>数据库 vs 计算机</h3>
 
 <p>服务器：处理器，内存，磁盘，网卡</p>
 
@@ -421,7 +421,7 @@ int main(void)
 
 <p>黑色星期五：美国19.3亿美元</p>
 
-<h2>互联网时代数据库的要求</h2>
+<h3>互联网时代数据库的要求</h3>
 
 <p>ACID无法取代</p>
 
@@ -454,7 +454,7 @@ int main(void)
 
 <p>性能+可用性+扩展性</p>
 
-<h3>性能</h3>
+<h4>性能</h4>
 
 <ul>
 <li>机械盘读 ： 机械磁盘随机读 100-300次/秒（IOPS)</li>
@@ -465,7 +465,7 @@ int main(void)
 </ul>
 
 
-<h3>全内存数据库</h3>
+<h4>全内存数据库</h4>
 
 <ul>
 <li>性能高，性价比低，容量小</li>
@@ -473,7 +473,7 @@ int main(void)
 </ul>
 
 
-<h3>Oceanbase</h3>
+<h4>Oceanbase</h4>
 
 <p>内外存混合数据库</p>
 
@@ -487,11 +487,11 @@ int main(void)
 
 <p>高可用：如何以低可靠硬件实现</p>
 
-<h3>oceanbase Milestone：</h3>
+<h4>oceanbase Milestone：</h4>
 
 <p>淘宝收藏夹->双集群（可以升级改bug对业务透明）-> OLAP功能 &ndash;> SQL支持 &ndash;> 三集群（分布式投票）</p>
 
-<h3>oceanbase应用</h3>
+<h4>oceanbase应用</h4>
 
 <ul>
 <li>稳定可靠</li>
@@ -501,7 +501,7 @@ int main(void)
 </ul>
 
 
-<h3>oceanbase质量保证</h3>
+<h4>oceanbase质量保证</h4>
 
 <p> 严格的c/c++编码规范
 &ndash; 资源申请者负责释放
@@ -513,7 +513,7 @@ int main(void)
 
 <p>无处不在的crc</p>
 
-<h3>oceanbase数据校验</h3>
+<h4>oceanbase数据校验</h4>
 
 <ul>
 <li>磁盘读写，每个记录带64位CRC</li>
@@ -527,7 +527,7 @@ int main(void)
 
 <p>灰度升级</p>
 
-<h2>小结：</h2>
+<h3>小结：</h3>
 
 <p>数据库是人类伟大智慧的结晶</p>
 

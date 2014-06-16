@@ -4,7 +4,7 @@
   <title><![CDATA[Category: memcached源码分析 | CXH.ME]]></title>
   <link href="http://cxh.me/category/memcachedyuan-ma-fen-xi/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:04:34+08:00</updated>
+  <updated>2014-06-16T20:12:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -22,7 +22,7 @@
 
 <p>memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)</p>
 
-<h2>基本源码结构</h2>
+<h3>基本源码结构</h3>
 
 <p>主要的源码有:</p>
 

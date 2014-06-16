@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MFC | CXH.ME]]></title>
   <link href="http://cxh.me/category/mfc/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:04:34+08:00</updated>
+  <updated>2014-06-16T20:12:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,40 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值
-]]></title>
-    <link href="http://cxh.me/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/"/>
-    <updated>2012-05-08T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。</p>
-
-<p>首先是强制类型转换运算符的重载，作用是当前对象向其他类型的转换，常见的形式是</p>
-
-<pre><code>operator int();
-Integer::operator int()
-{
-    return x;
-}
-</code></pre>
-
-<p>调用方式类似于</p>
-
-<pre><code>Integer c(10);
-int a=c;
-</code></pre>
-
-<p>在函数调用的时候，类型转换的重载也会被隐式调用，比如下面一种情况</p>
-
-<pre><code>void print(int n)
-{
-    cout
-</code></pre>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[深入解析C++输入输出运算符重载]]></title>

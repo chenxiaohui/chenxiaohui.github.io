@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Others | CXH.ME]]></title>
   <link href="http://cxh.me/category/others/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:04:34+08:00</updated>
+  <updated>2014-06-16T20:12:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -58,7 +58,7 @@ mycharptr = "It's Wrong"; //OK
 
 <p>后来证实其实是指纹识别坏了…还好在保修内…</p>
 
-<h2>参考文献：</h2>
+<h3>参考文献：</h3>
 
 <blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p></blockquote>
 ]]></content>

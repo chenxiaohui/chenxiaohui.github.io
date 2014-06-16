@@ -10,7 +10,7 @@ categories: oceanbase
 
 <!-- more -->
 
-##BaseMain
+###BaseMain
 
 BaseMain的逻辑从start开始,首先定义了日志格式(ob_easy_log_format),具体定义在ob_easy_log.cpp中
 日志格式如何使用需要跟到Libeasy里去看了.
@@ -22,14 +22,14 @@ BaseMain的逻辑从start开始,首先定义了日志格式(ob_easy_log_format),
 start的最后注册了signal ,并调用do_work开始逻辑.do_work需要子类重载实现.
 restart处理了重启的问题. 
 
-##ObServerConfig
+###ObServerConfig
 	主要是读取系统配置,包含一个oibsystemconfig的指针
 
-##ObSystemConfig
+###ObSystemConfig
 	系统配置,键值对和resultset形式
 
 
-##ObRootMain
+###ObRootMain
 继承自common下的BaseMain,定义了RootServer的启动流程
 
 ObRootMain的几个主要成员:

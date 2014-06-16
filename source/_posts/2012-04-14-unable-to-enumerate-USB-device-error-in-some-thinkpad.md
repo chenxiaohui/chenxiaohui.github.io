@@ -18,7 +18,7 @@ mkd_text:
     
     后来证实其实是指纹识别坏了…还好在保修内…
     
-    ##参考文献：
+    ###参考文献：
     
     >[1] Solved: unable to enumerate USB device on port 1,
     
@@ -48,7 +48,7 @@ format: standard
 
 后来证实其实是指纹识别坏了…还好在保修内…
 
-## 参考文献：
+### 参考文献：
 
 > [1] Solved: unable to enumerate USB device on port 1,
 >

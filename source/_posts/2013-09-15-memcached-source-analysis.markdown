@@ -10,7 +10,7 @@ Memcached是一套分布式的缓存系统, 对于WEB应用来讲, Memcached的�
 
 memcached的源码实现很优雅, 相对于其他的开源系统, 比如nginx\apache等, memcached的实现并不复杂, 是一份很好的教材. 这里我们分几部分分析一下memcached的源码. (基于memcached 1.4.0)
 
-##基本源码结构
+###基本源码结构
 
 主要的源码有:
 

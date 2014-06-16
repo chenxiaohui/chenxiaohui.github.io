@@ -13,11 +13,11 @@ mkd_text:
     
     <!--more-->
     
-    ##安装：
+    ###安装：
     
     >扔进plugin目录就行
     
-    ##配置
+    ###配置
     
     	:::vim
     	nnoremap <Leader>wq :w<CR><Esc>:call BufClose(0)<CR> 
@@ -25,7 +25,7 @@ mkd_text:
     	nnoremap <Leader>w :w<CR> 
     	nnoremap <Leader>x :call BufClose(1)<CR>
     
-    ##使用
+    ###使用
     
     >shift+h,l ：左右切换tab
     
@@ -43,7 +43,7 @@ mkd_text:
     
     >\<leader\>x: 不保存关闭当前缓冲区
     
-    ##参考文献：
+    ###参考文献：
     
     >[1] buf_it : Buffer list in statusline,
     
@@ -69,11 +69,11 @@ format: standard
 
 ![效果图][2]
 
-## 安装：
+### 安装：
 
 > 扔进plugin目录就行
 
-## 配置
+### 配置
 
 
     nnoremap wq :w:call BufClose(0)
@@ -82,7 +82,7 @@ format: standard
     nnoremap x :call BufClose(1)
 
 
-## 使用
+### 使用
 
 > shift h,l ：左右切换tab
 >
@@ -100,7 +100,7 @@ format: standard
 >
 > \x: 不保存关闭当前缓冲区
 
-## 参考文献：
+### 参考文献：
 
 > [1] buf_it : Buffer list in statusline,
 >
