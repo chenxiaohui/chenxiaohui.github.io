@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:48:08+08:00</updated>
+  <updated>2014-06-19T09:59:30+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[总结STL的通用算法基本形式]]></title>
+    <link href="http://cxh.me/2014/06/19/stl-algorithm-signature/"/>
+    <updated>2014-06-19T09:58:00+08:00</updated>
+    <id>http://cxh.me/2014/06/19/stl-algorithm-signature</id>
+    <content type="html"><![CDATA[<p>stl的通用算法基本有如下四种形式：</p>
+
+<ol>
+<li>alg(beg, end, params)：使用源输入作为输出</li>
+<li>alg(beg, end, dest, params) ：使用dest作为输出，需要保证有足够的空间，所以往往使用inserter</li>
+<li>alg(beg, end, beg2, other params)：beg2作为输出，假定beg2开始的范围至少跟beg和end指定的范围一样大。</li>
+<li>alg(beg, end, beg2, end2, params)：beg2 end2作为输出</li>
+</ol>
+
+
+<p>举例：</p>
+
+<p>第一种比如：</p>
+
+<pre><code>find(beg, end, search_value);
+sort(beg, end);
+accumulate(beg, end, original_value);
+fill(beg, end, value); //特殊的：fill_n(begin, count, n)
+replace(beg, end, value, replace_value);
+unique(beg, end);
+count(beg, end, value);
+stable_sort(beg, end);
+reverse(beg, end);
+</code></pre>
+
+<p>第二种比如：</p>
+
+<pre><code>copy(beg, end, back_inserter(vector));
+</code></pre>
+
+<p>第三种比如：</p>
+
+<pre><code>replace_copy(beg, end, beg2, value, replace_value);
+unique_copy(beg, end, beg2);
+reverse_copy(beg, end, beg2);
+</code></pre>
+
+<p>第四种比如：</p>
+
+<pre><code>find_first_of(beg, end, beg2, end2);
+</code></pre>
+
+<p>另外，有的算法支持谓词，比如</p>
+
+<pre><code>sort(beg, end, comp)
+find_if(beg, end, comp)
+count_if(beg, end, comp)
+</code></pre>
+
+<p>有的算法有copy和非copy版，比如</p>
+
+<pre><code>replace(beg, end, value, replace_value);
+unique(beg, end);
+
+replace_copy(beg, end, beg2, value, replace_value);
+unique_copy(beg, end, beg2);    
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[c/c++ 文件/流读取函数总结]]></title>
@@ -1309,43 +1374,6 @@ ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
 </code></pre>
 
 <p>  生成tags，插件会去去找tags文件，然后把找到的位置定义为项目目录，之后的引用路径会按照这路径来生成相对路径。strip_prefix_arr制定要去掉的前缀，比如我们的路径是/home/dev/src/rootserver/xxx.h，tags生成在dev下，按照base_dir_mark/src去掉项目路径得到 rootserver/xxx.h，根据strip_prefix_arr去掉rootserver，最后得到import &ldquo;xxx.h&#8221;。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式调试系列：关于日志的比对]]></title>
-    <link href="http://cxh.me/2013/11/17/method-to-diff-log/"/>
-    <updated>2013-11-17T22:00:00+08:00</updated>
-    <id>http://cxh.me/2013/11/17/method-to-diff-log</id>
-    <content type="html"><![CDATA[<p>  有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何<a href="http://qianjigui.iteye.com/blog/368449" title="Vim日志定位解决方案">写个插件通过log来定位源码行</a>，这篇日志我们讨论一下如何快速定位自己的错误日志。</p>
-
-<p>  首先，前面的状况至少可以保证一点，你check一份新的代码或者回滚本地修改然后运行，得到的错误日志和你当前的错误日志是可比较的。也就是说，你的错误至少不会导致错误日志之中有巨大的变化。这样的话我们可以采取如下的策略比较错误日志。</p>
-
-<ol>
-<li> 得到当前的错误日志，假使命名为log.core</li>
-<li> check一份新的代码或者回滚本地修改，得到之前的错误日志，假使命名为log.ok</li>
-<li> 比较log.ok和log.core，分析日志的差别，得到本地修改导致的真实错误日志。</li>
-</ol>
-
-
-<p>  想法是很简单的，唯一的问题是OB日志里面是有时间戳的，这就导致没一行都有差异，那就太纠结了。我们可以用如下vim命令来去掉所有的时间戳。vim正则的转义规则见<a href="http://qianjigui.iteye.com/blog/368449" title="Vim 中的正则表达式">参考文献</a>。</p>
-
-<pre><code>map :lg :%s/\(^\[.\{-}\]\)\\|\(\[\d\+\]\)\\|\(0x\w\+\)//g
-</code></pre>
-
-<p>  这里面唯一的风险是比如我们在中括号里面写的数字也会被剔除，好在我们只是比较日志差异，想要看原始日志大不了根据行号到完整版里面找去，而且这个概率不大。</p>
-
-<p>  <!-- more --></p>
-
-<p>  实际的效果是这样的。<s>我在考虑要不要把所有的tsi错误都去掉。</s> tsi的错误可以直接剔除0x\w+这些16进制数。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2013-11/logdiff.png" title="日志比较" alt="日志比较"><p class="align-center">日志比较</p></p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] Vim 中的正则表达式, <a href="http://qianjigui.iteye.com/blog/368449">http://qianjigui.iteye.com/blog/368449</a></p>
-
-<p>[2] Vim日志定位解决方案, <a href="http://cxh.me/2013/11/08/solution-to-locate-log-in-src/">http://cxh.me/2013/11/08/solution-to-locate-log-in-src/</a></p></blockquote>
 ]]></content>
   </entry>
   

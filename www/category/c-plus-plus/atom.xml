@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-16T20:48:08+08:00</updated>
+  <updated>2014-06-19T09:59:30+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[总结STL的通用算法基本形式]]></title>
+    <link href="http://cxh.me/2014/06/19/stl-algorithm-signature/"/>
+    <updated>2014-06-19T09:58:00+08:00</updated>
+    <id>http://cxh.me/2014/06/19/stl-algorithm-signature</id>
+    <content type="html"><![CDATA[<p>stl的通用算法基本有如下四种形式：</p>
+
+<ol>
+<li>alg(beg, end, params)：使用源输入作为输出</li>
+<li>alg(beg, end, dest, params) ：使用dest作为输出，需要保证有足够的空间，所以往往使用inserter</li>
+<li>alg(beg, end, beg2, other params)：beg2作为输出，假定beg2开始的范围至少跟beg和end指定的范围一样大。</li>
+<li>alg(beg, end, beg2, end2, params)：beg2 end2作为输出</li>
+</ol>
+
+
+<p>举例：</p>
+
+<p>第一种比如：</p>
+
+<pre><code>find(beg, end, search_value);
+sort(beg, end);
+accumulate(beg, end, original_value);
+fill(beg, end, value); //特殊的：fill_n(begin, count, n)
+replace(beg, end, value, replace_value);
+unique(beg, end);
+count(beg, end, value);
+stable_sort(beg, end);
+reverse(beg, end);
+</code></pre>
+
+<p>第二种比如：</p>
+
+<pre><code>copy(beg, end, back_inserter(vector));
+</code></pre>
+
+<p>第三种比如：</p>
+
+<pre><code>replace_copy(beg, end, beg2, value, replace_value);
+unique_copy(beg, end, beg2);
+reverse_copy(beg, end, beg2);
+</code></pre>
+
+<p>第四种比如：</p>
+
+<pre><code>find_first_of(beg, end, beg2, end2);
+</code></pre>
+
+<p>另外，有的算法支持谓词，比如</p>
+
+<pre><code>sort(beg, end, comp)
+find_if(beg, end, comp)
+count_if(beg, end, comp)
+</code></pre>
+
+<p>有的算法有copy和非copy版，比如</p>
+
+<pre><code>replace(beg, end, value, replace_value);
+unique(beg, end);
+
+replace_copy(beg, end, beg2, value, replace_value);
+unique_copy(beg, end, beg2);    
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[c/c++ 文件/流读取函数总结]]></title>
@@ -483,21 +548,6 @@ string s2="a" s1 "c";
 </code></pre>
 
 <p>6.还有一件事情:大写字母的ascii码值小于小写字母，切记</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[推荐两个STL学习资源]]></title>
-    <link href="http://cxh.me/2012/10/16/recommand-two-stl-learning-resource/"/>
-    <updated>2012-10-16T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/10/16/recommand-two-stl-learning-resource</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>本来想自己写一点的，后来觉得见识颇浅，所以直接贴别人的了。两篇文章其实都是说algorithm多于stl的数据结构，不过这也可能是很多人学习的时候忽视的，而且把通用算法用到数组上的方法确实挺方便。</p>
-
-<blockquote><p>1: <a href="http://www.lslnet.com/linux/books/resource/stl.html">http://www.lslnet.com/linux/books/resource/stl.html</a> STL 简介，标准模板库</p>
-
-<p>2: <a href="http://net.pku.edu.cn/~yhf/UsingSTL.htm">http://net.pku.edu.cn/~yhf/UsingSTL.htm</a> 三十分钟掌握STL</p></blockquote>
 ]]></content>
   </entry>
   
