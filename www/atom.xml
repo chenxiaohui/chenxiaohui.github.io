@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-19T12:02:21+08:00</updated>
+  <updated>2014-06-19T19:00:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[成像入门]]></title>
+    <link href="http://cxh.me/2014/06/19/phphotography-theorem/"/>
+    <updated>2014-06-19T19:00:00+08:00</updated>
+    <id>http://cxh.me/2014/06/19/phphotography-theorem</id>
+    <content type="html"><![CDATA[<p>其实我只是感性的解释一下一些基本的原理。</p>
+
+<ol>
+<li><p>成像同一个点发出的所有光线在焦平面汇聚的结果。从原理上讲，小孔成像是更优的成像方式，因为小孔过滤了光线，让每个像点发出的光只有一束能参与成像，但是这样容易导致亮度偏低，同时小孔也不能像理论上说的足够小。</p></li>
+<li><p>如果胶片/CCD刚好位于焦平面上，那么成像最清晰，焦平面前后的一段距离里面，成像虽然不够清晰但是也能接受，出了这个区域就认为不再能够成像。这个区域就是弥散斑所在的区域。对应的物体距离范围叫景深。</p></li>
+<li><p>镜片如果折光度高的话，那么成像位置靠前，像小，同时光线密度增加导致景深增加。这就是短焦距镜片，短焦镜片的视角大。也就是说够光范围内的光都会被折射到成像底板的区域里。适合拍风景等大画幅照片，广角镜头就是这类。</p></li>
+<li><p>相反，如果镜片折光度小，那么成像位置就靠后，像大，同时光线密度减少导致景深减少。这就是长焦镜头，长焦镜头视角小，景深小，适合拍人像，可以造成虚化的效果，同时也适合打鸟，毕竟放大倍数高，不易被发现。</p></li>
+<li><p>同时，光圈也影响景深。在焦距一定的情况下，小光圈遮挡了周围的光线，由于中间部分折光系数高，所以增加了景深。由于入射光强度降低，要想保证成片的明度，就需要加大ISO，增加快门时间。反过来，大光圈会减少景深，由于入射光强度高，可以减少ISO，减少快门时间。所以说大光圈长焦是人像利器。</p></li>
+</ol>
+
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 一篇讲解成像原理的文章, <a href="http://blog.sina.com.cn/s/blog_64cff0510100hid1.html">http://blog.sina.com.cn/s/blog_64cff0510100hid1.html</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Nginx 安装配置总结]]></title>
@@ -1311,32 +1333,6 @@ augroup END
 </code></pre>
 
 <p>  这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于得到当前执行文件所在的目录]]></title>
-    <link href="http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program/"/>
-    <updated>2013-11-19T21:47:00+08:00</updated>
-    <id>http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program</id>
-    <content type="html"><![CDATA[<p>  今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。</p>
-
-<p>  首先，直接 realpath(&ldquo;./&rdquo;) 和 getcwd 获取的都是当前路径，也就是当前shell所在的路径。<strong>FILE</strong>获取的是文件名，不包含路径，而且是编译过程确定的，最简单的办法当然是argv[0]，但是在test_case(gtest)里面不方便传来传去，后来发现最好的办法是这样的：</p>
-
-<pre><code>#include "libgen.h"
-#define MAX_PATH_SIZE 100
-char current_absolute_path[MAX_PATH_SIZE] = {'\0'};
-if (readlink("/proc/self/exe", current_absolute_path, MAX_PATH_SIZE - 1) &lt; 0)
-{
-  //error
-}
-else
-{
-  sprintf(current_absolute_path, "%s/%s", dirname(current_absolute_path), schema_file_name);
-}
-</code></pre>
-
-<p>  这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
 ]]></content>
   </entry>
   

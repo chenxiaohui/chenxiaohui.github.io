@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 世情百态 | CXH.ME]]></title>
   <link href="http://cxh.me/category/shi-qing-bai-tai/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-19T12:09:58+08:00</updated>
+  <updated>2014-06-19T19:00:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[成像入门]]></title>
+    <link href="http://cxh.me/2014/06/19/phphotography-theorem/"/>
+    <updated>2014-06-19T19:00:00+08:00</updated>
+    <id>http://cxh.me/2014/06/19/phphotography-theorem</id>
+    <content type="html"><![CDATA[<p>其实我只是感性的解释一下一些基本的原理。</p>
+
+<ol>
+<li><p>成像同一个点发出的所有光线在焦平面汇聚的结果。从原理上讲，小孔成像是更优的成像方式，因为小孔过滤了光线，让每个像点发出的光只有一束能参与成像，但是这样容易导致亮度偏低，同时小孔也不能像理论上说的足够小。</p></li>
+<li><p>如果胶片/CCD刚好位于焦平面上，那么成像最清晰，焦平面前后的一段距离里面，成像虽然不够清晰但是也能接受，出了这个区域就认为不再能够成像。这个区域就是弥散斑所在的区域。对应的物体距离范围叫景深。</p></li>
+<li><p>镜片如果折光度高的话，那么成像位置靠前，像小，同时光线密度增加导致景深增加。这就是短焦距镜片，短焦镜片的视角大。也就是说够光范围内的光都会被折射到成像底板的区域里。适合拍风景等大画幅照片，广角镜头就是这类。</p></li>
+<li><p>相反，如果镜片折光度小，那么成像位置就靠后，像大，同时光线密度减少导致景深减少。这就是长焦镜头，长焦镜头视角小，景深小，适合拍人像，可以造成虚化的效果，同时也适合打鸟，毕竟放大倍数高，不易被发现。</p></li>
+<li><p>同时，光圈也影响景深。在焦距一定的情况下，小光圈遮挡了周围的光线，由于中间部分折光系数高，所以增加了景深。由于入射光强度降低，要想保证成片的明度，就需要加大ISO，增加快门时间。反过来，大光圈会减少景深，由于入射光强度高，可以减少ISO，减少快门时间。所以说大光圈长焦是人像利器。</p></li>
+</ol>
+
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 一篇讲解成像原理的文章, <a href="http://blog.sina.com.cn/s/blog_64cff0510100hid1.html">http://blog.sina.com.cn/s/blog_64cff0510100hid1.html</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[转载王垠的一段话]]></title>
@@ -57,17 +79,17 @@
 
 <hr />
 
-<p>{% img /images/common/ask.jpg 200 &ldquo;are you kidding me&rdquo; %} 你家的土豪是坐公交的啊</p>
+<p><img src="/images/common/ask.jpg" width="200" title="&ldquo;are you kidding me&rdquo;" > 你家的土豪是坐公交的啊</p>
 
 <hr />
 
 <p>  好了，不管土豪的事情了，上几张照片。</p>
 
-<p>{% img img-polaroid center /images/2013-10/IMG_20131006_144718.jpg  &ldquo;这个是想表达什么&rdquo; &ldquo;这个是想表达什么&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/IMG_20131006_144718.jpg" title="&ldquo;这个是想表达什么&rdquo; &ldquo;这个是想表达什么&rdquo;" ></p>
 
-<p>{% img img-polaroid center /images/2013-10/IMG_20131006_145824.jpg &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/IMG_20131006_145824.jpg" title="&ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo;" ></p>
 
-<p>{% img img-polaroid center /images/2013-10/IMG_20131006_172509.jpg &ldquo;最震撼的其实是这个&rdquo; &ldquo;最震撼的其实是这个&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013-10/IMG_20131006_172509.jpg" title="&ldquo;最震撼的其实是这个&rdquo; &ldquo;最震撼的其实是这个&rdquo;" ></p>
 
 <p>  这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
 
@@ -124,25 +146,6 @@
 <p>就像岸上的砂粒一样 来去匆匆</p>
 
 <p>就像岸上的砂粒一样 感叹如风</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一点心情]]></title>
-    <link href="http://cxh.me/2012/11/18/some-feelings/"/>
-    <updated>2012-11-18T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/11/18/some-feelings</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>写程序写了一天，晚上跟爸妈打了个电话，聊聊签工作的事情，越谈越觉得伤感。这几天听了太多的户口、发展、机会之类的词汇，突然觉得这些东西未必是你真的想追求的。读高中的时候觉得一定要考出去，否则有啥出息，研三的这个秋天，才觉得之前很多深恶痛绝的事情，是如此的温情。</p>
-
-<p>很多变化真是不知不觉。比如有时候想跟父母说压力好大，但是往往话到嘴边又吞回去了。再比如说一天下来累的要命，想找个人聊聊天，结果想来想去也找不到该联系谁。刘瑜说人生之惬意，在于三五知己，谈笑风生。以前没感觉，现在才觉得真是难得，尤其在这样一个忙忙碌碌的社会里。</p>
-
-<p>落寞。好像这个词最贴切了。写这点东西，多半是因为这个词，是它让我有落笔的冲动。站在窗台看外面风吹树叶，昏黄的等下陌生的行人，猛然觉得这个城市还是如此陌生。北京，北京，在这里居住了六年了，逛了很多地方，换了两所学校，所得的印象依然是如此模糊。回味一下，似乎对遇到这些人的印象甚于对这所城市。走过一个城市，认识一些人，发生一些事，不知道这是不是大家共同的人生轨迹。也许某些年前的一个决定，就决定了你将来会来到这里，遇见谁。所以说高考的魅力，不在于如愿以偿，而在于阴差阳错。</p>
-
-<p>找工作赞告一段落了。最终签哪里还在犹豫，但是也没多少好犹豫的时间了。还是那样，未来无法预测，随他阴差阳错去吧。但是真的想离开了。最近一个突出的感觉是，无论签哪里，未来几年的生活状态都差不多，上班挤地铁加班，然后寻求涨薪，等机会跳槽，大致如此。这永远是一个拼搏的城市，每天早上多睡了一个小时都觉得好奢侈。年轻的时候压力大点无所谓，但是过几年难免心态疲惫。或许应该换个地方，换个心情了。偌大的世界，阻挡你走出去的，只有自己。</p>
-
-<p>好久不写东西了，感觉文字都退化了，这个微博盛行和消息爆炸的时代，果然求摘要是最刚性的需求，所以简单的说，就是一句话，想走了…</p>
 ]]></content>
   </entry>
   
