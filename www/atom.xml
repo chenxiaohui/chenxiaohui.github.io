@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-19T19:05:19+08:00</updated>
+  <updated>2014-06-19T21:39:08+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[oceanbase设计中的注意事项]]></title>
+    <link href="http://cxh.me/2014/06/19/oceanbase-design-notes/"/>
+    <updated>2014-06-19T21:37:00+08:00</updated>
+    <id>http://cxh.me/2014/06/19/oceanbase-design-notes</id>
+    <content type="html"><![CDATA[<ol>
+<li>没有情况什么是不可能发生的</li>
+<li>RPC或者其他网络调用是不一定能够返回结果的。也就是有三种可能，正确，失败，超时。</li>
+<li>开发文档是需要一边写一边改最后再补的。</li>
+<li>自顶向下，逐步求精还是有效的办法。方便解决很多设计上想不到的地方，细节永远最后再做，毕竟之前想的可能过一段时间决定不做了。</li>
+<li>复杂任务要分成多个可测试的阶段完成，每个阶段保证能单独测试。为此多写一些代码也是值得的。</li>
+<li>我们不是业务驱动，也不是技术驱动，而是测试驱动的&hellip;..</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[成像入门]]></title>
@@ -1309,31 +1326,6 @@ destructor in base
     <updated>2013-11-21T17:31:00+08:00</updated>
     <id>http://cxh.me/2013/11/21/use-mock-to-debug</id>
     <content type="html"><![CDATA[<p>  最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于ob代码规范里面的行末空格]]></title>
-    <link href="http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end/"/>
-    <updated>2013-11-20T10:50:00+08:00</updated>
-    <id>http://cxh.me/2013/11/20/method-to-deal-with-blanks-at-line-end</id>
-    <content type="html"><![CDATA[<p>  行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：</p>
-
-<pre><code>" 删除所有行未尾空格
-nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
-"显示空格
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-augroup ExtraWhitespaceGroup
-    autocmd!
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@&lt;!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
-augroup END
-</code></pre>
-
-<p>  这样打开所有文件（其实可以只处理cpp)的时候行尾空格都会变成红色，&lt;Ctrl-F12>可以统一去掉所有的空格。这么做唯一不爽的是如果有未遵从代码规范的文件那么就满篇的红色。比如多隆大神早期的代码&hellip;.</p>
 ]]></content>
   </entry>
   
