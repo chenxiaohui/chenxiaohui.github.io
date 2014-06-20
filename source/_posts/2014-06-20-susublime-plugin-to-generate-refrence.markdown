@@ -18,9 +18,9 @@ categories: "web相关"
 
 	>\[1] 百度, <http://www.baidu.com>
 
-	>\	  [2] 谷歌, <http:://www.google.com>
+	>\[2] 谷歌, <http:://www.google.com>
 
-	>\	  [3] 404 Not Found, <http://www.facebook.com>
+	>\[3] 404 Not Found, <http://www.facebook.com>
 
   效果如下：
 
@@ -28,9 +28,9 @@ categories: "web相关"
 
 >\[1] 百度, <http://www.baidu.com>
 
->\	  [2] 谷歌, <http:://www.google.com>
+>\[2] 谷歌, <http:://www.google.com>
 
->\	  [3] 404 Not Found, <http://www.facebook.com>
+>\[3] 404 Not Found, <http://www.facebook.com>
 
 <!--more-->
 

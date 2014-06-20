@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-20T21:21:46+08:00</updated>
+  <updated>2014-06-20T21:23:08+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -31,9 +31,9 @@
 
 &gt;\[1] 百度, &lt;http://www.baidu.com&gt;
 
-&gt;\    [2] 谷歌, &lt;http:://www.google.com&gt;
+&gt;\[2] 谷歌, &lt;http:://www.google.com&gt;
 
-&gt;\    [3] 404 Not Found, &lt;http://www.facebook.com&gt;
+&gt;\[3] 404 Not Found, &lt;http://www.facebook.com&gt;
 </code></pre>
 
 <p>  效果如下：</p>
@@ -42,9 +42,9 @@
 
 <blockquote><p>[1] 百度, <a href="http://www.baidu.com">http://www.baidu.com</a></p>
 
-<p>\    [2] 谷歌, <a href="http:://www.google.com">http:://www.google.com</a></p>
+<p>[2] 谷歌, <a href="http:://www.google.com">http:://www.google.com</a></p>
 
-<p>\    [3] 404 Not Found, <a href="http://www.facebook.com">http://www.facebook.com</a></p></blockquote>
+<p>[3] 404 Not Found, <a href="http://www.facebook.com">http://www.facebook.com</a></p></blockquote>
 
 <!--more-->
 
