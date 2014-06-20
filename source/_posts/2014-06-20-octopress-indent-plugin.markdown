@@ -51,7 +51,7 @@ no indent
 
 * item
 
-indent
+  indent
 
 > * indent item
 

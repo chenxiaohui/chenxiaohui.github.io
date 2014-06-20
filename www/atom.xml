@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-20T20:48:20+08:00</updated>
+  <updated>2014-06-20T20:50:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -66,11 +66,11 @@ no indent
 <p>no indent</p>
 
 <ul>
-<li>item</li>
+<li><p>item</p>
+
+<p>indent</p></li>
 </ul>
 
-
-<p>indent</p>
 
 <blockquote><ul>
 <li>indent item</li>
