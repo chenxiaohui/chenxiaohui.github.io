@@ -59,10 +59,6 @@ lines start with two spaces will generate a two-word indent. eg:
     > * indent item
       * indent item 2
 
-effect
-
-    ![effect](effect.png "effect")
-
 ### image support
 
 there are three kind of image syntax:
@@ -114,6 +110,11 @@ isolate moves other docs into stash, integrate moves stashs to posts
     * item
       indent
       > * indent item
+
+effect
+
+    ![effect](effect.png "effect")
+
 
 ### octopress sublime plugin
 

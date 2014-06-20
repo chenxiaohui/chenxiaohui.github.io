@@ -4,6 +4,7 @@
 .gist-cache
 .pygments-cache
 _deploy
+*.swp
 www
 public
 sass.old
