@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-20T21:05:38+08:00</updated>
+  <updated>2014-06-20T21:21:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,69 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[sublime根据markdown引用生成参考文献的插件]]></title>
+    <link href="http://cxh.me/2014/06/20/susublime-plugin-to-generate-refrence/"/>
+    <updated>2014-06-20T21:21:00+08:00</updated>
+    <id>http://cxh.me/2014/06/20/susublime-plugin-to-generate-refrence</id>
+    <content type="html"><![CDATA[<p>  写这个的目的主要是每次写博客需要生成以下版权声明，免得引用了别人的文章被人说盗版。markdown里面支持通过列表组织引用的url，如下所示：</p>
+
+<pre><code>  [1]: http://www.baidu.com   "百度"
+  [2]: http:://www.google.com "谷歌"
+  [3]: http://www.facebook.com "404 Not Found"
+</code></pre>
+
+<p>  我们可以通过这个形式来生成如下的代码</p>
+
+<pre><code>###参考文献:
+
+&gt;\[1] 百度, &lt;http://www.baidu.com&gt;
+
+&gt;\    [2] 谷歌, &lt;http:://www.google.com&gt;
+
+&gt;\    [3] 404 Not Found, &lt;http://www.facebook.com&gt;
+</code></pre>
+
+<p>  效果如下：</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 百度, <a href="http://www.baidu.com">http://www.baidu.com</a></p>
+
+<p>\    [2] 谷歌, <a href="http:://www.google.com">http:://www.google.com</a></p>
+
+<p>\    [3] 404 Not Found, <a href="http://www.facebook.com">http://www.facebook.com</a></p></blockquote>
+
+<!--more-->
+
+
+<p>  代码如下:</p>
+
+<pre><code>#!/usr/bin/python
+#coding=utf-8
+#Filename:generate_ref.py
+
+import sublime, sublime_plugin
+
+class GeneraterefCommand(sublime_plugin.TextCommand):
+    def run(self, edit):
+        sels = self.view.sel()
+        lines=[]
+        for sel in sels:
+            lines += (self.view.substr(sel)).strip("\n").split("\n")
+        outlines=[]
+        for line in lines:
+            idx1 = line.find(":")
+            index = line[:idx1]
+            idx2 = line.find('"', idx1)
+            url = line[idx1+1:idx2].strip(' ')
+            title = line[idx2:].strip('"')
+            outlines.append('\n&gt;\%s %s, &lt;%s&gt;'%(index,title,url))
+        self.view.insert(edit, sel.end(),"\n###参考文献:\n".decode("utf-8") + "\n".join(outlines))
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[octopress支持markdown表格]]></title>
@@ -1174,59 +1237,6 @@ nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
 <p>  我对清华，还有 Princeton，Harvard，MIT，Stanford，Berkeley，CMU 等学校的学生都有了解。这些所谓的“世界一流大学”或者“世界一流大学 wannabee”差不多都是类似的气氛。你冲着它们的名气和“关系网”挤破了头皮进去，然后就每天有人在你耳边对其它人感叹：哇，他好牛啊！发了好多 paper，还得了XX奖。跟参加传销大会似的，让你怀疑这些人还有没有自尊。然后就是填鸭式的教育，无止境的作业和考试，让你感觉他们不是在“教育”你，而是在“筛选”你。这种筛选总是筛掉最差的，但也筛掉最好的。因为最好的学生能意识到你在干什么，他们不给你筛选他们的机会。一旦发现其实没学到东西，中途就辍学出去创业了。所以剩下来的就是最一般的，循规蹈矩听话的。在这样的环境里，你感觉不到真正的智慧和真知的存在。GRE 考试所鼓吹的什么“批判性思维”（critical thinking ）在美国大学里其实是相当缺乏的。学生们只不过是在被培训成为某些其他人的工具，他们具有固定的思维定势，像是一个模子倒出来的。他们不是真正的创造者和开拓者。</p>
 
 <p>  原文出处： <a href="http://www.yinwang.org/blog-cn/2014/01/04/authority/">http://www.yinwang.org/blog-cn/2014/01/04/authority/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Thinking In Java读书笔记]]></title>
-    <link href="http://cxh.me/2013/11/24/thinking-in-java-notes/"/>
-    <updated>2013-11-24T20:32:00+08:00</updated>
-    <id>http://cxh.me/2013/11/24/thinking-in-java-notes</id>
-    <content type="html"><![CDATA[<p>  静态成员只有被引用（首次生成所在类的对象或者被首次访问，即使从为生成过那个类的对象）的时候才会初始化。</p>
-
-<p>  一般情况下Java成员变量初始化顺序是，静态成员/静态快->直接初始化的类成员->构造函数</p>
-
-<p>  一个简单的例子如下:</p>
-
-<!-- more -->
-
-
-<p>  <strong>Cup.java</strong></p>
-
-<pre><code>public class Cup {
-    public Cup(int i)
-    {
-        System.out.println("constructor" + i);
-    }
-}
-</code></pre>
-
-<p>  <strong>TestJava.java</strong></p>
-
-<pre><code>public class TestJava {
-    public Cup cup;
-    public Cup cup3 = new Cup(3);
-    public static Cup cup1 = new Cup(1);
-    public static Cup cup2;
-    static{
-        cup2 = new Cup(2);
-    }
-    public TestJava(){
-        cup = new Cup(0);
-    }
-    public static void main(String[] args) {
-        new TestJava();
-    }
-}
-</code></pre>
-
-<p>  <strong>执行结果是</strong></p>
-
-<pre><code>constructor1
-constructor2
-constructor3
-constructor0
-</code></pre>
 ]]></content>
   </entry>
   
