@@ -27,6 +27,8 @@ categories: "web相关"
 
 {% pandoc test.md %}
 
+<!--more-->
+
   插件如下。
 
 	require 'pathname'
@@ -65,6 +67,8 @@ categories: "web相关"
 
 	Liquid::Template.register_tag('pandoc', Jekyll::PandocTag)
 
-  使用的时候先生成一个md文件，放在source/pandoc（随便设定）目录下。然后用如下语法载入：
+  使用的时候先生成一个md文件，放在source/pandoc（随便设定）目录下。插件只是生成了html文件然后read进来了而已，所以有点傻，比如下面我的代码放到缩进里面还是被执行了。
 
-  	{% pandoc test.md %}
+  最后用如下语法载入（去掉空格）：
+
+  	{ % pandoc test.md % }
