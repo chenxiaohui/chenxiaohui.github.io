@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-20T14:56:27+08:00</updated>
+  <updated>2014-06-20T20:46:05+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,52 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[octopress的缩进插件]]></title>
+    <link href="http://cxh.me/2014/06/20/octopress-indent-plugin/"/>
+    <updated>2014-06-20T20:45:00+08:00</updated>
+    <id>http://cxh.me/2014/06/20/octopress-indent-plugin</id>
+    <content type="html"><![CDATA[<p>  我们写中文的时候通常有首行缩进的需求，markdown默认是不支持的，octopress和wordpress也没有缩进的css。这里我们通过加个插件的方式完成。</p>
+
+<p>  首先，处理markdown的渲染。我们建立如下插件:</p>
+
+<pre><code>    module Jekyll
+    module IndentFilter
+        def indent(content)
+            content.gsub(/&lt;p&gt;\s\s/, '&lt;p class="indent"&gt;')
+        end
+    end
+end
+
+Liquid::Template.register_filter(Jekyll::IndentFilter)
+</code></pre>
+
+<p>  这个就是做了个替换。会把行首的两个字符替换成一个css标签。然后加个css在系统css里面就行了：</p>
+
+<pre><code>.indent{text-indent:2em;}
+</code></pre>
+
+<!--more-->
+
+
+<p>  需要注意的是，整个文章的缩进层次可以这样使用：</p>
+
+<pre><code># first
+## second
+## third
+** bold **
+no indent
+* item
+  indent
+  &gt; * indent item
+</code></pre>
+
+<p>  效果如下图所示：</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2014-6/effect.png" title="效果图" alt="效果图"><p class="align-center">效果图</p></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[oceanbase设计中的注意事项]]></title>
@@ -1321,15 +1367,6 @@ destructor in base
 </table></p>
 
 <p>  注：虽然应该是c++标准，但是还是限制一下编译器版本吧，在gcc4.4.6下验证通过（ob的编译器版本）</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式调试系列之行为模拟]]></title>
-    <link href="http://cxh.me/2013/11/21/use-mock-to-debug/"/>
-    <updated>2013-11-21T17:31:00+08:00</updated>
-    <id>http://cxh.me/2013/11/21/use-mock-to-debug</id>
-    <content type="html"><![CDATA[<p>  最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</p>
 ]]></content>
   </entry>
   
