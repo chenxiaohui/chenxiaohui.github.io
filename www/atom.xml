@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-19T21:55:15+08:00</updated>
+  <updated>2014-06-20T13:31:04+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -25,6 +25,8 @@
 <li>自顶向下，逐步求精还是有效的办法。方便解决很多设计上想不到的地方，细节永远最后再做，毕竟之前想的可能过一段时间决定不做了。</li>
 <li>复杂任务要分成多个可测试的阶段完成，每个阶段保证能单独测试。为此多写一些代码也是值得的。</li>
 <li>我们不是业务驱动，也不是技术驱动，而是测试驱动的&hellip;..</li>
+<li>做好单测</li>
+<li>做好单测&hellip;</li>
 </ol>
 
 ]]></content>
