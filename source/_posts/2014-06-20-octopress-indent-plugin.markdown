@@ -39,8 +39,19 @@ categories: "web相关"
 	  indent
 	  > * indent item
 
-  效果如下图所示：
+  效果如下所示：
 
-{% img img-polaroid center /images/2014-6/effect.png "效果图" "效果图" %}
+# first
+## second
+## third
 
+** bold **
+
+no indent
+
+* item
+
+indent
+
+> * indent item
 
