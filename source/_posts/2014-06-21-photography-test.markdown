@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "测试一下机器和镜头"
 date: 2014-06-21 13:24
 comments: true
 categories: "世情百态"
