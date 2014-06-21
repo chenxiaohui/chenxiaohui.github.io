@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-20T21:23:08+08:00</updated>
+  <updated>2014-06-21T12:28:54+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[文本文件和二进制文件读写]]></title>
+    <link href="http://cxh.me/2014/06/21/bin-txt-file-read-write/"/>
+    <updated>2014-06-21T12:28:00+08:00</updated>
+    <id>http://cxh.me/2014/06/21/bin-txt-file-read-write</id>
+    <content type="html"><![CDATA[<p>探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2014-6/binfile.png" title="用vim显示二进制文件" alt="用vim显示二进制文件"><p class="align-center">用vim显示二进制文件</p></p>
+
+<p>所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
+
+<p>代码如下</p>
+
+<pre><code>int main(int argc, const char *argv[])
+{
+  FILE * fp  = fopen("output.txt", "w");
+  fputc(10, fp);
+  fputc(13, fp);
+  fputc('\n', fp);
+  fclose(fp);
+
+  fp  = fopen("output.bin", "wb");
+  int32_t length[] ={0x0a, 0x12345678};
+  fwrite(&amp;length, sizeof(int32_t), 2, fp);
+  fclose(fp);
+  return 0;
+}
+</code></pre>
+
+<!--more-->
+
+
+<p><strong>windows下</strong></p>
+
+<p>文本文件写入：</p>
+
+<pre><code>0000000: 0d0a 0d0d 0a                             .....
+</code></pre>
+
+<p>二进制写入</p>
+
+<pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
+</code></pre>
+
+<p><strong>linux下：</strong></p>
+
+<p>文本方式写入</p>
+
+<pre><code>0000000: 0a0d 0a                                  ...
+</code></pre>
+
+<p>二进制写入：</p>
+
+<pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
+</code></pre>
+
+<p><strong>mac下</strong></p>
+
+<p>文本方式写入：</p>
+
+<pre><code>0000000: 0a0d 0a                                  ...
+</code></pre>
+
+<p>二进制写入</p>
+
+<pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
+</code></pre>
+
+<p>解释几个问题：</p>
+
+<h3>回车符的转义</h3>
+
+<p>  windows下写文本文件的时候换行符会被替换成回车换行(0d0a), 直接写0a(10)也是一样的. Linux和mac下不会,二进制文件不care这些.</p>
+
+<h3>文件结尾判断</h3>
+
+<p>  详见这里：<a href="http://blog.csdn.net/bingqing07/article/details/5785080">http://blog.csdn.net/bingqing07/article/details/5785080</a></p>
+
+<h3>UTF-8 BOＭ</h3>
+
+<p>  转载：</p>
+
+<blockquote><p>UTF-8 不需要 BOM，尽管 Unicode 标准允许在 UTF-8 中使用 BOM。
+所以不含 BOM 的 UTF-8 才是标准形式，在 UTF-8 文件中放置 BOM 主要是微软的习惯（顺便提一下：把带有 BOM 的小端序 UTF-16 称作「Unicode」而又不详细说明，这也是微软的习惯）。
+BOM（byte order mark）是为 UTF-16 和 UTF-32 准备的，用于标记字节序（byte order）。微软在 UTF-8 中使用 BOM 是因为这样可以把 UTF-8 和 ASCII 等编码明确区分开，但这样的文件在 Windows 之外的操作系统里会带来问题。
+「UTF-8」和「带 BOM 的 UTF-8」的区别就是有没有 BOM。即文件开头有没有 U+FEFF。</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[sublime根据markdown引用生成参考文献的插件]]></title>
@@ -1224,19 +1313,6 @@ nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
 <p>  使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。</p>
 
 <p>  好久没写博客了，甚觉我已经离文人很远了。在这个欢乐祥和的日子里，实在是觉得生活充满了顾虑。人生就是这么多矛盾啊，不确定是种状态，确定也是种状态，想想之所以依然这么漂泊着，也就是应了一句话：青春逝去，认输之前。当然了，我觉得我还挺青春的。青春这东西，最重要的不是外表，阳光，积极向上什么的。这都是表面。青春是变革，至少是变革的勇气。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[转载王垠的一段话]]></title>
-    <link href="http://cxh.me/2014/01/06/wangyin-words/"/>
-    <updated>2014-01-06T21:59:00+08:00</updated>
-    <id>http://cxh.me/2014/01/06/wangyin-words</id>
-    <content type="html"><![CDATA[<p>  王垠虽然挺扯，这段话还是有道理的：</p>
-
-<p>  我对清华，还有 Princeton，Harvard，MIT，Stanford，Berkeley，CMU 等学校的学生都有了解。这些所谓的“世界一流大学”或者“世界一流大学 wannabee”差不多都是类似的气氛。你冲着它们的名气和“关系网”挤破了头皮进去，然后就每天有人在你耳边对其它人感叹：哇，他好牛啊！发了好多 paper，还得了XX奖。跟参加传销大会似的，让你怀疑这些人还有没有自尊。然后就是填鸭式的教育，无止境的作业和考试，让你感觉他们不是在“教育”你，而是在“筛选”你。这种筛选总是筛掉最差的，但也筛掉最好的。因为最好的学生能意识到你在干什么，他们不给你筛选他们的机会。一旦发现其实没学到东西，中途就辍学出去创业了。所以剩下来的就是最一般的，循规蹈矩听话的。在这样的环境里，你感觉不到真正的智慧和真知的存在。GRE 考试所鼓吹的什么“批判性思维”（critical thinking ）在美国大学里其实是相当缺乏的。学生们只不过是在被培训成为某些其他人的工具，他们具有固定的思维定势，像是一个模子倒出来的。他们不是真正的创造者和开拓者。</p>
-
-<p>  原文出处： <a href="http://www.yinwang.org/blog-cn/2014/01/04/authority/">http://www.yinwang.org/blog-cn/2014/01/04/authority/</a></p>
 ]]></content>
   </entry>
   
