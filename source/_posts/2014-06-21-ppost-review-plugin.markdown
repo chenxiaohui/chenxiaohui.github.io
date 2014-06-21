@@ -14,6 +14,8 @@ A plugin to generate post-review script
 
 ####install:
 
+    git clone https://github.com/chenxiaohui/post-review.vim 
+
 put post-review.vim to your $VIM/plugin 
 
 add this to your vimrc
@@ -59,7 +61,7 @@ after you added all files you need to review, chmod +x post-review.sh and execut
 
   统共分三步:
 
-1.下载解压(或者git clone)
+1.下载解压(或者git clone) url:<https://github.com/chenxiaohui/post-review.vim>
 2.放到$VIM/plugin目录下(原谅我不写doc的习惯)
 3.在vimrc中添加 
 

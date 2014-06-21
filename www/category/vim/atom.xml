@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T21:10:16+08:00</updated>
+  <updated>2014-06-21T21:24:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -26,6 +26,9 @@
 
 <h4>install:</h4>
 
+<pre><code>git clone https://github.com/chenxiaohui/post-review.vim 
+</code></pre>
+
 <p>put post-review.vim to your $VIM/plugin</p>
 
 <p>add this to your vimrc</p>
@@ -41,6 +44,9 @@
 
 <p><img src="http://cxh.me/images/2013/git-vimdiff.png" title="gitdiff" alt="" /></p>
 
+<!--more-->
+
+
 <p>first use svn diff/git diff and open vimdiff to see the difference</p>
 
 <p>secondly when you consider the changed file needs to be posted , use <leader>pr to add it to post-review.sh</p>
@@ -50,9 +56,6 @@
 <p>after you added all files you need to review, chmod +x post-review.sh and execute it.</p>
 
 <p>(if you set g:chmod_after_create to 1 you will not need to chmod +x)</p>
-
-<!--more-->
-
 
 <hr />
 
@@ -70,7 +73,7 @@
 
 <p>  统共分三步:</p>
 
-<p>1.下载解压(或者git clone)
+<p>1.下载解压(或者git clone) url:<a href="https://github.com/chenxiaohui/post-review.vim">https://github.com/chenxiaohui/post-review.vim</a>
 2.放到$VIM/plugin目录下(原谅我不写doc的习惯)
 3.在vimrc中添加</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Latex | CXH.ME]]></title>
   <link href="http://cxh.me/category/latex/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T21:10:16+08:00</updated>
+  <updated>2014-06-21T21:24:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[直接从markdown生成各种电子书]]></title>
+    <link href="http://cxh.me/2014/06/21/generate-several-types-using-pandoc/"/>
+    <updated>2014-06-21T21:23:00+08:00</updated>
+    <id>http://cxh.me/2014/06/21/generate-several-types-using-pandoc</id>
+    <content type="html"><![CDATA[<p>  有时候我们需要把编辑的markdown转成各种格式，这不失为一种写书的方式。借助pandoc这把瑞士军刀，我们可以实现一个脚本编译各种格式的功能，代码如下：</p>
+
+<pre><code>#!/usr/bin/python
+#coding=utf-8
+#Filename:build.py
+import glob,os,sys,shutil
+
+cmd_template={'html':"pandoc %s -o output/html/%s.html --template=default.html",
+              'pdf':'pandoc -N --toc --template=default.latex --latex-engine=xelatex %s -o output/pdf/%s.pdf',
+              'beamer': 'pandoc -N -t beamer --toc --template=default.beamer --latex-engine=xelatex %s -o output/beamer/%s.pdf',
+              'epub': 'pandoc %s -o output/epub/%s.epub'
+             }
+
+if __name__ == '__main__':
+    if len(sys.argv) &gt; 2:
+        print 'Usage: build.py [pdf|html|epub|beamer]'
+    else:
+        out_type = 'html' if len(sys.argv) == 1 else sys.argv[1]
+        assert(out_type in cmd_template)
+
+    os.system('cat *.md &gt; swift_book.mkd')
+    cmd = [os.system(cmd_template[out_type] %(path, os.path.splitext(path)[0])) for path in glob.glob("*.md")]
+    cmd += [os.system(cmd_template[out_type] %('swift_book.mkd', 'swift_book'))]
+    print cmd
+
+    if out_type == 'html':
+        try:
+            shutil.rmtree('output/html/pic')
+        except Exception , e:
+            pass
+        shutil.copytree("pic",'output/html/pic')
+</code></pre>
+
+<!--more-->
+
+
+<p>  为此你需要<a href="http://johnmacfarlane.net/pandoc/installing.html" title="pandoc">安装一下pandoc</a>，需要pdf支持的话还需要<a href="https://www.tug.org/texlive/" title="texlive">装一下texlive</a>，用法如下：</p>
+
+<pre><code>build.py [pdf|html|epub|beamer]
+
+需要如下的目录结构：
+
+    output  - beamer
+            - pdf
+            - epub
+            - html
+                - pic
+</code></pre>
+
+<p>   另外，脚本会拼一份合集在目录下，所以需要markdown文件有序，比如9.md会拼在10.md后面，所以需要9.md改名为09.md。</p>
+
+<p>  一个使用的例子可以看<a href="https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese" title="The-Swift-Programming-Language-in-Chinese">这里</a>。那些template都是模板文件，可以参考上面例子里的。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] The-Swift-Programming-Language-in-Chinese, <a href="https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese">https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese</a></p>
+
+<p>[2] pandoc, <a href="http://johnmacfarlane.net/pandoc/">http://johnmacfarlane.net/pandoc/</a></p>
+
+<p>[3] pandoc, <a href="http://johnmacfarlane.net/pandoc/installing.html">http://johnmacfarlane.net/pandoc/installing.html</a></p>
+
+<p>[4] texlive, <a href="https://www.tug.org/texlive/">https://www.tug.org/texlive/</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[解决Latex中Itemize距离过大的问题]]></title>
