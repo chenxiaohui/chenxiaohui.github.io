@@ -12,7 +12,7 @@ categories: "C++"
 
 所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)
 
-代码如下
+我们用如下代码测试:	
 
 	int main(int argc, const char *argv[])
 	{

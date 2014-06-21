@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:28:54+08:00</updated>
+  <updated>2014-06-21T12:31:13+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -24,7 +24,7 @@
 
 <p>所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
 
-<p>代码如下</p>
+<p>我们用如下代码测试:</p>
 
 <pre><code>int main(int argc, const char *argv[])
 {
