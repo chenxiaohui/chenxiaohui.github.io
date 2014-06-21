@@ -4,7 +4,7 @@
   <title><![CDATA[Category: PHP | CXH.ME]]></title>
   <link href="http://cxh.me/category/php/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T20:23:54+08:00</updated>
+  <updated>2014-06-21T21:00:57+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,13 +18,14 @@
     <link href="http://cxh.me/2012/04/02/some-problems-about-apache-address-rewrite/"/>
     <updated>2012-04-02T00:00:00+08:00</updated>
     <id>http://cxh.me/2012/04/02/some-problems-about-apache-address-rewrite</id>
-    <content type="html"><![CDATA[<h1></h1>
+    <content type="html"><![CDATA[<p>#</p>
 
 <p>  Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。</p>
 
 <p>  首先要打开rewrite模块windows下的配置是</p>
 
-<blockquote><p>LoadModule rewrite_module modules/mod_rewrite.so</p></blockquote>
+<pre><code>LoadModule rewrite_module modules/mod_rewrite.so
+</code></pre>
 
 <p>  httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。</p>
 
@@ -44,17 +45,20 @@
 
 <p>  RewriteRule才是我们讨论的主要话题。RewriteRule实现把符合表达式的地址重定向到另一个地址的功能RewriteRule的语法类似于下面</p>
 
-<blockquote><p>RewriteRule ^forum-([0-9] )&ndash;([0-9] )\.html$ forumdisplay.php?fid=$1&amp;page=$2</p></blockquote>
+<pre><code>RewriteRule ^forum-([0-9] )-([0-9] )\\.html$ forumdisplay.php?fid=$1&amp;page=$2
+</code></pre>
 
 <p>  RewriteRule紧跟着判断表达式之后是需要重定向的位置正则表达式()会捕获一个分组然后通过$n引用这个分组从而实现地址重写。RewriteRule匹配的开始位置是整个URL去掉当前目录后剩下的部分比如我在/discuz配置上面所示的RewriteRule然后输入一个URL-<a href="http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82">http://localhost/discuz/forum-1-1.html%E8%A2%AB%E7%94%A8%E6%9D%A5%E5%8C%B9%E9%85%8D%E7%9A%84%E8%BE%93%E5%85%A5%E4%BC%9A%E6%98%AFforum-1-1.html%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%89%8D%E9%9D%A2%E7%9A%84/discuz/%E8%A2%AB%E5%90%83%E6%8E%89%E4%BA%86%E3%80%82%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E9%97%AE%E9%A2%98%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%94%A8%E5%A6%82%E4%B8%8B%E7%9A%84%E8%AF%AD%E5%8F%A5%E9%AA%8C%E8%AF%81%E3%80%82</a></p>
 
-<blockquote><p>RewriteRule ^(.*)/forum-([0-9] )&ndash;([0-9] )\.html$ rewrite.php?param=$1</p>
+<pre><code> RewriteRule ^(.*)/forum-([0-9] )-([0-9] )\\.html$ rewrite.php?param=$1
+</code></pre>
 
-<p>注在rewrite.php里打印一下GET[&lsquo;param’]参数</p></blockquote>
+<blockquote><p>注在rewrite.php里打印一下GET[&lsquo;param’]参数</p></blockquote>
 
 <p>  另外这里需要说明的是如果我定义了</p>
 
-<blockquote><p>RewriteBase /discuz</p></blockquote>
+<pre><code>RewriteBase /discuz
+</code></pre>
 
 <p>  那么前面的<sup>forum</sup>-([0-9] )&ndash;([0-9] )\.html$不受影响但是后面会变成/discuz/forumdisplay.php?fid=$1&amp;page=$2。不过RewriteBase并不是必须的若有指定RewriteBase结果为RewriteBase 重定向地址否则为当前目录 重定向地址。这里当前目录指的是.htaccess所在目录使用.htaccess的时候或者Directory标签指定的目录使用httpd.conf的时候。</p>
 

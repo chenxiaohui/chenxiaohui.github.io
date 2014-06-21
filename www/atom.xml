@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T20:23:54+08:00</updated>
+  <updated>2014-06-21T21:00:57+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,117 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[post-review插件]]></title>
+    <link href="http://cxh.me/2014/06/21/ppost-review-plugin/"/>
+    <updated>2014-06-21T20:57:00+08:00</updated>
+    <id>http://cxh.me/2014/06/21/ppost-review-plugin</id>
+    <content type="html"><![CDATA[<h1>post-review.vim</h1>
+
+<p>A plugin to generate post-review script</p>
+
+<h1>Usage</h1>
+
+<h3>install:</h3>
+
+<p>put post-review.vim to your $VIM/plugin</p>
+
+<p>add this to your vimrc</p>
+
+<pre><code>nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
+</code></pre>
+
+<h3>process:</h3>
+
+<p>svndiff use vimdiff: see <a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">link</a></p>
+
+<p>gitdiff use vimdiff: see <a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">link</a></p>
+
+<p><img src="http://cxh.me/images/2013/git-vimdiff.png" title="gitdiff" alt="" /></p>
+
+<p>first use svn diff/git diff and open vimdiff to see the difference</p>
+
+<p>secondly when you consider the changed file needs to be posted , use <leader>pr to add it to post-review.sh</p>
+
+<p>if you has no post-review.sh on your base_dir( specified by the g:base_dir_mark), you need to input the review id or just enter for a new review.</p>
+
+<p>after you added all files you need to review, chmod +x post-review.sh and execute it.</p>
+
+<p>(if you set g:chmod_after_create to 1 you will not need to chmod +x)</p>
+
+<!--more-->
+
+
+<hr />
+
+<p>  请无视楼主以上装逼的英文:</p>
+
+<h1>post-review.vim</h1>
+
+<p>  就是一个用来从vimdiff记录需要Post-review的文件的插件</p>
+
+<p>  不知道Post-review的同学请google之, 用百度搜索的同学自觉面壁去</p>
+
+<h1>用法</h1>
+
+<h3>安装</h3>
+
+<p>  统共分三步:</p>
+
+<p>1.下载解压(或者git clone)
+2.放到$VIM/plugin目录下(原谅我不写doc的习惯)
+3.在vimrc中添加</p>
+
+<pre><code>nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
+</code></pre>
+
+<h3>使用</h3>
+
+<p>  比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊</p>
+
+<p><img src="http://cxh.me/images/2014/ask.jpg"></p>
+
+<pre><code>难道不应该写一部分就post-review的嘛
+</code></pre>
+
+<p>  好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交</p>
+
+<p><img src="http://cxh.me/images/2014/ask.jpg"></p>
+
+<pre><code>What a fucking job!!!
+</code></pre>
+
+<p>  这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它&hellip;</p>
+
+<p><img src="http://cxh.me/images/2014/ask.jpg"></p>
+
+<pre><code>跑题了...
+</code></pre>
+
+<p>  好了, 我们先svn diff或者git diff一下, 为了保证你看到的是如下界面请参考<a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">这里</a>或者<a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">这里</a>.</p>
+
+<p><img src="http://www.ccvita.com/usr/uploads/2011/svn_diff.png" title="svndiff" alt="" /></p>
+
+<p>  好了, 在你需要提交文件的那个窗口用快捷键<leader>pr, 标记完了所有的文件之后进入你的根目录(根目录是什么, 这个待会再说, 不要care这种细节), 下面是不是有一个post-review.sh了? 没有? 卧槽&hellip;男子汉大丈夫, 我写的插件, 有问题&hellip;.我也不承认&hellip;</p>
+
+<p>  最后, 两个配置项:</p>
+
+<pre><code>let g:base_dir_mark = 'cscope.out'
+</code></pre>
+
+<p>  制定了一个根目录标志, 也就是说你需要在你的项目根目录找一个(或者建一个)独一无二的文件(比如.git, cscope.out, tags)之类, 让插件去寻找这个文件, 找到之后就标识这个目录为根目录. 跟ctrlp学的.</p>
+
+<pre><code>let g:chmod_after_create = 0
+</code></pre>
+
+<p>  无聊的选项, 建立完post-review之后是不是chmod +x, 无视它.</p>
+
+<p>  发起新的post-review的时候建议把post-review.sh清空或者删除, 重复添加同一个文件的时候会判断.</p>
+
+<p>  好了, 也就想到这么多了, 有其他的再补充, 钦此.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[测试一下机器和镜头]]></title>
@@ -600,24 +711,20 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 
 <p>  开始觉得估计是数据量大sql执行时间过长，整个过程分为3条sql，也就是schema被分表成为的三个表的查询：</p>
 
-<ul>
-<li> select * from __all_table;  //主键table_id</li>
-<li> select * from __all_column; //主键table_id,column_id</li>
-<li> select * from __all_join;//主键left_table_id, let_column_id</li>
-</ul>
-
+<pre><code>    select * from __all_table;  //主键table_id
+    select * from __all_column; //主键table_id,column_id
+    select * from __all_join;//主键left_table_id, let_column_id
+</code></pre>
 
 <p>   之后在内存里面做Join。由于是有序的，所以join过程直接采用了二分查找。之于没有用散列做Join或者直接
    SQL语句里做Join的原因，只能说是历史遗留问题了。</p>
 
 <p>   在三个执行过程中加计时，跑一下，发现结果如下：</p>
 
-<ul>
-<li> all_table表查询，建立TableSchema对象并插入Array，20+s</li>
-<li> all_column查询， 二分找到对应的TableSchema，填入Column，10+s</li>
-<li> all_join查询，二分找到对应的TableSchema，填入JoinInfo，0.xs，忘了</li>
-</ul>
-
+<pre><code>    all_table表查询，建立TableSchema对象并插入Array，20+s
+    all_column查询， 二分找到对应的TableSchema，填入Column，10+s
+    all_join查询，二分找到对应的TableSchema，填入JoinInfo，0.xs，忘了
+</code></pre>
 
 <!--more-->
 
@@ -1270,30 +1377,6 @@ if temperature &gt; 0:
 <p>[2] 树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度, <a href="http://s.mile77.com/?p=2039">http://s.mile77.com/?p=2039</a></p>
 
 <p>[3] Raspberry Pi 使用DS18B20温度传感器, <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html">http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OB的Offset和Limit]]></title>
-    <link href="http://cxh.me/2014/04/18/offset-and-limit-in-ob/"/>
-    <updated>2014-04-18T20:54:00+08:00</updated>
-    <id>http://cxh.me/2014/04/18/offset-and-limit-in-ob</id>
-    <content type="html"><![CDATA[<p>   数据库的实现里面很重要的两个功能就是Limit和Offset,在web里面，这是分页的基本功能依赖。对于用户来说，一屏不可能显示全部的数据，所以数据请求可以拆散成多个，每次从上次的offset开始读取下一个limit的数据。有些情况下， 我们不需要知道一共有多少数据，只需要循环获取并统计期望的数据和得到的数据，直到两个不匹配。在实际web使用中，这种策略一般不使用，因为预先知道分页数。当然我也真见过这么用的，这nm简直就是无底洞。不知道点到什么时候是个头。</p>
-
-<p>   相应的，正常的策略我们是需要知道数据有多少页的。也就有如下几种策略：</p>
-
-<ol>
-<li>. 最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。</li>
-<li>. 发一条count()先统计所有数据，然后计算分页数。 很多分页控件都直接支持count参数，分页会计算offset。</li>
-<li>. 数据量非常大的情况下，count()也会造成额外的开销。也就有如下几种方式优化。
-
-<ol>
-<li> 单独一张表存储count()，每次有插入数据的时候都同时更新count()，插入过程可以做成存储过程减少网络开销。或者其实我们需要的只是分页数，而每屏显示的数量往往又是固定的，可以直接存分页数。</li>
-<li> 有时候自增长ID也可以直接用来做这个。当然问题是不能删数据。</li>
-</ol>
-</li>
-</ol>
-
 ]]></content>
   </entry>
   

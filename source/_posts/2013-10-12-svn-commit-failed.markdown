@@ -10,9 +10,9 @@ categories: oceanbase
 
   看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m 'message' 而已。定义如下：
 
-> -F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.
+  -F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.
 
-> > * 例: svn ci -F svn-commit.tmp
+    例: svn ci -F svn-commit.tmp
 
 <!-- more -->
 

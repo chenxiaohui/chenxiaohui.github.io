@@ -11,18 +11,18 @@ categories: "Oceanbase"
 
   开始觉得估计是数据量大sql执行时间过长，整个过程分为3条sql，也就是schema被分表成为的三个表的查询：
 
-   - select * from __all_table;  //主键table_id
-   - select * from __all_column; //主键table_id,column_id
-   - select * from __all_join;//主键left_table_id, let_column_id
+        select * from __all_table;  //主键table_id
+        select * from __all_column; //主键table_id,column_id
+        select * from __all_join;//主键left_table_id, let_column_id
 
    之后在内存里面做Join。由于是有序的，所以join过程直接采用了二分查找。之于没有用散列做Join或者直接
    SQL语句里做Join的原因，只能说是历史遗留问题了。
 
    在三个执行过程中加计时，跑一下，发现结果如下：
 
-   - all_table表查询，建立TableSchema对象并插入Array，20+s
-   - all_column查询， 二分找到对应的TableSchema，填入Column，10+s
-   - all_join查询，二分找到对应的TableSchema，填入JoinInfo，0.xs，忘了
+        all_table表查询，建立TableSchema对象并插入Array，20+s
+        all_column查询， 二分找到对应的TableSchema，填入Column，10+s
+        all_join查询，二分找到对应的TableSchema，填入JoinInfo，0.xs，忘了
 
 <!--more-->
 

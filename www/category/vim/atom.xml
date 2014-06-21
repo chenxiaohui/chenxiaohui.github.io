@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T20:23:54+08:00</updated>
+  <updated>2014-06-21T21:00:57+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,117 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[post-review插件]]></title>
+    <link href="http://cxh.me/2014/06/21/ppost-review-plugin/"/>
+    <updated>2014-06-21T20:57:00+08:00</updated>
+    <id>http://cxh.me/2014/06/21/ppost-review-plugin</id>
+    <content type="html"><![CDATA[<h1>post-review.vim</h1>
+
+<p>A plugin to generate post-review script</p>
+
+<h1>Usage</h1>
+
+<h3>install:</h3>
+
+<p>put post-review.vim to your $VIM/plugin</p>
+
+<p>add this to your vimrc</p>
+
+<pre><code>nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
+</code></pre>
+
+<h3>process:</h3>
+
+<p>svndiff use vimdiff: see <a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">link</a></p>
+
+<p>gitdiff use vimdiff: see <a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">link</a></p>
+
+<p><img src="http://cxh.me/images/2013/git-vimdiff.png" title="gitdiff" alt="" /></p>
+
+<p>first use svn diff/git diff and open vimdiff to see the difference</p>
+
+<p>secondly when you consider the changed file needs to be posted , use <leader>pr to add it to post-review.sh</p>
+
+<p>if you has no post-review.sh on your base_dir( specified by the g:base_dir_mark), you need to input the review id or just enter for a new review.</p>
+
+<p>after you added all files you need to review, chmod +x post-review.sh and execute it.</p>
+
+<p>(if you set g:chmod_after_create to 1 you will not need to chmod +x)</p>
+
+<!--more-->
+
+
+<hr />
+
+<p>  请无视楼主以上装逼的英文:</p>
+
+<h1>post-review.vim</h1>
+
+<p>  就是一个用来从vimdiff记录需要Post-review的文件的插件</p>
+
+<p>  不知道Post-review的同学请google之, 用百度搜索的同学自觉面壁去</p>
+
+<h1>用法</h1>
+
+<h3>安装</h3>
+
+<p>  统共分三步:</p>
+
+<p>1.下载解压(或者git clone)
+2.放到$VIM/plugin目录下(原谅我不写doc的习惯)
+3.在vimrc中添加</p>
+
+<pre><code>nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
+</code></pre>
+
+<h3>使用</h3>
+
+<p>  比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊</p>
+
+<p><img src="/images/2014/ask.jpg"></p>
+
+<pre><code>难道不应该写一部分就post-review的嘛
+</code></pre>
+
+<p>  好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交</p>
+
+<p><img src="/images/2014/ask.jpg"></p>
+
+<pre><code>What a fucking job!!!
+</code></pre>
+
+<p>  这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它&hellip;</p>
+
+<p><img src="/images/2014/ask.jpg"></p>
+
+<pre><code>跑题了...
+</code></pre>
+
+<p>  好了, 我们先svn diff或者git diff一下, 为了保证你看到的是如下界面请参考<a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">这里</a>或者<a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">这里</a>.</p>
+
+<p><img src="http://www.ccvita.com/usr/uploads/2011/svn_diff.png" title="svndiff" alt="" /></p>
+
+<p>  好了, 在你需要提交文件的那个窗口用快捷键<leader>pr, 标记完了所有的文件之后进入你的根目录(根目录是什么, 这个待会再说, 不要care这种细节), 下面是不是有一个post-review.sh了? 没有? 卧槽&hellip;男子汉大丈夫, 我写的插件, 有问题&hellip;.我也不承认&hellip;</p>
+
+<p>  最后, 两个配置项:</p>
+
+<pre><code>let g:base_dir_mark = 'cscope.out'
+</code></pre>
+
+<p>  制定了一个根目录标志, 也就是说你需要在你的项目根目录找一个(或者建一个)独一无二的文件(比如.git, cscope.out, tags)之类, 让插件去寻找这个文件, 找到之后就标识这个目录为根目录. 跟ctrlp学的.</p>
+
+<pre><code>let g:chmod_after_create = 0
+</code></pre>
+
+<p>  无聊的选项, 建立完post-review之后是不是chmod +x, 无视它.</p>
+
+<p>  发起新的post-review的时候建议把post-review.sh清空或者删除, 重复添加同一个文件的时候会判断.</p>
+
+<p>  好了, 也就想到这么多了, 有其他的再补充, 钦此.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[vim7.4 && vimgdb编译]]></title>
@@ -379,57 +490,6 @@ vimdiff "$2" "$5"
 <p><img src="/images/2013/git-vimdiff.png" title="vim diff 效果" alt="" /></p>
 
 <p>  可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Vim轻量级缓冲区管理插件Buf_it修订版Buf_itv2]]></title>
-    <link href="http://cxh.me/2012/06/28/light-vim-buffer-management-plugin-bufit-v2/"/>
-    <updated>2012-06-28T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/06/28/light-vim-buffer-management-plugin-bufit-v2</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>  之前发布了Vim的缓冲区管理插件Buf_it的一个修正版，但是后来发现在windows下命令行使用的时候有问题，同时与Nertree和Taglist等插件也有冲突。于是继续fix了几个bug，然后解决了这部分冲突，新的代码放在我的<a href="https://github.com/BitRobt" title="Bitrobt">github</a>上，或者也可以这里下载，有问题可以继续留言，谢谢。</p>
-
-<p>  效果如下：</p>
-
-<p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图" alt="效果图" /></p>
-
-<h3>安装：</h3>
-
-<blockquote><p>扔进plugin目录就行</p></blockquote>
-
-<h3>配置</h3>
-
-<pre><code>nnoremap wq :w:call BufClose(0)
-nnoremap q :call BufClose(0)
-nnoremap w :w
-nnoremap x :call BufClose(1)
-</code></pre>
-
-<h3>使用</h3>
-
-<blockquote><p>shift h,l ：左右切换tab</p>
-
-<p>\be ：BufEcho 显示当前缓冲区名字</p>
-
-<p>\bo ：只保留当前缓冲区，其他的都关掉</p>
-
-<p>alt i : 切换到序号为i的缓冲区</p>
-
-<p>\wq: 保存关闭当前缓冲区并退出</p>
-
-<p>\q: 关闭当前缓冲区并退出</p>
-
-<p>\w: 保存当前缓冲区</p>
-
-<p>\x: 不保存关闭当前缓冲区</p></blockquote>
-
-<h3>参考文献：</h3>
-
-<blockquote><p><a href="https://github.com/BitRobt" title="Bitrobt">1</a> buf_it : Buffer list in statusline,</p>
-
-<p><a href="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图">2</a> 在windows下给你的右键菜单添加”edit with vim”的方法,</p></blockquote>
 ]]></content>
   </entry>
   

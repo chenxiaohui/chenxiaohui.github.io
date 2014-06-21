@@ -11,13 +11,13 @@ tags:
   - rewrite
   - 地址重写
 ---
-# 
+#
 
   Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。
 
   首先要打开rewrite模块windows下的配置是
 
-  > LoadModule rewrite_module modules/mod_rewrite.so
+    LoadModule rewrite_module modules/mod_rewrite.so
 
   httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。
 
@@ -37,17 +37,17 @@ tags:
 
   RewriteRule才是我们讨论的主要话题。RewriteRule实现把符合表达式的地址重定向到另一个地址的功能RewriteRule的语法类似于下面
 
-  > RewriteRule ^forum-([0-9] )-([0-9] )\\.html$ forumdisplay.php?fid=$1&page=$2
+    RewriteRule ^forum-([0-9] )-([0-9] )\\.html$ forumdisplay.php?fid=$1&page=$2
 
   RewriteRule紧跟着判断表达式之后是需要重定向的位置正则表达式()会捕获一个分组然后通过$n引用这个分组从而实现地址重写。RewriteRule匹配的开始位置是整个URL去掉当前目录后剩下的部分比如我在/discuz配置上面所示的RewriteRule然后输入一个URL-http://localhost/discuz/forum-1-1.html被用来匹配的输入会是forum-1-1.html也就是前面的/discuz/被吃掉了。对于整个问题我们可以用如下的语句验证。
 
-  > RewriteRule ^(.*)/forum-([0-9] )-([0-9] )\\.html$ rewrite.php?param=$1
->
+     RewriteRule ^(.*)/forum-([0-9] )-([0-9] )\\.html$ rewrite.php?param=$1
+
   > 注在rewrite.php里打印一下GET['param’]参数
 
   另外这里需要说明的是如果我定义了
 
-  > RewriteBase /discuz
+    RewriteBase /discuz
 
   那么前面的^forum-([0-9] )-([0-9] )\\.html$不受影响但是后面会变成/discuz/forumdisplay.php?fid=$1&page=$2。不过RewriteBase并不是必须的若有指定RewriteBase结果为RewriteBase 重定向地址否则为当前目录 重定向地址。这里当前目录指的是.htaccess所在目录使用.htaccess的时候或者Directory标签指定的目录使用httpd.conf的时候。
 
