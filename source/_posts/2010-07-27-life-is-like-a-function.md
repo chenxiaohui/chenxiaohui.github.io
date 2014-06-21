@@ -6,7 +6,6 @@ layout: post
 categories:
   - 挨踢人生
 ---
-# 
 
 
     void Life()
@@ -20,7 +19,7 @@ categories:
          }
     }
 
-上班下班加班，每天往返，日子过得无比简单。这让我觉得能换种生活状态是最大的幸福。Life is like a box of chocolate, you never know what you are going to get。如此最好。
+  上班下班加班，每天往返，日子过得无比简单。这让我觉得能换种生活状态是最大的幸福。Life is like a box of chocolate, you never know what you are going to get。如此最好。
 
 
     Plus:my beloved VB Version

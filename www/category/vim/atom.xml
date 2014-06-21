@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -90,7 +90,7 @@ sudo make install
     <link href="http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list/"/>
     <updated>2013-11-08T21:26:00+08:00</updated>
     <id>http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list</id>
-    <content type="html"><![CDATA[<p>这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim</p>
+    <content type="html"><![CDATA[<p>  这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim</p>
 
 <!-- more -->
 
@@ -269,31 +269,30 @@ let g:applist={
     <link href="http://cxh.me/2013/09/14/tricks-about-octopress/"/>
     <updated>2013-09-14T15:03:00+08:00</updated>
     <id>http://cxh.me/2013/09/14/tricks-about-octopress</id>
-    <content type="html"><![CDATA[<p>自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
+    <content type="html"><![CDATA[<p>  自从把wordpress换成Octopress, 腰不酸了背不疼了, 写博客也有劲了~</p>
 
-<p>以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
+<p>  以上只是吐个槽而已, Octopress是基于Jekyll的博客系统, Jekyll是从markdown生成静态网页的网页生成器. 这是背景. 详细的不表.</p>
 
-<p>主要说下面几个小技巧:</p>
+<p>  主要说下面几个小技巧:</p>
 
-<!-- more -->
-
+<p>  <!-- more --></p>
 
 <h3>1. alias(别名)</h3>
 
-<p>话说每次写博客的时候要敲rake new_post/ rake generate/ rake preview/ rake deploy&hellip;等等, 中间再出一点什么git同步的错误, 严重影响写博客的心情.可以通过alias简化命令:</p>
+<p>  话说每次写博客的时候要敲rake new_post/ rake generate/ rake preview/ rake deploy&hellip;等等, 中间再出一点什么git同步的错误, 严重影响写博客的心情.可以通过alias简化命令:</p>
 
-<pre><code>alias rg='rake generate &amp;&amp; rake preview'
-alias rd='rake deploy &amp;&amp; git add . &amp;&amp; git commit "`date`" &amp;&amp; git push origin source'
-alias rn='rake new_post'
+<pre><code>  alias rg='rake generate &amp;&amp; rake preview'
+  alias rd='rake deploy &amp;&amp; git add . &amp;&amp; git commit "`date`" &amp;&amp; git push origin source'
+  alias rn='rake new_post'
 </code></pre>
 
 <h3>2. 插入图片</h3>
 
-<p>octopress的一大优点是插图片方便, 拷贝到source/images目录下, 然后在markdown里插入就行了, 但是不是很智能啊&hellip;其实如果大家在vim里装了nerdtree的话, 完全可以通过nerdtree找到图片, 然后拷贝图片链接. 问题是nerd_tree不支持这个操作&hellip;</p>
+<p>  octopress的一大优点是插图片方便, 拷贝到source/images目录下, 然后在markdown里插入就行了, 但是不是很智能啊&hellip;其实如果大家在vim里装了nerdtree的话, 完全可以通过nerdtree找到图片, 然后拷贝图片链接. 问题是nerd_tree不支持这个操作&hellip;</p>
 
-<p><img src="/images/2013-9/are-you-fucking-kidding-me.jpg" title="你特么在逗我?" alt="" /></p>
+<p><img src="/images/2013/are-you-fucking-kidding-me.jpg" title="你特么在逗我?" alt="" /></p>
 
-<p>不过我们可以 <a href="http://stackoverflow.com/questions/16368771/copy-path-file-with-nerdtree-vim-plugin" title="Copy path file with NERDtree Vim plugin">扩展一下nerd_tree</a>. 在$VIM/nerdtree_plugin下建立yank_mapping.vim, 内容如下</p>
+<p>  不过我们可以 <a href="http://stackoverflow.com/questions/16368771/copy-path-file-with-nerdtree-vim-plugin" title="Copy path file with NERDtree Vim plugin">扩展一下nerd_tree</a>. 在$VIM/nerdtree_plugin下建立yank_mapping.vim, 内容如下</p>
 
 <pre><code>call NERDTreeAddKeyMap({
         \ 'key': 'yy',
@@ -307,18 +306,18 @@ function! NERDTreeYankCurrentNode()
 endfunction
 </code></pre>
 
-<p>这样找到文件之后就可以yy了~~~    yy&hellip;yy&hellip;</p>
+<p>  这样找到文件之后就可以yy了~~~    yy&hellip;yy&hellip;</p>
 
 <h3>3. 生成文件直接打开</h3>
 
-<p>我们执行rake new_post之后, 填好title之后会在_post下生成一个markdown文件(先不讨论title翻译slug的蛋疼之处), 每次那么长的文件命不能让我每次都敲进去或者复制进去吧. 我们可以修改Rakefile在task:new_post最后加一句自动打开生成的文件:</p>
+<p>  我们执行rake new_post之后, 填好title之后会在_post下生成一个markdown文件(先不讨论title翻译slug的蛋疼之处), 每次那么长的文件命不能让我每次都敲进去或者复制进去吧. 我们可以修改Rakefile在task:new_post最后加一句自动打开生成的文件:</p>
 
 <pre><code>system "vi #{filename}"
 </code></pre>
 
 <h3>4. 加快生成速度</h3>
 
-<p>Jekyll每次都会生成所有的_posts, 这会导致生成速度的极度下降, 而且官方也没有给出什么解决方案啊. Octopress实现一个比较笨的办法, Rake Isolate和 Rake Integrate, 从名字就可以看出, 是把需要生成的文件保留, 其他的都移出去, 生成完毕之后再移动回来. 不管怎么说吧, 至少是个方案. 写了一段简单的vimscript实现这个功能跟vim的集成.</p>
+<p>  Jekyll每次都会生成所有的_posts, 这会导致生成速度的极度下降, 而且官方也没有给出什么解决方案啊. Octopress实现一个比较笨的办法, Rake Isolate和 Rake Integrate, 从名字就可以看出, 是把需要生成的文件保留, 其他的都移出去, 生成完毕之后再移动回来. 不管怎么说吧, 至少是个方案. 写了一段简单的vimscript实现这个功能跟vim的集成.</p>
 
 <pre><code>"plugin -ocotpress  写octopress博客的插件
 function! RakePreview()
@@ -332,7 +331,7 @@ endf
 nmap &lt;leader&gt;rp :call RakePreview()&lt;cr&gt;
 </code></pre>
 
-<p>chrome打开的时候还没有执行preview, 所以需要再刷新一下&hellip;preview有些输出, 觉得不想看的可以重定向.</p>
+<p>  chrome打开的时候还没有执行preview, 所以需要再刷新一下&hellip;preview有些输出, 觉得不想看的可以重定向.</p>
 ]]></content>
   </entry>
   
@@ -341,45 +340,45 @@ nmap &lt;leader&gt;rp :call RakePreview()&lt;cr&gt;
     <link href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/"/>
     <updated>2013-09-14T11:40:00+08:00</updated>
     <id>http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff</id>
-    <content type="html"><![CDATA[<p>git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
+    <content type="html"><![CDATA[<p>  git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
 
-<p>具体说来有两种办法:</p>
+<p>  具体说来有两种办法:</p>
 
-<!-- more -->
+<p>  <!-- more --></p>
 
+<p>  在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.</p>
 
-<p>在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.</p>
-
-<p>git config &mdash;global diff.tool vimdiff<br/>
-git config &mdash;global difftool.prompt No</p>
-
-<p>这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.</p>
-
-<p>第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下的结果:</p>
-
-<p><img src="/images/2013-9/difftool-prompt.png" title="git diff prompt" alt="" /></p>
-
-<p>当然我们也可以替换掉默认的diff工具, 可以指定</p>
-
-<pre><code>git config --global diff.external git_diff_wrapper
+<pre><code>git config --global diff.tool vimdiff
+git config --global difftool.prompt No
 </code></pre>
 
-<p>然后在PATH的某个目录下建立git_diff_wrapper, 比如/usr/bin/git_diff_wrapper, 内容如下:</p>
+<p>  这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.</p>
+
+<p>  第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下的结果:</p>
+
+<p>  <img src="/images/2013/difftool-prompt.png" title="git diff prompt" alt="" /></p>
+
+<p>  当然我们也可以替换掉默认的diff工具, 可以指定</p>
+
+<pre><code>  git config --global diff.external git_diff_wrapper
+</code></pre>
+
+<p>  然后在PATH的某个目录下建立git_diff_wrapper, 比如/usr/bin/git_diff_wrapper, 内容如下:</p>
 
 <pre><code>#!/bin/sh
 vimdiff "$2" "$5"
 </code></pre>
 
-<p>最后加执行权限</p>
+<p>  最后加执行权限</p>
 
 <pre><code>chmod +x git_diff_wrapper
 </code></pre>
 
-<p>执行git diff的时候就可以看到效果</p>
+<p>  执行git diff的时候就可以看到效果</p>
 
-<p><img src="/images/2013-9/git-vimdiff.png" title="vim diff 效果" alt="" /></p>
+<p><img src="/images/2013/git-vimdiff.png" title="vim diff 效果" alt="" /></p>
 
-<p>可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).</p>
+<p>  可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).</p>
 ]]></content>
   </entry>
   
@@ -390,9 +389,9 @@ vimdiff "$2" "$5"
     <id>http://cxh.me/2012/06/28/light-vim-buffer-management-plugin-bufit-v2</id>
     <content type="html"><![CDATA[<h1></h1>
 
-<p>之前发布了Vim的缓冲区管理插件Buf_it的一个修正版，但是后来发现在windows下命令行使用的时候有问题，同时与Nertree和Taglist等插件也有冲突。于是继续fix了几个bug，然后解决了这部分冲突，新的代码放在我的<a href="https://github.com/BitRobt" title="Bitrobt">github</a>上，或者也可以这里下载，有问题可以继续留言，谢谢。</p>
+<p>  之前发布了Vim的缓冲区管理插件Buf_it的一个修正版，但是后来发现在windows下命令行使用的时候有问题，同时与Nertree和Taglist等插件也有冲突。于是继续fix了几个bug，然后解决了这部分冲突，新的代码放在我的<a href="https://github.com/BitRobt" title="Bitrobt">github</a>上，或者也可以这里下载，有问题可以继续留言，谢谢。</p>
 
-<p>效果如下：</p>
+<p>  效果如下：</p>
 
 <p><img src="http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png" title="效果图" alt="效果图" /></p>
 

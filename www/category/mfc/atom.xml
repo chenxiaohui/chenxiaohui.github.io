@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MFC | CXH.ME]]></title>
   <link href="http://cxh.me/category/mfc/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,32 +18,87 @@
     <link href="http://cxh.me/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/"/>
     <updated>2012-05-07T00:00:00+08:00</updated>
     <id>http://cxh.me/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload</id>
-    <content type="html"><![CDATA[<h1></h1>
+    <content type="html"><![CDATA[<p>  其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。</p>
 
-<p>其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。</p>
+<p>  我们以输出运算符为例。首先输出运算符重载的一般形式是</p>
 
-<p>我们以输出运算符为例。首先输出运算符重载的一般形式是</p>
-
-<pre><code>friend ostream&amp; operator(CArchive&amp; ar, CObject*&amp; pOb);
+<pre><code>:::cpp
+friend ostream&amp; operator&lt;&lt;(ostream&amp; o,const ClassName&amp; c);[1]
 </code></pre>
 
-<p>于是才发觉ostream并不是必需的，换句话说，从语法上讲，ostream的位置放什么类都可以，只不过语义上要行得通。而友元的重载从语法上讲也不是必须的，比如可以依然用成员函数重载，函数定义变成如下的格式</p>
+<!--more-->
 
-<pre><code>ostream&amp; operator&gt;&gt;(ostream&amp; o);
+
+<p>  ostream是c++流输出的类，至于友元，只记得说输入输出运算符必须用友元重载，因为ostream是受保护的。今天看CArchive类实现的时候，里面有如下的定义</p>
+
+<pre><code>:::cpp
+friend CArchive&amp; AFXAPI operator&gt;&gt;(CArchive&amp; ar, CObject*&amp; pOb);
 </code></pre>
 
-<p>使用的时候只能用object>>cout（或者cout>>object这就太别扭了）形式了，并且不可能连续使用了（比如obj1>>obj2>>cout），这违背了C 规范，但是语法上是的过得去的。</p>
+<p>  于是才发觉ostream并不是必需的，换句话说，从语法上讲，ostream的位置放什么类都可以，只不过语义上要行得通。而友元的重载从语法上讲也不是必须的，比如可以依然用成员函数重载，函数定义变成如下的格式</p>
 
-<p>举一个简单而诡异的例子（原谅我这里诡异的代码风格，只是个演示）</p>
+<pre><code>:::cpp
+ostream&amp; operator&gt;&gt;(ostream&amp; o);
+</code></pre>
 
-<pre><code>#include "stdafx.h"
-#include 
+<p>  使用的时候只能用object>>cout（或者cout>>object这就太别扭了）形式了，并且不可能连续使用了（比如obj1>>obj2>>cout），这违背了C++规范，但是语法上是的过得去的。</p>
+
+<p>  举一个简单而诡异的例子（原谅我这里诡异的代码风格，只是个演示）</p>
+
+<pre><code>:::cpp
+#include "stdafx.h"
+#include &lt;iostream&gt;
 using namespace std;
 class output
 {
 public:
-    output&amp; operator
+    output&amp; operator&lt;&lt;(int i);
+};
+
+output&amp; output::operator&lt;&lt;( int i )
+{
+    cout&lt;&lt;i;
+    return *this;
+}
+class CComplex
+{
+    int x;
+    int y;
+public:
+    CComplex(int _x,int _y):x(_x),y(_y){}
+    output&amp; operator&gt;&gt;(output&amp; o);
+
+};
+
+output&amp; CComplex::operator&gt;&gt;( output&amp; o )
+{
+    o&lt;&lt;x&lt;&lt;y;
+    return o;
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    CComplex c(1,2);
+    c&gt;&gt;output();
+}
 </code></pre>
+
+<p>  绕了两个圈圈，只是为了说明输入输出运算符语法上讲完全可以像普通运算符一样重载，但是语义上看输出运算符&lt;&lt;里，ostream只能做左值，而ostream不能让你去添加一个成员函数，所以只能用友元重载，输入运算符里，istream也只能做左值，因而同样只能用友元重载。</p>
+
+<p>  最后，需要注意两个问题。首先是为什么一定要返回一个ostream&amp;或者类似的引用？我们可以从这个例子来想</p>
+
+<pre><code>:::cpp
+cout&lt;&lt;obj1&lt;&lt;obj2&lt;&lt;endl;
+</code></pre>
+
+<p>  编译器求值的时候按优先级从左向右进行，cout&lt;&lt;obj1相当于调用函数[1]，结果为ostream的引用才能继续进行右边的&lt;&lt;obj2，这也解释了为什么如下语句是编译不过去的（CArchive里没有对ostream对象的输出运算符重载，因而ar&lt;&lt;obj1返回CArchive&amp;引用之后下一步就报错了）。</p>
+
+<pre><code>:::cpp
+CArchive ar(&amp;file,CArchive::store);
+ar&lt;&lt;obj1&lt;&lt;endl;
+</code></pre>
+
+<p>  其次，函数参数里的ostream&amp; o不能加const，因为你实现里几乎一定会写o&lt;&lt;….，这里相当于调用ostream对应的重载函数修改ostream，因而编译的时候会报错。</p>
 ]]></content>
   </entry>
   
@@ -54,11 +109,11 @@ public:
     <id>http://cxh.me/2011/08/31/skin-magic-linking-in-winsdk-program</id>
     <content type="html"><![CDATA[<h1></h1>
 
-<p>其实这种诡异的搭我配估计没人会遇到。我只是想在SDK程序里做一下美化而已。</p>
+<p>  其实这种诡异的搭我配估计没人会遇到。我只是想在SDK程序里做一下美化而已。</p>
 
-<p>SkinMagic在MFC程序里的使用还是很常见的，网上代码有的是，至于大家手里的SkinMagic库，恐怕没有几个是正版的吧？有木有有木有！</p>
+<p>  SkinMagic在MFC程序里的使用还是很常见的，网上代码有的是，至于大家手里的SkinMagic库，恐怕没有几个是正版的吧？有木有有木有！</p>
 
-<p>其实在SDK下使用SkinMagic还是比较简单的事情，主要解决两个问题：</p>
+<p>  其实在SDK下使用SkinMagic还是比较简单的事情，主要解决两个问题：</p>
 
 <ol>
 <li> 库的链接</li>
@@ -66,20 +121,20 @@ public:
 </ol>
 
 
-<p>第一个其实好说，注意InitSkinMagicLib传入WinMain的hInstance：</p>
+<p>  第一个其实好说，注意InitSkinMagicLib传入WinMain的hInstance：</p>
 
 <pre><code>VERIFY( 1 == InitSkinMagicLib(hInstance, NULL , NULL, NULL ));
 VERIFY( 1 == LoadSkinFromResource(NULL,MAKEINTRESOURCE(IDR_SKIN5),"skin"));
 VERIFY( 1 == SetDialogSkin( "Dialog" ) );
 </code></pre>
 
-<p>然后记得导入库就行</p>
+<p>  然后记得导入库就行</p>
 
 <pre><code>#pragma  comment(lib,"SkinMagicTrial")
 #include "SkinMagicLib.h"
 </code></pre>
 
-<p>第二个问题，由于是SDK程序，所以需要手动添加资源，然后在资源里建立SKIN项，再导入皮肤，这时候VS会自动建立resource.h文件。</p>
+<p>  第二个问题，由于是SDK程序，所以需要手动添加资源，然后在资源里建立SKIN项，再导入皮肤，这时候VS会自动建立resource.h文件。</p>
 
 <p><img src="http://www.roybit.com/wp-content/uploads/2011/08/image_thumb.png" title="image" alt="image" /> 然后就OK啦。如果自己建立窗口，记得对ShowWindow之前调用一下SetWindowSkin。我只弹了个对话框，效果如下</p>
 

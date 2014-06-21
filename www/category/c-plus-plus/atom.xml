@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,13 +18,13 @@
     <link href="http://cxh.me/2014/06/21/bin-txt-file-read-write/"/>
     <updated>2014-06-21T12:28:00+08:00</updated>
     <id>http://cxh.me/2014/06/21/bin-txt-file-read-write</id>
-    <content type="html"><![CDATA[<p>探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
+    <content type="html"><![CDATA[<p>  探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
 
-<p><img class="img-polaroid center" src="/images/2014-6/binfile.png" title="&ldquo;用vim显示二进制文件&rdquo; &ldquo;用vim显示二进制文件&rdquo;" ></p>
+<p><img class="img-polaroid center" src="/images/2014/binfile.png" title="&ldquo;用vim显示二进制文件&rdquo; &ldquo;用vim显示二进制文件&rdquo;" ></p>
 
-<p>所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
+<p>  所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
 
-<p>我们用如下代码测试:</p>
+<p>  我们用如下代码测试:</p>
 
 <pre><code>int main(int argc, const char *argv[])
 {
@@ -59,29 +59,29 @@
 
 <p><strong>linux下：</strong></p>
 
-<p>文本方式写入</p>
+<p>  文本方式写入</p>
 
 <pre><code>0000000: 0a0d 0a                                  ...
 </code></pre>
 
-<p>二进制写入：</p>
+<p>  二进制写入：</p>
 
 <pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
 </code></pre>
 
 <p><strong>mac下</strong></p>
 
-<p>文本方式写入：</p>
+<p>  文本方式写入：</p>
 
 <pre><code>0000000: 0a0d 0a                                  ...
 </code></pre>
 
-<p>二进制写入</p>
+<p>  二进制写入</p>
 
 <pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
 </code></pre>
 
-<p>解释几个问题：</p>
+<p>  解释几个问题：</p>
 
 <h3>回车符的转义</h3>
 

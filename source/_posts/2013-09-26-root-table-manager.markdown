@@ -6,13 +6,13 @@ comments: true
 categories: oceanbase
 ---
  
-记录一下root_table_manager相关类的阅读和心得。
+  记录一下root_table_manager相关类的阅读和心得。
 
 <!-- more -->
 
 ###ObTableNameIterator
 
-一个Iterator, 用于获取所有的TableName
+  一个Iterator, 用于获取所有的TableName
 
 * init
 

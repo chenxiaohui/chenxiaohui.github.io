@@ -6,7 +6,7 @@ comments: true
 categories: Linux
 ---
 
-做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。
+  做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。
 <!-- more -->
 
 ###介绍
@@ -26,7 +26,7 @@ categories: Linux
 
 ###截图
 
-{% img img-ploaroid center /images/2013-10/htop.png  "htop截图" "htop截图" %}
+{% img img-ploaroid center /images/2013/htop.png  "htop截图" "htop截图" %}
 
 ###安装
 

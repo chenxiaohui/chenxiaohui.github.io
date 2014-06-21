@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -46,7 +46,7 @@ else
     <id>http://cxh.me/2013/10/18/update-to-ubuntu-13-10</id>
     <content type="html"><![CDATA[<p>  Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
 
-<p><img class="img-polaroid center" src="/images/2013-10/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
+<p><img class="img-polaroid center" src="/images/2013/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
 ]]></content>
   </entry>
   
@@ -55,7 +55,7 @@ else
     <link href="http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop/"/>
     <updated>2013-10-10T20:12:00+08:00</updated>
     <id>http://cxh.me/2013/10/10/the-best-monitor-under-linux-htop</id>
-    <content type="html"><![CDATA[<p>做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
+    <content type="html"><![CDATA[<p>  做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。</p>
 
 <!-- more -->
 
@@ -80,7 +80,7 @@ else
 
 <h3>截图</h3>
 
-<p><img class="img-ploaroid center" src="/images/2013-10/htop.png" title="&ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo;" ></p>
+<p><img class="img-ploaroid center" src="/images/2013/htop.png" title="&ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo;" ></p>
 
 <h3>安装</h3>
 
@@ -185,25 +185,25 @@ fi
     <id>http://cxh.me/2011/09/18/methods-for-win7-to-coexist-with-several-linux</id>
     <content type="html"><![CDATA[<h1></h1>
 
-<p>网上有很多使用EasyBCD从Win7下安装linux的方法，不过用来用去觉得EasyBCD还是有些问题，比如我装Fedora64就一直报错，而做成安装U盘就可以。而且大多数Linux在EasyBCD安装的时候都要求iso文件存放于Fat32的分区里，作为一个已经装了Win7的孩纸，在硬盘上划出一块Fat32的分区实属令人发指的行为。</p>
+<p>  网上有很多使用EasyBCD从Win7下安装linux的方法，不过用来用去觉得EasyBCD还是有些问题，比如我装Fedora64就一直报错，而做成安装U盘就可以。而且大多数Linux在EasyBCD安装的时候都要求iso文件存放于Fat32的分区里，作为一个已经装了Win7的孩纸，在硬盘上划出一块Fat32的分区实属令人发指的行为。</p>
 
-<p>这里推荐一个Linux官方的安装方法，首先下载Universal-USB-Installer，这文件很小，但是五脏俱全，包括了你可能见到的所有的Linux的……呃，选项。当然这软件还可以用来做Windows的安装盘。傻瓜化操作就不说了，不过记得每个选项对应一种Linux，包含了各种发行版，下载的iso最好不要改名，免得找不到。</p>
+<p>  这里推荐一个Linux官方的安装方法，首先下载Universal-USB-Installer，这文件很小，但是五脏俱全，包括了你可能见到的所有的Linux的……呃，选项。当然这软件还可以用来做Windows的安装盘。傻瓜化操作就不说了，不过记得每个选项对应一种Linux，包含了各种发行版，下载的iso最好不要改名，免得找不到。</p>
 
-<p>安装的事情仁者见仁，修复Grub的问题智者见智。最简单的办法是先装Win7，因为Win7是不鸟各种Linux的（丫挺的），然后装个个版本的Linux，不过不要装GrubLoader，也就是不要把启动信息写入Mbr，最后装Ubuntu，伟大的乌邦图会识别各种Linux系统然后建立启动菜单。</p>
+<p>  安装的事情仁者见仁，修复Grub的问题智者见智。最简单的办法是先装Win7，因为Win7是不鸟各种Linux的（丫挺的），然后装个个版本的Linux，不过不要装GrubLoader，也就是不要把启动信息写入Mbr，最后装Ubuntu，伟大的乌邦图会识别各种Linux系统然后建立启动菜单。</p>
 
-<p>当然你也可以先安装Ubuntu，然后装其他的Linux，同样不要安装Grub Loader，最后在Ubuntu下手动配置grub.cfg来驱动，不过最好的办法是使用</p>
+<p>  当然你也可以先安装Ubuntu，然后装其他的Linux，同样不要安装Grub Loader，最后在Ubuntu下手动配置grub.cfg来驱动，不过最好的办法是使用</p>
 
 <pre><code>sudo update-grub
 </code></pre>
 
-<p>让Ubuntu自动识别安装的Linux系统，你会看到激动人心的类似于如下界面的结果：<img src="http://www.roybit.com/wp-content/uploads/2011/09/ScreenshotcxhcxhThinkPadT420__thumb.png" title="Screenshot-cxh@cxh-ThinkPad-T420_ ~" alt="Screenshot-cxh@cxh-ThinkPad-T420_ ~" /></p>
+<p>  让Ubuntu自动识别安装的Linux系统，你会看到激动人心的类似于如下界面的结果：<img src="http://www.roybit.com/wp-content/uploads/2011/09/ScreenshotcxhcxhThinkPadT420__thumb.png" title="Screenshot-cxh@cxh-ThinkPad-T420_ ~" alt="Screenshot-cxh@cxh-ThinkPad-T420_ ~" /></p>
 
-<p>如果想让Win7默认启动，可以在ubuntu下执行</p>
+<p>  如果想让Win7默认启动，可以在ubuntu下执行</p>
 
 <pre><code>sudo mv /etc/grub.d/30_os-prober /etc/grub.d/06_os-prober
 </code></pre>
 
-<p>然后同上Update Grub就可以了。</p>
+<p>  然后同上Update Grub就可以了。</p>
 ]]></content>
   </entry>
   

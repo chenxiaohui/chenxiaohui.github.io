@@ -6,7 +6,6 @@ layout: post
 categories:
   - 随笔
 ---
-# 
 
     我在遥望远处的青山。阳光下的山峰透着一种安详。
 

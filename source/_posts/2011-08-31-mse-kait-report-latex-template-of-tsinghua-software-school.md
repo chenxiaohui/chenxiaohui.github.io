@@ -17,7 +17,7 @@ tags:
 ---
 # 
 
-使用请先编译BIB文件（参考文献），然后直接生成pdflatex（windows下），用Linux的孩纸请自行抉择。
+  使用请先编译BIB文件（参考文献），然后直接生成pdflatex（windows下），用Linux的孩纸请自行抉择。
 
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,17 +14,28 @@
 
   
   <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/06/21/photography-test/"/>
+    <updated>2014-06-21T13:24:00+08:00</updated>
+    <id>http://cxh.me/2014/06/21/photography-test</id>
+    <content type="html"><![CDATA[<p>  测试一下机器，镜头是18-55套头，表现中规中矩吧，K10D色彩不错。图压缩过。</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2014/flower.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[文本文件和二进制文件读写]]></title>
     <link href="http://cxh.me/2014/06/21/bin-txt-file-read-write/"/>
     <updated>2014-06-21T12:28:00+08:00</updated>
     <id>http://cxh.me/2014/06/21/bin-txt-file-read-write</id>
-    <content type="html"><![CDATA[<p>探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
+    <content type="html"><![CDATA[<p>  探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
 
-<p><img class="img-polaroid center" src="http://cxh.me/images/2014-6/binfile.png" title="用vim显示二进制文件" alt="用vim显示二进制文件"><p class="align-center">用vim显示二进制文件</p></p>
+<p><img class="img-polaroid center" src="http://cxh.me/images/2014/binfile.png" title="用vim显示二进制文件" alt="用vim显示二进制文件"><p class="align-center">用vim显示二进制文件</p></p>
 
-<p>所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
+<p>  所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
 
-<p>我们用如下代码测试:</p>
+<p>  我们用如下代码测试:</p>
 
 <pre><code>int main(int argc, const char *argv[])
 {
@@ -59,29 +70,29 @@
 
 <p><strong>linux下：</strong></p>
 
-<p>文本方式写入</p>
+<p>  文本方式写入</p>
 
 <pre><code>0000000: 0a0d 0a                                  ...
 </code></pre>
 
-<p>二进制写入：</p>
+<p>  二进制写入：</p>
 
 <pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
 </code></pre>
 
 <p><strong>mac下</strong></p>
 
-<p>文本方式写入：</p>
+<p>  文本方式写入：</p>
 
 <pre><code>0000000: 0a0d 0a                                  ...
 </code></pre>
 
-<p>二进制写入</p>
+<p>  二进制写入</p>
 
 <pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
 </code></pre>
 
-<p>解释几个问题：</p>
+<p>  解释几个问题：</p>
 
 <h3>回车符的转义</h3>
 
@@ -374,7 +385,7 @@ no indent
 </ol>
 
 
-<p><img class="img-polaroid center" src="http://cxh.me/images/2014-6/photography.gif" title="成像光路图" alt="成像光路图"><p class="align-center">成像光路图</p></p>
+<p><img class="img-polaroid center" src="http://cxh.me/images/2014/photography.gif" title="成像光路图" alt="成像光路图"><p class="align-center">成像光路图</p></p>
 
 <h3>参考文献:</h3>
 
@@ -1244,11 +1255,11 @@ if temperature &gt; 0:
 
 <p>  温度曲线的图片如下：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014-5/before.png" title="温度曲线" alt="温度曲线"><p class="align-center">温度曲线</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/before.png" title="温度曲线" alt="温度曲线"><p class="align-center">温度曲线</p></p>
 
 <p>  开始的程序没有考虑求平均，不知道会不会有临时跳变的瞬间值。后来加了平均值之后发现多次取的结果是不一样，但是不清楚这个芯片采集的周期是多少。多次平均的结果如下所示：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014-5/data.png" title="多次平均的结果" alt="多次平均的结果"><p class="align-center">多次平均的结果</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/data.png" title="多次平均的结果" alt="多次平均的结果"><p class="align-center">多次平均的结果</p></p>
 
 <p>  ps: 公司周末真热&hellip;.</p>
 
@@ -1283,36 +1294,6 @@ if temperature &gt; 0:
 </li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用来把一个线程的日志输出到单独文件的脚本]]></title>
-    <link href="http://cxh.me/2014/02/14/vim-script-to-write-thread-log/"/>
-    <updated>2014-02-14T21:32:00+08:00</updated>
-    <id>http://cxh.me/2014/02/14/vim-script-to-write-thread-log</id>
-    <content type="html"><![CDATA[<p>  很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。</p>
-
-<pre><code>"plugin-写一个线程的log到单独文件
-function! ThreadLog()
-    let file = readfile(expand("%:p"))
-    let pattern = expand('&lt;cword&gt;')
-    let matches = []
-    for line in file
-        let match = matchstr(line, pattern)
-        if(!empty(match))
-           call add(matches, line)
-        endif
-    endfor
-    let s:filename= pattern . '.log'
-    call writefile(matches, s:filename )
-endf
-nmap &lt;leader&gt;th :call ThreadLog()&lt;cr&gt;
-</code></pre>
-
-<p>  使用的时候把光标移动到线程号下面，然后,th就行了。实际上完成的是把所有包含当前单词的行都输出到一个文件的功能。文件名是当前单词。目测够用了。</p>
-
-<p>  好久没写博客了，甚觉我已经离文人很远了。在这个欢乐祥和的日子里，实在是觉得生活充满了顾虑。人生就是这么多矛盾啊，不确定是种状态，确定也是种状态，想想之所以依然这么漂泊着，也就是应了一句话：青春逝去，认输之前。当然了，我觉得我还挺青春的。青春这东西，最重要的不是外表，阳光，积极向上什么的。这都是表面。青春是变革，至少是变革的勇气。</p>
 ]]></content>
   </entry>
   

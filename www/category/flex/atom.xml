@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Flex | CXH.ME]]></title>
   <link href="http://cxh.me/category/flex/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,11 +18,9 @@
     <link href="http://cxh.me/2011/05/29/binding-Flash-resource-in-Flex/"/>
     <updated>2011-05-29T00:00:00+08:00</updated>
     <id>http://cxh.me/2011/05/29/binding-Flash-resource-in-Flex</id>
-    <content type="html"><![CDATA[<h1></h1>
+    <content type="html"><![CDATA[<p>  很多时候我们需要在Flex里使用Flash的资源，大家的习惯可能是用Flash的一个扩展导出一个原件为SWC，然后在Flex里引用，但是问题是一者SWC太多，二者Flash按钮不能导出（至少CS4还不行）。我们这里提供一种简单的基于绑定的导出方式。</p>
 
-<p>很多时候我们需要在Flex里使用Flash的资源，大家的习惯可能是用Flash的一个扩展导出一个原件为SWC，然后在Flex里引用，但是问题是一者SWC太多，二者Flash按钮不能导出（至少CS4还不行）。我们这里提供一种简单的基于绑定的导出方式。</p>
-
-<p>首先在Flash里选择为ActionScript导出（右键，属性里），然后编译SWF文件，之后我们直接用代码引用SWF文件里的原件，并引用为Image控件的source。代码如下</p>
+<p>  首先在Flash里选择为ActionScript导出（右键，属性里），然后编译SWF文件，之后我们直接用代码引用SWF文件里的原件，并引用为Image控件的source。代码如下</p>
 
 <pre><code>package assets
 {
@@ -43,7 +41,7 @@
 }
 </code></pre>
 
-<p>这样就可以把这个原件像一个Sprite或者MovieClip一样引用了。</p>
+<p>  这样就可以把这个原件像一个Sprite或者MovieClip一样引用了。</p>
 ]]></content>
   </entry>
   

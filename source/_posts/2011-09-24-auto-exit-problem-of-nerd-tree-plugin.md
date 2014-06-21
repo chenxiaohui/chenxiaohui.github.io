@@ -14,9 +14,9 @@ tags:
 ---
 # 
 
-我们知道（不知道也没事）Taglist插件有自动退出功能，即只剩下一个文件的时候，即使Taglist窗口开着，在主窗口用:q的时候会同时退出Taglist窗口，而Nerd_Tree默认并没有这个功能，我们可以仿照Taglist插件来给Nerd_Tree插件天上这个功能。
+  我们知道（不知道也没事）Taglist插件有自动退出功能，即只剩下一个文件的时候，即使Taglist窗口开着，在主窗口用:q的时候会同时退出Taglist窗口，而Nerd_Tree默认并没有这个功能，我们可以仿照Taglist插件来给Nerd_Tree插件天上这个功能。
 
-首先插入如下代码
+  首先插入如下代码
 
 
     " Exit Vim itself if only the taglist window is present (optional)
@@ -29,7 +29,7 @@ tags:
     		\ call s:Tlist_Window_Exit_Only_Window()
     	augroup end
 
-然后把Tlist_Window_Exit_Only_Window的函数拷贝进去
+  然后把Tlist_Window_Exit_Only_Window的函数拷贝进去
 
 
     " Tlist_Window_Exit_Only_Window
@@ -58,4 +58,4 @@ tags:
         endif
     endfunction
 
-OK了，看看效果吧
+  OK了，看看效果吧

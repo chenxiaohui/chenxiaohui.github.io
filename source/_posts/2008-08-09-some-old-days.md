@@ -6,7 +6,6 @@ layout: post
 categories:
   - 世情百态
 ---
-# 
 
 开幕式的烟火
 

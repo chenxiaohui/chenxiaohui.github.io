@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,13 +18,11 @@
     <link href="http://cxh.me/2012/12/19/watch-variables-when-debuggin-with-gdb-and-pdb/"/>
     <updated>2012-12-19T00:00:00+08:00</updated>
     <id>http://cxh.me/2012/12/19/watch-variables-when-debuggin-with-gdb-and-pdb</id>
-    <content type="html"><![CDATA[<h1></h1>
+    <content type="html"><![CDATA[<p>  gdb下有几个监视变量的命令，比如watch可以监视一个变量是否更改，rwatch监视读，awatch监视写等等。这里说的主要是另一个命令，display。</p>
 
-<p>gdb下有几个监视变量的命令，比如watch可以监视一个变量是否更改，rwatch监视读，awatch监视写等等。这里说的主要是另一个命令，display。</p>
+<p>  display命令做的事情是指定一个变量，然后在每次调试停住的时候显示这个变量的值。这个是很有用的操作，等于在命令行调试的时候提供了类似于IDE里监视变量（Add to Watch）的功能。但是一直没有发现python的调试工具pdb里有类似的功能。后来在Python官方文档里看到一个命令:commands，提供了类似的功能。</p>
 
-<p>display命令做的事情是指定一个变量，然后在每次调试停住的时候显示这个变量的值。这个是很有用的操作，等于在命令行调试的时候提供了类似于IDE里监视变量（Add to Watch）的功能。但是一直没有发现python的调试工具pdb里有类似的功能。后来在Python官方文档里看到一个命令:commands，提供了类似的功能。</p>
-
-<p>commands命令的使用是 commands [bpnumber] 。bpnumber指定了断点的id（集），省略的话表示上一个断点（集）。之后可以输入需要做的事情，然后以end结尾，一个简单的例子如下：</p>
+<p>  commands命令的使用是 commands [bpnumber] 。bpnumber指定了断点的id（集），省略的话表示上一个断点（集）。之后可以输入需要做的事情，然后以end结尾，一个简单的例子如下：</p>
 
 <pre><code>(Pdb) commands 1
 (com) print some_variable
@@ -32,11 +30,11 @@
 (Pdb)
 </code></pre>
 
-<p>commands有一个明显的问题，就是如果停在其他断点的地方，就会终止这个commands，以后即使执行到了这个断点，也不会再执行该commands，官方的解释是：</p>
+<p>  commands有一个明显的问题，就是如果停在其他断点的地方，就会终止这个commands，以后即使执行到了这个断点，也不会再执行该commands，官方的解释是：</p>
 
 <blockquote><p>Specifying any command resuming execution (currently continue, step, next, return, jump, quit and their abbreviations) terminates the command list (as if that command was immediately followed by end). This is because any time you resume execution (even with a simple next or step), you may encounter another breakpoint–which could have its own command list, leading to ambiguities about which list to execute.</p></blockquote>
 
-<p>但是这个明明是说只要恢复执行，commands就失效啊…但是实际上比如你只打了一个断点，然后在这个断点定义了commands，之后每次都是用continue，这是不会导致该断点失效的，毕竟没有encounter another breakpoint–which could have its own command list嘛。</p>
+<p>  但是这个明明是说只要恢复执行，commands就失效啊…但是实际上比如你只打了一个断点，然后在这个断点定义了commands，之后每次都是用continue，这是不会导致该断点失效的，毕竟没有encounter another breakpoint–which could have its own command list嘛。</p>
 ]]></content>
   </entry>
   
@@ -47,25 +45,25 @@
     <id>http://cxh.me/2012/10/03/some-problems-of-django-url-mapping</id>
     <content type="html"><![CDATA[<h1></h1>
 
-<p>之前写Django一直没想着去用patterns的prefix，偶然用的时候发现总不起作用，后来才发觉原来是写法的问题</p>
+<p>  之前写Django一直没想着去用patterns的prefix，偶然用的时候发现总不起作用，后来才发觉原来是写法的问题</p>
 
 <pre><code>urlpatterns = patterns('book.views',
     (r'^(\w ).html$', 'default_render'),
 )
 </code></pre>
 
-<p>在这种情况下肯定是没问题的，但是不排除会有同学跟我一样的写成如下的格式</p>
+<p>  在这种情况下肯定是没问题的，但是不排除会有同学跟我一样的写成如下的格式</p>
 
 <pre><code>urlpatterns = patterns('book.views',
     (r'^(\w ).html$', default_render),
 )
 </code></pre>
 
-<p>看到差别了吧，只有字符串才可以拼接嘛。</p>
+<p>  看到差别了吧，只有字符串才可以拼接嘛。</p>
 
-<p>另外是关于Django 1.4之后的路径的问题，每个app被放到跟主project同级的目录，所以引用的时候都变成与project同级的模块。比如有一个叫test的project，那么test里的urls.py必然是test.urls，而某个app里的urls.py显然已经不是test.app.urls而是app.urls了。</p>
+<p>  另外是关于Django 1.4之后的路径的问题，每个app被放到跟主project同级的目录，所以引用的时候都变成与project同级的模块。比如有一个叫test的project，那么test里的urls.py必然是test.urls，而某个app里的urls.py显然已经不是test.app.urls而是app.urls了。</p>
 
-<p>纯mark之。水文勿喷….</p>
+<p>  纯mark之。水文勿喷….</p>
 ]]></content>
   </entry>
   

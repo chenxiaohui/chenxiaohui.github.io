@@ -13,13 +13,12 @@ tags:
   - paralist
   - 行距
 ---
-# 
 
-默认的itemize存在行距过大的问题，大概是如下的样子：
+  默认的itemize存在行距过大的问题，大概是如下的样子：
 
 ![image][1]
 
-用paralist包可以减少行距，代码如下
+  用paralist包可以减少行距，代码如下
 
 > \usepackage{paralist}
 \let\itemize

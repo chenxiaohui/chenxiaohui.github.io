@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: OceanBase | CXH.ME]]></title>
+  <title><![CDATA[Category: oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T12:31:13+08:00</updated>
+  <updated>2014-06-21T20:21:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,15 +14,495 @@
 
   
   <entry>
-    <title type="html"><![CDATA[OceanBase源码分析-tablet相关]]></title>
-    <link href="http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet/"/>
-    <updated>2013-09-16T15:49:00+08:00</updated>
-    <id>http://cxh.me/2013/09/16/oceanbase-source-analysis-tablet</id>
-    <content type="html"><![CDATA[<h3>ObRootTabletInfo</h3>
+    <title type="html"><![CDATA[Oceanbase迭代器说明]]></title>
+    <link href="http://cxh.me/2013/10/21/table-tablet-iterator/"/>
+    <updated>2013-10-21T16:26:00+08:00</updated>
+    <id>http://cxh.me/2013/10/21/table-tablet-iterator</id>
+    <content type="html"><![CDATA[<p>  所有迭代器的类图如下所示：</p>
 
-<p>Tablet是分布式系统里很重要的概念, 无论是分布式文件系统, 还是分布式数据库, tablet定义了</p>
+<p><img class="img-polaroid center" src="/images/2013/iterator.png" title="&ldquo;iterator类图&rdquo; &ldquo;iterator类图&rdquo;" ></p>
 
-<p>//TODO</p>
+<h4>ObRootTabletIterator</h4>
+
+<p>  所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。</p>
+
+<!-- more -->
+
+
+<h4>ObTableTabletIterator</h4>
+
+<p>  最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。</p>
+
+<h6>实现机理 :</h6>
+
+<p>  从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。</p>
+
+<h6>错误码与错误原因对应</h6>
+
+<p><strong>断言失败</strong>：</p>
+
+<ol>
+<li> 接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)</li>
+<li> sql查询结果为空</li>
+</ol>
+
+
+<p><strong>OB_ITER_END</strong>：</p>
+
+<ol>
+<li> 迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。</li>
+<li> 如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。</li>
+</ol>
+
+
+<p><strong>OB_NOT_INIT</strong>:</p>
+
+<p>  没有初始化，目前是没有传入RootTableService指针，或者指针为空。</p>
+
+<p><strong>OB_ROOT_NOT_INTEGRATED</strong>：</p>
+
+<p>  scan_range出错，当前end_key不再scan_range的范围里，</p>
+
+<p><strong>OB_ERR_UNEXPECTED</strong>：</p>
+
+<p>  tablet本身错误，start_key > end_key</p>
+
+<h6>#其他从root_table层得到的错误码：</h6>
+
+<p><strong>OB_MEM_OVERFLOW</strong>： 内存错误</p>
+
+<p><strong>OB_TABLE_NOT_EXIST</strong>：</p>
+
+<ol>
+<li> 获得表schema的时候发现schema中不存在这张表</li>
+<li> 查询到的结果有空洞（某个范围下没有当前表的tablet）</li>
+</ol>
+
+
+<p><strong>OB_NO_RESULT</strong>：</p>
+
+<p>  按照指定的条件，proxy查询不到结果，主要是table没有tablet的情况和tablet范围未封闭（没有max)，否则总会找到结果，即使没有对应的tablet，也应该返回OB_ENTRY_NOT_EXIST</p>
+
+<p><strong>OB_ERROR</strong>：可能情况</p>
+
+<ol>
+<li> 当前表的元数据表没有指定</li>
+<li> 获取root_table_name的时候写入失败</li>
+<li> proxy读取tablet的时候结果加入返回列表的时候失败。</li>
+<li> proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）</li>
+</ol>
+
+
+<p><strong>OB_ENTRY_NOT_EXIST</strong>：</p>
+
+<ol>
+<li> 当前表的元数据表schema不存在。</li>
+<li> tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet</li>
+</ol>
+
+
+<p><strong>OB_SCHEMA_ERROR</strong>：</p>
+
+<p>  proxy生成sql语句的时候add_rowkey_column_value失败</p>
+
+<p><strong>OB_ERR_NULL_VALUE</strong>：</p>
+
+<p>  proxy生成sql语句的时候add_rowkey_column_value失败</p>
+
+<p><strong>OB_ERR_SQLCLIENT</strong>：</p>
+
+<p>  主要是一些sql调用失败。</p>
+
+<p><strong>OB_ALLOCATE_MEMORY_FAILED</strong>：</p>
+
+<p>  主要是deep copy range失败</p>
+
+<p><strong>以上错误码都会直接返回到上层，只不过部分需要单独处理，比如OB_ENTRY_NOT_EXISTS 和OB_NO_RESULT是否继续迭代还是个问题。</strong></p>
+
+<h3>ObRootTableIterator</h3>
+
+<p>  继承ObRootTabletIterator，实现迭代所有表的所有tablet的功能，如果有table完全没有tablet，则返回OB_NO_TABLET，调用者决定是否继续迭代。</p>
+
+<h4>实现机理</h4>
+
+<p>  通过ObTableSchemaIterator迭代所有table, 每次生成一个table的TableTabletIterator,迭代此iterator直到end，然后继续迭代下一个表。如果遇到tablet_iter的错误，返回错误，除OB_NO_TABLET错误外，调用者应中止迭代。</p>
+
+<h4>错误码与错误对应原因</h4>
+
+<p><strong>OB_ITER_END</strong>：迭代所有表的tablet结束。</p>
+
+<p><strong>OB_NO_TABLET</strong>： 从一个表里没有迭代出任何一个tablet，之后仍可继续迭代。</p>
+
+<p>  其他错误码来自ObTableSchemaIterator和TableTabletIterator</p>
+
+<h3>ObServerTabletIterator</h3>
+
+<p>  继承ObRootTableIterator（仔细看不是tablet）,实现一个server上所有tablet的迭代。</p>
+
+<h4>实现机理</h4>
+
+<p>  迭代所有tablet直到找到有副本分布在这个server上的tablet，然后返回。如果出错，一概中断。</p>
+
+<h4>错误码与错误原因对应</h4>
+
+<p>OB_ITER_END：所有tablet迭代结束。</p>
+
+<p>  其他错误码来自root_table_iterator</p>
+
+<h3>ObAliveRootTableIterator</h3>
+
+<p>  继承ObRootTableIterator（仔细看不是tablet),返回所有表的所有tablet，但是剔除不存活的版本，所以依赖一个ObChunkServerManager指针。</p>
+
+<h3>ObTableTabletFilterVersionIterator</h3>
+
+<p>  继承ObTableTabletIterator，返回所有表的所有tablet，但是剔除版本不等于指定版本的replica。</p>
+
+<h4>错误码及错误原因对应</h4>
+
+<p>OB_NOT_INIT：未初始化。</p>
+
+<p>OB_INVALID_ARGUMENT： 初始化参数不合法。</p>
+
+<h4>ObIteratorUtility</h4>
+
+<p>  工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。</p>
+
+<hr />
+
+<h3>ObRootReplicaIterator</h3>
+
+<p>  所有replica类迭代器，目前只有ObServerReplicaIterator，定义了迭代接口。包含一个ObRootTableIterator的迭代对象，即所有replica迭代器都是基于RootTableIterator迭代所有表的所有tablet的基础上实现的。</p>
+
+<h3>ObServerReplicaIterator</h3>
+
+<p>  迭代某个server上的所有replica(副本)</p>
+
+<h4>实现机理</h4>
+
+<p>  迭代所有tablet，直到得到一个tablet里面的分布在该server上的副本。没有就继续迭代。有错误一概中断。</p>
+
+<h3>ObReplicaIteratorCalculator</h3>
+
+<p>  合并两个replica类迭代器的结果，并返回当前吐出的replica（replica参数）是属于哪个迭代器的（type参数/LEFT_ITER/RIGHT_ITER/BOTH_ITER三种)</p>
+
+<h4>实现机理</h4>
+
+<ol>
+<li> 首先置type为both_iter,两个迭代器都前进一步</li>
+<li> 如果left_iter的结果> right_iter，吐出right_iter的结果，置type为LEFT_ITER，保存两个结果。</li>
+<li> 同理如果right>left,吐出right_iter的结果，置type为RIGHT_ITER,保存两个结果。</li>
+<li> 如果right==left，吐出随便哪个结果（左边），置type为BOTH_ITER,保存两个结果。</li>
+<li> 之后每次next判断type，type=LEFT_ITER则迭代LEFT_ITER，跟right_iter上次的结果比较，决定吐出哪个，并置位type=left/right/both。RIGHT/BOTH同理。</li>
+<li> 如果有单边迭代器中止，比如左边，则置type=RIGHT_ITER, 迭代到结束，反之亦然。</li>
+<li> 正常中止条件：两边迭代器都中止。</li>
+<li> OB_ITER_END情况下type返回值决定了哪边先结束。</li>
+</ol>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[通过脚本统计代码覆盖率]]></title>
+    <link href="http://cxh.me/2013/10/16/user-script-to-get-coverage/"/>
+    <updated>2013-10-16T20:56:00+08:00</updated>
+    <id>http://cxh.me/2013/10/16/user-script-to-get-coverage</id>
+    <content type="html"><![CDATA[<p>  只是记录一下工作里面的一些trick。我发现我对这些trick的兴趣无比的高。</p>
+
+<p>  我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。</p>
+
+<p>  关于gcc coverage选项和gcov/lcov工具的使用已经在 <a href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/" title="测试覆盖率统计">上篇文章</a>里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
+
+<!-- more -->
+
+
+<p>  首先，测试目录和代码目录是分开的，我们在测试目录运行的时候会生成测试文件的代码覆盖率统计，但是实际上被测试的文件的代码覆盖率是在源码目录生成的。这是需要注意的一点，之前我考虑过合并两处的代码覆盖率统计文件，后来发现没有必要，毕竟你关注的是源码目录的统计文件。这样我们通过如下脚本实现代码覆盖率的生成和拉取。</p>
+
+<pre><code>#!/bin/bash
+if [ $# = 1 ] ;then
+    lcov --capture --directory . --output-file $1.info --test-name $1
+    lcov --remove $1.info "/usr*" -o $1.info # remove output for external libraries
+    genhtml $1.info --output-directory ~/$1_output --title "$1" --show-details --legend
+    rm $1.info
+    tar czvf ~/$1.tar.gz ~/$1_output
+    rm -rf ~/$1_output
+else
+    echo 'cover.sh &lt;testname&gt;'
+fi
+</code></pre>
+
+<p>  解释几点：</p>
+
+<ol>
+<li><p> 第四行目的是去掉usr相关的统计，毕竟跟我们没关系。生成的代码打包到HOME目录下。</p></li>
+<li><p> 可能会报.gcda文件目录出错，找不到要创建的目录的错误，这种主要用于跨平台情况。
+这个是由于.gcda文件的生成默认保存到.o所在的目录，但是如果.o所在目录不存在，就会出现错误。
+设置环境变量可以解决这个问题。设置GCOV_PREFIX=/target/run' 同 GCOV_PREFIX_STRIP=1
+则生成的.gcda文件 将会保存到 /target/run/build/foo.gcda。</p></li>
+<li><p> 有时候会遇到"Merge mismatch for summaries" 的错误，可以将.gcda全部删除或者对整个文件全部编译，而不是单个改变的文件，这个是由于gcda与gcno不相配导致的，因为两者之间都有个时间戳用来记录是不是相同的。</p></li>
+</ol>
+
+
+<p>  然后是关于拉取到本地的问题，直接在bashrc里面配置如下别名好了：</p>
+
+<pre><code>alias getcov="from 你的测试用例.tar.gz &amp;&amp; tar zxvf xxx.tar.gz &amp;&amp; cd xxx"
+
+function from() {m
+ scp -r 你的用户名@$你的开发机:$@ .
+}
+alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
+</code></pre>
+
+<p>  这样getcov拉取覆盖率文件，html命令建立webserver并打开浏览器，小trick，用起来舒服而已。</p>
+
+<hr />
+
+<p>  擦，我不得我提醒各位，有时候发现修改了case之后覆盖率并没有提升，这一定不是你的问题，不一定是coverage数据没有更新的问题，不一定是数据没有拉取成功的问题，极有可能是浏览器缓存了数据的问题。</p>
+
+<p>  针对这种问题，我们的解决方法就是：</p>
+
+<p>  <strong>作死地按f5</strong></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[测试覆盖率统计]]></title>
+    <link href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/"/>
+    <updated>2013-10-16T10:15:00+08:00</updated>
+    <id>http://cxh.me/2013/10/16/test-coverage-percentage-statistics</id>
+    <content type="html"><![CDATA[<h3>什么是代码覆盖率(code coverage)</h3>
+
+<p>  代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
+
+<p>  代码覆盖主要包括如下四个方面：</p>
+
+<blockquote><ol>
+<li>语句覆盖(StatementCoverage)</li>
+<li>判定覆盖(DecisionCoverage)</li>
+<li>条件覆盖(ConditionCoverage)</li>
+<li>路径覆盖(PathCoverage) 或者叫条件/判断覆盖率</li>
+</ol>
+</blockquote>
+
+<p>  具体的参见参考文献<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html" title="代码覆盖率浅谈">1</a> <a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">2</a>.</p>
+
+<h3>怎么得到覆盖率数据</h3>
+
+<p>  这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
+
+<!-- more -->
+
+
+<p>  gcc这里需要做的工作是编译的时候打开coverage选项，主要是如下几步。</p>
+
+<blockquote><ol>
+<li>编译的时候，增加 -fprofile-arcs -ftest-coverage 或者 –coverage；</li>
+<li>链接的时候，增加 -fprofile-arcs 或者 –lgcov；</li>
+<li>打开–g3 选项，去掉-O2以上级别的代码优化选项；否则编译器会对代码做一些优化，例如行合并，从而影响行覆盖率结果；</li>
+</ol>
+</blockquote>
+
+<p>  为了方便的在Makefile里面控制是否生成测试覆盖率数据，我们在Makefile里面加入如下开关</p>
+
+<pre><code>ifeq ($(coverage), yes)
+    CXXFLAGS       +=  -fprofile-arcs -ftest-coverage
+    LINKERCXX      +=  -fprofile-arcs -ftest-coverage
+    OPT_FLAGS     =  -g3
+endif
+</code></pre>
+
+<p>  这样就可以通过make coverage=yes生成。</p>
+
+<p>  同理如果用automake工具的话，Makefile.am里面需要加入如下语句：</p>
+
+<pre><code>if COVERAGE
+    CXXFLAGS+=-fprofile-arcs -ftest-coverage
+    AM_LDFLAGS+=-lgcov
+    OPT_FLAGS =  -g3
+endif
+</code></pre>
+
+<p>  configure.ac/configure.in脚本里面需要加入</p>
+
+<pre><code>AC_ARG_WITH([coverage],
+       AS_HELP_STRING([--with-coverage],
+              [with coverage (default is NO)]),
+          [
+            if test "$withval" = "yes"; then
+                coverage=yes
+            fi
+          ],
+          [coverage=no]
+   )
+AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
+</code></pre>
+
+<p>  就可以通过</p>
+
+<pre><code>./configure --with-coverage来生成Makefile了
+</code></pre>
+
+<p>  之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献<a href="http://sdet.org/?p=212" title="Linux下c/c++项目代码覆盖率的产生方法">3</a> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html" title="[整理] gcov lcov 覆盖c/c++项目入门">4</a>。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看<a href="http://cxh.me/2013/10/16/user-script-to-get-coverage/" title="通过脚本统计代码覆盖率">下一篇博客</a>。</p>
+
+<h3>参考文献</h3>
+
+<blockquote><p>[1] 代码覆盖率浅谈，<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a></p>
+
+<p>[2] 代码覆盖率，<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a></p>
+
+<p>[3] Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
+
+<p>[4] [整理] gcov lcov 覆盖c/c++项目入门, <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[git reset和git revert]]></title>
+    <link href="http://cxh.me/2013/10/15/git-reset-revert/"/>
+    <updated>2013-10-15T14:50:00+08:00</updated>
+    <id>http://cxh.me/2013/10/15/git-reset-revert</id>
+    <content type="html"><![CDATA[<h3>git reset 作用</h3>
+
+<p>  git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
+
+<p><img class="img-ploaroid center" src="/images/2013/git-reset.png" title="&ldquo;git-reset三种方式&rdquo; &ldquo;git-reset三种方式&rdquo;" ></p>
+
+<blockquote><ul>
+<li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>
+<li>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</li>
+<li>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</li>
+</ul>
+</blockquote>
+
+<h3>git revert 作用</h3>
+
+<p>  git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+
+<h3>撤销之后恢复</h3>
+
+<p>  git-reset如果执行之后，再想回退到指定版本。//TODO</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[svn vim 整合方案]]></title>
+    <link href="http://cxh.me/2013/10/15/svn-vim-integration/"/>
+    <updated>2013-10-15T11:53:00+08:00</updated>
+    <id>http://cxh.me/2013/10/15/svn-vim-integration</id>
+    <content type="html"><![CDATA[<p>  这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
+
+<p>  遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
+
+<!-- more -->
+
+
+<pre><code>alias sta='st|grep ^A '
+alias stm='st|grep ^M '
+alias std='st|grep ^D '
+alias po='echo "#!/bin/sh" &gt;post-review.sh &amp;&amp; echo "post-review \\" &gt;&gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; std &gt;&gt;post-review.sh; stm &gt;&gt; post-review.sh ; vi post-review.sh'
+</code></pre>
+
+<p>  之后可以得到类似如下所示的post-review.sh，当然这个是不能直接运行的。</p>
+
+<pre><code>#!/bin/sh
+post-review \
+M       tests/rootserver/root_table/iterator/test_ob_server_tablet_iter.cpp
+M       tests/rootserver/root_table/iterator/test_ob_root_replica_iter.cpp
+M       tests/rootserver/root_table/iterator/test_ob_server_replica_iter.cpp
+M       tests/rootserver/root_table/iterator/test_iterator_base.h
+M       tests/rootserver/root_table/iterator/Makefile.am
+M       tests/rootserver/root_table/iterator/test_ob_root_table_iter.cpp
+M       tests/rootserver/root_table/iterator/run.sh
+M       tests/rootserver/root_table/iterator/test_ob_alive_root_table_iter.cpp
+</code></pre>
+
+<p>  我们面临两个问题：</p>
+
+<blockquote><ol>
+<li>每行的格式都略有差别，比如前面有A/M/D标记，后面没有续行符号\，没有空格什么的。</li>
+<li>需要能够针对每一行或者多行进行svn操作（svn diff/revert 应该是最常见的操作）</li>
+</ol>
+</blockquote>
+
+<p>  这里我们通过vim脚本实现如下的功能：</p>
+
+<p>  svn.vim 实现如下</p>
+
+<pre><code>function! StripSVN() range
+    "Step through each line in the range...
+    for linenum in range(a:firstline, a:lastline)
+        "Replace loose ampersands (as in DeAmperfy())...
+        let curr_line   = getline(linenum)
+        let replacement = substitute(curr_line,'^\(A\|M\|D\)','','g')
+        call setline(linenum, replacement." \\")
+    endfor
+    call cursor(linenum)
+    "Report what was done...
+    if a:lastline &gt; a:firstline
+        echo "Strip Svn" (a:lastline - a:firstline + 1) "lines"
+    endif
+endfunction
+function! SVNCommand(cmd, prompt, combine) range
+    if a:prompt
+        let sure = input("Are you sure? (y/n) ")
+        if sure != 'y'
+            return
+        endif
+    endif
+    let cmd = '!svn '.a:cmd
+    for linenum in range(a:firstline, a:lastline)
+        "Replace loose ampersands (as in DeAmperfy())...
+        let curr_line   = getline(linenum)
+        let replacement = substitute(curr_line,'^\(A\|M\)','','g')
+        let replacement = Trim(Trim(replacement,'\\'),' ')
+        if a:combine
+           let cmd = cmd.' '.replacement.' '
+        else
+            let cmd = '!svn ' . a:cmd. ' ' . replacement
+            execute cmd
+            "echo cmd
+        endif
+    endfor
+    if a:combine
+        execute cmd
+        "echo cmd
+    endif
+endfunction
+</code></pre>
+
+<p>  第一个函数处理每行的格式，第二个函数读取每行的内容，生成命令并执行，prompt=1 的时候会提示并让用户确认， combine=1 的时候所有行会拼成一条执行，否则每行执行一次。</p>
+
+<p>  然后在vimrc中添加：</p>
+
+<pre><code>noremap &lt;leader&gt;sp :call StripSVN()&lt;CR&gt;
+noremap &lt;leader&gt;sf :call SVNCommand("diff", 0 ,1)&lt;cr&gt;
+noremap &lt;leader&gt;sr :call SVNCommand("revert", 1 ,0)&lt;cr&gt;dd
+noremap &lt;leader&gt;sl :call SVNCommand("log", 0 ,0)&lt;cr&gt;
+noremap &lt;leader&gt;sa :call SVNCommand("add", 0 ,1)&lt;cr&gt;
+noremap &lt;leader&gt;sb :call SVNCommand("blame", 0 ,1)&lt;cr&gt;
+noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
+</code></pre>
+
+<p>  这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
+
+<hr />
+
+<p>  其实偶然发现我好像没说怎么用，大致流程是这样的：</p>
+
+<blockquote><ol>
+<li>po(alias)，生成修改列表</li>
+<li>在每个行，或者选中多个行执行svn命令(<leader>sf,<leader>sr什么的)，查看diff啊，回滚啊，查看log啊，查看blame啊</li>
+<li>提交前选中所有行执行<leader>sp， 去掉行首的A/M/D标记，在行尾加续行符</li>
+<li>执行post-review.sh提交</li>
+</ol>
+</blockquote>
+
+<hr />
+
+<p>参考文献：</p>
+
+<blockquote><p>[1] SVN 命令参考（svn command reference）, <a href="http://riaoo.com/subpages/svn_cmd_reference.html">http://riaoo.com/subpages/svn_cmd_reference.html</a></p>
+
+<p>[2] 使用脚本编写 Vim 编辑器, <a href="http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/">http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/</a></p></blockquote>
 ]]></content>
   </entry>
   

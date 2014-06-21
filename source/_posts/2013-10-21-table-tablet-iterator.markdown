@@ -7,7 +7,7 @@ categories: oceanbase
 ---
   所有迭代器的类图如下所示：
 
-{% img img-polaroid center /images/2013-10/iterator.png "iterator类图" "iterator类图" %}
+{% img img-polaroid center /images/2013/iterator.png "iterator类图" "iterator类图" %}
 
 #### ObRootTabletIterator
 
