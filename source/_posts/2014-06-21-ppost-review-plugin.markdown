@@ -6,15 +6,13 @@ comments: true
 categories: "vim"
 ---
 
-post-review.vim
-===============
+###post-review.vim
 
 A plugin to generate post-review script
 
-Usage
-===============
+### Usage
 
-###install:
+####install:
 
 put post-review.vim to your $VIM/plugin 
 
@@ -22,7 +20,7 @@ add this to your vimrc
 
     nmap <leader>pr :call PostReview()<cr>
 
-###process:
+####process:
 
 svndiff use vimdiff: see [link](http://www.ccvita.com/445.html "svndiff use vimdiff")
 
@@ -46,17 +44,17 @@ after you added all files you need to review, chmod +x post-review.sh and execut
 
   请无视楼主以上装逼的英文:
 
-post-review.vim
-===============
+### post-review.vim
+
 
   就是一个用来从vimdiff记录需要Post-review的文件的插件
 
   不知道Post-review的同学请google之, 用百度搜索的同学自觉面壁去
 
-用法
-===============
+### 用法
 
-###安装
+
+####安装
 
   统共分三步:
 
@@ -66,25 +64,25 @@ post-review.vim
 
     nmap <leader>pr :call PostReview()<cr>
 
-###使用
+####使用
 
   比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊
 
-{% img /images/2014/ask.jpg %}
+{% img /images/common/ask.jpg %}
 
-    难道不应该写一部分就post-review的嘛
+> 难道不应该写一部分就post-review的嘛
 
   好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交
 
-{% img /images/2014/ask.jpg %}
+{% img /images/common/ask.jpg %}
 
     What a fucking job!!!
 
   这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它...
     
-{% img /images/2014/ask.jpg %}
+{% img /images/common/ask.jpg %}
 
-    跑题了...
+> 跑题了...
 
   好了, 我们先svn diff或者git diff一下, 为了保证你看到的是如下界面请参考[这里](http://www.ccvita.com/445.html "svndiff use vimdiff")或者[这里](http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/ "svn diff use vimdiff").
 

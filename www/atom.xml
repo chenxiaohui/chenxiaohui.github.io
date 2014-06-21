@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T21:00:57+08:00</updated>
+  <updated>2014-06-21T21:03:33+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,13 +18,13 @@
     <link href="http://cxh.me/2014/06/21/ppost-review-plugin/"/>
     <updated>2014-06-21T20:57:00+08:00</updated>
     <id>http://cxh.me/2014/06/21/ppost-review-plugin</id>
-    <content type="html"><![CDATA[<h1>post-review.vim</h1>
+    <content type="html"><![CDATA[<h3>post-review.vim</h3>
 
 <p>A plugin to generate post-review script</p>
 
-<h1>Usage</h1>
+<h3>Usage</h3>
 
-<h3>install:</h3>
+<h4>install:</h4>
 
 <p>put post-review.vim to your $VIM/plugin</p>
 
@@ -33,7 +33,7 @@
 <pre><code>nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
 </code></pre>
 
-<h3>process:</h3>
+<h4>process:</h4>
 
 <p>svndiff use vimdiff: see <a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">link</a></p>
 
@@ -58,15 +58,15 @@
 
 <p>  请无视楼主以上装逼的英文:</p>
 
-<h1>post-review.vim</h1>
+<h3>post-review.vim</h3>
 
 <p>  就是一个用来从vimdiff记录需要Post-review的文件的插件</p>
 
 <p>  不知道Post-review的同学请google之, 用百度搜索的同学自觉面壁去</p>
 
-<h1>用法</h1>
+<h3>用法</h3>
 
-<h3>安装</h3>
+<h4>安装</h4>
 
 <p>  统共分三步:</p>
 
@@ -77,28 +77,26 @@
 <pre><code>nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
 </code></pre>
 
-<h3>使用</h3>
+<h4>使用</h4>
 
 <p>  比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊</p>
 
-<p><img src="http://cxh.me/images/2014/ask.jpg"></p>
+<p><img src="http://cxh.me/images/common/ask.jpg"></p>
 
-<pre><code>难道不应该写一部分就post-review的嘛
-</code></pre>
+<blockquote><p>难道不应该写一部分就post-review的嘛</p></blockquote>
 
 <p>  好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交</p>
 
-<p><img src="http://cxh.me/images/2014/ask.jpg"></p>
+<p><img src="http://cxh.me/images/common/ask.jpg"></p>
 
 <pre><code>What a fucking job!!!
 </code></pre>
 
 <p>  这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它&hellip;</p>
 
-<p><img src="http://cxh.me/images/2014/ask.jpg"></p>
+<p><img src="http://cxh.me/images/common/ask.jpg"></p>
 
-<pre><code>跑题了...
-</code></pre>
+<blockquote><p>跑题了&hellip;</p></blockquote>
 
 <p>  好了, 我们先svn diff或者git diff一下, 为了保证你看到的是如下界面请参考<a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">这里</a>或者<a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">这里</a>.</p>
 
