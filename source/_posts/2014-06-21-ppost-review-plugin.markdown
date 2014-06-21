@@ -28,6 +28,8 @@ gitdiff use vimdiff: see [link](http://cxh.me/2013/09/14/show-gitdiff-using-vimd
 
 ![](http://cxh.me/images/2013/git-vimdiff.png "gitdiff")
 
+<!--more-->
+
 first use svn diff/git diff and open vimdiff to see the difference
 
 secondly when you consider the changed file needs to be posted , use <leader>pr to add it to post-review.sh
@@ -38,7 +40,6 @@ after you added all files you need to review, chmod +x post-review.sh and execut
 
 (if you set g:chmod_after_create to 1 you will not need to chmod +x)
 
-<!--more-->
 
 ----------------------------------------
 
@@ -103,3 +104,10 @@ after you added all files you need to review, chmod +x post-review.sh and execut
   发起新的post-review的时候建议把post-review.sh清空或者删除, 重复添加同一个文件的时候会判断.
 
   好了, 也就想到这么多了, 有其他的再补充, 钦此.
+
+注：其实最后我发现还是这样更容易：
+
+    alias st='svn st'
+    alias sta='st|grep ^A '
+    alias stm='st|grep ^M '
+    alias po="echo 'post-review -d' >post-review.sh  && sta >> post-review.sh ; stm >> post-review.sh ; chmod +x post-review.sh ;sed -i 's/^[MA]\s\+//g' post-review.sh;sed -i 's/$/ \\\\/g' post-review.sh;vi post-review.sh"

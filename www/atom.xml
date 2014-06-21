@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-21T21:03:33+08:00</updated>
+  <updated>2014-06-21T21:10:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -119,6 +119,14 @@
 <p>  发起新的post-review的时候建议把post-review.sh清空或者删除, 重复添加同一个文件的时候会判断.</p>
 
 <p>  好了, 也就想到这么多了, 有其他的再补充, 钦此.</p>
+
+<p>注：其实最后我发现还是这样更容易：</p>
+
+<pre><code>alias st='svn st'
+alias sta='st|grep ^A '
+alias stm='st|grep ^M '
+alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; stm &gt;&gt; post-review.sh ; chmod +x post-review.sh ;sed -i 's/^[MA]\s\+//g' post-review.sh;sed -i 's/$/ \\\\/g' post-review.sh;vi post-review.sh"
+</code></pre>
 ]]></content>
   </entry>
   
