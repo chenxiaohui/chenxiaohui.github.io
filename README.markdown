@@ -129,3 +129,14 @@ if needs to write code in item list, use double indent. eg:
         {
         }
 * item
+
+if needs to write paragraph or quote in itemlist, use indent.eg:
+* item
+    paragraph
+
+    paragraph
+
+* item
+    > quote
+
+    > quote
