@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-22T10:46:40+08:00</updated>
+  <updated>2014-06-22T11:15:58+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[octopress代码着色]]></title>
+    <link href="http://cxh.me/2014/06/22/octopress-code-highlight/"/>
+    <updated>2014-06-22T11:15:00+08:00</updated>
+    <id>http://cxh.me/2014/06/22/octopress-code-highlight</id>
+    <content type="html"><![CDATA[<p>  markdown有自己支持的代码模块，但是想支持着色，就需要单独对代码进行parse和加上css。octopress支持自己的代码语法，但是比较麻烦，并且是本地渲染，对不同语言需要指定。</p>
+
+<p>  所以还是js渲染比较方便一点，我们可以用<a href="https://code.google.com/p/google-code-prettify/" title="google code prettify">google code prettify</a>进行着色，在markdown里面只要对代码加入缩进（tab或者四个空格）。服务端引入如下js:</p>
+
+<pre><code>&lt;link href="http://cxh.me/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css"&gt;
+&lt;script type="text/javascript" src="http://cxh.me/javascripts/google-code-prettify/prettify.js"&gt;&lt;/script&gt;
+
+&lt;script type="text/javascript" &gt;
+&lt;!--
+    $(function() {
+      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
+      window.prettyPrint &amp;&amp; prettyPrint();
+      $('table').addClass('table')
+});
+--&gt;
+&lt;/script&gt;
+</code></pre>
+
+<p>  google code prettify的样式可以<a href="http://jmblog.github.io/color-themes-for-google-code-prettify/" title="google code prettify theme">这里</a>选择，关于行号的一些问题参见<a href="http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/" title="Jekyll中使用google-code-prettify高亮代码">这里</a>。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] google code prettify, <a href="https://code.google.com/p/google-code-prettify/">https://code.google.com/p/google-code-prettify/</a></p>
+
+<p>[2] google code prettify theme, <a href="http://jmblog.github.io/color-themes-for-google-code-prettify/">http://jmblog.github.io/color-themes-for-google-code-prettify/</a></p>
+
+<p>[3] Jekyll中使用google-code-prettify高亮代码, <a href="http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/">http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[直接从markdown生成各种电子书]]></title>
@@ -1321,62 +1356,6 @@ sudo make install
 </code></pre>
 
 <p>  Change to the doc directory, start Vim and run the &ldquo;:helptags .&rdquo; command to process the taglist help file. Without this step, you cannot jump to the taglist help topics. You can now use the &ldquo;:help vimgdb&rdquo; command to get the vimGdb documentation.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[总结Oceanbase编码中需要注意的一些细节]]></title>
-    <link href="http://cxh.me/2014/06/09/oceanbase-cplusplus-note/"/>
-    <updated>2014-06-09T10:38:00+08:00</updated>
-    <id>http://cxh.me/2014/06/09/oceanbase-cplusplus-note</id>
-    <content type="html"><![CDATA[<ol>
-<li><p>所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：</p>
-
-<pre><code> if (it != NULL)
- {
-     xxx
- }
- else
- {
-     it不能再使用了
- }
-</code></pre></li>
-<li><p>不要使用strcpy而应该使用strncpy。</p></li>
-<li><p>所有成员函数都应该考虑是否为const函数.</p></li>
-<li><p>所有函数都需要判断传入值是否有效。</p></li>
-<li><p>有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如：</p>
-
-<pre><code> //这样是很容易造成问题的
- int * xxx(xxx)
- {
-     int* it = NULL;
-     for(int * it =xxx;it != xxx; it ++)
-     {}
- }
- //而应该这样
- int * xxx(xxx)
- {
-     int* ret = NULL;
-     for (int * it = xxx; it != xx; it++)
-     {ret = it}
-     return ret;
- }
-</code></pre></li>
-<li><p>所有的错误码都需要向上抛出。错误码不能被隐藏，任何语句执行的前提条件都是之前没有错误。循环尤其需要注意。如：</p>
-
-<pre><code> for (int i = 0; i &lt; xx; i++)
- {
-     xxx
- }
- //需要改成
- for (OB_SUCCESS == ret &amp;&amp; int i = 0; i &lt; xx; i++)
- {
-     xxx
- }
-</code></pre></li>
-<li><p>ObArray等动态表结构使用前尽量reserve.</p></li>
-</ol>
-
 ]]></content>
   </entry>
   
