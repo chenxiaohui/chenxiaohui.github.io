@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-22T11:15:58+08:00</updated>
+  <updated>2014-06-25T09:59:35+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -147,7 +147,7 @@ if __name__ == '__main__':
 
 <p>gitdiff use vimdiff: see <a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">link</a></p>
 
-<p><img src="http://cxh.me/images/2013/git-vimdiff.png" title="gitdiff" alt="" /></p>
+<p><img src="http://cxh.me/images/2013/git-vimdiff.png"></p>
 
 <!--more-->
 

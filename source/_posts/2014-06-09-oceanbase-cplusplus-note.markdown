@@ -54,3 +54,5 @@ categories: "Oceanbase"
 		}
 		
 1. ObArray等动态表结构使用前尽量reserve.
+
+1.  所有不已ret为返回值的地方都要重新指定返回值。

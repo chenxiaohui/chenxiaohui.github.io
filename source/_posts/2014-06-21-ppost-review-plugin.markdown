@@ -28,7 +28,7 @@ svndiff use vimdiff: see [link](http://www.ccvita.com/445.html "svndiff use vimd
 
 gitdiff use vimdiff: see [link](http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/ "svn diff use vimdiff")
 
-![](http://cxh.me/images/2013/git-vimdiff.png "gitdiff")
+{% img /images/2013/git-vimdiff.png %}
 
 <!--more-->
 
