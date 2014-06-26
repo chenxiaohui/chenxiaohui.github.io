@@ -6,7 +6,7 @@ comments: true
 categories: "C++"
 ---
 
-  写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：
+  写了一段代码ss，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：
 
 	#define OB_FIRST_ROOT_TABLE_TID 21
 	#define OB_INVALID_ID INT_MAX
