@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-25T09:59:35+08:00</updated>
+  <updated>2014-06-26T11:39:35+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,82 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[一个关于宏的问题]]></title>
+    <link href="http://cxh.me/2014/06/26/a-macro-problem/"/>
+    <updated>2014-06-26T10:53:00+08:00</updated>
+    <id>http://cxh.me/2014/06/26/a-macro-problem</id>
+    <content type="html"><![CDATA[<p>  写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：</p>
+
+<pre><code>#define OB_FIRST_ROOT_TABLE_TID 21
+#define OB_INVALID_ID INT_MAX
+const char* OB_FIRST_ROOT_TABLE_TABLE_NAME  =  "__first_root_table";
+
+struct TableBackupSQL
+{
+  uint64_t table_id_;
+  const char* sql_;
+  const char * table_name_;
+  TableBackupSQL()
+  {
+    sql_ = NULL;
+    table_name_ = NULL;
+    table_id_ = OB_INVALID_ID;
+  }
+  TableBackupSQL(uint64_t table_id, const char* table_name, const char* sql)
+  {
+    sql_ = sql;
+    table_name_ = table_name;
+    table_id_ = table_id;
+  }
+};
+
+
+#define TABLE_BACKUP_(table_prefix, table_name)\
+TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, "select * from "#table_name)
+#define TABLE_BACKUP(table_prefix)\
+TABLE_BACKUP_(table_prefix, table_prefix##_TABLE_NAME)
+
+TableBackupSQL table_backup_list_[] =
+{
+  TABLE_BACKUP(OB_FIRST_ROOT_TABLE)
+};
+
+
+int main(void)
+{
+  for (int i = 0; i &lt; sizeof(table_backup_list_)/sizeof(TableBackupSQL); i++)
+  {
+    TableBackupSQL&amp; desc = table_backup_list_[i];
+    printf("%d, %s, %s\n", desc.table_id_, desc.table_name_, desc.sql_);
+  }
+}
+</code></pre>
+
+<p>  期望的结果是</p>
+
+<pre><code>21, __first_root_table, select * from __first_root_table
+</code></pre>
+
+<p>  实际的结果是</p>
+
+<pre><code>21, __first_root_table, select * from OB_FIRST_ROOT_TABLE_TABLE_NAME
+</code></pre>
+
+<p>  拼出来的OB_FIRST_ROOT_TABLE_TABLE_NAME没有被替换，当然有很多方法绕开。我试图两次展开宏但是没有成功，这个跟<a href="http://blog.csdn.net/maray/article/details/11096459" title="介绍一个C++奇巧淫技">这里</a>说的问题毕竟不是一个。不知道C++11里面有没有解决方法。</p>
+
+<p>  另外，我才发现一个struct直接赋值是C++11才允许的。比如：</p>
+
+<pre><code>TableBackupSQL table_backup_list_[] =
+{
+  {21, "__first_root_table", "select * from __first_root_table"}
+};
+</code></pre>
+
+<p>  不加-std=c++0x或者 -std=gnu++0x的时候会报错。c语言支持。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[文本文件和二进制文件读写]]></title>
@@ -311,274 +387,6 @@ int main(void)
 
 <pre><code>schema.TableSchema::mem_version();
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Effective C++ 读书笔记]]></title>
-    <link href="http://cxh.me/2013/11/23/effective-notes/"/>
-    <updated>2013-11-23T16:41:00+08:00</updated>
-    <id>http://cxh.me/2013/11/23/effective-notes</id>
-    <content type="html"><![CDATA[<p>  Effective前面有几节是说构造析构赋值过程中基类和派生类的调用关系的，做了一个综合一点的例子，来验证一下这个问题。代码如下，话说贴代码是在是很没溜的做法，尤其是如果在出版的书中看到的话，这种行为基本属于骗稿费的&hellip;</p>
-
-<!-- more -->
-
-
-<p>  <strong>object.h</strong></p>
-
-<pre><code>#ifndef OCEANBASE_OBJECT_H_
-#define OCEANBASE_OBJECT_H_
-
-#include "base_object.h"
-class Object: public BaseObject
-{
-  public:
-    Object ();
-    Object (int magic);
-    Object (const Object &amp; obj);
-    virtual ~Object ();
-    virtual void print_info();
-    Object&amp; operator= (const Object&amp; obj);
-    const int &amp; get_magic() const;
-    const int &amp; get_magic();
-  private:
-    /* data */
-    int magic_;
-};
-
-#endif //OCEANBASE_OBJECT_H_
-</code></pre>
-
-<p>  <strong>object.cpp</strong></p>
-
-<pre><code>#include &lt;stdio.h&gt;
-#include "object.h"
-
-Object::Object():magic_(0)
-{
-  printf("construct in derived \n");
-}
-
-Object::Object (int magic):magic_(magic), BaseObject(magic)
-{
-  printf("construct in derived with magic\n");
-}
-
-Object::Object (const Object &amp; obj)
-  : BaseObject(obj)
-{
-  printf("copy construct in derived\n");
-  magic_ = obj.magic_;
-}
-
-Object::~Object()
-{
-  printf("destructor in derived\n");
-}
-
-const int &amp; Object::get_magic() const
-{
-  printf("const\n");
-  return magic_;
-}
-
-const int &amp; Object::get_magic()
-{
-  printf("non const\n");
-  return magic_;
-}
-
-Object&amp; Object::operator= (const Object&amp; obj)
-{
-  printf("operator = in derived\n");
-  //BaseObject::operator =(obj);
-  magic_ = obj.magic_;
-}
-
-void Object::print_info()
-{
-  BaseObject::print_info();
-  printf("derived:magic_%d\n", magic_);
-}
-</code></pre>
-
-<p>  <strong>base_object.h</strong></p>
-
-<pre><code>#ifndef OCEANBASE_BASE_OBJECT_H_
-#define OCEANBASE_BASE_OBJECT_H_
-class BaseObject
-{
-  public:
-    BaseObject ();
-    BaseObject (int base_magic);
-    BaseObject (const BaseObject &amp;obj);
-    virtual ~BaseObject ();
-    //BaseObject &amp; operator= (const BaseObject &amp; obj);
-    virtual void print_info();
-  private:
-    /* data */
-    int base_magic_;
-};
-
-#endif //OCEANBASE_BASE_OBJECT_H_
-</code></pre>
-
-<p>  <strong>base_object.cpp</strong></p>
-
-<pre><code>#include &lt;stdio.h&gt;
-#include "base_object.h"
-BaseObject::BaseObject():base_magic_(0)
-{
-  printf("construct in base\n");
-}
-
-BaseObject::BaseObject(int base_magic):base_magic_(base_magic)
-{
-  printf("construct in base with magic\n");
-}
-
-BaseObject::BaseObject (const BaseObject &amp;obj)
-{
-  printf("copy construct in base\n");
-  base_magic_ = obj.base_magic_;
-}
-
-BaseObject::~BaseObject()
-{
-  printf("destructor in base\n");
-}
-
-//BaseObject &amp; BaseObject::operator= (const BaseObject &amp; obj)
-//{
-  //printf("operator = in base\n");
-  //base_magic_ =  obj.base_magic_;
-//}
-
-void BaseObject::print_info()
-{
-  printf("base_object: base_magic_%d\n", base_magic_);
-}
-</code></pre>
-
-<p>  <strong>main.cpp</strong></p>
-
-<pre><code>#include &lt;stdio.h&gt;
-#include "object.h"
-int main(int argc, const char *argv[])
-{
-  printf("\n");
-  printf("obj1\n");
-  Object obj1(1);
-
-  printf("\n");
-  printf("obj2\n");
-  Object obj2(2);
-
-  printf("\n");
-  obj2=obj1;
-
-  printf("\n");
-  printf("obj1.print_info()\n");
-  obj1.print_info();
-
-  printf("\n");
-  printf("obj2.print_info()\n");
-  obj2.print_info();
-
-  printf("\n");
-  return 0;
-}
-</code></pre>
-
-<p>  <strong>Makefile</strong></p>
-
-<pre><code>objects= main.o object.o base_object.o
-outfile= out
-flag= -g
-cc= g++
-
-$(outfile):$(objects)
-    $(cc) $(flag) -o $(outfile) $(objects)
-
-object.o:object.h
-base_object.o:base_object.h
-main.o:object.h base_object.h
-
-
-.PHONY:clean
-clean:
-    -rm -f $(outfile) $(objects)
-</code></pre>
-
-<p>执行结果是：</p>
-
-<pre><code>obj1
-construct in base with magic
-construct in derived with magic
-
-obj2
-construct in base with magic
-construct in derived with magic
-
-operator = in derived
-
-obj1.print_info()
-base_object: base_magic_1
-derived:magic_1
-
-obj2.print_info()
-base_object: base_magic_2
-derived:magic_1
-
-destructor in derived
-destructor in base
-destructor in derived
-destructor in base
-</code></pre>
-
-<p>  可以自行调整并执行，主要说明几个问题而已：</p>
-
-<ol>
-<li> Object c2=c1;这种会被编译器优化成拷贝构造，中间不会有=运算符的调用。</li>
-<li> 没有显式声明的时候编译器为类生成默认构造函数，没有显示指明的情况下派生类构造函数自动调用基类的默认构造函数，如果基类有需要初始化的一定要手动声明并调用带参构造函数。</li>
-<li> 没有显式声明的时候编译器为类生成默认拷贝构造函数，没有指明的情况下拷贝构造的时候派生类不会调用基类的拷贝构造，只会调用基类的默认构造函数来内部的基类对象，所以需要自己调用基类的拷贝构造。</li>
-<li> 编译器不会为=运算符自动生成重载，=运算符也不调用基类的=运算符重载，所以需要自己声明并调用，这也是书中强调的。</li>
-<li> 没有=运算符重载的情况下遇到=操作，拷贝对象每个字段。</li>
-</ol>
-
-
-<p>  总结一下如下表：</p>
-
-<p>   <table>
-<caption>表1 总结下对象生成类的函数的编译器行为</caption>
-<thead>
-<tr class="header">
-<th align="center">函数</th>
-<th align="center">没有声明的情况下是否自动生成</th>
-<th align="center">是否默认调用基类的对应函数</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="center">构造函数</td>
-<td align="center">是</td>
-<td align="center">是</td>
-</tr>
-<tr class="even">
-<td align="center">拷贝构造</td>
-<td align="center">是</td>
-<td align="center">否,调用基类默认构造函数构造基类对象</td>
-</tr>
-<tr class="odd">
-<td align="center">等号运算符重载</td>
-<td align="center">否</td>
-<td align="center">否</td>
-</tr>
-</tbody>
-</table>
-</p>
-
-<p>  注：虽然应该是c++标准，但是还是限制一下编译器版本吧，在gcc4.4.6下验证通过（ob的编译器版本）</p>
 ]]></content>
   </entry>
   
