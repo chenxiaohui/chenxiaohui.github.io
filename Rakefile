@@ -308,7 +308,7 @@ multitask :push do
   system "git commit -m \"#{message}\""
   puts "\n## Pushing source"
   system "git push origin "
-  system "git push cafe "
+  system "git push cafe gitcafe-pages"
   puts "\n## Github source pushed"
 
 end
