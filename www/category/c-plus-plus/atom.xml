@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-27T19:33:38+08:00</updated>
+  <updated>2014-06-27T21:35:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,7 +18,7 @@
     <link href="http://cxh.me/2014/06/26/a-macro-problem/"/>
     <updated>2014-06-26T10:53:00+08:00</updated>
     <id>http://cxh.me/2014/06/26/a-macro-problem</id>
-    <content type="html"><![CDATA[<p>  写了一段代码ss，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：</p>
+    <content type="html"><![CDATA[<p>  写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：</p>
 
 <pre><code>#define OB_FIRST_ROOT_TABLE_TID 21
 #define OB_INVALID_ID INT_MAX
