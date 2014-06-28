@@ -297,7 +297,7 @@ multitask :push do
     system "git commit -m \"#{message}\""
     puts "\n## Pushing generated #{deploy_dir} website"
     system "git push origin #{deploy_branch}"
-    system "git push cafe #{deploy_branch}"
+    system "git push cafe #{deploy_branch}:gitcafe-pages"
     puts "\n## Github Pages deploy complete"
   end
 
@@ -308,7 +308,7 @@ multitask :push do
   system "git commit -m \"#{message}\""
   puts "\n## Pushing source"
   system "git push origin "
-  system "git push cafe master:gitcafe-pages"
+  system "git push cafe"
   puts "\n## Github source pushed"
 
 end

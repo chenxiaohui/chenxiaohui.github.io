@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-27T21:35:19+08:00</updated>
+  <updated>2014-06-28T13:44:28+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,209 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/06/28/gitsync-github-gitcafe/"/>
+    <updated>2014-06-28T12:41:00+08:00</updated>
+    <id>http://cxh.me/2014/06/28/gitsync-github-gitcafe</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[git远程分支和配置文件详解]]></title>
+    <link href="http://cxh.me/2014/06/28/git-remote-branch/"/>
+    <updated>2014-06-28T11:14:00+08:00</updated>
+    <id>http://cxh.me/2014/06/28/git-remote-branch</id>
+    <content type="html"><![CDATA[<p>  最近同时同步博客到github和gitcafe上，遇到一些问题，我们分如下几个方面来分析一下：</p>
+
+<h3>推送远程分支到同一个服务器</h3>
+
+<p>  比如首先建立git服务器，顺便clone出两个副本</p>
+
+<pre><code>mkdir server
+cd server
+git init --bare
+cd ..
+git clone server git1
+git clone server git2
+</code></pre>
+
+<p>  目前git branch是空的。我们提交一点东西建立master分支。</p>
+
+<pre><code>cd git1
+touch a.txt
+git add .
+git commit -m "init"
+git push origin master
+</code></pre>
+
+<p>  现在git branch -a 显示:</p>
+
+<pre><code>* master
+  remotes/origin/master
+</code></pre>
+
+<p>  当前系统处于master分支，远程origin的repository上也有一个master分支。两个是tracking的。我们切到git2下面</p>
+
+<pre><code>cd ../git2
+git pull origin
+</code></pre>
+
+<p>  这时候git2跟git1完全同步了。现在我们开始尝试建立另一个分支并推送到服务器。习惯的，我们还是切回git1</p>
+
+<pre><code>cd ../git1
+git checkout -b source
+</code></pre>
+
+<p>  这时候我们已经有了一个本地分支了，如果这个分支不需要共享，那么你可以一直在这个分支上commit但是不push到服务器，直到这个分支被合并回主分支或者丢弃。git branch 显示如下：</p>
+
+<pre><code>  master
+* source
+</code></pre>
+
+<p>  我们最终决定把这个分支push到服务器上与其他人共享，如下：</p>
+
+<pre><code>git push origin source:source
+</code></pre>
+
+<p>  这时候git branch -a 能看到当前repository里面所有的分支，包括两个本地的，两个远程的，本地和远程的都处于tracking状态。</p>
+
+<pre><code>  master
+* source
+  remotes/origin/master
+  remotes/origin/source
+</code></pre>
+
+<p>  切到另一个副本。</p>
+
+<pre><code>cd ../git2
+git pull origin
+</code></pre>
+
+<p>  显示如下：</p>
+
+<pre><code> * [新分支]          source      -&gt; origin/source
+</code></pre>
+
+<p>  git branch -a显示本地已经有了一个远程分支的指针，但是没有tracking这个分支的本地分支：</p>
+
+<pre><code>* master
+  remotes/origin/master
+  remotes/origin/source
+</code></pre>
+
+<p>  同样我们可以在.git/refs/remotes/origin下看到分支的名字，但是refs/heads下面并没有。我们来检出这个远程分支：</p>
+
+<pre><code>git checkout -b source origin/source
+</code></pre>
+
+<p>  这时候git branch -a 显示就跟git1一致了。git2下也可以编辑source分支并同步。这些都是比较常见的操作，我们需要注意的是，多分支下默认的参数。比如，在两个分支都修改一点东西：</p>
+
+<pre><code>cd ../git1
+git checkout master
+//modify 
+git add .
+git commit -m "master modify"
+git checkout source
+//modify
+git add .
+git commit -m "source modify"
+</code></pre>
+
+<p>  这时候git push origin 是针对当前分支的，所以两个分支同时push更新只能</p>
+
+<pre><code>git push origin
+git checkout master
+git push origin
+</code></pre>
+
+<p>  pull更新的时候</p>
+
+<pre><code>cd ../git2
+git checkout master
+git pull origin
+</code></pre>
+
+<p>  这会同时更新两个分支的指针，但是不会merge另一个分支，我们去另一个分支下</p>
+
+<pre><code>git checkout source
+git pull origin
+</code></pre>
+
+<p>  但是出错如下：</p>
+
+<pre><code>You asked to pull from the remote 'origin', but did not specify
+a branch. Because this is not the default configured remote
+for your current branch, you must specify a branch on the command line.
+</code></pre>
+
+<p>  问题在于没有给当前分支配置merge的路径，git不知道去merge哪个分支。（～～虽然我觉得既然是tracking的不应该不知道啊～）。</p>
+
+<p>  如果你有 1.6.2 以上版本的 Git，&mdash;track 选项可以同时配置merge的路径：</p>
+
+<pre><code>git checkout --track origin/serverfix
+</code></pre>
+
+<p>  这里我们修改配置文件加入branch &ldquo;source&#8221;：</p>
+
+<pre><code>[core]
+    repositoryformatversion = 0
+    filemode = false
+    bare = false
+    logallrefupdates = true
+[remote "origin"]
+    url = /media/cxh/backup/work/ceshi/git/server
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master
+[branch "source"]
+    remote = origin
+    merge = refs/heads/source
+</code></pre>
+
+<p>  这意味着每次fetch origin的时候更新所有remotes/origin的头指针到refs/heads/下面，具体可以去.git下查阅这个目录，但是头指针都是只读的。merge是由所在branch定义的。我们加了branch &ldquo;source&#8221;的配置指定当前source的merge策略是使用refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。</p>
+
+<h3>推送远程分支到不同服务器</h3>
+
+<h3>总结一下</h3>
+
+<ul>
+<li>update
+
+<ul>
+<li>fetch操作的本质是更新repo所指定远程分支的头指针(server->refs/remotes/xxx/)</li>
+<li>merge操作的本质是合并当前分支和指定的头指针(refs/remotes/xxx->refs/heads)</li>
+<li>pull操作的本质是fetch + merge</li>
+</ul>
+</li>
+<li>commit
+
+<ul>
+<li>commit的本质是修改了当前分支的头指针(refs/heads)</li>
+<li>push操作本质是提交当前分支头指针到server，顺便也修改了本地存储的server头指针(refs/remotes/xxx)</li>
+</ul>
+</li>
+<li>checkout
+
+<ul>
+<li>复制本地分支的本质是拷贝了refs/heads/下的一个头指针</li>
+<li>push本地分支到server的本质是把这个头指针上传服务器，顺便拷贝了本地存储的server头指针（refs/remotes/xxx)</li>
+<li>tracking远程分支的本质是把refs/remotes/下的指针拷贝到了refs/heads下</li>
+</ul>
+</li>
+</ul>
+
+
+<blockquote><p>注：以上过程都没有涉及数据流。</p></blockquote>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Git 分支 &ndash; 远程分支, <a href="http://git-scm.com/book/zh/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">http://git-scm.com/book/zh/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一个关于宏的问题]]></title>
@@ -1184,228 +1387,6 @@ int main(void)
 <p>  解决方法很简单，直接指明命名空间就行了</p>
 
 <pre><code>schema.TableSchema::mem_version();
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Oceanbase简介 - 笔记]]></title>
-    <link href="http://cxh.me/2014/06/09/oceanbase-introduction-note/"/>
-    <updated>2014-06-09T19:01:00+08:00</updated>
-    <id>http://cxh.me/2014/06/09/oceanbase-introduction-note</id>
-    <content type="html"><![CDATA[<h1>数据库简介</h1>
-
-<h3>数据库的特点</h3>
-
-<ul>
-<li>原子性 ： 一笔账，要么转了，要么没转</li>
-<li>一致性 ： 出账入账必须一致</li>
-<li>隔离性 ： 多人转账不得相互影响</li>
-<li>持久性 ： 转账一旦发生，持久存在</li>
-</ul>
-
-
-<p>还有两个：</p>
-
-<ul>
-<li>高可用</li>
-<li>高性能</li>
-</ul>
-
-
-<h3>数据库 vs 计算机</h3>
-
-<p>服务器：处理器，内存，磁盘，网卡</p>
-
-<ul>
-<li>原子性：计算机只能保证寄存器的原子</li>
-<li>一致性：单个服务器上数据一致性比较好做</li>
-<li>隔离性：多个事务串行处理隔离性不好做</li>
-<li>持久性：磁盘或者固态盘才有持久性</li>
-<li>高可用：磁盘年均故障率1%-3%，单个磁盘可用率99%-99.9%</li>
-<li>高性能：服务器性能</li>
-</ul>
-
-
-<!--more-->
-
-
-<h1>数据库和互联网</h1>
-
-<p>银行 + 商务</p>
-
-<p>网购：一次商务+一次金融</p>
-
-<p>双十一：一天350亿，55s超过1个亿，支付宝2亿笔交易，头一分钟一千万买家上线</p>
-
-<p>黑色星期五：美国19.3亿美元</p>
-
-<h3>互联网时代数据库的要求</h3>
-
-<p>ACID无法取代</p>
-
-<p>在线金融、网购需要数据库高可用99.999%</p>
-
-<p>可扩展性，性价比</p>
-
-<h1>oceanbase</h1>
-
-<p>高档服务器，高档存储，高深的数据库软件</p>
-
-<p>传统数据库的高可用：</p>
-
-<p>主库+备库， 共享存储，数据同步备库</p>
-
-<p>主备同步三种模式：</p>
-
-<ul>
-<li>最大同步，可用性太差</li>
-<li>最高性能，一致性太差</li>
-<li>最大可用，尽力同步，备库应答OK，超时则容错，有丢失风险</li>
-</ul>
-
-
-<p>银行可靠性依赖于物理可靠性</p>
-
-<p>传统数据库性价比不高，硬件，软件很贵</p>
-
-<p>oceanbase 用了普通服务器，水平扩展 = 云计算+关系数据库 ， 存储大部分是固态盘</p>
-
-<p>性能+可用性+扩展性</p>
-
-<h4>性能</h4>
-
-<ul>
-<li>机械盘读 ： 机械磁盘随机读 100-300次/秒（IOPS)</li>
-<li><p>SSD随机读： 几万次每秒</p></li>
-<li><p>机械盘写：100-300次/秒</p></li>
-<li>数据库写入放大：每次修改100B导致4k块的修改，oracle 8k mysql 16k， 产生几十倍的放大效应</li>
-<li>固态盘：写入放大，先擦后写，有时候一次擦十几兆，需要先读再迁再擦再写</li>
-</ul>
-
-
-<h4>全内存数据库</h4>
-
-<ul>
-<li>性能高，性价比低，容量小</li>
-<li>适用需要极高性能且数据量小的业务</li>
-</ul>
-
-
-<h4>Oceanbase</h4>
-
-<p>内外存混合数据库</p>
-
-<p>内存：热数据，频繁修改</p>
-
-<p>外存：冷数据</p>
-
-<p>性能略逊，容量大，性价比高</p>
-
-<p>消除传统数据库写入放大</p>
-
-<p>高可用：如何以低可靠硬件实现</p>
-
-<h4>oceanbase Milestone：</h4>
-
-<p>淘宝收藏夹->双集群（可以升级改bug对业务透明）-> OLAP功能 &ndash;> SQL支持 &ndash;> 三集群（分布式投票）</p>
-
-<h4>oceanbase应用</h4>
-
-<ul>
-<li>稳定可靠</li>
-<li>可在线扩展，业务增长过快</li>
-<li>高性能低成本</li>
-<li>不锁表创建索引</li>
-</ul>
-
-
-<h4>oceanbase质量保证</h4>
-
-<p> 严格的c/c++编码规范
-&ndash; 资源申请者负责释放
-&ndash; 单入口单出口
-&ndash; 定长内存管理
-&ndash; 禁用全局变量，goto
-&ndash; 严格限制使用stl
-&ndash; 统一编码风格</p>
-
-<p>无处不在的crc</p>
-
-<h4>oceanbase数据校验</h4>
-
-<ul>
-<li>磁盘读写，每个记录带64位CRC</li>
-<li>网络传输：每个网络包带64位CRC</li>
-<li>多副本多个crc</li>
-<li>修改增量多副本：64位CRC校验</li>
-<li>redolog：每条带64位crc</li>
-<li>每个表每个列64位crc</li>
-</ul>
-
-
-<p>灰度升级</p>
-
-<h3>小结：</h3>
-
-<p>数据库是人类伟大智慧的结晶</p>
-
-<p>机会：</p>
-
-<ul>
-<li>云计算技术</li>
-<li>网购繁荣</li>
-<li>中国经济腾飞</li>
-<li>ssd普及</li>
-<li>优秀技术人才</li>
-</ul>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[常见的防御性编程策略]]></title>
-    <link href="http://cxh.me/2014/06/09/defensive-strategy/"/>
-    <updated>2014-06-09T11:51:00+08:00</updated>
-    <id>http://cxh.me/2014/06/09/defensive-strategy</id>
-    <content type="html"><![CDATA[<p>  针对出错之后不能恢复的情况，最好的办法是写另外一个对象，确认成功之后原子的交换对象。同时也能避免对一个对象的修改持锁时间过长。这种思路广泛用在很多地方。</p>
-
-<ol>
-<li> 保存备份文件，当前的文件有可能有人在读在写，所以每次线程都写一个单独的备份文件，最后原子的覆盖之前的文件。</li>
-<li> 升级系统。自动升级的时候下载了新的可执行文件，然后删除原来的文件，替换成下载文件。当然估计不会有人直接覆盖之前的文件。</li>
-<li> 一些NOSQL的冻结。OB里面比较典型的就是UpdateServer的内存冻结，当然是copy on write实现的，最后原子的切换B树的根指针。主要是为了minor fqreeze的时候依然能提供写入服务。</li>
-<li> =运算符重载的时候，如果当前类持有的对象先释放了，但是又没能成功复制需要拷贝的对象，就会有悬空的风险。effective c++里面给了一种实现方式，就是先生成一份拷贝，再swap。</li>
-</ol>
-
-
-<p>一个简单的例子如下：</p>
-
-<pre><code>int do_checkpoint()
-{
-  int ret = OB_SUCCESS;
-  if (enable_backup_)
-  {
-    if (OB_SUCCESS != (ret = write_to_file(tmp_file_path_)))
-    {
-      TBSYS_LOG(WARN, "failed to write schema backup file:ret[%d]", ret);
-    }
-    else
-    {
-      //copy tmp to schema.ini
-      unlink(schema_file_path_);
-      if (0 == rename(tmp_file_path_, schema_file_path_))
-      {
-        TBSYS_LOG(INFO, "save schema to backup succ. refresh_times_:%ld", refresh_times_);
-      }
-      else
-      {
-        TBSYS_LOG(WARN, "rename new schema file failed:ret[%d]", ret);
-        ret = OB_ERR_UNEXPECTED;
-      }
-    }
-  }
-  return ret;
-}
 </code></pre>
 ]]></content>
   </entry>
