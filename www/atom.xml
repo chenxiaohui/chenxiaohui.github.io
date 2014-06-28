@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T19:38:22+08:00</updated>
+  <updated>2014-06-28T19:39:30+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -33,6 +33,9 @@
 <p>  gitcafe文档说：</p>
 
 <p>  如果你想绑定 www 子域名, 你需要将此 www 子域名添加到自定义域名里, 然后在你的域名管理页面增加一条 A 记录, 将它指向 GitCafe 服务器的 IP 地址 117.79.146.98</p>
+
+<!--more-->
+
 
 <h3>github pages 域名配置</h3>
 
