@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T16:35:16+08:00</updated>
+  <updated>2014-06-28T16:44:44+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -60,6 +60,9 @@ TableBackupTransaction table_backup_list_[] =
 
 <p>  然后用宏美化一下就成这样了：</p>
 
+<!--more-->
+
+
 <pre><code>#define TABLE_BACKUP_SINGLE(table_prefix, sql)\
   { TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, sql) }
 #define TABLE_BACKUP(table_prefix, sql)\
@@ -93,9 +96,6 @@ ObInnerTableBackupGuard::TableBackupSQL ObInnerTableBackupGuard::table_backup_li
 </code></pre>
 
 <p>  无奈想法很美好，实际上行不通，至少不开C++11新特性的情况下，不允许这样初始化，退而求其次：</p>
-
-<!--more-->
-
 
 <pre><code>struct TableBackupTransaction
 {

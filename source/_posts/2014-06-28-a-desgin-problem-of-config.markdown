@@ -46,6 +46,7 @@ categories: "Oceanbase"
 	};
   
   然后用宏美化一下就成这样了：
+<!--more-->
 
 	#define TABLE_BACKUP_SINGLE(table_prefix, sql)\
 	  { TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, sql) }
@@ -80,7 +81,6 @@ categories: "Oceanbase"
 
   无奈想法很美好，实际上行不通，至少不开C++11新特性的情况下，不允许这样初始化，退而求其次：
   
-<!--more-->
 
 	struct TableBackupTransaction
 	{
