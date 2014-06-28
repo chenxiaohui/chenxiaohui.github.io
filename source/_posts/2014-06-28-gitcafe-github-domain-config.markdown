@@ -15,25 +15,33 @@ categories: "web相关"
 
 ### gitcafe pages 域名配置
 
-	  cxh.me.			1684	IN	A	117.79.146.98
+	  example.com.			1684	IN	A	117.79.146.98
 
-	  www.cxh.me.		3581	IN	CNAME	chenxiaohui.gitcafe.com.
-	  chenxiaohui.gitcafe.com. 560	IN	A	117.79.146.98
+	  www.example.com.		3581	IN	CNAME	example.gitcafe.com.
+	  example.gitcafe.com. 560	IN	A	117.79.146.98
 
+  gitcafe文档说：
+ 	
+  如果你想绑定 www 子域名, 你需要将此 www 子域名添加到自定义域名里, 然后在你的域名管理页面增加一条 A 记录, 将它指向 GitCafe 服务器的 IP 地址 117.79.146.98
 
 ### github pages 域名配置
 
-	  cxh.me
 
-	  www.cxh.me.   xxxx  IN  CNAME chenxiaohui.github.io.
-	  chenxiaohui.github.io.  xxxx  IN  CNAME github.map.fastly.net.
-	  github.map.fastly.net.  9 IN  A 103.245.222.133
+	;example.com
+	example.com.   73  IN  A 192.30.252.153
+	example.com.   73  IN  A 192.30.252.154
+
+	www.example.com.   xxxx  IN  CNAME example.github.io.
+	example.github.io.  xxxx  IN  CNAME github.map.fastly.net.
+	github.map.fastly.net.  9 IN  A 103.245.222.133
 	  
   同时配置CNAME文件:
 
   * If your CNAME file contains example.com, then www.example.com will redirect to example.com.
   
   * If your CNAME file contains www.example.com, then example.com will redirect to www.example.com.
+
+  也就是说如果同时配置了A纪录和CNAME，那么对www的访问会重定向到主域名，或者主域名的访问重定向到www。本质上是301 redirect。
 
 ### dig和nslookup
 
