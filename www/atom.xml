@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T17:16:33+08:00</updated>
+  <updated>2014-06-28T18:18:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,51 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[github/gitcafe pages域名设置]]></title>
+    <link href="http://cxh.me/2014/06/28/gitcafe-github-domain-config/"/>
+    <updated>2014-06-28T18:17:00+08:00</updated>
+    <id>http://cxh.me/2014/06/28/gitcafe-github-domain-config</id>
+    <content type="html"><![CDATA[<h1>A纪录和CNAME</h1>
+
+<p>  裸域名只能绑定 DNS 的 A 记录，不能绑定 CNAME 记录。也就是说你不能把裸域设定为另外域名的别名。很多时候这对管理不是很方便，特别是使用第三方托管服务的时候。如果第三方迁移服务器导致 IP 地址变更，你必须自己去更改 DNS 的 A 记录。引用自参考文献<a href="http://www.zhihu.com/question/20414602" title="为什么越来越多的网站域名不加www了？">1</a></p>
+
+<h3>gitcafe pages 域名配置</h3>
+
+<pre><code>  cxh.me.           1684    IN  A   117.79.146.98
+
+  www.cxh.me.       3581    IN  CNAME   chenxiaohui.gitcafe.com.
+  chenxiaohui.gitcafe.com. 560  IN  A   117.79.146.98
+</code></pre>
+
+<h3>github pages 域名配置</h3>
+
+<pre><code>  cxh.me
+
+  www.cxh.me.   xxxx  IN  CNAME chenxiaohui.github.io.
+  chenxiaohui.github.io.  xxxx  IN  CNAME github.map.fastly.net.
+  github.map.fastly.net.  9 IN  A 103.245.222.133
+</code></pre>
+
+<p>  同时配置CNAME文件，内容是裸域名</p>
+
+<pre><code>  cxh.me
+</code></pre>
+
+<h3>dig和nslookup</h3>
+
+<pre><code>dig www.example.com +nostats +nocomments +nocmd
+nslookup 详见参考文献[2][2]
+</code></pre>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 为什么越来越多的网站域名不加www了？, <a href="http://www.zhihu.com/question/20414602">http://www.zhihu.com/question/20414602</a></p>
+
+<p>[2] 常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录, <a href="http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html">http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于一个配置项的设计]]></title>
@@ -1277,9 +1322,10 @@ no indent
 <ol>
 <li><p>成像同一个点发出的所有光线在焦平面汇聚的结果。从原理上讲，小孔成像是更优的成像方式，因为小孔过滤了光线，让每个像点发出的光只有一束能参与成像，但是这样容易导致亮度偏低，同时小孔也不能像理论上说的足够小。</p></li>
 <li><p>如果胶片/CCD刚好位于焦平面上，那么成像最清晰，焦平面前后的一段距离里面，成像虽然不够清晰但是也能接受，出了这个区域就认为不再能够成像。这个区域就是弥散斑所在的区域。对应的物体距离范围叫景深。</p></li>
-<li><p>镜片如果折光度高的话，那么成像位置靠前，像小，同时光线密度增加导致景深增加。这就是短焦距镜片，短焦镜片的视角大。也就是说够光范围内的光都会被折射到成像底板的区域里。适合拍风景等大画幅照片，广角镜头就是这类。</p></li>
-<li><p>相反，如果镜片折光度小，那么成像位置就靠后，像大，同时光线密度减少导致景深减少。这就是长焦镜头，长焦镜头视角小，景深小，适合拍人像，可以造成虚化的效果，同时也适合打鸟，毕竟放大倍数高，不易被发现。</p></li>
-<li><p>同时，光圈也影响景深。在焦距一定的情况下，小光圈遮挡了周围的光线，<del>由于中间部分折光系数高</del>，所以增加了景深。由于入射光强度降低，要想保证成片的明度，就需要加大ISO，增加快门时间。反过来，大光圈会减少景深，由于入射光强度高，可以减少ISO，减少快门时间。所以说大光圈长焦是人像利器。</p></li>
+<li><p>镜片如果折光度高的话，那么成像位置靠前，像小，同时<del>光线</del>聚焦点密度增加导致景深增加（算相等的物距，如果两个点聚焦之后的焦深不大的话，那么把底片移动到其中一个点上，另一个点的弥散圈也不大）。这就是短焦距镜片，短焦镜片的视角大。也就是说够大范围内的光都会被折射到成像底板的区域里（焦深）。适合拍风景等大画幅照片，广角镜头就是这类。</p></li>
+<li><p>相反，如果镜片折光度小，那么成像位置就靠后，像大，同时<del>光线</del>聚焦点密度减少导致景深减少。这就是长焦镜头，长焦镜头视角小，景深小，适合拍人像，可以造成虚化的效果，同时也适合打鸟，毕竟放大倍数高，不易被发现。</p></li>
+<li><p>同时，光圈也影响景深。在焦距一定的情况下，小光圈造成的焦深大，而现在的情况下排除了焦距和物距的影像，那么焦深大，景深就大<del>遮挡了周围的光线，由于中间部分折光系数高</del>，所以增加了景深。由于入射光强度降低，要想保证成片的明度，就需要加大ISO，增加快门时间。反过来，大光圈会减少景深，由于入射光强度高，可以减少ISO，减少快门时间。所以说大光圈长焦是人像利器。</p></li>
+<li><p>物距影响景深，越近的物体，在光轴上成像点密度越低，景深越小（算相等的物距，如果两个点聚焦之后的焦深大，那么把底片移动到其中一个点上，另一个点的弥散圈也大）</p></li>
 <li><p>普通卡片机由于照顾日常使用场景，焦距光圈基本是固定的，并且固定在中短焦距的范围内。所以卡片机画幅不大，景深也不大，适合一般场景的拍照，但难免平淡无特色。</p></li>
 </ol>
 
@@ -1616,84 +1662,6 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 <li>重启等待一个lease周期不投票</li>
 <li>多个人都想成为主的时候</li>
 </ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[oceanbase事务引擎-笔记]]></title>
-    <link href="http://cxh.me/2014/06/10/o-transaction/"/>
-    <updated>2014-06-10T19:39:00+08:00</updated>
-    <id>http://cxh.me/2014/06/10/o-transaction</id>
-    <content type="html"><![CDATA[<h3>外存数据库的特点</h3>
-
-<p>每次写入需要读取一个完整单元，不同的块做不同的修改，再写回硬盘</p>
-
-<h3>oceanbase的特点</h3>
-
-<p>本质上差不多，但是快大小不一样，但是增量数据(修改点)集中存储。可以更好的利用内存，利用低峰期合并到内存。但是每次需要读取静态数据和修改。</p>
-
-<p>相对来讲，优化了写入，牺牲了部分读取（完全命中bloomfilter的可以不读静态，相当于内存数据库，不存在动态数据的查询相当于传统数据库）。</p>
-
-<!--more-->
-
-
-<h3>业界的内存数据库</h3>
-
-<ul>
-<li>VoltDB</li>
-<li>MemSQL</li>
-</ul>
-
-
-<p>内存数据库很贵</p>
-
-<h3>存储事务引擎</h3>
-
-<ul>
-<li>hash索引：散列存储，单点查询更快</li>
-<li>B+树索引：顺序索引，范围查询</li>
-</ul>
-
-
-<h3>更新流程</h3>
-
-<ul>
-<li>根据主键找到行所在位置</li>
-<li>加锁</li>
-</ul>
-
-
-<h4>多版本并发控制</h4>
-
-<p>针对高并发的请求，分配在一个队列里面，排队，不需要抢锁。线程可以省下来给其他</p>
-
-<p>通过 /<em>hot_spot</em>/的hint实现，交给用户决定</p>
-
-<h3>写日志的性能瓶颈</h3>
-
-<p>每次写两条日志，保证两台备机写成功，1333条每秒</p>
-
-<p>只能通过软件上的改变，group commit</p>
-
-<p>每次commit合并多个写日志请求。</p>
-
-<p>条件：</p>
-
-<ul>
-<li>空闲的时候直接commit。有日志来的时候判断没有日志在写，就提交。</li>
-<li>聚集到一个阈值的时候写。有日志在写，就放到buffer里面。直到达到阈值。</li>
-<li>如果第一个写完日志，系统空闲，就写日志。</li>
-</ul>
-
-
-<h3>总结</h3>
-
-<ul>
-<li>内存数据库+分布式系统的设计</li>
-<li>mvcc的实现</li>
-<li>group commit</li>
-</ul>
 
 ]]></content>
   </entry>
