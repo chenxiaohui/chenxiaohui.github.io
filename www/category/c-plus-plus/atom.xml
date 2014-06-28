@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T13:44:28+08:00</updated>
+  <updated>2014-06-28T14:02:39+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -143,7 +143,7 @@ TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, "select * from " t
     <id>http://cxh.me/2014/06/21/bin-txt-file-read-write</id>
     <content type="html"><![CDATA[<p>  探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
 
-<p><img class="img-polaroid center" src="/images/2014/binfile.png" title="&ldquo;用vim显示二进制文件&rdquo; &ldquo;用vim显示二进制文件&rdquo;" ></p>
+<p>{% img img-polaroid center /images/2014/binfile.png &ldquo;用vim显示二进制文件&rdquo; &ldquo;用vim显示二进制文件&rdquo; %}</p>
 
 <p>  所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
 

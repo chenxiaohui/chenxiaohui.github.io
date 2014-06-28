@@ -47,6 +47,8 @@ categories: "其他"
 	  master
 	* source
 
+<!--more-->
+
   我们最终决定把这个分支push到服务器上与其他人共享，如下：
 
 	git push origin source:source
@@ -135,7 +137,9 @@ categories: "其他"
 		remote = origin
 	    merge = refs/heads/source
 
-  这意味着每次fetch origin的时候更新所有remotes/origin的头指针到refs/heads/下面，具体可以去.git下查阅这个目录，但是头指针都是只读的。merge是由所在branch定义的。我们加了branch "source"的配置指定当前source的merge策略是使用refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。
+  这意味着每次fetch origin的时候更新所有remotes/origin的头指针到refs/heads/下面，具体可以去.git下查阅这个目录，但是头指针都是只读的。merge是由所在branch定义的。
+
+  我们加了branch "source"的配置指定当前source的merge策略是使用refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。
 
 ### 推送远程分支到不同服务器
 
@@ -144,15 +148,25 @@ categories: "其他"
 ### 总结一下
 
 * update
+
 	- fetch操作的本质是更新repo所指定远程分支的头指针(server->refs/remotes/xxx/)
+
 	- merge操作的本质是合并当前分支和指定的头指针(refs/remotes/xxx->refs/heads)
+	
 	- pull操作的本质是fetch + merge
+
 * commit
+	
 	- commit的本质是修改了当前分支的头指针(refs/heads)
+	
 	- push操作本质是提交当前分支头指针到server，顺便也修改了本地存储的server头指针(refs/remotes/xxx)
+
 * checkout
+	
 	- 复制本地分支的本质是拷贝了refs/heads/下的一个头指针
+	
 	- push本地分支到server的本质是把这个头指针上传服务器，顺便拷贝了本地存储的server头指针（refs/remotes/xxx)
+	
 	- tracking远程分支的本质是把refs/remotes/下的指针拷贝到了refs/heads下
 
 > 注：以上过程都没有涉及数据流。
