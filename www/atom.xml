@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T14:20:38+08:00</updated>
+  <updated>2014-06-28T15:31:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,16 +14,20 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
+    <title type="html"><![CDATA[同步github上的项目到gitcafe]]></title>
     <link href="http://cxh.me/2014/06/28/gitsync-github-gitcafe/"/>
     <updated>2014-06-28T12:41:00+08:00</updated>
     <id>http://cxh.me/2014/06/28/gitsync-github-gitcafe</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>  github固然好，只是国内访问有点慢。为了提高博客访问速度我决定把github上托管的博客同步到gitcafe上。最好能在DNS那里做CDN，但是貌似没有免费的服务。那直接指向gitcafe好了，反正没有什么国外访问的需求。简单记一下过程。</p>
+
+<p>  gitcafe自己有导入的功能，但是貌似不是很好用。而且不够智能。</p>
+
+<p>  本地分支名字和远程分支不同的时候不能省略，否则会被自动扩展成相同的名字。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[git远程分支和配置文件详解]]></title>
+    <title type="html"><![CDATA[git远程分支和refs文件详解]]></title>
     <link href="http://cxh.me/2014/06/28/git-remote-branch/"/>
     <updated>2014-06-28T11:14:00+08:00</updated>
     <id>http://cxh.me/2014/06/28/git-remote-branch</id>
