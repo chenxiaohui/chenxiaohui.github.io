@@ -114,7 +114,7 @@ categories: "其他"
 	a branch. Because this is not the default configured remote
 	for your current branch, you must specify a branch on the command line.
 
-  问题在于没有给当前分支配置merge的路径，git不知道去merge哪个分支。（～～虽然我觉得既然是tracking的不应该不知道啊～）。
+  问题在于没有给当前分支配置merge的路径，git不知道去merge哪个分支。（~~虽然我觉得既然是tracking的不应该不知道啊~~）。
 
   如果你有 1.6.2 以上版本的 Git，--track 选项可以同时配置merge的路径：
 	

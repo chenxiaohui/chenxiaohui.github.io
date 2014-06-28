@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T16:44:44+08:00</updated>
+  <updated>2014-06-28T17:16:33+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -236,7 +236,7 @@ a branch. Because this is not the default configured remote
 for your current branch, you must specify a branch on the command line.
 </code></pre>
 
-<p>  问题在于没有给当前分支配置merge的路径，git不知道去merge哪个分支。（～～虽然我觉得既然是tracking的不应该不知道啊～）。</p>
+<p>  问题在于没有给当前分支配置merge的路径，git不知道去merge哪个分支。（<del>虽然我觉得既然是tracking的不应该不知道啊</del>）。</p>
 
 <p>  如果你有 1.6.2 以上版本的 Git，&mdash;track 选项可以同时配置merge的路径：</p>
 
