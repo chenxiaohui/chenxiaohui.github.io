@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T16:18:00+08:00</updated>
+  <updated>2014-06-28T16:26:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -65,12 +65,13 @@
 
 <p>  按照gitcafe的教程删除master未果，不过顺便把默认分支改成了gitcafe-pages。删除master分支的时候，里面有一段说明：</p>
 
-<blockquote><p>为什么要删除 master 分支
-当你在创建一个新的仓库的时候没有指定分支的话，Git 会默认创建 master 分支并指定它为默认分支。</p>
+<pre><code>为什么要删除 master 分支
+当你在创建一个新的仓库的时候没有指定分支的话，Git 会默认创建 master 分支并指定它为默认分支。
 
-<p>一般情况下使用 master 分支作为整个项目的核心分支是很普遍的行为， 而 Pages 服务之所以使用 gitcafe-pages 分支的方式区别项目文件和 Pages 文件。 这样你就可以在一个仓库中保存他们而且彼此不会有任何影响。</p>
+一般情况下使用 master 分支作为整个项目的核心分支是很普遍的行为， 而 Pages 服务之所以使用 gitcafe-pages 分支的方式区别项目文件和 Pages 文件。 这样你就可以在一个仓库中保存他们而且彼此不会有任何影响。
 
-<p>但是像是个人主页类的 Pages 服务或其他一些应用场合，可能并不需要 master 的存在， 甚至必须要删除它，或者只是你有洁癖┑(￣Д ￣)┍ 那么你就需要如下的方法来删除 master 分支。</p></blockquote>
+但是像是个人主页类的 Pages 服务或其他一些应用场合，可能并不需要 master 的存在， 甚至必须要删除它，或者只是你有洁癖┑(￣Д ￣)┍ 那么你就需要如下的方法来删除 master 分支。
+</code></pre>
 
 <p>  (#‵′)靠，就是这样。</p>
 
@@ -97,6 +98,8 @@
 </code></pre>
 
 <p>  这说明master分支上更新gitcafe必须指明repository，好在我们直接用git push/pull不带任何参数的时候不多。同时如果git pull的话，默认的merge两个repository是不同的，好在我们也一般不用从两个repository上面pull。</p>
+
+<p>  顺便去挂一下域名就好了。</p>
 
 <p>  矮马，快多了。</p>
 ]]></content>
