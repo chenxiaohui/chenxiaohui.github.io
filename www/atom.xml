@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T18:19:49+08:00</updated>
+  <updated>2014-06-28T18:28:09+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -39,10 +39,13 @@
   github.map.fastly.net.  9 IN  A 103.245.222.133
 </code></pre>
 
-<p>  同时配置CNAME文件，内容是裸域名</p>
+<p>  同时配置CNAME文件:</p>
 
-<pre><code>  cxh.me
-</code></pre>
+<ul>
+<li><p>If your CNAME file contains example.com, then www.example.com will redirect to example.com.</p></li>
+<li><p>If your CNAME file contains www.example.com, then example.com will redirect to www.example.com.</p></li>
+</ul>
+
 
 <h3>dig和nslookup</h3>
 
@@ -54,7 +57,9 @@ nslookup 详见参考文献[2][2]
 
 <blockquote><p>[1] 为什么越来越多的网站域名不加www了？, <a href="http://www.zhihu.com/question/20414602">http://www.zhihu.com/question/20414602</a></p>
 
-<p>[2] 常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录, <a href="http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html">http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html</a></p></blockquote>
+<p>[2] 常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录, <a href="http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html">http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html</a></p>
+
+<p>[3] Tips for configuring a CNAME record with your DNS provider, <a href="https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider">https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider</a></p></blockquote>
 ]]></content>
   </entry>
   

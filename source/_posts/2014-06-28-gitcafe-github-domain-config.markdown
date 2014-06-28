@@ -29,9 +29,11 @@ categories: "web相关"
 	  chenxiaohui.github.io.  xxxx  IN  CNAME github.map.fastly.net.
 	  github.map.fastly.net.  9 IN  A 103.245.222.133
 	  
-  同时配置CNAME文件，内容是裸域名
+  同时配置CNAME文件:
 
-	  cxh.me
+  * If your CNAME file contains example.com, then www.example.com will redirect to example.com.
+  
+  * If your CNAME file contains www.example.com, then example.com will redirect to www.example.com.
 
 ### dig和nslookup
 
@@ -40,6 +42,7 @@ categories: "web相关"
 
 [1]: http://www.zhihu.com/question/20414602 "为什么越来越多的网站域名不加www了？"
 [2]: http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html "常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录"
+[3]: https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider "Tips for configuring a CNAME record with your DNS provider"
 
 ###参考文献:
 
@@ -47,3 +50,4 @@ categories: "web相关"
 
 >\[2] 常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录, <http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html>
 
+>\[3] Tips for configuring a CNAME record with your DNS provider, <https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider>
