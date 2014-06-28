@@ -3,8 +3,8 @@ html body {
     padding-top: 65px;
     position: relative;
     background-color: #fff;
-    background-image: url(../images/grid-18px-masked.png);
-    background-repeat: repeat-x;
+    background-image: url(../images/back.png);
+    background-repeat: repeat;
     background-position: 0 40px;
 }
 .sharing, .meta, .pager {
