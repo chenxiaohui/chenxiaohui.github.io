@@ -132,14 +132,14 @@ categories: "其他"
 		fetch = +refs/heads/*:refs/remotes/origin/*
 	[branch "master"]
 		remote = origin
-		merge = refs/heads/master
+		merge = refs/heads/master"这里指server上的refs/heads/master
 	[branch "source"]
 		remote = origin
 	    merge = refs/heads/source
 
   这意味着每次fetch origin的时候更新所有remotes/origin的头指针到refs/heads/下面，具体可以去.git下查阅这个目录，但是头指针都是只读的。merge是由所在branch定义的。
 
-  我们加了branch "source"的配置指定当前source的merge策略是使用refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。
+  我们加了branch "source"的配置指定当前source的merge策略是使用**服务器端的**refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。
 
 ### 推送远程分支到不同服务器
 
@@ -206,6 +206,9 @@ categories: "其他"
 [1]:http://git-scm.com/book/zh/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF "Git 分支 - 远程分支"
 [2]: http://www.gitguys.com/topics/the-configuration-file-branch-section/ "The Configuration File – “Branch” Section"
 
+
 ###参考文献:
 
 >\[1] Git 分支 - 远程分支, <http://git-scm.com/book/zh/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF>
+
+>\[2] The Configuration File – “Branch” Section, <http://www.gitguys.com/topics/the-configuration-file-branch-section/>
