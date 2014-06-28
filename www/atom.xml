@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T14:07:05+08:00</updated>
+  <updated>2014-06-28T14:20:38+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -183,6 +183,45 @@ for your current branch, you must specify a branch on the command line.
 <p>  我们加了branch &ldquo;source&#8221;的配置指定当前source的merge策略是使用refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。</p>
 
 <h3>推送远程分支到不同服务器</h3>
+
+<p>  我们先建立新的repo：</p>
+
+<pre><code>cd ..
+mkdir server2
+cd server2
+git init --bare
+</code></pre>
+
+<p>  加入git1副本，并提交</p>
+
+<pre><code>git remote add server xxx/server2
+git push server
+</code></pre>
+
+<p>  上面过程的本质是提交当前分支头指针到server，相当于拷贝refs/head/xxx到refs/remotes/server/下并提交。git push server会被展开成</p>
+
+<pre><code>git push server 当前分支名：当前分支名
+</code></pre>
+
+<p>  我们可以在git2副本同样加入该repository并更新引用</p>
+
+<pre><code>git remote add server xxx/server2
+git fetch server
+</code></pre>
+
+<p>  可以看到refs下目录结构如下：</p>
+
+<pre><code>├── heads
+│   ├── master
+│   └── source
+├── remotes
+│   ├── origin
+│   │   ├── master
+│   │   └── source
+│   └── server
+│       └── source
+└── tags
+</code></pre>
 
 <h3>总结一下</h3>
 

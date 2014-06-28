@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T14:07:29+08:00</updated>
+  <updated>2014-06-28T14:20:38+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -184,6 +184,45 @@ for your current branch, you must specify a branch on the command line.
 
 <h3>推送远程分支到不同服务器</h3>
 
+<p>  我们先建立新的repo：</p>
+
+<pre><code>cd ..
+mkdir server2
+cd server2
+git init --bare
+</code></pre>
+
+<p>  加入git1副本，并提交</p>
+
+<pre><code>git remote add server xxx/server2
+git push server
+</code></pre>
+
+<p>  上面过程的本质是提交当前分支头指针到server，相当于拷贝refs/head/xxx到refs/remotes/server/下并提交。git push server会被展开成</p>
+
+<pre><code>git push server 当前分支名：当前分支名
+</code></pre>
+
+<p>  我们可以在git2副本同样加入该repository并更新引用</p>
+
+<pre><code>git remote add server xxx/server2
+git fetch server
+</code></pre>
+
+<p>  可以看到refs下目录结构如下：</p>
+
+<pre><code>├── heads
+│   ├── master
+│   └── source
+├── remotes
+│   ├── origin
+│   │   ├── master
+│   │   └── source
+│   └── server
+│       └── source
+└── tags
+</code></pre>
+
 <h3>总结一下</h3>
 
 <ul>
@@ -282,11 +321,11 @@ if temperature &gt; 0:
 
 <p>  温度曲线的图片如下：</p>
 
-<p>  {% img img-polaroid center /images/2014/before.png &ldquo;温度曲线&rdquo; &ldquo;温度曲线&rdquo; %}</p>
+<p>  <img class="img-polaroid center" src="/images/2014/before.png" title="&ldquo;温度曲线&rdquo; &ldquo;温度曲线&rdquo;" ></p>
 
 <p>  开始的程序没有考虑求平均，不知道会不会有临时跳变的瞬间值。后来加了平均值之后发现多次取的结果是不一样，但是不清楚这个芯片采集的周期是多少。多次平均的结果如下所示：</p>
 
-<p>  {% img img-polaroid center /images/2014/data.png &ldquo;多次平均的结果&rdquo; &ldquo;多次平均的结果&rdquo; %}</p>
+<p>  <img class="img-polaroid center" src="/images/2014/data.png" title="&ldquo;多次平均的结果&rdquo; &ldquo;多次平均的结果&rdquo;" ></p>
 
 <p>  ps: 公司周末真热&hellip;.</p>
 

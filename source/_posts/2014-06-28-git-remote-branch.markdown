@@ -143,7 +143,39 @@ categories: "其他"
 
 ### 推送远程分支到不同服务器
 
+  我们先建立新的repo：
 
+	cd ..
+	mkdir server2
+	cd server2
+	git init --bare
+  
+  加入git1副本，并提交
+
+	git remote add server xxx/server2
+	git push server
+
+  上面过程的本质是提交当前分支头指针到server，相当于拷贝refs/head/xxx到refs/remotes/server/下并提交。git push server会被展开成
+
+	git push server 当前分支名：当前分支名
+
+  我们可以在git2副本同样加入该repository并更新引用
+
+	git remote add server xxx/server2
+  	git fetch server
+
+  可以看到refs下目录结构如下：
+
+	├── heads
+	│   ├── master
+	│   └── source
+	├── remotes
+	│   ├── origin
+	│   │   ├── master
+	│   │   └── source
+	│   └── server
+	│       └── source
+	└── tags
 
 ### 总结一下
 
