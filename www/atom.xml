@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-28T22:08:36+08:00</updated>
+  <updated>2014-06-29T12:20:02+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -283,13 +283,6 @@ TableBackupSQL table_backup_list_[][5] =
 </code></pre>
 
 <p>  弱爆了&hellip;.所以我最后决定把Transaction和单条事务直接分开了&hellip;.</p>
-
-<p>int main(void)
-{</p>
-
-<p>  int a = 1;
-  int b = a;
-}</p>
 ]]></content>
   </entry>
   

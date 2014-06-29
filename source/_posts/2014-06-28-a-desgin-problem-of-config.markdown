@@ -202,12 +202,3 @@ categories: "Oceanbase"
 	}
 
   弱爆了....所以我最后决定把Transaction和单条事务直接分开了....
-
-
-int main(void)
-{
-
-
-  int a = 1;
-  int b = a;
-}
