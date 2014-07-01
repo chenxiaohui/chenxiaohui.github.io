@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-06-30T16:27:39+08:00</updated>
+  <updated>2014-07-01T14:53:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,95 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[NVI的应用-虚函数模板]]></title>
+    <link href="http://cxh.me/2014/07/01/nvi-usage-of-virtual-template/"/>
+    <updated>2014-07-01T14:52:00+08:00</updated>
+    <id>http://cxh.me/2014/07/01/nvi-usage-of-virtual-template</id>
+    <content type="html"><![CDATA[<p>  我们有时候需要把一个模板函数实现为虚函数，但是C++不支持模板虚函数（至少目前是），所以需要一些方法绕过去。以下是郁白师兄提供的解决方案，确实比较巧妙，之前没想过NVI（NonVirtual Interface）能解决这个问题。</p>
+
+<pre><code>class IAllocator
+{
+  public:
+    virtual ~IAllocator() {};
+    virtual void *alloc(const int64_t size) = 0;
+};
+template &lt;class T&gt;
+class TAllocator : public IAllocator
+{
+  public:
+    TAllocator(T &amp;allocator) : allocator_(allocator) {};
+    void *alloc(const int64_t size) {return allocator_.alloc(size);};
+  private:
+    T &amp;allocator_;
+};
+
+class Base
+{
+  public:
+    virtual ~Base() {};
+  public:
+    template &lt;class Allocator&gt;
+    void get_number(Allocator &amp;allocator)
+    {
+      TAllocator&lt;Allocator&gt; ta(allocator);
+      this-&gt;get_number_(ta);
+    };
+  private:
+    virtual void get_number_(IAllocator &amp;allocator) = 0;
+};
+
+class Sub1 : public Base
+{
+  private:
+    void get_number_(IAllocator &amp;allocator)
+    {
+      allocator.alloc(1);
+      fprintf(stdout, "sub1::get_number_ invoked\n");
+    };
+};
+
+class Sub2 : public Base
+{
+  private:
+    void get_number_(IAllocator &amp;allocator)
+    {
+      allocator.alloc(1);
+      fprintf(stdout, "sub2::get_number_ invoked\n");
+    };
+};
+
+class PA
+{
+  public:
+    void *alloc(const int64_t sz)
+    {
+      fprintf(stdout, "pa::alloc sz=%ld\n", sz);
+      return NULL;
+    };
+};
+
+int main()
+{
+  Sub1 s1;
+  Sub2 s2;
+  PA pa;
+
+  s1.get_number(pa);
+  s2.get_number(pa);
+}
+</code></pre>
+
+<p>  主要思想是把模板特化，特化之后的函数实现虚函数，把模板遵循的规则转化到继承体系，让一个实例化的模板参数遵循Interface的接口要求。所以TAllocator这个Wrapper至关重要。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 【C++程序设计技巧】NVI（Non-Virtual Interface ）, <a href="http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html">http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html</a></p>
+
+<p>[2] 纯虚函数能为private吗？, <a href="http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html">http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[github/gitcafe pages域名设置]]></title>
@@ -1595,83 +1684,6 @@ getline (char **__lineptr, size_t *__n, FILE *__stream)
 <p>   从这个问题吸取的教训就是，动态表能之前确定长度的最好直接Reserve，否则相当于有多次申请内存-析构-拷贝构造（或赋值，我们之前是赋值）-释放内存的开销。同时，Perf是个好工具，虽然我还不是很熟悉。</p>
 
 <p>   关于vector的扩容见<a href="http://blog.csdn.net/sodickbird/article/details/4594907" title="深入浅出vector resize/reserve">这里</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式选主-笔记]]></title>
-    <link href="http://cxh.me/2014/06/10/distributed-selection/"/>
-    <updated>2014-06-10T21:08:00+08:00</updated>
-    <id>http://cxh.me/2014/06/10/distributed-selection</id>
-    <content type="html"><![CDATA[<h3>数据库主备复制</h3>
-
-<p>同步模式</p>
-
-<ul>
-<li>备机是否写盘之后应答</li>
-<li>性能收主备机之间通讯距离，网络抖动影响</li>
-</ul>
-
-
-<p>异步模式</p>
-
-<ul>
-<li>主机不等待备机的应答</li>
-<li>性能最优，可能造成数据丢失不一致</li>
-</ul>
-
-
-<p>半异步</p>
-
-<ul>
-<li>超过多数成功则返回</li>
-<li>奇数台机器才可以</li>
-<li>3/5 > 2/3 > 2/2</li>
-</ul>
-
-
-<!--more-->
-
-
-<h3>网络</h3>
-
-<ul>
-<li>任意两个进程可以传递消息</li>
-<li>进程有本地物理时钟 时钟使用NTP同步</li>
-<li>超时有上限</li>
-<li>进程不会发错误的消息</li>
-</ul>
-
-
-<h3>分布式选举基本问题</h3>
-
-<p>不可靠的机群实现可靠的协议，通过投票的方案</p>
-
-<ul>
-<li>任意时刻只能有一个主</li>
-<li>要容忍网络分区</li>
-<li>Leader Lease，选主要等待上个主的lease过期</li>
-<li>Lease周期的长短</li>
-</ul>
-
-
-<p>Paxos要求</p>
-
-<ol>
-<li>成员不能说假话（非拜占庭）</li>
-<li>单个成员说话不能相互矛盾（投票给A了不能投票给B）</li>
-<li>修改需要多数成员同意</li>
-</ol>
-
-
-<p>实现</p>
-
-<ol>
-<li>记住自己在lease周期的投票</li>
-<li>重启等待一个lease周期不投票</li>
-<li>多个人都想成为主的时候</li>
-</ol>
-
 ]]></content>
   </entry>
   
