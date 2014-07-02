@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-01T20:47:46+08:00</updated>
+  <updated>2014-07-02T16:45:43+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,28 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
+    <title type="html"><![CDATA[跟事务相关的一些文章]]></title>
+    <link href="http://cxh.me/2014/07/02/article-on-transaction/"/>
+    <updated>2014-07-02T16:45:00+08:00</updated>
+    <id>http://cxh.me/2014/07/02/article-on-transaction</id>
+    <content type="html"><![CDATA[<p>  主要纪录一下跟事务相关的一些文章。主要是博客，有论文加论文。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 数据库事务隔离级别和锁实现机制, <a href="http://comedsh.iteye.com/blog/698733">http://comedsh.iteye.com/blog/698733</a></p>
+
+<p>[2] 数据库事务的实现（一） 故障恢复 （undo日志）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html</a></p>
+
+<p>[3] 数据库事务的实现-故障恢复（二）（undo日志检查点）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html</a></p>
+
+<p>[4] 为 Key-Value 数据库实现MVCC 事务, <a href="http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/">http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/</a></p>
+
+<p>[5] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[测试一张静物]]></title>
     <link href="http://cxh.me/2014/07/01/photo-of-a-cup/"/>
     <updated>2014-07-01T19:44:00+08:00</updated>
     <id>http://cxh.me/2014/07/01/photo-of-a-cup</id>
@@ -1540,110 +1561,6 @@ unique(beg, end);
 replace_copy(beg, end, beg2, value, replace_value);
 unique_copy(beg, end, beg2);    
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[c/c++ 文件/流读取函数总结]]></title>
-    <link href="http://cxh.me/2014/06/16/c-cpp-file-stream-operation-function/"/>
-    <updated>2014-06-16T20:00:00+08:00</updated>
-    <id>http://cxh.me/2014/06/16/c-cpp-file-stream-operation-function</id>
-    <content type="html"><![CDATA[<h3>针对文本文件的，  c++主要有如下几种吧</h3>
-
-<ol>
-<li><p>getline： 实现上，输入istream流，需要支持特定traits的迭代器。从流里面每次一行读入string，遇到delim结束。</p>
-
-<pre><code>   template&lt;typename _CharT, typename _Traits, typename _Alloc&gt;
-     basic_istream&lt;_CharT,_Traits&gt;&amp;
-     getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
-         basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str, _CharT __delim);
-
-   template&lt;typename _CharT, typename _Traits, typename _Alloc&gt;
-     inline basic_istream&lt;_CharT,_Traits&gt;&amp;
-     getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
-         basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str);
-</code></pre></li>
-</ol>
-
-
-<!--more-->
-
-
-<ol>
-<li><p>stream.get/put：分为如下几种类型。</p>
-
-<ol>
-<li>不接收参数的直接返回结果</li>
-<li>接收一个char类型的参数</li>
-<li>接收一个缓冲区和缓冲区大小，读取结果直到遇到delim，默认回车符</li>
-<li>put直接输入一个字符</li>
-<li><p>get 系的函数都不会ignore delim分隔符的，读到行尾需要手动ignore回车</p>
-
-<pre><code>   int_type 
-   get(void);
-
-   __istream_type&amp; 
-   get(char_type&amp; __c);
-
-   __istream_type&amp; 
-   get(char_type* __s, streamsize __n, char_type __delim);
-
-   inline __istream_type&amp; 
-   get(char_type* __s, streamsize __n)
-
-   __istream_type&amp;
-   get(__streambuf_type&amp; __sb, char_type __delim);
-
-   inline __istream_type&amp;
-   get(__streambuf_type&amp; __sb)
-
-   // Unformatted output:
-   __ostream_type&amp; 
-   put(char_type __c);
-</code></pre></li>
-</ol>
-</li>
-<li><p>stream.getline()：接收一个缓冲区和缓冲区大小，读取结果直到遇到delim，默认回车符</p>
-
-<pre><code>   __istream_type&amp; 
-   getline(char_type* __s, streamsize __n, char_type __delim);
-
-   inline __istream_type&amp; 
-   getline(char_type* __s, streamsize __n)
-</code></pre></li>
-<li><p>stream.read/stream.write()： 二进制操作，读写一段数据。</p>
-
-<pre><code>   __istream_type&amp; 
-   read(char_type* __s, streamsize __n);
-
-   streamsize 
-   readsome(char_type* __s, streamsize __n);
-
-   __ostream_type&amp; 
-   write(const char_type* __s, streamsize __n);
-</code></pre></li>
-<li><p>输入输出运算</p></li>
-</ol>
-
-
-<h3>c大概有如下几个：</h3>
-
-<ol>
-<li> fgetc/fputc</li>
-<li> fgets/fputs</li>
-<li> fscanf/fprintf</li>
-<li><p> fread/fwrite</p>
-
-<pre><code>__STDIO_INLINE _IO_ssize_t
-getline (char **__lineptr, size_t *__n, FILE *__stream)
-</code></pre></li>
-</ol>
-
-
-<p>  另外，stdio.h里也有getline的实现，传入一个FILE指针。需要注意的是传入的char **指针是会被申请内存并赋值的。所以需要自己释放。</p>
-
-<p>  这里就不详述了，详见：
-  <a href="http://zhaoyuqiang.blog.51cto.com/6328846/1296902">http://zhaoyuqiang.blog.51cto.com/6328846/1296902</a></p>
 ]]></content>
   </entry>
   

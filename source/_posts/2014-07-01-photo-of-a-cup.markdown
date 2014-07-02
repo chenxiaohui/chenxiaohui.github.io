@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "测试一张静物"
 date: 2014-07-01 19:44
 comments: true
 categories: "世情百态"
