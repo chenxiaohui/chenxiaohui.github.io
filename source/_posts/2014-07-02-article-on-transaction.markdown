@@ -5,9 +5,9 @@ date: 2014-07-02 16:45
 comments: true
 categories: "Oceanbase"
 ---
-  主要纪录一下跟事务相关的一些文章。主要是博客，有论文加论文。顺便纪念下女神订婚。
+  主要纪录一下跟事务相关的一些文章。主要是博客，有论文加论文。顺便纪念下女神订婚。图是转载。
   
-  {% img img-polaroid center /images/2014/tangwei.gif %}
+  {% img img-polaroid center /images/2014/tangwei.jpg %}
 
 [1]: http://comedsh.iteye.com/blog/698733 "数据库事务隔离级别和锁实现机制"
 [2]: http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html "数据库事务的实现（一） 故障恢复 （undo日志）"
