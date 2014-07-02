@@ -15,6 +15,7 @@ categories: "Oceanbase"
 [4]: http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/ "为 Key-Value 数据库实现MVCC 事务"
 [5]: http://blog.csdn.net/ggxxkkll/article/details/7616739 "数据库日志文件-- undo log 、redo log、 undo/redo log"
 [6]: http://blog.csdn.net/ggxxkkll/article/details/7631545 "两阶段提交-2PC"
+[7]: http://coolshell.cn/articles/10910.html "分布式系统的事务处理"
 
 ###参考文献:
 
@@ -29,3 +30,5 @@ categories: "Oceanbase"
 >\[5] 数据库日志文件-- undo log 、redo log、 undo/redo log, <http://blog.csdn.net/ggxxkkll/article/details/7616739>
 
 >\[6] 两阶段提交-2PC, <http://blog.csdn.net/ggxxkkll/article/details/7631545>
+
+>\[7] 分布式系统的事务处理, <http://coolshell.cn/articles/10910.html>

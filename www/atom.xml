@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-02T17:39:37+08:00</updated>
+  <updated>2014-07-02T20:17:54+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -34,7 +34,9 @@
 
 <p>[5] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p>
 
-<p>[6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p></blockquote>
+<p>[6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p>
+
+<p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p></blockquote>
 ]]></content>
   </entry>
   
