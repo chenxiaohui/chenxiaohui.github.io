@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-05T20:50:37+08:00</updated>
+  <updated>2014-07-05T21:21:26+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,35 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[undo 日志和redo 日志]]></title>
+    <link href="http://cxh.me/2014/07/05/redo-undo-log/"/>
+    <updated>2014-07-05T21:20:00+08:00</updated>
+    <id>http://cxh.me/2014/07/05/redo-undo-log</id>
+    <content type="html"><![CDATA[<p>  具体的可以看这里，解释几个作者没解释清楚的问题：</p>
+
+<ol>
+<li><p>只用REDO日志为什么数据修改要每次修改刷盘</p>
+
+<p> 如果不刷盘，不会导致数据不一致，但是数据修改过程相当于写redo日志-修改内存-写commit日志（修改内存的顺序也无所谓了），这个过程结束已经应答用户了，但是修改没有刷下去断电恢复的话也无法通过redolog恢复到当前状态，所以会丢失修改。</p></li>
+<li><p>修改数据和写redo/undo log/commit log之间的关系是什么</p>
+
+<p> 任何对磁盘的数据修改落实之前都需要先写log，无论是redo还是undo。undo保证了一旦数据写了一半（脏数据）能够回滚，redo保证了写了日志的事务能够回放出来。</p>
+
+<p> 只使用undo的时候commit日志要等待刷盘成功，写了commit的事务不会再回滚。</p>
+
+<p> 只使用redo的时候需要先写commit日志再修改数据，因为数据有刷盘和不刷盘的可能，写完commit日志意味着修改已经完整记录下来了不会丢失。否则，没有commit的日志不会回放，如果之前修改数据并刷盘了，系统不知道处于哪个阶段：写了一半的log？写成功log?修改了一半数据？成功修改全部数据？。如果修改不刷盘，那么如果在修改数据阶段宕机，就丢失了此条本来可以写成功的数据，好在这时候也没有回复用户。</p></li>
+</ol>
+
+
+<p>  其实看来如果修改不刷盘的话，那么可以先修改内存再写commit，只不过没有必要做这个区分（对否？）</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[发两张静物]]></title>
@@ -1591,34 +1620,6 @@ no indent
 <li>做好单测&hellip;</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[成像入门]]></title>
-    <link href="http://cxh.me/2014/06/19/phphotography-theorem/"/>
-    <updated>2014-06-19T19:00:00+08:00</updated>
-    <id>http://cxh.me/2014/06/19/phphotography-theorem</id>
-    <content type="html"><![CDATA[<p>其实我只是感性的解释一下一些基本的原理。</p>
-
-<ol>
-<li><p>成像同一个点发出的所有光线在焦平面汇聚的结果。从原理上讲，小孔成像是更优的成像方式，因为小孔过滤了光线，让每个像点发出的光只有一束能参与成像，但是这样容易导致亮度偏低，同时小孔也不能像理论上说的足够小。</p></li>
-<li><p>如果胶片/CCD刚好位于焦平面上，那么成像最清晰，焦平面前后的一段距离里面，成像虽然不够清晰但是也能接受，出了这个区域就认为不再能够成像。这个区域就是弥散斑所在的区域。对应的物体距离范围叫景深。</p></li>
-<li><p>镜片如果折光度高的话，那么成像位置靠前，像小，同时<del>光线</del>聚焦点密度增加导致景深增加（算相等的物距，如果两个点聚焦之后的焦深不大的话，那么把底片移动到其中一个点上，另一个点的弥散圈也不大）。这就是短焦距镜片，短焦镜片的视角大。也就是说够大范围内的光都会被折射到成像底板的区域里（焦深）。适合拍风景等大画幅照片，广角镜头就是这类。</p></li>
-<li><p>相反，如果镜片折光度小，那么成像位置就靠后，像大，同时<del>光线</del>聚焦点密度减少导致景深减少。这就是长焦镜头，长焦镜头视角小，景深小，适合拍人像，可以造成虚化的效果，同时也适合打鸟，毕竟放大倍数高，不易被发现。</p></li>
-<li><p>同时，光圈也影响景深。在焦距一定的情况下，小光圈造成的焦深大，而现在的情况下排除了焦距和物距的影像，那么焦深大，景深就大<del>遮挡了周围的光线，由于中间部分折光系数高</del>，所以增加了景深。由于入射光强度降低，要想保证成片的明度，就需要加大ISO，增加快门时间。反过来，大光圈会减少景深，由于入射光强度高，可以减少ISO，减少快门时间。所以说大光圈长焦是人像利器。</p></li>
-<li><p>物距影响景深，越近的物体，在光轴上成像点密度越低，景深越小（算相等的物距，如果两个点聚焦之后的焦深大，那么把底片移动到其中一个点上，另一个点的弥散圈也大）</p></li>
-<li><p>普通卡片机由于照顾日常使用场景，焦距光圈基本是固定的，并且固定在中短焦距的范围内。所以卡片机画幅不大，景深也不大，适合一般场景的拍照，但难免平淡无特色。</p></li>
-</ol>
-
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2014/photography.gif" title="成像光路图" alt="成像光路图"><p class="align-center">成像光路图</p></p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2014/aperture.jpg" title="光圈对景深的影响" alt="光圈对景深的影响"><p class="align-center">光圈对景深的影响</p></p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 一篇讲解成像原理的文章, <a href="http://blog.sina.com.cn/s/blog_64cff0510100hid1.html">http://blog.sina.com.cn/s/blog_64cff0510100hid1.html</a></p></blockquote>
 ]]></content>
   </entry>
   
