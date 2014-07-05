@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-04T12:57:34+08:00</updated>
+  <updated>2014-07-05T20:24:03+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/07/05/two-photo-of-still-life/"/>
+    <updated>2014-07-05T19:49:00+08:00</updated>
+    <id>http://cxh.me/2014/07/05/two-photo-of-still-life</id>
+    <content type="html"><![CDATA[<p>  发两张静物，镜头宾得 SMC FA 50mm F1.4</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/grass.jpg"></p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/windmill.jpg"></p>
+
+<p>  转一张网上的图：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/fromweb.jpg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于备份文件管理]]></title>
@@ -163,7 +180,9 @@ int clean_old_files(const char * filename)
 
 <p>[6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p>
 
-<p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p></blockquote>
+<p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p>
+
+<p>[8] 两阶段提交(2PC)协议&#8221; , <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
 ]]></content>
   </entry>
   
@@ -1600,35 +1619,6 @@ no indent
 <h3>参考文献:</h3>
 
 <blockquote><p>[1] 一篇讲解成像原理的文章, <a href="http://blog.sina.com.cn/s/blog_64cff0510100hid1.html">http://blog.sina.com.cn/s/blog_64cff0510100hid1.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Nginx 安装配置总结]]></title>
-    <link href="http://cxh.me/2014/06/19/nnginx-install-config/"/>
-    <updated>2014-06-19T11:57:00+08:00</updated>
-    <id>http://cxh.me/2014/06/19/nnginx-install-config</id>
-    <content type="html"><![CDATA[<p>具体的可以看参考文献里面的三篇博客，中间遇到一个问题，nignx提示无法找到php文件。主要有两个原因：</p>
-
-<ol>
-<li><p>确定nginx工作线程的启动用户有权限访问www-root，需要修改nginx.conf的这里：</p>
-
-<pre><code> user  www-data;
-</code></pre></li>
-<li><p>确定www-root配置正确，需要修改这里：</p>
-
-<pre><code> fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-</code></pre></li>
-</ol>
-
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] nginx配置入门, <a href="http://www.nginx.cn/591.html">http://www.nginx.cn/591.html</a></p>
-
-<p>[2] Nginx安装, <a href="http://www.nginx.cn/install">http://www.nginx.cn/install</a></p>
-
-<p>[3] nginx php-fpm安装配置, <a href="http://www.nginx.cn/231.html">http://www.nginx.cn/231.html</a></p></blockquote>
 ]]></content>
   </entry>
   

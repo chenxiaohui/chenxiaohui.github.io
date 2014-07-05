@@ -120,6 +120,7 @@ task :new_post, :title, :category do |t, args|
         "    web相关",
         "IT人生",
         "世情百态",
+        "摄影",
         "随笔" ]
     for i in 0..categories.size() - 1
         puts "%2d %s" %[i ,categories[i]]
