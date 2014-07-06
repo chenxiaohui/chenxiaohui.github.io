@@ -118,7 +118,7 @@ task :new_post, :title, :category do |t, args|
         "    Python",
         "    vim",
         "    web相关",
-        "IT人生",
+        "    IT人生",
         "世情百态",
         "摄影",
         "随笔" ]
