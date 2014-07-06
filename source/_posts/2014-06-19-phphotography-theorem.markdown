@@ -3,7 +3,7 @@ layout: post
 title: "成像入门"
 date: 2014-06-19 19:00
 comments: true
-categories: "世情百态"
+categories: "摄影"
 ---
 
 其实我只是感性的解释一下一些基本的原理。

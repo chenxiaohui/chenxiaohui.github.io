@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-06T13:02:38+08:00</updated>
+  <updated>2014-07-06T13:28:39+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,7 +18,9 @@
     <link href="http://cxh.me/2014/07/05/redo-undo-log/"/>
     <updated>2014-07-05T21:20:00+08:00</updated>
     <id>http://cxh.me/2014/07/05/redo-undo-log</id>
-    <content type="html"><![CDATA[<p>  具体的可以看<a href="http://blog.csdn.net/ggxxkkll/article/details/7616739" title="数据库日志文件-- undo log 、redo log、 undo/redo log">这里</a>，解释几个作者没解释清楚的问题：</p>
+    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="http://cxh.me/images/2014/interesting.gif" title="贴张图" alt="贴张图"><p class="align-center">贴张图</p></p>
+
+<p>  具体的可以看<a href="http://blog.csdn.net/ggxxkkll/article/details/7616739" title="数据库日志文件-- undo log 、redo log、 undo/redo log">这里</a>，解释几个作者没解释清楚的问题：</p>
 
 <ol>
 <li><p>只用REDO日志为什么数据修改要每次修改刷盘</p>
