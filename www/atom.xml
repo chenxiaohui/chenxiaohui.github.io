@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-06T13:42:23+08:00</updated>
+  <updated>2014-07-06T18:18:55+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,17 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/07/06/photo-of-cat/"/>
+    <updated>2014-07-06T18:18:00+08:00</updated>
+    <id>http://cxh.me/2014/07/06/photo-of-cat</id>
+    <content type="html"><![CDATA[<p>  发一张喵星人的照片：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cat.jpg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[undo 日志和redo 日志]]></title>
@@ -1606,25 +1617,6 @@ no indent
 <li>indent item</li>
 </ul>
 </blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[oceanbase设计中的注意事项]]></title>
-    <link href="http://cxh.me/2014/06/19/oceanbase-design-notes/"/>
-    <updated>2014-06-19T21:37:00+08:00</updated>
-    <id>http://cxh.me/2014/06/19/oceanbase-design-notes</id>
-    <content type="html"><![CDATA[<ol>
-<li>没有情况什么是不可能发生的</li>
-<li>RPC或者其他网络调用是不一定能够返回结果的。也就是有三种可能，正确，失败，超时。</li>
-<li>开发文档是需要一边写一边改最后再补的。</li>
-<li>自顶向下，逐步求精还是有效的办法。方便解决很多设计上想不到的地方，细节永远最后再做，毕竟之前想的可能过一段时间决定不做了。</li>
-<li>复杂任务要分成多个可测试的阶段完成，每个阶段保证能单独测试。为此多写一些代码也是值得的。</li>
-<li>我们不是业务驱动，也不是技术驱动，而是测试驱动的&hellip;..</li>
-<li>做好单测</li>
-<li>做好单测&hellip;</li>
-</ol>
-
 ]]></content>
   </entry>
   
