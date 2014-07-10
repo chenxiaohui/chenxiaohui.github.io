@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-08T11:17:15+08:00</updated>
+  <updated>2014-07-10T21:03:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[命名空间和友元冲突]]></title>
+    <link href="http://cxh.me/2014/07/10/namespace-conflicts-with-friend/"/>
+    <updated>2014-07-10T19:09:00+08:00</updated>
+    <id>http://cxh.me/2014/07/10/namespace-conflicts-with-friend</id>
+    <content type="html"><![CDATA[<p>  今天遇到一个问题，需要跨namespace定义友元，这种情况比较常见的是测试类需要访问源码类，gtest据说有个FRIEND_TEST宏，以前用过好像有问题。这里我们直接用友元:</p>
+
+<pre><code>namespace oceanbase
+{
+    namespace election
+    {
+        class ObElectionServer : public ObSingleServer
+        {
+            friend class ObElectionTester;
+            ...
+        }
+    }
+}
+namespace oceanbase
+{
+  namespace tests
+  {
+    namespace election
+    {
+        class ObElectionTester : public ObElectionServer
+        {
+            ...
+        }
+    }
+}
+</code></pre>
+
+<p>  这样是肯定不行的，这等于告诉ObElectionServer在自己的namespace下找ObElectionTester。改成如下：</p>
+
+<!--more-->
+
+
+<pre><code>namespace oceanbase
+{
+    namespace election
+    {
+        class ObElectionServer : public ObSingleServer
+        {
+            friend class oceanbase::tests::election::ObElectionTester;
+            ...
+        }
+    }
+}
+</code></pre>
+
+<p>  这样也不行，ObElectionServer不知道ObElectionTester是个包含namespace的类名。所以我们需要前向声明一下类。</p>
+
+<pre><code>namespace oceanbase
+{
+  namespace tests
+  {
+    namespace election
+    {
+      class ObElectionTester;
+    }
+  }
+  namespace election
+  {
+    class ObElectionServer : public ObSingleServer
+    {
+        friend class oceanbase::tests::election::ObElectionTester;
+        ....
+    }
+  }
+}
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[呵呵呵呵以至于我不得不开篇博客说这个事情]]></title>
@@ -1499,69 +1573,6 @@ alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post
 所以不含 BOM 的 UTF-8 才是标准形式，在 UTF-8 文件中放置 BOM 主要是微软的习惯（顺便提一下：把带有 BOM 的小端序 UTF-16 称作「Unicode」而又不详细说明，这也是微软的习惯）。
 BOM（byte order mark）是为 UTF-16 和 UTF-32 准备的，用于标记字节序（byte order）。微软在 UTF-8 中使用 BOM 是因为这样可以把 UTF-8 和 ASCII 等编码明确区分开，但这样的文件在 Windows 之外的操作系统里会带来问题。
 「UTF-8」和「带 BOM 的 UTF-8」的区别就是有没有 BOM。即文件开头有没有 U+FEFF。</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sublime根据markdown引用生成参考文献的插件]]></title>
-    <link href="http://cxh.me/2014/06/20/susublime-plugin-to-generate-refrence/"/>
-    <updated>2014-06-20T21:21:00+08:00</updated>
-    <id>http://cxh.me/2014/06/20/susublime-plugin-to-generate-refrence</id>
-    <content type="html"><![CDATA[<p>  写这个的目的主要是每次写博客需要生成以下版权声明，免得引用了别人的文章被人说盗版。markdown里面支持通过列表组织引用的url，如下所示：</p>
-
-<pre><code>  [1]: http://www.baidu.com   "百度"
-  [2]: http:://www.google.com "谷歌"
-  [3]: http://www.facebook.com "404 Not Found"
-</code></pre>
-
-<p>  我们可以通过这个形式来生成如下的代码</p>
-
-<pre><code>###参考文献:
-
-&gt;\[1] 百度, &lt;http://www.baidu.com&gt;
-
-&gt;\[2] 谷歌, &lt;http:://www.google.com&gt;
-
-&gt;\[3] 404 Not Found, &lt;http://www.facebook.com&gt;
-</code></pre>
-
-<p>  效果如下：</p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 百度, <a href="http://www.baidu.com">http://www.baidu.com</a></p>
-
-<p>[2] 谷歌, <a href="http:://www.google.com">http:://www.google.com</a></p>
-
-<p>[3] 404 Not Found, <a href="http://www.facebook.com">http://www.facebook.com</a></p></blockquote>
-
-<!--more-->
-
-
-<p>  代码如下:</p>
-
-<pre><code>#!/usr/bin/python
-#coding=utf-8
-#Filename:generate_ref.py
-
-import sublime, sublime_plugin
-
-class GeneraterefCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
-        sels = self.view.sel()
-        lines=[]
-        for sel in sels:
-            lines += (self.view.substr(sel)).strip("\n").split("\n")
-        outlines=[]
-        for line in lines:
-            idx1 = line.find(":")
-            index = line[:idx1]
-            idx2 = line.find('"', idx1)
-            url = line[idx1+1:idx2].strip(' ')
-            title = line[idx2:].strip('"')
-            outlines.append('\n&gt;\%s %s, &lt;%s&gt;'%(index,title,url))
-        self.view.insert(edit, sel.end(),"\n###参考文献:\n".decode("utf-8") + "\n".join(outlines))
-</code></pre>
 ]]></content>
   </entry>
   
