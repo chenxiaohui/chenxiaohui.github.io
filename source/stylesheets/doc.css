@@ -9,7 +9,7 @@ html body {
     /*background-repeat: repeat;*/
     /*background-position: 0 40px;*/
 }
-li
+.entry-content li
 {
     margin:5px 0px;
     line-height:1.5;
@@ -394,7 +394,11 @@ hr.soften {
 
 /* Download page
 -------------------------------------------------- */
-    .download .page-header {
+.page-header {
+    padding-bottom:5px;
+    margin:15px 0 15px;
+}
+.download .page-header {
         margin-top: 36px;
 }
 .page-header .toggle-all {
