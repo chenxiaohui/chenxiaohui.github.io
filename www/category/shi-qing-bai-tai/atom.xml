@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 世情百态 | CXH.ME]]></title>
   <link href="http://cxh.me/category/shi-qing-bai-tai/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-16T20:33:15+08:00</updated>
+  <updated>2014-07-16T20:35:18+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -20,6 +20,13 @@
     <id>http://cxh.me/2014/07/16/ich-war-noch-niemals-in-new-york</id>
     <content type="html"><![CDATA[<p><embed src="http://player.youku.com/player.php/Type/Folder/Fid/22542683/Ob/1/sid/XMTgzNjkyMzA0/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></p>
 
+<p>  还有老男孩翻唱版的</p>
+
+<!--more-->
+
+
+<p><embed src="http://player.youku.com/player.php/Type/Folder/Fid/22542683/Ob/1/sid/XNzQxNTIyNDk2/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></p>
+
 <ul>
 <li>我从来没有去过纽约</li>
 <li>从没有到过夏威夷</li>
@@ -28,16 +35,9 @@
 <li>我要感受那远方的空气</li>
 <li><p>我想要挣脱过去释放我自己</p>
 
-<p>还有老男孩翻唱版的</p></li>
+<p>人生很搞，梦想不老</p></li>
 </ul>
 
-
-<!--more-->
-
-
-<p><embed src="http://player.youku.com/player.php/Type/Folder/Fid/22542683/Ob/1/sid/XNzQxNTIyNDk2/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></p>
-
-<p>  人生很搞，梦想不老</p>
 ]]></content>
   </entry>
   
@@ -46,7 +46,7 @@
     <link href="http://cxh.me/2014/07/08/im/"/>
     <updated>2014-07-08T09:55:00+08:00</updated>
     <id>http://cxh.me/2014/07/08/im</id>
-    <content type="html"><![CDATA[<p>{% img img-polaroid center /images/2014/smartisan.png %}</p>
+    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="/images/2014/smartisan.png"></p>
 
 <p>  话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了&hellip;</p>
 ]]></content>
@@ -96,17 +96,17 @@
 
 <hr />
 
-<p>{% img /images/common/ask.jpg 200 &ldquo;are you kidding me&rdquo; %} 你家的土豪是坐公交的啊</p>
+<p><img src="/images/common/ask.jpg" width="200" title="&ldquo;are you kidding me&rdquo;" > 你家的土豪是坐公交的啊</p>
 
 <hr />
 
 <p>  好了，不管土豪的事情了，上几张照片。</p>
 
-<p>{% img img-polaroid center /images/2013/IMG_20131006_144718.jpg  &ldquo;这个是想表达什么&rdquo; &ldquo;这个是想表达什么&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013/IMG_20131006_144718.jpg" title="&ldquo;这个是想表达什么&rdquo; &ldquo;这个是想表达什么&rdquo;" ></p>
 
-<p>{% img img-polaroid center /images/2013/IMG_20131006_145824.jpg &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013/IMG_20131006_145824.jpg" title="&ldquo;话说这个狗狗还是挺可爱的嘛&rdquo; &ldquo;话说这个狗狗还是挺可爱的嘛&rdquo;" ></p>
 
-<p>{% img img-polaroid center /images/2013/IMG_20131006_172509.jpg &ldquo;最震撼的其实是这个&rdquo; &ldquo;最震撼的其实是这个&rdquo; %}</p>
+<p><img class="img-polaroid center" src="/images/2013/IMG_20131006_172509.jpg" title="&ldquo;最震撼的其实是这个&rdquo; &ldquo;最震撼的其实是这个&rdquo;" ></p>
 
 <p>  这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛&hellip;多么的经济实惠</p>
 
