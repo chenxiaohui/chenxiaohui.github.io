@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-16T20:41:39+08:00</updated>
+  <updated>2014-07-17T11:24:51+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[java/c++变量作用域的一点小区别]]></title>
+    <link href="http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff/"/>
+    <updated>2014-07-17T11:16:00+08:00</updated>
+    <id>http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff</id>
+    <content type="html"><![CDATA[<p>  偶然遇到一个问题，java里面这么写是有问题的</p>
+
+<pre><code>int x = 1;
+    {
+        int x = 2;
+    }
+</code></pre>
+
+<p>  作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。</p>
+
+<pre><code>    {
+        int x = 2;
+    }
+int x = 1;
+</code></pre>
+
+<p>  C++里面这样是没问题的</p>
+
+<pre><code>int main(int argc, const char *argv[])
+{
+  int x = 1 ;
+  {
+    int x  =12;
+    printf("%d\n", x);
+  }
+}
+</code></pre>
+
+<p>  相对于脚本语言，这种限制似乎就宽多了。这样都可以。</p>
+
+<pre><code>for i in range(1,10):
+    pass
+print i
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[命名空间和友元冲突]]></title>
@@ -423,95 +465,6 @@ TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, "select * from " t
 </code></pre>
 
 <p>  感谢郁白师兄的指导。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[文本文件和二进制文件读写]]></title>
-    <link href="http://cxh.me/2014/06/21/bin-txt-file-read-write/"/>
-    <updated>2014-06-21T12:28:00+08:00</updated>
-    <id>http://cxh.me/2014/06/21/bin-txt-file-read-write</id>
-    <content type="html"><![CDATA[<p>  探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。</p>
-
-<p><img class="img-polaroid center" src="/images/2014/binfile.png" title="&ldquo;用vim显示二进制文件&rdquo; &ldquo;用vim显示二进制文件&rdquo;" ></p>
-
-<p>  所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)</p>
-
-<p>  我们用如下代码测试:</p>
-
-<pre><code>int main(int argc, const char *argv[])
-{
-  FILE * fp  = fopen("output.txt", "w");
-  fputc(10, fp);
-  fputc(13, fp);
-  fputc('\n', fp);
-  fclose(fp);
-
-  fp  = fopen("output.bin", "wb");
-  int32_t length[] ={0x0a, 0x12345678};
-  fwrite(&amp;length, sizeof(int32_t), 2, fp);
-  fclose(fp);
-  return 0;
-}
-</code></pre>
-
-<!--more-->
-
-
-<p><strong>windows下</strong></p>
-
-<p>文本文件写入：</p>
-
-<pre><code>0000000: 0d0a 0d0d 0a                             .....
-</code></pre>
-
-<p>二进制写入</p>
-
-<pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
-</code></pre>
-
-<p><strong>linux下：</strong></p>
-
-<p>  文本方式写入</p>
-
-<pre><code>0000000: 0a0d 0a                                  ...
-</code></pre>
-
-<p>  二进制写入：</p>
-
-<pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
-</code></pre>
-
-<p><strong>mac下</strong></p>
-
-<p>  文本方式写入：</p>
-
-<pre><code>0000000: 0a0d 0a                                  ...
-</code></pre>
-
-<p>  二进制写入</p>
-
-<pre><code>0000000: 0a00 0000 7856 3412                      ....xV4.
-</code></pre>
-
-<p>  解释几个问题：</p>
-
-<h3>回车符的转义</h3>
-
-<p>  windows下写文本文件的时候换行符会被替换成回车换行(0d0a), 直接写0a(10)也是一样的. Linux和mac下不会,二进制文件不care这些.</p>
-
-<h3>文件结尾判断</h3>
-
-<p>  详见这里：<a href="http://blog.csdn.net/bingqing07/article/details/5785080">http://blog.csdn.net/bingqing07/article/details/5785080</a></p>
-
-<h3>UTF-8 BOＭ</h3>
-
-<p>  转载：</p>
-
-<blockquote><p>UTF-8 不需要 BOM，尽管 Unicode 标准允许在 UTF-8 中使用 BOM。
-所以不含 BOM 的 UTF-8 才是标准形式，在 UTF-8 文件中放置 BOM 主要是微软的习惯（顺便提一下：把带有 BOM 的小端序 UTF-16 称作「Unicode」而又不详细说明，这也是微软的习惯）。
-BOM（byte order mark）是为 UTF-16 和 UTF-32 准备的，用于标记字节序（byte order）。微软在 UTF-8 中使用 BOM 是因为这样可以把 UTF-8 和 ASCII 等编码明确区分开，但这样的文件在 Windows 之外的操作系统里会带来问题。
-「UTF-8」和「带 BOM 的 UTF-8」的区别就是有没有 BOM。即文件开头有没有 U+FEFF。</p></blockquote>
 ]]></content>
   </entry>
   
