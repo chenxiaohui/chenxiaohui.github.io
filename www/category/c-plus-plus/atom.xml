@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-17T11:27:07+08:00</updated>
+  <updated>2014-07-17T15:51:40+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[c/c++的不定参数]]></title>
+    <link href="http://cxh.me/2014/07/17/c-variable-argument/"/>
+    <updated>2014-07-17T14:42:00+08:00</updated>
+    <id>http://cxh.me/2014/07/17/c-variable-argument</id>
+    <content type="html"><![CDATA[<p>  c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：</p>
+
+<pre><code>void ar_cnt(int cnt,...);
+int main(int argc, char* argv[])
+{
+    ar_cnt(4,1,2,3,4);
+    return 0; 
+}
+void ar_cnt(int cnt,...)
+{
+    int arg_cnt = cnt;
+    va_list arg_ptr;
+    va_start(arg_ptr, cnt);
+    for(int i=0; i &lt; cnt;i++)
+    {
+        int value=va_arg(arg_ptr,int);
+        printf("posation %d=%d\n", value, i+1);
+    }
+    va_end(arg_ptr);
+}
+</code></pre>
+
+<p>  其实原理是比较简单的，依赖于编译器对函数调用的压栈顺序，但是目测现有的调用方式压栈都是从右向左，所以va_start定位第一个参数的位置，va_arg每次在之前的位置上加一个偏移值，从而得到每个传入参数。这就是说va_start要求传入不定参数的函数不能只传入一个&hellip;，至少要有一个固定的参数，用来获取栈指针位置。</p>
+
+<!--more-->
+
+
+<p>  调用方式这个东西好像只有在VC里才探讨，不太清楚gcc这里的处理是怎么样的，vc下主要分了如下几种：</p>
+
+<ul>
+<li><p>STDCALL/PASCAL/WINAPI/CALLBACK</p>
+
+<ol>
+<li>参数从右向左压入堆栈</li>
+<li>函数自身修改堆栈</li>
+<li>函数名自动加前导的下划线，后面紧跟一个@符号，其后紧跟着参数的尺寸</li>
+</ol>
+</li>
+<li><p>CDECL</p>
+
+<ol>
+<li>调用约定的参数压栈顺序是和stdcall是一样的，参数由右向左压入堆栈。</li>
+<li>调用者负责清理堆栈。</li>
+<li>由于这种变化，C调用约定允许函数的参数的个数是不固定的，这也是C语言的一大特色。</li>
+</ol>
+</li>
+<li><p>FASTCALL</p>
+
+<ol>
+<li>函数的第一个和第二个DWORD参数（或者尺寸更小的）通过ecx和edx传递，其他参数通过从右向左的顺序压栈</li>
+<li>被调用函数清理堆栈</li>
+<li>函数名修改规则同stdcall</li>
+</ol>
+</li>
+<li><p>THISCALL</p>
+
+<ol>
+<li>参数从右向左入栈</li>
+<li>如果参数个数确定，this指针通过ecx传递给被调用者；如果参数个数不确定，this指针在所有参数压栈后被压入堆栈</li>
+</ol>
+</li>
+<li><p>NAKEDCALL</p>
+
+<ol>
+<li>这是一个很少见的调用约定，一般程序设计者建议不要使用。</li>
+<li>编译器不会给这种函数增加初始化和清理代码，更特殊的是，你不能用return返回返回值，只能用插入汇编返回结果</li>
+<li>这一般用于实模式驱动程序设计</li>
+</ol>
+</li>
+</ul>
+
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] cdecl、stdcall、fastcall函数调用约定区别 , <a href="http://blog.csdn.net/fly2k5/article/details/544112">http://blog.csdn.net/fly2k5/article/details/544112</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[java/c++变量作用域的一点小区别]]></title>
@@ -338,129 +421,6 @@ int main()
 <blockquote><p>[1] 【C++程序设计技巧】NVI（Non-Virtual Interface ）, <a href="http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html">http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html</a></p>
 
 <p>[2] 纯虚函数能为private吗？, <a href="http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html">http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一个关于宏的问题]]></title>
-    <link href="http://cxh.me/2014/06/26/a-macro-problem/"/>
-    <updated>2014-06-26T10:53:00+08:00</updated>
-    <id>http://cxh.me/2014/06/26/a-macro-problem</id>
-    <content type="html"><![CDATA[<p>  写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：</p>
-
-<pre><code>#define OB_FIRST_ROOT_TABLE_TID 21
-#define OB_INVALID_ID INT_MAX
-const char* OB_FIRST_ROOT_TABLE_TABLE_NAME  =  "__first_root_table";
-
-struct TableBackupSQL
-{
-  uint64_t table_id_;
-  const char* sql_;
-  const char * table_name_;
-  TableBackupSQL()
-  {
-    sql_ = NULL;
-    table_name_ = NULL;
-    table_id_ = OB_INVALID_ID;
-  }
-  TableBackupSQL(uint64_t table_id, const char* table_name, const char* sql)
-  {
-    sql_ = sql;
-    table_name_ = table_name;
-    table_id_ = table_id;
-  }
-};
-
-
-#define TABLE_BACKUP_(table_prefix, table_name)\
-TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, "select * from "#table_name)
-#define TABLE_BACKUP(table_prefix)\
-TABLE_BACKUP_(table_prefix, table_prefix##_TABLE_NAME)
-
-TableBackupSQL table_backup_list_[] =
-{
-  TABLE_BACKUP(OB_FIRST_ROOT_TABLE)
-};
-
-
-int main(void)
-{
-  for (int i = 0; i &lt; sizeof(table_backup_list_)/sizeof(TableBackupSQL); i++)
-  {
-    TableBackupSQL&amp; desc = table_backup_list_[i];
-    printf("%d, %s, %s\n", desc.table_id_, desc.table_name_, desc.sql_);
-  }
-}
-</code></pre>
-
-<p>  期望的结果是</p>
-
-<pre><code>21, __first_root_table, select * from __first_root_table
-</code></pre>
-
-<p>  实际的结果是</p>
-
-<pre><code>21, __first_root_table, select * from OB_FIRST_ROOT_TABLE_TABLE_NAME
-</code></pre>
-
-<!--more-->
-
-
-<p>  拼出来的OB_FIRST_ROOT_TABLE_TABLE_NAME没有被替换，当然有很多方法绕开。我试图两次展开宏但是没有成功，这个跟<a href="http://blog.csdn.net/maray/article/details/11096459" title="介绍一个C++奇巧淫技">这里</a>说的问题毕竟不是一个。不知道C++11里面有没有解决方法。</p>
-
-<p>  另外，我才发现一个struct直接赋值是C++11才允许的。比如：</p>
-
-<pre><code>TableBackupSQL table_backup_list_[] =
-{
-  {21, "__first_root_table", "select * from __first_root_table"}
-};
-</code></pre>
-
-<p>  不加-std=c++0x或者 -std=gnu++0x的时候会报错。c语言支持。</p>
-
-<p>  后来发现我遗忘了一个事实，宏替换是发生在预编译期的，这时候都没有做语法词法分析，程序不知道一个变量应该如何替换，所以变量实际上没有被替换成值，这跟函数定义是不一样的。比如：</p>
-
-<pre><code>#define wrap(value) value
-int a  = 1;
-int b = wrap(a);
-</code></pre>
-
-<p>  我们用gcc打印展开之后的结果如下：</p>
-
-<pre><code>int a = 1;
-int b = a;
-</code></pre>
-
-<p>  这里是不会展开成 int b = 1;的。而连接符#的作用也只是把宏替换后的字面值加上引号，比如：</p>
-
-<pre><code>#define wrap(value) #value
-int a  = 1;
-const char * b = wrap(a);
-</code></pre>
-
-<p>  展开结果是：</p>
-
-<pre><code>int a = 1;
-const char * b = "a";
-</code></pre>
-
-<p>  而连接符##的作用就更简单了，就是提供一个标示宏传入参数的作用，比如</p>
-
-<pre><code>#define wrap(value) a##value
-int ab = 2;
-int b = wrap(b);
-</code></pre>
-
-<p>  如果不写##就变成了avalue，无法区分输入参数，如果写a(value)就会替换成a(b),如果写a value就会替换成a b，所以想替换成ab只能用##。</p>
-
-<p>  至于上面那个问题，如果我们table的名字都是宏定义的字符串，那就好办多了：</p>
-
-<pre><code>const char* OB_FIRST_ROOT_TABLE_TABLE_NAME  =  "__first_root_table";
-#define TABLE_BACKUP_(table_prefix, table_name)\
-TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, "select * from " table_name)
-</code></pre>
-
-<p>  感谢郁白师兄的指导。</p>
 ]]></content>
   </entry>
   
