@@ -22,14 +22,10 @@ categories: "C++"
 
   C++里面这样是没问题的
 
-	int main(int argc, const char *argv[])
-	{
 	  int x = 1 ;
 	  {
-	    int x  =12;
-	    printf("%d\n", x);
+	    int x  = 2;
 	  }
-	}
 
   相对于脚本语言，这种限制似乎就宽多了。这样都可以。
 

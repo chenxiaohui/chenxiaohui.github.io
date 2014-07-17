@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-17T11:24:51+08:00</updated>
+  <updated>2014-07-17T11:27:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -36,14 +36,10 @@ int x = 1;
 
 <p>  C++里面这样是没问题的</p>
 
-<pre><code>int main(int argc, const char *argv[])
-{
-  int x = 1 ;
+<pre><code>  int x = 1 ;
   {
-    int x  =12;
-    printf("%d\n", x);
+    int x  = 2;
   }
-}
 </code></pre>
 
 <p>  相对于脚本语言，这种限制似乎就宽多了。这样都可以。</p>
