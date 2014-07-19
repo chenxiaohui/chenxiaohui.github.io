@@ -61,7 +61,12 @@ categories: "C++"
 
 [1]:http://blog.csdn.net/fly2k5/article/details/544112 "cdecl、stdcall、fastcall函数调用约定区别 "
 [2]:http://www.cppblog.com/kenny/archive/2011/04/19/144539.html "函数调用的区别：_cdecl以及_stdcall"
+[3]:http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html "透析C语言可变参数问题"
 
 ###参考文献:
 
 >\[1] cdecl、stdcall、fastcall函数调用约定区别 , <http://blog.csdn.net/fly2k5/article/details/544112>
+
+>\[2] 函数调用的区别：_cdecl以及_stdcall, <http://www.cppblog.com/kenny/archive/2011/04/19/144539.html>
+
+>\[3] 透析C语言可变参数问题, <http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html>
