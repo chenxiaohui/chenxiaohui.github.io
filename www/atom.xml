@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-19T14:43:02+08:00</updated>
+  <updated>2014-07-20T10:08:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/07/20/normal-roads/"/>
+    <updated>2014-07-20T10:06:00+08:00</updated>
+    <id>http://cxh.me/2014/07/20/normal-roads</id>
+    <content type="html"><![CDATA[<p>  朴树的《后会无期》主题曲：平凡之路</p>
+
+<p><embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
+
+<ul>
+<li>我曾经跨过山和大海</li>
+<li>也穿过人山人海</li>
+<li>我曾经拥有着一切</li>
+<li>转眼都飘散如烟</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[后会无期]]></title>
@@ -28,13 +47,6 @@
 <li>那声再见竟是他最后的一句</li>
 </ul>
 
-
-<!--more-->
-
-
-<p>  另，朴树的《后会无期》主题区：平凡之路</p>
-
-<p><embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
 ]]></content>
   </entry>
   
@@ -1430,41 +1442,6 @@ TableBackupSQL(table_prefix##_TID, table_prefix##_TABLE_NAME, "select * from " t
 </code></pre>
 
 <p>  感谢郁白师兄的指导。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[octopress代码着色]]></title>
-    <link href="http://cxh.me/2014/06/22/octopress-code-highlight/"/>
-    <updated>2014-06-22T11:15:00+08:00</updated>
-    <id>http://cxh.me/2014/06/22/octopress-code-highlight</id>
-    <content type="html"><![CDATA[<p>  markdown有自己支持的代码模块，但是想支持着色，就需要单独对代码进行parse和加上css。octopress支持自己的代码语法，但是比较麻烦，并且是本地渲染，对不同语言需要指定。</p>
-
-<p>  所以还是js渲染比较方便一点，我们可以用<a href="https://code.google.com/p/google-code-prettify/" title="google code prettify">google code prettify</a>进行着色，在markdown里面只要对代码加入缩进（tab或者四个空格）。服务端引入如下js:</p>
-
-<pre><code>&lt;link href="http://cxh.me/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css"&gt;
-&lt;script type="text/javascript" src="http://cxh.me/javascripts/google-code-prettify/prettify.js"&gt;&lt;/script&gt;
-
-&lt;script type="text/javascript" &gt;
-&lt;!--
-    $(function() {
-      $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
-      window.prettyPrint &amp;&amp; prettyPrint();
-      $('table').addClass('table')
-});
---&gt;
-&lt;/script&gt;
-</code></pre>
-
-<p>  google code prettify的样式可以<a href="http://jmblog.github.io/color-themes-for-google-code-prettify/" title="google code prettify theme">这里</a>选择，关于行号的一些问题参见<a href="http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/" title="Jekyll中使用google-code-prettify高亮代码">这里</a>。</p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] google code prettify, <a href="https://code.google.com/p/google-code-prettify/">https://code.google.com/p/google-code-prettify/</a></p>
-
-<p>[2] google code prettify theme, <a href="http://jmblog.github.io/color-themes-for-google-code-prettify/">http://jmblog.github.io/color-themes-for-google-code-prettify/</a></p>
-
-<p>[3] Jekyll中使用google-code-prettify高亮代码, <a href="http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/">http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/</a></p></blockquote>
 ]]></content>
   </entry>
   

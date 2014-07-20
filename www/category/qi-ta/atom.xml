@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-19T14:43:35+08:00</updated>
+  <updated>2014-07-20T10:08:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -406,11 +406,11 @@ if temperature &gt; 0:
 
 <p>  温度曲线的图片如下：</p>
 
-<p>  {% img img-polaroid center /images/2014/before.png &ldquo;温度曲线&rdquo; &ldquo;温度曲线&rdquo; %}</p>
+<p>  <img class="img-polaroid center" src="/images/2014/before.png" title="&ldquo;温度曲线&rdquo; &ldquo;温度曲线&rdquo;" ></p>
 
 <p>  开始的程序没有考虑求平均，不知道会不会有临时跳变的瞬间值。后来加了平均值之后发现多次取的结果是不一样，但是不清楚这个芯片采集的周期是多少。多次平均的结果如下所示：</p>
 
-<p>  {% img img-polaroid center /images/2014/data.png &ldquo;多次平均的结果&rdquo; &ldquo;多次平均的结果&rdquo; %}</p>
+<p>  <img class="img-polaroid center" src="/images/2014/data.png" title="&ldquo;多次平均的结果&rdquo; &ldquo;多次平均的结果&rdquo;" ></p>
 
 <p>  ps: 公司周末真热&hellip;.</p>
 

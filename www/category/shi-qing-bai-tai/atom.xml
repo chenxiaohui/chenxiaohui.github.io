@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 世情百态 | CXH.ME]]></title>
   <link href="http://cxh.me/category/shi-qing-bai-tai/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-07-19T14:43:35+08:00</updated>
+  <updated>2014-07-20T10:08:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2014/07/20/normal-roads/"/>
+    <updated>2014-07-20T10:06:00+08:00</updated>
+    <id>http://cxh.me/2014/07/20/normal-roads</id>
+    <content type="html"><![CDATA[<p>  朴树的《后会无期》主题曲：平凡之路</p>
+
+<p><embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
+
+<ul>
+<li>我曾经跨过山和大海</li>
+<li>也穿过人山人海</li>
+<li>我曾经拥有着一切</li>
+<li>转眼都飘散如烟</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[后会无期]]></title>
@@ -28,13 +47,6 @@
 <li>那声再见竟是他最后的一句</li>
 </ul>
 
-
-<!--more-->
-
-
-<p>  另，朴树的《后会无期》主题区：平凡之路</p>
-
-<p><embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
 ]]></content>
   </entry>
   
@@ -75,7 +87,7 @@
     <link href="http://cxh.me/2014/07/08/im/"/>
     <updated>2014-07-08T09:55:00+08:00</updated>
     <id>http://cxh.me/2014/07/08/im</id>
-    <content type="html"><![CDATA[<p>{% img img-polaroid center /images/2014/smartisan.png %}</p>
+    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="/images/2014/smartisan.png"></p>
 
 <p>  话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了&hellip;</p>
 ]]></content>
@@ -91,17 +103,6 @@
 <p>  我对清华，还有 Princeton，Harvard，MIT，Stanford，Berkeley，CMU 等学校的学生都有了解。这些所谓的“世界一流大学”或者“世界一流大学 wannabee”差不多都是类似的气氛。你冲着它们的名气和“关系网”挤破了头皮进去，然后就每天有人在你耳边对其它人感叹：哇，他好牛啊！发了好多 paper，还得了XX奖。跟参加传销大会似的，让你怀疑这些人还有没有自尊。然后就是填鸭式的教育，无止境的作业和考试，让你感觉他们不是在“教育”你，而是在“筛选”你。这种筛选总是筛掉最差的，但也筛掉最好的。因为最好的学生能意识到你在干什么，他们不给你筛选他们的机会。一旦发现其实没学到东西，中途就辍学出去创业了。所以剩下来的就是最一般的，循规蹈矩听话的。在这样的环境里，你感觉不到真正的智慧和真知的存在。GRE 考试所鼓吹的什么“批判性思维”（critical thinking ）在美国大学里其实是相当缺乏的。学生们只不过是在被培训成为某些其他人的工具，他们具有固定的思维定势，像是一个模子倒出来的。他们不是真正的创造者和开拓者。</p>
 
 <p>  原文出处： <a href="http://www.yinwang.org/blog-cn/2014/01/04/authority/">http://www.yinwang.org/blog-cn/2014/01/04/authority/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[去了趟锦州]]></title>
-    <link href="http://cxh.me/2013/10/07/tourism-of-jinzhou/"/>
-    <updated>2013-10-07T18:34:00+08:00</updated>
-    <id>http://cxh.me/2013/10/07/tourism-of-jinzhou</id>
-    <content type="html"><![CDATA[<p>  去锦州的原因，其实是没搞到去其他的地方的票。</p>
-
-<p>  十一这个季节，就是人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊人啊&hellip;</p>
 ]]></content>
   </entry>
   

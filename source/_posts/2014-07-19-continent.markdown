@@ -13,9 +13,3 @@ categories: "世情百态"
 - 你不知道
 - 他们为何离去
 - 那声再见竟是他最后的一句
-
-<!--more-->
-
-  另，朴树的《后会无期》主题区：平凡之路
-
-<embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
