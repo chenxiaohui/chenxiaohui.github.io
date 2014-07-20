@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "平凡之路"
 date: 2014-07-20 10:06
 comments: true
 categories: "世情百态"
