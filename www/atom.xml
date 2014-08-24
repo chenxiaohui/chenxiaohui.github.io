@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-08-17T20:48:58+08:00</updated>
+  <updated>2014-08-24T13:10:05+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawphy Chen]]></name>
@@ -12,6 +12,76 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[C++的限制拷贝]]></title>
+    <link href="http://cxh.me/2014/08/24/no-copy-restrict/"/>
+    <updated>2014-08-24T12:44:00+08:00</updated>
+    <id>http://cxh.me/2014/08/24/no-copy-restrict</id>
+    <content type="html"><![CDATA[<p>  如果需要禁止一个类的拷贝（多鉴于RAII的资源类），按习惯我们会把拷贝构造函数和赋值运算符重载设置为私有的。比如：</p>
+
+<pre><code>class Base
+{
+  public:
+    Base (int a)
+    {
+      cout &lt;&lt;"construct"&lt;&lt;endl;
+    }
+    virtual ~Base (){}
+
+  private:
+    Base(const Base&amp; b)
+    Base &amp; operator=(const Base&amp; b)
+};
+
+int main(int argc, const char *argv[])
+{
+  Base b(1);//ok
+  Base c=1;//error[1]
+  Base d=c;//error
+  c = d;//error
+  return 0;
+}
+</code></pre>
+
+<p>  但是问题在于[1]这里没有道理被屏蔽掉，应该会被优化成Base c(1)。如下代码可以证明：</p>
+
+<pre><code>class Base
+{
+  public:
+    Base (int a)
+    {
+      cout &lt;&lt;"construct"&lt;&lt;endl;
+    }
+    virtual ~Base ()
+    {
+    }
+    Base(const Base&amp; b)
+    {
+      cout&lt;&lt;"copy consturct" &lt;&lt;endl;
+    }
+};
+
+int main(int argc, const char *argv[])
+{
+  Base c=1;
+  return 0;
+}
+</code></pre>
+
+<p>  运行结果：</p>
+
+<pre><code>construct
+</code></pre>
+
+<p>  后来我试了一下才发现，首先这个优化是编译器层面的，所以不同的编译器处理应该是不一样的，虽然我们见到的编译器应该都支持。其次这个优化不是语法检查前做的，也就意味着，在<strong>构造函数没有被声明为explicit的时候</strong>，语法检查会把这个认为是先做了类型转换，然后调用拷贝构造函数，也就是如下：</p>
+
+<pre><code>Base c = Base(1);
+</code></pre>
+
+<p>  这就在编译的时候报错了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[暴力街区13]]></title>
@@ -1035,98 +1105,6 @@ TableBackupSQL table_backup_list_[][5] =
 </code></pre>
 
 <p>  弱爆了&hellip;.所以我最后决定把Transaction和单条事务直接分开了&hellip;.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[同步github上的项目到gitcafe]]></title>
-    <link href="http://cxh.me/2014/06/28/gitsync-github-gitcafe/"/>
-    <updated>2014-06-28T12:41:00+08:00</updated>
-    <id>http://cxh.me/2014/06/28/gitsync-github-gitcafe</id>
-    <content type="html"><![CDATA[<p>  github固然好，只是国内访问有点慢。为了提高博客访问速度我决定把github上托管的博客同步到gitcafe上。最好能在DNS那里做CDN，但是貌似没有免费的服务。那直接指向gitcafe好了，反正没有什么国外访问的需求。简单记一下过程。</p>
-
-<p>  gitcafe自己有导入的功能，但是貌似不是很好用。而且不够智能。所以我们先建立一个跟用户名一样的目录。gitcafe只允许这种方式的Html页面生成。并且只渲染gitcafe-pages分支。</p>
-
-<p>  我们修改source分支.git/config加入</p>
-
-<pre><code>[remote "cafe"]
-  url = git@gitcafe.com:xxx/xxx.git
-  fetch = +refs/heads/*:refs/remotes/cafe/*
-</code></pre>
-
-<p>  由于</p>
-
-<pre><code>[branch "source"]
-  remote = origin
-  merge = refs/heads/source
-</code></pre>
-
-<p>  所以当前source分支（这下面我没有master）默认提交到origin（github)，所以我们通过</p>
-
-<pre><code>git push cafe
-</code></pre>
-
-<p>  提交source，会被扩展成：</p>
-
-<pre><code>git push cafe source:source "当前分支
-</code></pre>
-
-<p>  然后提交<em>deploy，这是渲染之后的html页面，前面那个是octopress的源码。修改</em>deploy/.git/config</p>
-
-<pre><code>[remote "cafe"]
-  url = git@gitcafe.com:chenxiaohui/chenxiaohui.git
-  fetch = +refs/heads/*:refs/remotes/cafe/*
-</code></pre>
-
-<p>  然后提交:</p>
-
-<pre><code>git push cafe master:gitcafe-pages
-</code></pre>
-
-<!--more-->
-
-
-<p>  本地分支名字和远程分支不同的时候不能省略，否则会被自动扩展成相同的名字。这就是问题了，我们多了一个master分支&hellip;.</p>
-
-<p>  按照gitcafe的教程删除master未果，不过顺便把默认分支改成了gitcafe-pages。删除master分支的时候，里面有一段说明：</p>
-
-<pre><code>为什么要删除 master 分支
-当你在创建一个新的仓库的时候没有指定分支的话，Git 会默认创建 master 分支并指定它为默认分支。
-
-一般情况下使用 master 分支作为整个项目的核心分支是很普遍的行为， 而 Pages 服务之所以使用 gitcafe-pages 分支的方式区别项目文件和 Pages 文件。 这样你就可以在一个仓库中保存他们而且彼此不会有任何影响。
-
-但是像是个人主页类的 Pages 服务或其他一些应用场合，可能并不需要 master 的存在， 甚至必须要删除它，或者只是你有洁癖┑(￣Д ￣)┍ 那么你就需要如下的方法来删除 master 分支。
-</code></pre>
-
-<p>  (#‵′)靠，就是这样。</p>
-
-<p>  最后修改一下Rakefile</p>
-
-<pre><code>...
-    system "git push origin #{deploy_branch}"
-    system "git push cafe #{deploy_branch}:gitcafe-pages"
-    puts "\n## Github Pages deploy complete"
-  end
-...
-
-  puts "\n## Pushing source"
-  system "git push origin "
-  system "git push cafe"
-  puts "\n## Github source pushed"
-</code></pre>
-
-<p>  当然问题是同一个本地分支track了两个远程分支，但是默认值只能配置一个：</p>
-
-<pre><code>[branch "master"]
-    remote = cafe
-    merge = refs/heads/gitcafe-pages
-</code></pre>
-
-<p>  这说明master分支上更新gitcafe必须指明repository，好在我们直接用git push/pull不带任何参数的时候不多。同时如果git pull的话，默认的merge两个repository是不同的，好在我们也一般不用从两个repository上面pull。</p>
-
-<p>  顺便去挂一下域名就好了。</p>
-
-<p>  矮马，快多了。</p>
 ]]></content>
   </entry>
   
