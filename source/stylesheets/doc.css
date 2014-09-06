@@ -556,12 +556,16 @@ form.well {
 .well hr {
     margin: 18px 0;
 }
+
 .well{
 background: white;
 box-shadow: 0 0 10px #cecece;
 border-radius: 8px 8px 8px 8px;
 margin-bottom: 35px;
 border-bottom: #f2f2f2 2px solid;
+}
+.span9 .well{
+border-radius: 0 0 8px 8px;
 }
 
 /* Fake the :focus state to demo it */
