@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-06T17:21:40+08:00</updated>
+  <updated>2014-09-06T17:22:52+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawphy Chen]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[改善C++程序的150个建议勘误]]></title>
+    <title type="html"><![CDATA[《改善C++程序的150个建议》勘误]]></title>
     <link href="http://cxh.me/2014/09/06/error-in-cpp-150-notes/"/>
     <updated>2014-09-06T11:41:00+08:00</updated>
     <id>http://cxh.me/2014/09/06/error-in-cpp-150-notes</id>

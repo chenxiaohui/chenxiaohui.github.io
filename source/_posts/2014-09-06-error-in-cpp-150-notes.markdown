@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "改善C++程序的150个建议勘误"
+title: "《改善C++程序的150个建议》勘误"
 date: 2014-09-06 11:41
 comments: true
 categories: "C++"
