@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "用google来验证一下麦克劳林展开式"
+title: "用google来验证一下Maclaurin展开式"
 date: 2014-09-07 15:35
 comments: true
 categories: "基础理论"
