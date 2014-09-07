@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-06T17:47:33+08:00</updated>
+  <updated>2014-09-07T16:16:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawphy Chen]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用google来验证一下麦克劳林展开式]]></title>
+    <link href="http://cxh.me/2014/09/07/using-google-verify-maclaurin-series/"/>
+    <updated>2014-09-07T15:35:00+08:00</updated>
+    <id>http://cxh.me/2014/09/07/using-google-verify-maclaurin-series</id>
+    <content type="html"><![CDATA[<p>  偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。</p>
+
+<p>  泰勒级数的定义如下：</p>
+
+<p>  {% img img-polaroid center /images/2014/taylor.png &ldquo;Taylor公式&rdquo; &ldquo;Taylor公式&rdquo; %}</p>
+
+<p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
+
+<p>  {% img img-polaroid center /images/2014/Maclaurin.png &ldquo;Maclaurin展开式&rdquo; &ldquo;Maclaurin展开式&rdquo; %}</p>
+
+<!--more-->
+
+
+<p>  几个重要的Maclaurin展开如下：</p>
+
+<p>  {% img center /images/2014/sinx.png %}
+  {% img center /images/2014/cosx.png &ldquo;几个重要的Maclaurin展开&rdquo; &ldquo;几个重要的Maclaurin展开&rdquo; %}</p>
+
+<p>  这里我们验证一下sinx的逼近随着级数的增加而增加的情况。这也对应于拟合过程拟合维度的增加，相对于一元的拟合，二元或者多元就是会精确一些，但是会带来过拟合的风险。</p>
+
+<p>  首先是sinx的图像</p>
+
+<p>  {% img center /images/2014/sin_x.png %}</p>
+
+<p>  一元函数拟合的时候，y=x</p>
+
+<p>  {% img center /images/2014/x_1.png %}</p>
+
+<p>  二元拟合的时候，y=x-x<sup>3</sup>/3!</p>
+
+<p>  {% img center /images/2014/x_2.png %}</p>
+
+<p>  三元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!</p>
+
+<p>  {% img center /images/2014/x_3.png %}</p>
+
+<p>  四元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!-x<sup>7</sup>/7!</p>
+
+<p>  {% img center /images/2014/x_4.png %}</p>
+
+<p>  合并起来的图像大致如此：</p>
+
+<p>  {% img center /images/2014/combine.png %}</p>
+
+<p>  再高阶的图像就不画了，上面基本保证了坐标系缩放比例是一致的(sinx的图像由于y轴比例没有跟其他的x轴保持一样的缩放比例），可以看到随着拟合维度的升高，拟合曲线越来越逼近sinx，这也直观体现了Maclaurin展开式的意义。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[C++变量的初始化方式]]></title>
@@ -264,71 +317,6 @@ ec(test.prototype.age);
 <p>  (ps:话说那个bogo算法到底在做甚么??)</p>
 
 <p>  还有之前一直很火的一个视频：排序算法的声音，一起欣赏一下吧~~</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[面向对象语言的编译过程&#8211;以C++为例(二)]]></title>
-    <link href="http://cxh.me/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-2/"/>
-    <updated>2011-01-20T00:00:00+08:00</updated>
-    <id>http://cxh.me/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-2</id>
-    <content type="html"><![CDATA[<p>  摘要:</p>
-
-<p>  概述面向对象语言的重要概念和实现技术</p>
-
-<p>  以C 语言为例，介绍如何将C 程序翻译成C程序</p>
-
-<p>  实际的编译器大都把C 程序直接翻译成低级语言程序</p>
-
-<p>  编译器对于继承的处理，往往是父类包含子类的对象，例如</p>
-
-<pre><code>    struct Base
-
-    {
-
-        int a;
-
-    };
-
-    struct Derived
-
-    {
-
-        Base base;
-
-        int b;
-
-    };
-</code></pre>
-
-<p>  再深入的偶也不会了………</p>
-
-<p>  下面我们讨论对面向对象多态特性的处理。多态是面向对象语言最为精彩的地方，可以说是诞生无数神奇的特性，多态给了我们极大的自由，让我们可以在一套类的体系结构中自由游走，可以写很少的代码，但是完成复杂的功能，可以在别人的基础上做二次开发……</p>
-
-<p>  好了，不打广告了，下面举一个简单的例子说明编译器对多态的处理。首先介绍一下虚函数表。大多数编译器实现多态都是通过虚函数表，虚函数表是一个保存了多个函数指针的表，其中每个函数对应着一个虚函数（非虚函数不参与），调用一个虚函数的时候，编译器通过虚函数表查找相应位置的函数，所以编译时编译器不知道这个函数会调用到基类的函数还是派生类的函数，所以叫动态绑定或运行时绑定。</p>
-
-<p>  以下是一个简单的多态实例程序，有了虚函数所以可以在基类指针指向派生类对象的时候运行派生类的函数。</p>
-
-<pre><code>  #include
-
-  using namespace std;
-
-  class Base
-
-  {
-
-  public:
-
-  virtual void Hello();
-
-  };
-
-  void Base::Hello()
-
-  {
-
-  cout
-</code></pre>
 ]]></content>
   </entry>
   

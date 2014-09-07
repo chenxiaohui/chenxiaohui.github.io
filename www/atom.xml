@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-06T17:47:33+08:00</updated>
+  <updated>2014-09-07T16:16:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawphy Chen]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用google来验证一下麦克劳林展开式]]></title>
+    <link href="http://cxh.me/2014/09/07/using-google-verify-maclaurin-series/"/>
+    <updated>2014-09-07T15:35:00+08:00</updated>
+    <id>http://cxh.me/2014/09/07/using-google-verify-maclaurin-series</id>
+    <content type="html"><![CDATA[<p>  偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。</p>
+
+<p>  泰勒级数的定义如下：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/taylor.png" title="Taylor公式" alt="Taylor公式"><p class="align-center">Taylor公式</p></p>
+
+<p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/Maclaurin.png" title="Maclaurin展开式" alt="Maclaurin展开式"><p class="align-center">Maclaurin展开式</p></p>
+
+<!--more-->
+
+
+<p>  几个重要的Maclaurin展开如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/sinx.png">
+  <img class="center" src="http://cxh.me/images/2014/cosx.png" title="几个重要的Maclaurin展开" alt="几个重要的Maclaurin展开"><p class="align-center">几个重要的Maclaurin展开</p></p>
+
+<p>  这里我们验证一下sinx的逼近随着级数的增加而增加的情况。这也对应于拟合过程拟合维度的增加，相对于一元的拟合，二元或者多元就是会精确一些，但是会带来过拟合的风险。</p>
+
+<p>  首先是sinx的图像</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/sin_x.png"></p>
+
+<p>  一元函数拟合的时候，y=x</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_1.png"></p>
+
+<p>  二元拟合的时候，y=x-x<sup>3</sup>/3!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_2.png"></p>
+
+<p>  三元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_3.png"></p>
+
+<p>  四元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!-x<sup>7</sup>/7!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_4.png"></p>
+
+<p>  合并起来的图像大致如此：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/combine.png"></p>
+
+<p>  再高阶的图像就不画了，上面基本保证了坐标系缩放比例是一致的(sinx的图像由于y轴比例没有跟其他的x轴保持一样的缩放比例），可以看到随着拟合维度的升高，拟合曲线越来越逼近sinx，这也直观体现了Maclaurin展开式的意义。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[《改善C++程序的150个建议》勘误]]></title>
@@ -827,95 +880,6 @@ int clean_old_files(const char * filename)
     <content type="html"><![CDATA[<p>  测试一张静物：宾得 SMC FA 50mm F1.4， 光圈2.0 快门 1/60</p>
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cup.jpg"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[NVI的应用-虚函数模板]]></title>
-    <link href="http://cxh.me/2014/07/01/nvi-usage-of-virtual-template/"/>
-    <updated>2014-07-01T14:52:00+08:00</updated>
-    <id>http://cxh.me/2014/07/01/nvi-usage-of-virtual-template</id>
-    <content type="html"><![CDATA[<p>  我们有时候需要把一个模板函数实现为虚函数，但是C++不支持模板虚函数（至少目前是），所以需要一些方法绕过去。以下是郁白师兄提供的解决方案，确实比较巧妙，之前没想过NVI（NonVirtual Interface）能解决这个问题。</p>
-
-<pre><code>class IAllocator
-{
-  public:
-    virtual ~IAllocator() {};
-    virtual void *alloc(const int64_t size) = 0;
-};
-template &lt;class T&gt;
-class TAllocator : public IAllocator
-{
-  public:
-    TAllocator(T &amp;allocator) : allocator_(allocator) {};
-    void *alloc(const int64_t size) {return allocator_.alloc(size);};
-  private:
-    T &amp;allocator_;
-};
-
-class Base
-{
-  public:
-    virtual ~Base() {};
-  public:
-    template &lt;class Allocator&gt;
-    void get_number(Allocator &amp;allocator)
-    {
-      TAllocator&lt;Allocator&gt; ta(allocator);
-      this-&gt;get_number_(ta);
-    };
-  private:
-    virtual void get_number_(IAllocator &amp;allocator) = 0;
-};
-
-class Sub1 : public Base
-{
-  private:
-    void get_number_(IAllocator &amp;allocator)
-    {
-      allocator.alloc(1);
-      fprintf(stdout, "sub1::get_number_ invoked\n");
-    };
-};
-
-class Sub2 : public Base
-{
-  private:
-    void get_number_(IAllocator &amp;allocator)
-    {
-      allocator.alloc(1);
-      fprintf(stdout, "sub2::get_number_ invoked\n");
-    };
-};
-
-class PA
-{
-  public:
-    void *alloc(const int64_t sz)
-    {
-      fprintf(stdout, "pa::alloc sz=%ld\n", sz);
-      return NULL;
-    };
-};
-
-int main()
-{
-  Sub1 s1;
-  Sub2 s2;
-  PA pa;
-
-  s1.get_number(pa);
-  s2.get_number(pa);
-}
-</code></pre>
-
-<p>  主要思想是把模板特化，特化之后的函数实现虚函数，把模板遵循的规则转化到继承体系，让一个实例化的模板参数遵循Interface的接口要求。所以TAllocator这个Wrapper至关重要。</p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 【C++程序设计技巧】NVI（Non-Virtual Interface ）, <a href="http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html">http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html</a></p>
-
-<p>[2] 纯虚函数能为private吗？, <a href="http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html">http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html</a></p></blockquote>
 ]]></content>
   </entry>
   
