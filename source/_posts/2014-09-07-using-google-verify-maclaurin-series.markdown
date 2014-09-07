@@ -9,11 +9,11 @@ categories: "基础理论"
   
   泰勒级数的定义如下：
 
-  {% img img-polaroid center /images/2014/taylor.png "Taylor公式" "Taylor公式" %}
+  {% img center /images/2014/taylor.png "Taylor公式" "Taylor公式" %}
 
   不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：
 
-  {% img img-polaroid center /images/2014/Maclaurin.png "Maclaurin展开式" "Maclaurin展开式" %}
+  {% img center /images/2014/Maclaurin.png "Maclaurin展开式" "Maclaurin展开式" %}
 
 <!--more-->
 

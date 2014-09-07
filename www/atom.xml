@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-07T16:17:13+08:00</updated>
+  <updated>2014-09-07T16:18:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawphy Chen]]></name>
@@ -22,11 +22,11 @@
 
 <p>  泰勒级数的定义如下：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/taylor.png" title="Taylor公式" alt="Taylor公式"><p class="align-center">Taylor公式</p></p>
+<p>  <img class="center" src="http://cxh.me/images/2014/taylor.png" title="Taylor公式" alt="Taylor公式"><p class="align-center">Taylor公式</p></p>
 
 <p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/Maclaurin.png" title="Maclaurin展开式" alt="Maclaurin展开式"><p class="align-center">Maclaurin展开式</p></p>
+<p>  <img class="center" src="http://cxh.me/images/2014/Maclaurin.png" title="Maclaurin展开式" alt="Maclaurin展开式"><p class="align-center">Maclaurin展开式</p></p>
 
 <!--more-->
 
