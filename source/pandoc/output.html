@@ -1,29 +1,27 @@
 <table>
-<caption>表3-1 不同中心性测量指标之间的关系[^16]</caption>
-<col width="20%" />
-<col width="19%" />
-<col width="27%" />
-<col width="32%" />
+<caption>表1 总结下对象生成类的函数的编译器行为</caption>
 <thead>
 <tr class="header">
-<th align="left">测量指标</th>
-<th align="center">低程度中心性</th>
-<th align="center">低亲近中心性</th>
-<th align="center">低居间中心性</th>
+<th align="center">函数</th>
+<th align="center">没有声明的情况下是否自动生成</th>
+<th align="center">是否默认调用基类的对应函数</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">高程度中心性</td>
-<td align="center"></td>
-<td align="center">“自我”所嵌入的聚类 远离网络中其他节点</td>
-<td align="center">“自我”的联系人是冗余的， 整个世界绕他而行</td>
+<td align="center">构造函数</td>
+<td align="center">是</td>
+<td align="center">是</td>
 </tr>
 <tr class="even">
-<td align="left">高亲近中心性</td>
-<td align="center">是联系重要他人或 活跃人物的关键人物</td>
-<td align="center"></td>
-<td align="center">在事件中，自我位于一个相互 联系密切、活跃的聚类中，与 很多节点都很接近；其他节点也是如此</td>
+<td align="center">拷贝构造</td>
+<td align="center">是</td>
+<td align="center">否,调用基类默认构造函数构造基类对象</td>
+</tr>
+<tr class="odd">
+<td align="center">等号运算符重载</td>
+<td align="center">否</td>
+<td align="center">否</td>
 </tr>
 </tbody>
 </table>
