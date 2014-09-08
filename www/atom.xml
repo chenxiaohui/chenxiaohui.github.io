@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-08T20:16:36+08:00</updated>
+  <updated>2014-09-08T21:29:58+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawn Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[夜景几张]]></title>
+    <link href="http://cxh.me/2014/09/08/ffc-pictures/"/>
+    <updated>2014-09-08T21:25:00+08:00</updated>
+    <id>http://cxh.me/2014/09/08/ffc-pictures</id>
+    <content type="html"><![CDATA[<p>  实在是镜头决定了90%，套头拍月亮基本是对不上焦的节奏，只能拍拍旁边的楼了。财富金融中心，应该是北京最高的写字楼了。貌似有跑焦。</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/ffc_dark.jpg" title="FFC" alt="FFC"><p class="align-center">FFC</p></p>
+
+<!--more-->
+
+
+<p>  再贴一张曝光长一点的。</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/ffc_light.jpg" title="FFC" alt="FFC"><p class="align-center">FFC</p></p>
+
+<p>  以及裤衩沐浴在月光中的&hellip;</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/moon.jpg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[永不分开，世界的爱]]></title>
@@ -855,35 +877,6 @@ int clean_old_files(const char * filename)
 </code></pre>
 
 <p>  上面会导致链接文件指向etc/etc/file.bin.2014xxx而失效。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[跟事务相关的一些文章]]></title>
-    <link href="http://cxh.me/2014/07/02/article-on-transaction/"/>
-    <updated>2014-07-02T16:45:00+08:00</updated>
-    <id>http://cxh.me/2014/07/02/article-on-transaction</id>
-    <content type="html"><![CDATA[<p>  主要纪录一下跟事务相关的一些文章。主要是博客，有论文加论文。顺便纪念下女神订婚。图是转载。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/tangwei.jpg"></p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 数据库事务隔离级别和锁实现机制, <a href="http://comedsh.iteye.com/blog/698733">http://comedsh.iteye.com/blog/698733</a></p>
-
-<p>[2] 数据库事务的实现（一） 故障恢复 （undo日志）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html</a></p>
-
-<p>[3] 数据库事务的实现-故障恢复（二）（undo日志检查点）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html</a></p>
-
-<p>[4] 为 Key-Value 数据库实现MVCC 事务, <a href="http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/">http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/</a></p>
-
-<p>[5] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p>
-
-<p>[6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p>
-
-<p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p>
-
-<p>[8] 两阶段提交(2PC)协议&#8221; , <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
 ]]></content>
   </entry>
   
