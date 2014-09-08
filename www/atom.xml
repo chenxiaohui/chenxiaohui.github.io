@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-07T20:55:17+08:00</updated>
+  <updated>2014-09-08T20:16:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawn Chen]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[永不分开，世界的爱]]></title>
+    <link href="http://cxh.me/2014/09/08/the-love-of-the-world/"/>
+    <updated>2014-09-08T20:03:00+08:00</updated>
+    <id>http://cxh.me/2014/09/08/the-love-of-the-world</id>
+    <content type="html"><![CDATA[<p>  这应该算是很古老很古老的一首歌了，当时赵薇还是个青涩的小燕子。2000年的时候还在上初中，实在不理解新千年的意义。现在回想起来，新千年的到来，对人类来说，实在是个有着难以名状的意义。20世纪前半叶的多灾多难，后半叶的冷战阴云，没有哪个世纪会产生如此重大的人类群体性灾难。旧的秩序被打破，核战争的阴云，武器发展到批量化的收割人命，20世纪可能是人类历史上绝无仅有一个世纪。</p>
+
+<p>  从这个角度想，这首歌真是充满了感慨。停留在20世纪的末尾，回首这一个多灾多难的世纪，看人类从错误中反省，最终一起站在新千年的入口展望未来。某种意义上说，人类第一次站在一起迎接和平，憧憬未来。这其中的意味可能只有经历过苦难的人才体会的出来，虽然2000年的时候局部战争依然在进行着。</p>
+
+<p>  一首歌的意味只有联想到背景才体会得到啊，不知道有多少人还记得这首歌了。不妨回味。</p>
+
+<p>  <embed src="http://player.yinyuetai.com/video/player/438643/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用google来验证一下Maclaurin展开式]]></title>
@@ -869,17 +884,6 @@ int clean_old_files(const char * filename)
 <p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p>
 
 <p>[8] 两阶段提交(2PC)协议&#8221; , <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[测试一张静物]]></title>
-    <link href="http://cxh.me/2014/07/01/photo-of-a-cup/"/>
-    <updated>2014-07-01T19:44:00+08:00</updated>
-    <id>http://cxh.me/2014/07/01/photo-of-a-cup</id>
-    <content type="html"><![CDATA[<p>  测试一张静物：宾得 SMC FA 50mm F1.4， 光圈2.0 快门 1/60</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cup.jpg"></p>
 ]]></content>
   </entry>
   
