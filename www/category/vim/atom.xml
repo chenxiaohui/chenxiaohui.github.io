@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-09-15T09:36:50+08:00</updated>
+  <updated>2014-10-11T14:34:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Shawn Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自动生成ifdef标记和作者信息的插件]]></title>
+    <link href="http://cxh.me/2014/10/11/ifdef-generator/"/>
+    <updated>2014-10-11T14:28:00+08:00</updated>
+    <id>http://cxh.me/2014/10/11/ifdef-generator</id>
+    <content type="html"><![CDATA[<p>  针对团队开发为了统一代码风格往往有比较严格的代码规范。为了自动化的生成一些不变的内容，写了如下两个插件（有的是改动）：</p>
+
+<blockquote><ol>
+<li>ifdef.vim 生成ifndef标记，防止重复包含。</li>
+<li>author_info.vim 生成更新作者信息版权声明</li>
+</ol>
+</blockquote>
+
+<p>  详见<a href="https://github.com/chenxiaohui/ifdef_generator">https://github.com/chenxiaohui/ifdef_generator</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[post-review插件]]></title>
@@ -452,53 +469,6 @@ nmap &lt;leader&gt;rp :call RakePreview()&lt;cr&gt;
 </code></pre>
 
 <p>  chrome打开的时候还没有执行preview, 所以需要再刷新一下&hellip;preview有些输出, 觉得不想看的可以重定向.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用vimdiff来显示gitdiff]]></title>
-    <link href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/"/>
-    <updated>2013-09-14T11:40:00+08:00</updated>
-    <id>http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff</id>
-    <content type="html"><![CDATA[<p>  git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.</p>
-
-<p>  具体说来有两种办法:</p>
-
-<p>  <!-- more --></p>
-
-<p>  在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.</p>
-
-<pre><code>git config --global diff.tool vimdiff
-git config --global difftool.prompt No
-</code></pre>
-
-<p>  这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.</p>
-
-<p>  第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下的结果:</p>
-
-<p>  <img src="/images/2013/difftool-prompt.png" title="git diff prompt" alt="" /></p>
-
-<p>  当然我们也可以替换掉默认的diff工具, 可以指定</p>
-
-<pre><code>  git config --global diff.external git_diff_wrapper
-</code></pre>
-
-<p>  然后在PATH的某个目录下建立git_diff_wrapper, 比如/usr/bin/git_diff_wrapper, 内容如下:</p>
-
-<pre><code>#!/bin/sh
-vimdiff "$2" "$5"
-</code></pre>
-
-<p>  最后加执行权限</p>
-
-<pre><code>chmod +x git_diff_wrapper
-</code></pre>
-
-<p>  执行git diff的时候就可以看到效果</p>
-
-<p><img src="/images/2013/git-vimdiff.png" title="vim diff 效果" alt="" /></p>
-
-<p>  可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).</p>
 ]]></content>
   </entry>
   
