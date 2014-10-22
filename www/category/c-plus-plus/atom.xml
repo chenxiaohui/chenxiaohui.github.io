@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-20T15:37:52+08:00</updated>
+  <updated>2014-10-22T18:00:15+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[析构函数和成员析构的先后顺序]]></title>
+    <link href="http://cxh.me/2014/10/22/destruct-and-member-destruct/"/>
+    <updated>2014-10-22T17:57:00+08:00</updated>
+    <id>http://cxh.me/2014/10/22/destruct-and-member-destruct</id>
+    <content type="html"><![CDATA[<p>  肖总问到这个问题，写了个程序验证：</p>
+
+<pre><code>class Member
+{
+ public:
+   Member (){}
+   virtual ~Member (){printf("member destruct\n");}
+};
+class Base
+{
+  public:
+    Base (){}
+    virtual ~Base (){ printf("destruct\n");}
+  private:
+    Member member_;
+};
+int main(int argc, const char *argv[])
+{
+  Base c;
+  return 0;
+}
+</code></pre>
+
+<p>  结果是：</p>
+
+<pre><code>  destruct
+  member destruct
+</code></pre>
+
+<p>  可见析构的时候先调用析构函数，最后析构成员对象。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[《改善C++程序的150个建议》勘误]]></title>
@@ -264,80 +302,6 @@ int x = 1;
 <pre><code>for i in range(1,10):
     pass
 print i
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[命名空间和友元冲突]]></title>
-    <link href="http://cxh.me/2014/07/10/namespace-conflicts-with-friend/"/>
-    <updated>2014-07-10T19:09:00+08:00</updated>
-    <id>http://cxh.me/2014/07/10/namespace-conflicts-with-friend</id>
-    <content type="html"><![CDATA[<p>  今天遇到一个问题，需要跨namespace定义友元，这种情况比较常见的是测试类需要访问源码类，gtest据说有个FRIEND_TEST宏，以前用过好像有问题。这里我们直接用友元:</p>
-
-<pre><code>namespace oceanbase
-{
-    namespace election
-    {
-        class ObElectionServer : public ObSingleServer
-        {
-            friend class ObElectionTester;
-            ...
-        }
-    }
-}
-namespace oceanbase
-{
-  namespace tests
-  {
-    namespace election
-    {
-        class ObElectionTester : public ObElectionServer
-        {
-            ...
-        }
-    }
-}
-</code></pre>
-
-<p>  这样是肯定不行的，这等于告诉ObElectionServer在自己的namespace下找ObElectionTester。改成如下：</p>
-
-<!--more-->
-
-
-<pre><code>namespace oceanbase
-{
-    namespace election
-    {
-        class ObElectionServer : public ObSingleServer
-        {
-            friend class oceanbase::tests::election::ObElectionTester;
-            ...
-        }
-    }
-}
-</code></pre>
-
-<p>  这样也不行，ObElectionServer不知道ObElectionTester是个包含namespace的类名。所以我们需要前向声明一下类。</p>
-
-<pre><code>namespace oceanbase
-{
-  namespace tests
-  {
-    namespace election
-    {
-      class ObElectionTester;
-    }
-  }
-  namespace election
-  {
-    class ObElectionServer : public ObSingleServer
-    {
-        friend class oceanbase::tests::election::ObElectionTester;
-        ....
-    }
-  }
-}
 </code></pre>
 ]]></content>
   </entry>
