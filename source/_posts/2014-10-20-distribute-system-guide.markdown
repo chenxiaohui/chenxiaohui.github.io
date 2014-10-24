@@ -70,9 +70,11 @@ categories: "Oceanbase"
 
 >\[2] 章炎的技术博客, <http://dirlt.com/>
 
->\[3] 何登成的技术博客, <http://hedengcheng.com/>
+>\[3] 何登成的技术博客, <http://hedengcheng.com/> 大牛不解释
 
 >\[4] 淘宝核心系统团队博客, <http://csrd.aliapp.com/>
+
+>\[5] 吴镝 <http://www.cnblogs.com/foxmailed/> 专注系统，基础架构，分布式系统
 
   都看还是需要时间的，我只是读完了一部分翻完了一部分，很多还需要再看一遍。分布式系统最好的学习方法当时是实现一个分布式系统，像晓楚[macrakv](https://github.com/raywill/macraykv "Macrakv")这样，但是工程量和难度比较大，退而求其次的办法是看源码，redis/hbase/leveldb/memcached都是不错的例子。
 

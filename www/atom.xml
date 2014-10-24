@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-22T18:00:15+08:00</updated>
+  <updated>2014-10-24T17:54:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -135,9 +135,11 @@ int main(int argc, const char *argv[])
 
 <p>[2] 章炎的技术博客, <a href="http://dirlt.com/">http://dirlt.com/</a></p>
 
-<p>[3] 何登成的技术博客, <a href="http://hedengcheng.com/">http://hedengcheng.com/</a></p>
+<p>[3] 何登成的技术博客, <a href="http://hedengcheng.com/">http://hedengcheng.com/</a> 大牛不解释</p>
 
-<p>[4] 淘宝核心系统团队博客, <a href="http://csrd.aliapp.com/">http://csrd.aliapp.com/</a></p></blockquote>
+<p>[4] 淘宝核心系统团队博客, <a href="http://csrd.aliapp.com/">http://csrd.aliapp.com/</a></p>
+
+<p>[5] 吴镝 <a href="http://www.cnblogs.com/foxmailed/">http://www.cnblogs.com/foxmailed/</a> 专注系统，基础架构，分布式系统</p></blockquote>
 
 <p>  都看还是需要时间的，我只是读完了一部分翻完了一部分，很多还需要再看一遍。分布式系统最好的学习方法当时是实现一个分布式系统，像晓楚<a href="https://github.com/raywill/macraykv" title="Macrakv">macrakv</a>这样，但是工程量和难度比较大，退而求其次的办法是看源码，redis/hbase/leveldb/memcached都是不错的例子。</p>
 ]]></content>
