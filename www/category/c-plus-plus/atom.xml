@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-24T17:54:19+08:00</updated>
+  <updated>2014-10-28T16:05:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[澄清几个关于C++继承的问题]]></title>
+    <link href="http://cxh.me/2014/10/28/cpp-derive-problems/"/>
+    <updated>2014-10-28T15:56:00+08:00</updated>
+    <id>http://cxh.me/2014/10/28/cpp-derive-problems</id>
+    <content type="html"><![CDATA[<p>  之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+class Base
+{
+  public:
+    Base (){}
+    virtual ~Base (){}
+    virtual void print() {printf("Base\n");}
+};
+
+class Middle : public Base
+{
+  public:
+    Middle(){}
+    virtual ~Middle(){}
+    void print() {printf("Middle\n");}
+};
+
+class Derived : public Middle
+{
+  public:
+    Derived(){}
+    virtual ~Derived(){}
+    void print() {printf("Derived\n");}
+};
+
+int main(int argc, const char *argv[])
+{
+  Base * p = NULL;
+  Base b;
+  Middle m;
+  Derived d;
+  p = &amp; b;
+  p-&gt;print();
+  p = &amp; m;
+  p-&gt;print();
+  p = &amp; d;
+  p-&gt;print();
+  return 0;
+}
+</code></pre>
+
+<!--more-->
+
+
+<p>  结果是</p>
+
+<pre><code>Base
+Middle
+Derived
+</code></pre>
+
+<p>  可见只要定义了virtual关键字，在整个继承体系中这个函数都会成为虚函数。第二个问题是作为一个中间类（Middle)不想覆盖基类的虚函数，默认的情况下有什么影响。猜想应该就默认用了基类的虚函数。不影响后面的继承关系。注释掉Middle的print函数实现。结果如下：</p>
+
+<pre><code>Base
+Base
+Derived
+</code></pre>
+
+<p>  跟预想一致。水文一篇，可忽略。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[析构函数和成员析构的先后顺序]]></title>
@@ -265,44 +334,6 @@ void ar_cnt(int cnt,...)
 <p>[2] 函数调用的区别：<em>cdecl以及</em>stdcall, <a href="http://www.cppblog.com/kenny/archive/2011/04/19/144539.html">http://www.cppblog.com/kenny/archive/2011/04/19/144539.html</a></p>
 
 <p>[3] 透析C语言可变参数问题, <a href="http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html">http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[java/c++变量作用域的一点小区别]]></title>
-    <link href="http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff/"/>
-    <updated>2014-07-17T11:16:00+08:00</updated>
-    <id>http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff</id>
-    <content type="html"><![CDATA[<p>  偶然遇到一个问题，java里面这么写是有问题的</p>
-
-<pre><code>int x = 1;
-    {
-        int x = 2;
-    }
-</code></pre>
-
-<p>  作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。</p>
-
-<pre><code>    {
-        int x = 2;
-    }
-int x = 1;
-</code></pre>
-
-<p>  C++里面这样是没问题的</p>
-
-<pre><code>  int x = 1 ;
-  {
-    int x  = 2;
-  }
-</code></pre>
-
-<p>  相对于脚本语言，这种限制似乎就宽多了。这样都可以。</p>
-
-<pre><code>for i in range(1,10):
-    pass
-print i
-</code></pre>
 ]]></content>
   </entry>
   

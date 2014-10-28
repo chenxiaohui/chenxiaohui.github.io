@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-24T17:54:19+08:00</updated>
+  <updated>2014-10-28T16:05:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,75 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[澄清几个关于C++继承的问题]]></title>
+    <link href="http://cxh.me/2014/10/28/cpp-derive-problems/"/>
+    <updated>2014-10-28T15:56:00+08:00</updated>
+    <id>http://cxh.me/2014/10/28/cpp-derive-problems</id>
+    <content type="html"><![CDATA[<p>  之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+class Base
+{
+  public:
+    Base (){}
+    virtual ~Base (){}
+    virtual void print() {printf("Base\n");}
+};
+
+class Middle : public Base
+{
+  public:
+    Middle(){}
+    virtual ~Middle(){}
+    void print() {printf("Middle\n");}
+};
+
+class Derived : public Middle
+{
+  public:
+    Derived(){}
+    virtual ~Derived(){}
+    void print() {printf("Derived\n");}
+};
+
+int main(int argc, const char *argv[])
+{
+  Base * p = NULL;
+  Base b;
+  Middle m;
+  Derived d;
+  p = &amp; b;
+  p-&gt;print();
+  p = &amp; m;
+  p-&gt;print();
+  p = &amp; d;
+  p-&gt;print();
+  return 0;
+}
+</code></pre>
+
+<!--more-->
+
+
+<p>  结果是</p>
+
+<pre><code>Base
+Middle
+Derived
+</code></pre>
+
+<p>  可见只要定义了virtual关键字，在整个继承体系中这个函数都会成为虚函数。第二个问题是作为一个中间类（Middle)不想覆盖基类的虚函数，默认的情况下有什么影响。猜想应该就默认用了基类的虚函数。不影响后面的继承关系。注释掉Middle的print函数实现。结果如下：</p>
+
+<pre><code>Base
+Base
+Derived
+</code></pre>
+
+<p>  跟预想一致。水文一篇，可忽略。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[析构函数和成员析构的先后顺序]]></title>
@@ -839,15 +908,6 @@ else
 <h3>参考文献:</h3>
 
 <blockquote><p>[1] 两阶段提交(2PC)协议, <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[发一张喵星人的照片]]></title>
-    <link href="http://cxh.me/2014/07/06/photo-of-cat/"/>
-    <updated>2014-07-06T18:18:00+08:00</updated>
-    <id>http://cxh.me/2014/07/06/photo-of-cat</id>
-    <content type="html"><![CDATA[<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cat.jpg"></p>
 ]]></content>
   </entry>
   
