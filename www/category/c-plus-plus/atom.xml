@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-28T16:05:21+08:00</updated>
+  <updated>2014-10-29T21:32:26+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,139 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
+    <link href="http://cxh.me/2014/10/29/cpp-virtual-template-function/"/>
+    <updated>2014-10-29T21:05:00+08:00</updated>
+    <id>http://cxh.me/2014/10/29/cpp-virtual-template-function</id>
+    <content type="html"><![CDATA[<p>  自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。</p>
+
+<p>  例子如下：</p>
+
+<!--more-->
+
+
+<pre><code>enum SessionType
+{
+  ROSession,
+  RWSession,
+  RPSession
+};
+class BaseTransCtx
+{
+  public:
+    BaseTransCtx (){}
+    virtual ~BaseTransCtx (){}
+};
+template&lt;typename Type&gt;
+class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+typedef ISessionCtxFactory&lt;SessionType&gt; SessionMgr;
+class TransSessionMgr: public SessionMgr
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    BaseTransCtx *alloc(const SessionType type)
+    {
+      return NULL;
+    }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+int main(int argc, const char *argv[])
+{
+  TransSessionMgr trans;
+  BaseTransCtx* ctx = trans.alloc(RWSession);
+  trans.free(ctx);
+  return 0;
+}
+</code></pre>
+
+<p>  模板类继承虚基类也可以。</p>
+
+<pre><code>template&lt;typename Type&gt;
+class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+template&lt;typename Type&gt;
+class TransSessionMgr: public ISessionCtxFactory&lt;Type&gt;
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    BaseTransCtx *alloc(const Type type)
+    {
+      return NULL;
+    }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+</code></pre>
+
+<p>  但是这样就不行了</p>
+
+<pre><code>class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    template&lt;typename Type&gt;
+      virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+class TransSessionMgr: public ISessionCtxFactory
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    template&lt;typename Type&gt;
+      BaseTransCtx *alloc(const Type type)
+      {
+        return NULL;
+      }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[澄清几个关于C++继承的问题]]></title>
@@ -247,93 +380,6 @@ int main(int argc, const char *argv[])
 </code></pre>
 
 <p>  这就在编译的时候报错了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[c/c++的不定参数]]></title>
-    <link href="http://cxh.me/2014/07/17/c-variable-argument/"/>
-    <updated>2014-07-17T14:42:00+08:00</updated>
-    <id>http://cxh.me/2014/07/17/c-variable-argument</id>
-    <content type="html"><![CDATA[<p>  c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：</p>
-
-<pre><code>void ar_cnt(int cnt,...);
-int main(int argc, char* argv[])
-{
-    ar_cnt(4,1,2,3,4);
-    return 0; 
-}
-void ar_cnt(int cnt,...)
-{
-    int arg_cnt = cnt;
-    va_list arg_ptr;
-    va_start(arg_ptr, cnt);
-    for(int i=0; i &lt; cnt;i++)
-    {
-        int value=va_arg(arg_ptr,int);
-        printf("posation %d=%d\n", value, i+1);
-    }
-    va_end(arg_ptr);
-}
-</code></pre>
-
-<p>  其实原理是比较简单的，依赖于编译器对函数调用的压栈顺序，但是目测现有的调用方式压栈都是从右向左，所以va_start定位第一个参数的位置，va_arg每次在之前的位置上加一个偏移值，从而得到每个传入参数。这就是说va_start要求传入不定参数的函数不能只传入一个&hellip;，至少要有一个固定的参数，用来获取栈指针位置。</p>
-
-<!--more-->
-
-
-<p>  调用方式这个东西好像只有在VC里才探讨，不太清楚gcc这里的处理是怎么样的，vc下主要分了如下几种：</p>
-
-<ul>
-<li><p>STDCALL/PASCAL/WINAPI/CALLBACK</p>
-
-<ol>
-<li>参数从右向左压入堆栈</li>
-<li>函数自身修改堆栈</li>
-<li>函数名自动加前导的下划线，后面紧跟一个@符号，其后紧跟着参数的尺寸</li>
-</ol>
-</li>
-<li><p>CDECL</p>
-
-<ol>
-<li>调用约定的参数压栈顺序是和stdcall是一样的，参数由右向左压入堆栈。</li>
-<li>调用者负责清理堆栈。</li>
-<li>由于这种变化，C调用约定允许函数的参数的个数是不固定的，这也是C语言的一大特色。</li>
-</ol>
-</li>
-<li><p>FASTCALL</p>
-
-<ol>
-<li>函数的第一个和第二个DWORD参数（或者尺寸更小的）通过ecx和edx传递，其他参数通过从右向左的顺序压栈</li>
-<li>被调用函数清理堆栈</li>
-<li>函数名修改规则同stdcall</li>
-</ol>
-</li>
-<li><p>THISCALL</p>
-
-<ol>
-<li>参数从右向左入栈</li>
-<li>如果参数个数确定，this指针通过ecx传递给被调用者；如果参数个数不确定，this指针在所有参数压栈后被压入堆栈</li>
-</ol>
-</li>
-<li><p>NAKEDCALL</p>
-
-<ol>
-<li>这是一个很少见的调用约定，一般程序设计者建议不要使用。</li>
-<li>编译器不会给这种函数增加初始化和清理代码，更特殊的是，你不能用return返回返回值，只能用插入汇编返回结果</li>
-<li>这一般用于实模式驱动程序设计</li>
-</ol>
-</li>
-</ul>
-
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] cdecl、stdcall、fastcall函数调用约定区别 , <a href="http://blog.csdn.net/fly2k5/article/details/544112">http://blog.csdn.net/fly2k5/article/details/544112</a></p>
-
-<p>[2] 函数调用的区别：<em>cdecl以及</em>stdcall, <a href="http://www.cppblog.com/kenny/archive/2011/04/19/144539.html">http://www.cppblog.com/kenny/archive/2011/04/19/144539.html</a></p>
-
-<p>[3] 透析C语言可变参数问题, <a href="http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html">http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html</a></p></blockquote>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-28T16:05:21+08:00</updated>
+  <updated>2014-10-29T21:32:26+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,139 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
+    <link href="http://cxh.me/2014/10/29/cpp-virtual-template-function/"/>
+    <updated>2014-10-29T21:05:00+08:00</updated>
+    <id>http://cxh.me/2014/10/29/cpp-virtual-template-function</id>
+    <content type="html"><![CDATA[<p>  自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。</p>
+
+<p>  例子如下：</p>
+
+<!--more-->
+
+
+<pre><code>enum SessionType
+{
+  ROSession,
+  RWSession,
+  RPSession
+};
+class BaseTransCtx
+{
+  public:
+    BaseTransCtx (){}
+    virtual ~BaseTransCtx (){}
+};
+template&lt;typename Type&gt;
+class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+typedef ISessionCtxFactory&lt;SessionType&gt; SessionMgr;
+class TransSessionMgr: public SessionMgr
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    BaseTransCtx *alloc(const SessionType type)
+    {
+      return NULL;
+    }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+int main(int argc, const char *argv[])
+{
+  TransSessionMgr trans;
+  BaseTransCtx* ctx = trans.alloc(RWSession);
+  trans.free(ctx);
+  return 0;
+}
+</code></pre>
+
+<p>  模板类继承虚基类也可以。</p>
+
+<pre><code>template&lt;typename Type&gt;
+class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+template&lt;typename Type&gt;
+class TransSessionMgr: public ISessionCtxFactory&lt;Type&gt;
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    BaseTransCtx *alloc(const Type type)
+    {
+      return NULL;
+    }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+</code></pre>
+
+<p>  但是这样就不行了</p>
+
+<pre><code>class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    template&lt;typename Type&gt;
+      virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+class TransSessionMgr: public ISessionCtxFactory
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    template&lt;typename Type&gt;
+      BaseTransCtx *alloc(const Type type)
+      {
+        return NULL;
+      }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[澄清几个关于C++继承的问题]]></title>
@@ -799,115 +932,6 @@ namespace oceanbase
     <content type="html"><![CDATA[<p><img class="img-polaroid center" src="http://cxh.me/images/2014/smartisan.png"></p>
 
 <p>  话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了&hellip;</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[两阶段提交协议的异常处理]]></title>
-    <link href="http://cxh.me/2014/07/07/two-process-commit-exceptions/"/>
-    <updated>2014-07-07T11:57:00+08:00</updated>
-    <id>http://cxh.me/2014/07/07/two-process-commit-exceptions</id>
-    <content type="html"><![CDATA[<p>  两阶段提交的协议大家都比较熟悉了，解释一下每个阶段的异常处理。首先，我们需要持久化协议过程中的状态，这样如果server宕机，那么恢复的时候还能通过日志知道宕机前处于那个阶段。同时，所有对数据的修改都会先写write ahead log，保证宕机重启的之后数据也不会丢失。写日志的顺序假定为:写write ahead log-修改缓冲区-写commit/abort log。</p>
-
-<p>  在这个前提下，我们根据如下的时序图来讨论异常情况和处理方法。</p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2014/2pc.png" title="两阶段提交协议时序" alt="两阶段提交协议时序"><p class="align-center">两阶段提交协议时序</p></p>
-
-<ol>
-<li><p> 过程a没有成功，即协调者没有收到部分参与者的回应。超时后，协调者发送abort消息给参与者取消事务。参与者存在两种情况：</p>
-
-<ul>
-<li>过程1失败，网络问题导致参与者没有收到vote request消息或者此时参与者宕机。参与者重启恢复后无需做任何事。</li>
-<li>过程2失败，参与者收到了vote request，网络问题协调者没有收到回复或此时参与者宕机。参与者宕机恢复或等待超时后广播DECISION_REQUEST消息向其他参与者询问是否收到commit/abort消息。</li>
-</ul>
-</li>
-<li><p> 过程b没有成功，即协调者发送commit消息之后没有收到部分参与者的回应。协调者需要重试，确认参与者的提交完毕消息，如果多次尝试不能联系上，则等待参与者上线之后解决。参与者存在两种情况：</p>
-
-<ul>
-<li>过程3失败，网络问题导致参与者没有收到commit消息或此时参与者宕机。参与者上线发现在本地日志中发现尚未提交成功，因为到达这里，可以肯定本地已做好提交准备，但是不知道协调者是决定提交，所以向协调者询问，按协调者的回复来进行提交或回滚。如果无法联系上协调者，则向其他参与者询问事务状态，如果有某一个节点已经做了提交或异常终止(说明协调者已发送了相关消息)，则做同样的操作。</li>
-<li>过程4失败，参与者完成了commit/rollback，但是网络问题协调者没有收到回应或者此时参与者宕机。参与者在本地日志中发现已完成本地提交，所以可能由于网络故障导致提交完成消息没有到达协调者。所以直接忽略。这时可能协调者在等待该参与者的提交完成回应消息，所以参与者主动联系协调者告知事务状态。</li>
-</ul>
-</li>
-<li><p> 过程c没有成功，即参与者发送vote回应消息之后没有等到协调者的commit/rollback消息。这个过程参与者的异常处理已经讨论过了，这里讨论协调者的异常处理。存在两种情况：</p>
-
-<ul>
-<li>过程2失败，网络问题导致协调者没有收到回复或此时协调者宕机。协调者恢复重启后，发现并未做提交操作，保险操作(因为不知道它是否发送过准备消息，或其他参与者是否做好提交准备)，直接发送abort消息给所有参与者，终止事务</li>
-<li>过程3失败，网络问题导致参与者没有收到commit/rollback消息或者此时协调者宕机。协调者恢复重启后，不能保证所有参与者都已收到了提交消息，所以给所有的参与者发送commit消息，保证事务的正常提交。</li>
-</ul>
-</li>
-</ol>
-
-
-<!--more-->
-
-
-<p>  算法的伪代码可以参考如下代码，摘自《Distributed Systems: Principles and Paradigms》。</p>
-
-<p>  <strong>Actions of Coordinator</strong></p>
-
-<pre><code>write("START_2PC tolocal log");
-multicast("VOTE_REQUESTto all participants");
-while(not all votes have been collected)
-{
-  waitfor("any incoming vote");
-  if(timeout)
-  {
-    write("GLOBAL_ABORT to local host");
-    multicast("GLOBAL_ABORT to all participants");
-    exit();
-  }
-  record(vote);
-}
-if(all participants send VOTE_COMMIT and coordinatorvotes COMMIT)
-{
-  write("GLOBAL_COMMIT to local log");
-  multicast("GLOBAL_COMMIT to all participants");
-}
-else
-{
-  write("GLOBAL_ABORT to local log");
-  multicast("GLOBAL_ABORT to all participants");
-}
-
-**Actions of Participants**
-
-write("INIT to locallog");
-waitfor("VOTE_REQUESTfrom coordinator");
-if(timeout)
-{
-  write("VOTE_ABORT to local log");
-  exit();
-}
-if("participantvotes COMMIT")
-{
-  write("VOTE_COMMIT to local log");
-  send("VOTE_COMMIT to coordinator");
-  waitfor("DESCISION from coordinator");
-  if(timeout)
-  {
-    multicast("DECISION_REQUEST to other participants");
-    waituntil("DECISION is received"); /// remain blocked
-    write("DECISION to local log");
-  }
-  if(DECISION == "GLOBAL_COMMIT")
-  {
-    write("GLOBAL_COMMIT to local log");
-  }
-  else if(DECISION== "GLOBAL_ABORT")
-  {
-    write("GLOBAL_ABORT to local log");
-  }
-}
-else
-{
-    write("GLOBAL_ABORT to local log");
-    send("GLOBAL_ABORT to coordinator");
-}
-</code></pre>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 两阶段提交(2PC)协议, <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
 ]]></content>
   </entry>
   
