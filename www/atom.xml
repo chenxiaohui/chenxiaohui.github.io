@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-10-29T21:32:26+08:00</updated>
+  <updated>2014-11-06T14:54:42+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[测试发布]]></title>
+    <link href="http://cxh.me/2014/11/06/test/"/>
+    <updated>2014-11-06T14:51:00+08:00</updated>
+    <id>http://cxh.me/2014/11/06/test</id>
+    <content type="html"><![CDATA[<p>测试发布</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
@@ -921,17 +930,6 @@ namespace oceanbase
   }
 }
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[呵呵呵呵以至于我不得不开篇博客说这个事情]]></title>
-    <link href="http://cxh.me/2014/07/08/im/"/>
-    <updated>2014-07-08T09:55:00+08:00</updated>
-    <id>http://cxh.me/2014/07/08/im</id>
-    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="http://cxh.me/images/2014/smartisan.png"></p>
-
-<p>  话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了&hellip;</p>
 ]]></content>
   </entry>
   

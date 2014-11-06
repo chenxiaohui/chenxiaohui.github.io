@@ -1,0 +1,8 @@
+---
+layout: post
+title: "测试发布"
+date: 2014-11-06 14:51
+comments: true
+categories: "软件发布"
+---
+测试发布
