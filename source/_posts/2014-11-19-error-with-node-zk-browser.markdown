@@ -18,7 +18,7 @@ categories: "分布式系统"
 
 	Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeeper-3.4.3/zookeeper-3.4.3.tar.gz
 
-  这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也没用。不懂node.js不知道npm去哪里找的url.
+  这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也没用。表示不懂node.js，不知道npm去哪里找的url。
 
   但是我们可以这样绕过去。先到其他的路径下：
 

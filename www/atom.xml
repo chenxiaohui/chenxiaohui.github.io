@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-19T19:16:25+08:00</updated>
+  <updated>2014-11-19T19:19:42+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -32,7 +32,7 @@
 <pre><code>Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeeper-3.4.3/zookeeper-3.4.3.tar.gz
 </code></pre>
 
-<p>  这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也没用。不懂node.js不知道npm去哪里找的url.</p>
+<p>  这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也没用。表示不懂node.js，不知道npm去哪里找的url。</p>
 
 <p>  但是我们可以这样绕过去。先到其他的路径下：</p>
 
