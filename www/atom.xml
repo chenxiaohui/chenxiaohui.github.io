@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-06T15:02:50+08:00</updated>
+  <updated>2014-11-19T19:16:25+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,103 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[node_zk_browser安装时的一个问题]]></title>
+    <link href="http://cxh.me/2014/11/19/error-with-node-zk-browser/"/>
+    <updated>2014-11-19T18:56:00+08:00</updated>
+    <id>http://cxh.me/2014/11/19/error-with-node-zk-browser</id>
+    <content type="html"><![CDATA[<p>  zookeeper基本是基于API和console进行znode的操作，并没有一个比较方便的操作界面，taobao 伯岩大神写过一个工具node_zk_browser，可以比较方便的查询zookeeper信息。地址在</p>
+
+<pre><code>https://github.com/killme2008/node-zk-browser
+</code></pre>
+
+<p>  界面如下所示：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/zk_browser.png" title="zk_browser" alt="zk_browser"><p class="align-center">zk_browser</p></p>
+
+<p>  安装的时候遇到一个问题</p>
+
+<pre><code>Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeeper-3.4.3/zookeeper-3.4.3.tar.gz
+</code></pre>
+
+<p>  这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也没用。不懂node.js不知道npm去哪里找的url.</p>
+
+<p>  但是我们可以这样绕过去。先到其他的路径下：</p>
+
+<pre><code>npm install zookeeper
+</code></pre>
+
+<p>  这会安装最新的node-zookeeper，安装完毕之后生成一个node_modules目录，下面有一个zookeeper目录，直接复制这个目录到node-zk-browser下面的node_modules目录里。</p>
+
+<p>  搞定。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Zookeeper的web管理应用, <a href="http://www.blogjava.net/killme2008/archive/2011/06/06/351793.html">http://www.blogjava.net/killme2008/archive/2011/06/06/351793.html</a></p>
+
+<p>[2] node-zookeeper安装小记, <a href="http://blog.izturn.mobi/post/15025383777/node-zookeeper-install-note">http://blog.izturn.mobi/post/15025383777/node-zookeeper-install-note</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[du显示只显示一层子目录/文件的大小]]></title>
+    <link href="http://cxh.me/2014/11/13/du-to-display-one-level/"/>
+    <updated>2014-11-13T17:55:00+08:00</updated>
+    <id>http://cxh.me/2014/11/13/du-to-display-one-level</id>
+    <content type="html"><![CDATA[<p>  经常需要看当前目录下的子目录大小，比如开发机被人占满的情况，<code>du -lh</code>显示的是递归的所有文件大小，<code>du -s</code>又只统计了所有文件/文件夹合起来的大小。正常情况下需要执行：</p>
+
+<pre><code>du -lh --max-depth=1
+</code></pre>
+
+<p>  未免太过麻烦。后来肖总提示发现这样就行了：</p>
+
+<pre><code>du -sh *
+</code></pre>
+
+<p>  果然是学无止境啊</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
+    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
+    <updated>2014-11-13T15:26:00+08:00</updated>
+    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
+    <content type="html"><![CDATA[<p>  to be continued.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[docker入门]]></title>
+    <link href="http://cxh.me/2014/11/11/docker-tutorial/"/>
+    <updated>2014-11-11T16:03:00+08:00</updated>
+    <id>http://cxh.me/2014/11/11/docker-tutorial</id>
+    <content type="html"><![CDATA[<p>  to be continued.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分布式消息队列的消息消费逻辑]]></title>
+    <link href="http://cxh.me/2014/11/07/message-queue-consume-semantics/"/>
+    <updated>2014-11-07T14:54:00+08:00</updated>
+    <id>http://cxh.me/2014/11/07/message-queue-consume-semantics</id>
+    <content type="html"><![CDATA[<p>  引用一段，出处在找：</p>
+
+<p>  对于JMS实现,消息传输担保非常直接:有且只有一次(exactly once).在kafka中稍有不同,对于consumer而言:</p>
+
+<pre><code>1) at most once: 最多一次,这个和JMS中"非持久化"消息类似.发送一次,无论成败,将不会重发.
+2) at least once: 消息至少发送一次,如果消息未能接受成功,可能会重发,直到接收成功.
+3) exactly once: 消息只会发送一次.
+at most once: 消费者fetch消息,然后保存offset,然后处理消息;当client保存offset之后,但是在消息处理过程中consumer进程失效(crash),导致部分消息未能继续处理.那么此后可能其他consumer会接管,但是因为offset已经提前保存,那么新的consumer将不能fetch到offset之前的消息(尽管它们尚没有被处理),这就是"at most once".
+at least once: 消费者fetch消息,然后处理消息,然后保存offset.如果消息处理成功之后,但是在保存offset阶段zookeeper异常或者consumer失效,导致保存offset操作未能执行成功,这就导致接下来再次fetch时可能获得上次已经处理过的消息,这就是"at least once".
+exactly once: kafka中并没有严格的去实现(基于2阶段提交,事务),我们认为这种策略在kafka中是没有必要的.
+因为"消息消费"和"保存offset"这两个操作的先后时机不同,导致了上述3种情况,通常情况下"at-least-once"是我们搜选.(相比at most once而言,重复接收数据总比丢失数据要好).
+
+to be continued.
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
@@ -690,248 +787,6 @@ int main(int argc, const char *argv[])
 <li>那声再见竟是他最后的一句</li>
 </ul>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[c/c++的不定参数]]></title>
-    <link href="http://cxh.me/2014/07/17/c-variable-argument/"/>
-    <updated>2014-07-17T14:42:00+08:00</updated>
-    <id>http://cxh.me/2014/07/17/c-variable-argument</id>
-    <content type="html"><![CDATA[<p>  c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：</p>
-
-<pre><code>void ar_cnt(int cnt,...);
-int main(int argc, char* argv[])
-{
-    ar_cnt(4,1,2,3,4);
-    return 0; 
-}
-void ar_cnt(int cnt,...)
-{
-    int arg_cnt = cnt;
-    va_list arg_ptr;
-    va_start(arg_ptr, cnt);
-    for(int i=0; i &lt; cnt;i++)
-    {
-        int value=va_arg(arg_ptr,int);
-        printf("posation %d=%d\n", value, i+1);
-    }
-    va_end(arg_ptr);
-}
-</code></pre>
-
-<p>  其实原理是比较简单的，依赖于编译器对函数调用的压栈顺序，但是目测现有的调用方式压栈都是从右向左，所以va_start定位第一个参数的位置，va_arg每次在之前的位置上加一个偏移值，从而得到每个传入参数。这就是说va_start要求传入不定参数的函数不能只传入一个&hellip;，至少要有一个固定的参数，用来获取栈指针位置。</p>
-
-<!--more-->
-
-
-<p>  调用方式这个东西好像只有在VC里才探讨，不太清楚gcc这里的处理是怎么样的，vc下主要分了如下几种：</p>
-
-<ul>
-<li><p>STDCALL/PASCAL/WINAPI/CALLBACK</p>
-
-<ol>
-<li>参数从右向左压入堆栈</li>
-<li>函数自身修改堆栈</li>
-<li>函数名自动加前导的下划线，后面紧跟一个@符号，其后紧跟着参数的尺寸</li>
-</ol>
-</li>
-<li><p>CDECL</p>
-
-<ol>
-<li>调用约定的参数压栈顺序是和stdcall是一样的，参数由右向左压入堆栈。</li>
-<li>调用者负责清理堆栈。</li>
-<li>由于这种变化，C调用约定允许函数的参数的个数是不固定的，这也是C语言的一大特色。</li>
-</ol>
-</li>
-<li><p>FASTCALL</p>
-
-<ol>
-<li>函数的第一个和第二个DWORD参数（或者尺寸更小的）通过ecx和edx传递，其他参数通过从右向左的顺序压栈</li>
-<li>被调用函数清理堆栈</li>
-<li>函数名修改规则同stdcall</li>
-</ol>
-</li>
-<li><p>THISCALL</p>
-
-<ol>
-<li>参数从右向左入栈</li>
-<li>如果参数个数确定，this指针通过ecx传递给被调用者；如果参数个数不确定，this指针在所有参数压栈后被压入堆栈</li>
-</ol>
-</li>
-<li><p>NAKEDCALL</p>
-
-<ol>
-<li>这是一个很少见的调用约定，一般程序设计者建议不要使用。</li>
-<li>编译器不会给这种函数增加初始化和清理代码，更特殊的是，你不能用return返回返回值，只能用插入汇编返回结果</li>
-<li>这一般用于实模式驱动程序设计</li>
-</ol>
-</li>
-</ul>
-
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] cdecl、stdcall、fastcall函数调用约定区别 , <a href="http://blog.csdn.net/fly2k5/article/details/544112">http://blog.csdn.net/fly2k5/article/details/544112</a></p>
-
-<p>[2] 函数调用的区别：<em>cdecl以及</em>stdcall, <a href="http://www.cppblog.com/kenny/archive/2011/04/19/144539.html">http://www.cppblog.com/kenny/archive/2011/04/19/144539.html</a></p>
-
-<p>[3] 透析C语言可变参数问题, <a href="http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html">http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[java/c++变量作用域的一点小区别]]></title>
-    <link href="http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff/"/>
-    <updated>2014-07-17T11:16:00+08:00</updated>
-    <id>http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff</id>
-    <content type="html"><![CDATA[<p>  偶然遇到一个问题，java里面这么写是有问题的</p>
-
-<pre><code>int x = 1;
-    {
-        int x = 2;
-    }
-</code></pre>
-
-<p>  作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。</p>
-
-<pre><code>    {
-        int x = 2;
-    }
-int x = 1;
-</code></pre>
-
-<p>  C++里面这样是没问题的</p>
-
-<pre><code>  int x = 1 ;
-  {
-    int x  = 2;
-  }
-</code></pre>
-
-<p>  相对于脚本语言，这种限制似乎就宽多了。这样都可以。</p>
-
-<pre><code>for i in range(1,10):
-    pass
-print i
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ich war noch niemals in New York]]></title>
-    <link href="http://cxh.me/2014/07/16/ich-war-noch-niemals-in-new-york/"/>
-    <updated>2014-07-16T20:27:00+08:00</updated>
-    <id>http://cxh.me/2014/07/16/ich-war-noch-niemals-in-new-york</id>
-    <content type="html"><![CDATA[<p><embed src="http://player.youku.com/player.php/Type/Folder/Fid/22542683/Ob/1/sid/XMTgzNjkyMzA0/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></p>
-
-<hr />
-
-<ul>
-<li>我从来没有去过纽约</li>
-<li>从没有到过夏威夷</li>
-<li>从未穿过牛仔衣淋着旧金山的雨</li>
-<li>我从来没有去过纽约</li>
-<li>我要感受那远方的空气</li>
-<li>我想要挣脱过去释放我自己</li>
-</ul>
-
-
-<!--more-->
-
-
-<p>  还有老男孩翻唱版的</p>
-
-<p><embed src="http://player.youku.com/player.php/Type/Folder/Fid/22542683/Ob/1/sid/XNzQxNTIyNDk2/v.swf" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed></p>
-
-<hr />
-
-<p>  人生很搞，梦想不老</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[命名空间和友元冲突]]></title>
-    <link href="http://cxh.me/2014/07/10/namespace-conflicts-with-friend/"/>
-    <updated>2014-07-10T19:09:00+08:00</updated>
-    <id>http://cxh.me/2014/07/10/namespace-conflicts-with-friend</id>
-    <content type="html"><![CDATA[<p>  今天遇到一个问题，需要跨namespace定义友元，这种情况比较常见的是测试类需要访问源码类，gtest据说有个FRIEND_TEST宏，以前用过好像有问题。这里我们直接用友元:</p>
-
-<pre><code>namespace oceanbase
-{
-    namespace election
-    {
-        class ObElectionServer : public ObSingleServer
-        {
-            friend class ObElectionTester;
-            ...
-        }
-    }
-}
-namespace oceanbase
-{
-  namespace tests
-  {
-    namespace election
-    {
-        class ObElectionTester : public ObElectionServer
-        {
-            ...
-        }
-    }
-}
-</code></pre>
-
-<p>  这样是肯定不行的，这等于告诉ObElectionServer在自己的namespace下找ObElectionTester。改成如下：</p>
-
-<!--more-->
-
-
-<pre><code>namespace oceanbase
-{
-    namespace election
-    {
-        class ObElectionServer : public ObSingleServer
-        {
-            friend class oceanbase::tests::election::ObElectionTester;
-            ...
-        }
-    }
-}
-</code></pre>
-
-<p>  这样也不行，ObElectionServer不知道ObElectionTester是个包含namespace的类名。所以我们需要前向声明一下类。</p>
-
-<pre><code>namespace oceanbase
-{
-  namespace tests
-  {
-    namespace election
-    {
-      class ObElectionTester;
-    }
-  }
-  namespace election
-  {
-    class ObElectionServer : public ObSingleServer
-    {
-        friend class oceanbase::tests::election::ObElectionTester;
-        ....
-    }
-  }
-}
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[呵呵呵呵以至于我不得不开篇博客说这个事情]]></title>
-    <link href="http://cxh.me/2014/07/08/im/"/>
-    <updated>2014-07-08T09:55:00+08:00</updated>
-    <id>http://cxh.me/2014/07/08/im</id>
-    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="http://cxh.me/images/2014/smartisan.png"></p>
-
-<p>  话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了&hellip;</p>
 ]]></content>
   </entry>
   

@@ -104,12 +104,13 @@ isolate moves other docs into stash, integrate moves stashs to posts
 
     # first
     ## sec
-    ## third
+    ### third
     ** bold **
     no indent
-    * item
       indent
-      > * indent item
+      > * item
+    * item
+      * indent item
 
 effect
 

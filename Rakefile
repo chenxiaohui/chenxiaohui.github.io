@@ -113,6 +113,7 @@ task :new_post, :title, :category do |t, args|
         "    Linux",
         "    MFC",
         "    Oceanbase",
+        "    分布式系统",
         "    其他",
         "    PHP",
         "    Python",

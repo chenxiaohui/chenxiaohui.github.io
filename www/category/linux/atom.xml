@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-06T15:02:50+08:00</updated>
+  <updated>2014-11-19T19:16:25+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[du显示只显示一层子目录/文件的大小]]></title>
+    <link href="http://cxh.me/2014/11/13/du-to-display-one-level/"/>
+    <updated>2014-11-13T17:55:00+08:00</updated>
+    <id>http://cxh.me/2014/11/13/du-to-display-one-level</id>
+    <content type="html"><![CDATA[<p>  经常需要看当前目录下的子目录大小，比如开发机被人占满的情况，<code>du -lh</code>显示的是递归的所有文件大小，<code>du -s</code>又只统计了所有文件/文件夹合起来的大小。正常情况下需要执行：</p>
+
+<pre><code>du -lh --max-depth=1
+</code></pre>
+
+<p>  未免太过麻烦。后来肖总提示发现这样就行了：</p>
+
+<pre><code>du -sh *
+</code></pre>
+
+<p>  果然是学无止境啊</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
+    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
+    <updated>2014-11-13T15:26:00+08:00</updated>
+    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
+    <content type="html"><![CDATA[<p>  to be continued.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于得到当前执行文件所在的目录]]></title>
@@ -129,81 +157,6 @@ make install
 <h3>参考文献：</h3>
 
 <blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[防止通过rm误删文件]]></title>
-    <link href="http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm/"/>
-    <updated>2013-09-22T20:46:00+08:00</updated>
-    <id>http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm</id>
-    <content type="html"><![CDATA[<p>  相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
-
-<p>  为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
-
-<p>  这里我们首先建立如下脚本:</p>
-
-<pre><code>#!/bin/sh 
-dirpath=/tmp/recycle_$USER # find a place for recycle
-now=`date +%Y%m%d_%H_%M_%S_`  
-arg=$1
-if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # compatible with /bin/rm
-    shift
-    arg=$1
-elif [ -d $arg ]; then # is a directory
-    echo "rm: cannot remove '$arg': Is a directory"
-    exit
-fi
-filename=${now}$arg # add a timestamp for files deleted
-if [ ! -d ${dirpath} ];then  
-    /bin/mkdir -p ${dirpath} 
-    chmod 777 ${dirpath} 
-fi 
-/bin/mv $arg ${dirpath}/${filename} # move to trash
-</code></pre>
-
-<p>  然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
-
-<pre><code>export PATH=$HOME/bin:$PATH
-</code></pre>
-
-<p>  最后记得给rm加权限就行</p>
-
-<p>  需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
-
-<pre><code>alias rm='rm -i --preserve-root' 
-</code></pre>
-
-<p>  就需要把上面的$1都改成$3, 钦此.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Win7与多Linux并存的安装方法]]></title>
-    <link href="http://cxh.me/2011/09/18/methods-for-win7-to-coexist-with-several-linux/"/>
-    <updated>2011-09-18T00:00:00+08:00</updated>
-    <id>http://cxh.me/2011/09/18/methods-for-win7-to-coexist-with-several-linux</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>  网上有很多使用EasyBCD从Win7下安装linux的方法，不过用来用去觉得EasyBCD还是有些问题，比如我装Fedora64就一直报错，而做成安装U盘就可以。而且大多数Linux在EasyBCD安装的时候都要求iso文件存放于Fat32的分区里，作为一个已经装了Win7的孩纸，在硬盘上划出一块Fat32的分区实属令人发指的行为。</p>
-
-<p>  这里推荐一个Linux官方的安装方法，首先下载Universal-USB-Installer，这文件很小，但是五脏俱全，包括了你可能见到的所有的Linux的……呃，选项。当然这软件还可以用来做Windows的安装盘。傻瓜化操作就不说了，不过记得每个选项对应一种Linux，包含了各种发行版，下载的iso最好不要改名，免得找不到。</p>
-
-<p>  安装的事情仁者见仁，修复Grub的问题智者见智。最简单的办法是先装Win7，因为Win7是不鸟各种Linux的（丫挺的），然后装个个版本的Linux，不过不要装GrubLoader，也就是不要把启动信息写入Mbr，最后装Ubuntu，伟大的乌邦图会识别各种Linux系统然后建立启动菜单。</p>
-
-<p>  当然你也可以先安装Ubuntu，然后装其他的Linux，同样不要安装Grub Loader，最后在Ubuntu下手动配置grub.cfg来驱动，不过最好的办法是使用</p>
-
-<pre><code>sudo update-grub
-</code></pre>
-
-<p>  让Ubuntu自动识别安装的Linux系统，你会看到激动人心的类似于如下界面的结果：<img src="http://www.roybit.com/wp-content/uploads/2011/09/ScreenshotcxhcxhThinkPadT420__thumb.png" title="Screenshot-cxh@cxh-ThinkPad-T420_ ~" alt="Screenshot-cxh@cxh-ThinkPad-T420_ ~" /></p>
-
-<p>  如果想让Win7默认启动，可以在ubuntu下执行</p>
-
-<pre><code>sudo mv /etc/grub.d/30_os-prober /etc/grub.d/06_os-prober
-</code></pre>
-
-<p>  然后同上Update Grub就可以了。</p>
 ]]></content>
   </entry>
   
