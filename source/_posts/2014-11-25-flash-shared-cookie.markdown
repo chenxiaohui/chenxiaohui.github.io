@@ -61,3 +61,18 @@ categories: "web相关"
 [3]: http://nfriedly.com/techblog/2010/08/how-facebook-sets-and-uses-cross-domain-cookies/ " How Facebook Sets and uses cross-Domain cookies"
 [4]: http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/ "HTML5 localStorage本地存储实际应用举例"
 [5]: https://github.com/samyk/evercookie "EverCookie"
+[6]: http://hi.baidu.com/aullik5/item/89496d121de969041894ecdd "Anehta的水印(Watermark)机制"
+
+###参考文献:
+
+>\[1] JavaScript library and .swf for cross-domain flash cookies, <http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/>
+
+>\[2] Javascript-Flash-Cookies, <https://github.com/nfriedly/Javascript-Flash-Cookies>
+
+>\[3]  How Facebook Sets and uses cross-Domain cookies, <http://nfriedly.com/techblog/2010/08/how-facebook-sets-and-uses-cross-domain-cookies/>
+
+>\[4] HTML5 localStorage本地存储实际应用举例, <http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/>
+
+>\[5] EverCookie, <https://github.com/samyk/evercookie>
+
+>\[6] Anehta的水印(Watermark)机制, <http://hi.baidu.com/aullik5/item/89496d121de969041894ecdd>

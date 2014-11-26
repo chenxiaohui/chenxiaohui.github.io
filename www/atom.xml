@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-26T10:49:10+08:00</updated>
+  <updated>2014-11-26T11:08:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -66,15 +66,20 @@
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/61load.png"></p>
 
 <p>  证明可以跨域读取cookie。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[zookeeper配置入门]]></title>
-    <link href="http://cxh.me/2014/11/20/zookeeper-configuration-guide/"/>
-    <updated>2014-11-20T14:21:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/zookeeper-configuration-guide</id>
-    <content type="html"><![CDATA[
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] JavaScript library and .swf for cross-domain flash cookies, <a href="http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/">http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/</a></p>
+
+<p>[2] Javascript-Flash-Cookies, <a href="https://github.com/nfriedly/Javascript-Flash-Cookies">https://github.com/nfriedly/Javascript-Flash-Cookies</a></p>
+
+<p>[3]  How Facebook Sets and uses cross-Domain cookies, <a href="http://nfriedly.com/techblog/2010/08/how-facebook-sets-and-uses-cross-domain-cookies/">http://nfriedly.com/techblog/2010/08/how-facebook-sets-and-uses-cross-domain-cookies/</a></p>
+
+<p>[4] HTML5 localStorage本地存储实际应用举例, <a href="http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/">http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/</a></p>
+
+<p>[5] EverCookie, <a href="https://github.com/samyk/evercookie">https://github.com/samyk/evercookie</a></p>
+
+<p>[6] Anehta的水印(Watermark)机制, <a href="http://hi.baidu.com/aullik5/item/89496d121de969041894ecdd">http://hi.baidu.com/aullik5/item/89496d121de969041894ecdd</a></p></blockquote>
 ]]></content>
   </entry>
   
@@ -899,6 +904,44 @@ void ar_cnt(int cnt,...)
 <p>[2] 函数调用的区别：<em>cdecl以及</em>stdcall, <a href="http://www.cppblog.com/kenny/archive/2011/04/19/144539.html">http://www.cppblog.com/kenny/archive/2011/04/19/144539.html</a></p>
 
 <p>[3] 透析C语言可变参数问题, <a href="http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html">http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[java/c++变量作用域的一点小区别]]></title>
+    <link href="http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff/"/>
+    <updated>2014-07-17T11:16:00+08:00</updated>
+    <id>http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff</id>
+    <content type="html"><![CDATA[<p>  偶然遇到一个问题，java里面这么写是有问题的</p>
+
+<pre><code>int x = 1;
+    {
+        int x = 2;
+    }
+</code></pre>
+
+<p>  作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。</p>
+
+<pre><code>    {
+        int x = 2;
+    }
+int x = 1;
+</code></pre>
+
+<p>  C++里面这样是没问题的</p>
+
+<pre><code>  int x = 1 ;
+  {
+    int x  = 2;
+  }
+</code></pre>
+
+<p>  相对于脚本语言，这种限制似乎就宽多了。这样都可以。</p>
+
+<pre><code>for i in range(1,10):
+    pass
+print i
+</code></pre>
 ]]></content>
   </entry>
   
