@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-26T10:43:50+08:00</updated>
+  <updated>2014-11-26T10:47:45+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -70,41 +70,11 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[从zookeeper提供的特性来看其应用场景]]></title>
-    <link href="http://cxh.me/2014/11/20/zookeeper-scene-according-to-feature/"/>
-    <updated>2014-11-20T18:59:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/zookeeper-scene-according-to-feature</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[zookeeper配置入门]]></title>
     <link href="http://cxh.me/2014/11/20/zookeeper-configuration-guide/"/>
     <updated>2014-11-20T14:21:00+08:00</updated>
     <id>http://cxh.me/2014/11/20/zookeeper-configuration-guide</id>
     <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[kafka配置入门]]></title>
-    <link href="http://cxh.me/2014/11/20/kafka-configuration-guide/"/>
-    <updated>2014-11-20T14:21:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/kafka-configuration-guide</id>
-    <content type="html"><![CDATA[<p>producer
-metadata.broker.list=localhost:9092,localhost:9093</p>
-
-<p>consumer group</p>
-
-<pre><code>bin/zookeeper-server-start.sh config/zookeeper.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-env JMX_PORT=9999 bin/kafka-server-start.sh config/server1.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-env JMX_PORT=10000 bin/kafka-server-start.sh config/server2.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-sleep 5
-bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partitions 2 --replication-factor 2
-#bin/kafka-console-producer.sh --broker-list localhost:9092,localhost:9093 --topic mytopic
-#bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
-</code></pre>
 ]]></content>
   </entry>
   
@@ -180,28 +150,6 @@ bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partit
     <updated>2014-11-11T16:03:00+08:00</updated>
     <id>http://cxh.me/2014/11/11/docker-tutorial</id>
     <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式消息队列的消息消费逻辑]]></title>
-    <link href="http://cxh.me/2014/11/07/message-queue-consume-semantics/"/>
-    <updated>2014-11-07T14:54:00+08:00</updated>
-    <id>http://cxh.me/2014/11/07/message-queue-consume-semantics</id>
-    <content type="html"><![CDATA[<p>  引用一段，出处在找：</p>
-
-<p>  对于JMS实现,消息传输担保非常直接:有且只有一次(exactly once).在kafka中稍有不同,对于consumer而言:</p>
-
-<pre><code>1) at most once: 最多一次,这个和JMS中"非持久化"消息类似.发送一次,无论成败,将不会重发.
-2) at least once: 消息至少发送一次,如果消息未能接受成功,可能会重发,直到接收成功.
-3) exactly once: 消息只会发送一次.
-at most once: 消费者fetch消息,然后保存offset,然后处理消息;当client保存offset之后,但是在消息处理过程中consumer进程失效(crash),导致部分消息未能继续处理.那么此后可能其他consumer会接管,但是因为offset已经提前保存,那么新的consumer将不能fetch到offset之前的消息(尽管它们尚没有被处理),这就是"at most once".
-at least once: 消费者fetch消息,然后处理消息,然后保存offset.如果消息处理成功之后,但是在保存offset阶段zookeeper异常或者consumer失效,导致保存offset操作未能执行成功,这就导致接下来再次fetch时可能获得上次已经处理过的消息,这就是"at least once".
-exactly once: kafka中并没有严格的去实现(基于2阶段提交,事务),我们认为这种策略在kafka中是没有必要的.
-因为"消息消费"和"保存offset"这两个操作的先后时机不同,导致了上述3种情况,通常情况下"at-least-once"是我们搜选.(相比at most once而言,重复接收数据总比丢失数据要好).
-
-to be continued.
-</code></pre>
 ]]></content>
   </entry>
   
@@ -797,6 +745,73 @@ int main(int argc, const char *argv[])
 </code></pre>
 
 <p>  这就在编译的时候报错了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[暴力街区13]]></title>
+    <link href="http://cxh.me/2014/08/17/brick-mansions/"/>
+    <updated>2014-08-17T20:39:00+08:00</updated>
+    <id>http://cxh.me/2014/08/17/brick-mansions</id>
+    <content type="html"><![CDATA[<p>   <img class="img-polaroid center" src="http://cxh.me/images/2014/brick_mansions.jpg"></p>
+
+<p>   虽说是翻拍，但是也不能一模一样啊，这剧情的相似度不是一般的高啊&hellip;.</p>
+
+<p>   而且第二部的时候我就不理解，如果要引爆一个炸弹，直接倒计时爆炸就行了，干嘛要派一个人进去再输入一个引爆密码？剧情可从来没说炸弹送进去的时候就知道会被发射回来。</p>
+
+<p>   还有，不要黑我大底特律&hellip;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[沉默地与这个世界对抗]]></title>
+    <link href="http://cxh.me/2014/07/26/against-the-world-in-silence/"/>
+    <updated>2014-07-26T18:59:00+08:00</updated>
+    <id>http://cxh.me/2014/07/26/against-the-world-in-silence</id>
+    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="http://cxh.me/images/2014/road.jpg"></p>
+
+<p>  去看了《后会无期》。是我心里的样子。</p>
+
+<p>  踏上旅途，遇到形形色色的人，停留而又离开，坚持或者放弃，很真实，不是么？都说小孩才看对错，成年人只看利弊，其实成年人也不是只看利弊，但是成年人的世界的确不能只用对错衡量了。</p>
+
+<p>  When I was a little boy，当我还是一个小男孩的时候，我想，这个世界该是什么样子的呢？是西游记那样，哆啦a梦那样，还是圣斗士星矢那样呢？后来才发现，都不是。当我们经历了一些事情，我们知道了付出并不一定有回报，正义并不一定能战胜邪恶，甚至大部分情况下看，邪恶总比正义强大一点的时候，是否还相信对错呢？不知道。</p>
+
+<p>  电影其实一直在问这个问题，当你还在东极岛的时候，对错是直接的，是非是明确的，每个人活的像胡生一样简单。但是家乡不在了，你被迫上路，被骗，被偷，看到大部分人活的不如意，小部分人似乎如意，内心里承受坚持与放弃的碰撞，最后连胡生也丢了。老师讲的那些东西已经不足以解释这些问题，但是内心里又有一个声音告诉你不能沉沦。生活不就是这样么。</p>
+
+<p>  我们中大部分人是不会很成功，也不会很顺利的。所以这是个十分现实的问题，如果几十年后再问我们这些人的当初的理想，那么情况应该惨烈过台风后的海南。所以理想破灭似乎是跟更年期一样普遍的问题，以至于我们要考虑考虑如何平静度过这段时间。对中国人这样一个没有信仰的民族，我觉得这尤其重要了。</p>
+
+<p>  那么问题就在于，现实如此，该去向哪里。步入这个年纪，已经不会有人指导你该做什么，也明白了抱怨其实没什么用。平凡是常态，希望仍渺茫，青春已逝，认输之前。</p>
+
+<p>  但是理想还在路上，只不过孤独前行着罢了。人生总有那么几年，甚至几十年是默默无闻的。有一个意义支撑着，是很好的事情。淡出焦点之外，才是行路的最好状态。迷失了，就找另外的路，跌倒了，就爬起来继续沉默前行。理想破灭，就沉默着与这个世界对抗。纵使没有改变什么，至少给自己一个意义，让所有的前行都变得值得。</p>
+
+<blockquote><ul>
+<li>我曾经毁了我的一切 只想永远地离开</li>
+<li>我曾经堕入无边黑暗 想挣扎无法自拔</li>
+<li>我曾经象你象他象那野草野花</li>
+<li>绝望着 渴望着 哭着笑着平凡着</li>
+</ul>
+</blockquote>
+
+<p>  于是你可以说，嗯，是我心里的样子。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[平凡之路]]></title>
+    <link href="http://cxh.me/2014/07/20/normal-roads/"/>
+    <updated>2014-07-20T10:06:00+08:00</updated>
+    <id>http://cxh.me/2014/07/20/normal-roads</id>
+    <content type="html"><![CDATA[<p>  朴树的《后会无期》主题曲：平凡之路</p>
+
+<p><embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
+
+<ul>
+<li>我曾经跨过山和大海</li>
+<li>也穿过人山人海</li>
+<li>我曾经拥有着一切</li>
+<li>转眼都飘散如烟</li>
+</ul>
+
 ]]></content>
   </entry>
   

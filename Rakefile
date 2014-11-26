@@ -145,6 +145,7 @@ task :new_post, :title, :category do |t, args|
     post.puts "title: \"\""
     post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
     post.puts "comments: true"
+    post.puts "publised: true"
     post.puts "categories: \"#{category.gsub(/&/,'&amp;')}\""
     post.puts "---"
   end

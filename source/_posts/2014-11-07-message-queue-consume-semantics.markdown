@@ -3,6 +3,7 @@ layout: post
 title: "分布式消息队列的消息消费逻辑"
 date: 2014-11-07 14:54
 comments: true
+published: false
 categories: "分布式系统"
 ---
 
