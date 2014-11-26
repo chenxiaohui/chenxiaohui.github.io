@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-26T10:41:01+08:00</updated>
+  <updated>2014-11-26T10:42:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -106,14 +106,14 @@ metadata.broker.list=localhost:9092,localhost:9093</p>
 
 <p>consumer group</p>
 
-<p>bin/zookeeper-server-start.sh config/zookeeper.properties >/dev/null 2>&amp;1 &amp;
-env JMX_PORT=9999 bin/kafka-server-start.sh config/server1.properties >/dev/null 2>&amp;1 &amp;
-env JMX_PORT=10000 bin/kafka-server-start.sh config/server2.properties >/dev/null 2>&amp;1 &amp;
+<pre><code>bin/zookeeper-server-start.sh config/zookeeper.properties &gt;/dev/null 2&gt;&amp;1 &amp;
+env JMX_PORT=9999 bin/kafka-server-start.sh config/server1.properties &gt;/dev/null 2&gt;&amp;1 &amp;
+env JMX_PORT=10000 bin/kafka-server-start.sh config/server2.properties &gt;/dev/null 2&gt;&amp;1 &amp;
 sleep 5
-bin/kafka-topics.sh &mdash;zookeeper localhost:2181 &mdash;create &mdash;topic mytopic &mdash;partitions 2 &mdash;replication-factor 2
- #bin/kafka-console-producer.sh &mdash;broker-list localhost:9092,localhost:9093 &mdash;topic mytopic</p>
-
-<h1>bin/kafka-console-consumer.sh &mdash;zookeeper localhost:2181 &mdash;topic mytopic &mdash;from-beginning</h1>
+bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partitions 2 --replication-factor 2
+#bin/kafka-console-producer.sh --broker-list localhost:9092,localhost:9093 --topic mytopic
+#bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
+</code></pre>
 ]]></content>
   </entry>
   
