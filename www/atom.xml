@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-26T10:38:48+08:00</updated>
+  <updated>2014-11-26T10:41:01+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -43,11 +43,11 @@
 
 <p>  目前实测IE/Maxthon/Firefox/Safari/360浏览器都是采用系统的Flash实例，所以能够共享flash cookie，目前测到的几个特例是chrome/搜狗/百度浏览器，分别采用了自己浏览器内部打包的flash实例。另外不同系统用户的cookie不共享。从下面一张图可以清晰看出：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/flash_cookie.png" title="&#34;flash cookie&#34;flash cookie.png &#34;flash cookie&#34;" alt="&#34;flash cookie&#34;flash cookie.png &#34;flash cookie&#34;"></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/flash_cookie.png"></p>
 
 <p>  flash cookie的写入可以参考如下项目&#8220;，作者在<a href="http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/" title="JavaScript library and .swf for cross-domain flash cookies">主页</a>详细说明了使用方法。需要注意的是swf_url控制的写入路径会包含在cookie的namespace里面，也就是说会有如下的目录结构：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/tree.png" title="cookie目录结构" alt="cookie目录结构"><p class="align-center">cookie目录结构</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/tree.png"></p>
 
 <p>  另外关于跨域，作者说不同域的js需要使用同一个swf，猜测是js请求swf的时候浏览器不判断在哪个域。swf内部是有跨域安全机制的，如果关闭掉的话，是可以实现请求跨域的。但是js请求其他域的数据会被浏览器拒绝。</p>
 
@@ -55,15 +55,15 @@
 
 <p>  在两台机器上部署相同的Flash Cookie测试项目，其中61域和74域的js都请求74域的swf：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cross.png" title="跨域请求" alt="跨域请求"><p class="align-center">跨域请求</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cross.png"></p>
 
 <p>  在74的机器上写入flash cookie: &ldquo;74 write&rdquo;</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/74write.png" title="写入flash cookie" alt="写入flash cookie"><p class="align-center">写入flash cookie</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/74write.png"></p>
 
 <p>  在61的机器上load:</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/61load.png" title="读取flash cookie" alt="读取flash cookie"><p class="align-center">读取flash cookie</p></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/61load.png"></p>
 
 <p>  证明可以跨域读取cookie。</p>
 ]]></content>
