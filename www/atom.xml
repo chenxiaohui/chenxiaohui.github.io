@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-26T10:47:45+08:00</updated>
+  <updated>2014-11-26T10:49:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -132,24 +132,6 @@
 </code></pre>
 
 <p>  果然是学无止境啊</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
-    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
-    <updated>2014-11-13T15:26:00+08:00</updated>
-    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[docker入门]]></title>
-    <link href="http://cxh.me/2014/11/11/docker-tutorial/"/>
-    <updated>2014-11-11T16:03:00+08:00</updated>
-    <id>http://cxh.me/2014/11/11/docker-tutorial</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
 ]]></content>
   </entry>
   
@@ -812,6 +794,111 @@ int main(int argc, const char *argv[])
 <li>转眼都飘散如烟</li>
 </ul>
 
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[后会无期]]></title>
+    <link href="http://cxh.me/2014/07/19/continent/"/>
+    <updated>2014-07-19T14:34:00+08:00</updated>
+    <id>http://cxh.me/2014/07/19/continent</id>
+    <content type="html"><![CDATA[<p><embed src="http://player.video.qiyi.com/df60feaccd8d18df45ae5f84d10fd39e/0/0/w_19rsfwiyk1.swf-albumId=2338708509-tvId=2338708509-isPurchase=0-cnId=5" allowFullScreen="true" quality="high" width="480" height="350" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
+
+<ul>
+<li>当一艘船沉入海底</li>
+<li>当一个人成了谜</li>
+<li>你不知道</li>
+<li>他们为何离去</li>
+<li>那声再见竟是他最后的一句</li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[c/c++的不定参数]]></title>
+    <link href="http://cxh.me/2014/07/17/c-variable-argument/"/>
+    <updated>2014-07-17T14:42:00+08:00</updated>
+    <id>http://cxh.me/2014/07/17/c-variable-argument</id>
+    <content type="html"><![CDATA[<p>  c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：</p>
+
+<pre><code>void ar_cnt(int cnt,...);
+int main(int argc, char* argv[])
+{
+    ar_cnt(4,1,2,3,4);
+    return 0; 
+}
+void ar_cnt(int cnt,...)
+{
+    int arg_cnt = cnt;
+    va_list arg_ptr;
+    va_start(arg_ptr, cnt);
+    for(int i=0; i &lt; cnt;i++)
+    {
+        int value=va_arg(arg_ptr,int);
+        printf("posation %d=%d\n", value, i+1);
+    }
+    va_end(arg_ptr);
+}
+</code></pre>
+
+<p>  其实原理是比较简单的，依赖于编译器对函数调用的压栈顺序，但是目测现有的调用方式压栈都是从右向左，所以va_start定位第一个参数的位置，va_arg每次在之前的位置上加一个偏移值，从而得到每个传入参数。这就是说va_start要求传入不定参数的函数不能只传入一个&hellip;，至少要有一个固定的参数，用来获取栈指针位置。</p>
+
+<!--more-->
+
+
+<p>  调用方式这个东西好像只有在VC里才探讨，不太清楚gcc这里的处理是怎么样的，vc下主要分了如下几种：</p>
+
+<ul>
+<li><p>STDCALL/PASCAL/WINAPI/CALLBACK</p>
+
+<ol>
+<li>参数从右向左压入堆栈</li>
+<li>函数自身修改堆栈</li>
+<li>函数名自动加前导的下划线，后面紧跟一个@符号，其后紧跟着参数的尺寸</li>
+</ol>
+</li>
+<li><p>CDECL</p>
+
+<ol>
+<li>调用约定的参数压栈顺序是和stdcall是一样的，参数由右向左压入堆栈。</li>
+<li>调用者负责清理堆栈。</li>
+<li>由于这种变化，C调用约定允许函数的参数的个数是不固定的，这也是C语言的一大特色。</li>
+</ol>
+</li>
+<li><p>FASTCALL</p>
+
+<ol>
+<li>函数的第一个和第二个DWORD参数（或者尺寸更小的）通过ecx和edx传递，其他参数通过从右向左的顺序压栈</li>
+<li>被调用函数清理堆栈</li>
+<li>函数名修改规则同stdcall</li>
+</ol>
+</li>
+<li><p>THISCALL</p>
+
+<ol>
+<li>参数从右向左入栈</li>
+<li>如果参数个数确定，this指针通过ecx传递给被调用者；如果参数个数不确定，this指针在所有参数压栈后被压入堆栈</li>
+</ol>
+</li>
+<li><p>NAKEDCALL</p>
+
+<ol>
+<li>这是一个很少见的调用约定，一般程序设计者建议不要使用。</li>
+<li>编译器不会给这种函数增加初始化和清理代码，更特殊的是，你不能用return返回返回值，只能用插入汇编返回结果</li>
+<li>这一般用于实模式驱动程序设计</li>
+</ol>
+</li>
+</ul>
+
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] cdecl、stdcall、fastcall函数调用约定区别 , <a href="http://blog.csdn.net/fly2k5/article/details/544112">http://blog.csdn.net/fly2k5/article/details/544112</a></p>
+
+<p>[2] 函数调用的区别：<em>cdecl以及</em>stdcall, <a href="http://www.cppblog.com/kenny/archive/2011/04/19/144539.html">http://www.cppblog.com/kenny/archive/2011/04/19/144539.html</a></p>
+
+<p>[3] 透析C语言可变参数问题, <a href="http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html">http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html</a></p></blockquote>
 ]]></content>
   </entry>
   
