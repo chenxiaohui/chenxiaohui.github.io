@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-11-28T15:06:46+08:00</updated>
+  <updated>2014-12-01T17:33:54+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,59 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[redis-copy的使用]]></title>
+    <link href="http://cxh.me/2014/12/01/redis-copy-usage/"/>
+    <updated>2014-12-01T17:01:00+08:00</updated>
+    <id>http://cxh.me/2014/12/01/redis-copy-usage</id>
+    <content type="html"><![CDATA[<p>  有时候我们需要迁移redis的数据，从本质上看，这基本上是个rehash的过程。我们这里使用<a href="https://github.com/yaauie/redis-copy" title="redis-copy">redis-copy</a>实现。</p>
+
+<p>  简单写一下步骤。首先得有ruby环境，然后直接安装：</p>
+
+<pre><code>gem install redis-copy
+</code></pre>
+
+<p>  可能会遇到几个包缺失的问题，如果有报错，安装如下几个包：</p>
+
+<pre><code>gem install redis
+gem install hiredis
+gem install recommendify
+</code></pre>
+
+<p>  简单测试一下redis-copy</p>
+
+<p>  首先建立source和dest redis server：</p>
+
+<pre><code>redis-server redis.src.conf //6379 port
+redis-server redis.dst.conf //6380 port
+</code></pre>
+
+<p>  redis.conf里面换一下端口就行了。写入几个值</p>
+
+<pre><code>redis-cli -h localhost  -p 6379
+select 1
+set mykey myvalue
+</code></pre>
+
+<p>  然后拷贝src里面db1的所有键值到dst的默认db(0).</p>
+
+<pre><code>sudo redis-copy localhost:6379/1 localhost:6380
+</code></pre>
+
+<p>  去dst redis看一下就行了。</p>
+
+<pre><code>redis-cli -h localhost -p 6380
+keys *
+</code></pre>
+
+<p>  可以看到之前的key-value拷贝过来了。大数据量下的表现明天测一下。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] redis-copy, <a href="https://github.com/yaauie/redis-copy">https://github.com/yaauie/redis-copy</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[跨浏览器cookie]]></title>
@@ -904,44 +957,6 @@ void ar_cnt(int cnt,...)
 <p>[2] 函数调用的区别：<em>cdecl以及</em>stdcall, <a href="http://www.cppblog.com/kenny/archive/2011/04/19/144539.html">http://www.cppblog.com/kenny/archive/2011/04/19/144539.html</a></p>
 
 <p>[3] 透析C语言可变参数问题, <a href="http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html">http://www.cnblogs.com/wangyonghui/archive/2010/07/12/1776068.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[java/c++变量作用域的一点小区别]]></title>
-    <link href="http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff/"/>
-    <updated>2014-07-17T11:16:00+08:00</updated>
-    <id>http://cxh.me/2014/07/17/java-c-plus-plus-variable-scope-diff</id>
-    <content type="html"><![CDATA[<p>  偶然遇到一个问题，java里面这么写是有问题的</p>
-
-<pre><code>int x = 1;
-    {
-        int x = 2;
-    }
-</code></pre>
-
-<p>  作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。</p>
-
-<pre><code>    {
-        int x = 2;
-    }
-int x = 1;
-</code></pre>
-
-<p>  C++里面这样是没问题的</p>
-
-<pre><code>  int x = 1 ;
-  {
-    int x  = 2;
-  }
-</code></pre>
-
-<p>  相对于脚本语言，这种限制似乎就宽多了。这样都可以。</p>
-
-<pre><code>for i in range(1,10):
-    pass
-print i
-</code></pre>
 ]]></content>
   </entry>
   
