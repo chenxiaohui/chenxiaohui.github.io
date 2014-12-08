@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-01T17:33:54+08:00</updated>
+  <updated>2014-12-08T16:58:55+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于eclipse里面override上的warning]]></title>
+    <link href="http://cxh.me/2014/12/08/eclipse-java-override-warning/"/>
+    <updated>2014-12-08T16:53:00+08:00</updated>
+    <id>http://cxh.me/2014/12/08/eclipse-java-override-warning</id>
+    <content type="html"><![CDATA[<p>  写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2014/method_callback.png" title="" ></p>
+
+<p>  看AsyncMethodCallback的代码，没有任何问题啊：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2014/async_callback.png" title="" ></p>
+
+<p>  后来发现当前项目JRE的版本是1.5，貌似1.5的JRE有个bug。切到1.6以上版本就可以了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[同步github上的项目到gitcafe]]></title>
