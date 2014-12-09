@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 世情百态 | CXH.ME]]></title>
   <link href="http://cxh.me/category/shi-qing-bai-tai/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-09T10:21:50+08:00</updated>
+  <updated>2014-12-09T10:22:43+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -33,7 +33,7 @@
     <link href="http://cxh.me/2014/08/17/brick-mansions/"/>
     <updated>2014-08-17T20:39:00+08:00</updated>
     <id>http://cxh.me/2014/08/17/brick-mansions</id>
-    <content type="html"><![CDATA[<p>   <img class="img-polaroid center" src="/images/2014/brick_mansions.jpg"></p>
+    <content type="html"><![CDATA[<p>   {% img img-polaroid center /images/2014/brick_mansions.jpg %}</p>
 
 <p>   虽说是翻拍，但是也不能一模一样啊，这剧情的相似度不是一般的高啊&hellip;.</p>
 
@@ -48,7 +48,7 @@
     <link href="http://cxh.me/2014/07/26/against-the-world-in-silence/"/>
     <updated>2014-07-26T18:59:00+08:00</updated>
     <id>http://cxh.me/2014/07/26/against-the-world-in-silence</id>
-    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="/images/2014/road.jpg"></p>
+    <content type="html"><![CDATA[<p>{% img img-polaroid center /images/2014/road.jpg %}</p>
 
 <p>  去看了《后会无期》。是我心里的样子。</p>
 
