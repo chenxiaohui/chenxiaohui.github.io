@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-08T17:14:10+08:00</updated>
+  <updated>2014-12-09T10:22:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -29,6 +29,15 @@
 </code></pre>
 
 <p>  果然是学无止境啊</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
+    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
+    <updated>2014-11-13T15:26:00+08:00</updated>
+    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
+    <content type="html"><![CDATA[<p>  to be continued.</p>
 ]]></content>
   </entry>
   
@@ -65,7 +74,7 @@ else
     <id>http://cxh.me/2013/10/18/update-to-ubuntu-13-10</id>
     <content type="html"><![CDATA[<p>  Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
 
-<p><img class="img-polaroid center" src="/images/2013/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
+<p>{% img img-polaroid center /images/2013/ubuntu13_10.jpg &ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo; %}</p>
 ]]></content>
   </entry>
   
@@ -99,7 +108,7 @@ else
 
 <h3>截图</h3>
 
-<p><img class="img-ploaroid center" src="/images/2013/htop.png" title="&ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo;" ></p>
+<p>{% img img-ploaroid center /images/2013/htop.png  &ldquo;htop截图&rdquo; &ldquo;htop截图&rdquo; %}</p>
 
 <h3>安装</h3>
 
@@ -148,52 +157,6 @@ make install
 <h3>参考文献：</h3>
 
 <blockquote><p>[1] （原创）htop：一款比top强悍好用的进程管理监控工具, <a href="http://www.ha97.com/4075.html">http://www.ha97.com/4075.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[防止通过rm误删文件]]></title>
-    <link href="http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm/"/>
-    <updated>2013-09-22T20:46:00+08:00</updated>
-    <id>http://cxh.me/2013/09/22/avoid-delete-wrong-files-using-rm</id>
-    <content type="html"><![CDATA[<p>  相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.</p>
-
-<p>  为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.</p>
-
-<p>  这里我们首先建立如下脚本:</p>
-
-<pre><code>#!/bin/sh 
-dirpath=/tmp/recycle_$USER # find a place for recycle
-now=`date +%Y%m%d_%H_%M_%S_`  
-arg=$1
-if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # compatible with /bin/rm
-    shift
-    arg=$1
-elif [ -d $arg ]; then # is a directory
-    echo "rm: cannot remove '$arg': Is a directory"
-    exit
-fi
-filename=${now}$arg # add a timestamp for files deleted
-if [ ! -d ${dirpath} ];then  
-    /bin/mkdir -p ${dirpath} 
-    chmod 777 ${dirpath} 
-fi 
-/bin/mv $arg ${dirpath}/${filename} # move to trash
-</code></pre>
-
-<p>  然后把脚本命名为rm放到/bin目录下, 最好放到home/bin目录下然后指定一下Path, 这样不影响其他人.</p>
-
-<pre><code>export PATH=$HOME/bin:$PATH
-</code></pre>
-
-<p>  最后记得给rm加权限就行</p>
-
-<p>  需要说明的一点是, 服务器端有时候为了限制rm会给rm做alias(别名), 所以以上rm脚本需要根据实际情况判断传入参数的序号, 比如如果有别名设置如下:</p>
-
-<pre><code>alias rm='rm -i --preserve-root' 
-</code></pre>
-
-<p>  就需要把上面的$1都改成$3, 钦此.</p>
 ]]></content>
   </entry>
   

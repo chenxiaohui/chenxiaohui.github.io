@@ -4,7 +4,7 @@
   <title><![CDATA[Category: oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-08T17:14:10+08:00</updated>
+  <updated>2014-12-09T10:22:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -20,7 +20,7 @@
     <id>http://cxh.me/2013/10/21/table-tablet-iterator</id>
     <content type="html"><![CDATA[<p>  所有迭代器的类图如下所示：</p>
 
-<p><img class="img-polaroid center" src="/images/2013/iterator.png" title="&ldquo;iterator类图&rdquo; &ldquo;iterator类图&rdquo;" ></p>
+<p>{% img img-polaroid center /images/2013/iterator.png &ldquo;iterator类图&rdquo; &ldquo;iterator类图&rdquo; %}</p>
 
 <h4>ObRootTabletIterator</h4>
 
@@ -364,7 +364,7 @@ AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
 
 <p>  git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
 
-<p><img class="img-ploaroid center" src="/images/2013/git-reset.png" title="&ldquo;git-reset三种方式&rdquo; &ldquo;git-reset三种方式&rdquo;" ></p>
+<p>{% img img-ploaroid center /images/2013/git-reset.png &ldquo;git-reset三种方式&rdquo; &ldquo;git-reset三种方式&rdquo; %}</p>
 
 <blockquote><ul>
 <li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>

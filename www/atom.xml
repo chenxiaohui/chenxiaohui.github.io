@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-08T17:14:10+08:00</updated>
+  <updated>2014-12-09T10:21:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[kafka Consumer API几个问题]]></title>
+    <link href="http://cxh.me/2014/12/09/notes-on-kafka-consumer-api/"/>
+    <updated>2014-12-09T10:12:00+08:00</updated>
+    <id>http://cxh.me/2014/12/09/notes-on-kafka-consumer-api</id>
+    <content type="html"><![CDATA[<p>  一直不理解这里的topicCountMap是什么意思。kafka的High Level Consumer API设计实在是比较费解。源码又比较费解。</p>
+
+<pre><code>Map&lt;String, Integer&gt; topicCountMap = new HashMap&lt;String, Integer&gt;();
+topicCountMap.put(topic, new Integer(1));
+Map&lt;String, List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt;&gt; consumerMap = consumer.createMessageStreams(topicCountMap);
+List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt; streams = consumerMap.get(topic);
+</code></pre>
+
+<p>  后来查阅到这是跟线程相关的，指定消费每个topic的线程数，然后kafka consumer connector会建立对应的stream流。每个线程对应于一个KafkaStream。一个多线程消费的例子见<a href="http://www.cnblogs.com/fxjwind/p/3794255.html" title="Kafka Consumer接口">参考文献</a>.</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Kafka Consumer接口, <a href="http://www.cnblogs.com/fxjwind/p/3794255.html">http://www.cnblogs.com/fxjwind/p/3794255.html</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于eclipse里面override上的warning]]></title>
@@ -859,25 +880,6 @@ int main(int argc, const char *argv[])
 </blockquote>
 
 <p>  于是你可以说，嗯，是我心里的样子。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[平凡之路]]></title>
-    <link href="http://cxh.me/2014/07/20/normal-roads/"/>
-    <updated>2014-07-20T10:06:00+08:00</updated>
-    <id>http://cxh.me/2014/07/20/normal-roads</id>
-    <content type="html"><![CDATA[<p>  朴树的《后会无期》主题曲：平凡之路</p>
-
-<p><embed src="http://player.youku.com/player.php/sid/XNzQxMjU2ODI0/v.swf" allowFullScreen="true" quality="high" width="480" height="400" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed></p>
-
-<ul>
-<li>我曾经跨过山和大海</li>
-<li>也穿过人山人海</li>
-<li>我曾经拥有着一切</li>
-<li>转眼都飘散如烟</li>
-</ul>
-
 ]]></content>
   </entry>
   
