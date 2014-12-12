@@ -16,6 +16,7 @@ categories: "Flex"
 	    <param name="allowScriptAccess" value="always" />
 	    <!--[if !IE]>-->
 	    <object name="myCom" type="application/x-shockwave-flash" data="http://xxx/xxx.swf" width="0" height="0">
+	    	<param name="allowScriptAccess" value="always" />
 	    <!--<![endif]-->
 	        <div>
 	            <h1>SWF Cannot be loaded!</h1>

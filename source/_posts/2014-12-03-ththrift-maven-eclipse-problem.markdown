@@ -7,5 +7,3 @@ publised: false
 categories: "分布式系统"
 ---
    
-  以前不搞java，
- 

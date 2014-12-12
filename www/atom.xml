@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-12T13:05:14+08:00</updated>
+  <updated>2014-12-12T13:17:35+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -27,6 +27,7 @@
     &lt;param name="allowScriptAccess" value="always" /&gt;
     &lt;!--[if !IE]&gt;--&gt;
     &lt;object name="myCom" type="application/x-shockwave-flash" data="http://xxx/xxx.swf" width="0" height="0"&gt;
+        &lt;param name="allowScriptAccess" value="always" /&gt;
     &lt;!--&lt;![endif]--&gt;
         &lt;div&gt;
             &lt;h1&gt;SWF Cannot be loaded!&lt;/h1&gt;
@@ -130,7 +131,7 @@ List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt; streams = consumerMap.get(topic);
     <link href="http://cxh.me/2014/12/03/ththrift-maven-eclipse-problem/"/>
     <updated>2014-12-03T16:42:00+08:00</updated>
     <id>http://cxh.me/2014/12/03/ththrift-maven-eclipse-problem</id>
-    <content type="html"><![CDATA[<p>  以前不搞java，</p>
+    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
