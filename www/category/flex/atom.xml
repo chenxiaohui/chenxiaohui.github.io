@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Flex | CXH.ME]]></title>
   <link href="http://cxh.me/category/flex/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-09T10:22:16+08:00</updated>
+  <updated>2014-12-12T13:05:14+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Flash Cookie的跨域读取]]></title>
+    <link href="http://cxh.me/2014/12/12/flash-cookie-cross-domain/"/>
+    <updated>2014-12-12T12:35:00+08:00</updated>
+    <id>http://cxh.me/2014/12/12/flash-cookie-cross-domain</id>
+    <content type="html"><![CDATA[<p>  关于Flash Cookie相关的问题见<a href="http://cxh.me/2014/11/25/flash-shared-cookie/" title="跨浏览器cookie">参考文献1</a>。这里主要说如何实现跨域的Flash Cookie读取。</p>
+
+<p>  首先，我们要实现Js调用Flash插件。比较简单的实现是用<a href="https://code.google.com/p/swfobject/" title="swfobject">swfobject</a>。简单的示例代码如下：</p>
+
+<pre><code>&lt;object id="myCom" name="myCom" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="0" height="0"&gt;
+    &lt;param name="movie" value="http://xxx/xxx.swf" /&gt;
+    &lt;param name="allowScriptAccess" value="always" /&gt;
+    &lt;!--[if !IE]&gt;--&gt;
+    &lt;object name="myCom" type="application/x-shockwave-flash" data="http://xxx/xxx.swf" width="0" height="0"&gt;
+    &lt;!--&lt;![endif]--&gt;
+        &lt;div&gt;
+            &lt;h1&gt;SWF Cannot be loaded!&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;!--[if !IE]&gt;--&gt;
+    &lt;/object&gt;
+    &lt;!--&lt;![endif]--&gt;
+&lt;/object&gt;
+</code></pre>
+
+<!--more-->
+
+
+<p>  js部分代码如下：</p>
+
+<pre><code>    function callbackfn() {
+        var obj = swfobject.getObjectById("myCom");
+        if (obj &amp;&amp; typeof obj.getXXX != "undefined") {
+            alert(obj.getXXX('xxx'));
+        }
+    };
+    swfobject.registerObject("myCom", "9.0.0", "expressInstall.swf");
+</code></pre>
+
+<p>  具体含义参见如下swfobject的document：</p>
+
+<ul>
+<li>classid (outer object element only, value is always clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)</li>
+<li>type (inner object element only, value is always application/x-shockwave-flash)</li>
+<li>data (inner object element only, defines the URL of a SWF)</li>
+<li>width (both object elements, defines the width of a SWF)</li>
+<li>height (both object elements, defines the height of a SWF)</li>
+</ul>
+
+
+<p>  跨域的问题上，需要注意如下几个：</p>
+
+<ol>
+<li><p> 调用object的组件的跨域声明是必须的。</p>
+
+<pre><code>&lt;param name="allowScriptAccess" value="always" /&gt;
+</code></pre></li>
+<li><p> swf_url使用被访问域的swf链接。</p></li>
+<li><p> 被访问的域根目录需要开放访问。crossdomain.xml需要开放跨域限制。当然像如下这种粗放的是不好的。（虽然很方便）</p>
+
+<pre><code>&lt;cross-domain-policy&gt;
+    &lt;allow-access-from domain="*" /&gt;
+&lt;/cross-domain-policy&gt;
+</code></pre></li>
+<li><p> swf源码需要开放权限：</p>
+
+<pre><code>System.security.allowDomain("yourhtmldomain.com");
+</code></pre></li>
+</ol>
+
+
+<p>  OK.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于Flex绑定Flash资源]]></title>

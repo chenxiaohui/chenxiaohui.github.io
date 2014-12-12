@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-09T10:22:16+08:00</updated>
+  <updated>2014-12-12T13:05:14+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,80 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Flash Cookie的跨域读取]]></title>
+    <link href="http://cxh.me/2014/12/12/flash-cookie-cross-domain/"/>
+    <updated>2014-12-12T12:35:00+08:00</updated>
+    <id>http://cxh.me/2014/12/12/flash-cookie-cross-domain</id>
+    <content type="html"><![CDATA[<p>  关于Flash Cookie相关的问题见<a href="http://cxh.me/2014/11/25/flash-shared-cookie/" title="跨浏览器cookie">参考文献1</a>。这里主要说如何实现跨域的Flash Cookie读取。</p>
+
+<p>  首先，我们要实现Js调用Flash插件。比较简单的实现是用<a href="https://code.google.com/p/swfobject/" title="swfobject">swfobject</a>。简单的示例代码如下：</p>
+
+<pre><code>&lt;object id="myCom" name="myCom" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="0" height="0"&gt;
+    &lt;param name="movie" value="http://xxx/xxx.swf" /&gt;
+    &lt;param name="allowScriptAccess" value="always" /&gt;
+    &lt;!--[if !IE]&gt;--&gt;
+    &lt;object name="myCom" type="application/x-shockwave-flash" data="http://xxx/xxx.swf" width="0" height="0"&gt;
+    &lt;!--&lt;![endif]--&gt;
+        &lt;div&gt;
+            &lt;h1&gt;SWF Cannot be loaded!&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;!--[if !IE]&gt;--&gt;
+    &lt;/object&gt;
+    &lt;!--&lt;![endif]--&gt;
+&lt;/object&gt;
+</code></pre>
+
+<!--more-->
+
+
+<p>  js部分代码如下：</p>
+
+<pre><code>    function callbackfn() {
+        var obj = swfobject.getObjectById("myCom");
+        if (obj &amp;&amp; typeof obj.getXXX != "undefined") {
+            alert(obj.getXXX('xxx'));
+        }
+    };
+    swfobject.registerObject("myCom", "9.0.0", "expressInstall.swf");
+</code></pre>
+
+<p>  具体含义参见如下swfobject的document：</p>
+
+<ul>
+<li>classid (outer object element only, value is always clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)</li>
+<li>type (inner object element only, value is always application/x-shockwave-flash)</li>
+<li>data (inner object element only, defines the URL of a SWF)</li>
+<li>width (both object elements, defines the width of a SWF)</li>
+<li>height (both object elements, defines the height of a SWF)</li>
+</ul>
+
+
+<p>  跨域的问题上，需要注意如下几个：</p>
+
+<ol>
+<li><p> 调用object的组件的跨域声明是必须的。</p>
+
+<pre><code>&lt;param name="allowScriptAccess" value="always" /&gt;
+</code></pre></li>
+<li><p> swf_url使用被访问域的swf链接。</p></li>
+<li><p> 被访问的域根目录需要开放访问。crossdomain.xml需要开放跨域限制。当然像如下这种粗放的是不好的。（虽然很方便）</p>
+
+<pre><code>&lt;cross-domain-policy&gt;
+    &lt;allow-access-from domain="*" /&gt;
+&lt;/cross-domain-policy&gt;
+</code></pre></li>
+<li><p> swf源码需要开放权限：</p>
+
+<pre><code>System.security.allowDomain("yourhtmldomain.com");
+</code></pre></li>
+</ol>
+
+
+<p>  OK.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[kafka Consumer API几个问题]]></title>
@@ -184,54 +258,6 @@ keys *
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[同步/异步/阻塞/非阻塞IO]]></title>
-    <link href="http://cxh.me/2014/11/24/non-blocking-io/"/>
-    <updated>2014-11-24T14:24:00+08:00</updated>
-    <id>http://cxh.me/2014/11/24/non-blocking-io</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[从zookeeper提供的特性来看其应用场景]]></title>
-    <link href="http://cxh.me/2014/11/20/zookeeper-scene-according-to-feature/"/>
-    <updated>2014-11-20T18:59:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/zookeeper-scene-according-to-feature</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[zookeeper配置入门]]></title>
-    <link href="http://cxh.me/2014/11/20/zookeeper-configuration-guide/"/>
-    <updated>2014-11-20T14:21:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/zookeeper-configuration-guide</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[kafka配置入门]]></title>
-    <link href="http://cxh.me/2014/11/20/kafka-configuration-guide/"/>
-    <updated>2014-11-20T14:21:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/kafka-configuration-guide</id>
-    <content type="html"><![CDATA[<p>producer
-metadata.broker.list=localhost:9092,localhost:9093</p>
-
-<p>consumer group</p>
-
-<pre><code>bin/zookeeper-server-start.sh config/zookeeper.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-env JMX_PORT=9999 bin/kafka-server-start.sh config/server1.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-env JMX_PORT=10000 bin/kafka-server-start.sh config/server2.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-sleep 5
-bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partitions 2 --replication-factor 2
-#bin/kafka-console-producer.sh --broker-list localhost:9092,localhost:9093 --topic mytopic
-#bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[node_zk_browser安装时的一个问题]]></title>
     <link href="http://cxh.me/2014/11/19/error-with-node-zk-browser/"/>
     <updated>2014-11-19T18:56:00+08:00</updated>
@@ -285,46 +311,6 @@ bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partit
 </code></pre>
 
 <p>  果然是学无止境啊</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
-    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
-    <updated>2014-11-13T15:26:00+08:00</updated>
-    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[docker入门]]></title>
-    <link href="http://cxh.me/2014/11/11/docker-tutorial/"/>
-    <updated>2014-11-11T16:03:00+08:00</updated>
-    <id>http://cxh.me/2014/11/11/docker-tutorial</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式消息队列的消息消费逻辑]]></title>
-    <link href="http://cxh.me/2014/11/07/message-queue-consume-semantics/"/>
-    <updated>2014-11-07T14:54:00+08:00</updated>
-    <id>http://cxh.me/2014/11/07/message-queue-consume-semantics</id>
-    <content type="html"><![CDATA[<p>  引用一段，出处在找：</p>
-
-<p>  对于JMS实现,消息传输担保非常直接:有且只有一次(exactly once).在kafka中稍有不同,对于consumer而言:</p>
-
-<pre><code>1) at most once: 最多一次,这个和JMS中"非持久化"消息类似.发送一次,无论成败,将不会重发.
-2) at least once: 消息至少发送一次,如果消息未能接受成功,可能会重发,直到接收成功.
-3) exactly once: 消息只会发送一次.
-at most once: 消费者fetch消息,然后保存offset,然后处理消息;当client保存offset之后,但是在消息处理过程中consumer进程失效(crash),导致部分消息未能继续处理.那么此后可能其他consumer会接管,但是因为offset已经提前保存,那么新的consumer将不能fetch到offset之前的消息(尽管它们尚没有被处理),这就是"at most once".
-at least once: 消费者fetch消息,然后处理消息,然后保存offset.如果消息处理成功之后,但是在保存offset阶段zookeeper异常或者consumer失效,导致保存offset操作未能执行成功,这就导致接下来再次fetch时可能获得上次已经处理过的消息,这就是"at least once".
-exactly once: kafka中并没有严格的去实现(基于2阶段提交,事务),我们认为这种策略在kafka中是没有必要的.
-因为"消息消费"和"保存offset"这两个操作的先后时机不同,导致了上述3种情况,通常情况下"at-least-once"是我们搜选.(相比at most once而言,重复接收数据总比丢失数据要好).
-
-to be continued.
-</code></pre>
 ]]></content>
   </entry>
   
@@ -698,6 +684,243 @@ int main(int argc, const char *argv[])
 <p>  以及裤衩沐浴在月光中的&hellip;</p>
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/moon.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[永不分开，世界的爱]]></title>
+    <link href="http://cxh.me/2014/09/08/the-love-of-the-world/"/>
+    <updated>2014-09-08T20:03:00+08:00</updated>
+    <id>http://cxh.me/2014/09/08/the-love-of-the-world</id>
+    <content type="html"><![CDATA[<p>  这应该算是很古老很古老的一首歌了，当时赵薇还是个青涩的小燕子。2000年的时候还在上初中，实在不理解新千年的意义。现在回想起来，新千年的到来，对人类来说，实在是个有着难以名状的意义。20世纪前半叶的多灾多难，后半叶的冷战阴云，没有哪个世纪会产生如此重大的人类群体性灾难。旧的秩序被打破，核战争的阴云，武器发展到批量化的收割人命，20世纪可能是人类历史上绝无仅有一个世纪。</p>
+
+<p>  从这个角度想，这首歌真是充满了感慨。停留在20世纪的末尾，回首这一个多灾多难的世纪，看人类从错误中反省，最终一起站在新千年的入口展望未来。某种意义上说，人类第一次站在一起迎接和平，憧憬未来。这其中的意味可能只有经历过苦难的人才体会的出来，虽然2000年的时候局部战争依然在进行着。</p>
+
+<p>  一首歌的意味只有联想到背景才体会得到啊，不知道有多少人还记得这首歌了。不妨回味。</p>
+
+<p>  <embed src="http://player.yinyuetai.com/video/player/438643/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用google来验证一下Maclaurin展开式]]></title>
+    <link href="http://cxh.me/2014/09/07/using-google-verify-maclaurin-series/"/>
+    <updated>2014-09-07T15:35:00+08:00</updated>
+    <id>http://cxh.me/2014/09/07/using-google-verify-maclaurin-series</id>
+    <content type="html"><![CDATA[<p>  偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。</p>
+
+<p>  泰勒级数的定义如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/taylor.png" title="Taylor公式" alt="Taylor公式"><p class="align-center">Taylor公式</p></p>
+
+<p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/Maclaurin.png" title="Maclaurin展开式" alt="Maclaurin展开式"><p class="align-center">Maclaurin展开式</p></p>
+
+<!--more-->
+
+
+<p>  几个重要的Maclaurin展开如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/sinx.png">
+  <img class="center" src="http://cxh.me/images/2014/cosx.png" title="几个重要的Maclaurin展开" alt="几个重要的Maclaurin展开"><p class="align-center">几个重要的Maclaurin展开</p></p>
+
+<p>  这里我们验证一下sinx的逼近随着级数的增加而增加的情况。这也对应于拟合过程拟合维度的增加，相对于一元的拟合，二元或者多元就是会精确一些，但是会带来过拟合的风险。</p>
+
+<p>  首先是sinx的图像</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/sin_x.png"></p>
+
+<p>  一元函数拟合的时候，y=x</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_1.png"></p>
+
+<p>  二元拟合的时候，y=x-x<sup>3</sup>/3!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_2.png"></p>
+
+<p>  三元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_3.png"></p>
+
+<p>  四元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!-x<sup>7</sup>/7!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_4.png"></p>
+
+<p>  合并起来的图像大致如此：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/combine.png"></p>
+
+<p>  再高阶的图像就不画了，上面基本保证了坐标系缩放比例是一致的(sinx的图像由于y轴比例没有跟其他的x轴保持一样的缩放比例），可以看到随着拟合维度的升高，拟合曲线越来越逼近sinx，这也直观体现了Maclaurin展开式的意义。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[《改善C++程序的150个建议》勘误]]></title>
+    <link href="http://cxh.me/2014/09/06/error-in-cpp-150-notes/"/>
+    <updated>2014-09-06T11:41:00+08:00</updated>
+    <id>http://cxh.me/2014/09/06/error-in-cpp-150-notes</id>
+    <content type="html"><![CDATA[<p>  翻了一下编写高质量代码：改善C++程序的150个建议，感觉一般，主要是能下到pdf。看到两个错误。</p>
+
+<p>  第一个错误是内存池的那里，内部类使用了外部类的成员变量，这是C++啊，不是java，内部类默认不持有外部类指针。</p>
+
+<pre><code>class MemPool
+{
+  public:
+    MemPool (int nItemSize, int nMemBlockSize = 2048):
+      m_nItemSize(nItemSize),
+      m_nMemBlockSize(nMemBlockSize),
+      m_pMemBlockHeader(NULL),
+      m_pFreeNodeHeader(NULL)
+    {}
+    virtual ~MemPool (){}
+    void * Alloc();
+    void Free();
+  private:
+    /* data */
+    const int m_nMemBlockSize;
+    const int m_nItemSize;
+    struct _FreeNode
+    {
+      _FreeNode* pPrev;
+      char data[m_nItemSize - sizeof(_FreeNode*)];
+    };
+    struct _MemBlock
+    {
+      _MemBlock * pPrev;
+      _FreeNode data[m_nMemBlockSize/m_nItemSize];
+    };
+    _MemBlock* m_pMemBlockHeader;
+    _FreeNode* m_pFreeNodeHeader;
+};
+</code></pre>
+
+<p>  第二个错误是作者强调nocopyable基类是需要私有继承的，其实不需要，public继承足够了，public继承又不会把基类的private成员继承下来。</p>
+
+<pre><code>class nocopyable
+{
+  public:
+    nocopyable (){}
+    virtual ~nocopyable (){}
+
+  private:
+    /* data */
+    nocopyable (const nocopyable&amp;);
+    nocopyable&amp; operator=(const nocopyable&amp;);
+};
+class Base : public nocopyable
+</code></pre>
+
+<p>  太tm不严谨了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Paxos算法学习]]></title>
+    <link href="http://cxh.me/2014/08/26/paxos-study/"/>
+    <updated>2014-08-26T20:53:00+08:00</updated>
+    <id>http://cxh.me/2014/08/26/paxos-study</id>
+    <content type="html"><![CDATA[<p>  本来想写点东西，后来觉得都是一知半解。这里转载一点学习资料吧。</p>
+
+<p>  一个是知行学社的分布式系统与Paxos算法视频课程，循序渐进，讲解地比较浅显易懂。</p>
+
+<p>  <embed src="http://www.tudou.com/v/e8zM8dAL6hM/&bid=05&rpid=51943457&resourceId=51943457_05_05_99/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"></embed></p>
+
+<p>  另一个是百度刘杰<a href="http://www.valleytalk.org/2012/07/12/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D%E3%80%8B-%E3%80%82%E7%99%BE%E5%BA%A6-%E3%80%82%E5%88%98%E6%9D%B0/" title="《分布式系统原理介绍》">《分布式系统原理介绍》</a>。当然Lamport的几篇论文是不能不看的，虽然都不太好懂。</p>
+
+<ul>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-paxos.pdf" title="The Part-Time Parliament">The Part-Time Parliament</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf" title="paxos made simple">Paxos Made Simple</a></li>
+<li><a href="https://www.andrew.cmu.edu/course/15-749/READINGS/required/resilience/lamport82.pdf" title="The Byzantine Generals Problem">The Byzantine Generals Problem</a></li>
+</ul>
+
+
+<p>  相比较而言，<a href="http://en.wikipedia.org/wiki/Paxos_(computer_science)" title="Paxos (computer science)">paxos的wiki</a>可能更好懂一些。有余力的同学可以做一下<a href="http://css.csail.mit.edu/6.824/2014/" title="MIT Distributed Systems Labs">MIT Distributed Systems Labs</a>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[C++的限制拷贝]]></title>
+    <link href="http://cxh.me/2014/08/24/no-copy-restrict/"/>
+    <updated>2014-08-24T12:44:00+08:00</updated>
+    <id>http://cxh.me/2014/08/24/no-copy-restrict</id>
+    <content type="html"><![CDATA[<p>  如果需要禁止一个类的拷贝（多鉴于RAII的资源类），按习惯我们会把拷贝构造函数和赋值运算符重载设置为私有的。比如：</p>
+
+<pre><code>class Base
+{
+  public:
+    Base (int a)
+    {
+      cout &lt;&lt;"construct"&lt;&lt;endl;
+    }
+    virtual ~Base (){}
+
+  private:
+    Base(const Base&amp; b)
+    Base &amp; operator=(const Base&amp; b)
+};
+
+int main(int argc, const char *argv[])
+{
+  Base b(1);//ok
+  Base c=1;//error[1]
+  Base d=c;//error
+  c = d;//error
+  return 0;
+}
+</code></pre>
+
+<p>  但是问题在于[1]这里没有道理被屏蔽掉，应该会被优化成Base c(1)。如下代码可以证明：</p>
+
+<pre><code>class Base
+{
+  public:
+    Base (int a)
+    {
+      cout &lt;&lt;"construct"&lt;&lt;endl;
+    }
+    virtual ~Base ()
+    {
+    }
+    Base(const Base&amp; b)
+    {
+      cout&lt;&lt;"copy consturct" &lt;&lt;endl;
+    }
+};
+
+int main(int argc, const char *argv[])
+{
+  Base c=1;
+  return 0;
+}
+</code></pre>
+
+<p>  运行结果：</p>
+
+<pre><code>construct
+</code></pre>
+
+<p>  后来我试了一下才发现，首先这个优化是编译器层面的，所以不同的编译器处理应该是不一样的，虽然我们见到的编译器应该都支持。其次这个优化不是语法检查前做的，也就意味着，在<strong>构造函数没有被声明为explicit的时候</strong>，语法检查会把这个认为是先做了类型转换，然后调用拷贝构造函数，也就是如下：</p>
+
+<pre><code>Base c = Base(1);
+</code></pre>
+
+<p>  这就在编译的时候报错了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[暴力街区13]]></title>
+    <link href="http://cxh.me/2014/08/17/brick-mansions/"/>
+    <updated>2014-08-17T20:39:00+08:00</updated>
+    <id>http://cxh.me/2014/08/17/brick-mansions</id>
+    <content type="html"><![CDATA[<p>   <img class="img-polaroid center" src="http://cxh.me/images/2014/brick_mansions.jpg"></p>
+
+<p>   虽说是翻拍，但是也不能一模一样啊，这剧情的相似度不是一般的高啊&hellip;.</p>
+
+<p>   而且第二部的时候我就不理解，如果要引爆一个炸弹，直接倒计时爆炸就行了，干嘛要派一个人进去再输入一个引爆密码？剧情可从来没说炸弹送进去的时候就知道会被发射回来。</p>
+
+<p>   还有，不要黑我大底特律&hellip;</p>
 ]]></content>
   </entry>
   
