@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-12T13:17:35+08:00</updated>
+  <updated>2014-12-25T10:18:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -123,6 +123,10 @@ List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt; streams = consumerMap.get(topic);
 <p>  <img class="center" src="http://cxh.me/images/2014/async_callback.png" title="" ></p>
 
 <p>  后来发现当前项目JRE的版本是1.5，貌似1.5的JRE有个bug。切到1.6以上版本就可以了。</p>
+
+<p>  如果依然有问题，可以直接改一下Compliance Level：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/compliance.png"></p>
 ]]></content>
   </entry>
   

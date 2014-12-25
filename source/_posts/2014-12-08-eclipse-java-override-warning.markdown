@@ -16,3 +16,7 @@ categories: "其他"
   {% img center /images/2014/async_callback.png   %}
 
   后来发现当前项目JRE的版本是1.5，貌似1.5的JRE有个bug。切到1.6以上版本就可以了。
+
+  如果依然有问题，可以直接改一下Compliance Level：
+
+  {% img img-polaroid center /images/2014/compliance.png %}
