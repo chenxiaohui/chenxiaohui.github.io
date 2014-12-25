@@ -15,7 +15,9 @@ categories: "其他"
 
   {% img center /images/2014/async_callback.png   %}
 
-  后来发现当前项目JRE的版本是1.5，貌似1.5的JRE有个bug。切到1.6以上版本就可以了。
+  后来发现当前项目JRE的版本是1.5，~~貌似1.5的JRE有个bug~。切到1.6以上版本就可以了。原因如下：
+
+	Eclipse is defaulting to Java 1.5 and you have classes implementing interface methods (which in Java 1.6 can be annotated with @Override, but in Java 1.5 can only be applied to methods overriding a superclass method).
 
   如果依然有问题，可以直接改一下Compliance Level：
 
