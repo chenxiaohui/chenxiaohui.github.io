@@ -25,3 +25,8 @@ categories: "其他"
 
 [1]: http://www.slf4j.org/codes.html#StaticLoggerBinder   "SLF4J warning or error messages and their meanings"
 [2]: http://blog.csdn.net/robert_mm/article/details/8197108 " slf4j-api、slf4j-log4j12以及log4j之间什么关系？"
+###参考文献:
+
+>\[1] SLF4J warning or error messages and their meanings, <http://www.slf4j.org/codes.html#StaticLoggerBinder>
+
+>\[2]  slf4j-api、slf4j-log4j12以及log4j之间什么关系？, <http://blog.csdn.net/robert_mm/article/details/8197108>
