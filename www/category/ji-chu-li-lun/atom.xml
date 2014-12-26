@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-26T12:53:12+08:00</updated>
+  <updated>2014-12-26T12:53:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -22,45 +22,45 @@
 
 <p>  泰勒级数的定义如下：</p>
 
-<p>  <img class="center" src="/images/2014/taylor.png" title="&ldquo;Taylor公式&rdquo; &ldquo;Taylor公式&rdquo;" ></p>
+<p>  {% img center /images/2014/taylor.png &ldquo;Taylor公式&rdquo; &ldquo;Taylor公式&rdquo; %}</p>
 
 <p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
 
-<p>  <img class="center" src="/images/2014/Maclaurin.png" title="&ldquo;Maclaurin展开式&rdquo; &ldquo;Maclaurin展开式&rdquo;" ></p>
+<p>  {% img center /images/2014/Maclaurin.png &ldquo;Maclaurin展开式&rdquo; &ldquo;Maclaurin展开式&rdquo; %}</p>
 
 <!--more-->
 
 
 <p>  几个重要的Maclaurin展开如下：</p>
 
-<p>  <img class="center" src="/images/2014/sinx.png">
-  <img class="center" src="/images/2014/cosx.png" title="&ldquo;几个重要的Maclaurin展开&rdquo; &ldquo;几个重要的Maclaurin展开&rdquo;" ></p>
+<p>  {% img center /images/2014/sinx.png %}
+  {% img center /images/2014/cosx.png &ldquo;几个重要的Maclaurin展开&rdquo; &ldquo;几个重要的Maclaurin展开&rdquo; %}</p>
 
 <p>  这里我们验证一下sinx的逼近随着级数的增加而增加的情况。这也对应于拟合过程拟合维度的增加，相对于一元的拟合，二元或者多元就是会精确一些，但是会带来过拟合的风险。</p>
 
 <p>  首先是sinx的图像</p>
 
-<p>  <img class="center" src="/images/2014/sin_x.png"></p>
+<p>  {% img center /images/2014/sin_x.png %}</p>
 
 <p>  一元函数拟合的时候，y=x</p>
 
-<p>  <img class="center" src="/images/2014/x_1.png"></p>
+<p>  {% img center /images/2014/x_1.png %}</p>
 
 <p>  二元拟合的时候，y=x-x<sup>3</sup>/3!</p>
 
-<p>  <img class="center" src="/images/2014/x_2.png"></p>
+<p>  {% img center /images/2014/x_2.png %}</p>
 
 <p>  三元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!</p>
 
-<p>  <img class="center" src="/images/2014/x_3.png"></p>
+<p>  {% img center /images/2014/x_3.png %}</p>
 
 <p>  四元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!-x<sup>7</sup>/7!</p>
 
-<p>  <img class="center" src="/images/2014/x_4.png"></p>
+<p>  {% img center /images/2014/x_4.png %}</p>
 
 <p>  合并起来的图像大致如此：</p>
 
-<p>  <img class="center" src="/images/2014/combine.png"></p>
+<p>  {% img center /images/2014/combine.png %}</p>
 
 <p>  再高阶的图像就不画了，上面基本保证了坐标系缩放比例是一致的(sinx的图像由于y轴比例没有跟其他的x轴保持一样的缩放比例），可以看到随着拟合维度的升高，拟合曲线越来越逼近sinx，这也直观体现了Maclaurin展开式的意义。</p>
 ]]></content>
