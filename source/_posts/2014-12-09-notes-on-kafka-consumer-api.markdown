@@ -3,7 +3,7 @@ layout: post
 title: "kafka Consumer API几个问题"
 date: 2014-12-09 10:12
 comments: true
-publised: true
+published: true
 categories: "分布式系统"
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "关于Maven回滚了eclipse中项目的JRE版本"
 date: 2014-12-25 14:49
 comments: true
-publised: true
+published: true
 categories: "其他"
 ---
 

@@ -3,9 +3,21 @@ layout: post
 title: "Maven多模块"
 date: 2014-12-25 20:24
 comments: true
-publised: false
+published: false
 categories: "其他"
 ---
 
 
 	mvn exec:java -pl module2 -Dexec.mainClass=MyMain
+
+	  	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>

@@ -3,7 +3,7 @@ layout: post
 title: "redis-copy的使用"
 date: 2014-12-01 17:01
 comments: true
-publised: true
+published: true
 categories: "分布式系统"
 ---
 

@@ -3,7 +3,7 @@ layout: post
 title: "Flash Cookie的跨域读取"
 date: 2014-12-12 12:35
 comments: true
-publised: true
+published: true
 categories: "Flex"
 ---
 

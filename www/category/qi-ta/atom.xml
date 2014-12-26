@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-25T21:57:02+08:00</updated>
+  <updated>2014-12-26T12:10:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -19,6 +19,18 @@
     <updated>2014-12-25T20:24:00+08:00</updated>
     <id>http://cxh.me/2014/12/25/maven-multi-module-project</id>
     <content type="html"><![CDATA[<pre><code>mvn exec:java -pl module2 -Dexec.mainClass=MyMain
+
+    &lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+            &lt;configuration&gt;
+                &lt;source&gt;1.7&lt;/source&gt;
+                &lt;target&gt;1.7&lt;/target&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
 </code></pre>
 ]]></content>
   </entry>
@@ -42,6 +54,22 @@
 <p>  在上面的基础上要加入一个任意一个slf4j-api的实现：</p>
 
 <pre><code>Placing one (and only one) of slf4j-nop.jar, slf4j-simple.jar, slf4j-log4j12.jar, slf4j-jdk14.jar or logback-classic.jar on the class path should solve the problem.
+</code></pre>
+
+<p>  另外libthrift的pom默认依赖的slf4j-api应该是1.5.8，可能会出现如下不兼容的情况：</p>
+
+<pre><code>SLF4J: The requested version 1.5.8 by your slf4j binding is not compatible with [1.6, 1.7]
+SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
+</code></pre>
+
+<p>  可以对libthrift的POM加入例外：</p>
+
+<pre><code>&lt;exclusions&gt;
+    &lt;exclusion&gt;
+        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
+        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
+    &lt;/exclusion&gt;
+&lt;/exclusions&gt;
 </code></pre>
 
 <p>  每个实现详见<a href="http://blog.csdn.net/robert_mm/article/details/8197108" title=" slf4j-api、slf4j-log4j12以及log4j之间什么关系？">参考文献2</a></p>
@@ -117,11 +145,11 @@
     <id>http://cxh.me/2014/12/08/eclipse-java-override-warning</id>
     <content type="html"><![CDATA[<p>  写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：</p>
 
-<p>  <img class="center" src="/images/2014/method_callback.png" title="" ></p>
+<p>  {% img center /images/2014/method_callback.png   %}</p>
 
 <p>  看AsyncMethodCallback的代码，没有任何问题啊：</p>
 
-<p>  <img class="center" src="/images/2014/async_callback.png" title="" ></p>
+<p>  {% img center /images/2014/async_callback.png   %}</p>
 
 <p>  后来发现当前项目JRE的版本是1.5，<del>~貌似1.5的JRE有个bug</del>。切到1.6以上版本就可以了。原因如下：</p>
 
@@ -130,7 +158,7 @@
 
 <p>  如果依然有问题，可以直接改一下Compliance Level：</p>
 
-<p>  <img class="img-polaroid center" src="/images/2014/compliance.png"></p>
+<p>  {% img img-polaroid center /images/2014/compliance.png %}</p>
 ]]></content>
   </entry>
   

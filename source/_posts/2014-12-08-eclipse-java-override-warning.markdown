@@ -3,7 +3,7 @@ layout: post
 title: "关于eclipse里面override上的warning"
 date: 2014-12-08 16:53
 comments: true
-publised: true
+published: true
 categories: "其他"
 ---
 
