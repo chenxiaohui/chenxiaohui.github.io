@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-26T12:10:55+08:00</updated>
+  <updated>2014-12-26T12:53:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -145,11 +145,11 @@ SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
     <id>http://cxh.me/2014/12/08/eclipse-java-override-warning</id>
     <content type="html"><![CDATA[<p>  写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：</p>
 
-<p>  {% img center /images/2014/method_callback.png   %}</p>
+<p>  <img class="center" src="/images/2014/method_callback.png" title="" ></p>
 
 <p>  看AsyncMethodCallback的代码，没有任何问题啊：</p>
 
-<p>  {% img center /images/2014/async_callback.png   %}</p>
+<p>  <img class="center" src="/images/2014/async_callback.png" title="" ></p>
 
 <p>  后来发现当前项目JRE的版本是1.5，<del>~貌似1.5的JRE有个bug</del>。切到1.6以上版本就可以了。原因如下：</p>
 
@@ -158,7 +158,7 @@ SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
 
 <p>  如果依然有问题，可以直接改一下Compliance Level：</p>
 
-<p>  {% img img-polaroid center /images/2014/compliance.png %}</p>
+<p>  <img class="img-polaroid center" src="/images/2014/compliance.png"></p>
 ]]></content>
   </entry>
   
