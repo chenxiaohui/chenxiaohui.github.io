@@ -31,3 +31,11 @@ categories: "其他"
   4. 冲突的一端更新修改：
 
   		git pull origin
+
+  补充：
+
+  蛋疼了...直接这样就行了 
+
+    rm `  find . -name '*.pyc' -o -name '*.swp'`
+
+  忘了这些命令都接受多个参数....

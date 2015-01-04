@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-04T19:05:45+08:00</updated>
+  <updated>2015-01-04T19:33:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -83,6 +83,15 @@ done &lt; /tmp/files
 </code></pre></li>
 </ol>
 
+
+<p>  补充：</p>
+
+<p>  蛋疼了&hellip;直接这样就行了</p>
+
+<pre><code>rm `  find . -name '*.pyc' -o -name '*.swp'`
+</code></pre>
+
+<p>  忘了这些命令都接受多个参数&hellip;.</p>
 ]]></content>
   </entry>
   
