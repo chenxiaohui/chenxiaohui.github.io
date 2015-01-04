@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2014-12-26T12:53:12+08:00</updated>
+  <updated>2015-01-04T16:56:09+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,24 +14,38 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Maven多模块]]></title>
-    <link href="http://cxh.me/2014/12/25/maven-multi-module-project/"/>
-    <updated>2014-12-25T20:24:00+08:00</updated>
-    <id>http://cxh.me/2014/12/25/maven-multi-module-project</id>
-    <content type="html"><![CDATA[<pre><code>mvn exec:java -pl module2 -Dexec.mainClass=MyMain
+    <title type="html"><![CDATA[git中删除已经缓存的文件]]></title>
+    <link href="http://cxh.me/2015/01/04/del-cached-files-in-git/"/>
+    <updated>2015-01-04T16:49:00+08:00</updated>
+    <id>http://cxh.me/2015/01/04/del-cached-files-in-git</id>
+    <content type="html"><![CDATA[<p>  经常遇到一种情况，开始项目的时候没加.gitignore文件，提交之后发现有大量的pyc文件残留，这样两地共同修改的时候pyc文件会造成大量的冲突。针对这种情况，可以如下解决：</p>
 
-    &lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-            &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;configuration&gt;
-                &lt;source&gt;1.7&lt;/source&gt;
-                &lt;target&gt;1.7&lt;/target&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-    &lt;/plugins&gt;
-&lt;/build&gt;
-</code></pre>
+<ol>
+<li><p> 建立.gitignore文件并写入：</p>
+
+<pre><code>.pyc
+.swp
+</code></pre></li>
+<li><p> 删除所有缓存中的数据：</p>
+
+<pre><code>find . -name '*.pyc' -o -name '*.swp' &gt; /tmp/files
+while read line; do
+    git rm --cached $line
+done &lt; /tmp/files
+</code></pre></li>
+<li><p> 在冲突的一端回滚所有pyc冲突：</p>
+
+<pre><code>find . -name '*.pyc' -o -name '*.swp' &gt; /tmp/files
+while read line; do
+    git checkout -f  $line
+done &lt; /tmp/files
+</code></pre></li>
+<li><p> 冲突的一端更新修改：</p>
+
+<pre><code>git pull origin
+</code></pre></li>
+</ol>
+
 ]]></content>
   </entry>
   
@@ -259,15 +273,6 @@ List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt; streams = consumerMap.get(topic);
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[thrift和maven/eclipse配置上的几个问题]]></title>
-    <link href="http://cxh.me/2014/12/03/ththrift-maven-eclipse-problem/"/>
-    <updated>2014-12-03T16:42:00+08:00</updated>
-    <id>http://cxh.me/2014/12/03/ththrift-maven-eclipse-problem</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[redis-copy的使用]]></title>
     <link href="http://cxh.me/2014/12/01/redis-copy-usage/"/>
     <updated>2014-12-01T17:01:00+08:00</updated>
@@ -391,54 +396,6 @@ keys *
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[同步/异步/阻塞/非阻塞IO]]></title>
-    <link href="http://cxh.me/2014/11/24/non-blocking-io/"/>
-    <updated>2014-11-24T14:24:00+08:00</updated>
-    <id>http://cxh.me/2014/11/24/non-blocking-io</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[从zookeeper提供的特性来看其应用场景]]></title>
-    <link href="http://cxh.me/2014/11/20/zookeeper-scene-according-to-feature/"/>
-    <updated>2014-11-20T18:59:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/zookeeper-scene-according-to-feature</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[zookeeper配置入门]]></title>
-    <link href="http://cxh.me/2014/11/20/zookeeper-configuration-guide/"/>
-    <updated>2014-11-20T14:21:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/zookeeper-configuration-guide</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[kafka配置入门]]></title>
-    <link href="http://cxh.me/2014/11/20/kafka-configuration-guide/"/>
-    <updated>2014-11-20T14:21:00+08:00</updated>
-    <id>http://cxh.me/2014/11/20/kafka-configuration-guide</id>
-    <content type="html"><![CDATA[<p>producer
-metadata.broker.list=localhost:9092,localhost:9093</p>
-
-<p>consumer group</p>
-
-<pre><code>bin/zookeeper-server-start.sh config/zookeeper.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-env JMX_PORT=9999 bin/kafka-server-start.sh config/server1.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-env JMX_PORT=10000 bin/kafka-server-start.sh config/server2.properties &gt;/dev/null 2&gt;&amp;1 &amp;
-sleep 5
-bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partitions 2 --replication-factor 2
-#bin/kafka-console-producer.sh --broker-list localhost:9092,localhost:9093 --topic mytopic
-#bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[node_zk_browser安装时的一个问题]]></title>
     <link href="http://cxh.me/2014/11/19/error-with-node-zk-browser/"/>
     <updated>2014-11-19T18:56:00+08:00</updated>
@@ -492,46 +449,6 @@ bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic mytopic --partit
 </code></pre>
 
 <p>  果然是学无止境啊</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
-    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
-    <updated>2014-11-13T15:26:00+08:00</updated>
-    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[docker入门]]></title>
-    <link href="http://cxh.me/2014/11/11/docker-tutorial/"/>
-    <updated>2014-11-11T16:03:00+08:00</updated>
-    <id>http://cxh.me/2014/11/11/docker-tutorial</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式消息队列的消息消费逻辑]]></title>
-    <link href="http://cxh.me/2014/11/07/message-queue-consume-semantics/"/>
-    <updated>2014-11-07T14:54:00+08:00</updated>
-    <id>http://cxh.me/2014/11/07/message-queue-consume-semantics</id>
-    <content type="html"><![CDATA[<p>  引用一段，出处在找：</p>
-
-<p>  对于JMS实现,消息传输担保非常直接:有且只有一次(exactly once).在kafka中稍有不同,对于consumer而言:</p>
-
-<pre><code>1) at most once: 最多一次,这个和JMS中"非持久化"消息类似.发送一次,无论成败,将不会重发.
-2) at least once: 消息至少发送一次,如果消息未能接受成功,可能会重发,直到接收成功.
-3) exactly once: 消息只会发送一次.
-at most once: 消费者fetch消息,然后保存offset,然后处理消息;当client保存offset之后,但是在消息处理过程中consumer进程失效(crash),导致部分消息未能继续处理.那么此后可能其他consumer会接管,但是因为offset已经提前保存,那么新的consumer将不能fetch到offset之前的消息(尽管它们尚没有被处理),这就是"at most once".
-at least once: 消费者fetch消息,然后处理消息,然后保存offset.如果消息处理成功之后,但是在保存offset阶段zookeeper异常或者consumer失效,导致保存offset操作未能执行成功,这就导致接下来再次fetch时可能获得上次已经处理过的消息,这就是"at least once".
-exactly once: kafka中并没有严格的去实现(基于2阶段提交,事务),我们认为这种策略在kafka中是没有必要的.
-因为"消息消费"和"保存offset"这两个操作的先后时机不同,导致了上述3种情况,通常情况下"at-least-once"是我们搜选.(相比at most once而言,重复接收数据总比丢失数据要好).
-
-to be continued.
-</code></pre>
 ]]></content>
   </entry>
   
@@ -734,6 +651,329 @@ Derived
 </code></pre>
 
 <p>  跟预想一致。水文一篇，可忽略。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[析构函数和成员析构的先后顺序]]></title>
+    <link href="http://cxh.me/2014/10/22/destruct-and-member-destruct/"/>
+    <updated>2014-10-22T17:57:00+08:00</updated>
+    <id>http://cxh.me/2014/10/22/destruct-and-member-destruct</id>
+    <content type="html"><![CDATA[<p>  肖总问到这个问题，写了个程序验证：</p>
+
+<pre><code>class Member
+{
+ public:
+   Member (){}
+   virtual ~Member (){printf("member destruct\n");}
+};
+class Base
+{
+  public:
+    Base (){}
+    virtual ~Base (){ printf("destruct\n");}
+  private:
+    Member member_;
+};
+int main(int argc, const char *argv[])
+{
+  Base c;
+  return 0;
+}
+</code></pre>
+
+<p>  结果是：</p>
+
+<pre><code>  destruct
+  member destruct
+</code></pre>
+
+<p>  可见析构的时候先调用析构函数，最后析构成员对象。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[分布式系统/NOSQL入门书单]]></title>
+    <link href="http://cxh.me/2014/10/20/distribute-system-guide/"/>
+    <updated>2014-10-20T11:26:00+08:00</updated>
+    <id>http://cxh.me/2014/10/20/distribute-system-guide</id>
+    <content type="html"><![CDATA[<p>  简单记一下我看过的和觉得值得看的。主要是给@赵龙作为参考。</p>
+
+<ul>
+<li>分布式相关</li>
+</ul>
+
+
+<blockquote><p>[1] 大规模分布式存储系统, <a href="http://book.douban.com/subject/25723658/">http://book.douban.com/subject/25723658/</a>
+  阿里日照的书，全面介绍了分布式系统的原理和实践，入门不可多得的书</p>
+
+<p>[2] 分布式系统原理介绍, <a href="http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413">http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413</a>
+  百度刘杰的，讲基本的分布式原理，有些笔误什么的。</p>
+
+<p>[3] paxos算法相关, <a href="http://cxh.me/2014/08/26/paxos-study/">http://cxh.me/2014/08/26/paxos-study/</a>
+  总结了paxos算法一些资料。</p>
+
+<p>[5] 分布式数据库系统原理, <a href="http://product.dangdang.com/23466507.html">http://product.dangdang.com/23466507.html</a>
+  分布式数据库的一本教材。</p>
+
+<p>[6] The Raft Consensus Algorithm, <a href="http://raftconsensus.github.io/">http://raftconsensus.github.io/</a>
+  raft相关的资料，论文和一些实现都能在里面找到，另外有一个图形化的展示很方便。</p>
+
+<p>[7] Raft介绍, <a href="http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D">http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D</a>
+  raft的一个ppt。</p></blockquote>
+
+<ul>
+<li>数据库相关</li>
+</ul>
+
+
+<blockquote><p>[1] 数据库系统实现, <a href="http://item.jd.com/10060181.html">http://item.jd.com/10060181.html</a>
+  数据库的一本教材，偏重于实现。</p>
+
+<p>[2] 数据挖掘概念与技术, <a href="http://book.douban.com/subject/2038599/">http://book.douban.com/subject/2038599/</a>>[3] 事务相关, <a href="http://cxh.me/2014/07/02/article-on-transaction/">http://cxh.me/2014/07/02/article-on-transaction/</a></p>
+
+<p>[3] 事务相关, <a href="http://cxh.me/2014/07/02/article-on-transaction/">http://cxh.me/2014/07/02/article-on-transaction/</a>
+  总结了事务相关的一些资料。</p></blockquote>
+
+<ul>
+<li>NOSQL相关</li>
+</ul>
+
+
+<blockquote><p>[1] Dynamo论文, <a href="http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf</a></p>
+
+<p>[2] bigtable论文, <a href="http://research.google.com/archive/bigtable-osdi06.pdf">http://research.google.com/archive/bigtable-osdi06.pdf</a></p>
+
+<p>[3] gfs论文, <a href="http://research.google.com/archive/gfs-sosp2003.pdf">http://research.google.com/archive/gfs-sosp2003.pdf</a></p>
+
+<p>[4] map reduce论文, <a href="http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf">http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf</a></p>
+
+<p>[5] Redis 设计与实现, <a href="http://redisbook.com/en/latest/">http://redisbook.com/en/latest/</a>
+  一本不错的讲redis的书。</p>
+
+<p>[6] 数据分析与处理之二（Leveldb 实现原理）, <a href="http://www.cnblogs.com/haippy/archive/2011/12/04/2276064.html">http://www.cnblogs.com/haippy/archive/2011/12/04/2276064.html</a>
+  leveldb的实现。</p>
+
+<p>[7] Memcached 源码剖析笔记, <a href="http://files.cppblog.com/xguru/Memcached.pdf">http://files.cppblog.com/xguru/Memcached.pdf</a>
+  memcache的源码。</p></blockquote>
+
+<ul>
+<li>基础</li>
+</ul>
+
+
+<blockquote><p>[1] UNIX环境高级编程, <a href="http://book.douban.com/subject/1788421/">http://book.douban.com/subject/1788421/</a></p>
+
+<p>[2] UNIX网络编程, <a href="http://book.douban.com/subject/1500149/">http://book.douban.com/subject/1500149/</a></p></blockquote>
+
+<ul>
+<li>一些博客</li>
+</ul>
+
+
+<blockquote><p>[1] 银河里的星星的博客, <a href="http://duanple.blog.163.com/">http://duanple.blog.163.com/</a>
+  主要是分布式领域的论文和翻译。</p>
+
+<p>[2] 章炎的技术博客, <a href="http://dirlt.com/">http://dirlt.com/</a></p>
+
+<p>[3] 何登成的技术博客, <a href="http://hedengcheng.com/">http://hedengcheng.com/</a> 大牛不解释</p>
+
+<p>[4] 淘宝核心系统团队博客, <a href="http://csrd.aliapp.com/">http://csrd.aliapp.com/</a></p>
+
+<p>[5] 吴镝 <a href="http://www.cnblogs.com/foxmailed/">http://www.cnblogs.com/foxmailed/</a> 专注系统，基础架构，分布式系统</p></blockquote>
+
+<p>  都看还是需要时间的，我只是读完了一部分翻完了一部分，很多还需要再看一遍。分布式系统最好的学习方法当时是实现一个分布式系统，像晓楚<a href="https://github.com/raywill/macraykv" title="Macrakv">macrakv</a>这样，但是工程量和难度比较大，退而求其次的办法是看源码，redis/hbase/leveldb/memcached都是不错的例子。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[自动生成ifdef标记和作者信息的插件]]></title>
+    <link href="http://cxh.me/2014/10/11/ifdef-generator/"/>
+    <updated>2014-10-11T14:28:00+08:00</updated>
+    <id>http://cxh.me/2014/10/11/ifdef-generator</id>
+    <content type="html"><![CDATA[<p>  针对团队开发为了统一代码风格往往有比较严格的代码规范。为了自动化的生成一些不变的内容，写了如下两个插件（有的是改动）：</p>
+
+<blockquote><ol>
+<li>ifdef.vim 生成ifndef标记，防止重复包含。</li>
+<li>author_info.vim 生成更新作者信息版权声明</li>
+</ol>
+</blockquote>
+
+<p>  详见<a href="https://github.com/chenxiaohui/ifdef_generator">https://github.com/chenxiaohui/ifdef_generator</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[夜景几张]]></title>
+    <link href="http://cxh.me/2014/09/08/ffc-pictures/"/>
+    <updated>2014-09-08T21:25:00+08:00</updated>
+    <id>http://cxh.me/2014/09/08/ffc-pictures</id>
+    <content type="html"><![CDATA[<p>  实在是镜头决定了成败，套头拍月亮基本是对不上焦的节奏，只能拍拍旁边的楼了。财富金融中心，应该是北京最高的写字楼了。貌似有跑焦。</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/ffc_dark.jpg" title="FFC" alt="FFC"><p class="align-center">FFC</p></p>
+
+<!--more-->
+
+
+<p>  再贴一张曝光长一点的。</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/ffc_light.jpg" title="FFC" alt="FFC"><p class="align-center">FFC</p></p>
+
+<p>  以及裤衩沐浴在月光中的&hellip;</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/moon.jpg"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[永不分开，世界的爱]]></title>
+    <link href="http://cxh.me/2014/09/08/the-love-of-the-world/"/>
+    <updated>2014-09-08T20:03:00+08:00</updated>
+    <id>http://cxh.me/2014/09/08/the-love-of-the-world</id>
+    <content type="html"><![CDATA[<p>  这应该算是很古老很古老的一首歌了，当时赵薇还是个青涩的小燕子。2000年的时候还在上初中，实在不理解新千年的意义。现在回想起来，新千年的到来，对人类来说，实在是个有着难以名状的意义。20世纪前半叶的多灾多难，后半叶的冷战阴云，没有哪个世纪会产生如此重大的人类群体性灾难。旧的秩序被打破，核战争的阴云，武器发展到批量化的收割人命，20世纪可能是人类历史上绝无仅有一个世纪。</p>
+
+<p>  从这个角度想，这首歌真是充满了感慨。停留在20世纪的末尾，回首这一个多灾多难的世纪，看人类从错误中反省，最终一起站在新千年的入口展望未来。某种意义上说，人类第一次站在一起迎接和平，憧憬未来。这其中的意味可能只有经历过苦难的人才体会的出来，虽然2000年的时候局部战争依然在进行着。</p>
+
+<p>  一首歌的意味只有联想到背景才体会得到啊，不知道有多少人还记得这首歌了。不妨回味。</p>
+
+<p>  <embed src="http://player.yinyuetai.com/video/player/438643/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用google来验证一下Maclaurin展开式]]></title>
+    <link href="http://cxh.me/2014/09/07/using-google-verify-maclaurin-series/"/>
+    <updated>2014-09-07T15:35:00+08:00</updated>
+    <id>http://cxh.me/2014/09/07/using-google-verify-maclaurin-series</id>
+    <content type="html"><![CDATA[<p>  偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。</p>
+
+<p>  泰勒级数的定义如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/taylor.png" title="Taylor公式" alt="Taylor公式"><p class="align-center">Taylor公式</p></p>
+
+<p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/Maclaurin.png" title="Maclaurin展开式" alt="Maclaurin展开式"><p class="align-center">Maclaurin展开式</p></p>
+
+<!--more-->
+
+
+<p>  几个重要的Maclaurin展开如下：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/sinx.png">
+  <img class="center" src="http://cxh.me/images/2014/cosx.png" title="几个重要的Maclaurin展开" alt="几个重要的Maclaurin展开"><p class="align-center">几个重要的Maclaurin展开</p></p>
+
+<p>  这里我们验证一下sinx的逼近随着级数的增加而增加的情况。这也对应于拟合过程拟合维度的增加，相对于一元的拟合，二元或者多元就是会精确一些，但是会带来过拟合的风险。</p>
+
+<p>  首先是sinx的图像</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/sin_x.png"></p>
+
+<p>  一元函数拟合的时候，y=x</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_1.png"></p>
+
+<p>  二元拟合的时候，y=x-x<sup>3</sup>/3!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_2.png"></p>
+
+<p>  三元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_3.png"></p>
+
+<p>  四元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!-x<sup>7</sup>/7!</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/x_4.png"></p>
+
+<p>  合并起来的图像大致如此：</p>
+
+<p>  <img class="center" src="http://cxh.me/images/2014/combine.png"></p>
+
+<p>  再高阶的图像就不画了，上面基本保证了坐标系缩放比例是一致的(sinx的图像由于y轴比例没有跟其他的x轴保持一样的缩放比例），可以看到随着拟合维度的升高，拟合曲线越来越逼近sinx，这也直观体现了Maclaurin展开式的意义。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[《改善C++程序的150个建议》勘误]]></title>
+    <link href="http://cxh.me/2014/09/06/error-in-cpp-150-notes/"/>
+    <updated>2014-09-06T11:41:00+08:00</updated>
+    <id>http://cxh.me/2014/09/06/error-in-cpp-150-notes</id>
+    <content type="html"><![CDATA[<p>  翻了一下编写高质量代码：改善C++程序的150个建议，感觉一般，主要是能下到pdf。看到两个错误。</p>
+
+<p>  第一个错误是内存池的那里，内部类使用了外部类的成员变量，这是C++啊，不是java，内部类默认不持有外部类指针。</p>
+
+<pre><code>class MemPool
+{
+  public:
+    MemPool (int nItemSize, int nMemBlockSize = 2048):
+      m_nItemSize(nItemSize),
+      m_nMemBlockSize(nMemBlockSize),
+      m_pMemBlockHeader(NULL),
+      m_pFreeNodeHeader(NULL)
+    {}
+    virtual ~MemPool (){}
+    void * Alloc();
+    void Free();
+  private:
+    /* data */
+    const int m_nMemBlockSize;
+    const int m_nItemSize;
+    struct _FreeNode
+    {
+      _FreeNode* pPrev;
+      char data[m_nItemSize - sizeof(_FreeNode*)];
+    };
+    struct _MemBlock
+    {
+      _MemBlock * pPrev;
+      _FreeNode data[m_nMemBlockSize/m_nItemSize];
+    };
+    _MemBlock* m_pMemBlockHeader;
+    _FreeNode* m_pFreeNodeHeader;
+};
+</code></pre>
+
+<p>  第二个错误是作者强调nocopyable基类是需要私有继承的，其实不需要，public继承足够了，public继承又不会把基类的private成员继承下来。</p>
+
+<pre><code>class nocopyable
+{
+  public:
+    nocopyable (){}
+    virtual ~nocopyable (){}
+
+  private:
+    /* data */
+    nocopyable (const nocopyable&amp;);
+    nocopyable&amp; operator=(const nocopyable&amp;);
+};
+class Base : public nocopyable
+</code></pre>
+
+<p>  太tm不严谨了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Paxos算法学习]]></title>
+    <link href="http://cxh.me/2014/08/26/paxos-study/"/>
+    <updated>2014-08-26T20:53:00+08:00</updated>
+    <id>http://cxh.me/2014/08/26/paxos-study</id>
+    <content type="html"><![CDATA[<p>  本来想写点东西，后来觉得都是一知半解。这里转载一点学习资料吧。</p>
+
+<p>  一个是知行学社的分布式系统与Paxos算法视频课程，循序渐进，讲解地比较浅显易懂。</p>
+
+<p>  <embed src="http://www.tudou.com/v/e8zM8dAL6hM/&bid=05&rpid=51943457&resourceId=51943457_05_05_99/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"></embed></p>
+
+<p>  另一个是百度刘杰<a href="http://www.valleytalk.org/2012/07/12/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D%E3%80%8B-%E3%80%82%E7%99%BE%E5%BA%A6-%E3%80%82%E5%88%98%E6%9D%B0/" title="《分布式系统原理介绍》">《分布式系统原理介绍》</a>。当然Lamport的几篇论文是不能不看的，虽然都不太好懂。</p>
+
+<ul>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-paxos.pdf" title="The Part-Time Parliament">The Part-Time Parliament</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf" title="paxos made simple">Paxos Made Simple</a></li>
+<li><a href="https://www.andrew.cmu.edu/course/15-749/READINGS/required/resilience/lamport82.pdf" title="The Byzantine Generals Problem">The Byzantine Generals Problem</a></li>
+</ul>
+
+
+<p>  相比较而言，<a href="http://en.wikipedia.org/wiki/Paxos_(computer_science)" title="Paxos (computer science)">paxos的wiki</a>可能更好懂一些。有余力的同学可以做一下<a href="http://css.csail.mit.edu/6.824/2014/" title="MIT Distributed Systems Labs">MIT Distributed Systems Labs</a>。</p>
 ]]></content>
   </entry>
   
