@@ -24,10 +24,10 @@ categories: "Linux"
 
    换tail:
 
-   ssh -t xx@xxx "tail filePath"
+    ssh -t xx@xxx "tail filePath"
 
    还是直接执行完毕退出。查tail有没有自动刷新的模式，有一个follow：
 
-   ssh xx@xx "tail -f filePath"
+    ssh xx@xx "tail -f filePath"
 
    搞定。

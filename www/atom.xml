@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-04T17:45:46+08:00</updated>
+  <updated>2015-01-04T19:05:45+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -38,11 +38,13 @@
 
 <p>   换tail:</p>
 
-<p>   ssh -t xx@xxx &ldquo;tail filePath&rdquo;</p>
+<pre><code>ssh -t xx@xxx "tail filePath"
+</code></pre>
 
 <p>   还是直接执行完毕退出。查tail有没有自动刷新的模式，有一个follow：</p>
 
-<p>   ssh xx@xx &ldquo;tail -f filePath&rdquo;</p>
+<pre><code>ssh xx@xx "tail -f filePath"
+</code></pre>
 
 <p>   搞定。</p>
 ]]></content>
