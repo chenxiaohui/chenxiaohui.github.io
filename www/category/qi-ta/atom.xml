@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-04T19:33:10+08:00</updated>
+  <updated>2015-01-04T20:00:54+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -51,7 +51,9 @@ done &lt; /tmp/files
 
 <p>  蛋疼了&hellip;直接这样就行了</p>
 
-<pre><code>rm `  find . -name '*.pyc' -o -name '*.swp'`
+<pre><code>git rm --cached `find . -name '*.pyc' -o -name '*.swp'`
+
+或者 find . -name '*.pyc' -o -name '*.swp' -exec git rm --cached {} \; 
 </code></pre>
 
 <p>  忘了这些命令都接受多个参数&hellip;.</p>

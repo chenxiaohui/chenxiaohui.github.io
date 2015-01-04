@@ -36,6 +36,8 @@ categories: "其他"
 
   蛋疼了...直接这样就行了 
 
-    rm `  find . -name '*.pyc' -o -name '*.swp'`
+    git rm --cached `find . -name '*.pyc' -o -name '*.swp'`
+
+    或者 find . -name '*.pyc' -o -name '*.swp' -exec git rm --cached {} \; 
 
   忘了这些命令都接受多个参数....
