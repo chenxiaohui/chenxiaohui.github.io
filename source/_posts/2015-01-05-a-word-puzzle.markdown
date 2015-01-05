@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "源于一道文字游戏的题目"
+title: "源于一道文字游戏"
 date: 2015-01-05 20:31
 comments: true
 published: true
