@@ -30,4 +30,6 @@ categories: "Linux"
 
     ssh xx@xx "tail -f filePath"
 
-   搞定。
+   搞定。*配合[TMux]绝对好用*。
+   
+[1]: http://kumu-linux.github.io/blog/2013/08/06/tmux/   "Linux下终端利器tmux"

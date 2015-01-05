@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-05T13:43:30+08:00</updated>
+  <updated>2015-01-05T15:18:04+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -46,7 +46,7 @@
 <pre><code>ssh xx@xx "tail -f filePath"
 </code></pre>
 
-<p>   搞定。</p>
+<p>   搞定。<em>配合[TMux]绝对好用</em>。</p>
 ]]></content>
   </entry>
   
