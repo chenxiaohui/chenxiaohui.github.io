@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "源于一道文字游戏的题目"
 date: 2015-01-05 20:31
 comments: true
 published: true
@@ -39,7 +39,8 @@ categories: "IT人生"
 
   谢谢观看～。
    
- [1]: http://blog.csdn.net/autofei/article/details/6579320   " LINUX Shell 下求两个文件交集和差集的办法"
+  [1]: http://blog.csdn.net/autofei/article/details/6579320 "LINUX Shell 下求两个文件交集和差集的办法"
+
 ###参考文献:
 
 >\ [1]  LINUX Shell 下求两个文件交集和差集的办法, <http://blog.csdn.net/autofei/article/details/6579320>
