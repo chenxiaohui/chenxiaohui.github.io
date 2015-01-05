@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-05T16:07:18+08:00</updated>
+  <updated>2015-01-05T20:40:40+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/01/05/a-word-puzzle/"/>
+    <updated>2015-01-05T20:31:00+08:00</updated>
+    <id>http://cxh.me/2015/01/05/a-word-puzzle</id>
+    <content type="html"><![CDATA[<p>  起源是这样一道题目：</p>
+
+<p>   <img class="img-polaroid center" src="http://cxh.me/images/2015/word_puzzle.png"></p>
+
+<p>  于是想到通过word dict来算一下：</p>
+
+<p>  先去下载了中文词库：</p>
+
+<pre><code>git clone git@github.com:ling0322/webdict.git 
+</code></pre>
+
+<p>  然后去掉词频信息：</p>
+
+<pre><code>awk  '{ if (length($1)==2) print $1}' webdict_with_freq.txt &gt;webdict.txt
+</code></pre>
+
+<p>  先按照出现位置来正则过滤候选集，并且去掉大/日/风/思四个字：</p>
+
+<pre><code>grep '^大.*' webdict.txt| sed 's/大//g' &gt;da.txt
+grep '^日.*' webdict.txt| sed 's/日//g' &gt;ri.txt
+grep '.*风$' webdict.txt| sed 's/风//g' &gt;feng.txt
+grep '.*思$' webdict.txt| sed 's/思//g' &gt;si.txt  
+</code></pre>
+
+<p>  之后的事情就很有意思了，每次join两个文件，因为大/日/风/思四个字是没有交集的，所以结果就是要求的字：</p>
+
+<pre><code>comm -12 &lt;(sort da.txt|uniq ) &lt;(sort ri.txt|uniq ) &gt;da_ri.txt
+comm -12 &lt;(sort feng.txt|uniq ) &lt;(sort da_ri.txt|uniq ) &gt;da_ri_feng.txt
+comm -12 &lt;(sort si.txt|uniq ) &lt;(sort da_ri_feng.txt|uniq ) &gt;da_ri_feng_si.txt
+</code></pre>
+
+<p>  最后的<del>凶手</del>答案只有一个：</p>
+
+<pre><code>&lt;img class="img-polaroid center" src="http://cxh.me/images/2015/result.png"&gt;
+</code></pre>
+
+<p>  谢谢观看～。</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>\ <a href="http://blog.csdn.net/autofei/article/details/6579320" title=" LINUX Shell 下求两个文件交集和差集的办法">1</a>  LINUX Shell 下求两个文件交集和差集的办法, <a href="http://blog.csdn.net/autofei/article/details/6579320">http://blog.csdn.net/autofei/article/details/6579320</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[django重定向的参数传递]]></title>
@@ -910,28 +959,6 @@ int main(int argc, const char *argv[])
 </blockquote>
 
 <p>  详见<a href="https://github.com/chenxiaohui/ifdef_generator">https://github.com/chenxiaohui/ifdef_generator</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[夜景几张]]></title>
-    <link href="http://cxh.me/2014/09/08/ffc-pictures/"/>
-    <updated>2014-09-08T21:25:00+08:00</updated>
-    <id>http://cxh.me/2014/09/08/ffc-pictures</id>
-    <content type="html"><![CDATA[<p>  实在是镜头决定了成败，套头拍月亮基本是对不上焦的节奏，只能拍拍旁边的楼了。财富金融中心，应该是北京最高的写字楼了。貌似有跑焦。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/ffc_dark.jpg" title="FFC" alt="FFC"><p class="align-center">FFC</p></p>
-
-<!--more-->
-
-
-<p>  再贴一张曝光长一点的。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/ffc_light.jpg" title="FFC" alt="FFC"><p class="align-center">FFC</p></p>
-
-<p>  以及裤衩沐浴在月光中的&hellip;</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/moon.jpg"></p>
 ]]></content>
   </entry>
   
