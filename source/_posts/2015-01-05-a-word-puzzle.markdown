@@ -8,7 +8,7 @@ categories: "IT人生"
 ---
   起源是这样一道题目：
 
-   {% img img-polaroid center /images/2015/word_puzzle.png %}
+  {% img img-polaroid center /images/2015/word_puzzle.png %}
 
   于是想到通过word dict来算一下：
 
@@ -35,7 +35,7 @@ categories: "IT人生"
   
   最后的~~凶手~~答案只有一个：
 
-  	{% img img-polaroid center /images/2015/result.png %}
+  {% img img-polaroid center /images/2015/result.png %}
 
   谢谢观看～。
    

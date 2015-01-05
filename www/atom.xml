@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-05T20:45:54+08:00</updated>
+  <updated>2015-01-05T20:47:48+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -20,7 +20,7 @@
     <id>http://cxh.me/2015/01/05/a-word-puzzle</id>
     <content type="html"><![CDATA[<p>  起源是这样一道题目：</p>
 
-<p>   <img class="img-polaroid center" src="http://cxh.me/images/2015/word_puzzle.png"></p>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/word_puzzle.png"></p>
 
 <p>  于是想到通过word dict来算一下：</p>
 
@@ -51,14 +51,13 @@ comm -12 &lt;(sort si.txt|uniq ) &lt;(sort da_ri_feng.txt|uniq ) &gt;da_ri_feng_
 
 <p>  最后的<del>凶手</del>答案只有一个：</p>
 
-<pre><code>&lt;img class="img-polaroid center" src="http://cxh.me/images/2015/result.png"&gt;
-</code></pre>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/result.png"></p>
 
 <p>  谢谢观看～。</p>
 
 <h3>参考文献:</h3>
 
-<blockquote><p>\ <a href="http://blog.csdn.net/autofei/article/details/6579320" title=" LINUX Shell 下求两个文件交集和差集的办法">1</a>  LINUX Shell 下求两个文件交集和差集的办法, <a href="http://blog.csdn.net/autofei/article/details/6579320">http://blog.csdn.net/autofei/article/details/6579320</a></p></blockquote>
+<blockquote><p>\ <a href="http://blog.csdn.net/autofei/article/details/6579320" title="LINUX Shell 下求两个文件交集和差集的办法">1</a>  LINUX Shell 下求两个文件交集和差集的办法, <a href="http://blog.csdn.net/autofei/article/details/6579320">http://blog.csdn.net/autofei/article/details/6579320</a></p></blockquote>
 ]]></content>
   </entry>
   
