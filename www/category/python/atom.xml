@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-05T15:18:04+08:00</updated>
+  <updated>2015-01-05T16:07:18+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[django重定向的参数传递]]></title>
+    <link href="http://cxh.me/2015/01/05/django-redirect-render/"/>
+    <updated>2015-01-05T15:55:00+08:00</updated>
+    <id>http://cxh.me/2015/01/05/django-redirect-render</id>
+    <content type="html"><![CDATA[<p>  其实就是想实现如下一个功能，重定向到一个网页，但是这个网页根据传参的不同显示不同的内容。基于Django各种render的shortcut理所当然的想有没有render_redirect，但是想想网络请求的流程，redirect只是返回了一个302，让浏览器直接去请求新的网页了，首先这个response很简单没有携带其他信息，此外，浏览器也不会把302code和url之外的内容作为下一次请求的参数。</p>
+
+<p>  可行的办法还是用get参数。针对遇到的需求：传入不同的参数的时候在不同的div上显示class=active，我们可以简化的实现如下：</p>
+
+<pre><code>模板：
+  &lt;div role="tabpanel" class="tab-pane " id="a"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="b"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="c"&gt;
+后台：
+  init = request.GET.get('init', 'a')#a是默认active的tab
+  return render(request, 'xx.html', {init:'active'})
+跳转：
+  return HttpResponseRedirect("/?init=b")
+</code></pre>
+
+<p>  直接用传入参数当了render参数的名字。<code>request.GET.get('init', 'a')</code>保证了无参数的时候active a作为默认值。django容错保证了没有的变量置空。基本够用了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[在Python字典解析中进行update]]></title>
