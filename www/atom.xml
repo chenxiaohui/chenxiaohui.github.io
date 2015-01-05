@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-05T09:58:45+08:00</updated>
+  <updated>2015-01-05T13:38:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,27 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[在Python字典解析中进行update]]></title>
+    <link href="http://cxh.me/2015/01/05/python-dict-update-in-comprehensions/"/>
+    <updated>2015-01-05T13:25:00+08:00</updated>
+    <id>http://cxh.me/2015/01/05/python-dict-update-in-comprehensions</id>
+    <content type="html"><![CDATA[<p>  遇到这样一个事情，从一个Thrift源取回部分数据，结构是一个对象数组，根据其中所有的Id字段从数据库又取回另一部分数据，结构是一个字典数组。那么问题来了，<del>挖掘机技术哪家强</del>如何按照id合并两份数据?</p>
+
+<p>  这其实就是JOIN，也就两种做法，nested loop join和hash join（这些词都是在ob的时候听到的，其实道理很简单）。做nested loop join的话，最好按排序，做hash join的话，就需要把其中一份数据的变成以id字段为key的字典。这里我们选择后一种，python代码实现起来比较简洁。前一种貌似只能for循环搞下标，不知道有没有直接的built in function。</p>
+
+<p>  代码比较简单，就是遇到了一个有代表性的问题：</p>
+
+<pre><code>results = [result.update(items[result['id']])) for result in results]
+</code></pre>
+
+<p>  id字段是join的key，results是从数据库取到的，items是从thrift取到的。关键问题在于update的结果是None，result是被原地修改的。所以需要改成下面：</p>
+
+<pre><code>results = [dict(result.items() + items[result['id']].items()) for result in results]
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Eclipse调试的时候出现class not found]]></title>
@@ -902,59 +923,6 @@ int main(int argc, const char *argv[])
 <p>  一首歌的意味只有联想到背景才体会得到啊，不知道有多少人还记得这首歌了。不妨回味。</p>
 
 <p>  <embed src="http://player.yinyuetai.com/video/player/438643/v_0.swf" quality="high" width="480" height="334" align="middle"  allowScriptAccess="sameDomain" allowfullscreen="true" type="application/x-shockwave-flash"></embed></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用google来验证一下Maclaurin展开式]]></title>
-    <link href="http://cxh.me/2014/09/07/using-google-verify-maclaurin-series/"/>
-    <updated>2014-09-07T15:35:00+08:00</updated>
-    <id>http://cxh.me/2014/09/07/using-google-verify-maclaurin-series</id>
-    <content type="html"><![CDATA[<p>  偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。</p>
-
-<p>  泰勒级数的定义如下：</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/taylor.png" title="Taylor公式" alt="Taylor公式"><p class="align-center">Taylor公式</p></p>
-
-<p>  不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/Maclaurin.png" title="Maclaurin展开式" alt="Maclaurin展开式"><p class="align-center">Maclaurin展开式</p></p>
-
-<!--more-->
-
-
-<p>  几个重要的Maclaurin展开如下：</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/sinx.png">
-  <img class="center" src="http://cxh.me/images/2014/cosx.png" title="几个重要的Maclaurin展开" alt="几个重要的Maclaurin展开"><p class="align-center">几个重要的Maclaurin展开</p></p>
-
-<p>  这里我们验证一下sinx的逼近随着级数的增加而增加的情况。这也对应于拟合过程拟合维度的增加，相对于一元的拟合，二元或者多元就是会精确一些，但是会带来过拟合的风险。</p>
-
-<p>  首先是sinx的图像</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/sin_x.png"></p>
-
-<p>  一元函数拟合的时候，y=x</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/x_1.png"></p>
-
-<p>  二元拟合的时候，y=x-x<sup>3</sup>/3!</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/x_2.png"></p>
-
-<p>  三元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/x_3.png"></p>
-
-<p>  四元拟合的时候，y=x-x<sup>3</sup>/3!+x<sup>5</sup>/5!-x<sup>7</sup>/7!</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/x_4.png"></p>
-
-<p>  合并起来的图像大致如此：</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/combine.png"></p>
-
-<p>  再高阶的图像就不画了，上面基本保证了坐标系缩放比例是一致的(sinx的图像由于y轴比例没有跟其他的x轴保持一样的缩放比例），可以看到随着拟合维度的升高，拟合曲线越来越逼近sinx，这也直观体现了Maclaurin展开式的意义。</p>
 ]]></content>
   </entry>
   
