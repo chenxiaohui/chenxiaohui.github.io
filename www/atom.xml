@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-06T20:13:03+08:00</updated>
+  <updated>2015-01-08T14:39:03+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于java编码规范]]></title>
+    <link href="http://cxh.me/2015/01/08/jajava-code-style/"/>
+    <updated>2015-01-08T14:34:00+08:00</updated>
+    <id>http://cxh.me/2015/01/08/jajava-code-style</id>
+    <content type="html"><![CDATA[<p>  首先推荐<a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html" title="Google Java Style">google的编码规范</a>，其次，关于class member ordering的问题，google的解释是：</p>
+
+<pre><code>The ordering of the members of a class can have a great effect on learnability, but there is no single correct recipe for how to do it. Different classes may order their members differently.
+
+What is important is that each class order its members in some logical order, which its maintainer could explain if asked. For example, new methods are not just habitually added to the end of the class, as that would yield "chronological by date added" ordering, which is not a logical ordering.
+</code></pre>
+
+<p>  道理是对的，但是不好执行啊。看了看JDK的顺序，觉得<a href="http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions" title="Are there any Java method ordering conventions?">这里</a>说的还是能达成共识的。</p>
+
+<ol>
+<li> Class (static) variables: First the public class variables, then the protected, and then the private.</li>
+<li> Instance variables: First public, then protected, and then private.</li>
+<li> Constructors</li>
+<li> Methods: These methods should be grouped by functionality rather than by scope or accessibility. For example, a private class method can be in between two public instance methods. The goal is to make reading and understanding the code easier.</li>
+</ol>
+
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Google Java Style, <a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html">https://google-styleguide.googlecode.com/svn/trunk/javaguide.html</a></p>
+
+<p>[2] Are there any Java method ordering conventions?, <a href="http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions">http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[源于一个文字游戏的题目]]></title>
@@ -941,23 +971,6 @@ int main(int argc, const char *argv[])
 <p>[5] 吴镝 <a href="http://www.cnblogs.com/foxmailed/">http://www.cnblogs.com/foxmailed/</a> 专注系统，基础架构，分布式系统</p></blockquote>
 
 <p>  都看还是需要时间的，我只是读完了一部分翻完了一部分，很多还需要再看一遍。分布式系统最好的学习方法当时是实现一个分布式系统，像晓楚<a href="https://github.com/raywill/macraykv" title="Macrakv">macrakv</a>这样，但是工程量和难度比较大，退而求其次的办法是看源码，redis/hbase/leveldb/memcached都是不错的例子。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[自动生成ifdef标记和作者信息的插件]]></title>
-    <link href="http://cxh.me/2014/10/11/ifdef-generator/"/>
-    <updated>2014-10-11T14:28:00+08:00</updated>
-    <id>http://cxh.me/2014/10/11/ifdef-generator</id>
-    <content type="html"><![CDATA[<p>  针对团队开发为了统一代码风格往往有比较严格的代码规范。为了自动化的生成一些不变的内容，写了如下两个插件（有的是改动）：</p>
-
-<blockquote><ol>
-<li>ifdef.vim 生成ifndef标记，防止重复包含。</li>
-<li>author_info.vim 生成更新作者信息版权声明</li>
-</ol>
-</blockquote>
-
-<p>  详见<a href="https://github.com/chenxiaohui/ifdef_generator">https://github.com/chenxiaohui/ifdef_generator</a>.</p>
 ]]></content>
   </entry>
   
