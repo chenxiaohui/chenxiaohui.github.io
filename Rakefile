@@ -88,6 +88,57 @@ task :preview do
   system "nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &"
   [jekyllPid, compassPid, rackupPid].each { |pid| Process.wait(pid) }
 end
+category_path ='source/_includes/categories.html'
+categories={
+    "技术相关"=>{
+        "软件发布"=>"ruan-jian-fa-bu",
+        "---------"=>"",
+        "C++"=>"c-plus-plus",
+        ".Net"=>"dot-net",
+        "Flex"=>"flex",
+        "基础理论"=>"ji-chu-li-lun",
+        "Latex"=>"latex",
+        "Linux"=>"linux",
+        "MFC"=>"mfc",
+        "Oceanbase"=>"oceanbase",
+        "分布式系统"=>"fen-bu-shi-xi-tong",
+        "PHP"=>"php",
+        "Java"=>"java",
+        "Python"=>"python",
+        "vim"=>"vim",
+        "web相关"=>"web",
+        "其他"=>"others",
+        "----------"=>"",
+        "IT人生"=>"ai-ti-ren-sheng",
+    },
+    "世情百态"=>"shi-qing-bai-tai",
+    "摄影"=>"she-ying",
+    "随笔" =>"sui-bi" }
+
+#update category to generate navigation
+desc "Generate jekyll site"
+task :gen do
+    html=''
+    for key,value in categories
+        if value.is_a?(Hash)
+            html << '<li class="dropdown">' << "\n"
+            html << '<a data-toggle="dropdown" class="dropdown-toggle" href="#">%s<b class="caret"></b></a>'%[key] << "\n"
+            html << '<ul class="dropdown-menu">' << "\n"
+            for key,value in value
+                if key.start_with?('-')
+                    html << "\t"'<li class="divider"></li>' << "\n"
+                else
+                    html << "\t"'<li><a href="{{ root_url }}/category/%s">%s</a></li>'%[value, key.strip] << "\n"
+                end
+            end
+            html << '</ul>' << "\n"
+            html << '</li>' << "\n"
+        else
+            html << '<li><a href="{{ root_url }}/category/%s">%s</a></li>'%[value, key.strip] << "\n"
+        end
+    end
+    File.open(category_path, 'w') { |file| file.write(html) }
+end
 
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
@@ -101,35 +152,28 @@ task :new_post, :title, :category do |t, args|
     category = args.category
   else
     #output an array
-    puts "===================================================="
-    categories=[
-        "技术相关",
-        "    软件发布",
-        "    C++",
-        "    .Net",
-        "    Flex",
-        "    基础理论",
-        "    Latex",
-        "    Linux",
-        "    MFC",
-        "    Oceanbase",
-        "    分布式系统",
-        "    其他",
-        "    Java",
-        "    PHP",
-        "    Python",
-        "    vim",
-        "    web相关",
-        "    IT人生",
-        "世情百态",
-        "摄影",
-        "随笔" ]
-    for i in 0..categories.size() - 1
-        puts "%2d %s" %[i ,categories[i]]
-    end
-    puts "===================================================="
+      category_arr = []
+      category_idx = 0
+      puts "===================================================="
+      for key,value in categories
+          if value.is_a?(Hash)
+              puts key
+              for key,value in value
+                  if not key.start_with?('-')
+                      puts "%d\t%s"%[category_idx, key]
+                      category_arr.push(key)
+                      category_idx +=1
+                  end
+              end
+          else
+              puts "%d %s"%[category_idx, key]
+              category_arr.push(key)
+              category_idx +=1
+          end
+      end
+      puts "===================================================="
     i = get_stdin("Enter a title for your category: ")
-    category = categories[Integer(i)].gsub(/\s/,'')
+    category = category_arr[Integer(i)].gsub(/\s/,'')
   end
 
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)

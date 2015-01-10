@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-10T13:53:55+08:00</updated>
+  <updated>2015-01-10T22:52:00+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,153 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[自动生成octopress的分类目录]]></title>
+    <link href="http://cxh.me/2015/01/10/octopress-category-auto-generate/"/>
+    <updated>2015-01-10T22:28:00+08:00</updated>
+    <id>http://cxh.me/2015/01/10/octopress-category-auto-generate</id>
+    <content type="html"><![CDATA[<p>  在octopress里面添加一个分类的时候，经常会遇到分类跟导航页面没有同步更新的情况，即加了一个分类，生成了文章，文章被生成在指定的路径下了，但是首页导航栏的分类没有跟着更新。针对这种情况，修改了一下Rakefile，把分类做成了配置，添加分类的时候可以直接修改一下分类信息，然后<code>rake gen</code>就可以生成对应的导航栏html代码。</p>
+
+<p>  修改如下（我以前增加过交互的提示选择分类的功能），需要解释的有如下几点：</p>
+
+<ol>
+<li> &ldquo;&mdash;&mdash;&#8221;是分割线，-的数量不能都一样，毕竟是作为map的key的。</li>
+<li> 分类做成map是因为category生成的时候名字自动做成了英文/拼音/中横线的形式&hellip;我没搞明白怎么弄的。所以自己手动填一下好了。以后有空想做成手动指定的。</li>
+<li> system sublime那个是自动打开sublime写博客。我不习惯用vim写中文的博客&hellip;</li>
+</ol>
+
+
+<!--more-->
+
+
+<p>  配置部分</p>
+
+<pre><code>category_path ='source/_includes/categories.html'
+categories={
+    "技术相关"=&gt;{
+        "软件发布"=&gt;"ruan-jian-fa-bu",
+        "---------"=&gt;"",
+        "C++"=&gt;"c-plus-plus",
+        ".Net"=&gt;"dot-net",
+        "Flex"=&gt;"flex",
+        "基础理论"=&gt;"ji-chu-li-lun",
+        "Latex"=&gt;"latex",
+        "Linux"=&gt;"linux",
+        "MFC"=&gt;"mfc",
+        "Oceanbase"=&gt;"oceanbase",
+        "分布式系统"=&gt;"fen-bu-shi-xi-tong",
+        "PHP"=&gt;"php",
+        "Java"=&gt;"java",
+        "Python"=&gt;"python",
+        "vim"=&gt;"vim",
+        "web相关"=&gt;"web",
+        "其他"=&gt;"others",
+        "----------"=&gt;"",
+        "IT人生"=&gt;"ai-ti-ren-sheng",
+    },
+    "世情百态"=&gt;"shi-qing-bai-tai",
+    "摄影"=&gt;"she-ying",
+    "随笔" =&gt;"sui-bi" }
+</code></pre>
+
+<p>  rake gen生成导航的html的部分。</p>
+
+<pre><code>desc "Generate jekyll site"
+task :gen do
+    html=''
+    for key,value in categories
+        if value.is_a?(Hash)
+            html &lt;&lt; '&lt;li class="dropdown"&gt;' &lt;&lt; "\n"
+            html &lt;&lt; '&lt;a data-toggle="dropdown" class="dropdown-toggle" href="#"&gt;%s&lt;b class="caret"&gt;&lt;/b&gt;&lt;/a&gt;'%[key] &lt;&lt; "\n"
+            html &lt;&lt; '&lt;ul class="dropdown-menu"&gt;' &lt;&lt; "\n"
+            for key,value in value
+                if key.start_with?('-')
+                    html &lt;&lt; "\t"'&lt;li class="divider"&gt;&lt;/li&gt;' &lt;&lt; "\n"
+                else
+                    html &lt;&lt; "\t"'&lt;li&gt;&lt;a href="http://cxh.me/category/%s"&gt;%s&lt;/a&gt;&lt;/li&gt;'%[value, key.strip] &lt;&lt; "\n"
+                end
+            end
+            html &lt;&lt; '&lt;/ul&gt;' &lt;&lt; "\n"
+            html &lt;&lt; '&lt;/li&gt;' &lt;&lt; "\n"
+        else
+            html &lt;&lt; '&lt;li&gt;&lt;a href="http://cxh.me/category/%s"&gt;%s&lt;/a&gt;&lt;/li&gt;'%[value, key.strip] &lt;&lt; "\n"
+        end
+    end
+    File.open(category_path, 'w') { |file| file.write(html) }
+end
+</code></pre>
+
+<p>  交互提示分类并generate new post的部分。</p>
+
+<pre><code># usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
+desc "Begin a new post in #{source_dir}/#{posts_dir}"
+task :new_post, :title, :category do |t, args|
+  if args.title
+    title = args.title
+  else
+    title = get_stdin("Enter a title for your post: ")
+  end
+  if args.category
+    category = args.category
+  else
+    #output an array
+      category_arr = []
+      category_idx = 0
+      puts "===================================================="
+      for key,value in categories
+          if value.is_a?(Hash)
+              puts key
+              for key,value in value
+                  if not key.start_with?('-')
+                      puts "%d\t%s"%[category_idx, key]
+                      category_arr.push(key)
+                      category_idx +=1
+                  end
+              end
+          else
+              puts "%d %s"%[category_idx, key]
+              category_arr.push(key)
+              category_idx +=1
+          end
+      end
+      puts "===================================================="
+    i = get_stdin("Enter a title for your category: ")
+    category = category_arr[Integer(i)].gsub(/\s/,'')
+  end
+
+  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
+  mkdir_p "#{source_dir}/#{posts_dir}"
+  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
+  system "echo #{filename} |xclip -i -selection clipboard "
+  if File.exist?(filename)
+    abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
+  end
+  puts "Creating new post: #{filename}"
+  open(filename, 'w') do |post|
+    post.puts "---"
+    post.puts "layout: post"
+    post.puts "title: \"\""
+    post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
+    post.puts "comments: true"
+    post.puts "published: true"
+    post.puts "categories: \"#{category.gsub(/&amp;/,'&amp;amp;')}\""
+    post.puts "---"
+  end
+  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup ~/share/sublime/sublime_text #{filename} &gt;/dev/null 2&gt;&amp;1 &amp;"
+end
+</code></pre>
+
+<p>  修改custom/navigation.html，让导航部分导入生成的categories.html</p>
+
+<pre><code>&lt;ul class="nav"&gt;
+    &lt;li&gt;&lt;a href="http://cxh.me/blog/archives"&gt;Archives&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="divider-vertical"&gt;&lt;/li&gt;
+    {\% include categories.html \%}
+&lt;/ul&gt;
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于java编码规范]]></title>
@@ -877,100 +1024,6 @@ int main(int argc, const char *argv[])
 </code></pre>
 
 <p>  可见析构的时候先调用析构函数，最后析构成员对象。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[分布式系统/NOSQL入门书单]]></title>
-    <link href="http://cxh.me/2014/10/20/distribute-system-guide/"/>
-    <updated>2014-10-20T11:26:00+08:00</updated>
-    <id>http://cxh.me/2014/10/20/distribute-system-guide</id>
-    <content type="html"><![CDATA[<p>  简单记一下我看过的和觉得值得看的。主要是给@赵龙作为参考。</p>
-
-<ul>
-<li>分布式相关</li>
-</ul>
-
-
-<blockquote><p>[1] 大规模分布式存储系统, <a href="http://book.douban.com/subject/25723658/">http://book.douban.com/subject/25723658/</a>
-  阿里日照的书，全面介绍了分布式系统的原理和实践，入门不可多得的书</p>
-
-<p>[2] 分布式系统原理介绍, <a href="http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413">http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413</a>
-  百度刘杰的，讲基本的分布式原理，有些笔误什么的。</p>
-
-<p>[3] paxos算法相关, <a href="http://cxh.me/2014/08/26/paxos-study/">http://cxh.me/2014/08/26/paxos-study/</a>
-  总结了paxos算法一些资料。</p>
-
-<p>[5] 分布式数据库系统原理, <a href="http://product.dangdang.com/23466507.html">http://product.dangdang.com/23466507.html</a>
-  分布式数据库的一本教材。</p>
-
-<p>[6] The Raft Consensus Algorithm, <a href="http://raftconsensus.github.io/">http://raftconsensus.github.io/</a>
-  raft相关的资料，论文和一些实现都能在里面找到，另外有一个图形化的展示很方便。</p>
-
-<p>[7] Raft介绍, <a href="http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D">http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D</a>
-  raft的一个ppt。</p></blockquote>
-
-<ul>
-<li>数据库相关</li>
-</ul>
-
-
-<blockquote><p>[1] 数据库系统实现, <a href="http://item.jd.com/10060181.html">http://item.jd.com/10060181.html</a>
-  数据库的一本教材，偏重于实现。</p>
-
-<p>[2] 数据挖掘概念与技术, <a href="http://book.douban.com/subject/2038599/">http://book.douban.com/subject/2038599/</a>>[3] 事务相关, <a href="http://cxh.me/2014/07/02/article-on-transaction/">http://cxh.me/2014/07/02/article-on-transaction/</a></p>
-
-<p>[3] 事务相关, <a href="http://cxh.me/2014/07/02/article-on-transaction/">http://cxh.me/2014/07/02/article-on-transaction/</a>
-  总结了事务相关的一些资料。</p></blockquote>
-
-<ul>
-<li>NOSQL相关</li>
-</ul>
-
-
-<blockquote><p>[1] Dynamo论文, <a href="http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf</a></p>
-
-<p>[2] bigtable论文, <a href="http://research.google.com/archive/bigtable-osdi06.pdf">http://research.google.com/archive/bigtable-osdi06.pdf</a></p>
-
-<p>[3] gfs论文, <a href="http://research.google.com/archive/gfs-sosp2003.pdf">http://research.google.com/archive/gfs-sosp2003.pdf</a></p>
-
-<p>[4] map reduce论文, <a href="http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf">http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf</a></p>
-
-<p>[5] Redis 设计与实现, <a href="http://redisbook.com/en/latest/">http://redisbook.com/en/latest/</a>
-  一本不错的讲redis的书。</p>
-
-<p>[6] 数据分析与处理之二（Leveldb 实现原理）, <a href="http://www.cnblogs.com/haippy/archive/2011/12/04/2276064.html">http://www.cnblogs.com/haippy/archive/2011/12/04/2276064.html</a>
-  leveldb的实现。</p>
-
-<p>[7] Memcached 源码剖析笔记, <a href="http://files.cppblog.com/xguru/Memcached.pdf">http://files.cppblog.com/xguru/Memcached.pdf</a>
-  memcache的源码。</p></blockquote>
-
-<ul>
-<li>基础</li>
-</ul>
-
-
-<blockquote><p>[1] UNIX环境高级编程, <a href="http://book.douban.com/subject/1788421/">http://book.douban.com/subject/1788421/</a></p>
-
-<p>[2] UNIX网络编程, <a href="http://book.douban.com/subject/1500149/">http://book.douban.com/subject/1500149/</a></p></blockquote>
-
-<ul>
-<li>一些博客</li>
-</ul>
-
-
-<blockquote><p>[1] 银河里的星星的博客, <a href="http://duanple.blog.163.com/">http://duanple.blog.163.com/</a>
-  主要是分布式领域的论文和翻译。</p>
-
-<p>[2] 章炎的技术博客, <a href="http://dirlt.com/">http://dirlt.com/</a></p>
-
-<p>[3] 何登成的技术博客, <a href="http://hedengcheng.com/">http://hedengcheng.com/</a> 大牛不解释</p>
-
-<p>[4] 淘宝核心系统团队博客, <a href="http://csrd.aliapp.com/">http://csrd.aliapp.com/</a></p>
-
-<p>[5] 吴镝 <a href="http://www.cnblogs.com/foxmailed/">http://www.cnblogs.com/foxmailed/</a> 专注系统，基础架构，分布式系统</p></blockquote>
-
-<p>  都看还是需要时间的，我只是读完了一部分翻完了一部分，很多还需要再看一遍。分布式系统最好的学习方法当时是实现一个分布式系统，像晓楚<a href="https://github.com/raywill/macraykv" title="Macrakv">macrakv</a>这样，但是工程量和难度比较大，退而求其次的办法是看源码，redis/hbase/leveldb/memcached都是不错的例子。</p>
 ]]></content>
   </entry>
   

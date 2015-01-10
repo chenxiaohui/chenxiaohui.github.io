@@ -4,7 +4,7 @@ title: "关于Maven回滚了eclipse中项目的JRE版本"
 date: 2014-12-25 14:49
 comments: true
 published: true
-categories: "其他"
+categories: "java"
 ---
 
   发现在命令行对一个项目执行`mvn install`的时候，回eclipse看就会有些错误，原因如[这里][1]所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：

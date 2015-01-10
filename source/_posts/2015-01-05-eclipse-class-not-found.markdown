@@ -4,7 +4,7 @@ title: "Eclipse调试的时候出现class not found"
 date: 2015-01-05 09:50
 comments: true
 published: true
-categories: "其他"
+categories: "java"
 ---
   昨天遇到这样一个问题：
 

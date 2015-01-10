@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-10T13:53:55+08:00</updated>
+  <updated>2015-01-10T22:52:00+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,23 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Eclipse调试的时候出现class not found]]></title>
-    <link href="http://cxh.me/2015/01/05/eclipse-class-not-found/"/>
-    <updated>2015-01-05T09:50:00+08:00</updated>
-    <id>http://cxh.me/2015/01/05/eclipse-class-not-found</id>
-    <content type="html"><![CDATA[<p>  昨天遇到这样一个问题：</p>
-
-<p>  <img class="img-polaroid center" src="/images/2015/classnotfound.png"></p>
-
-<p>  开始以为是依赖的问题，更新了所有的jar包和Maven依赖，发现没有什么问题。怀疑是eclipse，写了一个简单的程序，发现一样找不到class。</p>
-
-<p>  解决办法是先把breakpoint里面的ClassNotFoundException: caught and uncaught去掉了。不知道为什么会造成这个结果。</p>
-
-<p>  <img class="img-polaroid center" src="/images/2015/breakpoint.png"></p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[git中删除已经缓存的文件]]></title>
@@ -125,82 +108,413 @@ SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[关于Maven回滚了eclipse中项目的JRE版本]]></title>
-    <link href="http://cxh.me/2014/12/25/maven-revert-eclipse-jdk-version/"/>
-    <updated>2014-12-25T14:49:00+08:00</updated>
-    <id>http://cxh.me/2014/12/25/maven-revert-eclipse-jdk-version</id>
-    <content type="html"><![CDATA[<p>  发现在命令行对一个项目执行<code>mvn install</code>的时候，回eclipse看就会有些错误，原因如<a href="http://cxh.me/2014/12/08/eclipse-java-override-warning/" title="关于eclipse里面override上的warning">这里</a>所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：</p>
+    <title type="html"><![CDATA[同步github上的项目到gitcafe]]></title>
+    <link href="http://cxh.me/2014/06/28/gitsync-github-gitcafe/"/>
+    <updated>2014-06-28T12:41:00+08:00</updated>
+    <id>http://cxh.me/2014/06/28/gitsync-github-gitcafe</id>
+    <content type="html"><![CDATA[<p>  github固然好，只是国内访问有点慢。为了提高博客访问速度我决定把github上托管的博客同步到gitcafe上。最好能在DNS那里做CDN，但是貌似没有免费的服务。那直接指向gitcafe好了，反正没有什么国外访问的需求。简单记一下过程。</p>
 
-<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;projectDescription&gt;
-    &lt;name&gt;realtime_ua&lt;/name&gt;
-    &lt;comment&gt;&lt;/comment&gt;
-    &lt;projects&gt;
-    &lt;/projects&gt;
-    &lt;buildSpec&gt;
-        &lt;buildCommand&gt;
-            &lt;name&gt;org.eclipse.m2e.core.maven2Builder&lt;/name&gt;
-            &lt;arguments&gt;
-            &lt;/arguments&gt;
-        &lt;/buildCommand&gt;
-    &lt;/buildSpec&gt;
-    &lt;natures&gt;
-        &lt;nature&gt;org.eclipse.m2e.core.maven2Nature&lt;/nature&gt;
-    &lt;/natures&gt;
-&lt;/projectDescription&gt;
+<p>  gitcafe自己有导入的功能，但是貌似不是很好用。而且不够智能。所以我们先建立一个跟用户名一样的目录。gitcafe只允许这种方式的Html页面生成。并且只渲染gitcafe-pages分支。</p>
+
+<p>  我们修改source分支.git/config加入</p>
+
+<pre><code>[remote "cafe"]
+  url = git@gitcafe.com:xxx/xxx.git
+  fetch = +refs/heads/*:refs/remotes/cafe/*
 </code></pre>
 
-<p>  实际导入的JRE版本是m2eclipse插件决定的。参考<a href="http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b" title="What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn't?">这里</a>加入对maven-compiler-plugin的默认配置即可：</p>
+<p>  由于</p>
 
-<pre><code>&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-          &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;configuration&gt;
-              &lt;source&gt;1.6&lt;/source&gt;
-              &lt;target&gt;1.6&lt;/target&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-  &lt;/plugins&gt;
-&lt;/build&gt;
+<pre><code>[branch "source"]
+  remote = origin
+  merge = refs/heads/source
 </code></pre>
 
-<p>  多module项目请把配置直接加在root-project的pom.xml下。</p>
+<p>  所以当前source分支（这下面我没有master）默认提交到origin（github)，所以我们通过</p>
+
+<pre><code>git push cafe
+</code></pre>
+
+<p>  提交source，会被扩展成：</p>
+
+<pre><code>git push cafe source:source "当前分支
+</code></pre>
+
+<p>  然后提交<em>deploy，这是渲染之后的html页面，前面那个是octopress的源码。修改</em>deploy/.git/config</p>
+
+<pre><code>[remote "cafe"]
+  url = git@gitcafe.com:chenxiaohui/chenxiaohui.git
+  fetch = +refs/heads/*:refs/remotes/cafe/*
+</code></pre>
+
+<p>  然后提交:</p>
+
+<pre><code>git push cafe master:gitcafe-pages
+</code></pre>
 
 <!--more-->
 
 
-<h3>参考文献:</h3>
+<p>  本地分支名字和远程分支不同的时候不能省略，否则会被自动扩展成相同的名字。这就是问题了，我们多了一个master分支&hellip;.</p>
 
-<blockquote><p>[1] 关于eclipse里面override上的warning, <a href="http://cxh.me/2014/12/08/eclipse-java-override-warning/">http://cxh.me/2014/12/08/eclipse-java-override-warning/</a></p>
+<p>  按照gitcafe的教程删除master未果，不过顺便把默认分支改成了gitcafe-pages。删除master分支的时候，里面有一段说明：</p>
 
-<p>[2] What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn&rsquo;t?, <a href="http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b">http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b</a></p>
+<pre><code>为什么要删除 master 分支
+当你在创建一个新的仓库的时候没有指定分支的话，Git 会默认创建 master 分支并指定它为默认分支。
 
-<p>[3] Solved: Java compiler level does not match the version of the installed Java project facet, <a href="http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/">http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/</a></p></blockquote>
+一般情况下使用 master 分支作为整个项目的核心分支是很普遍的行为， 而 Pages 服务之所以使用 gitcafe-pages 分支的方式区别项目文件和 Pages 文件。 这样你就可以在一个仓库中保存他们而且彼此不会有任何影响。
+
+但是像是个人主页类的 Pages 服务或其他一些应用场合，可能并不需要 master 的存在， 甚至必须要删除它，或者只是你有洁癖┑(￣Д ￣)┍ 那么你就需要如下的方法来删除 master 分支。
+</code></pre>
+
+<p>  (#‵′)靠，就是这样。</p>
+
+<p>  最后修改一下Rakefile</p>
+
+<pre><code>...
+    system "git push origin #{deploy_branch}"
+    system "git push cafe #{deploy_branch}:gitcafe-pages"
+    puts "\n## Github Pages deploy complete"
+  end
+...
+
+  puts "\n## Pushing source"
+  system "git push origin "
+  system "git push cafe"
+  puts "\n## Github source pushed"
+</code></pre>
+
+<p>  当然问题是同一个本地分支track了两个远程分支，但是默认值只能配置一个：</p>
+
+<pre><code>[branch "master"]
+    remote = cafe
+    merge = refs/heads/gitcafe-pages
+</code></pre>
+
+<p>  这说明master分支上更新gitcafe必须指明repository，好在我们直接用git push/pull不带任何参数的时候不多。同时如果git pull的话，默认的merge两个repository是不同的，好在我们也一般不用从两个repository上面pull。</p>
+
+<p>  顺便去挂一下域名就好了。</p>
+
+<p>  矮马，快多了。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[关于eclipse里面override上的warning]]></title>
-    <link href="http://cxh.me/2014/12/08/eclipse-java-override-warning/"/>
-    <updated>2014-12-08T16:53:00+08:00</updated>
-    <id>http://cxh.me/2014/12/08/eclipse-java-override-warning</id>
-    <content type="html"><![CDATA[<p>  写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：</p>
+    <title type="html"><![CDATA[git远程分支和refs文件详解]]></title>
+    <link href="http://cxh.me/2014/06/28/git-remote-branch/"/>
+    <updated>2014-06-28T11:14:00+08:00</updated>
+    <id>http://cxh.me/2014/06/28/git-remote-branch</id>
+    <content type="html"><![CDATA[<p>  最近同时同步博客到github和gitcafe上，遇到一些问题，我们分如下几个方面来分析一下：</p>
 
-<p>  <img class="center" src="/images/2014/method_callback.png" title="" ></p>
+<h3>推送远程分支到同一个服务器</h3>
 
-<p>  看AsyncMethodCallback的代码，没有任何问题啊：</p>
+<p>  比如首先建立git服务器，顺便clone出两个副本</p>
 
-<p>  <img class="center" src="/images/2014/async_callback.png" title="" ></p>
-
-<p>  后来发现当前项目JRE的版本是1.5，<del>~貌似1.5的JRE有个bug</del>。切到1.6以上版本就可以了。原因如下：</p>
-
-<pre><code>Eclipse is defaulting to Java 1.5 and you have classes implementing interface methods (which in Java 1.6 can be annotated with @Override, but in Java 1.5 can only be applied to methods overriding a superclass method).
+<pre><code>mkdir server
+cd server
+git init --bare
+cd ..
+git clone server git1
+git clone server git2
 </code></pre>
 
-<p>  如果依然有问题，可以直接改一下Compliance Level：</p>
+<p>  目前git branch是空的。我们提交一点东西建立master分支。</p>
 
-<p>  <img class="img-polaroid center" src="/images/2014/compliance.png"></p>
+<pre><code>cd git1
+touch a.txt
+git add .
+git commit -m "init"
+git push origin master
+</code></pre>
+
+<p>  现在git branch -a 显示:</p>
+
+<pre><code>* master
+  remotes/origin/master
+</code></pre>
+
+<p>  当前系统处于master分支，远程origin的repository上也有一个master分支。两个是tracking的。我们切到git2下面</p>
+
+<pre><code>cd ../git2
+git pull origin
+</code></pre>
+
+<p>  这时候git2跟git1完全同步了。现在我们开始尝试建立另一个分支并推送到服务器。习惯的，我们还是切回git1</p>
+
+<pre><code>cd ../git1
+git checkout -b source
+</code></pre>
+
+<p>  这时候我们已经有了一个本地分支了，如果这个分支不需要共享，那么你可以一直在这个分支上commit但是不push到服务器，直到这个分支被合并回主分支或者丢弃。git branch 显示如下：</p>
+
+<pre><code>  master
+* source
+</code></pre>
+
+<!--more-->
+
+
+<p>  我们最终决定把这个分支push到服务器上与其他人共享，如下：</p>
+
+<pre><code>git push origin source:source
+</code></pre>
+
+<p>  这时候git branch -a 能看到当前repository里面所有的分支，包括两个本地的，两个远程的，本地和远程的都处于tracking状态。</p>
+
+<pre><code>  master
+* source
+  remotes/origin/master
+  remotes/origin/source
+</code></pre>
+
+<p>  切到另一个副本。</p>
+
+<pre><code>cd ../git2
+git pull origin
+</code></pre>
+
+<p>  显示如下：</p>
+
+<pre><code> * [新分支]          source      -&gt; origin/source
+</code></pre>
+
+<p>  git branch -a显示本地已经有了一个远程分支的指针，但是没有tracking这个分支的本地分支：</p>
+
+<pre><code>* master
+  remotes/origin/master
+  remotes/origin/source
+</code></pre>
+
+<p>  同样我们可以在.git/refs/remotes/origin下看到分支的名字，但是refs/heads下面并没有。我们来检出这个远程分支：</p>
+
+<pre><code>git checkout -b source origin/source
+</code></pre>
+
+<p>  这时候git branch -a 显示就跟git1一致了。git2下也可以编辑source分支并同步。这些都是比较常见的操作，我们需要注意的是，多分支下默认的参数。比如，在两个分支都修改一点东西：</p>
+
+<pre><code>cd ../git1
+git checkout master
+//modify 
+git add .
+git commit -m "master modify"
+git checkout source
+//modify
+git add .
+git commit -m "source modify"
+</code></pre>
+
+<p>  这时候git push origin 是针对当前分支的，所以两个分支同时push更新只能</p>
+
+<pre><code>git push origin
+git checkout master
+git push origin
+</code></pre>
+
+<p>  pull更新的时候</p>
+
+<pre><code>cd ../git2
+git checkout master
+git pull origin
+</code></pre>
+
+<p>  这会同时更新两个分支的指针，但是不会merge另一个分支，我们去另一个分支下</p>
+
+<pre><code>git checkout source
+git pull origin
+</code></pre>
+
+<p>  但是出错如下：</p>
+
+<pre><code>You asked to pull from the remote 'origin', but did not specify
+a branch. Because this is not the default configured remote
+for your current branch, you must specify a branch on the command line.
+</code></pre>
+
+<p>  问题在于没有给当前分支配置merge的路径，git不知道去merge哪个分支。（<del>虽然我觉得既然是tracking的不应该不知道啊</del>）。</p>
+
+<p>  如果你有 1.6.2 以上版本的 Git，&mdash;track 选项可以同时配置merge的路径：</p>
+
+<pre><code>git checkout --track origin/serverfix
+</code></pre>
+
+<p>  这里我们修改配置文件加入branch &ldquo;source"：</p>
+
+<pre><code>[core]
+    repositoryformatversion = 0
+    filemode = false
+    bare = false
+    logallrefupdates = true
+[remote "origin"]
+    url = /media/cxh/backup/work/ceshi/git/server
+    fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+    remote = origin
+    merge = refs/heads/master"这里指server上的refs/heads/master
+[branch "source"]
+    remote = origin
+    merge = refs/heads/source
+</code></pre>
+
+<p>  这意味着每次fetch origin的时候更新所有remotes/origin的头指针到refs/heads/下面，具体可以去.git下查阅这个目录，但是头指针都是只读的。merge是由所在branch定义的。</p>
+
+<p>  我们加了branch &ldquo;source"的配置指定当前source的merge策略是使用<strong>服务器端的</strong>refs/heads/source来合并到当前分支。这样就可以顺利的git pull origin了。</p>
+
+<h3>推送远程分支到不同服务器</h3>
+
+<p>  我们先建立新的repo：</p>
+
+<pre><code>cd ..
+mkdir server2
+cd server2
+git init --bare
+</code></pre>
+
+<p>  加入git1副本，并提交</p>
+
+<pre><code>git remote add server xxx/server2
+git push server
+</code></pre>
+
+<p>  上面过程的本质是提交当前分支头指针到server，相当于拷贝refs/head/xxx到refs/remotes/server/下并提交。git push server会被展开成</p>
+
+<pre><code>git push server 当前分支名：当前分支名
+</code></pre>
+
+<p>  我们可以在git2副本同样加入该repository并更新引用</p>
+
+<pre><code>git remote add server xxx/server2
+git fetch server
+</code></pre>
+
+<p>  可以看到refs下目录结构如下：</p>
+
+<pre><code>├── heads
+│   ├── master
+│   └── source
+├── remotes
+│   ├── origin
+│   │   ├── master
+│   │   └── source
+│   └── server
+│       └── source
+└── tags
+</code></pre>
+
+<h3>总结一下</h3>
+
+<ul>
+<li><p>update</p>
+
+<ul>
+<li><p>fetch操作的本质是更新repo所指定远程分支的头指针(server->refs/remotes/xxx/)</p></li>
+<li><p>merge操作的本质是合并当前分支和指定的头指针(refs/remotes/xxx->refs/heads)</p></li>
+<li><p>pull操作的本质是fetch + merge</p></li>
+</ul>
+</li>
+<li><p>commit</p>
+
+<ul>
+<li><p>commit的本质是修改了当前分支的头指针(refs/heads)</p></li>
+<li><p>push操作本质是提交当前分支头指针到server，顺便也修改了本地存储的server头指针(refs/remotes/xxx)</p></li>
+</ul>
+</li>
+<li><p>checkout</p>
+
+<ul>
+<li><p>复制本地分支的本质是拷贝了refs/heads/下的一个头指针</p></li>
+<li><p>push本地分支到server的本质是把这个头指针上传服务器，顺便拷贝了本地存储的server头指针（refs/remotes/xxx)</p></li>
+<li><p>tracking远程分支的本质是把refs/remotes/下的指针拷贝到了refs/heads下</p></li>
+</ul>
+</li>
+</ul>
+
+
+<blockquote><p>注：以上过程都没有涉及数据流。</p></blockquote>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Git 分支 &ndash; 远程分支, <a href="http://git-scm.com/book/zh/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF">http://git-scm.com/book/zh/Git-%E5%88%86%E6%94%AF-%E8%BF%9C%E7%A8%8B%E5%88%86%E6%94%AF</a></p>
+
+<p>[2] The Configuration File – “Branch” Section, <a href="http://www.gitguys.com/topics/the-configuration-file-branch-section/">http://www.gitguys.com/topics/the-configuration-file-branch-section/</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[用树莓派和DS18B20监控温度变化]]></title>
+    <link href="http://cxh.me/2014/05/25/pi-temperature-sensor/"/>
+    <updated>2014-05-25T14:16:00+08:00</updated>
+    <id>http://cxh.me/2014/05/25/pi-temperature-sensor</id>
+    <content type="html"><![CDATA[<p>  基本的教程在这里:</p>
+
+<blockquote><ol>
+<li><a href="http://wemaker.cc/60" title="树莓派GPIO引脚详解">引脚定义</a></li>
+<li> <a href="http://s.mile77.com/?p=2039" title="树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度">传感器教程1</a></li>
+<li> <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html" title="Raspberry Pi 使用DS18B20温度传感器">传感器教程2</a></li>
+</ol>
+</blockquote>
+
+<p>  鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
+芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。</p>
+
+<p>  整个过程可以按照教程1，2 对应针脚完成，如果顺利基本一次成功。别人的知识产权我就不好摘录了。但是代码我优化了一下，硬件工程师的代码果然是写的异常粗犷。修改后的代码如下：</p>
+
+<pre><code>#!/usr/bin/python
+#coding=utf-8
+#Filename:temperature.py
+import os,datetime,time
+
+def calc_temperature(filename):
+    res = 0
+    valid_count = 0
+    for i in range(0,5):
+        with open(filename) as tfile:
+            text = tfile.read()
+        lines = text.split("\n")
+        firstline, secondline = lines[0], lines[1]
+        crc = firstline.split(" ")[11]
+        if crc == 'YES':
+            temperaturedata = secondline.split(" ")[9]
+            temperature = float(temperaturedata[2:])
+            temperature = temperature / 1000
+            valid_count += 1
+            res += temperature
+            print temperature
+        else:
+            with open(os.path.expanduser("~/sys.log"), "a") as err:
+                err.write("CRC Error: %s\n%s\n" % (datetime.datetime.now().strftime("%Y/%M/%d-%H:%M:%S"), text))
+        time.sleep(0.2)
+    return res/valid_count if valid_count &gt; 0 else -1
+
+#temperature = calc_temperature("input.txt")
+temperature = calc_temperature("/sys/bus/w1/devices/28-000005e31fe6/w1_slave")
+if temperature &gt; 0:
+    res = '{"value":%f}' %temperature
+    with open(os.path.expanduser('~/datafile.txt'), 'w') as output:
+        output.write(res)
+</code></pre>
+
+<!--more-->
+
+
+<p>  上传的脚本依然可以用教程里面的。Yeelink居然是一家青岛的公司，感慨省里总算有点互联网的公司了，当然网站做的是挺粗糙的。Yeelink的android手机端一直提示我登录密码出错。重置了也不行。后来发现登陆的时候不是邮箱&hellip;那你网站干嘛又能用邮箱登陆我擦&hellip;.</p>
+
+<p>  温度曲线的图片如下：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2014/before.png" title="&ldquo;温度曲线&rdquo; &ldquo;温度曲线&rdquo;" ></p>
+
+<p>  开始的程序没有考虑求平均，不知道会不会有临时跳变的瞬间值。后来加了平均值之后发现多次取的结果是不一样，但是不清楚这个芯片采集的周期是多少。多次平均的结果如下所示：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2014/data.png" title="&ldquo;多次平均的结果&rdquo; &ldquo;多次平均的结果&rdquo;" ></p>
+
+<p>  ps: 公司周末真热&hellip;.</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 树莓派GPIO引脚详解, <a href="http://wemaker.cc/60">http://wemaker.cc/60</a></p>
+
+<p>[2] 树莓派+多个DS18B20+Yeelink，全天候监测多个点的温度, <a href="http://s.mile77.com/?p=2039">http://s.mile77.com/?p=2039</a></p>
+
+<p>[3] Raspberry Pi 使用DS18B20温度传感器, <a href="http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html">http://blog.sina.com.cn/s/blog_3cb6a78c0101a46w.html</a></p></blockquote>
 ]]></content>
   </entry>
   

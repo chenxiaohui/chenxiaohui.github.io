@@ -4,7 +4,7 @@ title: "关于eclipse里面override上的warning"
 date: 2014-12-08 16:53
 comments: true
 published: true
-categories: "其他"
+categories: "java"
 ---
 
   写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：

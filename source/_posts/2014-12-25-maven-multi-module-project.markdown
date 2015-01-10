@@ -4,7 +4,7 @@ title: "Maven多模块"
 date: 2014-12-25 20:24
 comments: true
 published: false
-categories: "其他"
+categories: "java"
 ---
 
 
