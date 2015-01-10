@@ -115,6 +115,7 @@ task :new_post, :title, :category do |t, args|
         "    Oceanbase",
         "    分布式系统",
         "    其他",
+        "    Java",
         "    PHP",
         "    Python",
         "    vim",

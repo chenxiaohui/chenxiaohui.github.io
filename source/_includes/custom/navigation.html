@@ -1,33 +1,5 @@
 <ul class="nav">
     <li><a href="{{ root_url }}/blog/archives">Archives</a></li>
     <li class="divider-vertical"></li>
-    <li class="dropdown">
-        <a data-toggle="dropdown" class="dropdown-toggle" href="#">技术相关<b class="caret"></b></a>
-        <ul class="dropdown-menu">
-            <li><a href="{{ root_url }}/category/ruan-jian-fa-bu">软件发布</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ root_url }}/category/c-plus-plus">C++</a></li>
-            <li><a href="{{ root_url }}/category/dot-net">.Net</a></li>
-            <li><a href="{{ root_url }}/category/flex">Flex</a></li>
-            <li><a href="{{ root_url }}/category/ji-chu-li-lun">基础理论</a></li>
-            <li><a href="{{ root_url }}/category/latex">Latex</a></li>
-            <li><a href="{{ root_url }}/category/linux">Linux</a></li>
-            <li><a href="{{ root_url }}/category/mfc">MFC</a></li>
-            <li><a href="{{ root_url }}/category/oceanbase">Oceanbase</a></li>
-            <li><a href="{{ root_url }}/category/fen-bu-shi-xi-tong">分布式系统</a></li>
-            <li><a href="{{ root_url }}/category/php">PHP</a></li>
-            <li><a href="{{ root_url }}/category/python">Python</a></li>
-            <li><a href="{{ root_url }}/category/vim">vim</a></li>
-            <li><a href="{{ root_url }}/category/web">web相关</a></li>
-            <li><a href="{{ root_url }}/category/others">其他</a></li>
-            <li class="divider"></li>
-            <li><a href="{{ root_url }}/category/ai-ti-ren-sheng">IT人生</a></li>
-        </ul>
-    </li>
-    <li><a href="{{ root_url }}/category/shi-qing-bai-tai">世情百态</a></li>
-    <li><a href="{{ root_url }}/category/she-ying">摄影</a></li>
-    <li><a href="{{ root_url }}/category/sui-bi">随笔</a></li>
-
-
-
+    {% include categories.html %}
 </ul>

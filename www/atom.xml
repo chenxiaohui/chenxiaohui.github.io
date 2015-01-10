@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-08T14:39:03+08:00</updated>
+  <updated>2015-01-10T13:53:55+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[关于java编码规范]]></title>
-    <link href="http://cxh.me/2015/01/08/jajava-code-style/"/>
+    <link href="http://cxh.me/2015/01/08/java-code-style/"/>
     <updated>2015-01-08T14:34:00+08:00</updated>
-    <id>http://cxh.me/2015/01/08/jajava-code-style</id>
+    <id>http://cxh.me/2015/01/08/java-code-style</id>
     <content type="html"><![CDATA[<p>  首先推荐<a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html" title="Google Java Style">google的编码规范</a>，其次，关于class member ordering的问题，google的解释是：</p>
 
 <pre><code>The ordering of the members of a class can have a great effect on learnability, but there is no single correct recipe for how to do it. Different classes may order their members differently.
@@ -27,13 +27,13 @@ What is important is that each class order its members in some logical order, wh
 
 <p>  道理是对的，但是不好执行啊。看了看JDK的顺序，觉得<a href="http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions" title="Are there any Java method ordering conventions?">这里</a>说的还是能达成共识的。</p>
 
-<ol>
-<li> Class (static) variables: First the public class variables, then the protected, and then the private.</li>
-<li> Instance variables: First public, then protected, and then private.</li>
-<li> Constructors</li>
-<li> Methods: These methods should be grouped by functionality rather than by scope or accessibility. For example, a private class method can be in between two public instance methods. The goal is to make reading and understanding the code easier.</li>
+<blockquote><ol>
+<li>Class (static) variables: First the public class variables, then the protected, and then the private.</li>
+<li>Instance variables: First public, then protected, and then private.</li>
+<li>Constructors</li>
+<li>Methods: These methods should be grouped by functionality rather than by scope or accessibility. For example, a private class method can be in between two public instance methods. The goal is to make reading and understanding the code easier.</li>
 </ol>
-
+</blockquote>
 
 <h3>参考文献:</h3>
 
