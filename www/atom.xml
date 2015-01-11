@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-10T23:00:00+08:00</updated>
+  <updated>2015-01-11T17:27:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[通过搭建代理来共享网络]]></title>
+    <link href="http://cxh.me/2015/01/11/linux-proxy-setup/"/>
+    <updated>2015-01-11T17:16:00+08:00</updated>
+    <id>http://cxh.me/2015/01/11/linux-proxy-setup</id>
+    <content type="html"><![CDATA[<p>   遇到这样一个问题，开发机只有一台能上外网，其他的机器上手动更新依赖包简直是要死的感觉。尝试了如下几种方式：</p>
+
+<ol>
+<li>. vpn
+
+<pre><code>1. [pptp][2]
+2. [openvpn][1]
+</code></pre></li>
+<li>. ssh反向代理（其实不是干这个事情的貌似）</li>
+<li>. proxy</li>
+</ol>
+
+
+<p>   开始一直不想用proxy，毕竟需要为yum什么的单独配置，不是所有的程序都会去读shell的http_proxy配置。但是vpn配置搞了一天都不成功。openvpn能连接，但是不能共享网络，大概是路由配错了，pptp linux下直接链接不上，可能是只用了chap的握手？反正没成功。最后还是配了proxy，配完才觉得proxy简单易行啊，大部分问题能解决，出现了特别的需求就单独为其设置代理好了。问题不大。</p>
+
+<p>   tinyproxy的配置如下：</p>
+
+<pre><code>yum install tinyproxy
+
+# vi /etc/tinyproxy/tinyproxy.conf
+Allow 192.168.1.0/24 # 限制可以使用Proxy的来源网段
+
+service tinyproxy start
+
+shell配置：
+export http_proxy='xxx:8888'
+export https_proxy='xxx:8888'
+
+yum配置：
+vi /etc/yum.conf
+proxy=http://xxxx:8888  
+</code></pre>
+
+<p>  配置难度真不是一个数量级的，可见有时候能满足大部分情况，就是最好的解决方案了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[自动生成octopress的分类目录]]></title>
@@ -986,44 +1028,6 @@ Derived
 </code></pre>
 
 <p>  跟预想一致。水文一篇，可忽略。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[析构函数和成员析构的先后顺序]]></title>
-    <link href="http://cxh.me/2014/10/22/destruct-and-member-destruct/"/>
-    <updated>2014-10-22T17:57:00+08:00</updated>
-    <id>http://cxh.me/2014/10/22/destruct-and-member-destruct</id>
-    <content type="html"><![CDATA[<p>  肖总问到这个问题，写了个程序验证：</p>
-
-<pre><code>class Member
-{
- public:
-   Member (){}
-   virtual ~Member (){printf("member destruct\n");}
-};
-class Base
-{
-  public:
-    Base (){}
-    virtual ~Base (){ printf("destruct\n");}
-  private:
-    Member member_;
-};
-int main(int argc, const char *argv[])
-{
-  Base c;
-  return 0;
-}
-</code></pre>
-
-<p>  结果是：</p>
-
-<pre><code>  destruct
-  member destruct
-</code></pre>
-
-<p>  可见析构的时候先调用析构函数，最后析构成员对象。</p>
 ]]></content>
   </entry>
   
