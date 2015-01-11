@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-11T17:29:10+08:00</updated>
+  <updated>2015-01-11T21:06:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[redhat下升级python]]></title>
+    <link href="http://cxh.me/2015/01/11/redhat-upgrade-python/"/>
+    <updated>2015-01-11T18:56:00+08:00</updated>
+    <id>http://cxh.me/2015/01/11/redhat-upgrade-python</id>
+    <content type="html"><![CDATA[<p>  偶然发现服务器上的python是2.4的，好多语法都不支持。遂决定升级。</p>
+
+<p>  首先yum升级是可以升级到2.6的：</p>
+
+<pre><code>yum install python26
+yum install python26-devel
+yum install python26-setuptools
+ln -s /usr/bin/python2.6 /usr/bin/python
+</code></pre>
+
+<p>  升级之后发现yum不能用了。yum应该是跟python版本绑定了，于是把yum头部改成：</p>
+
+<pre><code>#!/bin/python2.4
+</code></pre>
+
+<p>  之后发现2.6还是不行&hellip;我是用了多新的语法啊&hellip;就是几个dict comprehension。于是决定升级到2.7。源里面没有，只能手动。</p>
+
+<pre><code>#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2  
+#tar -jxvf Python-2.7.3.tar.bz2
+#cd Python-2.7.3  
+#./configure  
+#make all             
+#make install
+#ln -s /usr/local/bin/python2.7 /usr/bin/python  
+</code></pre>
+
+<p>  安装setup-tools</p>
+
+<pre><code>wget https://pypi.python.org/packages/source/s/setuptools/setuptools-11.3.1.zip --no-check-certificate
+unzip setuptools-11.3.1.zip
+cd setuptools-11.3.1
+python setup.py install
+</code></pre>
+
+<p>  yum不用动了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[django重定向的参数传递]]></title>

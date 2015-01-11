@@ -31,9 +31,12 @@ categories: "Linux"
 
     yum配置：
     vi /etc/yum.conf
-	proxy=http://xxxx:8888	
+	  proxy=http://xxxx:8888
+    ConnectPort 443 	
 
   配置难度真不是一个数量级的，可见有时候能满足大部分情况，就是最好的解决方案了。
+
+  **补充：easy_install和pip是默认读取http_proxy的，但是一直不能连接。尝试了很久之后发现是sudo的问题，sudo环境没有执行.bashrc，所以root的http_proxy和当前用户的http_proxy都没有生效。su到root下就可以了。**
 
 [1]: https://www.digitalocean.com/community/tutorials/how-to-setup-and-configure-an-openvpn-server-on-centos-6 "How to Setup and Configure an OpenVPN Server on CentOS 6 | DigitalOcean"
 [2]: http://5323197.blog.51cto.com/5313197/1285738 " centos6.4 安装配置 pptp vpn"

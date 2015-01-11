@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-11T17:29:10+08:00</updated>
+  <updated>2015-01-11T21:06:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[redhat下升级python]]></title>
+    <link href="http://cxh.me/2015/01/11/redhat-upgrade-python/"/>
+    <updated>2015-01-11T18:56:00+08:00</updated>
+    <id>http://cxh.me/2015/01/11/redhat-upgrade-python</id>
+    <content type="html"><![CDATA[<p>  偶然发现服务器上的python是2.4的，好多语法都不支持。遂决定升级。</p>
+
+<p>  首先yum升级是可以升级到2.6的：</p>
+
+<pre><code>yum install python26
+yum install python26-devel
+yum install python26-setuptools
+ln -s /usr/bin/python2.6 /usr/bin/python
+</code></pre>
+
+<p>  升级之后发现yum不能用了。yum应该是跟python版本绑定了，于是把yum头部改成：</p>
+
+<pre><code>#!/bin/python2.4
+</code></pre>
+
+<p>  之后发现2.6还是不行&hellip;我是用了多新的语法啊&hellip;就是几个dict comprehension。于是决定升级到2.7。源里面没有，只能手动。</p>
+
+<pre><code>#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2  
+#tar -jxvf Python-2.7.3.tar.bz2
+#cd Python-2.7.3  
+#./configure  
+#make all             
+#make install
+#ln -s /usr/local/bin/python2.7 /usr/bin/python  
+</code></pre>
+
+<p>  安装setup-tools</p>
+
+<pre><code>wget https://pypi.python.org/packages/source/s/setuptools/setuptools-11.3.1.zip --no-check-certificate
+unzip setuptools-11.3.1.zip
+cd setuptools-11.3.1
+python setup.py install
+</code></pre>
+
+<p>  yum不用动了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[通过搭建代理来共享网络]]></title>
@@ -50,10 +93,13 @@ export https_proxy='xxx:8888'
 
 yum配置：
 vi /etc/yum.conf
-proxy=http://xxxx:8888  
+  proxy=http://xxxx:8888
+ConnectPort 443     
 </code></pre>
 
 <p>  配置难度真不是一个数量级的，可见有时候能满足大部分情况，就是最好的解决方案了。</p>
+
+<p>  <strong>补充：easy_install和pip是默认读取http_proxy的，但是一直不能连接。尝试了很久之后发现是sudo的问题，sudo环境没有执行.bashrc，所以root的http_proxy和当前用户的http_proxy都没有生效。su到root下就可以了。</strong></p>
 ]]></content>
   </entry>
   
@@ -961,75 +1007,6 @@ class TransSessionMgr: public ISessionCtxFactory
     }
 };
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[澄清几个关于C++继承的问题]]></title>
-    <link href="http://cxh.me/2014/10/28/cpp-derive-problems/"/>
-    <updated>2014-10-28T15:56:00+08:00</updated>
-    <id>http://cxh.me/2014/10/28/cpp-derive-problems</id>
-    <content type="html"><![CDATA[<p>  之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：</p>
-
-<pre><code>#include &lt;stdio.h&gt;
-class Base
-{
-  public:
-    Base (){}
-    virtual ~Base (){}
-    virtual void print() {printf("Base\n");}
-};
-
-class Middle : public Base
-{
-  public:
-    Middle(){}
-    virtual ~Middle(){}
-    void print() {printf("Middle\n");}
-};
-
-class Derived : public Middle
-{
-  public:
-    Derived(){}
-    virtual ~Derived(){}
-    void print() {printf("Derived\n");}
-};
-
-int main(int argc, const char *argv[])
-{
-  Base * p = NULL;
-  Base b;
-  Middle m;
-  Derived d;
-  p = &amp; b;
-  p-&gt;print();
-  p = &amp; m;
-  p-&gt;print();
-  p = &amp; d;
-  p-&gt;print();
-  return 0;
-}
-</code></pre>
-
-<!--more-->
-
-
-<p>  结果是</p>
-
-<pre><code>Base
-Middle
-Derived
-</code></pre>
-
-<p>  可见只要定义了virtual关键字，在整个继承体系中这个函数都会成为虚函数。第二个问题是作为一个中间类（Middle)不想覆盖基类的虚函数，默认的情况下有什么影响。猜想应该就默认用了基类的虚函数。不影响后面的继承关系。注释掉Middle的print函数实现。结果如下：</p>
-
-<pre><code>Base
-Base
-Derived
-</code></pre>
-
-<p>  跟预想一致。水文一篇，可忽略。</p>
 ]]></content>
   </entry>
   
