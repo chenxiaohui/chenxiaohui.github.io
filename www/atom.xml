@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-11T17:27:12+08:00</updated>
+  <updated>2015-01-11T17:29:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -23,9 +23,11 @@
 <ol>
 <li>. vpn
 
-<pre><code>1. [pptp][2]
-2. [openvpn][1]
-</code></pre></li>
+<ol>
+<li><a href="http://5323197.blog.51cto.com/5313197/1285738" title=" centos6.4 安装配置 pptp vpn">pptp</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-setup-and-configure-an-openvpn-server-on-centos-6" title="How to Setup and Configure an OpenVPN Server on CentOS 6 | DigitalOcean">openvpn</a></li>
+</ol>
+</li>
 <li>. ssh反向代理（其实不是干这个事情的貌似）</li>
 <li>. proxy</li>
 </ol>
