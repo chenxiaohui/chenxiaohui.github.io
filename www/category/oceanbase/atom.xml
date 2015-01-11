@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: oceanbase | CXH.ME]]></title>
+  <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-11T21:06:11+08:00</updated>
+  <updated>2015-01-12T00:26:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,495 +14,292 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Oceanbase迭代器说明]]></title>
-    <link href="http://cxh.me/2013/10/21/table-tablet-iterator/"/>
-    <updated>2013-10-21T16:26:00+08:00</updated>
-    <id>http://cxh.me/2013/10/21/table-tablet-iterator</id>
-    <content type="html"><![CDATA[<p>  所有迭代器的类图如下所示：</p>
-
-<p><img class="img-polaroid center" src="/images/2013/iterator.png" title="&ldquo;iterator类图&rdquo; &ldquo;iterator类图&rdquo;" ></p>
-
-<h4>ObRootTabletIterator</h4>
-
-<p>  所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。</p>
-
-<!-- more -->
-
-
-<h4>ObTableTabletIterator</h4>
-
-<p>  最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。</p>
-
-<h6>实现机理 :</h6>
-
-<p>  从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。</p>
-
-<h6>错误码与错误原因对应</h6>
-
-<p><strong>断言失败</strong>：</p>
-
-<ol>
-<li> 接受返回值的传入参数tablet存在分配器（allocator）或者手动制定了其他的分配器（而不是由上次本迭代器制定的range_allocator)</li>
-<li> sql查询结果为空</li>
-</ol>
-
-
-<p><strong>OB_ITER_END</strong>：</p>
-
-<ol>
-<li> 迭代正常结束，必须保证tablet是以MAX结束的（或者以ScanRange的endkey结束）。</li>
-<li> 如果有一个表没有任何tablet，同样返回OB_ITER_END，而不是OB_NO_RESULT错误码（更新，争议的地方）。</li>
-</ol>
-
-
-<p><strong>OB_NOT_INIT</strong>:</p>
-
-<p>  没有初始化，目前是没有传入RootTableService指针，或者指针为空。</p>
-
-<p><strong>OB_ROOT_NOT_INTEGRATED</strong>：</p>
-
-<p>  scan_range出错，当前end_key不再scan_range的范围里，</p>
-
-<p><strong>OB_ERR_UNEXPECTED</strong>：</p>
-
-<p>  tablet本身错误，start_key > end_key</p>
-
-<h6>#其他从root_table层得到的错误码：</h6>
-
-<p><strong>OB_MEM_OVERFLOW</strong>： 内存错误</p>
-
-<p><strong>OB_TABLE_NOT_EXIST</strong>：</p>
-
-<ol>
-<li> 获得表schema的时候发现schema中不存在这张表</li>
-<li> 查询到的结果有空洞（某个范围下没有当前表的tablet）</li>
-</ol>
-
-
-<p><strong>OB_NO_RESULT</strong>：</p>
-
-<p>  按照指定的条件，proxy查询不到结果，主要是table没有tablet的情况和tablet范围未封闭（没有max)，否则总会找到结果，即使没有对应的tablet，也应该返回OB_ENTRY_NOT_EXIST</p>
-
-<p><strong>OB_ERROR</strong>：可能情况</p>
-
-<ol>
-<li> 当前表的元数据表没有指定</li>
-<li> 获取root_table_name的时候写入失败</li>
-<li> proxy读取tablet的时候结果加入返回列表的时候失败。</li>
-<li> proxy构建内部表读取sql语句的时候失败（内存错误或者schema错误或者sql字符串填充失败）</li>
-</ol>
-
-
-<p><strong>OB_ENTRY_NOT_EXIST</strong>：</p>
-
-<ol>
-<li> 当前表的元数据表schema不存在。</li>
-<li> tablet范围里面有空洞，按照rowkey查找一定范围的tablet之后找不到rowkey所刚好对应的tablet</li>
-</ol>
-
-
-<p><strong>OB_SCHEMA_ERROR</strong>：</p>
-
-<p>  proxy生成sql语句的时候add_rowkey_column_value失败</p>
-
-<p><strong>OB_ERR_NULL_VALUE</strong>：</p>
-
-<p>  proxy生成sql语句的时候add_rowkey_column_value失败</p>
-
-<p><strong>OB_ERR_SQLCLIENT</strong>：</p>
-
-<p>  主要是一些sql调用失败。</p>
-
-<p><strong>OB_ALLOCATE_MEMORY_FAILED</strong>：</p>
-
-<p>  主要是deep copy range失败</p>
-
-<p><strong>以上错误码都会直接返回到上层，只不过部分需要单独处理，比如OB_ENTRY_NOT_EXISTS 和OB_NO_RESULT是否继续迭代还是个问题。</strong></p>
-
-<h3>ObRootTableIterator</h3>
-
-<p>  继承ObRootTabletIterator，实现迭代所有表的所有tablet的功能，如果有table完全没有tablet，则返回OB_NO_TABLET，调用者决定是否继续迭代。</p>
-
-<h4>实现机理</h4>
-
-<p>  通过ObTableSchemaIterator迭代所有table, 每次生成一个table的TableTabletIterator,迭代此iterator直到end，然后继续迭代下一个表。如果遇到tablet_iter的错误，返回错误，除OB_NO_TABLET错误外，调用者应中止迭代。</p>
-
-<h4>错误码与错误对应原因</h4>
-
-<p><strong>OB_ITER_END</strong>：迭代所有表的tablet结束。</p>
-
-<p><strong>OB_NO_TABLET</strong>： 从一个表里没有迭代出任何一个tablet，之后仍可继续迭代。</p>
-
-<p>  其他错误码来自ObTableSchemaIterator和TableTabletIterator</p>
-
-<h3>ObServerTabletIterator</h3>
-
-<p>  继承ObRootTableIterator（仔细看不是tablet）,实现一个server上所有tablet的迭代。</p>
-
-<h4>实现机理</h4>
-
-<p>  迭代所有tablet直到找到有副本分布在这个server上的tablet，然后返回。如果出错，一概中断。</p>
-
-<h4>错误码与错误原因对应</h4>
-
-<p>OB_ITER_END：所有tablet迭代结束。</p>
-
-<p>  其他错误码来自root_table_iterator</p>
-
-<h3>ObAliveRootTableIterator</h3>
-
-<p>  继承ObRootTableIterator（仔细看不是tablet),返回所有表的所有tablet，但是剔除不存活的版本，所以依赖一个ObChunkServerManager指针。</p>
-
-<h3>ObTableTabletFilterVersionIterator</h3>
-
-<p>  继承ObTableTabletIterator，返回所有表的所有tablet，但是剔除版本不等于指定版本的replica。</p>
-
-<h4>错误码及错误原因对应</h4>
-
-<p>OB_NOT_INIT：未初始化。</p>
-
-<p>OB_INVALID_ARGUMENT： 初始化参数不合法。</p>
-
-<h4>ObIteratorUtility</h4>
-
-<p>  工具类，无状态，负责一些iterator数据处理：如剔除不存活的副本（strip_dead_replicas），筛选符合version条件的副本（filter_replica_version）等。</p>
-
-<hr />
-
-<h3>ObRootReplicaIterator</h3>
-
-<p>  所有replica类迭代器，目前只有ObServerReplicaIterator，定义了迭代接口。包含一个ObRootTableIterator的迭代对象，即所有replica迭代器都是基于RootTableIterator迭代所有表的所有tablet的基础上实现的。</p>
-
-<h3>ObServerReplicaIterator</h3>
-
-<p>  迭代某个server上的所有replica(副本)</p>
-
-<h4>实现机理</h4>
-
-<p>  迭代所有tablet，直到得到一个tablet里面的分布在该server上的副本。没有就继续迭代。有错误一概中断。</p>
-
-<h3>ObReplicaIteratorCalculator</h3>
-
-<p>  合并两个replica类迭代器的结果，并返回当前吐出的replica（replica参数）是属于哪个迭代器的（type参数/LEFT_ITER/RIGHT_ITER/BOTH_ITER三种)</p>
-
-<h4>实现机理</h4>
-
-<ol>
-<li> 首先置type为both_iter,两个迭代器都前进一步</li>
-<li> 如果left_iter的结果> right_iter，吐出right_iter的结果，置type为LEFT_ITER，保存两个结果。</li>
-<li> 同理如果right>left,吐出right_iter的结果，置type为RIGHT_ITER,保存两个结果。</li>
-<li> 如果right==left，吐出随便哪个结果（左边），置type为BOTH_ITER,保存两个结果。</li>
-<li> 之后每次next判断type，type=LEFT_ITER则迭代LEFT_ITER，跟right_iter上次的结果比较，决定吐出哪个，并置位type=left/right/both。RIGHT/BOTH同理。</li>
-<li> 如果有单边迭代器中止，比如左边，则置type=RIGHT_ITER, 迭代到结束，反之亦然。</li>
-<li> 正常中止条件：两边迭代器都中止。</li>
-<li> OB_ITER_END情况下type返回值决定了哪边先结束。</li>
-</ol>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[通过脚本统计代码覆盖率]]></title>
-    <link href="http://cxh.me/2013/10/16/user-script-to-get-coverage/"/>
-    <updated>2013-10-16T20:56:00+08:00</updated>
-    <id>http://cxh.me/2013/10/16/user-script-to-get-coverage</id>
-    <content type="html"><![CDATA[<p>  只是记录一下工作里面的一些trick。我发现我对这些trick的兴趣无比的高。</p>
-
-<p>  我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。</p>
-
-<p>  关于gcc coverage选项和gcov/lcov工具的使用已经在 <a href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/" title="测试覆盖率统计">上篇文章</a>里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。</p>
-
-<!-- more -->
-
-
-<p>  首先，测试目录和代码目录是分开的，我们在测试目录运行的时候会生成测试文件的代码覆盖率统计，但是实际上被测试的文件的代码覆盖率是在源码目录生成的。这是需要注意的一点，之前我考虑过合并两处的代码覆盖率统计文件，后来发现没有必要，毕竟你关注的是源码目录的统计文件。这样我们通过如下脚本实现代码覆盖率的生成和拉取。</p>
-
-<pre><code>#!/bin/bash
-if [ $# = 1 ] ;then
-    lcov --capture --directory . --output-file $1.info --test-name $1
-    lcov --remove $1.info "/usr*" -o $1.info # remove output for external libraries
-    genhtml $1.info --output-directory ~/$1_output --title "$1" --show-details --legend
-    rm $1.info
-    tar czvf ~/$1.tar.gz ~/$1_output
-    rm -rf ~/$1_output
-else
-    echo 'cover.sh &lt;testname&gt;'
-fi
-</code></pre>
-
-<p>  解释几点：</p>
-
-<ol>
-<li><p> 第四行目的是去掉usr相关的统计，毕竟跟我们没关系。生成的代码打包到HOME目录下。</p></li>
-<li><p> 可能会报.gcda文件目录出错，找不到要创建的目录的错误，这种主要用于跨平台情况。
-这个是由于.gcda文件的生成默认保存到.o所在的目录，但是如果.o所在目录不存在，就会出现错误。
-设置环境变量可以解决这个问题。设置GCOV_PREFIX=/target/run' 同 GCOV_PREFIX_STRIP=1
-则生成的.gcda文件 将会保存到 /target/run/build/foo.gcda。</p></li>
-<li><p> 有时候会遇到"Merge mismatch for summaries" 的错误，可以将.gcda全部删除或者对整个文件全部编译，而不是单个改变的文件，这个是由于gcda与gcno不相配导致的，因为两者之间都有个时间戳用来记录是不是相同的。</p></li>
-</ol>
-
-
-<p>  然后是关于拉取到本地的问题，直接在bashrc里面配置如下别名好了：</p>
-
-<pre><code>alias getcov="from 你的测试用例.tar.gz &amp;&amp; tar zxvf xxx.tar.gz &amp;&amp; cd xxx"
-
-function from() {m
- scp -r 你的用户名@$你的开发机:$@ .
-}
-alias html='google-chrome http://localhost:8000; python -m SimpleHTTPServer'
-</code></pre>
-
-<p>  这样getcov拉取覆盖率文件，html命令建立webserver并打开浏览器，小trick，用起来舒服而已。</p>
-
-<hr />
-
-<p>  擦，我不得我提醒各位，有时候发现修改了case之后覆盖率并没有提升，这一定不是你的问题，不一定是coverage数据没有更新的问题，不一定是数据没有拉取成功的问题，极有可能是浏览器缓存了数据的问题。</p>
-
-<p>  针对这种问题，我们的解决方法就是：</p>
-
-<p>  <strong>作死地按f5</strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[测试覆盖率统计]]></title>
-    <link href="http://cxh.me/2013/10/16/test-coverage-percentage-statistics/"/>
-    <updated>2013-10-16T10:15:00+08:00</updated>
-    <id>http://cxh.me/2013/10/16/test-coverage-percentage-statistics</id>
-    <content type="html"><![CDATA[<h3>什么是代码覆盖率(code coverage)</h3>
-
-<p>  代码覆盖（Code coverage）是软件测试中的一种度量，描述程式中源代码被测试的比例和程度，所得比例称为代码覆盖率。</p>
-
-<p>  代码覆盖主要包括如下四个方面：</p>
-
-<blockquote><ol>
-<li>语句覆盖(StatementCoverage)</li>
-<li>判定覆盖(DecisionCoverage)</li>
-<li>条件覆盖(ConditionCoverage)</li>
-<li>路径覆盖(PathCoverage) 或者叫条件/判断覆盖率</li>
-</ol>
-</blockquote>
-
-<p>  具体的参见参考文献<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html" title="代码覆盖率浅谈">1</a> <a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87" title="代码覆盖率">2</a>.</p>
-
-<h3>怎么得到覆盖率数据</h3>
-
-<p>  这里我们主要说测试工具的使用的问题。c++的项目测试里面我们用gcc产生测试数据，用gcov和lcov生成测试结果的报表。</p>
-
-<!-- more -->
-
-
-<p>  gcc这里需要做的工作是编译的时候打开coverage选项，主要是如下几步。</p>
-
-<blockquote><ol>
-<li>编译的时候，增加 -fprofile-arcs -ftest-coverage 或者 –coverage；</li>
-<li>链接的时候，增加 -fprofile-arcs 或者 –lgcov；</li>
-<li>打开–g3 选项，去掉-O2以上级别的代码优化选项；否则编译器会对代码做一些优化，例如行合并，从而影响行覆盖率结果；</li>
-</ol>
-</blockquote>
-
-<p>  为了方便的在Makefile里面控制是否生成测试覆盖率数据，我们在Makefile里面加入如下开关</p>
-
-<pre><code>ifeq ($(coverage), yes)
-    CXXFLAGS       +=  -fprofile-arcs -ftest-coverage
-    LINKERCXX      +=  -fprofile-arcs -ftest-coverage
-    OPT_FLAGS     =  -g3
-endif
-</code></pre>
-
-<p>  这样就可以通过make coverage=yes生成。</p>
-
-<p>  同理如果用automake工具的话，Makefile.am里面需要加入如下语句：</p>
-
-<pre><code>if COVERAGE
-    CXXFLAGS+=-fprofile-arcs -ftest-coverage
-    AM_LDFLAGS+=-lgcov
-    OPT_FLAGS =  -g3
-endif
-</code></pre>
-
-<p>  configure.ac/configure.in脚本里面需要加入</p>
-
-<pre><code>AC_ARG_WITH([coverage],
-       AS_HELP_STRING([--with-coverage],
-              [with coverage (default is NO)]),
-          [
-            if test "$withval" = "yes"; then
-                coverage=yes
-            fi
-          ],
-          [coverage=no]
-   )
-AM_CONDITIONAL([COVERAGE], test x$coverage = xyes )
-</code></pre>
-
-<p>  就可以通过</p>
-
-<pre><code>./configure --with-coverage来生成Makefile了
-</code></pre>
-
-<p>  之后我们可以通过gcov/lcov工具来显示覆盖率的结果，使用帮助参见参考文献<a href="http://sdet.org/?p=212" title="Linux下c/c++项目代码覆盖率的产生方法">3</a> <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html" title="[整理] gcov lcov 覆盖c/c++项目入门">4</a>。至于如何在去开发机拉取结果/一些小技巧和容易出现的问题，请看<a href="http://cxh.me/2013/10/16/user-script-to-get-coverage/" title="通过脚本统计代码覆盖率">下一篇博客</a>。</p>
-
-<h3>参考文献</h3>
-
-<blockquote><p>[1] 代码覆盖率浅谈，<a href="http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html">http://www.cnblogs.com/coderzh/archive/2009/03/29/1424344.html</a></p>
-
-<p>[2] 代码覆盖率，<a href="http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87">http://zh.wikipedia.org/wiki/%E4%BB%A3%E7%A2%BC%E8%A6%86%E8%93%8B%E7%8E%87</a></p>
-
-<p>[3] Linux下c/c++项目代码覆盖率的产生方法，<a href="http://sdet.org/?p=212">http://sdet.org/?p=212</a></p>
-
-<p>[4] [整理] gcov lcov 覆盖c/c++项目入门, <a href="http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html">http://www.cnblogs.com/turtle-fly/archive/2013/01/09/2851474.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[git reset和git revert]]></title>
-    <link href="http://cxh.me/2013/10/15/git-reset-revert/"/>
-    <updated>2013-10-15T14:50:00+08:00</updated>
-    <id>http://cxh.me/2013/10/15/git-reset-revert</id>
-    <content type="html"><![CDATA[<h3>git reset 作用</h3>
-
-<p>  git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式</p>
-
-<p><img class="img-ploaroid center" src="/images/2013/git-reset.png" title="&ldquo;git-reset三种方式&rdquo; &ldquo;git-reset三种方式&rdquo;" ></p>
-
-<blockquote><ul>
-<li>git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息</li>
-<li>git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可</li>
-<li>git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容</li>
+    <title type="html"><![CDATA[分布式系统/NOSQL入门书单]]></title>
+    <link href="http://cxh.me/2014/10/20/distribute-system-guide/"/>
+    <updated>2014-10-20T11:26:00+08:00</updated>
+    <id>http://cxh.me/2014/10/20/distribute-system-guide</id>
+    <content type="html"><![CDATA[<p>  简单记一下我看过的和觉得值得看的。主要是给@赵龙作为参考。</p>
+
+<ul>
+<li>分布式相关</li>
 </ul>
-</blockquote>
 
-<h3>git revert 作用</h3>
 
-<p>  git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特定版本-当前版本）然后提交到版本库，相当与做了之前操作的逆操作，这个操作是可以直接在版本库中看到并使用git reset回退的。</p>
+<blockquote><p>[1] 大规模分布式存储系统, <a href="http://book.douban.com/subject/25723658/">http://book.douban.com/subject/25723658/</a>
+  阿里日照的书，全面介绍了分布式系统的原理和实践，入门不可多得的书</p>
 
-<h3>撤销之后恢复</h3>
+<p>[2] 分布式系统原理介绍, <a href="http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413">http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413</a>
+  百度刘杰的，讲基本的分布式原理，有些笔误什么的。</p>
 
-<p>  git-reset如果执行之后，再想回退到指定版本。//TODO</p>
+<p>[3] paxos算法相关, <a href="http://cxh.me/2014/08/26/paxos-study/">http://cxh.me/2014/08/26/paxos-study/</a>
+  总结了paxos算法一些资料。</p>
+
+<p>[5] 分布式数据库系统原理, <a href="http://product.dangdang.com/23466507.html">http://product.dangdang.com/23466507.html</a>
+  分布式数据库的一本教材。</p>
+
+<p>[6] The Raft Consensus Algorithm, <a href="http://raftconsensus.github.io/">http://raftconsensus.github.io/</a>
+  raft相关的资料，论文和一些实现都能在里面找到，另外有一个图形化的展示很方便。</p>
+
+<p>[7] Raft介绍, <a href="http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D">http://www.slideboom.com/presentations/956855/Raft%E4%BB%8B%E7%BB%8D</a>
+  raft的一个ppt。</p></blockquote>
+
+<ul>
+<li>数据库相关</li>
+</ul>
+
+
+<blockquote><p>[1] 数据库系统实现, <a href="http://item.jd.com/10060181.html">http://item.jd.com/10060181.html</a>
+  数据库的一本教材，偏重于实现。</p>
+
+<p>[2] 数据挖掘概念与技术, <a href="http://book.douban.com/subject/2038599/">http://book.douban.com/subject/2038599/</a>>[3] 事务相关, <a href="http://cxh.me/2014/07/02/article-on-transaction/">http://cxh.me/2014/07/02/article-on-transaction/</a></p>
+
+<p>[3] 事务相关, <a href="http://cxh.me/2014/07/02/article-on-transaction/">http://cxh.me/2014/07/02/article-on-transaction/</a>
+  总结了事务相关的一些资料。</p></blockquote>
+
+<ul>
+<li>NOSQL相关</li>
+</ul>
+
+
+<blockquote><p>[1] Dynamo论文, <a href="http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf">http://www.allthingsdistributed.com/files/amazon-dynamo-sosp2007.pdf</a></p>
+
+<p>[2] bigtable论文, <a href="http://research.google.com/archive/bigtable-osdi06.pdf">http://research.google.com/archive/bigtable-osdi06.pdf</a></p>
+
+<p>[3] gfs论文, <a href="http://research.google.com/archive/gfs-sosp2003.pdf">http://research.google.com/archive/gfs-sosp2003.pdf</a></p>
+
+<p>[4] map reduce论文, <a href="http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf">http://static.googleusercontent.com/media/research.google.com/zh-CN/us/archive/mapreduce-osdi04.pdf</a></p>
+
+<p>[5] Redis 设计与实现, <a href="http://redisbook.com/en/latest/">http://redisbook.com/en/latest/</a>
+  一本不错的讲redis的书。</p>
+
+<p>[6] 数据分析与处理之二（Leveldb 实现原理）, <a href="http://www.cnblogs.com/haippy/archive/2011/12/04/2276064.html">http://www.cnblogs.com/haippy/archive/2011/12/04/2276064.html</a>
+  leveldb的实现。</p>
+
+<p>[7] Memcached 源码剖析笔记, <a href="http://files.cppblog.com/xguru/Memcached.pdf">http://files.cppblog.com/xguru/Memcached.pdf</a>
+  memcache的源码。</p></blockquote>
+
+<ul>
+<li>基础</li>
+</ul>
+
+
+<blockquote><p>[1] UNIX环境高级编程, <a href="http://book.douban.com/subject/1788421/">http://book.douban.com/subject/1788421/</a></p>
+
+<p>[2] UNIX网络编程, <a href="http://book.douban.com/subject/1500149/">http://book.douban.com/subject/1500149/</a></p></blockquote>
+
+<ul>
+<li>一些博客</li>
+</ul>
+
+
+<blockquote><p>[1] 银河里的星星的博客, <a href="http://duanple.blog.163.com/">http://duanple.blog.163.com/</a>
+  主要是分布式领域的论文和翻译。</p>
+
+<p>[2] 章炎的技术博客, <a href="http://dirlt.com/">http://dirlt.com/</a></p>
+
+<p>[3] 何登成的技术博客, <a href="http://hedengcheng.com/">http://hedengcheng.com/</a> 大牛不解释</p>
+
+<p>[4] 淘宝核心系统团队博客, <a href="http://csrd.aliapp.com/">http://csrd.aliapp.com/</a></p>
+
+<p>[5] 吴镝 <a href="http://www.cnblogs.com/foxmailed/">http://www.cnblogs.com/foxmailed/</a> 专注系统，基础架构，分布式系统</p></blockquote>
+
+<p>  都看还是需要时间的，我只是读完了一部分翻完了一部分，很多还需要再看一遍。分布式系统最好的学习方法当时是实现一个分布式系统，像晓楚<a href="https://github.com/raywill/macraykv" title="Macrakv">macrakv</a>这样，但是工程量和难度比较大，退而求其次的办法是看源码，redis/hbase/leveldb/memcached都是不错的例子。</p>
 ]]></content>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[svn vim 整合方案]]></title>
-    <link href="http://cxh.me/2013/10/15/svn-vim-integration/"/>
-    <updated>2013-10-15T11:53:00+08:00</updated>
-    <id>http://cxh.me/2013/10/15/svn-vim-integration</id>
-    <content type="html"><![CDATA[<p>  这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。</p>
+    <title type="html"><![CDATA[Paxos算法学习]]></title>
+    <link href="http://cxh.me/2014/08/26/paxos-study/"/>
+    <updated>2014-08-26T20:53:00+08:00</updated>
+    <id>http://cxh.me/2014/08/26/paxos-study</id>
+    <content type="html"><![CDATA[<p>  本来想写点东西，后来觉得都是一知半解。这里转载一点学习资料吧。</p>
 
-<p>  遇到的情况是这样的，有可能同时做多个任务的修改，或者说上一个任务的修改并未提交（尚未ship不能提交），但是下一个已经修改了，这样的话，post-review的时候是需要管理post列表的，而不能把所有的修改一起post。之前应该写过一篇文章说一个post-review插件的实现，但是实际上颇为不便，最好的办法是直接在vim里面操作一个修改列表。这里我们首先通过如下方式生成修改列表。</p>
+<p>  一个是知行学社的分布式系统与Paxos算法视频课程，循序渐进，讲解地比较浅显易懂。</p>
 
-<!-- more -->
+<p>  <embed src="http://www.tudou.com/v/e8zM8dAL6hM/&bid=05&rpid=51943457&resourceId=51943457_05_05_99/v.swf" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" wmode="opaque" width="480" height="400"></embed></p>
+
+<p>  另一个是百度刘杰<a href="http://www.valleytalk.org/2012/07/12/%E3%80%8A%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D%E3%80%8B-%E3%80%82%E7%99%BE%E5%BA%A6-%E3%80%82%E5%88%98%E6%9D%B0/" title="《分布式系统原理介绍》">《分布式系统原理介绍》</a>。当然Lamport的几篇论文是不能不看的，虽然都不太好懂。</p>
+
+<ul>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/lamport-paxos.pdf" title="The Part-Time Parliament">The Part-Time Parliament</a></li>
+<li><a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/paxos-simple.pdf" title="paxos made simple">Paxos Made Simple</a></li>
+<li><a href="https://www.andrew.cmu.edu/course/15-749/READINGS/required/resilience/lamport82.pdf" title="The Byzantine Generals Problem">The Byzantine Generals Problem</a></li>
+</ul>
 
 
-<pre><code>alias sta='st|grep ^A '
-alias stm='st|grep ^M '
-alias std='st|grep ^D '
-alias po='echo "#!/bin/sh" &gt;post-review.sh &amp;&amp; echo "post-review \\" &gt;&gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; std &gt;&gt;post-review.sh; stm &gt;&gt; post-review.sh ; vi post-review.sh'
-</code></pre>
+<p>  相比较而言，<a href="http://en.wikipedia.org/wiki/Paxos_(computer_science)" title="Paxos (computer science)">paxos的wiki</a>可能更好懂一些。有余力的同学可以做一下<a href="http://css.csail.mit.edu/6.824/2014/" title="MIT Distributed Systems Labs">MIT Distributed Systems Labs</a>。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[两阶段提交协议的异常处理]]></title>
+    <link href="http://cxh.me/2014/07/07/two-process-commit-exceptions/"/>
+    <updated>2014-07-07T11:57:00+08:00</updated>
+    <id>http://cxh.me/2014/07/07/two-process-commit-exceptions</id>
+    <content type="html"><![CDATA[<p>  两阶段提交的协议大家都比较熟悉了，解释一下每个阶段的异常处理。首先，我们需要持久化协议过程中的状态，这样如果server宕机，那么恢复的时候还能通过日志知道宕机前处于那个阶段。同时，所有对数据的修改都会先写write ahead log，保证宕机重启的之后数据也不会丢失。写日志的顺序假定为:写write ahead log-修改缓冲区-写commit/abort log。</p>
 
-<p>  之后可以得到类似如下所示的post-review.sh，当然这个是不能直接运行的。</p>
+<p>  在这个前提下，我们根据如下的时序图来讨论异常情况和处理方法。</p>
 
-<pre><code>#!/bin/sh
-post-review \
-M       tests/rootserver/root_table/iterator/test_ob_server_tablet_iter.cpp
-M       tests/rootserver/root_table/iterator/test_ob_root_replica_iter.cpp
-M       tests/rootserver/root_table/iterator/test_ob_server_replica_iter.cpp
-M       tests/rootserver/root_table/iterator/test_iterator_base.h
-M       tests/rootserver/root_table/iterator/Makefile.am
-M       tests/rootserver/root_table/iterator/test_ob_root_table_iter.cpp
-M       tests/rootserver/root_table/iterator/run.sh
-M       tests/rootserver/root_table/iterator/test_ob_alive_root_table_iter.cpp
-</code></pre>
+<p><img class="img-polaroid center" src="/images/2014/2pc.png" title="&ldquo;两阶段提交协议时序&rdquo; &ldquo;两阶段提交协议时序&rdquo;" ></p>
 
-<p>  我们面临两个问题：</p>
+<ol>
+<li><p> 过程a没有成功，即协调者没有收到部分参与者的回应。超时后，协调者发送abort消息给参与者取消事务。参与者存在两种情况：</p>
 
-<blockquote><ol>
-<li>每行的格式都略有差别，比如前面有A/M/D标记，后面没有续行符号\，没有空格什么的。</li>
-<li>需要能够针对每一行或者多行进行svn操作（svn diff/revert 应该是最常见的操作）</li>
+<ul>
+<li>过程1失败，网络问题导致参与者没有收到vote request消息或者此时参与者宕机。参与者重启恢复后无需做任何事。</li>
+<li>过程2失败，参与者收到了vote request，网络问题协调者没有收到回复或此时参与者宕机。参与者宕机恢复或等待超时后广播DECISION_REQUEST消息向其他参与者询问是否收到commit/abort消息。</li>
+</ul>
+</li>
+<li><p> 过程b没有成功，即协调者发送commit消息之后没有收到部分参与者的回应。协调者需要重试，确认参与者的提交完毕消息，如果多次尝试不能联系上，则等待参与者上线之后解决。参与者存在两种情况：</p>
+
+<ul>
+<li>过程3失败，网络问题导致参与者没有收到commit消息或此时参与者宕机。参与者上线发现在本地日志中发现尚未提交成功，因为到达这里，可以肯定本地已做好提交准备，但是不知道协调者是决定提交，所以向协调者询问，按协调者的回复来进行提交或回滚。如果无法联系上协调者，则向其他参与者询问事务状态，如果有某一个节点已经做了提交或异常终止(说明协调者已发送了相关消息)，则做同样的操作。</li>
+<li>过程4失败，参与者完成了commit/rollback，但是网络问题协调者没有收到回应或者此时参与者宕机。参与者在本地日志中发现已完成本地提交，所以可能由于网络故障导致提交完成消息没有到达协调者。所以直接忽略。这时可能协调者在等待该参与者的提交完成回应消息，所以参与者主动联系协调者告知事务状态。</li>
+</ul>
+</li>
+<li><p> 过程c没有成功，即参与者发送vote回应消息之后没有等到协调者的commit/rollback消息。这个过程参与者的异常处理已经讨论过了，这里讨论协调者的异常处理。存在两种情况：</p>
+
+<ul>
+<li>过程2失败，网络问题导致协调者没有收到回复或此时协调者宕机。协调者恢复重启后，发现并未做提交操作，保险操作(因为不知道它是否发送过准备消息，或其他参与者是否做好提交准备)，直接发送abort消息给所有参与者，终止事务</li>
+<li>过程3失败，网络问题导致参与者没有收到commit/rollback消息或者此时协调者宕机。协调者恢复重启后，不能保证所有参与者都已收到了提交消息，所以给所有的参与者发送commit消息，保证事务的正常提交。</li>
+</ul>
+</li>
 </ol>
-</blockquote>
 
-<p>  这里我们通过vim脚本实现如下的功能：</p>
 
-<p>  svn.vim 实现如下</p>
+<!--more-->
 
-<pre><code>function! StripSVN() range
-    "Step through each line in the range...
-    for linenum in range(a:firstline, a:lastline)
-        "Replace loose ampersands (as in DeAmperfy())...
-        let curr_line   = getline(linenum)
-        let replacement = substitute(curr_line,'^\(A\|M\|D\)','','g')
-        call setline(linenum, replacement." \\")
-    endfor
-    call cursor(linenum)
-    "Report what was done...
-    if a:lastline &gt; a:firstline
-        echo "Strip Svn" (a:lastline - a:firstline + 1) "lines"
-    endif
-endfunction
-function! SVNCommand(cmd, prompt, combine) range
-    if a:prompt
-        let sure = input("Are you sure? (y/n) ")
-        if sure != 'y'
-            return
-        endif
-    endif
-    let cmd = '!svn '.a:cmd
-    for linenum in range(a:firstline, a:lastline)
-        "Replace loose ampersands (as in DeAmperfy())...
-        let curr_line   = getline(linenum)
-        let replacement = substitute(curr_line,'^\(A\|M\)','','g')
-        let replacement = Trim(Trim(replacement,'\\'),' ')
-        if a:combine
-           let cmd = cmd.' '.replacement.' '
-        else
-            let cmd = '!svn ' . a:cmd. ' ' . replacement
-            execute cmd
-            "echo cmd
-        endif
-    endfor
-    if a:combine
-        execute cmd
-        "echo cmd
-    endif
-endfunction
+
+<p>  算法的伪代码可以参考如下代码，摘自《Distributed Systems: Principles and Paradigms》。</p>
+
+<p>  <strong>Actions of Coordinator</strong></p>
+
+<pre><code>write("START_2PC tolocal log");
+multicast("VOTE_REQUESTto all participants");
+while(not all votes have been collected)
+{
+  waitfor("any incoming vote");
+  if(timeout)
+  {
+    write("GLOBAL_ABORT to local host");
+    multicast("GLOBAL_ABORT to all participants");
+    exit();
+  }
+  record(vote);
+}
+if(all participants send VOTE_COMMIT and coordinatorvotes COMMIT)
+{
+  write("GLOBAL_COMMIT to local log");
+  multicast("GLOBAL_COMMIT to all participants");
+}
+else
+{
+  write("GLOBAL_ABORT to local log");
+  multicast("GLOBAL_ABORT to all participants");
+}
+
+**Actions of Participants**
+
+write("INIT to locallog");
+waitfor("VOTE_REQUESTfrom coordinator");
+if(timeout)
+{
+  write("VOTE_ABORT to local log");
+  exit();
+}
+if("participantvotes COMMIT")
+{
+  write("VOTE_COMMIT to local log");
+  send("VOTE_COMMIT to coordinator");
+  waitfor("DESCISION from coordinator");
+  if(timeout)
+  {
+    multicast("DECISION_REQUEST to other participants");
+    waituntil("DECISION is received"); /// remain blocked
+    write("DECISION to local log");
+  }
+  if(DECISION == "GLOBAL_COMMIT")
+  {
+    write("GLOBAL_COMMIT to local log");
+  }
+  else if(DECISION== "GLOBAL_ABORT")
+  {
+    write("GLOBAL_ABORT to local log");
+  }
+}
+else
+{
+    write("GLOBAL_ABORT to local log");
+    send("GLOBAL_ABORT to coordinator");
+}
 </code></pre>
 
-<p>  第一个函数处理每行的格式，第二个函数读取每行的内容，生成命令并执行，prompt=1 的时候会提示并让用户确认， combine=1 的时候所有行会拼成一条执行，否则每行执行一次。</p>
+<h3>参考文献:</h3>
 
-<p>  然后在vimrc中添加：</p>
+<blockquote><p>[1] 两阶段提交(2PC)协议, <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[undo 日志和redo 日志]]></title>
+    <link href="http://cxh.me/2014/07/05/redo-undo-log/"/>
+    <updated>2014-07-05T21:20:00+08:00</updated>
+    <id>http://cxh.me/2014/07/05/redo-undo-log</id>
+    <content type="html"><![CDATA[<p><img class="img-polaroid center" src="/images/2014/interesting.gif" title="&ldquo;贴张图&rdquo; &ldquo;贴张图&rdquo;" ></p>
 
-<pre><code>noremap &lt;leader&gt;sp :call StripSVN()&lt;CR&gt;
-noremap &lt;leader&gt;sf :call SVNCommand("diff", 0 ,1)&lt;cr&gt;
-noremap &lt;leader&gt;sr :call SVNCommand("revert", 1 ,0)&lt;cr&gt;dd
-noremap &lt;leader&gt;sl :call SVNCommand("log", 0 ,0)&lt;cr&gt;
-noremap &lt;leader&gt;sa :call SVNCommand("add", 0 ,1)&lt;cr&gt;
-noremap &lt;leader&gt;sb :call SVNCommand("blame", 0 ,1)&lt;cr&gt;
-noremap &lt;leader&gt;sd :call SVNCommand("delete", 1 ,0)&lt;cr&gt;dd
-</code></pre>
+<p>  具体的可以看<a href="http://blog.csdn.net/ggxxkkll/article/details/7616739" title="数据库日志文件-- undo log 、redo log、 undo/redo log">这里</a>，解释几个作者没解释清楚的问题：</p>
 
-<p>  这样实现了两种操作，n状态下在当前行执行操作，v状态下在选中的所有行执行操作。</p>
+<ol>
+<li><p>只用REDO日志为什么数据修改要每次修改刷盘</p>
 
-<hr />
+<p> 如果不刷盘，不会导致数据不一致，但是数据修改过程相当于写redo日志-修改内存-写commit日志（修改内存的顺序也无所谓了），这个过程结束已经应答用户了，但是修改没有刷下去断电恢复的话也无法通过redolog恢复到当前状态，所以会丢失修改。</p></li>
+<li><p>修改数据和写redo/undo log/commit log之间的关系是什么</p>
 
-<p>  其实偶然发现我好像没说怎么用，大致流程是这样的：</p>
+<p> 任何对磁盘的数据修改落实之前都需要先写log，无论是redo还是undo。undo保证了一旦数据写了一半（脏数据）能够回滚，redo保证了写了日志的事务能够回放出来。</p>
 
-<blockquote><ol>
-<li>po(alias)，生成修改列表</li>
-<li>在每个行，或者选中多个行执行svn命令(<leader>sf,<leader>sr什么的)，查看diff啊，回滚啊，查看log啊，查看blame啊</li>
-<li>提交前选中所有行执行<leader>sp， 去掉行首的A/M/D标记，在行尾加续行符</li>
-<li>执行post-review.sh提交</li>
+<p> 只使用undo的时候commit日志要等待刷盘成功，写了commit的事务不会再回滚。</p>
+
+<p> 只使用redo的时候需要先写commit日志再修改缓冲区，因为数据有刷盘和不刷盘的可能，写完commit日志意味着修改已经完整记录下来了不会丢失。否则，没有commit的日志不会回放，如果之前修改数据并刷盘了，系统不知道处于哪个阶段：写了一半的log？写成功log?修改了一半数据？成功修改全部数据？。<del>如果修改不刷盘，那么如果在修改数据阶段宕机，就丢失了此条本来可以写成功的数据，好在这时候也没有回复用户。</del>确保数据不刷盘的情况下，是可以先修改缓冲区再写commit日志的。</p>
+
+<p> <del>其实redo log + commit log写成功就可以回复用户了啊，异步修改数据好了。至少能保证不丢失。不过万一修改失败了或者这时候有读取怎么办&hellip;</del></p></li>
+<li><p>只使用redo日志的时候checkpoint为什么不能直接刷盘</p>
+
+<p> 如果只使用redo日志，而且修改顺序是写redo日志-写commit日志-修改缓冲区，那么缓冲区是可以在checkpoint的时候刷下去的，因为下次回放的时候已经有了redo日志和commit标记，可以回放覆盖之前的脏数据，问题在于如果这个事务被回滚了，只有redo日志是不能做回滚操作的。如果使用redo-undo log那么可以直接把脏数据刷盘。</p></li>
 </ol>
-</blockquote>
 
-<hr />
 
-<p>参考文献：</p>
+<h3>参考文献:</h3>
 
-<blockquote><p>[1] SVN 命令参考（svn command reference）, <a href="http://riaoo.com/subpages/svn_cmd_reference.html">http://riaoo.com/subpages/svn_cmd_reference.html</a></p>
+<blockquote><p>[1] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p></blockquote>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[跟事务相关的一些文章]]></title>
+    <link href="http://cxh.me/2014/07/02/article-on-transaction/"/>
+    <updated>2014-07-02T16:45:00+08:00</updated>
+    <id>http://cxh.me/2014/07/02/article-on-transaction</id>
+    <content type="html"><![CDATA[<p>  主要纪录一下跟事务相关的一些文章。主要是博客，有论文加论文。顺便纪念下女神订婚。图是转载。</p>
 
-<p>[2] 使用脚本编写 Vim 编辑器, <a href="http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/">http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/</a></p></blockquote>
+<p>  <img class="img-polaroid center" src="/images/2014/tangwei.jpg"></p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 数据库事务隔离级别和锁实现机制, <a href="http://comedsh.iteye.com/blog/698733">http://comedsh.iteye.com/blog/698733</a></p>
+
+<p>[2] 数据库事务的实现（一） 故障恢复 （undo日志）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html</a></p>
+
+<p>[3] 数据库事务的实现-故障恢复（二）（undo日志检查点）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html</a></p>
+
+<p>[4] 为 Key-Value 数据库实现MVCC 事务, <a href="http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/">http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/</a></p>
+
+<p>[5] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p>
+
+<p>[6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p>
+
+<p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p>
+
+<p>[8] 两阶段提交(2PC)协议" , <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
 ]]></content>
   </entry>
   

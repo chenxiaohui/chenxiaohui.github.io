@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-11T21:06:11+08:00</updated>
+  <updated>2015-01-12T00:26:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[致我的生日]]></title>
+    <link href="http://cxh.me/2015/01/12/to-my-birthday/"/>
+    <updated>2015-01-12T00:11:00+08:00</updated>
+    <id>http://cxh.me/2015/01/12/to-my-birthday</id>
+    <content type="html"><![CDATA[<p>  要27了。</p>
+
+<p>  突然有很多感慨，自从不怎写字之后也不怎么愿意表达了。习惯了工作占据大部分时间。好在工作也不见得完全是工作，还是有兴趣的成分在里面，重合度就看心情了。但是工作多了就有种麻木的感觉，觉得似乎不是我想要的人生。</p>
+
+<p>  时代发展好快。这似乎已经不是个小资的时代。从学生时代走过来，毕业的热闹一过去，感觉立马进入了快车道。这一年马不停蹄，一身风尘一身疲惫。去阿里就不是什么明智的选择，当时可能是头脑一热吧，也可能是觉得很不屑研究生跟着老师做的东西，非要找一个技术上（看起来）高深莫测的地方。一年下来觉得开始是有兴趣，后来感觉是个挑战，最后感觉就是负担的。跳槽之后心境平和多了，现在至少已经不恨或者不黑什么了，这点还是挺感激张老板和我们组的。人嘛，到了奔三的年纪，还是要客观一些。</p>
+
+<p>  最近过得有些抑郁。以前无论什么事情都没觉得怎么样，牙这个事情真是无力吐槽。明天去定治疗方案。所以牙好的亲们，这是一笔财富啊，想吃点好的就吃好了，不要在乎钱。</p>
+
+<p>  晚上在搜狐的楼上，看着夕阳晚霞雾霾，觉得真是感慨。从毕业过来快十年了，似乎有所收获，又似乎一事无成。被卷在时代的洪流里面，想抓住什么又没有方向。不过也正常。鸡汤的东西读多了，就不容易被忽悠了，这个时代哪有那么多高大上的故事，没一点成长都是在无比纠结里面过来的。</p>
+
+<p>  不过好在还年轻，心态还年轻。从小就是个保守的人，尽管在努力消除家庭的影响。慢慢终于可以把自己放到一个独立的位置上，觉得如此就自由了很多。想走什么路，不用在瞻前顾后。总想着回来，就走不远哪。</p>
+
+<p>  好没有逻辑。</p>
+
+<p>  不过也不需要逻辑了。该治牙治牙，该工作工作，该生活生活。本来就没有什么逻辑。趁年轻，想做什么就去做。</p>
+
+<p>  嗯。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[redhat下升级python]]></title>
@@ -874,139 +899,6 @@ keys *
 </code></pre>
 
 <p>  果然是学无止境啊</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
-    <link href="http://cxh.me/2014/10/29/cpp-virtual-template-function/"/>
-    <updated>2014-10-29T21:05:00+08:00</updated>
-    <id>http://cxh.me/2014/10/29/cpp-virtual-template-function</id>
-    <content type="html"><![CDATA[<p>  自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。</p>
-
-<p>  例子如下：</p>
-
-<!--more-->
-
-
-<pre><code>enum SessionType
-{
-  ROSession,
-  RWSession,
-  RPSession
-};
-class BaseTransCtx
-{
-  public:
-    BaseTransCtx (){}
-    virtual ~BaseTransCtx (){}
-};
-template&lt;typename Type&gt;
-class ISessionCtxFactory
-{
-  public:
-    ISessionCtxFactory(){};
-    ~ISessionCtxFactory() {};
-  public:
-    virtual BaseTransCtx *alloc(const Type type) = 0;
-    virtual void free(BaseTransCtx *ptr) = 0;
-};
-typedef ISessionCtxFactory&lt;SessionType&gt; SessionMgr;
-class TransSessionMgr: public SessionMgr
-{
-  public:
-    TransSessionMgr (){}
-    virtual ~TransSessionMgr (){}
-
-    BaseTransCtx *alloc(const SessionType type)
-    {
-      return NULL;
-    }
-
-    void free(BaseTransCtx *ptr)
-    {
-      if (ptr != NULL)
-      {
-        delete ptr;
-      }
-    }
-};
-int main(int argc, const char *argv[])
-{
-  TransSessionMgr trans;
-  BaseTransCtx* ctx = trans.alloc(RWSession);
-  trans.free(ctx);
-  return 0;
-}
-</code></pre>
-
-<p>  模板类继承虚基类也可以。</p>
-
-<pre><code>template&lt;typename Type&gt;
-class ISessionCtxFactory
-{
-  public:
-    ISessionCtxFactory(){};
-    ~ISessionCtxFactory() {};
-  public:
-    virtual BaseTransCtx *alloc(const Type type) = 0;
-    virtual void free(BaseTransCtx *ptr) = 0;
-};
-template&lt;typename Type&gt;
-class TransSessionMgr: public ISessionCtxFactory&lt;Type&gt;
-{
-  public:
-    TransSessionMgr (){}
-    virtual ~TransSessionMgr (){}
-
-    BaseTransCtx *alloc(const Type type)
-    {
-      return NULL;
-    }
-
-    void free(BaseTransCtx *ptr)
-    {
-      if (ptr != NULL)
-      {
-        delete ptr;
-      }
-    }
-};
-</code></pre>
-
-<p>  但是这样就不行了</p>
-
-<pre><code>class ISessionCtxFactory
-{
-  public:
-    ISessionCtxFactory(){};
-    ~ISessionCtxFactory() {};
-  public:
-    template&lt;typename Type&gt;
-      virtual BaseTransCtx *alloc(const Type type) = 0;
-    virtual void free(BaseTransCtx *ptr) = 0;
-};
-class TransSessionMgr: public ISessionCtxFactory
-{
-  public:
-    TransSessionMgr (){}
-    virtual ~TransSessionMgr (){}
-
-    template&lt;typename Type&gt;
-      BaseTransCtx *alloc(const Type type)
-      {
-        return NULL;
-      }
-
-    void free(BaseTransCtx *ptr)
-    {
-      if (ptr != NULL)
-      {
-        delete ptr;
-      }
-    }
-};
-</code></pre>
 ]]></content>
   </entry>
   
