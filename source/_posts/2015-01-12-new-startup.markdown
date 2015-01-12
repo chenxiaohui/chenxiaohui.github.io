@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "新的征途"
 date: 2015-01-12 23:17
 comments: true
 published: true
