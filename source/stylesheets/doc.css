@@ -11,7 +11,7 @@ html body {
 }
 .entry-content li { line-height:1.5; margin:5px 0 5px; }
 p { margin:5px 0 5px; }
-.sharing, .meta, .pager { margin: 10px 0px 10px 0px; }
+.meta, .pager { margin: 10px 0px 10px 0px; }
 .sharing{float:right}
 .page-footer p { text-align: center; }
 pre{ white-space:pre; white-space:pre-wrap; word-break:break-all; word-wrap:break-word; }
