@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-14T13:06:11+08:00</updated>
+  <updated>2015-01-14T14:58:04+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django自定义Filter]]></title>
+    <link href="http://cxh.me/2015/01/14/django-custom-filter/"/>
+    <updated>2015-01-14T13:29:00+08:00</updated>
+    <id>http://cxh.me/2015/01/14/django-custom-filter</id>
+    <content type="html"><![CDATA[<p>  遇到这样一个问题：Django中有字段是根据位来存储信息的，并且不是对应Model数据库中的字段，BitField使用起来比较不太适合。这样就得在模板中根据位来显示不同的内容。查Django并试验，好像位操作不能直接写在if操作符中，同时django也不支持在模板直接调用函数。一个合理的选择是建立自定义的Filter。详见<a href="https://docs.djangoproject.com/en/1.7/howto/custom-template-tags/" title="Custom template tags and filters">参考文献</a>。基本代码如下：</p>
+
+<pre><code>配置：
+mSohuConf={
+    "A_mask" : 0x04,
+    "B_mask" : 0x02,
+    "C_mask" : 0x01,
+}
+
+Filter代码：
+from django import template
+from django.utils.safestring import mark_safe
+from .. import config
+register = template.Library()
+mask_html = (
+    (config.mSohuConf['A_mask'], '&lt;span class="label label-danger"&gt;A&lt;/span&gt;'),
+    (config.mSohuConf['B_mask'], '&lt;span class="label label-warning"&gt;B&lt;/span&gt;'),
+    (config.mSohuConf['C_mask'], '&lt;span class="label label-info"&gt;C&lt;/span&gt;'),
+)
+default_html = '&lt;span class="label label-default"&gt;D&lt;/span&gt;'
+@register.filter()
+def news_tag(value):
+    output = default_html
+    for mask, html in mask_html:
+        if value &amp; mask:
+            output += html +'\n'
+    return mark_safe(output)
+
+模板：
+{\% load news_tag \%}
+&lt;td&gt;&lt;/td&gt;
+</code></pre>
+
+<!--more-->
+
+
+<p>  需要注意的有：</p>
+
+<ol>
+<li> mark_safe是必须的，否则会被自动escape。</li>
+<li> 使用的时候需要load。写的时候需要register声明或者手动声明。</li>
+<li> 文档说必须重启才能使用新的标签。目测不用。</li>
+</ol>
+
+
+<p>  多参数的列子如下：</p>
+
+<pre><code>@register.filter()
+def news_op(status, id):
+    if status &amp; config.mSohuConf['A_mask']:
+        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
+    else:
+        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
+    return mark_safe(output)
+
+模板：
+</code></pre>
+
+<p>   毕竟还是不太方便。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[新的征途]]></title>
@@ -818,76 +885,6 @@ keys *
 <h3>参考文献:</h3>
 
 <blockquote><p>[1] redis-copy, <a href="https://github.com/yaauie/redis-copy">https://github.com/yaauie/redis-copy</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[跨浏览器cookie]]></title>
-    <link href="http://cxh.me/2014/11/25/flash-shared-cookie/"/>
-    <updated>2014-11-25T16:57:00+08:00</updated>
-    <id>http://cxh.me/2014/11/25/flash-shared-cookie</id>
-    <content type="html"><![CDATA[<p>  有时候为了标识一个用户，我们需要跨浏览器的cookie，这样用户在一个浏览器的行为可以被另一个浏览器读取。当然这种行为也备受争议，对于保护用户隐私来讲，这简直是后门。所以cookie里面一定不要存任何重要数据。</p>
-
-<p>  不过这么做也不完全是为了用户数据跟踪。从用户体验的角度看，可以这么实现跨浏览器甚至跨域的session。具体实现上有如下几种方法：</p>
-
-<ol>
-<li><p> Local Shared Objects (Flash Cookies)</p></li>
-<li><p> Silverlight Isolated Storage</p></li>
-<li><p> 使用HTML5客户端储存数据方法。</p></li>
-<li><p> evercookie</p></li>
-</ol>
-
-
-<p>  关于第二种有一个解释：一般装了silverlight的人都装了flash，想想真是呵呵了。第三种参见<a href="http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/" title="HTML5 localStorage本地存储实际应用举例">参考文献</a>。</p>
-
-<p>  <a href="https://github.com/samyk/evercookie" title="EverCookie">evercookie</a>原则上讲不能算一种方法，而是一种实现。每次写入的时候都会把cookie写到多个地方，下次读取的时候如果发现cookie有丢失，就通过还存在cookie副本来恢复cookie。乍一看原理跟3721那个进程交叉保护差不多，也算是流氓软件了。</p>
-
-<p>  这里我们重点讲第一种。</p>
-
-<!--more-->
-
-
-<p>  flash cookie使用的是flash自己的本地存储，所以决定于flash实例。大部分浏览器使用的是系统的flash实例，所以flash cookie能跨浏览器存在。但是有几个例外。</p>
-
-<p>  目前实测IE/Maxthon/Firefox/Safari/360浏览器都是采用系统的Flash实例，所以能够共享flash cookie，目前测到的几个特例是chrome/搜狗/百度浏览器，分别采用了自己浏览器内部打包的flash实例。另外不同系统用户的cookie不共享。从下面一张图可以清晰看出：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/flash_cookie.png"></p>
-
-<p>  flash cookie的写入可以参考如下项目&#8220;，作者在<a href="http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/" title="JavaScript library and .swf for cross-domain flash cookies">主页</a>详细说明了使用方法。需要注意的是swf_url控制的写入路径会包含在cookie的namespace里面，也就是说会有如下的目录结构：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/tree.png"></p>
-
-<p>  另外关于跨域，作者说不同域的js需要使用同一个swf，猜测是js请求swf的时候浏览器不判断在哪个域。swf内部是有跨域安全机制的，如果关闭掉的话，是可以实现请求跨域的。但是js请求其他域的数据会被浏览器拒绝。</p>
-
-<p>  测试如下：</p>
-
-<p>  在两台机器上部署相同的Flash Cookie测试项目，其中61域和74域的js都请求74域的swf：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/cross.png"></p>
-
-<p>  在74的机器上写入flash cookie: &ldquo;74 write&rdquo;</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/74write.png"></p>
-
-<p>  在61的机器上load:</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/61load.png"></p>
-
-<p>  证明可以跨域读取cookie。</p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] JavaScript library and .swf for cross-domain flash cookies, <a href="http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/">http://nfriedly.com/techblog/2010/07/swf-for-javascript-cross-domain-flash-cookies/</a></p>
-
-<p>[2] Javascript-Flash-Cookies, <a href="https://github.com/nfriedly/Javascript-Flash-Cookies">https://github.com/nfriedly/Javascript-Flash-Cookies</a></p>
-
-<p>[3]  How Facebook Sets and uses cross-Domain cookies, <a href="http://nfriedly.com/techblog/2010/08/how-facebook-sets-and-uses-cross-domain-cookies/">http://nfriedly.com/techblog/2010/08/how-facebook-sets-and-uses-cross-domain-cookies/</a></p>
-
-<p>[4] HTML5 localStorage本地存储实际应用举例, <a href="http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/">http://www.zhangxinxu.com/wordpress/2011/09/html5-localstorage%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8%E4%B8%BE%E4%BE%8B/</a></p>
-
-<p>[5] EverCookie, <a href="https://github.com/samyk/evercookie">https://github.com/samyk/evercookie</a></p>
-
-<p>[6] Anehta的水印(Watermark)机制, <a href="http://hi.baidu.com/aullik5/item/89496d121de969041894ecdd">http://hi.baidu.com/aullik5/item/89496d121de969041894ecdd</a></p></blockquote>
 ]]></content>
   </entry>
   

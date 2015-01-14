@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-14T14:50:16+08:00</updated>
+  <updated>2015-01-14T14:58:04+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -47,8 +47,8 @@ def news_tag(value):
     return mark_safe(output)
 
 模板：
-{% load news_tag %}
-&lt;td&gt;{{item.status|news_tag}}&lt;/td&gt;
+{\% load news_tag \%}
+&lt;td&gt;&lt;/td&gt;
 </code></pre>
 
 <!--more-->
@@ -74,7 +74,7 @@ def news_op(status, id):
     return mark_safe(output)
 
 模板：
-{{item.status|news_op:item.id}}
+
 </code></pre>
 
 <p>   毕竟还是不太方便。</p>
@@ -134,9 +134,9 @@ python setup.py install
 <p>  可行的办法还是用get参数。针对遇到的需求：传入不同的参数的时候在不同的div上显示class=active，我们可以简化的实现如下：</p>
 
 <pre><code>模板：
-  &lt;div role="tabpanel" class="tab-pane {{A}}" id="a"&gt;
-  &lt;div role="tabpanel" class="tab-pane {{B}}" id="b"&gt;
-  &lt;div role="tabpanel" class="tab-pane {{C}}" id="c"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="a"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="b"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="c"&gt;
 后台：
   init = request.GET.get('init', 'a')#a是默认active的tab
   return render(request, 'xx.html', {init:'active'})

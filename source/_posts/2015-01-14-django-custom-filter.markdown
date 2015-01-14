@@ -36,7 +36,7 @@ categories: "Python"
 	    return mark_safe(output)
 
 	模板：
-	{% load news_tag %}
+	{\% load news_tag \%}
 	<td>{{item.status|news_tag}}</td>
 
 <!--more-->
