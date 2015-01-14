@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-13T20:50:15+08:00</updated>
+  <updated>2015-01-14T13:06:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -66,9 +66,9 @@ python setup.py install
 <p>  可行的办法还是用get参数。针对遇到的需求：传入不同的参数的时候在不同的div上显示class=active，我们可以简化的实现如下：</p>
 
 <pre><code>模板：
-  &lt;div role="tabpanel" class="tab-pane {{A}}" id="a"&gt;
-  &lt;div role="tabpanel" class="tab-pane {{B}}" id="b"&gt;
-  &lt;div role="tabpanel" class="tab-pane {{C}}" id="c"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="a"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="b"&gt;
+  &lt;div role="tabpanel" class="tab-pane " id="c"&gt;
 后台：
   init = request.GET.get('init', 'a')#a是默认active的tab
   return render(request, 'xx.html', {init:'active'})

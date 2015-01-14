@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-13T20:50:15+08:00</updated>
+  <updated>2015-01-14T13:06:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -117,15 +117,6 @@ ConnectPort 443
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Linux下通过markdown写文档的方案]]></title>
-    <link href="http://cxh.me/2014/11/13/linux-article-writing/"/>
-    <updated>2014-11-13T15:26:00+08:00</updated>
-    <id>http://cxh.me/2014/11/13/linux-article-writing</id>
-    <content type="html"><![CDATA[<p>  to be continued.</p>
-]]></content>
-  </entry>
-  
-  <entry>
     <title type="html"><![CDATA[关于得到当前执行文件所在的目录]]></title>
     <link href="http://cxh.me/2013/11/19/method-to-get-absolute-path-of-current-program/"/>
     <updated>2013-11-19T21:47:00+08:00</updated>
@@ -148,6 +139,17 @@ else
 </code></pre>
 
 <p>  这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[升级到ubuntu13.10]]></title>
+    <link href="http://cxh.me/2013/10/18/update-to-ubuntu-13-10/"/>
+    <updated>2013-10-18T10:49:00+08:00</updated>
+    <id>http://cxh.me/2013/10/18/update-to-ubuntu-13-10</id>
+    <content type="html"><![CDATA[<p>  Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</p>
+
+<p><img class="img-polaroid center" src="/images/2013/ubuntu13_10.jpg" title="&ldquo;俏丽的蝾螈&rdquo; &ldquo;俏丽的蝾螈&rdquo;" ></p>
 ]]></content>
   </entry>
   
