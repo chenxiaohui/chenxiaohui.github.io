@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-14T13:06:11+08:00</updated>
+  <updated>2015-01-14T14:47:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,74 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Django自定义Filter]]></title>
+    <link href="http://cxh.me/2015/01/14/django-custom-filter/"/>
+    <updated>2015-01-14T13:29:00+08:00</updated>
+    <id>http://cxh.me/2015/01/14/django-custom-filter</id>
+    <content type="html"><![CDATA[<p>  遇到这样一个问题：Django中有字段是根据位来存储信息的，并且不是对应Model数据库中的字段，BitField使用起来比较不太适合。这样就得在模板中根据位来显示不同的内容。查Django并试验，好像位操作不能直接写在if操作符中，同时django也不支持在模板直接调用函数。一个合理的选择是建立自定义的Filter。详见<a href="https://docs.djangoproject.com/en/1.7/howto/custom-template-tags/" title="Custom template tags and filters">参考文献</a>。基本代码如下：</p>
+
+<pre><code>配置：
+mSohuConf={
+    "A_mask" : 0x04,
+    "B_mask" : 0x02,
+    "C_mask" : 0x01,
+}
+
+Filter代码：
+from django import template
+from django.utils.safestring import mark_safe
+from .. import config
+register = template.Library()
+mask_html = (
+    (config.mSohuConf['A_mask'], '&lt;span class="label label-danger"&gt;A&lt;/span&gt;'),
+    (config.mSohuConf['B_mask'], '&lt;span class="label label-warning"&gt;B&lt;/span&gt;'),
+    (config.mSohuConf['C_mask'], '&lt;span class="label label-info"&gt;C&lt;/span&gt;'),
+)
+default_html = '&lt;span class="label label-default"&gt;D&lt;/span&gt;'
+@register.filter()
+def news_tag(value):
+    output = default_html
+    for mask, html in mask_html:
+        if value &amp; mask:
+            output += html +'\n'
+    return mark_safe(output)
+
+模板：
+{% load news_tag %}
+&lt;td&gt;{{item.status|news_tag}}&lt;/td&gt;
+</code></pre>
+
+<!--more-->
+
+
+<p>  需要注意的有：</p>
+
+<ol>
+<li> mark_safe是必须的，否则会被自动escape。</li>
+<li> 使用的时候需要load。写的时候需要register声明或者手动声明。</li>
+<li> 文档说必须重启才能使用新的标签。目测不用。</li>
+</ol>
+
+
+<p>  多参数的列子如下：</p>
+
+<pre><code>@register.filter()
+def news_op(status, id):
+    if status &amp; config.mSohuConf['A_mask']:
+        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
+    else:
+        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
+    return mark_safe(output)
+
+模板：
+{{item.status|news_op:item.id}}
+</code></pre>
+
+<p>   毕竟还是不太方便。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[redhat下升级python]]></title>
@@ -66,9 +134,9 @@ python setup.py install
 <p>  可行的办法还是用get参数。针对遇到的需求：传入不同的参数的时候在不同的div上显示class=active，我们可以简化的实现如下：</p>
 
 <pre><code>模板：
-  &lt;div role="tabpanel" class="tab-pane " id="a"&gt;
-  &lt;div role="tabpanel" class="tab-pane " id="b"&gt;
-  &lt;div role="tabpanel" class="tab-pane " id="c"&gt;
+  &lt;div role="tabpanel" class="tab-pane {{A}}" id="a"&gt;
+  &lt;div role="tabpanel" class="tab-pane {{B}}" id="b"&gt;
+  &lt;div role="tabpanel" class="tab-pane {{C}}" id="c"&gt;
 后台：
   init = request.GET.get('init', 'a')#a是默认active的tab
   return render(request, 'xx.html', {init:'active'})
@@ -123,35 +191,6 @@ python setup.py install
 <blockquote><p>Specifying any command resuming execution (currently continue, step, next, return, jump, quit and their abbreviations) terminates the command list (as if that command was immediately followed by end). This is because any time you resume execution (even with a simple next or step), you may encounter another breakpoint–which could have its own command list, leading to ambiguities about which list to execute.</p></blockquote>
 
 <p>  但是这个明明是说只要恢复执行，commands就失效啊…但是实际上比如你只打了一个断点，然后在这个断点定义了commands，之后每次都是用continue，这是不会导致该断点失效的，毕竟没有encounter another breakpoint–which could have its own command list嘛。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于Django url映射的一些小问题]]></title>
-    <link href="http://cxh.me/2012/10/03/some-problems-of-django-url-mapping/"/>
-    <updated>2012-10-03T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/10/03/some-problems-of-django-url-mapping</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>  之前写Django一直没想着去用patterns的prefix，偶然用的时候发现总不起作用，后来才发觉原来是写法的问题</p>
-
-<pre><code>urlpatterns = patterns('book.views',
-    (r'^(\w ).html$', 'default_render'),
-)
-</code></pre>
-
-<p>  在这种情况下肯定是没问题的，但是不排除会有同学跟我一样的写成如下的格式</p>
-
-<pre><code>urlpatterns = patterns('book.views',
-    (r'^(\w ).html$', default_render),
-)
-</code></pre>
-
-<p>  看到差别了吧，只有字符串才可以拼接嘛。</p>
-
-<p>  另外是关于Django 1.4之后的路径的问题，每个app被放到跟主project同级的目录，所以引用的时候都变成与project同级的模块。比如有一个叫test的project，那么test里的urls.py必然是test.urls，而某个app里的urls.py显然已经不是test.app.urls而是app.urls了。</p>
-
-<p>  纯mark之。水文勿喷….</p>
 ]]></content>
   </entry>
   

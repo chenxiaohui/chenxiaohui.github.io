@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 挨踢人生 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ai-ti-ren-sheng/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-14T13:06:11+08:00</updated>
+  <updated>2015-01-14T14:47:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -25,9 +25,9 @@
 
 <p>  兰州: 一种烟, 如图所示:</p>
 
-<p><img class="img-polaroid center" src="/images/2013/lanzhou.jpg" width="200" title="兰州" ></p>
+<p>{% img img-polaroid center /images/2013/lanzhou.jpg 200  兰州 %}</p>
 
-<p><img class="img-polaroid center" src="/images/2013/lanzhou2.jpg" width="200" title="兰州" ></p>
+<p>{% img img-polaroid center /images/2013/lanzhou2.jpg 200 兰州 %}</p>
 ]]></content>
   </entry>
   
