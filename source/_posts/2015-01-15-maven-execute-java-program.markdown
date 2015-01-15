@@ -11,13 +11,13 @@ categories: "Java"
 
   1. java -cp 指定的类。shell（或者ZSH才有）下貌似是会有提示如下：
 
-  {% img img-polaroid center /images/2015/javacp.png %}
+    {% img img-polaroid center /images/2015/javacp.png %}
 
-  以上方式至少需要保证用到的jar都在classpath中。 
+    以上方式至少需要保证用到的jar都在classpath中。 
 
   2. 从eclipse中copy执行命令。去调试页面，查看刚才执行的command的属性页面。会看到如下界面，copy命令到shell中执行即可。
 
-  {% img img-polaroid center /images/2015/eclipse_command.png %}
+    {% img img-polaroid center /images/2015/eclipse_command.png %}
 
   3. maven execute。 命令类似：
 	

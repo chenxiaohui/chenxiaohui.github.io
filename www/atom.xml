@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-15T17:20:35+08:00</updated>
+  <updated>2015-01-15T17:23:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -21,22 +21,14 @@
     <content type="html"><![CDATA[<p>  Eclipse中需要执行一个java程序的之后只需要在入口类Run就行，但是有时候需要同时开两个程序，尤其对C/S模式的应用来说。针对这种情况，可以分如下三种方式启动另一个程序：</p>
 
 <ol>
-<li> java -cp 指定的类。shell（或者ZSH才有）下貌似是会有提示如下：</li>
-</ol>
+<li><p> java -cp 指定的类。shell（或者ZSH才有）下貌似是会有提示如下：</p>
 
+<p><img class="img-polaroid center" src="http://cxh.me/images/2015/javacp.png"></p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/javacp.png"></p>
+<p>以上方式至少需要保证用到的jar都在classpath中。</p></li>
+<li><p> 从eclipse中copy执行命令。去调试页面，查看刚才执行的command的属性页面。会看到如下界面，copy命令到shell中执行即可。</p>
 
-<p>  以上方式至少需要保证用到的jar都在classpath中。</p>
-
-<ol>
-<li> 从eclipse中copy执行命令。去调试页面，查看刚才执行的command的属性页面。会看到如下界面，copy命令到shell中执行即可。</li>
-</ol>
-
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/eclipse_command.png"></p>
-
-<ol>
+<p><img class="img-polaroid center" src="http://cxh.me/images/2015/eclipse_command.png"></p></li>
 <li><p> maven execute。 命令类似：</p>
 
 <pre><code>mvn exec:java -Dexec.mainClass=boot.BootStrap
