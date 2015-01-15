@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-15T17:23:41+08:00</updated>
+  <updated>2015-01-15T22:05:32+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,40 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[处理Django的自增字段]]></title>
+    <link href="http://cxh.me/2015/01/15/django-assign-autoincrement-field/"/>
+    <updated>2015-01-15T22:00:00+08:00</updated>
+    <id>http://cxh.me/2015/01/15/django-assign-autoincrement-field</id>
+    <content type="html"><![CDATA[<p>  有时候需要手动构造一个Django model对象并保存，遇到如下的情况：</p>
+
+<pre><code>model定义如下：
+class AuthHistory(models.Model):
+user_name = models.CharField(max_length=100, default=None)
+item_id = models.CharField(max_length=100)
+datetime = models.DateTimeField()
+url = models.CharField(max_length=1000)
+title = models.CharField(max_length=1000)
+operation = models.CharField(max_length=100, default=None)
+
+构造对象如下：
+history = AuthHistory("cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
+</code></pre>
+
+<p>  报错:<code>django title invalid literal for int() with base 10:cxh</code>，明显是把第一个字段赋给自增长id了，因为Django会给没有主键的表直接加上id字段作为主键。</p>
+
+<p>  手动指定域当然是可以的：</p>
+
+<pre><code>history = AuthHistory( user_name="cxh", item_id=tid, datetime=datetime.datetime.now(), url=item['url'], title=item['title'], operation=operation)
+</code></pre>
+
+<p>  但是未免很麻烦。传值肯定不合理，毕竟id是数据库记录的。试了一下，给id域直接传NULL就行了。</p>
+
+<pre><code>history = AuthHistory(None, "cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用maven执行java程序]]></title>
@@ -838,30 +872,6 @@ List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt; streams = consumerMap.get(topic);
 <h3>参考文献:</h3>
 
 <blockquote><p>[1] Kafka Consumer接口, <a href="http://www.cnblogs.com/fxjwind/p/3794255.html">http://www.cnblogs.com/fxjwind/p/3794255.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于eclipse里面override上的warning]]></title>
-    <link href="http://cxh.me/2014/12/08/eclipse-java-override-warning/"/>
-    <updated>2014-12-08T16:53:00+08:00</updated>
-    <id>http://cxh.me/2014/12/08/eclipse-java-override-warning</id>
-    <content type="html"><![CDATA[<p>  写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/method_callback.png" title="" ></p>
-
-<p>  看AsyncMethodCallback的代码，没有任何问题啊：</p>
-
-<p>  <img class="center" src="http://cxh.me/images/2014/async_callback.png" title="" ></p>
-
-<p>  后来发现当前项目JRE的版本是1.5，<del>~貌似1.5的JRE有个bug</del>。切到1.6以上版本就可以了。原因如下：</p>
-
-<pre><code>Eclipse is defaulting to Java 1.5 and you have classes implementing interface methods (which in Java 1.6 can be annotated with @Override, but in Java 1.5 can only be applied to methods overriding a superclass method).
-</code></pre>
-
-<p>  如果依然有问题，可以直接改一下Compliance Level：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2014/compliance.png"></p>
 ]]></content>
   </entry>
   
