@@ -8,7 +8,7 @@ categories: "web相关"
 ---
   知乎日报是中国人民喜闻乐见的资讯类应用，Pocket是深受世界人民喜爱的阅读工具。鉴于反碎片化阅读的个人习惯，决定把散落在各个地方的有价值咨询集中到一个应用里面，于是有了如下的工具。
 
-  首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了sed工具。
+  首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了[sed工具][1]。
 
 	curl -s http://daily.zhihu.com | sed 's/<a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story'
 
@@ -73,4 +73,9 @@ categories: "web相关"
 
 
 [1]: http://coolshell.cn/articles/9104.htm   "sed 简明教程"
-[2]:
+[2]: http://getpocket.com/developer/docs "Pocket API Documentation"
+###参考文献:
+
+>\[1] sed 简明教程, <http://coolshell.cn/articles/9104.htm>
+
+>\[2] Pocket API Documentation, <http://getpocket.com/developer/docs>
