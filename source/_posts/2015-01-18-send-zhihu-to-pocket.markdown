@@ -71,6 +71,8 @@ categories: "web相关"
   
   添加个定时任务到cron中就行了。
 
+  **当然最后我发现IFTTT是个更简单的方案.....**
+
 
 [1]: http://coolshell.cn/articles/9104.htm   "sed 简明教程"
 [2]: http://getpocket.com/developer/docs "Pocket API Documentation"

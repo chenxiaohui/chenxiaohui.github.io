@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-18T16:04:37+08:00</updated>
+  <updated>2015-01-18T16:07:30+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -90,6 +90,8 @@ done
 </code></pre>
 
 <p>  添加个定时任务到cron中就行了。</p>
+
+<p>  <strong>当然最后我发现IFTTT是个更简单的方案&hellip;..</strong></p>
 
 <h3>参考文献:</h3>
 
