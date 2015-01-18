@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-17T18:43:45+08:00</updated>
+  <updated>2015-01-18T15:59:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,86 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[保存知乎日报到pocket]]></title>
+    <link href="http://cxh.me/2015/01/18/send-zhihu-to-pocket/"/>
+    <updated>2015-01-18T15:30:00+08:00</updated>
+    <id>http://cxh.me/2015/01/18/send-zhihu-to-pocket</id>
+    <content type="html"><![CDATA[<p>  知乎日报是中国人民喜闻乐见的资讯类应用，Pocket是深受世界人民喜爱的阅读工具。鉴于反碎片化阅读的个人习惯，决定把散落在各个地方的有价值咨询集中到一个应用里面，于是有了如下的工具。</p>
+
+<p>  首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了sed工具。</p>
+
+<pre><code>curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story'
+</code></pre>
+
+<!--more-->
+
+
+<p>  然后需要打通跟Pocket的渠道。首先去注册Pocket SDK <a href="http://getpocket.com/developer/">http://getpocket.com/developer/</a></p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/pocket.png"></p>
+
+<p>  将会得到如下的几个授权码。我只注册了Web和Desktop</p>
+
+<pre><code>NAME    PLATFORM    CONSUMER KEY
+ZhihuDaily2Pocket   Web xxxx-xxxxxxxxxxxxxxxxxxxx
+ZhihuDaily2Pocket   Desktop (other) xxxx-xxxxxxxxxxxxxxxxxxxx
+</code></pre>
+
+<p>  之后先请求pocket的consumer key：</p>
+
+<pre><code>curl -s -X POST  -H "X-Accept: Application/json" -H "Content-Type: application/json"  -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxxx","redirect_uri":"http://google.com"}'  https://getpocket.com/v3/oauth/request | grep '}' | python -mjson.tool
+</code></pre>
+
+<p>  这里需要注意Accept头部使用的是X-Accept，这是我之前死活得不到相应的原因。</p>
+
+<p>  返回结果类似于：</p>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/x-www-form-urlencoded
+Status: 200 OK
+
+code=dcba4321-dcba-4321-dcba-4321dc
+</code></pre>
+
+<p>  如果是web应用，这里可以把用户导向一个授权页面了。</p>
+
+<pre><code>https://getpocket.com/auth/authorize?request_token=dcba4321-dcba-4321-dcba-4321dc&amp;redirect_uri=http://google.com
+</code></pre>
+
+<p>  授权后，我们把code和consumerkey转换成access token：</p>
+
+<pre><code>curl -s http://getpocket.com/v3/oauth/authorize -X POST -H "Content-Type: application/json" -H "X-Accept: application/json" -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxxx","code":"dcba4321-dcba-4321-dcba-4321dc"}'
+</code></pre>
+
+<p>  得到类似如下的结果：</p>
+
+<pre><code>HTTP/1.1 200 OK
+Content-Type: application/x-www-form-urlencoded
+Status: 200 OK
+
+access_token=5678defg-5678-defg-5678-defg56&amp;
+username=pocketuser
+</code></pre>
+
+<p>  根据这个access_token可以添加新的url了。</p>
+
+<pre><code>curl -s http://getpocket.com/v3/add -X POST -H "Content-Type: application/json" -H "X-Accept: application/json" -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxxx", "access_token":"yyyy-yyyy-yyyy-yyyy-yyyy","url":"http://daily.zhihu.com/story/4437286"}'
+</code></pre>
+
+<p>  之前授权流程完成之后，作为某个特定用户，之后的请求指令就不会变话了。所以程序可以简化到如下：</p>
+
+<pre><code>curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story' |
+while read line
+do
+    curl -s http://getpocket.com/v3/add -X POST -H "Content-Type: application/json" -H "X-Accept: application/json" -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxx", "access_token":"yyyy-yyyy-yyyy-yyyy-yyyy","url":"'$line'"}'|python -mjson.tool| grep 'resolved_url'
+done 
+</code></pre>
+
+<p>  添加个定时任务到cron中就行了。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[转载：生活不是眼前的苟且，生活有诗和远方——高晓松]]></title>
@@ -805,81 +885,6 @@ SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
 <p>[2] What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn&rsquo;t?, <a href="http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b">http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b</a></p>
 
 <p>[3] Solved: Java compiler level does not match the version of the installed Java project facet, <a href="http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/">http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Flash Cookie的跨域读取]]></title>
-    <link href="http://cxh.me/2014/12/12/flash-cookie-cross-domain/"/>
-    <updated>2014-12-12T12:35:00+08:00</updated>
-    <id>http://cxh.me/2014/12/12/flash-cookie-cross-domain</id>
-    <content type="html"><![CDATA[<p>  关于Flash Cookie相关的问题见<a href="http://cxh.me/2014/11/25/flash-shared-cookie/" title="跨浏览器cookie">参考文献1</a>。这里主要说如何实现跨域的Flash Cookie读取。</p>
-
-<p>  首先，我们要实现Js调用Flash插件。比较简单的实现是用<a href="https://code.google.com/p/swfobject/" title="swfobject">swfobject</a>。简单的示例代码如下：</p>
-
-<pre><code>&lt;object id="myCom" name="myCom" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="0" height="0"&gt;
-    &lt;param name="movie" value="http://xxx/xxx.swf" /&gt;
-    &lt;param name="allowScriptAccess" value="always" /&gt;
-    &lt;!--[if !IE]&gt;--&gt;
-    &lt;object name="myCom" type="application/x-shockwave-flash" data="http://xxx/xxx.swf" width="0" height="0"&gt;
-        &lt;param name="allowScriptAccess" value="always" /&gt;
-    &lt;!--&lt;![endif]--&gt;
-        &lt;div&gt;
-            &lt;h1&gt;SWF Cannot be loaded!&lt;/h1&gt;
-        &lt;/div&gt;
-    &lt;!--[if !IE]&gt;--&gt;
-    &lt;/object&gt;
-    &lt;!--&lt;![endif]--&gt;
-&lt;/object&gt;
-</code></pre>
-
-<!--more-->
-
-
-<p>  js部分代码如下：</p>
-
-<pre><code>    function callbackfn() {
-        var obj = swfobject.getObjectById("myCom");
-        if (obj &amp;&amp; typeof obj.getXXX != "undefined") {
-            alert(obj.getXXX('xxx'));
-        }
-    };
-    swfobject.registerObject("myCom", "9.0.0", "expressInstall.swf");
-</code></pre>
-
-<p>  具体含义参见如下swfobject的document：</p>
-
-<ul>
-<li>classid (outer object element only, value is always clsid:D27CDB6E-AE6D-11cf-96B8-444553540000)</li>
-<li>type (inner object element only, value is always application/x-shockwave-flash)</li>
-<li>data (inner object element only, defines the URL of a SWF)</li>
-<li>width (both object elements, defines the width of a SWF)</li>
-<li>height (both object elements, defines the height of a SWF)</li>
-</ul>
-
-
-<p>  跨域的问题上，需要注意如下几个：</p>
-
-<ol>
-<li><p> 调用object的组件的跨域声明是必须的。</p>
-
-<pre><code>&lt;param name="allowScriptAccess" value="always" /&gt;
-</code></pre></li>
-<li><p> swf_url使用被访问域的swf链接。</p></li>
-<li><p> 被访问的域根目录需要开放访问。crossdomain.xml需要开放跨域限制。当然像如下这种粗放的是不好的。（虽然很方便）</p>
-
-<pre><code>&lt;cross-domain-policy&gt;
-    &lt;allow-access-from domain="*" /&gt;
-&lt;/cross-domain-policy&gt;
-</code></pre></li>
-<li><p> swf源码需要开放权限：</p>
-
-<pre><code>System.security.allowDomain("yourhtmldomain.com");
-</code></pre></li>
-</ol>
-
-
-<p>  OK.</p>
 ]]></content>
   </entry>
   
