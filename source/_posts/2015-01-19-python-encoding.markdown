@@ -43,15 +43,27 @@ categories: "python"
     	中文
     	中文
 
-  说明print输出的时候按照default encoding进行了编码。所以只有gbk的编码乱码了。同样对输入的判断，环境如果是utf8，输出不变的话，不会有乱码。但是如果从文件里读取了字符串或者代码里有硬编码字符，就需要考虑编码了。比如：
+  说明print输出的时候按照default encoding进行了编码。所以只有gbk的编码乱码了。同样对输入的判断，环境如果是utf8，输出不变的话，不会有乱码。但是如果从文件里读取了字符串或者代码里有硬编码字符，就需要考虑编码了。另外，unicode和str相加会有编码问题。比如：
 
-  	环境依然是utf8
+ 	文件编码gbk: 	
   	value = raw_input()
-	print value+"中文"
+	print value + "中文"
 	输入
 		中文
 	输出
 		中文����
-   
-  输出类型是str，这个str真是蛋疼啊..
+	
+	value = raw_input()
+	print value + u"中文"
+	输入
+		en
+	输出
+		en中文
+	输入
+		中文
+	输出
+		UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+
+
+  str+str输出肯定是str，所以需要适配环境的编码，第一个乱码可以理解。而str+unicode的时候，str会被按default encoding解码。utf8无法按照python default encoding ascii解码。utf8文件编码下的情况类似。
     
