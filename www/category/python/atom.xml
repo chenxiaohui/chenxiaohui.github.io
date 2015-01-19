@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Python | CXH.ME]]></title>
+  <title><![CDATA[Category: python | CXH.ME]]></title>
   <link href="http://cxh.me/category/python/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-18T16:07:30+08:00</updated>
+  <updated>2015-01-19T15:03:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,192 +14,61 @@
 
   
   <entry>
-    <title type="html"><![CDATA[处理Django的自增字段]]></title>
-    <link href="http://cxh.me/2015/01/15/django-assign-autoincrement-field/"/>
-    <updated>2015-01-15T22:00:00+08:00</updated>
-    <id>http://cxh.me/2015/01/15/django-assign-autoincrement-field</id>
-    <content type="html"><![CDATA[<p>  有时候需要手动构造一个Django model对象并保存，遇到如下的情况：</p>
+    <title type="html"><![CDATA[Python编码]]></title>
+    <link href="http://cxh.me/2015/01/19/python-encoding/"/>
+    <updated>2015-01-19T14:34:00+08:00</updated>
+    <id>http://cxh.me/2015/01/19/python-encoding</id>
+    <content type="html"><![CDATA[<p>  众所周知Python的内码编码是Unicode，所有输入的编码都需要转换成unicode然后转出成为其他编码。Python2中存在unicode对象和str对象两种，在中文处理的时候很容易出问题，而Python3直接全部统一了编码到unicode。</p>
 
-<pre><code>model定义如下：
-class AuthHistory(models.Model):
-user_name = models.CharField(max_length=100, default=None)
-item_id = models.CharField(max_length=100)
-datetime = models.DateTimeField()
-url = models.CharField(max_length=1000)
-title = models.CharField(max_length=1000)
-operation = models.CharField(max_length=100, default=None)
+<p>  举一个例子说明编码的转换，首先我们的环境是utf-8</p>
 
-构造对象如下：
-history = AuthHistory("cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
+<pre><code>LANG=zh_CN.UTF-8
+LANGUAGE=zh_CN:zh
+LC_CTYPE="zh_CN.UTF-8"
+LC_NUMERIC="zh_CN.UTF-8"
+LC_TIME="zh_CN.UTF-8"
+LC_COLLATE="zh_CN.UTF-8"
+LC_MONETARY="zh_CN.UTF-8"
+LC_MESSAGES="zh_CN.UTF-8"
+LC_PAPER="zh_CN.UTF-8"
+LC_NAME="zh_CN.UTF-8"
+LC_ADDRESS="zh_CN.UTF-8"
+LC_TELEPHONE="zh_CN.UTF-8"
+LC_MEASUREMENT="zh_CN.UTF-8"
+LC_IDENTIFICATION="zh_CN.UTF-8"
+LC_ALL=zh_CN.UTF-8
 </code></pre>
 
-<p>  报错:<code>django title invalid literal for int() with base 10:cxh</code>，明显是把第一个字段赋给自增长id了，因为Django会给没有主键的表直接加上id字段作为主键。</p>
+<p>  然后测试一个从环境的输入和写回到环境。</p>
 
-<p>  手动指定域当然是可以的：</p>
+<pre><code>文件编码gbk:
+print '中文'
+print u'中文'
+输出
+    ����
+    中文
 
-<pre><code>history = AuthHistory( user_name="cxh", item_id=tid, datetime=datetime.datetime.now(), url=item['url'], title=item['title'], operation=operation)
+文件编码utf-8
+print '中文'
+print u'中文'
+
+输出
+    中文
+    中文
 </code></pre>
 
-<p>  但是未免很麻烦。传值肯定不合理，毕竟id是数据库记录的。试了一下，给id域直接传NULL就行了。</p>
+<p>  说明print输出的时候按照default encoding进行了编码。所以只有gbk的编码乱码了。同样对输入的判断，环境如果是utf8，输出不变的话，不会有乱码。但是如果从文件里读取了字符串或者代码里有硬编码字符，就需要考虑编码了。比如：</p>
 
-<pre><code>history = AuthHistory(None, "cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Django自定义Filter]]></title>
-    <link href="http://cxh.me/2015/01/14/django-custom-filter/"/>
-    <updated>2015-01-14T13:29:00+08:00</updated>
-    <id>http://cxh.me/2015/01/14/django-custom-filter</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个问题：Django中有字段是根据位来存储信息的，并且不是对应Model数据库中的字段，BitField使用起来比较不太适合。这样就得在模板中根据位来显示不同的内容。查Django并试验，好像位操作不能直接写在if操作符中，同时django也不支持在模板直接调用函数。一个合理的选择是建立自定义的Filter。详见<a href="https://docs.djangoproject.com/en/1.7/howto/custom-template-tags/" title="Custom template tags and filters">参考文献</a>。基本代码如下：</p>
-
-<pre><code>配置：
-mSohuConf={
-    "A_mask" : 0x04,
-    "B_mask" : 0x02,
-    "C_mask" : 0x01,
-}
-
-Filter代码：
-from django import template
-from django.utils.safestring import mark_safe
-from .. import config
-register = template.Library()
-mask_html = (
-    (config.mSohuConf['A_mask'], '&lt;span class="label label-danger"&gt;A&lt;/span&gt;'),
-    (config.mSohuConf['B_mask'], '&lt;span class="label label-warning"&gt;B&lt;/span&gt;'),
-    (config.mSohuConf['C_mask'], '&lt;span class="label label-info"&gt;C&lt;/span&gt;'),
-)
-default_html = '&lt;span class="label label-default"&gt;D&lt;/span&gt;'
-@register.filter()
-def news_tag(value):
-    output = default_html
-    for mask, html in mask_html:
-        if value &amp; mask:
-            output += html +'\n'
-    return mark_safe(output)
-
-模板：
-{\% load news_tag \%}
-&lt;td&gt;&lt;/td&gt;
+<pre><code>环境依然是utf8
+value = raw_input()
+print value+"中文"
+输入
+    中文
+输出
+    中文����
 </code></pre>
 
-<!--more-->
-
-
-<p>  需要注意的有：</p>
-
-<ol>
-<li> mark_safe是必须的，否则会被自动escape。</li>
-<li> 使用的时候需要load。写的时候需要register声明或者手动声明。</li>
-<li> 文档说必须重启才能使用新的标签。目测不用。</li>
-</ol>
-
-
-<p>  多参数的列子如下：</p>
-
-<pre><code>@register.filter()
-def news_op(status, id):
-    if status &amp; config.mSohuConf['A_mask']:
-        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
-    else:
-        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
-    return mark_safe(output)
-
-模板：
-
-</code></pre>
-
-<p>   毕竟还是不太方便。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[redhat下升级python]]></title>
-    <link href="http://cxh.me/2015/01/11/redhat-upgrade-python/"/>
-    <updated>2015-01-11T18:56:00+08:00</updated>
-    <id>http://cxh.me/2015/01/11/redhat-upgrade-python</id>
-    <content type="html"><![CDATA[<p>  偶然发现服务器上的python是2.4的，好多语法都不支持。遂决定升级。</p>
-
-<p>  首先yum升级是可以升级到2.6的：</p>
-
-<pre><code>yum install python26
-yum install python26-devel
-yum install python26-setuptools
-ln -s /usr/bin/python2.6 /usr/bin/python
-</code></pre>
-
-<p>  升级之后发现yum不能用了。yum应该是跟python版本绑定了，于是把yum头部改成：</p>
-
-<pre><code>#!/bin/python2.4
-</code></pre>
-
-<p>  之后发现2.6还是不行&hellip;我是用了多新的语法啊&hellip;就是几个dict comprehension。于是决定升级到2.7。源里面没有，只能手动。</p>
-
-<pre><code>#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2  
-#tar -jxvf Python-2.7.3.tar.bz2
-#cd Python-2.7.3  
-#./configure  
-#make all             
-#make install
-#ln -s /usr/local/bin/python2.7 /usr/bin/python  
-</code></pre>
-
-<p>  安装setup-tools</p>
-
-<pre><code>wget https://pypi.python.org/packages/source/s/setuptools/setuptools-11.3.1.zip --no-check-certificate
-unzip setuptools-11.3.1.zip
-cd setuptools-11.3.1
-python setup.py install
-</code></pre>
-
-<p>  yum不用动了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[django重定向的参数传递]]></title>
-    <link href="http://cxh.me/2015/01/05/django-redirect-render/"/>
-    <updated>2015-01-05T15:55:00+08:00</updated>
-    <id>http://cxh.me/2015/01/05/django-redirect-render</id>
-    <content type="html"><![CDATA[<p>  其实就是想实现如下一个功能，重定向到一个网页，但是这个网页根据传参的不同显示不同的内容。基于Django各种render的shortcut理所当然的想有没有render_redirect，但是想想网络请求的流程，redirect只是返回了一个302，让浏览器直接去请求新的网页了，首先这个response很简单没有携带其他信息，此外，浏览器也不会把302code和url之外的内容作为下一次请求的参数。</p>
-
-<p>  可行的办法还是用get参数。针对遇到的需求：传入不同的参数的时候在不同的div上显示class=active，我们可以简化的实现如下：</p>
-
-<pre><code>模板：
-  &lt;div role="tabpanel" class="tab-pane " id="a"&gt;
-  &lt;div role="tabpanel" class="tab-pane " id="b"&gt;
-  &lt;div role="tabpanel" class="tab-pane " id="c"&gt;
-后台：
-  init = request.GET.get('init', 'a')#a是默认active的tab
-  return render(request, 'xx.html', {init:'active'})
-跳转：
-  return HttpResponseRedirect("/?init=b")
-</code></pre>
-
-<p>  直接用传入参数当了render参数的名字。<code>request.GET.get('init', 'a')</code>保证了无参数的时候active a作为默认值。django容错保证了没有的变量置空。基本够用了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在Python字典解析中进行update]]></title>
-    <link href="http://cxh.me/2015/01/05/python-dict-update-in-comprehensions/"/>
-    <updated>2015-01-05T13:25:00+08:00</updated>
-    <id>http://cxh.me/2015/01/05/python-dict-update-in-comprehensions</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个事情，从一个Thrift源取回部分数据，结构是一个对象数组，根据其中所有的Id字段从数据库又取回另一部分数据，结构是一个字典数组。那么问题来了，<del>挖掘机技术哪家强</del>如何按照id合并两份数据?</p>
-
-<p>  这其实就是JOIN，也就两种做法，nested loop join和hash join（这些词都是在ob的时候听到的，其实道理很简单）。做nested loop join的话，最好按排序，做hash join的话，就需要把其中一份数据的变成以id字段为key的字典。这里我们选择后一种，python代码实现起来比较简洁。前一种貌似只能for循环搞下标，不知道有没有直接的built in function。</p>
-
-<p>  代码比较简单，就是遇到了一个有代表性的问题：</p>
-
-<pre><code>results = [result.update(items[result['id']])) for result in results]
-</code></pre>
-
-<p>  id字段是join的key，results是从数据库取到的，items是从thrift取到的。关键问题在于update的结果是None，result是被原地修改的。所以需要改成下面：</p>
-
-<pre><code>results = [dict(result.items() + items[result['id']].items()) for result in results]
-</code></pre>
+<p>  输出类型是str，这个str真是蛋疼啊..</p>
 ]]></content>
   </entry>
   

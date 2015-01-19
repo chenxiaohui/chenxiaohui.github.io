@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-18T16:07:30+08:00</updated>
+  <updated>2015-01-19T15:03:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python编码]]></title>
+    <link href="http://cxh.me/2015/01/19/python-encoding/"/>
+    <updated>2015-01-19T14:34:00+08:00</updated>
+    <id>http://cxh.me/2015/01/19/python-encoding</id>
+    <content type="html"><![CDATA[<p>  众所周知Python的内码编码是Unicode，所有输入的编码都需要转换成unicode然后转出成为其他编码。Python2中存在unicode对象和str对象两种，在中文处理的时候很容易出问题，而Python3直接全部统一了编码到unicode。</p>
+
+<p>  举一个例子说明编码的转换，首先我们的环境是utf-8</p>
+
+<pre><code>LANG=zh_CN.UTF-8
+LANGUAGE=zh_CN:zh
+LC_CTYPE="zh_CN.UTF-8"
+LC_NUMERIC="zh_CN.UTF-8"
+LC_TIME="zh_CN.UTF-8"
+LC_COLLATE="zh_CN.UTF-8"
+LC_MONETARY="zh_CN.UTF-8"
+LC_MESSAGES="zh_CN.UTF-8"
+LC_PAPER="zh_CN.UTF-8"
+LC_NAME="zh_CN.UTF-8"
+LC_ADDRESS="zh_CN.UTF-8"
+LC_TELEPHONE="zh_CN.UTF-8"
+LC_MEASUREMENT="zh_CN.UTF-8"
+LC_IDENTIFICATION="zh_CN.UTF-8"
+LC_ALL=zh_CN.UTF-8
+</code></pre>
+
+<p>  然后测试一个从环境的输入和写回到环境。</p>
+
+<pre><code>文件编码gbk:
+print '中文'
+print u'中文'
+输出
+    ����
+    中文
+
+文件编码utf-8
+print '中文'
+print u'中文'
+
+输出
+    中文
+    中文
+</code></pre>
+
+<p>  说明print输出的时候按照default encoding进行了编码。所以只有gbk的编码乱码了。同样对输入的判断，环境如果是utf8，输出不变的话，不会有乱码。但是如果从文件里读取了字符串或者代码里有硬编码字符，就需要考虑编码了。比如：</p>
+
+<pre><code>环境依然是utf8
+value = raw_input()
+print value+"中文"
+输入
+    中文
+输出
+    中文����
+</code></pre>
+
+<p>  输出类型是str，这个str真是蛋疼啊..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[保存知乎日报到pocket]]></title>
@@ -840,62 +899,6 @@ SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
 <blockquote><p>[1] SLF4J warning or error messages and their meanings, <a href="http://www.slf4j.org/codes.html#StaticLoggerBinder">http://www.slf4j.org/codes.html#StaticLoggerBinder</a></p>
 
 <p>[2]  slf4j-api、slf4j-log4j12以及log4j之间什么关系？, <a href="http://blog.csdn.net/robert_mm/article/details/8197108">http://blog.csdn.net/robert_mm/article/details/8197108</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于Maven回滚了eclipse中项目的JRE版本]]></title>
-    <link href="http://cxh.me/2014/12/25/maven-revert-eclipse-jdk-version/"/>
-    <updated>2014-12-25T14:49:00+08:00</updated>
-    <id>http://cxh.me/2014/12/25/maven-revert-eclipse-jdk-version</id>
-    <content type="html"><![CDATA[<p>  发现在命令行对一个项目执行<code>mvn install</code>的时候，回eclipse看就会有些错误，原因如<a href="http://cxh.me/2014/12/08/eclipse-java-override-warning/" title="关于eclipse里面override上的warning">这里</a>所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：</p>
-
-<pre><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;projectDescription&gt;
-    &lt;name&gt;realtime_ua&lt;/name&gt;
-    &lt;comment&gt;&lt;/comment&gt;
-    &lt;projects&gt;
-    &lt;/projects&gt;
-    &lt;buildSpec&gt;
-        &lt;buildCommand&gt;
-            &lt;name&gt;org.eclipse.m2e.core.maven2Builder&lt;/name&gt;
-            &lt;arguments&gt;
-            &lt;/arguments&gt;
-        &lt;/buildCommand&gt;
-    &lt;/buildSpec&gt;
-    &lt;natures&gt;
-        &lt;nature&gt;org.eclipse.m2e.core.maven2Nature&lt;/nature&gt;
-    &lt;/natures&gt;
-&lt;/projectDescription&gt;
-</code></pre>
-
-<p>  实际导入的JRE版本是m2eclipse插件决定的。参考<a href="http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b" title="What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn't?">这里</a>加入对maven-compiler-plugin的默认配置即可：</p>
-
-<pre><code>&lt;build&gt;
-    &lt;plugins&gt;
-        &lt;plugin&gt;
-          &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
-            &lt;configuration&gt;
-              &lt;source&gt;1.6&lt;/source&gt;
-              &lt;target&gt;1.6&lt;/target&gt;
-            &lt;/configuration&gt;
-        &lt;/plugin&gt;
-  &lt;/plugins&gt;
-&lt;/build&gt;
-</code></pre>
-
-<p>  多module项目请把配置直接加在root-project的pom.xml下。</p>
-
-<!--more-->
-
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] 关于eclipse里面override上的warning, <a href="http://cxh.me/2014/12/08/eclipse-java-override-warning/">http://cxh.me/2014/12/08/eclipse-java-override-warning/</a></p>
-
-<p>[2] What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn&rsquo;t?, <a href="http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b">http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b</a></p>
-
-<p>[3] Solved: Java compiler level does not match the version of the installed Java project facet, <a href="http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/">http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/</a></p></blockquote>
 ]]></content>
   </entry>
   
