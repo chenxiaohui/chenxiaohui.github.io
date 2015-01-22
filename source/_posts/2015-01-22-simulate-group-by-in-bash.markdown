@@ -29,15 +29,15 @@ categories: "Linux"
 
     首先对数据进行排序。这是最基本的，见[上篇文章][1]。
 
-  	   sort -k 1 
+  	     sort -k 1 
 
   2. 过滤不需要的行和列。
 
-  	   awk '{print $1, $2, $3}' |grep "Click" 
+  	     awk '{print $1, $2, $3}' |grep "Click" 
 
   3. 这时候出现了一些重复列了，这也就是我们要做group by的数据。
 
-  	   uniq -c | awk {'print $2, $3, $1'} 
+        uniq -c | awk {'print $2, $3, $1'} 
 
   后面awk只是调了一下位置。合并起来就是：
 
@@ -45,9 +45,9 @@ categories: "Linux"
 
   输出结果：
 
-  	AAAAAAAAAAA tag1 2
-	AAAAAAAAAAA tag2 1
-	BBBBBBBBBBB tag2 2
+    AAAAAAAAAAA tag1 2
+  	AAAAAAAAAAA tag2 1
+  	BBBBBBBBBBB tag2 2
 
 
 [1]: http://cxh.me/2015/01/22/sort-using-multiple-columns/   "Sort多列排序"
