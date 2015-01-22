@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-22T14:34:24+08:00</updated>
+  <updated>2015-01-22T16:34:13+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,65 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[bash下模拟group by功能]]></title>
+    <link href="http://cxh.me/2015/01/22/simulate-group-by-in-bash/"/>
+    <updated>2015-01-22T15:56:00+08:00</updated>
+    <id>http://cxh.me/2015/01/22/simulate-group-by-in-bash</id>
+    <content type="html"><![CDATA[<p>  遇到这样一个问题：有一堆数据，需要统计相同key下相同的column的重复出现次数，实际上就是数据库里面的group by功能，但是建表导入然后计算未免麻烦，何况数据是临时数据，导入计算完毕之后就不需要了。这里用shell下的一些命令来完成。</p>
+
+<p>  数据格式</p>
+
+<pre><code>user            tag_id  type        time
+AAAAAAAAAAA     tag1    Click       2015:13:37:16
+AAAAAAAAAAA     tag1    Click       2015:13:37:16
+AAAAAAAAAAA     tag2    Click       2015:13:37:16
+BBBBBBBBBBB     tag2    Click       2015:13:37:16
+BBBBBBBBBBB     tag2    Click       2015:13:37:16
+BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
+</code></pre>
+
+<p>  目的：</p>
+
+<pre><code>统计同一个用户下，同一个tag的点击次数：
+</code></pre>
+
+<p>  实现如下：</p>
+
+<ol>
+<li> 排序</li>
+</ol>
+
+
+<p>  首先对数据进行排序。这是最基本的，见<a href="http://cxh.me/2015/01/22/sort-using-multiple-columns/" title="Sort多列排序">上篇文章</a>。</p>
+
+<pre><code>sort -k 1 
+</code></pre>
+
+<ol>
+<li><p> 过滤不需要的行和列。</p>
+
+<p>awk &lsquo;{print $1, $2, $3}&rsquo; |grep &ldquo;Click&rdquo;</p></li>
+<li><p> 这时候出现了一些重复列了，这也就是我们要做group by的数据。</p>
+
+<p>uniq -c | awk {&lsquo;print $2, $3, $1&rsquo;}</p></li>
+</ol>
+
+
+<p>  后面awk只是调了一下位置。合并起来就是：</p>
+
+<pre><code>sort -k 1  test.txt|awk '{print $1, $2, $3}' |grep "Click"|uniq -c | awk {'print $2, $3, $1'} 
+</code></pre>
+
+<p>  输出结果：</p>
+
+<pre><code>AAAAAAAAAAA tag1 2
+AAAAAAAAAAA tag2 1
+BBBBBBBBBBB tag2 2
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[sort多列排序]]></title>
@@ -837,43 +896,6 @@ comm -12 &lt;(sort si.txt|uniq ) &lt;(sort da_ri_feng.txt|uniq ) &gt;da_ri_feng_
 <p>  解决办法是先把breakpoint里面的ClassNotFoundException: caught and uncaught去掉了。不知道为什么会造成这个结果。</p>
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/breakpoint.png"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Linux上的远程log监控]]></title>
-    <link href="http://cxh.me/2015/01/04/linux-remote-log-watch/"/>
-    <updated>2015-01-04T17:34:00+08:00</updated>
-    <id>http://cxh.me/2015/01/04/linux-remote-log-watch</id>
-    <content type="html"><![CDATA[<p>  名字太大，其实只是遇到了一个问题，想远程实时看一个log文件的变化。开始是这么做的。</p>
-
-<pre><code>vim 里面 :e scp://xxx@xxx//filePath
-:e! 来刷新
-</code></pre>
-
-<p>   太low了。直接用ssh：</p>
-
-<pre><code>ssh xx@xxx "less filePath"
-</code></pre>
-
-<p>   发现less直接就退出了。 换成:</p>
-
-<pre><code>ssh -t xx@xxx "less filePath"
-</code></pre>
-
-<p>   也不能实时刷新。测试less 本地一个文件同时写入，发现less没有实时刷新的功能。看来是在ob的时候deploy给我的错觉啊。</p>
-
-<p>   换tail:</p>
-
-<pre><code>ssh -t xx@xxx "tail filePath"
-</code></pre>
-
-<p>   还是直接执行完毕退出。查tail有没有自动刷新的模式，有一个follow：</p>
-
-<pre><code>ssh xx@xx "tail -f filePath"
-</code></pre>
-
-<p>   搞定。<em>配合[TMux]绝对好用</em>。</p>
 ]]></content>
   </entry>
   
