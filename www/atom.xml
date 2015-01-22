@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-22T16:34:13+08:00</updated>
+  <updated>2015-01-22T16:36:17+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -45,16 +45,16 @@ BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
 
 <p>  首先对数据进行排序。这是最基本的，见<a href="http://cxh.me/2015/01/22/sort-using-multiple-columns/" title="Sort多列排序">上篇文章</a>。</p>
 
-<pre><code>sort -k 1 
+<pre><code> sort -k 1 
 </code></pre>
 
 <ol>
 <li><p> 过滤不需要的行和列。</p>
 
-<p>awk &lsquo;{print $1, $2, $3}&rsquo; |grep &ldquo;Click&rdquo;</p></li>
+<p> awk &lsquo;{print $1, $2, $3}&rsquo; |grep &ldquo;Click&rdquo;</p></li>
 <li><p> 这时候出现了一些重复列了，这也就是我们要做group by的数据。</p>
 
-<p>uniq -c | awk {&lsquo;print $2, $3, $1&rsquo;}</p></li>
+<p> uniq -c | awk {&lsquo;print $2, $3, $1&rsquo;}</p></li>
 </ol>
 
 
