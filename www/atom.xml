@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-19T16:51:51+08:00</updated>
+  <updated>2015-01-22T14:32:12+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,39 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/01/22/sort-using-multiple-columns/"/>
+    <updated>2015-01-22T13:38:00+08:00</updated>
+    <id>http://cxh.me/2015/01/22/sort-using-multiple-columns</id>
+    <content type="html"><![CDATA[<p>  遇到这样一个需求，希望按照第二列排序，第二列相同的情况下按照第一列排序，数据如下：</p>
+
+<pre><code>b   2   c
+c   2   b
+a   1   b
+</code></pre>
+
+<p>  习惯性的用:</p>
+
+<pre><code>sort -k 2 -k 1 input.txt
+</code></pre>
+
+<p>  输出结果是：</p>
+
+<pre><code>a   1   b
+c   2   b
+b   2   c
+</code></pre>
+
+<p>  可以看到实际上先按照第二列排序，第二列相同按照第三列排序了。问题在于sort -k默认是按照顺序排序到末尾的。如果要打破默认，需要指定从哪个列到哪个列。</p>
+
+<pre><code>sort -k 2，2 -k 1 input.txt
+</code></pre>
+
+<p>  换个角度说，<code>sort -k 1 -k 2</code> 的效果跟 <code>sort -k 1</code> 是一样的。所以最好还是让数据按照排序列生成，这样看起来也最直观。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于Django下获取checkbox的返回值]]></title>
@@ -841,53 +874,6 @@ comm -12 &lt;(sort si.txt|uniq ) &lt;(sort da_ri_feng.txt|uniq ) &gt;da_ri_feng_
 </code></pre>
 
 <p>   搞定。<em>配合[TMux]绝对好用</em>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[git中删除已经缓存的文件]]></title>
-    <link href="http://cxh.me/2015/01/04/del-cached-files-in-git/"/>
-    <updated>2015-01-04T16:49:00+08:00</updated>
-    <id>http://cxh.me/2015/01/04/del-cached-files-in-git</id>
-    <content type="html"><![CDATA[<p>  经常遇到一种情况，开始项目的时候没加.gitignore文件，提交之后发现有大量的pyc文件残留，这样两地共同修改的时候pyc文件会造成大量的冲突。针对这种情况，可以如下解决：</p>
-
-<ol>
-<li><p> 建立.gitignore文件并写入：</p>
-
-<pre><code>.pyc
-.swp
-</code></pre></li>
-<li><p> 删除所有缓存中的数据：</p>
-
-<pre><code>find . -name '*.pyc' -o -name '*.swp' &gt; /tmp/files
-while read line; do
-    git rm --cached $line
-done &lt; /tmp/files
-</code></pre></li>
-<li><p> 在冲突的一端回滚所有pyc冲突：</p>
-
-<pre><code>find . -name '*.pyc' -o -name '*.swp' &gt; /tmp/files
-while read line; do
-    git checkout -f  $line
-done &lt; /tmp/files
-</code></pre></li>
-<li><p> 冲突的一端更新修改：</p>
-
-<pre><code>git pull origin
-</code></pre></li>
-</ol>
-
-
-<p>  补充：</p>
-
-<p>  蛋疼了&hellip;直接这样就行了</p>
-
-<pre><code>git rm --cached `find . -name '*.pyc' -o -name '*.swp'`
-
-或者 find . -name '*.pyc' -o -name '*.swp' -exec git rm --cached {} \; 
-</code></pre>
-
-<p>  忘了这些命令都接受多个参数&hellip;.</p>
 ]]></content>
   </entry>
   
