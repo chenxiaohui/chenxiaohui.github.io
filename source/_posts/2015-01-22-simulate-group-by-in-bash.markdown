@@ -29,11 +29,11 @@ categories: "Linux"
 
     首先对数据进行排序。这是最基本的，见[上篇文章][1]。
 
-  	     sort -k 1 
+  	    sort -k 1 
 
   2. 过滤不需要的行和列。
 
-  	     awk '{print $1, $2, $3}' |grep "Click" 
+  	    awk '{print $1, $2, $3}' |grep "Click" 
 
   3. 这时候出现了一些重复列了，这也就是我们要做group by的数据。
 

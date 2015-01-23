@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-22T16:50:16+08:00</updated>
+  <updated>2015-01-23T11:22:11+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[java中重用对象的bug]]></title>
+    <link href="http://cxh.me/2015/01/23/java-reuse-bug/"/>
+    <updated>2015-01-23T11:15:00+08:00</updated>
+    <id>http://cxh.me/2015/01/23/java-reuse-bug</id>
+    <content type="html"><![CDATA[<p>  首先这不是java编译器的问题，就是写代码的时候大意了。</p>
+
+<p>  有这样一个函数</p>
+
+<pre><code>int parse(String msg, Message out)；
+</code></pre>
+
+<p>  解析一个String，返回一个结构体。这么做的目的主要是避开try catch的性能问题，通过返回码来处理异常。这里就很容易出现这样的用法了：</p>
+
+<pre><code>Message msg = new Message();
+for (xxxx){
+    if (0 == parse(str, msg))
+
+}
+</code></pre>
+
+<p>  当时觉得还挺好，复用了一个对象。实际明显有问题的，这个对象的生命周期不见得只在for循环内部，一旦引用被传递出去，就会有悬挂（java里是不是不这么叫）的问题。多个引用指向了一个对象，计算结果是不可预测的。</p>
+
+<p>  主要问题是java里面默认都是传引用的，所以要时刻保持对gc机制的警惕。或者直接实现clone接口。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[bash下模拟group by功能]]></title>
@@ -43,11 +70,11 @@ BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
 
 <p>首先对数据进行排序。这是最基本的，见<a href="http://cxh.me/2015/01/22/sort-using-multiple-columns/" title="Sort多列排序">上篇文章</a>。</p>
 
-<pre><code> sort -k 1 
+<pre><code>sort -k 1 
 </code></pre></li>
 <li><p> 过滤不需要的行和列。</p>
 
-<pre><code> awk '{print $1, $2, $3}' |grep "Click" 
+<pre><code>awk '{print $1, $2, $3}' |grep "Click" 
 </code></pre></li>
 <li><p> 这时候出现了一些重复列了，这也就是我们要做group by的数据。</p>
 
@@ -877,23 +904,6 @@ comm -12 &lt;(sort si.txt|uniq ) &lt;(sort da_ri_feng.txt|uniq ) &gt;da_ri_feng_
 
 <pre><code>results = [dict(result.items() + items[result['id']].items()) for result in results]
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Eclipse调试的时候出现class not found]]></title>
-    <link href="http://cxh.me/2015/01/05/eclipse-class-not-found/"/>
-    <updated>2015-01-05T09:50:00+08:00</updated>
-    <id>http://cxh.me/2015/01/05/eclipse-class-not-found</id>
-    <content type="html"><![CDATA[<p>  昨天遇到这样一个问题：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/classnotfound.png"></p>
-
-<p>  开始以为是依赖的问题，更新了所有的jar包和Maven依赖，发现没有什么问题。怀疑是eclipse，写了一个简单的程序，发现一样找不到class。</p>
-
-<p>  解决办法是先把breakpoint里面的ClassNotFoundException: caught and uncaught去掉了。不知道为什么会造成这个结果。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/breakpoint.png"></p>
 ]]></content>
   </entry>
   
