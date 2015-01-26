@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-26T16:01:00+08:00</updated>
+  <updated>2015-01-26T16:04:26+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -41,14 +41,14 @@ sudo make install
 sudo apt-get install shadowsocks
 </code></pre>
 
-<p>  apt-get安装的nodejs好像有问题，所以用源码安装。编辑配置文件，默认是'/usr/local/lib/node_modules/shadowsocks/config.json'，启动之后就可以连上服务器了。</p>
+<p>  apt-get安装的nodejs好像有问题，所以用源码安装。编辑配置文件，默认是<code>/usr/local/lib/node_modules/shadowsocks/config.json</code>，启动之后就可以连上服务器了。</p>
 
 <p>  之后需要配置proxy。以chrome为例，如果之前配置过goagent的话，基本配置一样。不过proxy switch sharp终于升级到了proxy switch omega了。需要注意的是shadowsocks是socks代理，选择的时候不要选择http。gfwlist 可用如下：</p>
 
 <pre><code>https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
 </code></pre>
 
-<p>  之后就可以翻墙了。最后说一句：Fxxk GFW，祝病魔早日战胜方校长，所有参与GFW的人都将钉在历史的耻辱柱上。</p>
+<p>  之后就可以翻墙了。最后说一句：<strong>Fxxk GFW，祝病魔早日战胜方校长，所有参与GFW的人都将钉在历史的耻辱柱上</strong>。</p>
 ]]></content>
   </entry>
   

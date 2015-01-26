@@ -28,18 +28,13 @@ categories: "其他"
   	sudo apt-get install npm
   	sudo apt-get install shadowsocks
 
-  apt-get安装的nodejs好像有问题，所以用源码安装。编辑配置文件，默认是'/usr/local/lib/node_modules/shadowsocks/config.json'，启动之后就可以连上服务器了。
+  apt-get安装的nodejs好像有问题，所以用源码安装。编辑配置文件，默认是`/usr/local/lib/node_modules/shadowsocks/config.json`，启动之后就可以连上服务器了。
 
   之后需要配置proxy。以chrome为例，如果之前配置过goagent的话，基本配置一样。不过proxy switch sharp终于升级到了proxy switch omega了。需要注意的是shadowsocks是socks代理，选择的时候不要选择http。gfwlist 可用如下：
 
   	https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
 
-  之后就可以翻墙了。最后说一句：Fxxk GFW，祝病魔早日战胜方校长，所有参与GFW的人都将钉在历史的耻辱柱上。
-  
-
-
-
+  之后就可以翻墙了。最后说一句：**Fxxk GFW，祝病魔早日战胜方校长，所有参与GFW的人都将钉在历史的耻辱柱上**。
 
 
 [1]: https://portal.shadowsocks.com/aff.php?aff=483   "shadow socks"
-[2]:
