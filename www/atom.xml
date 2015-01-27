@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-27T14:55:01+08:00</updated>
+  <updated>2015-01-27T16:07:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[协变返回类型]]></title>
+    <link href="http://cxh.me/2015/01/27/convariant-return-type/"/>
+    <updated>2015-01-27T15:48:00+08:00</updated>
+    <id>http://cxh.me/2015/01/27/convariant-return-type</id>
+    <content type="html"><![CDATA[<p>  协变返回类型（Convariant Return Type）是指override的函数，返回值有继承关系（子类函数返回类型是父类返回类型的子类）。例子如下：</p>
+
+<!--more-->
+
+
+<pre><code>class Base
+{
+  public:
+    Base (){}
+    virtual void print(){
+      printf("Base");
+    }
+};
+
+class Derived : public Base
+{
+  public:
+    Derived(){}
+    virtual ~Derived (){}
+    void print(){
+      printf("Derived");
+    }
+};
+
+class TestBase
+{
+  public:
+    TestBase (){}
+    virtual Base* getObject(){
+      return new Base();
+    }
+};
+
+class TestDerived : public TestBase
+{
+  public:
+    TestDerived (){}
+    virtual ~TestDerived (){}
+    Derived* getObject(){
+      printf("invoke here\n");
+      return new Derived;
+    }
+};
+
+int main(int argc, const char *argv[])
+{
+  TestBase * base = new TestDerived();
+  Base* b = base-&gt;getObject();
+  b-&gt;print();
+  return 0;
+}
+
+结果：
+invoke here
+Derived
+</code></pre>
+
+<p>  java同理，只不过验证起来比较容易。直接打印对象就行。</p>
+
+<pre><code>public class BaseClass {
+}
+public class DerivedClass extends BaseClass{
+}
+
+public class TestBase {
+    public BaseClass getObject(){
+        return new BaseClass();
+    }
+}
+
+public class TestDerived extends TestBase{
+    public DerivedClass getObject(){
+        return new DerivedClass();
+    }
+    public static void main(String[] args) {
+        TestBase base = new TestDerived();
+        System.out.println(base.getObject());
+    }
+}
+
+返回值：
+test.server.others.DerivedClass@5d1eb50b
+</code></pre>
+
+<p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Java和C++继承上的一点不同]]></title>
@@ -922,54 +1015,6 @@ What is important is that each class order its members in some logical order, wh
 <blockquote><p>[1] Google Java Style, <a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html">https://google-styleguide.googlecode.com/svn/trunk/javaguide.html</a></p>
 
 <p>[2] Are there any Java method ordering conventions?, <a href="http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions">http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[源于一个文字游戏的题目]]></title>
-    <link href="http://cxh.me/2015/01/05/a-word-puzzle/"/>
-    <updated>2015-01-05T20:31:00+08:00</updated>
-    <id>http://cxh.me/2015/01/05/a-word-puzzle</id>
-    <content type="html"><![CDATA[<p>  起源是这样一道题目：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/word_puzzle.png"></p>
-
-<p>  于是想到通过word dict来算一下：</p>
-
-<p>  先去下载了中文词库：</p>
-
-<pre><code>git clone git@github.com:ling0322/webdict.git 
-</code></pre>
-
-<p>  然后去掉词频信息：</p>
-
-<pre><code>awk  '{ if (length($1)==2) print $1}' webdict_with_freq.txt &gt;webdict.txt
-</code></pre>
-
-<p>  先按照出现位置来正则过滤候选集，并且去掉大/日/风/思四个字：</p>
-
-<pre><code>grep '^大.*' webdict.txt| sed 's/大//g' &gt;da.txt
-grep '^日.*' webdict.txt| sed 's/日//g' &gt;ri.txt
-grep '.*风$' webdict.txt| sed 's/风//g' &gt;feng.txt
-grep '.*思$' webdict.txt| sed 's/思//g' &gt;si.txt  
-</code></pre>
-
-<p>  之后的事情就很有意思了，每次join两个文件，因为大/日/风/思四个字是没有交集的，所以结果就是要求的字：</p>
-
-<pre><code>comm -12 &lt;(sort da.txt|uniq ) &lt;(sort ri.txt|uniq ) &gt;da_ri.txt
-comm -12 &lt;(sort feng.txt|uniq ) &lt;(sort da_ri.txt|uniq ) &gt;da_ri_feng.txt
-comm -12 &lt;(sort si.txt|uniq ) &lt;(sort da_ri_feng.txt|uniq ) &gt;da_ri_feng_si.txt
-</code></pre>
-
-<p>  最后的<del>凶手</del>答案只有一个：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/result.png"></p>
-
-<p>  谢谢观看～。</p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] LINUX Shell 下求两个文件交集和差集的办法, <a href="http://blog.csdn.net/autofei/article/details/6579320">http://blog.csdn.net/autofei/article/details/6579320</a></p></blockquote>
 ]]></content>
   </entry>
   

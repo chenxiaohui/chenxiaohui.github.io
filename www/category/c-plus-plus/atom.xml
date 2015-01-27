@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-27T14:55:01+08:00</updated>
+  <updated>2015-01-27T16:07:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,99 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[协变返回类型]]></title>
+    <link href="http://cxh.me/2015/01/27/convariant-return-type/"/>
+    <updated>2015-01-27T15:48:00+08:00</updated>
+    <id>http://cxh.me/2015/01/27/convariant-return-type</id>
+    <content type="html"><![CDATA[<p>  协变返回类型（Convariant Return Type）是指override的函数，返回值有继承关系（子类函数返回类型是父类返回类型的子类）。例子如下：</p>
+
+<!--more-->
+
+
+<pre><code>class Base
+{
+  public:
+    Base (){}
+    virtual void print(){
+      printf("Base");
+    }
+};
+
+class Derived : public Base
+{
+  public:
+    Derived(){}
+    virtual ~Derived (){}
+    void print(){
+      printf("Derived");
+    }
+};
+
+class TestBase
+{
+  public:
+    TestBase (){}
+    virtual Base* getObject(){
+      return new Base();
+    }
+};
+
+class TestDerived : public TestBase
+{
+  public:
+    TestDerived (){}
+    virtual ~TestDerived (){}
+    Derived* getObject(){
+      printf("invoke here\n");
+      return new Derived;
+    }
+};
+
+int main(int argc, const char *argv[])
+{
+  TestBase * base = new TestDerived();
+  Base* b = base-&gt;getObject();
+  b-&gt;print();
+  return 0;
+}
+
+结果：
+invoke here
+Derived
+</code></pre>
+
+<p>  java同理，只不过验证起来比较容易。直接打印对象就行。</p>
+
+<pre><code>public class BaseClass {
+}
+public class DerivedClass extends BaseClass{
+}
+
+public class TestBase {
+    public BaseClass getObject(){
+        return new BaseClass();
+    }
+}
+
+public class TestDerived extends TestBase{
+    public DerivedClass getObject(){
+        return new DerivedClass();
+    }
+    public static void main(String[] args) {
+        TestBase base = new TestDerived();
+        System.out.println(base.getObject());
+    }
+}
+
+返回值：
+test.server.others.DerivedClass@5d1eb50b
+</code></pre>
+
+<p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
@@ -310,76 +403,6 @@ class Base : public nocopyable
 </code></pre>
 
 <p>  太tm不严谨了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[C++的限制拷贝]]></title>
-    <link href="http://cxh.me/2014/08/24/no-copy-restrict/"/>
-    <updated>2014-08-24T12:44:00+08:00</updated>
-    <id>http://cxh.me/2014/08/24/no-copy-restrict</id>
-    <content type="html"><![CDATA[<p>  如果需要禁止一个类的拷贝（多鉴于RAII的资源类），按习惯我们会把拷贝构造函数和赋值运算符重载设置为私有的。比如：</p>
-
-<pre><code>class Base
-{
-  public:
-    Base (int a)
-    {
-      cout &lt;&lt;"construct"&lt;&lt;endl;
-    }
-    virtual ~Base (){}
-
-  private:
-    Base(const Base&amp; b)
-    Base &amp; operator=(const Base&amp; b)
-};
-
-int main(int argc, const char *argv[])
-{
-  Base b(1);//ok
-  Base c=1;//error[1]
-  Base d=c;//error
-  c = d;//error
-  return 0;
-}
-</code></pre>
-
-<p>  但是问题在于[1]这里没有道理被屏蔽掉，应该会被优化成Base c(1)。如下代码可以证明：</p>
-
-<pre><code>class Base
-{
-  public:
-    Base (int a)
-    {
-      cout &lt;&lt;"construct"&lt;&lt;endl;
-    }
-    virtual ~Base ()
-    {
-    }
-    Base(const Base&amp; b)
-    {
-      cout&lt;&lt;"copy consturct" &lt;&lt;endl;
-    }
-};
-
-int main(int argc, const char *argv[])
-{
-  Base c=1;
-  return 0;
-}
-</code></pre>
-
-<p>  运行结果：</p>
-
-<pre><code>construct
-</code></pre>
-
-<p>  后来我试了一下才发现，首先这个优化是编译器层面的，所以不同的编译器处理应该是不一样的，虽然我们见到的编译器应该都支持。其次这个优化不是语法检查前做的，也就意味着，在<strong>构造函数没有被声明为explicit的时候</strong>，语法检查会把这个认为是先做了类型转换，然后调用拷贝构造函数，也就是如下：</p>
-
-<pre><code>Base c = Base(1);
-</code></pre>
-
-<p>  这就在编译的时候报错了。</p>
 ]]></content>
   </entry>
   
