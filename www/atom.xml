@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-01-27T16:07:31+08:00</updated>
+  <updated>2015-01-30T16:22:13+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/01/29/java-compare-strategy/"/>
+    <updated>2015-01-29T20:42:00+08:00</updated>
+    <id>http://cxh.me/2015/01/29/java-compare-strategy</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[eclipse多命令行窗口]]></title>
+    <link href="http://cxh.me/2015/01/29/eclipse-multi-console/"/>
+    <updated>2015-01-29T20:41:00+08:00</updated>
+    <id>http://cxh.me/2015/01/29/eclipse-multi-console</id>
+    <content type="html"><![CDATA[<p>   有时候需要在eclipse中同时运行客户端程序和服务器程序，开始都是一个在eclipse里面运行，另一个在命令行单独启动，未免不方便。后来发现，其实可以直接在eclipse中运行两次。调试视图会有两个显示，同时新建一个console窗口，关联另一个实例的显示就可以同时监视两个程序的输出了。</p>
+
+<p>   <img class="img-polaroid center" src="http://cxh.me/images/2015/eclipse_instance.png"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[协变返回类型]]></title>
@@ -137,7 +157,7 @@ public class TestDerived extends BaseClass {
 
 <p>  而同样的实现C++中直接会找不到父类的函数。</p>
 
-<!---more-->
+<!--more-->
 
 
 <pre><code>#include &lt;stdio.h&gt;
@@ -838,183 +858,6 @@ ConnectPort 443
 <p>  配置难度真不是一个数量级的，可见有时候能满足大部分情况，就是最好的解决方案了。</p>
 
 <p>  <strong>补充：easy_install和pip是默认读取http_proxy的，但是一直不能连接。尝试了很久之后发现是sudo的问题，sudo环境没有执行.bashrc，所以root的http_proxy和当前用户的http_proxy都没有生效。su到root下就可以了。</strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[自动生成octopress的分类目录]]></title>
-    <link href="http://cxh.me/2015/01/10/octopress-category-auto-generate/"/>
-    <updated>2015-01-10T22:28:00+08:00</updated>
-    <id>http://cxh.me/2015/01/10/octopress-category-auto-generate</id>
-    <content type="html"><![CDATA[<p>  在octopress里面添加一个分类的时候，经常会遇到分类跟导航页面没有同步更新的情况，即加了一个分类，生成了文章，文章被生成在指定的路径下了，但是首页导航栏的分类没有跟着更新。针对这种情况，修改了一下Rakefile，把分类做成了配置，添加分类的时候可以直接修改一下分类信息，然后<code>rake gen</code>就可以生成对应的导航栏html代码。</p>
-
-<p>  修改如下（我以前增加过交互的提示选择分类的功能），需要解释的有如下几点：</p>
-
-<ol>
-<li> &ldquo;&mdash;&mdash;&#8221;是分割线，-的数量不能都一样，毕竟是作为map的key的。</li>
-<li> 分类做成map是因为category生成的时候名字自动做成了英文/拼音/中横线的形式&hellip;我没搞明白怎么弄的。所以自己手动填一下好了。以后有空想做成手动指定的。</li>
-<li> system sublime那个是自动打开sublime写博客。我不习惯用vim写中文的博客&hellip;</li>
-</ol>
-
-
-<!--more-->
-
-
-<p>  配置部分</p>
-
-<pre><code>category_path ='source/_includes/categories.html'
-categories={
-    "技术相关"=&gt;{
-        "软件发布"=&gt;"ruan-jian-fa-bu",
-        "---------"=&gt;"",
-        "C++"=&gt;"c-plus-plus",
-        ".Net"=&gt;"dot-net",
-        "Flex"=&gt;"flex",
-        "基础理论"=&gt;"ji-chu-li-lun",
-        "Latex"=&gt;"latex",
-        "Linux"=&gt;"linux",
-        "MFC"=&gt;"mfc",
-        "Oceanbase"=&gt;"oceanbase",
-        "分布式系统"=&gt;"fen-bu-shi-xi-tong",
-        "PHP"=&gt;"php",
-        "Java"=&gt;"java",
-        "Python"=&gt;"python",
-        "vim"=&gt;"vim",
-        "web相关"=&gt;"web",
-        "其他"=&gt;"others",
-        "----------"=&gt;"",
-        "IT人生"=&gt;"ai-ti-ren-sheng",
-    },
-    "世情百态"=&gt;"shi-qing-bai-tai",
-    "摄影"=&gt;"she-ying",
-    "随笔" =&gt;"sui-bi" }
-</code></pre>
-
-<p>  rake gen生成导航的html的部分。</p>
-
-<pre><code>desc "Generate jekyll site"
-task :gen do
-    html=''
-    for key,value in categories
-        if value.is_a?(Hash)
-            html &lt;&lt; '&lt;li class="dropdown"&gt;' &lt;&lt; "\n"
-            html &lt;&lt; '&lt;a data-toggle="dropdown" class="dropdown-toggle" href="#"&gt;%s&lt;b class="caret"&gt;&lt;/b&gt;&lt;/a&gt;'%[key] &lt;&lt; "\n"
-            html &lt;&lt; '&lt;ul class="dropdown-menu"&gt;' &lt;&lt; "\n"
-            for key,value in value
-                if key.start_with?('-')
-                    html &lt;&lt; "\t"'&lt;li class="divider"&gt;&lt;/li&gt;' &lt;&lt; "\n"
-                else
-                    html &lt;&lt; "\t"'&lt;li&gt;&lt;a href="http://cxh.me/category/%s"&gt;%s&lt;/a&gt;&lt;/li&gt;'%[value, key.strip] &lt;&lt; "\n"
-                end
-            end
-            html &lt;&lt; '&lt;/ul&gt;' &lt;&lt; "\n"
-            html &lt;&lt; '&lt;/li&gt;' &lt;&lt; "\n"
-        else
-            html &lt;&lt; '&lt;li&gt;&lt;a href="http://cxh.me/category/%s"&gt;%s&lt;/a&gt;&lt;/li&gt;'%[value, key.strip] &lt;&lt; "\n"
-        end
-    end
-    File.open(category_path, 'w') { |file| file.write(html) }
-end
-</code></pre>
-
-<p>  交互提示分类并generate new post的部分。</p>
-
-<pre><code># usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
-desc "Begin a new post in #{source_dir}/#{posts_dir}"
-task :new_post, :title, :category do |t, args|
-  if args.title
-    title = args.title
-  else
-    title = get_stdin("Enter a title for your post: ")
-  end
-  if args.category
-    category = args.category
-  else
-    #output an array
-      category_arr = []
-      category_idx = 0
-      puts "===================================================="
-      for key,value in categories
-          if value.is_a?(Hash)
-              puts key
-              for key,value in value
-                  if not key.start_with?('-')
-                      puts "%d\t%s"%[category_idx, key]
-                      category_arr.push(key)
-                      category_idx +=1
-                  end
-              end
-          else
-              puts "%d %s"%[category_idx, key]
-              category_arr.push(key)
-              category_idx +=1
-          end
-      end
-      puts "===================================================="
-    i = get_stdin("Enter a title for your category: ")
-    category = category_arr[Integer(i)].gsub(/\s/,'')
-  end
-
-  raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
-  mkdir_p "#{source_dir}/#{posts_dir}"
-  filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
-  system "echo #{filename} |xclip -i -selection clipboard "
-  if File.exist?(filename)
-    abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
-  end
-  puts "Creating new post: #{filename}"
-  open(filename, 'w') do |post|
-    post.puts "---"
-    post.puts "layout: post"
-    post.puts "title: \"\""
-    post.puts "date: #{Time.now.strftime('%Y-%m-%d %H:%M')}"
-    post.puts "comments: true"
-    post.puts "published: true"
-    post.puts "categories: \"#{category.gsub(/&amp;/,'&amp;amp;')}\""
-    post.puts "---"
-  end
-  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup ~/share/sublime/sublime_text #{filename} &gt;/dev/null 2&gt;&amp;1 &amp;"
-end
-</code></pre>
-
-<p>  修改custom/navigation.html，让导航部分导入生成的categories.html</p>
-
-<pre><code>&lt;ul class="nav"&gt;
-    &lt;li&gt;&lt;a href="http://cxh.me/blog/archives"&gt;Archives&lt;/a&gt;&lt;/li&gt;
-    &lt;li class="divider-vertical"&gt;&lt;/li&gt;
-    {\% include categories.html \%}
-&lt;/ul&gt;
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于java编码规范]]></title>
-    <link href="http://cxh.me/2015/01/08/java-code-style/"/>
-    <updated>2015-01-08T14:34:00+08:00</updated>
-    <id>http://cxh.me/2015/01/08/java-code-style</id>
-    <content type="html"><![CDATA[<p>  首先推荐<a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html" title="Google Java Style">google的编码规范</a>，其次，关于class member ordering的问题，google的解释是：</p>
-
-<pre><code>The ordering of the members of a class can have a great effect on learnability, but there is no single correct recipe for how to do it. Different classes may order their members differently.
-
-What is important is that each class order its members in some logical order, which its maintainer could explain if asked. For example, new methods are not just habitually added to the end of the class, as that would yield "chronological by date added" ordering, which is not a logical ordering.
-</code></pre>
-
-<p>  道理是对的，但是不好执行啊。看了看JDK的顺序，觉得<a href="http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions" title="Are there any Java method ordering conventions?">这里</a>说的还是能达成共识的。</p>
-
-<blockquote><ol>
-<li>Class (static) variables: First the public class variables, then the protected, and then the private.</li>
-<li>Instance variables: First public, then protected, and then private.</li>
-<li>Constructors</li>
-<li>Methods: These methods should be grouped by functionality rather than by scope or accessibility. For example, a private class method can be in between two public instance methods. The goal is to make reading and understanding the code easier.</li>
-</ol>
-</blockquote>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] Google Java Style, <a href="https://google-styleguide.googlecode.com/svn/trunk/javaguide.html">https://google-styleguide.googlecode.com/svn/trunk/javaguide.html</a></p>
-
-<p>[2] Are there any Java method ordering conventions?, <a href="http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions">http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions</a></p></blockquote>
 ]]></content>
   </entry>
   

@@ -31,7 +31,7 @@ categories: "Java"
 
   而同样的实现C++中直接会找不到父类的函数。
 
-<!---more-->
+<!--more-->
 
 	#include <stdio.h>
 	class Base
