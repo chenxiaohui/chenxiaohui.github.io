@@ -56,7 +56,7 @@ categories: "C++"
   	for i in 0..n
   		exchange a[i] and a[random(0..n)]
 
-  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']...a[n'] as an example: a[0'] appears with the probability 1/n, so a[1`] should appear with the probability 1/(n-1), etc. The algorithm above find a[1`] in the whole candidates, makes the probability 1/n actually. The right algorithm is like this:
+  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']...a[n'] as an example: a[0'] appears with the probability 1/n, so a[1'] should appear with the probability 1/(n-1), etc. The algorithm above find a[1'] in the whole candidates, makes the probability 1/n actually. The right algorithm is like this:
 
   	for i in 0..n
   		exchange a[i] and a[random(i..n)]

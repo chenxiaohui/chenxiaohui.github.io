@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-01T19:39:32+08:00</updated>
+  <updated>2015-02-01T19:45:27+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -70,7 +70,7 @@ int main()
     exchange a[i] and a[random(0..n)]
 </code></pre>
 
-<p>  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']&hellip;a[n'] as an example: a[0'] appears with the probability 1/n, so a[1<code>] should appear with the probability 1/(n-1), etc. The algorithm above find a[1</code>] in the whole candidates, makes the probability 1/n actually. The right algorithm is like this:</p>
+<p>  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']&hellip;a[n'] as an example: a[0'] appears with the probability 1/n, so a[1'] should appear with the probability 1/(n-1), etc. The algorithm above find a[1'] in the whole candidates, makes the probability 1/n actually. The right algorithm is like this:</p>
 
 <pre><code>for i in 0..n
     exchange a[i] and a[random(i..n)]
