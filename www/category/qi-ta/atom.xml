@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-01T19:11:18+08:00</updated>
+  <updated>2015-02-01T19:35:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -33,6 +33,14 @@ export https_proxy='http://127.0.0.1:8118'
 </code></pre>
 
 <p>  最后chkconfig设置下开机启动。Mac下略微麻烦一些。主要是配置开机启动。详见<a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/" title="使用Privoxy做智能代理切换">参考文献3</a>。至于Mac下的Shadowsocks，还是ShadowsocksX比较方便，跟Linux下一样，都是会在1080启动监听。</p>
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Privoxy, <a href="http://www.privoxy.org/">http://www.privoxy.org/</a></p>
+
+<p>[2] 通过搭建代理来共享网络, <a href="http://cxh.me/2015/01/11/linux-proxy-setup/">http://cxh.me/2015/01/11/linux-proxy-setup/</a></p>
+
+<p>[3] 使用Privoxy做智能代理切换, <a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/">http://blog.devtang.com/blog/2012/12/08/use-privoxy/</a></p></blockquote>
 ]]></content>
   </entry>
   

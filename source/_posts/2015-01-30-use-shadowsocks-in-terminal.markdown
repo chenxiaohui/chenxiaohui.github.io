@@ -23,3 +23,11 @@ categories: "其他"
 [1]: http://www.privoxy.org/   "Privoxy"
 [2]: http://cxh.me/2015/01/11/linux-proxy-setup/ "通过搭建代理来共享网络"
 [3]: http://blog.devtang.com/blog/2012/12/08/use-privoxy/ "使用Privoxy做智能代理切换"
+
+###Bibliography:
+
+>\[1] Privoxy, <http://www.privoxy.org/>
+
+>\[2] 通过搭建代理来共享网络, <http://cxh.me/2015/01/11/linux-proxy-setup/>
+
+>\[3] 使用Privoxy做智能代理切换, <http://blog.devtang.com/blog/2012/12/08/use-privoxy/>

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-01T19:11:18+08:00</updated>
+  <updated>2015-02-01T19:35:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[About random shuffle in cplusplus]]></title>
+    <link href="http://cxh.me/2015/02/01/random-shuffle/"/>
+    <updated>2015-02-01T19:14:00+08:00</updated>
+    <id>http://cxh.me/2015/02/01/random-shuffle</id>
+    <content type="html"><![CDATA[<p>   Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes its output as the index to place current element while shuffling. Here is an example:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;ctime&gt;
+#include &lt;cstdlib&gt;
+
+using namespace std;
+
+const int POKER_NUM = 52; //52 pocker cards
+
+void print_poker(int PokerNum)
+{
+    cout &lt;&lt; PokerNum &lt;&lt; " ";
+}
+
+class MyRand
+{
+public:
+    int operator()(int index)
+    {
+        return rand() % PockerNum;
+    }
+};
+
+int main()
+{
+    srand( (unsigned)time(NULL) ); //rand seed
+
+    vector&lt;int&gt; poker; 
+
+    //initialize
+    for (int num = 0; num &lt; POKER_NUM; ++num)
+    {
+        poker.push_back(num+1);
+    }
+
+    //with default random_shuffle
+    random_shuffle(poker.begin(), poker.end());
+    for_each(poker.begin(), poker.end(), print_poker);
+    cout &lt;&lt; endl;
+
+    //use custom random_shuffle
+    random_shuffle(poker.begin(), poker.end(), MyRand());
+    copy(poker.begin(), poker.end(), ostream_iterator&lt;int&gt;(cout, " "));
+    cout &lt;&lt; endl;
+}
+</code></pre>
+
+<p>  I copy it from <a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">here</a>. While I found a mistake in it. The result isn&rsquo;t really random. The pseudo-code of above is :</p>
+
+<pre><code>for i in 0..n
+    exchange a[i] and a[random(0..n)]
+</code></pre>
+
+<p>  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0&#8217;]&hellip;a[n&#8217;] for example: a[0&#8217;] appears with the probability 1/n, so a<a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">1</a> should appear with the probability 1/(n-1), etc. The algorithm above actually find a<a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">1</a> in the whole candidates, make the probability 1/n actually. The right algorithm is like this:</p>
+
+<pre><code>for i in 0..n
+    exchange a[i] and a[random(i..n)]
+</code></pre>
+
+<p>  With a little change in the code:</p>
+
+<p>  class MyRand</p>
+
+<pre><code>{
+public:
+    int operator()(int index)
+    {
+        return rand() % (PockerNum - index) + index;
+    }
+};
+</code></pre>
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] random_shuffle算法小例子, <a href="http://blog.csdn.net/aheroofeast/article/details/3907192">http://blog.csdn.net/aheroofeast/article/details/3907192</a></p>
+
+<p>[2]   &ldquo;Algorithms, <a href="http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY">http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[我的治牙经历]]></title>
@@ -72,6 +160,14 @@ export https_proxy='http://127.0.0.1:8118'
 </code></pre>
 
 <p>  最后chkconfig设置下开机启动。Mac下略微麻烦一些。主要是配置开机启动。详见<a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/" title="使用Privoxy做智能代理切换">参考文献3</a>。至于Mac下的Shadowsocks，还是ShadowsocksX比较方便，跟Linux下一样，都是会在1080启动监听。</p>
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Privoxy, <a href="http://www.privoxy.org/">http://www.privoxy.org/</a></p>
+
+<p>[2] 通过搭建代理来共享网络, <a href="http://cxh.me/2015/01/11/linux-proxy-setup/">http://cxh.me/2015/01/11/linux-proxy-setup/</a></p>
+
+<p>[3] 使用Privoxy做智能代理切换, <a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/">http://blog.devtang.com/blog/2012/12/08/use-privoxy/</a></p></blockquote>
 ]]></content>
   </entry>
   
@@ -872,49 +968,6 @@ def news_op(status, id):
 <p>  不过也不需要逻辑了。该治牙治牙，该工作工作，该生活生活。本来就没有什么逻辑。趁年轻，想做什么就去做。</p>
 
 <p>  嗯。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[redhat下升级python]]></title>
-    <link href="http://cxh.me/2015/01/11/redhat-upgrade-python/"/>
-    <updated>2015-01-11T18:56:00+08:00</updated>
-    <id>http://cxh.me/2015/01/11/redhat-upgrade-python</id>
-    <content type="html"><![CDATA[<p>  偶然发现服务器上的python是2.4的，好多语法都不支持。遂决定升级。</p>
-
-<p>  首先yum升级是可以升级到2.6的：</p>
-
-<pre><code>yum install python26
-yum install python26-devel
-yum install python26-setuptools
-ln -s /usr/bin/python2.6 /usr/bin/python
-</code></pre>
-
-<p>  升级之后发现yum不能用了。yum应该是跟python版本绑定了，于是把yum头部改成：</p>
-
-<pre><code>#!/bin/python2.4
-</code></pre>
-
-<p>  之后发现2.6还是不行&hellip;我是用了多新的语法啊&hellip;就是几个dict comprehension。于是决定升级到2.7。源里面没有，只能手动。</p>
-
-<pre><code>#wget http://python.org/ftp/python/2.7.3/Python-2.7.3.tar.bz2  
-#tar -jxvf Python-2.7.3.tar.bz2
-#cd Python-2.7.3  
-#./configure  
-#make all             
-#make install
-#ln -s /usr/local/bin/python2.7 /usr/bin/python  
-</code></pre>
-
-<p>  安装setup-tools</p>
-
-<pre><code>wget https://pypi.python.org/packages/source/s/setuptools/setuptools-11.3.1.zip --no-check-certificate
-unzip setuptools-11.3.1.zip
-cd setuptools-11.3.1
-python setup.py install
-</code></pre>
-
-<p>  yum不用动了。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-01T19:11:18+08:00</updated>
+  <updated>2015-02-01T19:35:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,94 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[About random shuffle in cplusplus]]></title>
+    <link href="http://cxh.me/2015/02/01/random-shuffle/"/>
+    <updated>2015-02-01T19:14:00+08:00</updated>
+    <id>http://cxh.me/2015/02/01/random-shuffle</id>
+    <content type="html"><![CDATA[<p>   Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes its output as the index to place current element while shuffling. Here is an example:</p>
+
+<pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+#include &lt;ctime&gt;
+#include &lt;cstdlib&gt;
+
+using namespace std;
+
+const int POKER_NUM = 52; //52 pocker cards
+
+void print_poker(int PokerNum)
+{
+    cout &lt;&lt; PokerNum &lt;&lt; " ";
+}
+
+class MyRand
+{
+public:
+    int operator()(int index)
+    {
+        return rand() % PockerNum;
+    }
+};
+
+int main()
+{
+    srand( (unsigned)time(NULL) ); //rand seed
+
+    vector&lt;int&gt; poker; 
+
+    //initialize
+    for (int num = 0; num &lt; POKER_NUM; ++num)
+    {
+        poker.push_back(num+1);
+    }
+
+    //with default random_shuffle
+    random_shuffle(poker.begin(), poker.end());
+    for_each(poker.begin(), poker.end(), print_poker);
+    cout &lt;&lt; endl;
+
+    //use custom random_shuffle
+    random_shuffle(poker.begin(), poker.end(), MyRand());
+    copy(poker.begin(), poker.end(), ostream_iterator&lt;int&gt;(cout, " "));
+    cout &lt;&lt; endl;
+}
+</code></pre>
+
+<p>  I copy it from <a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">here</a>. While I found a mistake in it. The result isn&rsquo;t really random. The pseudo-code of above is :</p>
+
+<pre><code>for i in 0..n
+    exchange a[i] and a[random(0..n)]
+</code></pre>
+
+<p>  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']&hellip;a[n'] for example: a[0'] appears with the probability 1/n, so a<a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">1</a> should appear with the probability 1/(n-1), etc. The algorithm above actually find a<a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">1</a> in the whole candidates, make the probability 1/n actually. The right algorithm is like this:</p>
+
+<pre><code>for i in 0..n
+    exchange a[i] and a[random(i..n)]
+</code></pre>
+
+<p>  With a little change in the code:</p>
+
+<p>  class MyRand</p>
+
+<pre><code>{
+public:
+    int operator()(int index)
+    {
+        return rand() % (PockerNum - index) + index;
+    }
+};
+</code></pre>
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] random_shuffle算法小例子, <a href="http://blog.csdn.net/aheroofeast/article/details/3907192">http://blog.csdn.net/aheroofeast/article/details/3907192</a></p>
+
+<p>[2]   &ldquo;Algorithms, <a href="http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY">http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[协变返回类型]]></title>
@@ -343,66 +431,6 @@ int main(int argc, const char *argv[])
 </code></pre>
 
 <p>  可见析构的时候先调用析构函数，最后析构成员对象。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[《改善C++程序的150个建议》勘误]]></title>
-    <link href="http://cxh.me/2014/09/06/error-in-cpp-150-notes/"/>
-    <updated>2014-09-06T11:41:00+08:00</updated>
-    <id>http://cxh.me/2014/09/06/error-in-cpp-150-notes</id>
-    <content type="html"><![CDATA[<p>  翻了一下编写高质量代码：改善C++程序的150个建议，感觉一般，主要是能下到pdf。看到两个错误。</p>
-
-<p>  第一个错误是内存池的那里，内部类使用了外部类的成员变量，这是C++啊，不是java，内部类默认不持有外部类指针。</p>
-
-<pre><code>class MemPool
-{
-  public:
-    MemPool (int nItemSize, int nMemBlockSize = 2048):
-      m_nItemSize(nItemSize),
-      m_nMemBlockSize(nMemBlockSize),
-      m_pMemBlockHeader(NULL),
-      m_pFreeNodeHeader(NULL)
-    {}
-    virtual ~MemPool (){}
-    void * Alloc();
-    void Free();
-  private:
-    /* data */
-    const int m_nMemBlockSize;
-    const int m_nItemSize;
-    struct _FreeNode
-    {
-      _FreeNode* pPrev;
-      char data[m_nItemSize - sizeof(_FreeNode*)];
-    };
-    struct _MemBlock
-    {
-      _MemBlock * pPrev;
-      _FreeNode data[m_nMemBlockSize/m_nItemSize];
-    };
-    _MemBlock* m_pMemBlockHeader;
-    _FreeNode* m_pFreeNodeHeader;
-};
-</code></pre>
-
-<p>  第二个错误是作者强调nocopyable基类是需要私有继承的，其实不需要，public继承足够了，public继承又不会把基类的private成员继承下来。</p>
-
-<pre><code>class nocopyable
-{
-  public:
-    nocopyable (){}
-    virtual ~nocopyable (){}
-
-  private:
-    /* data */
-    nocopyable (const nocopyable&amp;);
-    nocopyable&amp; operator=(const nocopyable&amp;);
-};
-class Base : public nocopyable
-</code></pre>
-
-<p>  太tm不严谨了。</p>
 ]]></content>
   </entry>
   
