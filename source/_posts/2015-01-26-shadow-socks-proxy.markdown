@@ -7,7 +7,7 @@ published: true
 categories: "其他"
 ---
   
-  shadowsocks作为一个开源软件提供了可靠的翻墙途径，而最近红杏各种不稳定，digital ocean的相应太慢，于是考虑买shadowsocks的账号。
+   拜GFW所赐，连tm boot2docker都连接不上了。而且最近红杏抽风，遂决定买[shadowsocks][1]服务翻墙。服务直接在官网购买，90一年，比红杏略便宜一点，主要还是可控性比较大，因为是socks5的代理。
 
   [这里][1]购买服务，一年99，这个优惠码可以再打一点折`imouto985`。之后进入后台可以看到分配给自己的密码，服务器主要是日本，美国和新加坡的，实测貌似日本的响应更快一点。
 
@@ -38,3 +38,4 @@ categories: "其他"
 
 
 [1]: https://portal.shadowsocks.com/aff.php?aff=483   "shadow socks"
+[2]: https://shadowsocks.com/   "Shadowsocks.com"
