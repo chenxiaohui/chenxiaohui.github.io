@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-01T19:35:22+08:00</updated>
+  <updated>2015-02-01T19:39:32+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,7 +18,7 @@
     <link href="http://cxh.me/2015/02/01/random-shuffle/"/>
     <updated>2015-02-01T19:14:00+08:00</updated>
     <id>http://cxh.me/2015/02/01/random-shuffle</id>
-    <content type="html"><![CDATA[<p>   Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes its output as the index to place current element while shuffling. Here is an example:</p>
+    <content type="html"><![CDATA[<p>   Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes the output as index to place current element while shuffling. Here is an example:</p>
 
 <pre><code>#include &lt;iostream&gt;
 #include &lt;algorithm&gt;
@@ -27,9 +27,7 @@
 #include &lt;cstdlib&gt;
 
 using namespace std;
-
 const int POKER_NUM = 52; //52 pocker cards
-
 void print_poker(int PokerNum)
 {
     cout &lt;&lt; PokerNum &lt;&lt; " ";
@@ -47,9 +45,7 @@ public:
 int main()
 {
     srand( (unsigned)time(NULL) ); //rand seed
-
     vector&lt;int&gt; poker; 
-
     //initialize
     for (int num = 0; num &lt; POKER_NUM; ++num)
     {
@@ -74,7 +70,7 @@ int main()
     exchange a[i] and a[random(0..n)]
 </code></pre>
 
-<p>  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']&hellip;a[n'] for example: a[0'] appears with the probability 1/n, so a<a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">1</a> should appear with the probability 1/(n-1), etc. The algorithm above actually find a<a href="http://blog.csdn.net/aheroofeast/article/details/3907192" title="random_shuffle算法小例子">1</a> in the whole candidates, make the probability 1/n actually. The right algorithm is like this:</p>
+<p>  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']&hellip;a[n'] as an example: a[0'] appears with the probability 1/n, so a[1<code>] should appear with the probability 1/(n-1), etc. The algorithm above find a[1</code>] in the whole candidates, makes the probability 1/n actually. The right algorithm is like this:</p>
 
 <pre><code>for i in 0..n
     exchange a[i] and a[random(i..n)]
@@ -82,9 +78,8 @@ int main()
 
 <p>  With a little change in the code:</p>
 
-<p>  class MyRand</p>
-
-<pre><code>{
+<pre><code>class MyRand
+{
 public:
     int operator()(int index)
     {

@@ -6,7 +6,7 @@ comments: true
 published: true
 categories: "C++"
 ---
-   Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes its output as the index to place current element while shuffling. Here is an example:
+   Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes the output as index to place current element while shuffling. Here is an example:
 
 	#include <iostream>
 	#include <algorithm>
@@ -15,9 +15,7 @@ categories: "C++"
 	#include <cstdlib>
 
 	using namespace std;
-
 	const int POKER_NUM = 52; //52 pocker cards
-
 	void print_poker(int PokerNum)
 	{
 	    cout << PokerNum << " ";
@@ -35,9 +33,7 @@ categories: "C++"
 	int main()
 	{
 	    srand( (unsigned)time(NULL) ); //rand seed
-
 	    vector<int> poker; 
-
 	    //initialize
 	    for (int num = 0; num < POKER_NUM; ++num)
 	    {
@@ -60,14 +56,14 @@ categories: "C++"
   	for i in 0..n
   		exchange a[i] and a[random(0..n)]
 
-  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']...a[n'] for example: a[0'] appears with the probability 1/n, so a[1] should appear with the probability 1/(n-1), etc. The algorithm above actually find a[1] in the whole candidates, make the probability 1/n actually. The right algorithm is like this:
+  We assume a method can generate a sequence(a[0]..[n]) randomly, which means each sequence appears with the probability 1/n!. Take certain sequence a[0']...a[n'] as an example: a[0'] appears with the probability 1/n, so a[1`] should appear with the probability 1/(n-1), etc. The algorithm above find a[1`] in the whole candidates, makes the probability 1/n actually. The right algorithm is like this:
 
   	for i in 0..n
   		exchange a[i] and a[random(i..n)]
 
   With a little change in the code:
 
-  class MyRand
+  	class MyRand
 	{
 	public:
 	    int operator()(int index)
