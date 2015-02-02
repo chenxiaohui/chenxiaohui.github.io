@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-01T19:45:27+08:00</updated>
+  <updated>2015-02-02T14:09:34+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python Configuration Inheritance]]></title>
+    <link href="http://cxh.me/2015/02/02/python-config-extends/"/>
+    <updated>2015-02-02T11:54:00+08:00</updated>
+    <id>http://cxh.me/2015/02/02/python-config-extends</id>
+    <content type="html"><![CDATA[<p>  While refactoring a project, I met with a situation that one configuration extends another configuration, like this:</p>
+
+<pre><code>ConfigA = {"a":xx, "b":xx}
+ConfigB extends ConfigA + {"a":yy, c:"yy"}
+</code></pre>
+
+<p>  Code before refactor treats configA and configB separately. So after a few code iterations you will find configA has something same with configB. So I change it to this：</p>
+
+<pre><code>configA = {"a":xx, "b":xx}
+configB = dict(configA.items() + {"a":yy, c:"yy"}}
+</code></pre>
+
+<p>  While this treats configA and configB evenly, meanwhile, it costs extra replication. A better way is like this:</p>
+
+<pre><code>configA = {"a":xx, "b":xx}
+configB = dict(configA, **{"a":yy, c:"yy"}})
+</code></pre>
+
+<p>  The order of configA and configB&rsquo;s own elements is immutable, which means if configA and configB has a same element, use configB as result.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[About random shuffle in cplusplus]]></title>
@@ -938,31 +965,6 @@ def news_op(status, id):
 <p>  最近总在回想人生走过的路，觉得多走了好多弯路。说人生无悔，都是赌气的话。人生若是真的无悔，那该多无趣啊。宫二的这句话，确实勾起了很多感触。27岁的生日，新的开始。全新的自己，打点行装，坚定的走下去。</p>
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/yidaizongshi.jpg"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[致我的生日]]></title>
-    <link href="http://cxh.me/2015/01/12/to-my-birthday/"/>
-    <updated>2015-01-12T00:11:00+08:00</updated>
-    <id>http://cxh.me/2015/01/12/to-my-birthday</id>
-    <content type="html"><![CDATA[<p>  要27了。</p>
-
-<p>  突然有很多感慨，自从不怎写字之后也不怎么愿意表达了。习惯了工作占据大部分时间。好在工作也不见得完全是工作，还是有兴趣的成分在里面，重合度就看心情了。但是工作多了就有种麻木的感觉，觉得似乎不是我想要的人生。</p>
-
-<p>  时代发展好快。这似乎已经不是个小资的时代。从学生时代走过来，毕业的热闹一过去，感觉立马进入了快车道。这一年马不停蹄，一身风尘一身疲惫。去阿里就不是什么明智的选择，当时可能是头脑一热吧，也可能是觉得很不屑研究生跟着导师做的东西，非要找一个技术上（看起来）高深莫测的地方。一年下来觉得开始是有兴趣，后来感觉是个挑战，最后感觉就是负担的。跳槽之后心境平和多了，现在至少已经不恨或者不黑什么了，这点还是挺感激张老板和我们组的。人嘛，到了奔三的年纪，还是要客观一些。</p>
-
-<p>  最近过得有些抑郁。以前无论什么事情都没觉得怎么样，牙这个事情真是无力吐槽。明天去定治疗方案。所以牙好的亲们，这是一笔财富啊，想吃点好的就吃吧，不要在乎钱。</p>
-
-<p>  晚上在搜狐的楼上，看着夕阳晚霞雾霾，觉得真是感慨。从毕业过来快十年了，似乎有所收获，又似乎一事无成。被卷在时代的洪流里面，想抓住什么又没有方向。不过也正常。鸡汤的东西读多了，就不容易被忽悠了，这个时代哪有那么多高大上的故事，每一点成长都是在无比纠结里面过来的。</p>
-
-<p>  不过好在还年轻，心态还年轻。慢慢终于可以把自己放到一个独立的位置上，觉得如此就自由了很多。想走什么路，不用在瞻前顾后。总想着回来，就走不远哪。</p>
-
-<p>  好没有逻辑。</p>
-
-<p>  不过也不需要逻辑了。该治牙治牙，该工作工作，该生活生活。本来就没有什么逻辑。趁年轻，想做什么就去做。</p>
-
-<p>  嗯。</p>
 ]]></content>
   </entry>
   
