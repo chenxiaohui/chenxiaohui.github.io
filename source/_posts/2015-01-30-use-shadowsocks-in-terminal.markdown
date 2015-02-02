@@ -12,11 +12,17 @@ categories: "其他"
 
     forward-socks5   /               127.0.0.1:1080 .
 	listen-address  localhost:8118
+	#local network do not use proxy
+	forward         192.168.*.*/     .
+    forward            10.*.*.*/     .
+    forward           127.*.*.*/     .
+
 
   基本上上这两项就可以了。之后在shell配置下代理，详见[参考文献2][2]：
 
   	export http_proxy='http://127.0.0.1:8118'
 	export https_proxy='http://127.0.0.1:8118'
+
   
   最后chkconfig设置下开机启动。Mac下略微麻烦一些。主要是配置开机启动。详见[参考文献3][3]。至于Mac下的Shadowsocks，还是ShadowsocksX比较方便，跟Linux下一样，都是会在1080启动监听。
 

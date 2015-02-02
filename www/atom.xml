@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-02T14:09:34+08:00</updated>
+  <updated>2015-02-02T14:55:34+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Python Configuration Inheritance]]></title>
-    <link href="http://cxh.me/2015/02/02/python-config-extends/"/>
+    <link href="http://cxh.me/2015/02/02/python-config-inheritance/"/>
     <updated>2015-02-02T11:54:00+08:00</updated>
-    <id>http://cxh.me/2015/02/02/python-config-extends</id>
+    <id>http://cxh.me/2015/02/02/python-config-inheritance</id>
     <content type="html"><![CDATA[<p>  While refactoring a project, I met with a situation that one configuration extends another configuration, like this:</p>
 
 <pre><code>ConfigA = {"a":xx, "b":xx}
@@ -173,6 +173,10 @@ public:
 
 <pre><code>forward-socks5   /               127.0.0.1:1080 .
 listen-address  localhost:8118
+#local network do not use proxy
+forward         192.168.*.*/     .
+forward            10.*.*.*/     .
+forward           127.*.*.*/     .
 </code></pre>
 
 <p>  基本上上这两项就可以了。之后在shell配置下代理，详见<a href="http://cxh.me/2015/01/11/linux-proxy-setup/" title="通过搭建代理来共享网络">参考文献2</a>：</p>
