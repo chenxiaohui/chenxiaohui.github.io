@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-02T14:55:34+08:00</updated>
+  <updated>2015-02-04T13:41:24+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[gcc命令行参数总结]]></title>
+    <link href="http://cxh.me/2015/02/04/gc-gcc-parameters-summary/"/>
+    <updated>2015-02-04T11:36:00+08:00</updated>
+    <id>http://cxh.me/2015/02/04/gc-gcc-parameters-summary</id>
+    <content type="html"><![CDATA[<p>   总结一下混乱的GCC命令行参数，帮助写Makefile:</p>
+
+<ol>
+<li><p>编译阶段</p>
+
+<ol>
+<li>预编译E->生成汇编S->生成机器码c->链接生成目标程序</li>
+</ol>
+</li>
+<li><p>输出类型：</p>
+
+<ol>
+<li>-E 只执行到预编译</li>
+<li>-S 只执行到汇编阶段。生成汇编代码。</li>
+<li>-c 只执行到编译。输出目标文件。</li>
+<li>空。生成链接目标代码。</li>
+<li>-o 指定输出文件名。</li>
+</ol>
+</li>
+<li><p>输入类型：</p>
+
+<ol>
+<li><p>每个阶段可以接受之前阶段的中间结果（可跨越）。比如：</p>
+
+<p> gcc -E hello.c -o hello.i
+ gcc -S hello.i -o hello.s
+ 顺序可以换：
+ gcc -c -o hello.o hello.c</p></li>
+</ol>
+</li>
+<li><p>优化调试相关</p>
+
+<ol>
+<li>-g 生成调试信息</li>
+<li>-s 去掉调试和符号信息</li>
+<li>-O[1|2|3..] 编译优化</li>
+<li>-W[all] 开启额外警告</li>
+</ol>
+</li>
+<li><p>链接相关：</p>
+
+<ol>
+<li>-l, 指定所使用到的函数库</li>
+<li>-L, 指定函数库所在的文件夹。</li>
+<li>-I, 指定头文件所在的文件夹</li>
+</ol>
+</li>
+</ol>
+
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Linux平台gcc和动态共享库的基础知识, <a href="http://robbinfan.com/blog/9/gcc-linker-basic-usage">http://robbinfan.com/blog/9/gcc-linker-basic-usage</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python Configuration Inheritance]]></title>
@@ -954,21 +1015,6 @@ def news_op(status, id):
 </code></pre>
 
 <p>   毕竟还是不太方便。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[新的征途]]></title>
-    <link href="http://cxh.me/2015/01/12/new-startup/"/>
-    <updated>2015-01-12T23:17:00+08:00</updated>
-    <id>http://cxh.me/2015/01/12/new-startup</id>
-    <content type="html"><![CDATA[<p>  晚上去看了《一代宗师》3D。3D效果比较一般，基本是字幕3D。但是感觉依然是王家卫那种感觉。故事讲的更清楚了，但是也就少了很多想象的空间。</p>
-
-<p>  突然觉得嘉华还不错，会员生日可以免费观影一场，还有爆米花套餐。最近心情抑郁，突然收到这个gift，觉得幸福感好高。就像昨天收到快递里面有个卖家送的幸运豆就高兴了好久。不是低潮的时候往往忽视这些细小的幸福。</p>
-
-<p>  最近总在回想人生走过的路，觉得多走了好多弯路。说人生无悔，都是赌气的话。人生若是真的无悔，那该多无趣啊。宫二的这句话，确实勾起了很多感触。27岁的生日，新的开始。全新的自己，打点行装，坚定的走下去。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/yidaizongshi.jpg"></p>
 ]]></content>
   </entry>
   

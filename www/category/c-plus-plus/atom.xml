@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-02T14:55:34+08:00</updated>
+  <updated>2015-02-04T13:41:24+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,67 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[gcc命令行参数总结]]></title>
+    <link href="http://cxh.me/2015/02/04/gc-gcc-parameters-summary/"/>
+    <updated>2015-02-04T11:36:00+08:00</updated>
+    <id>http://cxh.me/2015/02/04/gc-gcc-parameters-summary</id>
+    <content type="html"><![CDATA[<p>   总结一下混乱的GCC命令行参数，帮助写Makefile:</p>
+
+<ol>
+<li><p>编译阶段</p>
+
+<ol>
+<li>预编译E->生成汇编S->生成机器码c->链接生成目标程序</li>
+</ol>
+</li>
+<li><p>输出类型：</p>
+
+<ol>
+<li>-E 只执行到预编译</li>
+<li>-S 只执行到汇编阶段。生成汇编代码。</li>
+<li>-c 只执行到编译。输出目标文件。</li>
+<li>空。生成链接目标代码。</li>
+<li>-o 指定输出文件名。</li>
+</ol>
+</li>
+<li><p>输入类型：</p>
+
+<ol>
+<li><p>每个阶段可以接受之前阶段的中间结果（可跨越）。比如：</p>
+
+<p> gcc -E hello.c -o hello.i
+ gcc -S hello.i -o hello.s
+ 顺序可以换：
+ gcc -c -o hello.o hello.c</p></li>
+</ol>
+</li>
+<li><p>优化调试相关</p>
+
+<ol>
+<li>-g 生成调试信息</li>
+<li>-s 去掉调试和符号信息</li>
+<li>-O[1|2|3..] 编译优化</li>
+<li>-W[all] 开启额外警告</li>
+</ol>
+</li>
+<li><p>链接相关：</p>
+
+<ol>
+<li>-l, 指定所使用到的函数库</li>
+<li>-L, 指定函数库所在的文件夹。</li>
+<li>-I, 指定头文件所在的文件夹</li>
+</ol>
+</li>
+</ol>
+
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Linux平台gcc和动态共享库的基础知识, <a href="http://robbinfan.com/blog/9/gcc-linker-basic-usage">http://robbinfan.com/blog/9/gcc-linker-basic-usage</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[About random shuffle in cplusplus]]></title>
@@ -388,44 +449,6 @@ Derived
 </code></pre>
 
 <p>  跟预想一致。水文一篇，可忽略。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[析构函数和成员析构的先后顺序]]></title>
-    <link href="http://cxh.me/2014/10/22/destruct-and-member-destruct/"/>
-    <updated>2014-10-22T17:57:00+08:00</updated>
-    <id>http://cxh.me/2014/10/22/destruct-and-member-destruct</id>
-    <content type="html"><![CDATA[<p>  肖总问到这个问题，写了个程序验证：</p>
-
-<pre><code>class Member
-{
- public:
-   Member (){}
-   virtual ~Member (){printf("member destruct\n");}
-};
-class Base
-{
-  public:
-    Base (){}
-    virtual ~Base (){ printf("destruct\n");}
-  private:
-    Member member_;
-};
-int main(int argc, const char *argv[])
-{
-  Base c;
-  return 0;
-}
-</code></pre>
-
-<p>  结果是：</p>
-
-<pre><code>  destruct
-  member destruct
-</code></pre>
-
-<p>  可见析构的时候先调用析构函数，最后析构成员对象。</p>
 ]]></content>
   </entry>
   
