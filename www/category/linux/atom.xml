@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-04T14:13:20+08:00</updated>
+  <updated>2015-02-04T14:53:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[区分下shell和makefile中的特殊字符]]></title>
+    <link href="http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"/>
+    <updated>2015-02-04T14:51:00+08:00</updated>
+    <id>http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile</id>
+    <content type="html"><![CDATA[<p>  主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：</p>
+
+<pre><code>$@     -is the name of the target currently being processed.
+$&lt;     -is the name of the first dependency.
+</code></pre>
+
+<p>  顺便提下shell下的</p>
+
+<pre><code>$#    Stores the number of command-line arguments that were passed to the shell program.
+$?    Stores the exit value of the last command that was executed.
+$0    Stores the first word of the entered command (the name of the shell program).
+$*    Stores all the arguments that were entered on thecommand line ($1 $2 ...).
+"$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[bash下模拟group by功能]]></title>
@@ -184,25 +206,6 @@ ConnectPort 443
 </code></pre>
 
 <p>   搞定。<em>配合[TMux]绝对好用</em>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[du显示只显示一层子目录/文件的大小]]></title>
-    <link href="http://cxh.me/2014/11/13/du-to-display-one-level/"/>
-    <updated>2014-11-13T17:55:00+08:00</updated>
-    <id>http://cxh.me/2014/11/13/du-to-display-one-level</id>
-    <content type="html"><![CDATA[<p>  经常需要看当前目录下的子目录大小，比如开发机被人占满的情况，<code>du -lh</code>显示的是递归的所有文件大小，<code>du -s</code>又只统计了所有文件/文件夹合起来的大小。正常情况下需要执行：</p>
-
-<pre><code>du -lh --max-depth=1
-</code></pre>
-
-<p>  未免太过麻烦。后来肖总提示发现这样就行了：</p>
-
-<pre><code>du -sh *
-</code></pre>
-
-<p>  果然是学无止境啊</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-04T14:13:20+08:00</updated>
+  <updated>2015-02-04T14:53:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[区分下shell和makefile中的特殊字符]]></title>
+    <link href="http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"/>
+    <updated>2015-02-04T14:51:00+08:00</updated>
+    <id>http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile</id>
+    <content type="html"><![CDATA[<p>  主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：</p>
+
+<pre><code>$@     -is the name of the target currently being processed.
+$&lt;     -is the name of the first dependency.
+</code></pre>
+
+<p>  顺便提下shell下的</p>
+
+<pre><code>$#    Stores the number of command-line arguments that were passed to the shell program.
+$?    Stores the exit value of the last command that was executed.
+$0    Stores the first word of the entered command (the name of the shell program).
+$*    Stores all the arguments that were entered on thecommand line ($1 $2 ...).
+"$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gcc命令行参数总结]]></title>
@@ -949,73 +971,6 @@ history = AuthHistory("cxh", tid, datetime.datetime.now(), item['url'], item['ti
 </code></pre></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Django自定义Filter]]></title>
-    <link href="http://cxh.me/2015/01/14/django-custom-filter/"/>
-    <updated>2015-01-14T13:29:00+08:00</updated>
-    <id>http://cxh.me/2015/01/14/django-custom-filter</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个问题：Django中有字段是根据位来存储信息的，并且不是对应Model数据库中的字段，BitField使用起来比较不太适合。这样就得在模板中根据位来显示不同的内容。查Django并试验，好像位操作不能直接写在if操作符中，同时django也不支持在模板直接调用函数。一个合理的选择是建立自定义的Filter。详见<a href="https://docs.djangoproject.com/en/1.7/howto/custom-template-tags/" title="Custom template tags and filters">参考文献</a>。基本代码如下：</p>
-
-<pre><code>配置：
-mSohuConf={
-    "A_mask" : 0x04,
-    "B_mask" : 0x02,
-    "C_mask" : 0x01,
-}
-
-Filter代码：
-from django import template
-from django.utils.safestring import mark_safe
-from .. import config
-register = template.Library()
-mask_html = (
-    (config.mSohuConf['A_mask'], '&lt;span class="label label-danger"&gt;A&lt;/span&gt;'),
-    (config.mSohuConf['B_mask'], '&lt;span class="label label-warning"&gt;B&lt;/span&gt;'),
-    (config.mSohuConf['C_mask'], '&lt;span class="label label-info"&gt;C&lt;/span&gt;'),
-)
-default_html = '&lt;span class="label label-default"&gt;D&lt;/span&gt;'
-@register.filter()
-def news_tag(value):
-    output = default_html
-    for mask, html in mask_html:
-        if value &amp; mask:
-            output += html +'\n'
-    return mark_safe(output)
-
-模板：
-{\% load news_tag \%}
-&lt;td&gt;&lt;/td&gt;
-</code></pre>
-
-<!--more-->
-
-
-<p>  需要注意的有：</p>
-
-<ol>
-<li> mark_safe是必须的，否则会被自动escape。</li>
-<li> 使用的时候需要load。写的时候需要register声明或者手动声明。</li>
-<li> 文档说必须重启才能使用新的标签。目测不用。</li>
-</ol>
-
-
-<p>  多参数的列子如下：</p>
-
-<pre><code>@register.filter()
-def news_op(status, id):
-    if status &amp; config.mSohuConf['A_mask']:
-        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
-    else:
-        output = '&lt;a href="http://cxh.me/xxx/%d/%d/" title="xxx"&gt;xxx&lt;/a&gt;'%(news_id, status)
-    return mark_safe(output)
-
-模板：
-</code></pre>
-
-<p>   毕竟还是不太方便。</p>
 ]]></content>
   </entry>
   
