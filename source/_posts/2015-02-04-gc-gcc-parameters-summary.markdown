@@ -9,7 +9,7 @@ categories: "C++"
    总结一下混乱的GCC命令行参数，帮助写Makefile:
 
 1. 编译阶段
-	1. 预编译E->生成汇编S->生成机器码c->链接生成目标程序
+	1. 预编译E->生成汇编S(ccl)->生成机器码c(as)->链接生成目标程序(ld)
 
 1. 输出类型：
 
@@ -23,10 +23,10 @@ categories: "C++"
 
 	1. 每个阶段可以接受之前阶段的中间结果（可跨越）。比如：
 
-		gcc -E hello.c -o hello.i
-		gcc -S hello.i -o hello.s
-		顺序可以换：
-		gcc -c -o hello.o hello.c
+			gcc -E hello.c -o hello.i
+			gcc -S hello.i -o hello.s
+			顺序可以换：
+			gcc -c -o hello.o hello.c
 
 3. 优化调试相关
 
@@ -43,7 +43,7 @@ categories: "C++"
 
 
 [1]: http://robbinfan.com/blog/9/gcc-linker-basic-usage   "Linux平台gcc和动态共享库的基础知识"
-
+[2]: http://www.cppblog.com/deane/articles/165216.html "Linux下Gcc生成和使用静态库和动态库详解（转）"
 ###Bibliography:
 
 >\[1] Linux平台gcc和动态共享库的基础知识, <http://robbinfan.com/blog/9/gcc-linker-basic-usage>

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-04T13:41:24+08:00</updated>
+  <updated>2015-02-04T14:13:20+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -24,7 +24,7 @@
 <li><p>编译阶段</p>
 
 <ol>
-<li>预编译E->生成汇编S->生成机器码c->链接生成目标程序</li>
+<li>预编译E->生成汇编S(ccl)&ndash;>生成机器码c(as)&ndash;>链接生成目标程序(ld)</li>
 </ol>
 </li>
 <li><p>输出类型：</p>
@@ -42,10 +42,11 @@
 <ol>
 <li><p>每个阶段可以接受之前阶段的中间结果（可跨越）。比如：</p>
 
-<p> gcc -E hello.c -o hello.i
+<pre><code> gcc -E hello.c -o hello.i
  gcc -S hello.i -o hello.s
  顺序可以换：
- gcc -c -o hello.o hello.c</p></li>
+ gcc -c -o hello.o hello.c
+</code></pre></li>
 </ol>
 </li>
 <li><p>优化调试相关</p>
