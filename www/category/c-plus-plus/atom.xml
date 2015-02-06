@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-04T14:53:29+08:00</updated>
+  <updated>2015-02-06T20:46:02+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[gtest在mac上链接的问题]]></title>
+    <link href="http://cxh.me/2015/02/06/gtest-bug-on-mac/"/>
+    <updated>2015-02-06T20:39:00+08:00</updated>
+    <id>http://cxh.me/2015/02/06/gtest-bug-on-mac</id>
+    <content type="html"><![CDATA[<p>  gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：</p>
+
+<pre><code>g++  -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest-all.cc
+g++ -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest_main.cc
+
+ar -rv libgtest.a gtest-all.o
+ar -rv libgtest_main.a gtest_main.o
+
+c++ -g -Wall -Wextra -pthread  -isystem $GTEST_DIR/include  -c -o RemoveElement.o RemoveElement.cpp
+c++ -g -Wall -Wextra -pthread  -isystem -isystem $GTEST_DIR/include/include -c -o SameTree.o SameTree.cpp
+</code></pre>
+
+<p>  在mac下这里会报错：architecture x86_64。关键我一直理解gest_main是包含main函数的gtest，gtest-all是不包含的，知道发现官方的makefile执行的时候是这样的</p>
+
+<pre><code>ar rv gtest_main.a gtest-all.o gtest_main.o   
+</code></pre>
+
+<p>  用这里的gtest_main.a做libgtest_main.a就行了。不理解为什么在mac上单独打包一个gtest_main.o为什么不行。论坛貌似有人贴了一个patch，不看了，回家，碎觉。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gcc命令行参数总结]]></title>
@@ -381,75 +407,6 @@ class TransSessionMgr: public ISessionCtxFactory
     }
 };
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[澄清几个关于C++继承的问题]]></title>
-    <link href="http://cxh.me/2014/10/28/cpp-derive-problems/"/>
-    <updated>2014-10-28T15:56:00+08:00</updated>
-    <id>http://cxh.me/2014/10/28/cpp-derive-problems</id>
-    <content type="html"><![CDATA[<p>  之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：</p>
-
-<pre><code>#include &lt;stdio.h&gt;
-class Base
-{
-  public:
-    Base (){}
-    virtual ~Base (){}
-    virtual void print() {printf("Base\n");}
-};
-
-class Middle : public Base
-{
-  public:
-    Middle(){}
-    virtual ~Middle(){}
-    void print() {printf("Middle\n");}
-};
-
-class Derived : public Middle
-{
-  public:
-    Derived(){}
-    virtual ~Derived(){}
-    void print() {printf("Derived\n");}
-};
-
-int main(int argc, const char *argv[])
-{
-  Base * p = NULL;
-  Base b;
-  Middle m;
-  Derived d;
-  p = &amp; b;
-  p-&gt;print();
-  p = &amp; m;
-  p-&gt;print();
-  p = &amp; d;
-  p-&gt;print();
-  return 0;
-}
-</code></pre>
-
-<!--more-->
-
-
-<p>  结果是</p>
-
-<pre><code>Base
-Middle
-Derived
-</code></pre>
-
-<p>  可见只要定义了virtual关键字，在整个继承体系中这个函数都会成为虚函数。第二个问题是作为一个中间类（Middle)不想覆盖基类的虚函数，默认的情况下有什么影响。猜想应该就默认用了基类的虚函数。不影响后面的继承关系。注释掉Middle的print函数实现。结果如下：</p>
-
-<pre><code>Base
-Base
-Derived
-</code></pre>
-
-<p>  跟预想一致。水文一篇，可忽略。</p>
 ]]></content>
   </entry>
   

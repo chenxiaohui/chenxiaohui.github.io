@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-04T14:53:29+08:00</updated>
+  <updated>2015-02-06T20:46:02+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[gtest在mac上链接的问题]]></title>
+    <link href="http://cxh.me/2015/02/06/gtest-bug-on-mac/"/>
+    <updated>2015-02-06T20:39:00+08:00</updated>
+    <id>http://cxh.me/2015/02/06/gtest-bug-on-mac</id>
+    <content type="html"><![CDATA[<p>  gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：</p>
+
+<pre><code>g++  -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest-all.cc
+g++ -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest_main.cc
+
+ar -rv libgtest.a gtest-all.o
+ar -rv libgtest_main.a gtest_main.o
+
+c++ -g -Wall -Wextra -pthread  -isystem $GTEST_DIR/include  -c -o RemoveElement.o RemoveElement.cpp
+c++ -g -Wall -Wextra -pthread  -isystem -isystem $GTEST_DIR/include/include -c -o SameTree.o SameTree.cpp
+</code></pre>
+
+<p>  在mac下这里会报错：architecture x86_64。关键我一直理解gest_main是包含main函数的gtest，gtest-all是不包含的，知道发现官方的makefile执行的时候是这样的</p>
+
+<pre><code>ar rv gtest_main.a gtest-all.o gtest_main.o   
+</code></pre>
+
+<p>  用这里的gtest_main.a做libgtest_main.a就行了。不理解为什么在mac上单独打包一个gtest_main.o为什么不行。论坛貌似有人贴了一个patch，不看了，回家，碎觉。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[区分下shell和makefile中的特殊字符]]></title>
@@ -941,36 +967,6 @@ history = AuthHistory("cxh", tid, datetime.datetime.now(), item['url'], item['ti
 
 <pre><code>history = AuthHistory(None, "cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[用maven执行java程序]]></title>
-    <link href="http://cxh.me/2015/01/15/maven-execute-java-program/"/>
-    <updated>2015-01-15T17:08:00+08:00</updated>
-    <id>http://cxh.me/2015/01/15/maven-execute-java-program</id>
-    <content type="html"><![CDATA[<p>  Eclipse中需要执行一个java程序的之后只需要在入口类Run就行，但是有时候需要同时开两个程序，尤其对C/S模式的应用来说。针对这种情况，可以分如下三种方式启动另一个程序：</p>
-
-<ol>
-<li><p> java -cp 指定的类。shell（或者ZSH才有）下貌似是会有提示如下：</p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2015/javacp.png"></p>
-
-<p>以上方式至少需要保证用到的jar都在classpath中。</p></li>
-<li><p> 从eclipse中copy执行命令。去调试页面，查看刚才执行的command的属性页面。会看到如下界面，copy命令到shell中执行即可。</p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2015/eclipse_command.png"></p></li>
-<li><p> maven execute。 命令类似：</p>
-
-<pre><code>mvn exec:java -Dexec.mainClass=boot.BootStrap
-</code></pre>
-
-<p>注意是第二个exec后是点，不是：，另外如果有多模块，在root project下需要加module:</p>
-
-<pre><code>mvn exec:java -pl xxx -Dexec.mainClass=boot.BootStrap 
-</code></pre></li>
-</ol>
-
 ]]></content>
   </entry>
   
