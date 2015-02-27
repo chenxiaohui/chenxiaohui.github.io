@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-27T16:50:03+08:00</updated>
+  <updated>2015-02-27T16:51:57+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -27,29 +27,29 @@
 </code></pre></li>
 <li><p> /usr/local/lib/libpython2.7.a: could not read symbols: Bad value</p>
 
-<pre><code>    错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
-    ./configure --prefix=/usr/local/  –enable-shared CFLAGS=-fPIC
-    make
-    make install
+<pre><code>错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
+./configure --prefix=/usr/local/  –enable-shared CFLAGS=-fPIC
+make
+make install
 </code></pre></li>
 <li><p> ImportError: libpython2.7.so.1.0: cannot open shared object file: No such file or directory</p>
 
-<pre><code>   库路径问题，要么配置LD_LIBRARY_PATH，要么修改ld.so.conf然后ldconfig
+<pre><code>库路径问题，要么配置LD_LIBRARY_PATH，要么修改ld.so.conf然后ldconfig
 </code></pre></li>
 <li><p> / not found.</p>
 
-<pre><code>  httpd.conf配置：
-  WSGIScriptAlias / /var/www/html/mysite/mysite/django.wsgi
-  &lt;Directory /var/www/html/mysite&gt;
+<pre><code>httpd.conf配置：
+WSGIScriptAlias / /var/www/html/mysite/mysite/django.wsgi
+&lt;Directory /var/www/html/mysite&gt;
     Order allow,deny
     Allow from all
-  &lt;/Directory&gt; 
+&lt;/Directory&gt; 
 </code></pre></li>
 <li><p> log/errro_log中 No module named mysite.settings。</p>
 
-<pre><code>  wsgi配置：
-  import sys
-  sys.path.append("/var/www/html/mysite/")
+<pre><code>wsgi配置：
+import sys
+sys.path.append("/var/www/html/mysite/")
 </code></pre></li>
 </ol>
 
