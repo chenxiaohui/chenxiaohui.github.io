@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-02-10T14:25:57+08:00</updated>
+  <updated>2015-02-27T16:11:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/02/27/django-to-apache/"/>
+    <updated>2015-02-27T13:39:00+08:00</updated>
+    <id>http://cxh.me/2015/02/27/django-to-apache</id>
+    <content type="html"><![CDATA[<p>  安装apache不说了，用apache做django容器的时候（详见<a href="http://www.cnblogs.com/fengzheng/p/3619406.html" title="Linux下安装Apache并以mod_wsgi方式部署django站点">参考文献1</a>)遇到如下几个问题，记录一下：</p>
+
+<ol>
+<li><p> apxs找不到。centos上直接装的httpd-2.2.3-83.el5_10，默认没有apxs。想源码编译一个apache，结果发现源里面有。</p>
+
+<p>yum install -y httpd-devel</p></li>
+<li><p> /usr/local/lib/libpython2.7.a: could not read symbols: Bad value</p>
+
+<p>错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
+./configure &mdash;prefix=/usr/local/  –enable-shared CFLAGS=-fPIC
+make
+make install</p></li>
+<li><p> ImportError: libpython2.7.so.1.0: cannot open shared object file: No such file or directory</p>
+
+<p>库路径问题，要么配置LD_LIBRARY_PATH，要么修改ld.so.conf然后ldconfig</p></li>
+<li><p> / not found.</p>
+
+<p>httpd.conf配置：
+WSGIScriptAlias / /var/www/html/mysite/mysite/django.wsgi
+<Directory /var/www/html/mysite>
+  Order allow,deny
+  Allow from all
+</Directory></p></li>
+<li><p> log/errro_log中 No module named mysite.settings。</p>
+
+<p>wsgi配置：
+import sys
+sys.path.append(&ldquo;/var/www/html/mysite/&rdquo;)</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gtest在mac上链接的问题]]></title>
@@ -933,40 +971,6 @@ done
 <p>  我妈从小就教育我们，不要被一些所谓的财产困住。所以我跟我妹走遍世界，然后我俩都不买房，就觉得很幸福。我妈说生活不是眼前的苟且，生活有诗和远方。我 和我妹妹深受这教育。谁要觉得你眼前这点儿苟且就是你的人生，那你这一生就完了。生活就是适合远方，能走多远走多远；走不远，一分钱没有，那么就读诗，诗 就是你坐在这，它就是远方。越是年长，越能体会我妈的话。</p>
 
 <p>  美国人平均31岁才第一次购房，德国人42岁，比利时人37岁，欧洲拥有独立住房的人口占50%，剩下都是租房。为什么现在中国的年轻人一毕业就结婚？一 结婚就买房？怎样才能买到房？一套房子会限制你所有的行为和决定。因为你知道，要一提裸婚，没有人愿意嫁给你。即使老婆愿意，他们家人呢？别人会怎么看？ 孩子以后怎么办？以今天的房价，普通人买房只有两种情况，一种是双方父母出钱资助，这种人基本上前途和发展被父母控股。第二种人是牺牲了太多的发展机会， 典当梦想来成就一套房子。他们购买的，其实是自己内心深处的“安全感”。他们觉得，有一套房子，会让自己内心安全一点儿。但是安全感真的可以来自于一套房 子吗？归根结底，还是价值观的问题。世界再怎么变，还是要有坚持，即使它是落后。我不入流，这不要紧。我每一天开心，这才是重要的。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[处理Django的自增字段]]></title>
-    <link href="http://cxh.me/2015/01/15/django-assign-autoincrement-field/"/>
-    <updated>2015-01-15T22:00:00+08:00</updated>
-    <id>http://cxh.me/2015/01/15/django-assign-autoincrement-field</id>
-    <content type="html"><![CDATA[<p>  有时候需要手动构造一个Django model对象并保存，遇到如下的情况：</p>
-
-<pre><code>model定义如下：
-class AuthHistory(models.Model):
-user_name = models.CharField(max_length=100, default=None)
-item_id = models.CharField(max_length=100)
-datetime = models.DateTimeField()
-url = models.CharField(max_length=1000)
-title = models.CharField(max_length=1000)
-operation = models.CharField(max_length=100, default=None)
-
-构造对象如下：
-history = AuthHistory("cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
-</code></pre>
-
-<p>  报错:<code>django title invalid literal for int() with base 10:cxh</code>，明显是把第一个字段赋给自增长id了，因为Django会给没有主键的表直接加上id字段作为主键。</p>
-
-<p>  手动指定域当然是可以的：</p>
-
-<pre><code>history = AuthHistory( user_name="cxh", item_id=tid, datetime=datetime.datetime.now(), url=item['url'], title=item['title'], operation=operation)
-</code></pre>
-
-<p>  但是未免很麻烦。传值肯定不合理，毕竟id是数据库记录的。试了一下，给id域直接传NULL就行了。</p>
-
-<pre><code>history = AuthHistory(None, "cxh", tid, datetime.datetime.now(), item['url'], item['title'], operation)
-</code></pre>
 ]]></content>
   </entry>
   
