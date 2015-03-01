@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-01T15:00:09+08:00</updated>
+  <updated>2015-03-01T17:57:38+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -21,26 +21,30 @@
     <content type="html"><![CDATA[<p>  基本步骤可以看<a href="http://www.liaoxuefeng.com/article/0013738927837699a7f3407ea5f4b5caf8e1ab47997d7c5000" title="Mac OS X编译ffmpeg">这个</a>，说两个问题：</p>
 
 <ol>
-<li><p> brew的formulae没有celt这个包。忽略了算了。</p></li>
-<li><p> libaacplus安装的时候，</p>
+<li><p>brew的formulae没有celt这个包。忽略了算了。</p></li>
+<li><p>libaacplus安装的时候，</p>
 
 <ol>
 <li>首先这个地址<code>http://217.20.164.161/~tipok/aacplus/libaacplus-2.0.2.tar.gz</code>已经失效了，从网上下载的话，这个版本还是有问题，configure的时候会卡住，一些patch丢失了好像。建议直接fork <a href="https://github.com/Distrotech/libaacplus" title="Distrotech/libaacplus">github上的</a>。</li>
 <li>这个branch也有问题，frontend链接的时候会提示<code>ld: symbol(s) not found for architecture x86_64</code>，直接从Makefile.am里面把frontend去掉算了。</li>
 </ol>
 </li>
-<li><p> 可以通过brew直接安装：</p>
+<li><p>可以通过brew直接安装：</p>
 
-<pre><code>brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
+<pre><code> brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
 </code></pre></li>
-<li><p> Besides, 我发现brew可以列出configure选项，如下：</p>
+<li><p>libav10.5之后没有avserver的安装了，虽然enable-avserver的选项还在，所以不同版本安装的卸载时候会有些残留文件。我的安装选项是：</p>
 
-<pre><code>brew options xxx
-</code></pre>
+<pre><code> --enable-libfaac\ --enable-libfdk-aac\ --enable-libfreetype\ --enable-libmp3lame\ --enable-libopencore-amrnb\ --enable-libopencore-amrwb\ --enable-libopenjpeg\ --enable-libopus\ --enable-librtmp\ --enable-libschroedinger\ --enable-libspeex\ --enable-libtheora\ --enable-libvo-aacenc\ --enable-libvorbis\ --enable-avserver\ --enable-libvpx\ --enable-shared \ --enable-libx264\ --enable-gpl\ --enable-nonfree\ --enable-version3\ --enable-openssl\ --enable-gnutls\ --enable-zlib
+</code></pre></li>
+<li><p>Besides, 我发现brew可以列出configure选项，如下：</p>
 
-<p>手动安装的话，可以通过./configure &mdash;help来查看。</p></li>
+<pre><code> brew options xxx
+</code></pre></li>
 </ol>
 
+
+<p>  手动安装的话，可以通过./configure &mdash;help来查看。</p>
 ]]></content>
   </entry>
   
