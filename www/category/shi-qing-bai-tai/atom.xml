@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 世情百态 | CXH.ME]]></title>
   <link href="http://cxh.me/category/shi-qing-bai-tai/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-01T17:58:35+08:00</updated>
+  <updated>2015-03-01T21:07:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -34,7 +34,7 @@
 
 <p>  今天才注意到北大口腔的字还是老江题的。联想到今天疼爽了的经历，真是excited啊</p>
 
-<p>  {% img img-polaroid center /images/2015/excited.png %}</p>
+<p>  <img class="img-polaroid center" src="/images/2015/excited.png"></p>
 
 <hr />
 
@@ -63,7 +63,7 @@
 
 <p>  最近总在回想人生走过的路，觉得多走了好多弯路。说人生无悔，都是赌气的话。人生若是真的无悔，那该多无趣啊。宫二的这句话，确实勾起了很多感触。27岁的生日，新的开始。全新的自己，打点行装，坚定的走下去。</p>
 
-<p>  {% img img-polaroid center /images/2015/yidaizongshi.jpg %}</p>
+<p>  <img class="img-polaroid center" src="/images/2015/yidaizongshi.jpg"></p>
 ]]></content>
   </entry>
   
@@ -112,7 +112,7 @@
     <link href="http://cxh.me/2014/08/17/brick-mansions/"/>
     <updated>2014-08-17T20:39:00+08:00</updated>
     <id>http://cxh.me/2014/08/17/brick-mansions</id>
-    <content type="html"><![CDATA[<p>   {% img img-polaroid center /images/2014/brick_mansions.jpg %}</p>
+    <content type="html"><![CDATA[<p>   <img class="img-polaroid center" src="/images/2014/brick_mansions.jpg"></p>
 
 <p>   虽说是翻拍，但是也不能一模一样啊，这剧情的相似度不是一般的高啊&hellip;.</p>
 

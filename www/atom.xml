@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-01T17:57:59+08:00</updated>
+  <updated>2015-03-01T21:07:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[测试下CloudSight的图像识别]]></title>
+    <link href="http://cxh.me/2015/03/01/test-cloudsight/"/>
+    <updated>2015-03-01T20:58:00+08:00</updated>
+    <id>http://cxh.me/2015/03/01/test-cloudsight</id>
+    <content type="html"><![CDATA[<p>  偶然看到<a href="http://buzz.beebeeto.com/topic/45/" title="使用CloudSight API进行图像识别的Python脚本">这个</a>链接，一个识别图像并标注的，还蛮有意思。代码直接用示例里面的就可以, 需要注意两个问题：</p>
+
+<ol>
+<li> <a href="https://cloudsightapi.com/api_clients/new" title="New Project">注册一个项目</a>。ResponseType选择Product。</li>
+<li> 必须上传网络链接，不能使用文件。</li>
+</ol>
+
+
+<p>  测试几个效果（多次返回结果不一定一样）：</p>
+
+<ol>
+<li> <a href="http://www.baidu.com/img/bdlogo.png" title="百度标识">百度首页</a>，识别为&#8221;百度标志&#8221;</li>
+<li> <a href="http://ww4.sinaimg.cn/bmiddle/61d83ed4jw1epqi6itn8mj20az08caa8.jpg" title="陈吉宁校长">陈吉宁校长的头像</a>，识别为&#8221;男人的黑色西装外套&#8221; 或 &ldquo;男人的蓝色西装&rdquo;</li>
+<li> <a href="http://cxh.me/images/common/baiyipiaopiao.jpg" title="背景图">我博客一张背景图</a>，识别为&#8221;女性的黑色T恤&#8221; 或 &ldquo;红色的通勤自行车&rdquo;</li>
+</ol>
+
+
+<p>  让我突然对这个tag算法很感兴趣。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac下ffmpeg的编译]]></title>
@@ -891,94 +917,6 @@ print value + u"中文"
 </code></pre>
 
 <p>  str+str输出肯定是str，所以需要适配环境的编码，第一个乱码可以理解。而str+unicode的时候，str会被按default encoding解码。utf8无法按照python default encoding ascii解码。utf8文件编码下的情况类似。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[保存知乎日报到pocket]]></title>
-    <link href="http://cxh.me/2015/01/18/send-zhihu-to-pocket/"/>
-    <updated>2015-01-18T15:30:00+08:00</updated>
-    <id>http://cxh.me/2015/01/18/send-zhihu-to-pocket</id>
-    <content type="html"><![CDATA[<p>  知乎日报是中国人民喜闻乐见的资讯类应用，Pocket是深受世界人民喜爱的阅读工具。鉴于反碎片化阅读的个人习惯，决定把散落在各个地方的有价值咨询集中到一个应用里面，于是有了如下的工具。</p>
-
-<p>  首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了<a href="http://coolshell.cn/articles/9104.htm" title="sed 简明教程">sed工具</a>。</p>
-
-<pre><code>curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story'
-</code></pre>
-
-<!--more-->
-
-
-<p>  然后需要打通跟Pocket的渠道。首先去注册Pocket SDK <a href="http://getpocket.com/developer/">http://getpocket.com/developer/</a></p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/pocket.png"></p>
-
-<p>  将会得到如下的几个授权码。我只注册了Web和Desktop</p>
-
-<pre><code>NAME    PLATFORM    CONSUMER KEY
-ZhihuDaily2Pocket   Web xxxx-xxxxxxxxxxxxxxxxxxxx
-ZhihuDaily2Pocket   Desktop (other) xxxx-xxxxxxxxxxxxxxxxxxxx
-</code></pre>
-
-<p>  之后先请求pocket的consumer key：</p>
-
-<pre><code>curl -s -X POST  -H "X-Accept: Application/json" -H "Content-Type: application/json"  -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxxx","redirect_uri":"http://google.com"}'  https://getpocket.com/v3/oauth/request | grep '}' | python -mjson.tool
-</code></pre>
-
-<p>  这里需要注意Accept头部使用的是X-Accept，这是我之前死活得不到相应的原因。</p>
-
-<p>  返回结果类似于：</p>
-
-<pre><code>HTTP/1.1 200 OK
-Content-Type: application/x-www-form-urlencoded
-Status: 200 OK
-
-code=dcba4321-dcba-4321-dcba-4321dc
-</code></pre>
-
-<p>  如果是web应用，这里可以把用户导向一个授权页面了。</p>
-
-<pre><code>https://getpocket.com/auth/authorize?request_token=dcba4321-dcba-4321-dcba-4321dc&amp;redirect_uri=http://google.com
-</code></pre>
-
-<p>  授权后，我们把code和consumerkey转换成access token：</p>
-
-<pre><code>curl -s http://getpocket.com/v3/oauth/authorize -X POST -H "Content-Type: application/json" -H "X-Accept: application/json" -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxxx","code":"dcba4321-dcba-4321-dcba-4321dc"}'
-</code></pre>
-
-<p>  得到类似如下的结果：</p>
-
-<pre><code>HTTP/1.1 200 OK
-Content-Type: application/x-www-form-urlencoded
-Status: 200 OK
-
-access_token=5678defg-5678-defg-5678-defg56&amp;
-username=pocketuser
-</code></pre>
-
-<p>  根据这个access_token可以添加新的url了。</p>
-
-<pre><code>curl -s http://getpocket.com/v3/add -X POST -H "Content-Type: application/json" -H "X-Accept: application/json" -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxxx", "access_token":"yyyy-yyyy-yyyy-yyyy-yyyy","url":"http://daily.zhihu.com/story/4437286"}'
-</code></pre>
-
-<p>  之前授权流程完成之后，作为某个特定用户，之后的请求指令就不会变话了。所以程序可以简化到如下：</p>
-
-<pre><code>curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story' |
-while read line
-do
-    curl -s http://getpocket.com/v3/add -X POST -H "Content-Type: application/json" -H "X-Accept: application/json" -d '{"consumer_key":"xxxx-xxxxxxxxxxxxxxxxxxx", "access_token":"yyyy-yyyy-yyyy-yyyy-yyyy","url":"'$line'"}'|python -mjson.tool| grep 'resolved_url'
-done 
-</code></pre>
-
-<p>  添加个定时任务到cron中就行了。</p>
-
-<p>  <strong>当然最后我发现IFTTT是个更简单的方案&hellip;..</strong></p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] sed 简明教程, <a href="http://coolshell.cn/articles/9104.htm">http://coolshell.cn/articles/9104.htm</a></p>
-
-<p>[2] Pocket API Documentation, <a href="http://getpocket.com/developer/docs">http://getpocket.com/developer/docs</a></p></blockquote>
 ]]></content>
   </entry>
   

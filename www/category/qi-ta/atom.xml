@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-01T17:58:35+08:00</updated>
+  <updated>2015-03-01T21:07:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[测试下CloudSight的图像识别]]></title>
+    <link href="http://cxh.me/2015/03/01/test-cloudsight/"/>
+    <updated>2015-03-01T20:58:00+08:00</updated>
+    <id>http://cxh.me/2015/03/01/test-cloudsight</id>
+    <content type="html"><![CDATA[<p>  偶然看到<a href="http://buzz.beebeeto.com/topic/45/" title="使用CloudSight API进行图像识别的Python脚本">这个</a>链接，一个识别图像并标注的，还蛮有意思。代码直接用示例里面的就可以, 需要注意两个问题：</p>
+
+<ol>
+<li> <a href="https://cloudsightapi.com/api_clients/new" title="New Project">注册一个项目</a>。ResponseType选择Product。</li>
+<li> 必须上传网络链接，不能使用文件。</li>
+</ol>
+
+
+<p>  测试几个效果（多次返回结果不一定一样）：</p>
+
+<ol>
+<li> <a href="http://www.baidu.com/img/bdlogo.png" title="百度标识">百度首页</a>，识别为"百度标志"</li>
+<li> <a href="http://ww4.sinaimg.cn/bmiddle/61d83ed4jw1epqi6itn8mj20az08caa8.jpg" title="陈吉宁校长">陈吉宁校长的头像</a>，识别为"男人的黑色西装外套" 或 &ldquo;男人的蓝色西装&rdquo;</li>
+<li> <a href="http://cxh.me/images/common/baiyipiaopiao.jpg" title="背景图">我博客一张背景图</a>，识别为"女性的黑色T恤" 或 &ldquo;红色的通勤自行车&rdquo;</li>
+</ol>
+
+
+<p>  让我突然对这个tag算法很感兴趣。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[mac下ffmpeg的编译]]></title>
@@ -92,7 +118,7 @@ export https_proxy='http://127.0.0.1:8118'
 
 <p>  <a href="https://portal.shadowsocks.com/aff.php?aff=483" title="shadow socks">这里</a>购买服务，一年99，这个优惠码可以再打一点折<code>imouto985</code>。之后进入后台可以看到分配给自己的密码，服务器主要是日本，美国和新加坡的，实测貌似日本的响应更快一点。</p>
 
-<p>  {% img img-polaroid center /images/2015/shadow_mac.png %}</p>
+<p>  <img class="img-polaroid center" src="/images/2015/shadow_mac.png"></p>
 
 <p>  mac下下载了客户端直接打开配置好地址就能用，linux下需要自己配置代理。</p>
 
@@ -166,53 +192,6 @@ done &lt; /tmp/files
 </code></pre>
 
 <p>  忘了这些命令都接受多个参数&hellip;.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Thrift依赖和Slf4j]]></title>
-    <link href="http://cxh.me/2014/12/25/thrift-and-slf4j/"/>
-    <updated>2014-12-25T18:24:00+08:00</updated>
-    <id>http://cxh.me/2014/12/25/thrift-and-slf4j</id>
-    <content type="html"><![CDATA[<p>  用Thrift做一个分布式系统的RPC，发现跑起来的时候总提示<code>Failed to load class org.slf4j.impl.StaticLoggerBinder</code>，看了看maven依赖感觉没啥问题啊，slf4j-api-xx.jar好好的在呢。分析了maven的依赖，eclipse的问题，最后发现都没问题啊。最后发现还是不了解slf4j，以为跟log4j一样的，其实作为一个proxy，slf4j-api只是一套接口，实现的依赖没有添加进来。</p>
-
-<p>   Thrift的依赖加进来的时候（如下），Dependency Hierachy解析会添加相关的包，但是只添加了slf4j-api，动态编译也不会出错，毕竟接口都有了，但是运行时从classpath找不到对应的包。</p>
-
-<pre><code>  &lt;dependency&gt;
-    &lt;groupId&gt;org.apache.thrift&lt;/groupId&gt;
-    &lt;artifactId&gt;libthrift&lt;/artifactId&gt;
-    &lt;version&gt;0.8.0&lt;/version&gt;
-  &lt;/dependency&gt;
-</code></pre>
-
-<p>  在上面的基础上要加入一个任意一个slf4j-api的实现：</p>
-
-<pre><code>Placing one (and only one) of slf4j-nop.jar, slf4j-simple.jar, slf4j-log4j12.jar, slf4j-jdk14.jar or logback-classic.jar on the class path should solve the problem.
-</code></pre>
-
-<p>  另外libthrift的pom默认依赖的slf4j-api应该是1.5.8，可能会出现如下不兼容的情况：</p>
-
-<pre><code>SLF4J: The requested version 1.5.8 by your slf4j binding is not compatible with [1.6, 1.7]
-SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
-</code></pre>
-
-<p>  可以对libthrift的POM加入例外：</p>
-
-<pre><code>&lt;exclusions&gt;
-    &lt;exclusion&gt;
-        &lt;groupId&gt;org.slf4j&lt;/groupId&gt;
-        &lt;artifactId&gt;slf4j-api&lt;/artifactId&gt;
-    &lt;/exclusion&gt;
-&lt;/exclusions&gt;
-</code></pre>
-
-<p>  每个实现详见<a href="http://blog.csdn.net/robert_mm/article/details/8197108" title=" slf4j-api、slf4j-log4j12以及log4j之间什么关系？">参考文献2</a></p>
-
-<h3>参考文献:</h3>
-
-<blockquote><p>[1] SLF4J warning or error messages and their meanings, <a href="http://www.slf4j.org/codes.html#StaticLoggerBinder">http://www.slf4j.org/codes.html#StaticLoggerBinder</a></p>
-
-<p>[2]  slf4j-api、slf4j-log4j12以及log4j之间什么关系？, <a href="http://blog.csdn.net/robert_mm/article/details/8197108">http://blog.csdn.net/robert_mm/article/details/8197108</a></p></blockquote>
 ]]></content>
   </entry>
   
