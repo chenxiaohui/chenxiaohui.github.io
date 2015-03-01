@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-01T11:14:11+08:00</updated>
+  <updated>2015-03-01T13:17:28+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -29,6 +29,10 @@
 <li>这个branch也有问题，frontend链接的时候会提示<code>ld: symbol(s) not found for architecture x86_64</code>，直接从Makefile.am里面把frontend去掉算了。</li>
 </ol>
 </li>
+<li><p> 可以通过brew直接安装：</p>
+
+<pre><code>brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
+</code></pre></li>
 </ol>
 
 ]]></content>
