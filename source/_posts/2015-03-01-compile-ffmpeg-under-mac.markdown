@@ -20,6 +20,12 @@ categories: "其他"
 
   		brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
 
+  4. Besides, 我发现brew可以列出configure选项，如下：
+
+  		brew options xxx
+
+  	手动安装的话，可以通过./configure --help来查看。
+
 
 [1]: http://www.liaoxuefeng.com/article/0013738927837699a7f3407ea5f4b5caf8e1ab47997d7c5000   "Mac OS X编译ffmpeg"
 [2]: https://github.com/Distrotech/libaacplus "Distrotech/libaacplus"

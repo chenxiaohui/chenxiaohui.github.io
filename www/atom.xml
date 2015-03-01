@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-01T13:17:28+08:00</updated>
+  <updated>2015-03-01T15:00:09+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -33,6 +33,12 @@
 
 <pre><code>brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
 </code></pre></li>
+<li><p> Besides, 我发现brew可以列出configure选项，如下：</p>
+
+<pre><code>brew options xxx
+</code></pre>
+
+<p>手动安装的话，可以通过./configure &mdash;help来查看。</p></li>
 </ol>
 
 ]]></content>
