@@ -7,6 +7,7 @@ published: true
 categories: "Linux"
 ---
   sudo的时候不会加载.bashrc什么的，今天就遇到了一个比较扯的问题。在home下安装了高版本的vim，bashrc里面PATH是home高于/bin的，但sudo vi的时候会调用系统的。尝试如下方式：
+  
   1. 修改其他配置如.profile什么的。比较麻烦。
   2. 修改sudoers里面env_keep，发现还是不起作用。
   3. 修改sudoers里面secure_path，如下：

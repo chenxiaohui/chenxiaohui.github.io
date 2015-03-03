@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-03T19:21:24+08:00</updated>
+  <updated>2015-03-03T19:47:44+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,13 +18,17 @@
     <link href="http://cxh.me/2015/03/03/sudo-env/"/>
     <updated>2015-03-03T18:34:00+08:00</updated>
     <id>http://cxh.me/2015/03/03/sudo-env</id>
-    <content type="html"><![CDATA[<p>  sudo的时候不会加载.bashrc什么的，今天就遇到了一个比较扯的问题。在home下安装了高版本的vim，bashrc里面PATH是home高于/bin的，但sudo vi的时候会调用系统的。尝试如下方式：
-  1. 修改其他配置如.profile什么的。比较麻烦。
-  2. 修改sudoers里面env_keep，发现还是不起作用。
-  3. 修改sudoers里面secure_path，如下：</p>
+    <content type="html"><![CDATA[<p>  sudo的时候不会加载.bashrc什么的，今天就遇到了一个比较扯的问题。在home下安装了高版本的vim，bashrc里面PATH是home高于/bin的，但sudo vi的时候会调用系统的。尝试如下方式：</p>
 
-<pre><code>    Defaults    secure_path = /root/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
-</code></pre>
+<ol>
+<li> 修改其他配置如.profile什么的。比较麻烦。</li>
+<li> 修改sudoers里面env_keep，发现还是不起作用。</li>
+<li><p> 修改sudoers里面secure_path，如下：</p>
+
+<pre><code>Defaults    secure_path = /root/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+</code></pre></li>
+</ol>
+
 
 <p>  OK。</p>
 ]]></content>
