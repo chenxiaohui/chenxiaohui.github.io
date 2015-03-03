@@ -62,4 +62,7 @@ categories: "web相关"
 	</VirtualHost>
 
 
-  一二节的顺序是不能颠倒的，否则apache把/mysite作为路径处理。
+  一二节的顺序是不能颠倒的，否则apache把/mysite作为路径处理。这里还有个问题，static和其他引用url的处理，django下建议使用[url][1]/[static][2]标签
+
+[1]: http://www.yihaomen.com/article/python/355.htm   "Django url 标签的使用"
+[2]: https://docs.djangoproject.com/en/1.7/howto/static-files/ "Managing static files (CSS, images)"

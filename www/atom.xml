@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-03T20:19:59+08:00</updated>
+  <updated>2015-03-03T20:27:44+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -76,7 +76,7 @@
 &lt;/VirtualHost&gt;
 </code></pre>
 
-<p>  一二节的顺序是不能颠倒的，否则apache把/mysite作为路径处理。</p>
+<p>  一二节的顺序是不能颠倒的，否则apache把/mysite作为路径处理。这里还有个问题，static和其他引用url的处理，django下建议使用<a href="http://www.yihaomen.com/article/python/355.htm" title="Django url 标签的使用">url</a>/<a href="https://docs.djangoproject.com/en/1.7/howto/static-files/" title="Managing static files (CSS, images)">static</a>标签</p>
 ]]></content>
   </entry>
   
