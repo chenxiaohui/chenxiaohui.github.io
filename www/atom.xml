@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-03T16:11:41+08:00</updated>
+  <updated>2015-03-03T19:21:24+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[sudo的环境变量]]></title>
+    <link href="http://cxh.me/2015/03/03/sudo-env/"/>
+    <updated>2015-03-03T18:34:00+08:00</updated>
+    <id>http://cxh.me/2015/03/03/sudo-env</id>
+    <content type="html"><![CDATA[<p>  sudo的时候不会加载.bashrc什么的，今天就遇到了一个比较扯的问题。在home下安装了高版本的vim，bashrc里面PATH是home高于/bin的，但sudo vi的时候会调用系统的。尝试如下方式：
+  1. 修改其他配置如.profile什么的。比较麻烦。
+  2. 修改sudoers里面env_keep，发现还是不起作用。
+  3. 修改sudoers里面secure_path，如下：</p>
+
+<pre><code>    Defaults    secure_path = /root/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
+</code></pre>
+
+<p>  OK。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[测试下CloudSight的图像识别]]></title>
@@ -847,76 +864,6 @@ b   2   c
 </code></pre>
 
 <p>  服务端从命令行可以看到收到的post里面是有&#8217;selected_push[]&lsquo;变量的。但是直接get的结果只有一个。查阅stackoverflow发现RequestContext有单独的getlist函数来处理。果然还是跟PHP不一样啊。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python编码]]></title>
-    <link href="http://cxh.me/2015/01/19/python-encoding/"/>
-    <updated>2015-01-19T14:34:00+08:00</updated>
-    <id>http://cxh.me/2015/01/19/python-encoding</id>
-    <content type="html"><![CDATA[<p>  众所周知Python的内码编码是Unicode，所有输入的编码都需要转换成unicode然后转出成为其他编码。Python2中存在unicode对象和str对象两种，在中文处理的时候很容易出问题，而Python3直接全部统一了编码到unicode。</p>
-
-<p>  举一个例子说明编码的转换，首先我们的环境是utf-8</p>
-
-<pre><code>LANG=zh_CN.UTF-8
-LANGUAGE=zh_CN:zh
-LC_CTYPE="zh_CN.UTF-8"
-LC_NUMERIC="zh_CN.UTF-8"
-LC_TIME="zh_CN.UTF-8"
-LC_COLLATE="zh_CN.UTF-8"
-LC_MONETARY="zh_CN.UTF-8"
-LC_MESSAGES="zh_CN.UTF-8"
-LC_PAPER="zh_CN.UTF-8"
-LC_NAME="zh_CN.UTF-8"
-LC_ADDRESS="zh_CN.UTF-8"
-LC_TELEPHONE="zh_CN.UTF-8"
-LC_MEASUREMENT="zh_CN.UTF-8"
-LC_IDENTIFICATION="zh_CN.UTF-8"
-LC_ALL=zh_CN.UTF-8
-</code></pre>
-
-<p>  然后测试一个从环境的输入和写回到环境。</p>
-
-<pre><code>文件编码gbk:
-print '中文'
-print u'中文'
-输出
-    ����
-    中文
-
-文件编码utf-8
-print '中文'
-print u'中文'
-
-输出
-    中文
-    中文
-</code></pre>
-
-<p>  说明print输出的时候按照default encoding进行了编码。所以只有gbk的编码乱码了。同样对输入的判断，环境如果是utf8，输出不变的话，不会有乱码。但是如果从文件里读取了字符串或者代码里有硬编码字符，就需要考虑编码了。另外，unicode和str相加会有编码问题。比如：</p>
-
-<pre><code>文件编码gbk:    
-value = raw_input()
-print value + "中文"
-输入
-    中文
-输出
-    中文����
-
-value = raw_input()
-print value + u"中文"
-输入
-    en
-输出
-    en中文
-输入
-    中文
-输出
-    UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
-</code></pre>
-
-<p>  str+str输出肯定是str，所以需要适配环境的编码，第一个乱码可以理解。而str+unicode的时候，str会被按default encoding解码。utf8无法按照python default encoding ascii解码。utf8文件编码下的情况类似。</p>
 ]]></content>
   </entry>
   
