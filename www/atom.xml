@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-03T19:47:44+08:00</updated>
+  <updated>2015-03-03T20:19:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Apache的Virtual Server配置]]></title>
+    <link href="http://cxh.me/2015/03/03/apache-virtual-server-conf/"/>
+    <updated>2015-03-03T20:12:00+08:00</updated>
+    <id>http://cxh.me/2015/03/03/apache-virtual-server-conf</id>
+    <content type="html"><![CDATA[<p>  首先，virtual server的概念是说一个apache实例可以模拟出多个server，这些server通过不同的标识来区分（网卡IP/ServerName/端口/ServerPath)，每个虚拟的server最终对应到一个DocumentRoot。</p>
+
+<p>  我们期望如下配置</p>
+
+<pre><code>    80   -&gt; /           网站
+            /mysite     子网站mysite
+    8080 -&gt; /           网站news_auth
+</code></pre>
+
+<p>  配置如下：</p>
+
+<!--more-->
+
+
+<pre><code>&lt;VirtualHost *:80&gt;
+    ServerName 127.0.0.1
+    DocumentRoot /var/www/html/mysite/
+    ServerPath /mysite
+    WSGIScriptAlias /mysite /var/www/html/mysite/mysite/wsgi.py
+    &lt;Directory /var/www/html/mysite/&gt;
+        Order deny,allow 
+        Allow from all
+    &lt;/Directory&gt;
+    &lt;Location "/static/"&gt;
+         SetHandler None
+    &lt;/Location&gt;
+&lt;/VirtualHost&gt;
+
+&lt;VirtualHost *:80&gt;
+    ServerName 127.0.0.1
+    DocumentRoot /var/www/html
+    ServerPath /
+
+    &lt;Directory /var/www/html&gt;
+        Order deny,allow 
+        Allow from all
+    &lt;/Directory&gt;
+
+&lt;/VirtualHost&gt;
+
+
+&lt;VirtualHost *:8080&gt;
+    ServerName 127.0.0.1
+    DocumentRoot /var/www/html/news_auth
+    ServerPath /
+
+    WSGIScriptAlias / /var/www/html/news_auth/news_auth/wsgi.py
+    &lt;Directory /var/www/html/news_auth/&gt;
+        Order deny,allow 
+        Allow from all
+    &lt;/Directory&gt;
+
+    &lt;Location "/static/"&gt;
+         SetHandler None
+    &lt;/Location&gt;
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>  一二节的顺序是不能颠倒的，否则apache把/mysite作为路径处理。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[sudo的环境变量]]></title>
@@ -843,31 +910,6 @@ b   2   c
 </code></pre>
 
 <p>  换个角度说，<code>sort -k 1 -k 2</code> 的效果跟 <code>sort -k 1</code> 是一样的。所以最好还是让数据按照排序列生成，这样看起来也最直观。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于Django下获取checkbox的返回值]]></title>
-    <link href="http://cxh.me/2015/01/19/django-checkbox/"/>
-    <updated>2015-01-19T16:46:00+08:00</updated>
-    <id>http://cxh.me/2015/01/19/django-checkbox</id>
-    <content type="html"><![CDATA[<p>  HTML中我们可以在form中这样写复选框：</p>
-
-<pre><code>&lt;form action="demo_form.asp"&gt;
-  &lt;input type="checkbox" name="vehicle" value="Bike"&gt; I have a bike&lt;br&gt;
-  &lt;input type="checkbox" name="vehicle" value="Car" checked&gt; I have a car&lt;br&gt;
-  &lt;input type="submit" value="Submit"&gt;
-&lt;/form&gt;
-</code></pre>
-
-<p>  但是作为服务端处理起来未免不变，尤其是checkbox list是自动生成的时候。此时可以用group方式把form value组合起来。如下：</p>
-
-<pre><code>{\% for item in items \%}
-    &lt;td&gt;&lt;input type="checkbox" name="selected_push[]" value=""&gt;&lt;/td&gt;
-{\% endfor \%}
-</code></pre>
-
-<p>  服务端从命令行可以看到收到的post里面是有&#8217;selected_push[]&lsquo;变量的。但是直接get的结果只有一个。查阅stackoverflow发现RequestContext有单独的getlist函数来处理。果然还是跟PHP不一样啊。</p>
 ]]></content>
   </entry>
   
