@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-03T20:27:44+08:00</updated>
+  <updated>2015-03-07T18:09:20+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Linux ssh免密登陆和调试]]></title>
+    <link href="http://cxh.me/2015/03/07/ssh-debug-and-passless-login/"/>
+    <updated>2015-03-07T17:56:00+08:00</updated>
+    <id>http://cxh.me/2015/03/07/ssh-debug-and-passless-login</id>
+    <content type="html"><![CDATA[<p>   把一个公钥上传到服务器配置了免密登陆，ok之后再配置几台服务器之间的免密，发现不成功。尝试了如下几种定位方法：</p>
+
+<ol>
+<li>ssh目录权限。修改成.ssh 700，下面文件600。解决了一个的问题。其他几台还是不行。</li>
+<li>查看sshd_config是否允许公钥登陆。看来不是这个问题。</li>
+<li>ssh -v 看调试信息，发现尝试过publickey但是验证未通过。手动比对ssh 公钥发现无误。</li>
+<li><p>搜索错误信息：Offering public key: /root/.ssh/id_rsa，有人说<a href="http://segmentfault.com/q/1010000000445726" title="CentOS SSH公钥登录问题">是因为.ssh目录没有ssh_home_t标签</a>， 通过这个命令查看文件夹或文件的标签</p>
+
+<pre><code>[root@localhost ~]# ls -laZ
+</code></pre>
+
+<p>通过</p>
+
+<pre><code>restorecon -r -vv /root/.ssh
+</code></pre>
+
+<p>来重置标签，但是没起作用。</p></li>
+<li><p>设想可能是手动建立.ssh目录的问题，删除.ssh，通过ssh-keygen本地生成密钥并建立目录。问题解决。</p></li>
+</ol>
+
+
+<p>   补充一点细节。bash下似乎单行的function必须以分号结尾，我说怎么server登陆总报error end line xxx..</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Apache的Virtual Server配置]]></title>
@@ -877,39 +907,6 @@ BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
 AAAAAAAAAAA tag2 1
 BBBBBBBBBBB tag2 2
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sort多列排序]]></title>
-    <link href="http://cxh.me/2015/01/22/sort-using-multiple-columns/"/>
-    <updated>2015-01-22T13:38:00+08:00</updated>
-    <id>http://cxh.me/2015/01/22/sort-using-multiple-columns</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个需求，希望按照第二列排序，第二列相同的情况下按照第一列排序，数据如下：</p>
-
-<pre><code>b   2   c
-c   2   b
-a   1   b
-</code></pre>
-
-<p>  习惯性的用:</p>
-
-<pre><code>sort -k 2 -k 1 input.txt
-</code></pre>
-
-<p>  输出结果是：</p>
-
-<pre><code>a   1   b
-c   2   b
-b   2   c
-</code></pre>
-
-<p>  可以看到实际上先按照第二列排序，第二列相同按照第三列排序了。问题在于sort -k默认是按照顺序排序到末尾的。如果要打破默认，需要指定从哪个列到哪个列。</p>
-
-<pre><code>sort -k 2，2 -k 1 input.txt
-</code></pre>
-
-<p>  换个角度说，<code>sort -k 1 -k 2</code> 的效果跟 <code>sort -k 1</code> 是一样的。所以最好还是让数据按照排序列生成，这样看起来也最直观。</p>
 ]]></content>
   </entry>
   
