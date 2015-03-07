@@ -21,9 +21,10 @@ categories: "Linux"
    	yum install tinyproxy
 
    	# vi /etc/tinyproxy/tinyproxy.conf
-	Allow 192.168.1.0/24 # 限制可以使用Proxy的来源网段
-
-	service tinyproxy start
+	  Allow 192.168.1.0/24 # 限制可以使用Proxy的来源网段
+    ConnectPort 443 
+	
+  service tinyproxy start
 
     shell配置：
     export http_proxy='xxx:8888'
@@ -32,7 +33,9 @@ categories: "Linux"
     yum配置：
     vi /etc/yum.conf
 	  proxy=http://xxxx:8888
-    ConnectPort 443 	
+
+
+    	
 
   配置难度真不是一个数量级的，可见有时候能满足大部分情况，就是最好的解决方案了。
 
