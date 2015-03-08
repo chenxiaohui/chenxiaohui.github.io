@@ -48,6 +48,9 @@ categories: "Linux"
       </proxy>
     </proxies>
 
+    git配置：
+    [http]
+      proxy =xxxx:xx
     	
 
   配置难度真不是一个数量级的，可见有时候能满足大部分情况，就是最好的解决方案了。
