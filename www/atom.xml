@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-08T15:04:10+08:00</updated>
+  <updated>2015-03-08T16:20:27+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -29,7 +29,11 @@
 <li>安装maven.</li>
 <li>配置好MAVEN_HOME/PATH</li>
 <li>下载 hadoop-2.4.0-src.tar.gz。</li>
-<li>安装protobuf。</li>
+<li>安装protobuf2.5.9。</li>
+<li>安装cmake.</li>
+<li>安装openssl-devel</li>
+<li>安装ant</li>
+<li>安装zlib-devel</li>
 <li>mvn package -Pdist,native -DskipTests -Dtar</li>
 <li><p>配置hadoop 环境变量</p>
 
