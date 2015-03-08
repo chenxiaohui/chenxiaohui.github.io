@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-08T14:26:20+08:00</updated>
+  <updated>2015-03-08T15:04:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[编译hadoop native lib]]></title>
+    <link href="http://cxh.me/2015/03/08/recompile-hadoop-native-lib/"/>
+    <updated>2015-03-08T14:59:00+08:00</updated>
+    <id>http://cxh.me/2015/03/08/recompile-hadoop-native-lib</id>
+    <content type="html"><![CDATA[<p>  跑hadoop的时候总遇到这个问题，不影响但是比较烦：</p>
+
+<pre><code>WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform… using builtin-java classes where applicable   
+</code></pre>
+
+<p>  大概原因是说为hadoop native library是32位系统编译的，在64位系统上会有这个提示，需要下载hadoop的源码重新编译。如下：</p>
+
+<ol>
+<li>安装maven.</li>
+<li>配置好MAVEN_HOME/PATH</li>
+<li>下载 hadoop-2.4.0-src.tar.gz。</li>
+<li>安装protobuf。</li>
+<li>mvn package -Pdist,native -DskipTests -Dtar</li>
+<li><p>配置hadoop 环境变量</p>
+
+<pre><code> export HADOOP_COMMON_LIB_NATIVE_DIR="~/hadoop/lib/"
+ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=~/hadoop/lib/"
+</code></pre></li>
+</ol>
+
+
+<p>  遇到一个问题，openjdk好像没有tools.jar，所以需要安装sun的jdk，重新设置JAVA_HOME</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux ssh免密登陆和调试]]></title>
@@ -850,63 +880,6 @@ for (xxxx){
 <p>  当时觉得还挺好，复用了一个对象。实际明显有问题的，这个对象的生命周期不见得只在for循环内部，一旦引用被传递出去，就会有悬挂（java里是不是不这么叫）的问题。多个引用指向了一个对象，计算结果是不可预测的。</p>
 
 <p>  主要问题是java里面默认都是传引用的，所以要时刻保持对gc机制的警惕。或者直接实现clone接口。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[bash下模拟group by功能]]></title>
-    <link href="http://cxh.me/2015/01/22/simulate-group-by-in-bash/"/>
-    <updated>2015-01-22T15:56:00+08:00</updated>
-    <id>http://cxh.me/2015/01/22/simulate-group-by-in-bash</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个问题：有一堆数据，需要统计相同key下相同的column的重复出现次数，实际上就是数据库里面的group by功能，但是建表导入然后计算未免麻烦，何况数据是临时数据，导入计算完毕之后就不需要了。这里用shell下的一些命令来完成。</p>
-
-<p>  数据格式</p>
-
-<pre><code>user            tag_id  type        time
-AAAAAAAAAAA     tag1    Click       2015:13:37:16
-AAAAAAAAAAA     tag1    Click       2015:13:37:16
-AAAAAAAAAAA     tag2    Click       2015:13:37:16
-BBBBBBBBBBB     tag2    Click       2015:13:37:16
-BBBBBBBBBBB     tag2    Click       2015:13:37:16
-BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
-</code></pre>
-
-<p>  目的：</p>
-
-<pre><code>统计同一个用户下，同一个tag的点击次数：
-</code></pre>
-
-<p>  实现如下：</p>
-
-<ol>
-<li><p> 排序</p>
-
-<p>首先对数据进行排序。这是最基本的，见<a href="http://cxh.me/2015/01/22/sort-using-multiple-columns/" title="Sort多列排序">上篇文章</a>。</p>
-
-<pre><code>sort -k 1 
-</code></pre></li>
-<li><p> 过滤不需要的行和列。</p>
-
-<pre><code>awk '{print $1, $2, $3}' |grep "Click" 
-</code></pre></li>
-<li><p> 这时候出现了一些重复列了，这也就是我们要做group by的数据。</p>
-
-<pre><code>uniq -c | awk {'print $2, $3, $1'} 
-</code></pre></li>
-</ol>
-
-
-<p>  后面awk只是调了一下位置。合并起来就是：</p>
-
-<pre><code>sort -k 1  test.txt|awk '{print $1, $2, $3}' |grep "Click"|uniq -c | awk {'print $2, $3, $1'} 
-</code></pre>
-
-<p>  输出结果：</p>
-
-<pre><code>AAAAAAAAAAA tag1 2
-AAAAAAAAAAA tag2 1
-BBBBBBBBBBB tag2 2
-</code></pre>
 ]]></content>
   </entry>
   
