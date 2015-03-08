@@ -34,6 +34,19 @@ categories: "Linux"
     vi /etc/yum.conf
 	  proxy=http://xxxx:8888
 
+    maven配置:
+     <proxies>
+     <proxy>
+        <id>example-proxy</id>
+        <active>true</active>
+        <protocol>http</protocol>
+        <host>proxy.example.com</host>
+        <port>8080</port>
+        <username>proxyuser</username>
+        <password>somepassword</password>
+        <nonProxyHosts>www.google.com|*.example.com</nonProxyHosts>
+      </proxy>
+    </proxies>
 
     	
 
