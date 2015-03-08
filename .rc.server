@@ -1,0 +1,119 @@
+#!/bin/sh
+[ -e ~/.proj ] && source ~/.proj || prj_dir=$HOME
+export server0=10.165.69.138 
+export server1=10.171.129.238
+export server2=10.171.129.238
+export user=root
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+# User specific aliases and functions
+PS1='${debian_chroot:+($debian_chroot)}[\u@\h \w] '
+# os related
+alias dflh='df -lh'
+alias dulh='du -lh * --max-depth=1'
+alias x=exit
+alias l='find -L `pwd` > /tmp/files.tmp && vi /tmp/files.tmp'
+alias la='ls -A'
+alias ll='ls -alF'
+alias rc='vi ~/.rc.server'
+alias sc='source ~/.rc.server'
+
+# vim related
+alias vg="cd ~/.vim && gp &&
+ssh $user@$server0 'cd .vim && git pull origin' &&
+ssh $user@$server1 'cd .vim && git pull origin' &&
+ssh $user@$server2 'cd .vim && git pull origin'
+"
+alias cr='find -L `pwd` -name "*.[ch]" -o -name "*.cpp" > cscope.files && ctags -R `pwd` --languages=c++ --c++-kinds=+px --fields=+iaKSz --extra=+q && cscope -Rb && rm -f cscope.files'
+alias se='vi ~/.session'
+
+# make related
+alias mk='make -j 8'
+alias cf='./configure --prefix=$HOME '
+alias mkk='make -j 8  2> make.err; vi make.err'
+#alias distcc="source /tmp/udistcc && ~/bin/distcc"
+#export set CC='ccache gcc'
+alias po="g && echo 'post-review -d' >post-review.sh  && sta >> post-review.sh ; stm >> post-review.sh ; chmod +x post-review.sh ;sed -i 's/^[MA]\s\+//g' post-review.sh;sed -i 's/$/ \\\\/g' post-review.sh;vi post-review.sh"
+
+
+#git related
+alias ga='git add .'
+alias gf='git difftool '
+alias gg='git lg '
+alias gm='git cam '
+alias gp='git push origin'
+alias gpl='git pull origin'
+alias gs='git st'
+alias bk="g && mv git .git && ga && gm '`date +%Y/%m/%d_%H:%S`' && gp ; mv .git git"
+
+#svn realted
+alias st='svn st'
+alias sta='st|grep ^A '
+alias stm='st|grep ^M '
+alias svp='svn update'
+alias sva='svn add '
+alias svf='svn diff '
+alias svg='svn log -l 3'
+alias svc='svn commit '
+alias svb='svn blame '
+alias svd='svn delete '
+alias svr='svn revert '
+alias cov="src && cover.sh src && tes"
+
+#server related
+alias kl="kill -9 "
+alias s0="ssh $user@$server0"
+alias s1="ssh $user@$server1"
+alias s2="ssh $user@$server2"
+alias lo="vi /tmp/files.tmp"
+alias te="cd ~/test/"
+alias ys="yum install"
+alias cps="from1 .rc.server .rc.server1; vimdiff .rc.server .rc.server1"
+
+function from0() { scp -r $user@$server0:~/$1 $2;}
+function to0() { scp -r $1  $user@$server0:~/$2;}
+function from1() { scp -r $user@$server1:~/$1 $2;}
+function to1() { scp -r $1  $user@$server1:~/$2;}
+
+function gep() {
+  grep $1 `pwd`/* -R |grep -v svn|grep -v tags|grep -v Binary|grep -v .deps >/tmp/files.tmp
+  lo
+}
+
+function dk() {
+  sudo docker $@
+}
+
+#docker related
+alias dki='dk run -i -t ubuntu:14.04'
+alias dks='dk run -i -t ubuntu:14.04'
+alias dkrm='dk rm `dk ps -q -a`'
+alias dkcm='dk commit `dk ps -q -l` ubuntu:14.04'
+alias dkp='dk ps -a'
+alias dkl='dk ps -l -q'
+
+export GTEST_DIR=/usr/local/share/gtest
+export GMOCK_DIR=/usr/local/share/gmock
+export JAVA_HOME=/usr/lib/jvm/java-1.7.0
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export MAVEN_HOME=/usr/local/share/maven
+#export MAVEN_OPTS="-Xms256m -Xmx768m"
+#export JVM_ARGS="-Xms256m -Xmx768m"
+#export ANT_OPTS=-Xmx768m
+export HADOOP_HOME=/home/hadoop/hadoop
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib"
+
+#export GCOV_PREFIX=/home/xiaohui.cpc/gcov/
+#export GCOV_PREFIX_STRIP=2
+export PATH=$HOME/bin:$MAVEN_HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin/:/usr/bin:/sbin:/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/lib/:$HOME/lib64/:/usr/local/lib64:/usr/local/lib:/usr/lib64/:/usr/lib/:/lib64:/lib
+
+
+export http_proxy='http://10.16.10.74:8888'
+export https_proxy='http://10.16.10.74:8888'
+export ftp_proxy='http://10.16.10.74:8888'
+

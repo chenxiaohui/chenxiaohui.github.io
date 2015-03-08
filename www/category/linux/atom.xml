@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-08T16:20:27+08:00</updated>
+  <updated>2015-03-08T22:05:06+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[登录非登录shell和sudo的环境变量]]></title>
+    <link href="http://cxh.me/2015/03/08/env-with-login-non-login-shell-and-sudo/"/>
+    <updated>2015-03-08T21:21:00+08:00</updated>
+    <id>http://cxh.me/2015/03/08/env-with-login-non-login-shell-and-sudo</id>
+    <content type="html"><![CDATA[<p>  关于登陆/非登录/交互/非交互shell的问题见<a href="http://blog.csdn.net/trochiluses/article/details/13767669" title=" bash 深入理解：交互式shell和非交互式shell、登录shell和非登录shell的区别">参考文献1</a>。今天遇到的问题是su/sudo的时候环境变量到底是怎么样的，执行了什么rc文件。</p>
+
+<ol>
+<li> sudo命令是以root的身份执行command命令，但是环境变量还是当前用户的，执行目录也仍然是当前目录
+即环境变量和执行目录都不会切换到root</li>
+<li> su &ndash; 命令是切换到另一个用户，环境变量会切换到username，执行目录会切换到目标用户username的家目录</li>
+<li> su 命令仅切换用户身份，例如从A切换到B，执行whoami命令，显示的是用户B，但当前目录不会切换，
+环境变量也仍未切换，仍为A用户的环境变量</li>
+<li> sudo su 只是用sudo的权限来执行su命令，跟su本身一样。</li>
+<li><p> visudo可以配置sudo的继承环境变量</p>
+
+<p>Defaults    env_keep =  &ldquo;COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS JAVA_HOME PATH&rdquo;</p></li>
+</ol>
+
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1]  bash 深入理解：交互式shell和非交互式shell、登录shell和非登录shell的区别, <a href="http://blog.csdn.net/trochiluses/article/details/13767669">http://blog.csdn.net/trochiluses/article/details/13767669</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Linux ssh免密登陆和调试]]></title>
@@ -140,39 +166,6 @@ BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
 AAAAAAAAAAA tag2 1
 BBBBBBBBBBB tag2 2
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sort多列排序]]></title>
-    <link href="http://cxh.me/2015/01/22/sort-using-multiple-columns/"/>
-    <updated>2015-01-22T13:38:00+08:00</updated>
-    <id>http://cxh.me/2015/01/22/sort-using-multiple-columns</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个需求，希望按照第二列排序，第二列相同的情况下按照第一列排序，数据如下：</p>
-
-<pre><code>b   2   c
-c   2   b
-a   1   b
-</code></pre>
-
-<p>  习惯性的用:</p>
-
-<pre><code>sort -k 2 -k 1 input.txt
-</code></pre>
-
-<p>  输出结果是：</p>
-
-<pre><code>a   1   b
-c   2   b
-b   2   c
-</code></pre>
-
-<p>  可以看到实际上先按照第二列排序，第二列相同按照第三列排序了。问题在于sort -k默认是按照顺序排序到末尾的。如果要打破默认，需要指定从哪个列到哪个列。</p>
-
-<pre><code>sort -k 2，2 -k 1 input.txt
-</code></pre>
-
-<p>  换个角度说，<code>sort -k 1 -k 2</code> 的效果跟 <code>sort -k 1</code> 是一样的。所以最好还是让数据按照排序列生成，这样看起来也最直观。</p>
 ]]></content>
   </entry>
   

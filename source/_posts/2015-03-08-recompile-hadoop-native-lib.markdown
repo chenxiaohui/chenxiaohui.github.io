@@ -15,7 +15,7 @@ categories: "分布式系统"
 1. 安装maven.
 2. 配置好MAVEN_HOME/PATH
 3. 下载 hadoop-2.4.0-src.tar.gz。
-4. 安装protobuf2.5.9。
+4. 安装protobuf2.5.0。
 4. 安装cmake.
 5. 安装openssl-devel
 4. 安装ant
