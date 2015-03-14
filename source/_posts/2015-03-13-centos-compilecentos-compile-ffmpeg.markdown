@@ -14,6 +14,8 @@ categories: "Linux"
 
   剩下lame lame-devel libvpxlame-devel xvidcore xvidcore-devel faac faac-devel opencore-amr opencore-amr-devel faad2 a52dec libfaac 手动安装
 
+<!--more-->
+
   安装libfaac
   
   	wget http://downloads.sourceforge.net/project/faac/faac-src/faac-1.28/faac-1.28.tar.gz

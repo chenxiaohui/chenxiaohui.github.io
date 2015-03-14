@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-14T14:29:31+08:00</updated>
+  <updated>2015-03-14T14:35:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -25,6 +25,9 @@ yum install yasm SDL SDL-devel dirac dirac-devel gsm gsm-devel libvpx libvpx-dev
 </code></pre>
 
 <p>  剩下lame lame-devel libvpxlame-devel xvidcore xvidcore-devel faac faac-devel opencore-amr opencore-amr-devel faad2 a52dec libfaac 手动安装</p>
+
+<!--more-->
+
 
 <p>  安装libfaac</p>
 
