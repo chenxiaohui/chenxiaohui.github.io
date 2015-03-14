@@ -22,7 +22,7 @@ categories: "其他"
 
 4. libav10.5之后没有avserver的安装了，虽然enable-avserver的选项还在，所以不同版本安装的卸载时候会有些残留文件。我的安装选项是：
 
-        --enable-libfaac\ --enable-libfdk-aac\ --enable-libfreetype\ --enable-libmp3lame\ --enable-libopencore-amrnb\ --enable-libopencore-amrwb\ --enable-libopenjpeg\ --enable-libopus\ --enable-librtmp\ --enable-libschroedinger\ --enable-libspeex\ --enable-libtheora\ --enable-libvo-aacenc\ --enable-libvorbis\ --enable-avserver\ --enable-libvpx\ --enable-shared \ --enable-libx264\ --enable-gpl\ --enable-nonfree\ --enable-version3\ --enable-openssl\ --enable-gnutls\ --enable-zlib
+         --enable-libfaac --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-librtmp --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvo-aacenc --enable-libvorbis --enable-avserver --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib
 
 4. Besides, 我发现brew可以列出configure选项，如下：
 

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-08T22:05:06+08:00</updated>
+  <updated>2015-03-14T14:29:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[centos下编译ffmpeg]]></title>
+    <link href="http://cxh.me/2015/03/13/centos-compilecentos-compile-ffmpeg/"/>
+    <updated>2015-03-13T11:27:00+08:00</updated>
+    <id>http://cxh.me/2015/03/13/centos-compilecentos-compile-ffmpeg</id>
+    <content type="html"><![CDATA[<p>  先安装能通过yum直接安装的</p>
+
+<pre><code>yum install autoconf automake gcc gcc-c++ git libtool make nasm pkgconfig wget zlib-devel
+yum install yasm SDL SDL-devel dirac dirac-devel gsm gsm-devel libvpx libvpx-devel gnutls gnutls-devel freetype freetype-devel openjpeg openjpeg-devel opus opus-devel
+</code></pre>
+
+<p>  剩下lame lame-devel libvpxlame-devel xvidcore xvidcore-devel faac faac-devel opencore-amr opencore-amr-devel faad2 a52dec libfaac 手动安装</p>
+
+<p>  安装libfaac</p>
+
+<pre><code>wget http://downloads.sourceforge.net/project/faac/faac-src/faac-1.28/faac-1.28.tar.gz
+  tar xvfz faac-1.28.tar.gz
+  cd faac-1.28/
+  修改源码：
+  ./bootstrap
+  ./configure --prefix=$HOME --enable-shared
+  make
+  make install
+</code></pre>
+
+<p>  安装libfdk_aac</p>
+
+<pre><code>wget http://jaist.dl.sourceforge.net/project/opencore-amr/fdk-aac/fdk-aac-0.1.4.tar.gz
+tar zxvf fdk-aac-0.1.4.tar.gz
+cd fdk-aac-0.1.4
+./autogen.sh
+./configure --prefix=$HOME --enable-shared
+  make
+  make install
+</code></pre>
+
+<p>  安装mp3lame</p>
+
+<pre><code>wget http://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+tar zxvf lame-3.99.5.tar.gz
+cd lame-3.99.5.tar.gz
+./configure --prefix=$HOME --enable-shared
+  make
+  make install  
+</code></pre>
+
+<p>  安装opencore-amr</p>
+
+<pre><code>wget http://jaist.dl.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.3.tar.gz
+tar zxvf opencore-amr-0.1.3.tar.gz
+cd opencore-amr-0.1.3
+./configure --prefix=$HOME --enable-shared
+  make
+  make install  
+</code></pre>
+
+<p>  安装 vo_aacenc</p>
+
+<pre><code>wget http://heanet.dl.sourceforge.net/project/opencore-amr/vo-aacenc/vo-aacenc-0.1.3.tar.gz
+  tar zxvf vo-aacenc-0.1.3.tar.gz
+  cd vo-aacenc-0.1.3
+  ./configure --prefix=$HOME --enable-shared
+  make
+  make install
+</code></pre>
+
+<p>  安装libx264</p>
+
+<pre><code>git clone git://git.videolan.org/x264.git
+cd x264
+  ./configure --prefix=$HOME --enable-shared
+  make 
+  make install
+</code></pre>
+
+<p>  安装ffmpeg</p>
+
+<pre><code>git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg
+cd ffmpeg
+./configure --prefix=$HOME --enable-libfaac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libvo-aacenc --enable-libvorbis --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib --extra-cflags="-I $HOME/include" --extra-ldflags="-L $HOME/lib"
+make 
+make install
+</code></pre>
+
+<p>  安装libav</p>
+
+<pre><code>wget https://libav.org/releases/libav-11.2.tar.gz
+tar zxvf libav-11.2.tar.gz
+cd libav-11.2
+export PKG_CONFIG_PATH=$HOME/lib/pkgconfig
+./configure --prefix=$HOME --enable-libfaac --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-libvo-aacenc --enable-libvorbis --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib --extra-cflags="-I $HOME/include" --extra-ldflags="-L $HOME/lib"
+make 
+make install
+</code></pre>
+
+<p>  安装mplayer，只用来编解码，不需要界面</p>
+
+<pre><code>./configure --prefix=$HOME --disable-gui --codecsdir=DIR
+</code></pre>
+
+<p>  去掉了一些不用的：</p>
+
+<pre><code>--enable-rtmp --enable-libschroedinger   --enable-libspeex --enable-libtheora
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[登录非登录shell和sudo的环境变量]]></title>
@@ -239,7 +346,7 @@
 </code></pre></li>
 <li><p>libav10.5之后没有avserver的安装了，虽然enable-avserver的选项还在，所以不同版本安装的卸载时候会有些残留文件。我的安装选项是：</p>
 
-<pre><code> --enable-libfaac\ --enable-libfdk-aac\ --enable-libfreetype\ --enable-libmp3lame\ --enable-libopencore-amrnb\ --enable-libopencore-amrwb\ --enable-libopenjpeg\ --enable-libopus\ --enable-librtmp\ --enable-libschroedinger\ --enable-libspeex\ --enable-libtheora\ --enable-libvo-aacenc\ --enable-libvorbis\ --enable-avserver\ --enable-libvpx\ --enable-shared \ --enable-libx264\ --enable-gpl\ --enable-nonfree\ --enable-version3\ --enable-openssl\ --enable-gnutls\ --enable-zlib
+<pre><code>  --enable-libfaac --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-librtmp --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvo-aacenc --enable-libvorbis --enable-avserver --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib
 </code></pre></li>
 <li><p>Besides, 我发现brew可以列出configure选项，如下：</p>
 
@@ -844,45 +951,6 @@ int main(int argc, const char *argv[])
   return 0;
 }
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[使用shadow socks翻墙]]></title>
-    <link href="http://cxh.me/2015/01/26/shadow-socks-proxy/"/>
-    <updated>2015-01-26T15:39:00+08:00</updated>
-    <id>http://cxh.me/2015/01/26/shadow-socks-proxy</id>
-    <content type="html"><![CDATA[<p>   拜GFW所赐，连tm boot2docker都连接不上了。而且最近红杏抽风，遂决定买<a href="https://portal.shadowsocks.com/aff.php?aff=483" title="shadow socks">shadowsocks</a>服务翻墙。服务直接在官网购买，90一年，比红杏略便宜一点，主要还是可控性比较大，因为是socks5的代理。</p>
-
-<p>  <a href="https://portal.shadowsocks.com/aff.php?aff=483" title="shadow socks">这里</a>购买服务，一年99，这个优惠码可以再打一点折<code>imouto985</code>。之后进入后台可以看到分配给自己的密码，服务器主要是日本，美国和新加坡的，实测貌似日本的响应更快一点。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/shadow_mac.png"></p>
-
-<p>  mac下下载了客户端直接打开配置好地址就能用，linux下需要自己配置代理。</p>
-
-<p>  首先下载安装node.js</p>
-
-<pre><code>wget http://nodejs.org/dist/v0.10.35/node-v0.10.35.tar.gz
-tar zxvf node-v0.10.35.tar.gz 
-cd node-v0.10.35
-./configure &amp;&amp; make 
-sudo make install
-</code></pre>
-
-<p>  然后安装npm和shadowsocks</p>
-
-<pre><code>sudo apt-get install npm
-sudo apt-get install shadowsocks
-</code></pre>
-
-<p>  apt-get安装的nodejs好像有问题，所以用源码安装。编辑配置文件，默认是<code>/usr/local/lib/node_modules/shadowsocks/config.json</code>，启动之后就可以连上服务器了。</p>
-
-<p>  之后需要配置proxy。以chrome为例，如果之前配置过goagent的话，基本配置一样。不过proxy switch sharp终于升级到了proxy switch omega了。需要注意的是shadowsocks是socks代理，选择的时候不要选择http。gfwlist 可用如下：</p>
-
-<pre><code>https://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt
-</code></pre>
-
-<p>  之后就可以翻墙了。最后说一句：<strong>Fxxk GFW，祝病魔早日战胜方校长，所有参与GFW的人都将钉在历史的耻辱柱上</strong>。</p>
 ]]></content>
   </entry>
   

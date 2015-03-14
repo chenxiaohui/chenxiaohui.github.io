@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-08T22:05:06+08:00</updated>
+  <updated>2015-03-14T14:29:31+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[centos下编译ffmpeg]]></title>
+    <link href="http://cxh.me/2015/03/13/centos-compilecentos-compile-ffmpeg/"/>
+    <updated>2015-03-13T11:27:00+08:00</updated>
+    <id>http://cxh.me/2015/03/13/centos-compilecentos-compile-ffmpeg</id>
+    <content type="html"><![CDATA[<p>  先安装能通过yum直接安装的</p>
+
+<pre><code>yum install autoconf automake gcc gcc-c++ git libtool make nasm pkgconfig wget zlib-devel
+yum install yasm SDL SDL-devel dirac dirac-devel gsm gsm-devel libvpx libvpx-devel gnutls gnutls-devel freetype freetype-devel openjpeg openjpeg-devel opus opus-devel
+</code></pre>
+
+<p>  剩下lame lame-devel libvpxlame-devel xvidcore xvidcore-devel faac faac-devel opencore-amr opencore-amr-devel faad2 a52dec libfaac 手动安装</p>
+
+<p>  安装libfaac</p>
+
+<pre><code>wget http://downloads.sourceforge.net/project/faac/faac-src/faac-1.28/faac-1.28.tar.gz
+  tar xvfz faac-1.28.tar.gz
+  cd faac-1.28/
+  修改源码：
+  ./bootstrap
+  ./configure --prefix=$HOME --enable-shared
+  make
+  make install
+</code></pre>
+
+<p>  安装libfdk_aac</p>
+
+<pre><code>wget http://jaist.dl.sourceforge.net/project/opencore-amr/fdk-aac/fdk-aac-0.1.4.tar.gz
+tar zxvf fdk-aac-0.1.4.tar.gz
+cd fdk-aac-0.1.4
+./autogen.sh
+./configure --prefix=$HOME --enable-shared
+  make
+  make install
+</code></pre>
+
+<p>  安装mp3lame</p>
+
+<pre><code>wget http://jaist.dl.sourceforge.net/project/lame/lame/3.99/lame-3.99.5.tar.gz
+tar zxvf lame-3.99.5.tar.gz
+cd lame-3.99.5.tar.gz
+./configure --prefix=$HOME --enable-shared
+  make
+  make install  
+</code></pre>
+
+<p>  安装opencore-amr</p>
+
+<pre><code>wget http://jaist.dl.sourceforge.net/project/opencore-amr/opencore-amr/opencore-amr-0.1.3.tar.gz
+tar zxvf opencore-amr-0.1.3.tar.gz
+cd opencore-amr-0.1.3
+./configure --prefix=$HOME --enable-shared
+  make
+  make install  
+</code></pre>
+
+<p>  安装 vo_aacenc</p>
+
+<pre><code>wget http://heanet.dl.sourceforge.net/project/opencore-amr/vo-aacenc/vo-aacenc-0.1.3.tar.gz
+  tar zxvf vo-aacenc-0.1.3.tar.gz
+  cd vo-aacenc-0.1.3
+  ./configure --prefix=$HOME --enable-shared
+  make
+  make install
+</code></pre>
+
+<p>  安装libx264</p>
+
+<pre><code>git clone git://git.videolan.org/x264.git
+cd x264
+  ./configure --prefix=$HOME --enable-shared
+  make 
+  make install
+</code></pre>
+
+<p>  安装ffmpeg</p>
+
+<pre><code>git clone git://source.ffmpeg.org/ffmpeg.git ffmpeg
+cd ffmpeg
+./configure --prefix=$HOME --enable-libfaac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libvo-aacenc --enable-libvorbis --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib --extra-cflags="-I $HOME/include" --extra-ldflags="-L $HOME/lib"
+make 
+make install
+</code></pre>
+
+<p>  安装libav</p>
+
+<pre><code>wget https://libav.org/releases/libav-11.2.tar.gz
+tar zxvf libav-11.2.tar.gz
+cd libav-11.2
+export PKG_CONFIG_PATH=$HOME/lib/pkgconfig
+./configure --prefix=$HOME --enable-libfaac --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-libvo-aacenc --enable-libvorbis --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib --extra-cflags="-I $HOME/include" --extra-ldflags="-L $HOME/lib"
+make 
+make install
+</code></pre>
+
+<p>  安装mplayer，只用来编解码，不需要界面</p>
+
+<pre><code>./configure --prefix=$HOME --disable-gui --codecsdir=DIR
+</code></pre>
+
+<p>  去掉了一些不用的：</p>
+
+<pre><code>--enable-rtmp --enable-libschroedinger   --enable-libspeex --enable-libtheora
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[登录非登录shell和sudo的环境变量]]></title>
@@ -108,63 +215,6 @@ $?    Stores the exit value of the last command that was executed.
 $0    Stores the first word of the entered command (the name of the shell program).
 $*    Stores all the arguments that were entered on thecommand line ($1 $2 ...).
 "$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[bash下模拟group by功能]]></title>
-    <link href="http://cxh.me/2015/01/22/simulate-group-by-in-bash/"/>
-    <updated>2015-01-22T15:56:00+08:00</updated>
-    <id>http://cxh.me/2015/01/22/simulate-group-by-in-bash</id>
-    <content type="html"><![CDATA[<p>  遇到这样一个问题：有一堆数据，需要统计相同key下相同的column的重复出现次数，实际上就是数据库里面的group by功能，但是建表导入然后计算未免麻烦，何况数据是临时数据，导入计算完毕之后就不需要了。这里用shell下的一些命令来完成。</p>
-
-<p>  数据格式</p>
-
-<pre><code>user            tag_id  type        time
-AAAAAAAAAAA     tag1    Click       2015:13:37:16
-AAAAAAAAAAA     tag1    Click       2015:13:37:16
-AAAAAAAAAAA     tag2    Click       2015:13:37:16
-BBBBBBBBBBB     tag2    Click       2015:13:37:16
-BBBBBBBBBBB     tag2    Click       2015:13:37:16
-BBBBBBBBBBB     tag2    EXPOSURE    2015:13:37:16
-</code></pre>
-
-<p>  目的：</p>
-
-<pre><code>统计同一个用户下，同一个tag的点击次数：
-</code></pre>
-
-<p>  实现如下：</p>
-
-<ol>
-<li><p> 排序</p>
-
-<p>首先对数据进行排序。这是最基本的，见<a href="http://cxh.me/2015/01/22/sort-using-multiple-columns/" title="Sort多列排序">上篇文章</a>。</p>
-
-<pre><code>sort -k 1 
-</code></pre></li>
-<li><p> 过滤不需要的行和列。</p>
-
-<pre><code>awk '{print $1, $2, $3}' |grep "Click" 
-</code></pre></li>
-<li><p> 这时候出现了一些重复列了，这也就是我们要做group by的数据。</p>
-
-<pre><code>uniq -c | awk {'print $2, $3, $1'} 
-</code></pre></li>
-</ol>
-
-
-<p>  后面awk只是调了一下位置。合并起来就是：</p>
-
-<pre><code>sort -k 1  test.txt|awk '{print $1, $2, $3}' |grep "Click"|uniq -c | awk {'print $2, $3, $1'} 
-</code></pre>
-
-<p>  输出结果：</p>
-
-<pre><code>AAAAAAAAAAA tag1 2
-AAAAAAAAAAA tag2 1
-BBBBBBBBBBB tag2 2
 </code></pre>
 ]]></content>
   </entry>
