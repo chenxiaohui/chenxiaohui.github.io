@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-16T12:15:09+08:00</updated>
+  <updated>2015-03-16T15:35:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -22,7 +22,7 @@
 
 <ol>
 <li>首先./configure &mdash;helps是可以看到所有编译选项的。</li>
-<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build dep xx</code></li>
+<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build-dep xx</code></li>
 <li>zsh下，./configure tab是会提示所有的编译选项的。</li>
 <li><p>Makefile如果没有uninstall选项，更合理的办法似乎是：</p>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-16T12:15:09+08:00</updated>
+  <updated>2015-03-16T15:35:29+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[eclipse目录结构]]></title>
+    <link href="http://cxh.me/2015/03/16/eclipse-project-structure/"/>
+    <updated>2015-03-16T15:32:00+08:00</updated>
+    <id>http://cxh.me/2015/03/16/eclipse-project-structure</id>
+    <content type="html"><![CDATA[<p>  eclipse导入Intellij的maven工程的时候经常会出现如下的情况：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/before_refresh.png"></p>
+
+<p>  目录结构太深了，解决方法也很简单，alt+f5 refresh maven project , 目录结构会被收起：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/after_refresh.png"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于Linux 安装和卸载tar ball形式的程序]]></title>
@@ -22,7 +37,7 @@
 
 <ol>
 <li>首先./configure &mdash;helps是可以看到所有编译选项的。</li>
-<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build dep xx</code></li>
+<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build-dep xx</code></li>
 <li>zsh下，./configure tab是会提示所有的编译选项的。</li>
 <li><p>Makefile如果没有uninstall选项，更合理的办法似乎是：</p>
 
@@ -826,17 +841,6 @@ export https_proxy='http://127.0.0.1:8118'
 true
 Test Value
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[eclipse多命令行窗口]]></title>
-    <link href="http://cxh.me/2015/01/29/eclipse-multi-console/"/>
-    <updated>2015-01-29T20:41:00+08:00</updated>
-    <id>http://cxh.me/2015/01/29/eclipse-multi-console</id>
-    <content type="html"><![CDATA[<p>   有时候需要在eclipse中同时运行客户端程序和服务器程序，开始都是一个在eclipse里面运行，另一个在命令行单独启动，未免不方便。后来发现，其实可以直接在eclipse中运行两次。调试视图会有两个显示，同时新建一个console窗口，关联另一个实例的显示就可以同时监视两个程序的输出了。</p>
-
-<p>   <img class="img-polaroid center" src="http://cxh.me/images/2015/eclipse_instance.png"></p>
 ]]></content>
   </entry>
   
