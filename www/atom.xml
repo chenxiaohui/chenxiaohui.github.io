@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-16T11:53:53+08:00</updated>
+  <updated>2015-03-16T12:15:09+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于Linux 安装和卸载tar ball形式的程序]]></title>
+    <link href="http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball/"/>
+    <updated>2015-03-16T12:11:00+08:00</updated>
+    <id>http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball</id>
+    <content type="html"><![CDATA[<p>  源码安装的一些NOTE:</p>
+
+<ol>
+<li>首先./configure &mdash;helps是可以看到所有编译选项的。</li>
+<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build dep xx</code></li>
+<li>zsh下，./configure tab是会提示所有的编译选项的。</li>
+<li><p>Makefile如果没有uninstall选项，更合理的办法似乎是：</p>
+
+<ol>
+<li><p>先install到一个单独目录：</p>
+
+<p> find . -exec rm 安装目录/{} \;</p></li>
+</ol>
+
+
+<p> 文件夹自然会失败。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Log4cxx安装]]></title>
@@ -811,99 +837,6 @@ Test Value
     <content type="html"><![CDATA[<p>   有时候需要在eclipse中同时运行客户端程序和服务器程序，开始都是一个在eclipse里面运行，另一个在命令行单独启动，未免不方便。后来发现，其实可以直接在eclipse中运行两次。调试视图会有两个显示，同时新建一个console窗口，关联另一个实例的显示就可以同时监视两个程序的输出了。</p>
 
 <p>   <img class="img-polaroid center" src="http://cxh.me/images/2015/eclipse_instance.png"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[协变返回类型]]></title>
-    <link href="http://cxh.me/2015/01/27/convariant-return-type/"/>
-    <updated>2015-01-27T15:48:00+08:00</updated>
-    <id>http://cxh.me/2015/01/27/convariant-return-type</id>
-    <content type="html"><![CDATA[<p>  协变返回类型（Convariant Return Type）是指override的函数，返回值有继承关系（子类函数返回类型是父类返回类型的子类）。例子如下：</p>
-
-<!--more-->
-
-
-<pre><code>class Base
-{
-  public:
-    Base (){}
-    virtual void print(){
-      printf("Base");
-    }
-};
-
-class Derived : public Base
-{
-  public:
-    Derived(){}
-    virtual ~Derived (){}
-    void print(){
-      printf("Derived");
-    }
-};
-
-class TestBase
-{
-  public:
-    TestBase (){}
-    virtual Base* getObject(){
-      return new Base();
-    }
-};
-
-class TestDerived : public TestBase
-{
-  public:
-    TestDerived (){}
-    virtual ~TestDerived (){}
-    Derived* getObject(){
-      printf("invoke here\n");
-      return new Derived;
-    }
-};
-
-int main(int argc, const char *argv[])
-{
-  TestBase * base = new TestDerived();
-  Base* b = base-&gt;getObject();
-  b-&gt;print();
-  return 0;
-}
-
-结果：
-invoke here
-Derived
-</code></pre>
-
-<p>  java同理，只不过验证起来比较容易。直接打印对象就行。</p>
-
-<pre><code>public class BaseClass {
-}
-public class DerivedClass extends BaseClass{
-}
-
-public class TestBase {
-    public BaseClass getObject(){
-        return new BaseClass();
-    }
-}
-
-public class TestDerived extends TestBase{
-    public DerivedClass getObject(){
-        return new DerivedClass();
-    }
-    public static void main(String[] args) {
-        TestBase base = new TestDerived();
-        System.out.println(base.getObject());
-    }
-}
-
-返回值：
-test.server.others.DerivedClass@5d1eb50b
-</code></pre>
-
-<p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-16T11:53:53+08:00</updated>
+  <updated>2015-03-16T12:15:09+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于Linux 安装和卸载tar ball形式的程序]]></title>
+    <link href="http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball/"/>
+    <updated>2015-03-16T12:11:00+08:00</updated>
+    <id>http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball</id>
+    <content type="html"><![CDATA[<p>  源码安装的一些NOTE:</p>
+
+<ol>
+<li>首先./configure &mdash;helps是可以看到所有编译选项的。</li>
+<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build dep xx</code></li>
+<li>zsh下，./configure tab是会提示所有的编译选项的。</li>
+<li><p>Makefile如果没有uninstall选项，更合理的办法似乎是：</p>
+
+<ol>
+<li><p>先install到一个单独目录：</p>
+
+<p> find . -exec rm 安装目录/{} \;</p></li>
+</ol>
+
+
+<p> 文件夹自然会失败。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[centos下编译ffmpeg]]></title>
@@ -197,28 +223,6 @@ make install
 
 
 <p>  OK。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[区分下shell和makefile中的特殊字符]]></title>
-    <link href="http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"/>
-    <updated>2015-02-04T14:51:00+08:00</updated>
-    <id>http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile</id>
-    <content type="html"><![CDATA[<p>  主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：</p>
-
-<pre><code>$@     -is the name of the target currently being processed.
-$&lt;     -is the name of the first dependency.
-</code></pre>
-
-<p>  顺便提下shell下的</p>
-
-<pre><code>$#    Stores the number of command-line arguments that were passed to the shell program.
-$?    Stores the exit value of the last command that was executed.
-$0    Stores the first word of the entered command (the name of the shell program).
-$*    Stores all the arguments that were entered on thecommand line ($1 $2 ...).
-"$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
-</code></pre>
 ]]></content>
   </entry>
   
