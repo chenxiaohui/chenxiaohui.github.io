@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-14T14:35:29+08:00</updated>
+  <updated>2015-03-16T11:53:53+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Log4cxx安装]]></title>
+    <link href="http://cxh.me/2015/03/16/log4cxx-setup/"/>
+    <updated>2015-03-16T11:49:00+08:00</updated>
+    <id>http://cxh.me/2015/03/16/log4cxx-setup</id>
+    <content type="html"><![CDATA[<p>  apache经典的项目，java下有log4j，c++下的实现是log4cxx，安装见<a href="http://www.codelast.com/?p=3211" title="[原创]    log4cxx在Linux下的安装、使用">参考文献</a>.</p>
+
+<p>  主要有个编译问题，大概是C库和C++库的问题，把出错的地方的头文件都补上就行了。</p>
+
+<ol>
+<li>console.cpp ： #include &lt;string.h> #include &lt;stdio.h></li>
+<li>socketoutputstream.cpp : #include &lt;string.h></li>
+<li>inputstreamreader.cpp: #include &lt;string.h></li>
+</ol>
+
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] [原创]  log4cxx在Linux下的安装、使用, <a href="http://www.codelast.com/?p=3211">http://www.codelast.com/?p=3211</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gtest在mac上链接的问题]]></title>
@@ -274,139 +296,6 @@ test.server.others.DerivedClass@5d1eb50b
 </code></pre>
 
 <p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
-    <link href="http://cxh.me/2014/10/29/cpp-virtual-template-function/"/>
-    <updated>2014-10-29T21:05:00+08:00</updated>
-    <id>http://cxh.me/2014/10/29/cpp-virtual-template-function</id>
-    <content type="html"><![CDATA[<p>  自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。</p>
-
-<p>  例子如下：</p>
-
-<!--more-->
-
-
-<pre><code>enum SessionType
-{
-  ROSession,
-  RWSession,
-  RPSession
-};
-class BaseTransCtx
-{
-  public:
-    BaseTransCtx (){}
-    virtual ~BaseTransCtx (){}
-};
-template&lt;typename Type&gt;
-class ISessionCtxFactory
-{
-  public:
-    ISessionCtxFactory(){};
-    ~ISessionCtxFactory() {};
-  public:
-    virtual BaseTransCtx *alloc(const Type type) = 0;
-    virtual void free(BaseTransCtx *ptr) = 0;
-};
-typedef ISessionCtxFactory&lt;SessionType&gt; SessionMgr;
-class TransSessionMgr: public SessionMgr
-{
-  public:
-    TransSessionMgr (){}
-    virtual ~TransSessionMgr (){}
-
-    BaseTransCtx *alloc(const SessionType type)
-    {
-      return NULL;
-    }
-
-    void free(BaseTransCtx *ptr)
-    {
-      if (ptr != NULL)
-      {
-        delete ptr;
-      }
-    }
-};
-int main(int argc, const char *argv[])
-{
-  TransSessionMgr trans;
-  BaseTransCtx* ctx = trans.alloc(RWSession);
-  trans.free(ctx);
-  return 0;
-}
-</code></pre>
-
-<p>  模板类继承虚基类也可以。</p>
-
-<pre><code>template&lt;typename Type&gt;
-class ISessionCtxFactory
-{
-  public:
-    ISessionCtxFactory(){};
-    ~ISessionCtxFactory() {};
-  public:
-    virtual BaseTransCtx *alloc(const Type type) = 0;
-    virtual void free(BaseTransCtx *ptr) = 0;
-};
-template&lt;typename Type&gt;
-class TransSessionMgr: public ISessionCtxFactory&lt;Type&gt;
-{
-  public:
-    TransSessionMgr (){}
-    virtual ~TransSessionMgr (){}
-
-    BaseTransCtx *alloc(const Type type)
-    {
-      return NULL;
-    }
-
-    void free(BaseTransCtx *ptr)
-    {
-      if (ptr != NULL)
-      {
-        delete ptr;
-      }
-    }
-};
-</code></pre>
-
-<p>  但是这样就不行了</p>
-
-<pre><code>class ISessionCtxFactory
-{
-  public:
-    ISessionCtxFactory(){};
-    ~ISessionCtxFactory() {};
-  public:
-    template&lt;typename Type&gt;
-      virtual BaseTransCtx *alloc(const Type type) = 0;
-    virtual void free(BaseTransCtx *ptr) = 0;
-};
-class TransSessionMgr: public ISessionCtxFactory
-{
-  public:
-    TransSessionMgr (){}
-    virtual ~TransSessionMgr (){}
-
-    template&lt;typename Type&gt;
-      BaseTransCtx *alloc(const Type type)
-      {
-        return NULL;
-      }
-
-    void free(BaseTransCtx *ptr)
-    {
-      if (ptr != NULL)
-      {
-        delete ptr;
-      }
-    }
-};
-</code></pre>
 ]]></content>
   </entry>
   

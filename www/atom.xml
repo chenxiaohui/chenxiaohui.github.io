@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-14T14:35:29+08:00</updated>
+  <updated>2015-03-16T11:53:53+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,28 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Log4cxx安装]]></title>
+    <link href="http://cxh.me/2015/03/16/log4cxx-setup/"/>
+    <updated>2015-03-16T11:49:00+08:00</updated>
+    <id>http://cxh.me/2015/03/16/log4cxx-setup</id>
+    <content type="html"><![CDATA[<p>  apache经典的项目，java下有log4j，c++下的实现是log4cxx，安装见<a href="http://www.codelast.com/?p=3211" title="[原创]    log4cxx在Linux下的安装、使用">参考文献</a>.</p>
+
+<p>  主要有个编译问题，大概是C库和C++库的问题，把出错的地方的头文件都补上就行了。</p>
+
+<ol>
+<li>console.cpp ： #include &lt;string.h> #include &lt;stdio.h></li>
+<li>socketoutputstream.cpp : #include &lt;string.h></li>
+<li>inputstreamreader.cpp: #include &lt;string.h></li>
+</ol>
+
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] [原创]  log4cxx在Linux下的安装、使用, <a href="http://www.codelast.com/?p=3211">http://www.codelast.com/?p=3211</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[centos下编译ffmpeg]]></title>
@@ -882,78 +904,6 @@ test.server.others.DerivedClass@5d1eb50b
 </code></pre>
 
 <p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Java和C++继承上的一点不同]]></title>
-    <link href="http://cxh.me/2015/01/27/java-cpp-derive-difference/"/>
-    <updated>2015-01-27T14:51:00+08:00</updated>
-    <id>http://cxh.me/2015/01/27/java-cpp-derive-difference</id>
-    <content type="html"><![CDATA[<p>   之前没注意过这里：</p>
-
-<p>   java继承的时候只会隐藏父类同名同类型的函数。C++直接隐藏了同名的所有函数，如下：</p>
-
-<pre><code>public class BaseClass {
-    public void Print(String str){
-        System.out.println("String" + str);
-    }
-    public void Print(int num){
-        System.out.println(num);
-    }
-}
-public class TestDerived extends BaseClass {
-    public void Print(String str) {
-        System.out.println("String" + str);
-    }
-    public static void main(String[] args) {
-        new TestDerived().Print(121);
-    }
-}
-</code></pre>
-
-<p>  输出结果是121</p>
-
-<p>  而同样的实现C++中直接会找不到父类的函数。</p>
-
-<!--more-->
-
-
-<pre><code>#include &lt;stdio.h&gt;
-class Base
-{
-  public:
-    Base (){}
-    void Print(const char* str);
-    void Print(int num);
-};
-void Base::Print(const char* str)
-{
-  printf(str);
-}
-void Base::Print(int num)
-{
-  printf("%d", num);
-}
-
-class Derived : public Base
-{
-  public:
-    Derived(){}
-    void Print(const char* str);
-};
-void Derived::Print(const char* str)
-{
-  printf("%s", str);
-}
-
-int main(int argc, const char *argv[])
-{
-  Derived d;
-  d.Print(11);
-  return 0;
-}
-</code></pre>
 ]]></content>
   </entry>
   
