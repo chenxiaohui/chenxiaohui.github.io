@@ -194,7 +194,7 @@ task :new_post, :title, :category do |t, args|
     post.puts "categories: \"#{category.gsub(/&/,'&amp;')}\""
     post.puts "---"
   end
-  system "LD_PRELOAD=~/repo/scripts/libsublime-imfix.so nohup ~/share/sublime/sublime_text #{filename} >/dev/null 2>&1 &"
+  system "sublime #{filename}"
 end
 
 # usage rake new_page[my-new-page] or rake new_page[my-new-page.html] or rake new_page (defaults to "new-page.markdown")

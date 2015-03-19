@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-16T15:35:29+08:00</updated>
+  <updated>2015-03-19T17:52:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Python2/Python3中文编码]]></title>
+    <link href="http://cxh.me/2015/03/19/pythonencoding-problem-in-python2-and-python3/"/>
+    <updated>2015-03-19T15:03:00+08:00</updated>
+    <id>http://cxh.me/2015/03/19/pythonencoding-problem-in-python2-and-python3</id>
+    <content type="html"><![CDATA[<p>  python2中需要区分另种不同形式的string，字符串和字节串（严格意义上讲，string就是字符串，字节串是bytes）。默认情况下，直接输入字符串格式为str，编码由文件编码指定，可以理解为ascii存储的某种形式，编码由编码方式决定。而python字符串是unicode内码的字符流，无论采用什么编码，长度都是由字符个数决定的，字符是最基本的操作对象。</p>
+
+<p>  转换上，最终字符&#8221;xx&#8221;的编码由文件编码决定，u&#8221;xx&#8221;统一被转成unicode字符，对于某种编码的bytes，decode或者unicode函数把编码转成字符，对于unicode的字符，encode把字符编码为字节。</p>
+
+<p>  命令行打印上看，字符直接打印的时候，程序会按照sys.defaultencoding编码输出字符，如果打印字节，需要保证编码跟terminal/IDE的默认编码一致。输入的时候应该不存在这个问题，terminal会按照编码sys.defaultencoding把输入转成unicode字符。</p>
+
+<p>  python3中不存在这两种不同的编码形式了。string统一变成了unicode。略浪费。</p>
+
+<p>  详见<a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" title="PYTHON-进阶-编码处理小结">参考文献</a>。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[eclipse目录结构]]></title>
@@ -759,88 +776,6 @@ export https_proxy='http://127.0.0.1:8118'
 <p>[2] 通过搭建代理来共享网络, <a href="http://cxh.me/2015/01/11/linux-proxy-setup/">http://cxh.me/2015/01/11/linux-proxy-setup/</a></p>
 
 <p>[3] 使用Privoxy做智能代理切换, <a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/">http://blog.devtang.com/blog/2012/12/08/use-privoxy/</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Java 中相等的比较]]></title>
-    <link href="http://cxh.me/2015/01/29/java-compare-strategy/"/>
-    <updated>2015-01-29T20:42:00+08:00</updated>
-    <id>http://cxh.me/2015/01/29/java-compare-strategy</id>
-    <content type="html"><![CDATA[<p>  遇到如下一个问题，java中使用复杂类型做Hashkey的时候，构造另一个值相同的对象作为key无法获取map的value。原因其实是java的==判断的依据是两个引用是否指向了同一个对象。实际调用了hashCode函数。内置对象的逻辑相等比较需要使用equals，比如String。而对于非内置对象，equals也同样调用了hashCode来判断相等。</p>
-
-<p>  所以对于需要逻辑相等判断的对象，需要override两个函数，比如如下一个getkey的类定义了如何从Map中根据path和type得到一个唯一的对象：</p>
-
-<p>  class ZkEventKey {</p>
-
-<pre><code>    EventType type = null;
-    String path = null;
-
-    ZkEventKey(EventType type, String path) {
-        super();
-        this.type = type;
-        this.path = path;
-    }
-
-    EventType getType() {
-        return type;
-    }
-
-    String getPath() {
-        return path;
-    }
-
-    @Override
-    public String toString() {
-        return "ZkEventKey [type=" + type + ", path=" + path + "]";
-    }
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj){
-            return true;
-        }else if (obj == null){
-            return false;
-        }
-        if (getClass() != obj.getClass()){
-            return false;
-        }
-        ZkEventKey other = (ZkEventKey)obj;
-        if(type == other.type &amp;&amp; path.equals(other.path)){
-            return true;
-        }
-        return false;
-    }
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + type.hashCode(); 
-        result = prime * result + path.hashCode(); 
-        return result;
-    }
-}
-</code></pre>
-
-<p>  hashCode取31是一个统计的结论，在接近2<sup>x</sup>的质数下，散列冲突最小。没有看到过证明。</p>
-
-<!--more-->
-
-
-<p>  测试如下，value用String代替了。</p>
-
-<pre><code>public void Test(){
-    Map&lt;ZkEventKey, String&gt; map = new ConcurrentHashMap&lt;TestMap.ZkEventKey, String&gt;();
-    ZkEventKey key1 = new ZkEventKey(EventType.NodeChildrenChanged, "/ua_server");
-    ZkEventKey key2 = new ZkEventKey(EventType.NodeChildrenChanged, "/ua_server");
-    map.put(key1, "Test Value");
-    System.out.println(key1.equals(key2));
-    System.out.println(map.get(key2));
-}
-
-结果：
-true
-Test Value
-</code></pre>
 ]]></content>
   </entry>
   
