@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-19T17:52:19+08:00</updated>
+  <updated>2015-03-24T14:12:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于ubuntu gnome下crontab运行的问题]]></title>
+    <link href="http://cxh.me/2015/03/24/ubuntu-gnome-crontab/"/>
+    <updated>2015-03-24T13:54:00+08:00</updated>
+    <id>http://cxh.me/2015/03/24/ubuntu-gnome-crontab</id>
+    <content type="html"><![CDATA[<p>  今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。</p>
+
+<p>  后来发现对图形界面程序来讲，crontab的进程需要指定输出到哪个显示的，也就是</p>
+
+<pre><code>export DISPLAY=:0 #:0指第一个显示终端，ctrl+alt+f7那个
+/usr/bin/notify-send "亲，该去运动了！！一分钟后关机，请保存所有未保存的Job."
+sudo shutdown -h 1
+</code></pre>
+
+<p>  或者直接在crontab -e中指定环境变量：</p>
+
+<pre><code>DISPLAY=:0
+30 20 * * * /home/cxh/repo/scripts/shutdown.sh
+</code></pre>
+
+<p>  可以顺便制定一下其他变量</p>
+
+<pre><code>SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=cxh #如果出现错误，或者有数据输出，数据作为邮件发给这个帐号
+HOME=/home/cxh #使用者运行的路径,这里是根目录
+</code></pre>
+
+<p>  crontab出错的信息会发邮件到对应用户，mail或者cat /var/mail/$USER查看。d *清理。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Python2/Python3中文编码]]></title>
@@ -741,41 +773,6 @@ public:
 <hr />
 
 <p>  今天想去拔智齿。经历了这样的流程：感冒不能拔->周日好的差不多了->早晨没起来->7点半出发去北大口腔第三门诊->被告知外科不现场挂号只能预约->北医三院，屏幕直接显示没号->海淀医院，被告知没号->中关村医院，成功挂号，拔牙医生只有周一到周六在->回，over。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在命令行使用Shadowsocks翻墙]]></title>
-    <link href="http://cxh.me/2015/01/30/use-shadowsocks-in-terminal/"/>
-    <updated>2015-01-30T18:13:00+08:00</updated>
-    <id>http://cxh.me/2015/01/30/use-shadowsocks-in-terminal</id>
-    <content type="html"><![CDATA[<p>  拜GFW所赐，连tm boot2docker都连接不上了。好在有shadowsocks的服务，可以转成http proxy给命令行使用。</p>
-
-<p>  首先安装<a href="http://www.privoxy.org/" title="Privoxy">privoxy</a>。Linux下直接<code>apt-get install proxy</code>，然后编辑配置文件（etc/privoxy/config)：</p>
-
-<pre><code>forward-socks5   /               127.0.0.1:1080 .
-listen-address  localhost:8118
-#local network do not use proxy
-forward         192.168.*.*/     .
-forward            10.*.*.*/     .
-forward           127.*.*.*/     .
-</code></pre>
-
-<p>  基本上上这两项就可以了。之后在shell配置下代理，详见<a href="http://cxh.me/2015/01/11/linux-proxy-setup/" title="通过搭建代理来共享网络">参考文献2</a>：</p>
-
-<pre><code>export http_proxy='http://127.0.0.1:8118'
-export https_proxy='http://127.0.0.1:8118'
-</code></pre>
-
-<p>  最后chkconfig设置下开机启动。Mac下略微麻烦一些。主要是配置开机启动。详见<a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/" title="使用Privoxy做智能代理切换">参考文献3</a>。至于Mac下的Shadowsocks，还是ShadowsocksX比较方便，跟Linux下一样，都是会在1080启动监听。</p>
-
-<h3>Bibliography:</h3>
-
-<blockquote><p>[1] Privoxy, <a href="http://www.privoxy.org/">http://www.privoxy.org/</a></p>
-
-<p>[2] 通过搭建代理来共享网络, <a href="http://cxh.me/2015/01/11/linux-proxy-setup/">http://cxh.me/2015/01/11/linux-proxy-setup/</a></p>
-
-<p>[3] 使用Privoxy做智能代理切换, <a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/">http://blog.devtang.com/blog/2012/12/08/use-privoxy/</a></p></blockquote>
 ]]></content>
   </entry>
   

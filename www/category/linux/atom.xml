@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-19T17:52:19+08:00</updated>
+  <updated>2015-03-24T14:12:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,38 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于ubuntu gnome下crontab运行的问题]]></title>
+    <link href="http://cxh.me/2015/03/24/ubuntu-gnome-crontab/"/>
+    <updated>2015-03-24T13:54:00+08:00</updated>
+    <id>http://cxh.me/2015/03/24/ubuntu-gnome-crontab</id>
+    <content type="html"><![CDATA[<p>  今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。</p>
+
+<p>  后来发现对图形界面程序来讲，crontab的进程需要指定输出到哪个显示的，也就是</p>
+
+<pre><code>export DISPLAY=:0 #:0指第一个显示终端，ctrl+alt+f7那个
+/usr/bin/notify-send "亲，该去运动了！！一分钟后关机，请保存所有未保存的Job."
+sudo shutdown -h 1
+</code></pre>
+
+<p>  或者直接在crontab -e中指定环境变量：</p>
+
+<pre><code>DISPLAY=:0
+30 20 * * * /home/cxh/repo/scripts/shutdown.sh
+</code></pre>
+
+<p>  可以顺便制定一下其他变量</p>
+
+<pre><code>SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=cxh #如果出现错误，或者有数据输出，数据作为邮件发给这个帐号
+HOME=/home/cxh #使用者运行的路径,这里是根目录
+</code></pre>
+
+<p>  crontab出错的信息会发邮件到对应用户，mail或者cat /var/mail/$USER查看。d *清理。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于Linux 安装和卸载tar ball形式的程序]]></title>
@@ -202,27 +234,6 @@ make install
 
 
 <p>   补充一点细节。bash下似乎单行的function必须以分号结尾，我说怎么server登陆总报error end line xxx..</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[sudo的环境变量]]></title>
-    <link href="http://cxh.me/2015/03/03/sudo-env/"/>
-    <updated>2015-03-03T18:34:00+08:00</updated>
-    <id>http://cxh.me/2015/03/03/sudo-env</id>
-    <content type="html"><![CDATA[<p>  sudo的时候不会加载.bashrc什么的，今天就遇到了一个比较扯的问题。在home下安装了高版本的vim，bashrc里面PATH是home高于/bin的，但sudo vi的时候会调用系统的。尝试如下方式：</p>
-
-<ol>
-<li> 修改其他配置如.profile什么的。比较麻烦。</li>
-<li> 修改sudoers里面env_keep，发现还是不起作用。</li>
-<li><p> 修改sudoers里面secure_path，如下：</p>
-
-<pre><code>Defaults    secure_path = /root/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
-</code></pre></li>
-</ol>
-
-
-<p>  OK。</p>
 ]]></content>
   </entry>
   
