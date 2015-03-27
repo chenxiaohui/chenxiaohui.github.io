@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-27T11:28:34+08:00</updated>
+  <updated>2015-03-27T11:30:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -23,9 +23,9 @@
 <pre><code>  dist-packages instead of site-packages. Third party Python software installed from Debian packages goes into dist-packages, not site-packages. This is to reduce conflict between the system Python, and any from-source Python build you might install manually.
 
   dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 site-packages.这是为了减少，系统自带python 和 你手动安装的python 之间的冲突。
-
-不过我感觉都在site-packages下...
 </code></pre>
+
+<p>  不过我感觉都在site-packages下&hellip;</p>
 
 <p>  删除包：</p>
 
