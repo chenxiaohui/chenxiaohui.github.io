@@ -11,7 +11,7 @@ categories: "Java"
 
   所以对于需要逻辑相等判断的对象，需要override两个函数，比如如下一个getkey的类定义了如何从Map中根据path和type得到一个唯一的对象：
 
-  class ZkEventKey {
+  	class ZkEventKey {
 		EventType type = null;
 		String path = null;
 		

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-24T14:12:16+08:00</updated>
+  <updated>2015-03-27T11:22:39+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[easy_install和pip的注意事项]]></title>
+    <link href="http://cxh.me/2015/03/27/notes-on-easy-install-and-pip/"/>
+    <updated>2015-03-27T11:13:00+08:00</updated>
+    <id>http://cxh.me/2015/03/27/notes-on-easy-install-and-pip</id>
+    <content type="html"><![CDATA[<p>  关于安装目录：</p>
+
+<pre><code>dist-packages instead of site-packages. Third party Python software installed from Debian packages goes into dist-packages, not site-packages. This is to reduce conflict between the system Python, and any from-source Python build you might install manually.
+
+dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 site-packages.这是为了减少，系统自带python 和 你手动安装的python 之间的冲突。
+</code></pre>
+
+<p>  删除包：</p>
+
+<pre><code>pip uninstall packageName
+#自动删除
+easy_install -mxN packageName
+#手动删除
+</code></pre>
+
+<p>  显示安装的包：</p>
+
+<pre><code>pip list
+easy_install只能去安装目录看了。实际上是共享的。
+</code></pre>
+
+<p>  另外需要注意的就是不同的Python版本下会有不同的easy_install和pip，比如easy_install3/pip3等，可以用virtualenv来分离不同的环境。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于ubuntu gnome下crontab运行的问题]]></title>
@@ -514,6 +544,10 @@ sys.path.append("/var/www/html/mysite/")
 </code></pre></li>
 </ol>
 
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Linux下安装Apache并以mod_wsgi方式部署django站点, <a href="http://www.cnblogs.com/fengzheng/p/3619406.html">http://www.cnblogs.com/fengzheng/p/3619406.html</a></p></blockquote>
 ]]></content>
   </entry>
   
@@ -734,45 +768,6 @@ public:
 <blockquote><p>[1] random_shuffle算法小例子, <a href="http://blog.csdn.net/aheroofeast/article/details/3907192">http://blog.csdn.net/aheroofeast/article/details/3907192</a></p>
 
 <p>[2]   &ldquo;Algorithms, <a href="http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY">http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[我的治牙经历]]></title>
-    <link href="http://cxh.me/2015/02/01/experience-of-curing-my-teeth/"/>
-    <updated>2015-02-01T17:02:00+08:00</updated>
-    <id>http://cxh.me/2015/02/01/experience-of-curing-my-teeth</id>
-    <content type="html"><![CDATA[<p>  2015.1.12，生日，去做了第一轮刮治的第一次治疗。痛不欲生啊。</p>
-
-<p>  11月的时候查出来牙周有问题，其实很早就觉得不好了，洗牙之前没去看。洗牙的时候拍了牙片，槽骨吸收的很厉害了。中间又拖了两个月，一个是忙，一个是没挂上号，终于上周去北大口腔挂了号。医生说很严重，侵袭性牙周炎，牙周袋太深，可能还是得手术。</p>
-
-<p>  今天第一次刮治。感慨牙这个东西，不意识到的时候不会觉得他的重要，上周探完牙周袋深度就疼了一个周，这次更是痛不欲生的感觉，打了麻药还是这样。而且奇怪的是手刮并不怎么疼，疼的还是超声洗牙石的部分。唯一的安慰是大夫态度都不错。牙科的大夫mm居多，虽然带着口罩都看不清楚长相&hellip;</p>
-
-<p>  以前还是不重视啊。家庭上也整体不重视。中国还是有很多落后的地方，理念上这么多年都没有更新过来。联想到公务员热和中国父母普遍的求稳定，觉得理念真是落后太多了。至于过年各种嘘寒问暖的亲戚&hellip;哎，你们没有隐私这个观念么&hellip;还好我家人父母不太执着这些事情，就是说说算了&hellip;或者我压根没当真过..</p>
-
-<p>  总的来说。长大了，要慢慢消除家庭的影响。有独立的思考了，就要慢慢消除教育的影响。离开了熟悉的环境，就要慢慢消除文化的影响。保持一个open的心态，不断质疑以前形成的思维定势，才能走出去，走的远。</p>
-
-<hr />
-
-<p>  此贴持续更新，毕竟还有四到五轮的刮治，每轮又要分多次，之后如果做牙周手术，又有得受了。立贴为记录吧。</p>
-
-<p>  今天才注意到北大口腔的字还是老江题的。联想到今天疼爽了的经历，真是excited啊</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/excited.png"></p>
-
-<hr />
-
-<p>  第二次刮治，右上右下。倒是比第一次疼痛减轻多了，不过上次刮治之后都是臼齿吃饭，这下吃饭比较成问题。另外麻药的持久感好强，感觉右半边脸好像不存在一样。</p>
-
-<p>  下周继续。第一轮三次完成。大夫比较辛苦。</p>
-
-<hr />
-
-<p>  第一轮第三次结束，医生说好多了，至少肿退下去了。买了牙缝刷每天饭后刷，还是能刷出一些刷牙刷不到的东西。下次检查年后了，抽空去拔个智齿。</p>
-
-<hr />
-
-<p>  今天想去拔智齿。经历了这样的流程：感冒不能拔->周日好的差不多了->早晨没起来->7点半出发去北大口腔第三门诊->被告知外科不现场挂号只能预约->北医三院，屏幕直接显示没号->海淀医院，被告知没号->中关村医院，成功挂号，拔牙医生只有周一到周六在->回，over。</p>
 ]]></content>
   </entry>
   

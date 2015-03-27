@@ -43,3 +43,7 @@ categories: "web相关"
 
 
 [1]: http://www.cnblogs.com/fengzheng/p/3619406.html   "Linux下安装Apache并以mod_wsgi方式部署django站点"
+
+###Bibliography:
+
+>\[1] Linux下安装Apache并以mod_wsgi方式部署django站点, <http://www.cnblogs.com/fengzheng/p/3619406.html>
