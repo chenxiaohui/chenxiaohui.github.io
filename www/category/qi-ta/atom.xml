@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-28T20:07:55+08:00</updated>
+  <updated>2015-03-28T21:18:03+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -118,7 +118,7 @@ export https_proxy='http://127.0.0.1:8118'
 
 <p>  <a href="https://portal.shadowsocks.com/aff.php?aff=483" title="shadow socks">这里</a>购买服务，一年99，这个优惠码可以再打一点折<code>imouto985</code>。之后进入后台可以看到分配给自己的密码，服务器主要是日本，美国和新加坡的，实测貌似日本的响应更快一点。</p>
 
-<p>  <img class="img-polaroid center" src="/images/2015/shadow_mac.png"></p>
+<p>  {% img img-polaroid center /images/2015/shadow_mac.png %}</p>
 
 <p>  mac下下载了客户端直接打开配置好地址就能用，linux下需要自己配置代理。</p>
 

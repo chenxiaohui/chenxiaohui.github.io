@@ -9,11 +9,11 @@ categories: "Python"
    
   关于安装目录：
 
-  dist-packages instead of site-packages. Third party Python software installed from Debian packages goes into dist-packages, not site-packages. This is to reduce conflict between the system Python, and any from-source Python build you might install manually.
+    dist-packages instead of site-packages. Third party Python software installed from Debian packages goes into dist-packages, not site-packages. This is to reduce conflict between the system Python, and any from-source Python build you might install manually.
 
-  dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 site-packages.这是为了减少，系统自带python 和 你手动安装的python 之间的冲突。
+    dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 site-packages.这是为了减少，系统自带python 和 你手动安装的python 之间的冲突。
 
-  不过我感觉都在site-packages下...
+    不过我感觉都在site-packages下...
 
   删除包：
 
