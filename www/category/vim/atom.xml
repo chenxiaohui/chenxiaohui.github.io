@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-28T21:33:47+08:00</updated>
+  <updated>2015-03-28T21:37:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,8 +18,7 @@
     <link href="http://cxh.me/2015/03/28/configure-vim-tags-and-jump/"/>
     <updated>2015-03-28T12:05:00+08:00</updated>
     <id>http://cxh.me/2015/03/28/configure-vim-tags-and-jump</id>
-    <content type="html"><![CDATA[<pre><code>对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
-</code></pre>
+    <content type="html"><![CDATA[<p>  对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。</p>
 
 <p>  首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。</p>
 

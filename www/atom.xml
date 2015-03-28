@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-28T21:33:47+08:00</updated>
+  <updated>2015-03-28T21:37:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -23,7 +23,7 @@
 <ol>
 <li><p>默认支持版本是django 1.6，最新的django1.7不支持。所以最好用virtualenv独立出一个环境来。</p></li>
 <li><p>官方文档的apache不知道是怎样的目录结构，反正我自己安装的apache和yum install的都跟官方的目录结构不太一样。</p></li>
-<li><p>yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见<a href="http://cxh.me/2015/02/27/django-to-apache/" title="Django Mod_wsgi配置的一些问题">文档</a>。</p></li>
+<li><p>yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见<a href="http://cxh.me/2015/02/27/django-to-apache/" title="Django Mod_wsgi配置的一些问题">文档</a>。网上也看到过这个问题[]</p></li>
 <li></li>
 </ol>
 
@@ -35,8 +35,7 @@
     <link href="http://cxh.me/2015/03/28/configure-vim-tags-and-jump/"/>
     <updated>2015-03-28T12:05:00+08:00</updated>
     <id>http://cxh.me/2015/03/28/configure-vim-tags-and-jump</id>
-    <content type="html"><![CDATA[<pre><code>对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
-</code></pre>
+    <content type="html"><![CDATA[<p>  对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。</p>
 
 <p>  首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。</p>
 
