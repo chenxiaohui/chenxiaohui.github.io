@@ -13,17 +13,15 @@ categories: "Python"
 
 2. 官方文档的apache不知道是怎样的目录结构，反正我自己安装的apache和yum install的都跟官方的目录结构不太一样。 
 
-3. yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见[文档][4]。网上也看到过这个问题[]
+3. yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见[文档][4]。网上也看到过[这个问题][5]。
 
-4. 
+4. apache log报错：couldn't perform authentication. AuthType not set!: /。 
+	
+	貌似2.4之后才支持 Require all granted ，直接删掉。
 
-
-
-
-
-
-
-
+5. django报错：ERROR: Invalid HTTP_HOST header: '10.16.10.74'.You may need to add u'10.16.10.74' to ALLOWED_HOSTS. 
+	
+ 	这个问题当然不见得都会遇到，是我安装的时候想随意绑一个域名，然后本地用hosts指过去，再搞搞dns欺骗啥的大家就都可以用这个伪域名了，但是django 非debug模式好像对这个要求很严...详见[这里][6]
 
 
 [1]: https://www.reviewboard.org   "Review Board"
@@ -31,3 +29,4 @@ categories: "Python"
 [3]: https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/ "Installing on Linux"
 [4]: http://cxh.me/2015/02/27/django-to-apache/ "Django Mod_wsgi配置的一些问题"
 [5]: http://m.oschina.net/blog/341289 "mod_wsgi在多个Python版本下配置apache"
+[6]: http://www.zijin5.com/django-1-5-debug-false/ "django 1.5 当DEBUG设置为 False时网页打不开的解决办法"
