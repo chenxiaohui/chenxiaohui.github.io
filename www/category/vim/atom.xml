@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-28T21:20:47+08:00</updated>
+  <updated>2015-03-28T21:25:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -56,7 +56,7 @@ else
     endif
 endif
 
-"{{{ tagbar - taglist replacement
+"{ tagbar - taglist replacement
     nmap &lt;silent&gt;&lt;S-f8&gt; :TagbarToggle&lt;CR&gt;
     if g:system=='win'
         let g:tagbar_ctags_bin = 'ctags.exe'
@@ -69,10 +69,10 @@ endif
     let g:tagbar_sort = 0
     let g:tagbar_compact = 1
     let g:tagbar_autofocus = 1
-"}}}
+"}
 </code></pre>
 
-<p>  {% img img-polaroid center /images/2015/tagbar.vim &ldquo;tagbar界面&rdquo; &ldquo;tagbar界面&rdquo; %}</p>
+<p>  <img class="img-polaroid center" src="/images/2015/tagbar.vim" title="&ldquo;tagbar界面&rdquo; &ldquo;tagbar界面&rdquo;" ></p>
 
 <p>  现在有了tag显示，我们希望能够自动加载tags，这样打开一个文件的时候就可以直接操作这个文件所在项目的tags了，针对这种情况，需要先定义一个项目的根目录，这就需要用到base_dir_mark（只是一个变量..名字你随便），我们对一个项目生成且只生成一次tags(和cscope.out)，放在这个目录下。我（改进）的插件cscope_maps.vim包含了对base_dir_mark的查找和定义：</p>
 
@@ -115,7 +115,7 @@ endf
 
 <p>  之后就可以配置让每次打开一个文件的时候都自动去项目根目录下找tags(和cscope.out)，把这个目录作为项目根目录了。</p>
 
-<pre><code>" {{{ plugin -ctags 对tag的操作
+<pre><code>"{ plugin -ctags 对tag的操作
 set tags=tags
 augroup TagGroup
     autocmd!
@@ -123,7 +123,7 @@ augroup TagGroup
     autocmd BufEnter * :call AutoLoadCTagsAndCScope()
     "autocmd BufWritePost *.cpp,*.c,*.h :silent! execute "!ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q ."
 augroup END
-"}}}
+"}
 </code></pre>
 
 <p>  注释掉的一行，我们放到shell中实现</p>
@@ -135,7 +135,7 @@ augroup END
 
 <p>  最后是cscope的插件绑定，插件详见这个<a href="https://github.com/chenxiaohui/vim_cscope" title="vim_cscope - a vim plugin to configure vim_cscope">github repo</a>。配置如下：</p>
 
-<pre><code>"{{{ plugin - cscopemaps.vim里面定义了键盘映射
+<pre><code>"{ plugin - cscopemaps.vim里面定义了键盘映射
 let g:base_dir_mark = 'tags'
 map &lt;silent&gt;&lt;F7&gt; :call AutoLoadCTagsAndCScope()&lt;CR&gt;
 map &lt;silent&gt;&lt;C-F7&gt; :call Do_CsTag()&lt;CR&gt;
@@ -156,13 +156,13 @@ nmap &lt;leader&gt;ct :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&l
 
 "查找调用这个函数的地方
 "nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-"}}}
+"}
 </code></pre>
 
 <p>  这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map &lt;m-left> &lt;C-t>。效果如下所示：</p>
 
-<p>  {% img img-polaroid center /images/2015/tags.png &ldquo;自动load tags&rdquo; &ldquo;自动load tags&rdquo; %} <br/>
-  {% img img-polaroid center /images/2015/cscope.png &ldquo;cscope find reference结果&rdquo; &ldquo;cscope find reference结果&rdquo; %}</p>
+<p>  <img class="img-polaroid center" src="/images/2015/tags.png" title="&ldquo;自动load tags&rdquo; &ldquo;自动load tags&rdquo;" > <br/>
+  <img class="img-polaroid center" src="/images/2015/cscope.png" title="&ldquo;cscope find reference结果&rdquo; &ldquo;cscope find reference结果&rdquo;" ></p>
 
 <h3>Bibliography:</h3>
 
@@ -220,7 +220,7 @@ nmap &lt;leader&gt;ct :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&l
 
 <p>gitdiff use vimdiff: see <a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">link</a></p>
 
-<p>{% img /images/2013/git-vimdiff.png %}</p>
+<p><img src="/images/2013/git-vimdiff.png"></p>
 
 <!--more-->
 
@@ -262,20 +262,20 @@ nmap &lt;leader&gt;ct :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&l
 
 <p>  比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊</p>
 
-<p>{% img /images/common/ask.jpg %}</p>
+<p><img src="/images/common/ask.jpg"></p>
 
 <blockquote><p>难道不应该写一部分就post-review的嘛</p></blockquote>
 
 <p>  好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交</p>
 
-<p>{% img /images/common/ask.jpg %}</p>
+<p><img src="/images/common/ask.jpg"></p>
 
 <pre><code>What a fucking job!!!
 </code></pre>
 
 <p>  这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它&hellip;</p>
 
-<p>{% img /images/common/ask.jpg %}</p>
+<p><img src="/images/common/ask.jpg"></p>
 
 <blockquote><p>跑题了&hellip;</p></blockquote>
 

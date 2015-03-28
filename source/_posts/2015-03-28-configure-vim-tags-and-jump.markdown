@@ -42,7 +42,7 @@ categories: "vim"
 	    endif
 	endif
 
-  	"{{{ tagbar - taglist replacement
+  	"{ tagbar - taglist replacement
 		nmap <silent><S-f8> :TagbarToggle<CR>
 		if g:system=='win'
 		    let g:tagbar_ctags_bin = 'ctags.exe'
@@ -55,7 +55,7 @@ categories: "vim"
 		let g:tagbar_sort = 0
 		let g:tagbar_compact = 1
 		let g:tagbar_autofocus = 1
-	"}}}
+	"}
 
   {% img img-polaroid center /images/2015/tagbar.vim "tagbar界面" "tagbar界面" %}
 
@@ -99,7 +99,7 @@ categories: "vim"
 
   之后就可以配置让每次打开一个文件的时候都自动去项目根目录下找tags(和cscope.out)，把这个目录作为项目根目录了。
 
-  	" {{{ plugin -ctags 对tag的操作
+  	"{ plugin -ctags 对tag的操作
 	set tags=tags
 	augroup TagGroup
 	    autocmd!
@@ -107,7 +107,7 @@ categories: "vim"
 	    autocmd BufEnter * :call AutoLoadCTagsAndCScope()
 	    "autocmd BufWritePost *.cpp,*.c,*.h :silent! execute "!ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q ."
 	augroup END
-	"}}}
+	"}
 
   注释掉的一行，我们放到shell中实现
 
@@ -117,7 +117,7 @@ categories: "vim"
 
   最后是cscope的插件绑定，插件详见这个[github repo][3]。配置如下：
 
-	"{{{ plugin - cscopemaps.vim里面定义了键盘映射
+	"{ plugin - cscopemaps.vim里面定义了键盘映射
 	let g:base_dir_mark = 'tags'
 	map <silent><F7> :call AutoLoadCTagsAndCScope()<CR>
 	map <silent><C-F7> :call Do_CsTag()<CR>
@@ -138,7 +138,7 @@ categories: "vim"
 
 	"查找调用这个函数的地方
 	"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-	"}}}
+	"}
   
   这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map <m-left> <C-t>。效果如下所示：
 
