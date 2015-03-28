@@ -7,7 +7,7 @@ published: true
 categories: "vim"
 ---
   
-    对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
+  对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
 
   首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。
 
@@ -57,7 +57,7 @@ categories: "vim"
 		let g:tagbar_autofocus = 1
 	"}
 
-  {% img img-polaroid center /images/2015/tagbar.vim "tagbar界面" "tagbar界面" %}
+  {% img img-polaroid center /images/2015/tagbar.png "tagbar界面" "tagbar界面" %}
 
   现在有了tag显示，我们希望能够自动加载tags，这样打开一个文件的时候就可以直接操作这个文件所在项目的tags了，针对这种情况，需要先定义一个项目的根目录，这就需要用到base_dir_mark（只是一个变量..名字你随便），我们对一个项目生成且只生成一次tags(和cscope.out)，放在这个目录下。我（改进）的插件cscope_maps.vim包含了对base_dir_mark的查找和定义：
 
