@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-29T15:50:27+08:00</updated>
+  <updated>2015-03-30T10:37:47+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ReviewBoard客户端配置和代码review流程]]></title>
+    <link href="http://cxh.me/2015/03/29/revreviewboard-specification/"/>
+    <updated>2015-03-29T20:17:00+08:00</updated>
+    <id>http://cxh.me/2015/03/29/revreviewboard-specification</id>
+    <content type="html"><![CDATA[<h2>Postreview 客户端配置</h2>
+
+<p>  reviewboard是群众喜闻乐见的代码review工具。本文主要涉及客户端配置和review流程，server端配置见<a href="http://cxh.me/2015/03/28/review-board-setup/" title="Reviewboard的安装">文档1</a>。</p>
+
+<p>  首先安装python（必须的），之后安装post-review插件:</p>
+
+<pre><code>pip:
+    pip install --allow-external RBTools --allow-unverified RBTools RBTools
+easy_install：
+    easy_install -U RBTools
+LinuxRPM:
+    sudo yum install RBTools
+直接安装：
+    git clone git://github.com/reviewboard/rbtools.git
+    cd rbtools
+    python setup.py
+</code></pre>
+
+<p>  旧版的post-review有一个post-review的命令，新的只有rbt了，命令格式不太一样。</p>
+
+<pre><code>post - Posts changes to Review Board
+diff - Displays the diff that will be sent to Review Board
+land - Lands a change in a local branch or on a review request
+patch - Patches your tree with a change on a review request
+setup-repo - Sets up RBTools to talk to your repository
+</code></pre>
+
+<p>  首先配置review board，HOME目录下简历.reviewboardrc如下：</p>
+
+<pre><code>REVIEWBOARD_URL = 'http://10.16.10.74/'
+  REPOSITORY = 'adrd-service'
+</code></pre>
+
+<p>  或者在代码目录执行rbt setup-repo，会生成上述文件。REPOSITORY原则上不配置也行。</p>
+
+<h2>PostReview流程。</h2>
+
+<p>　原则上git commit 之后，git push之前要提交post-review，保证代码修改相关人都知悉并ship修改才能提交。基本流程是：</p>
+
+<pre><code>git add xx
+git commit -m "message"
+rbt post
+</code></pre>
+
+<p>  对同一个更改post之后如果要再次修改，可以：</p>
+
+<pre><code>rbt post -r &lt;post_id&gt;
+</code></pre>
+
+<p>  post-id是每个post的url/r/后面的数字。post-review标题原则上按照如下规范：</p>
+
+<pre><code>[repository_name][branch_name][NewFeature|BugFix|Refactor|Log] post-review title
+</code></pre>
+
+<p>  groups/people添加的人员原则上包括：</p>
+
+<pre><code>1. 技术主管[mentor]
+2. 合作者[partner]
+2. 其他需要知悉修改的人[related]
+</code></pre>
+
+<p>  post-review旧版和svn的整合见<a href="http://cxh.me/2013/10/15/svn-vim-integration/" title="Svn Vim 整合方案">文档2</a>。
+  post-review在svn和git同时托管的情况下处理冲突的方法见<a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/" title="Post-review在svn和git共同存在下的冲突问题">文档3</a>。
+  一个post-review的vim插件见<a href="http://cxh.me/2014/06/21/ppost-review-plugin/" title="Post-review插件">文档4</a>。</p>
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Reviewboard的安装, <a href="http://cxh.me/2015/03/28/review-board-setup/">http://cxh.me/2015/03/28/review-board-setup/</a></p>
+
+<p>[2] Svn Vim 整合方案, <a href="http://cxh.me/2013/10/15/svn-vim-integration/">http://cxh.me/2013/10/15/svn-vim-integration/</a></p>
+
+<p>[3] Post-review在svn和git共同存在下的冲突问题, <a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/">http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/</a></p>
+
+<p>[4] Post-review插件, <a href="http://cxh.me/2014/06/21/ppost-review-plugin/">http://cxh.me/2014/06/21/ppost-review-plugin/</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[测试下CloudSight的图像识别]]></title>
@@ -145,53 +227,6 @@ sudo apt-get install shadowsocks
 </code></pre>
 
 <p>  之后就可以翻墙了。最后说一句：<strong>Fxxk GFW，祝病魔早日战胜方校长，所有参与GFW的人都将钉在历史的耻辱柱上</strong>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[git中删除已经缓存的文件]]></title>
-    <link href="http://cxh.me/2015/01/04/del-cached-files-in-git/"/>
-    <updated>2015-01-04T16:49:00+08:00</updated>
-    <id>http://cxh.me/2015/01/04/del-cached-files-in-git</id>
-    <content type="html"><![CDATA[<p>  经常遇到一种情况，开始项目的时候没加.gitignore文件，提交之后发现有大量的pyc文件残留，这样两地共同修改的时候pyc文件会造成大量的冲突。针对这种情况，可以如下解决：</p>
-
-<ol>
-<li><p> 建立.gitignore文件并写入：</p>
-
-<pre><code>.pyc
-.swp
-</code></pre></li>
-<li><p> 删除所有缓存中的数据：</p>
-
-<pre><code>find . -name '*.pyc' -o -name '*.swp' &gt; /tmp/files
-while read line; do
-    git rm --cached $line
-done &lt; /tmp/files
-</code></pre></li>
-<li><p> 在冲突的一端回滚所有pyc冲突：</p>
-
-<pre><code>find . -name '*.pyc' -o -name '*.swp' &gt; /tmp/files
-while read line; do
-    git checkout -f  $line
-done &lt; /tmp/files
-</code></pre></li>
-<li><p> 冲突的一端更新修改：</p>
-
-<pre><code>git pull origin
-</code></pre></li>
-</ol>
-
-
-<p>  补充：</p>
-
-<p>  蛋疼了&hellip;直接这样就行了</p>
-
-<pre><code>git rm --cached `find . -name '*.pyc' -o -name '*.swp'`
-
-或者 find . -name '*.pyc' -o -name '*.swp' -exec git rm --cached {} \; 
-</code></pre>
-
-<p>  忘了这些命令都接受多个参数&hellip;.</p>
 ]]></content>
   </entry>
   

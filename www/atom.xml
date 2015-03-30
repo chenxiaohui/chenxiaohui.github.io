@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-29T15:50:27+08:00</updated>
+  <updated>2015-03-30T10:37:47+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ReviewBoard客户端配置和代码review流程]]></title>
+    <link href="http://cxh.me/2015/03/29/revreviewboard-specification/"/>
+    <updated>2015-03-29T20:17:00+08:00</updated>
+    <id>http://cxh.me/2015/03/29/revreviewboard-specification</id>
+    <content type="html"><![CDATA[<h2>Postreview 客户端配置</h2>
+
+<p>  reviewboard是群众喜闻乐见的代码review工具。本文主要涉及客户端配置和review流程，server端配置见<a href="http://cxh.me/2015/03/28/review-board-setup/" title="Reviewboard的安装">文档1</a>。</p>
+
+<p>  首先安装python（必须的），之后安装post-review插件:</p>
+
+<pre><code>pip:
+    pip install --allow-external RBTools --allow-unverified RBTools RBTools
+easy_install：
+    easy_install -U RBTools
+LinuxRPM:
+    sudo yum install RBTools
+直接安装：
+    git clone git://github.com/reviewboard/rbtools.git
+    cd rbtools
+    python setup.py
+</code></pre>
+
+<p>  旧版的post-review有一个post-review的命令，新的只有rbt了，命令格式不太一样。</p>
+
+<pre><code>post - Posts changes to Review Board
+diff - Displays the diff that will be sent to Review Board
+land - Lands a change in a local branch or on a review request
+patch - Patches your tree with a change on a review request
+setup-repo - Sets up RBTools to talk to your repository
+</code></pre>
+
+<p>  首先配置review board，HOME目录下简历.reviewboardrc如下：</p>
+
+<pre><code>REVIEWBOARD_URL = 'http://10.16.10.74/'
+  REPOSITORY = 'adrd-service'
+</code></pre>
+
+<p>  或者在代码目录执行rbt setup-repo，会生成上述文件。REPOSITORY原则上不配置也行。</p>
+
+<h2>PostReview流程。</h2>
+
+<p>　原则上git commit 之后，git push之前要提交post-review，保证代码修改相关人都知悉并ship修改才能提交。基本流程是：</p>
+
+<pre><code>git add xx
+git commit -m "message"
+rbt post
+</code></pre>
+
+<p>  对同一个更改post之后如果要再次修改，可以：</p>
+
+<pre><code>rbt post -r &lt;post_id&gt;
+</code></pre>
+
+<p>  post-id是每个post的url/r/后面的数字。post-review标题原则上按照如下规范：</p>
+
+<pre><code>[repository_name][branch_name][NewFeature|BugFix|Refactor|Log] post-review title
+</code></pre>
+
+<p>  groups/people添加的人员原则上包括：</p>
+
+<pre><code>1. 技术主管[mentor]
+2. 合作者[partner]
+2. 其他需要知悉修改的人[related]
+</code></pre>
+
+<p>  post-review旧版和svn的整合见<a href="http://cxh.me/2013/10/15/svn-vim-integration/" title="Svn Vim 整合方案">文档2</a>。
+  post-review在svn和git同时托管的情况下处理冲突的方法见<a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/" title="Post-review在svn和git共同存在下的冲突问题">文档3</a>。
+  一个post-review的vim插件见<a href="http://cxh.me/2014/06/21/ppost-review-plugin/" title="Post-review插件">文档4</a>。</p>
+
+<h3>Bibliography:</h3>
+
+<blockquote><p>[1] Reviewboard的安装, <a href="http://cxh.me/2015/03/28/review-board-setup/">http://cxh.me/2015/03/28/review-board-setup/</a></p>
+
+<p>[2] Svn Vim 整合方案, <a href="http://cxh.me/2013/10/15/svn-vim-integration/">http://cxh.me/2013/10/15/svn-vim-integration/</a></p>
+
+<p>[3] Post-review在svn和git共同存在下的冲突问题, <a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/">http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/</a></p>
+
+<p>[4] Post-review插件, <a href="http://cxh.me/2014/06/21/ppost-review-plugin/">http://cxh.me/2014/06/21/ppost-review-plugin/</a></p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[reviewboard的安装]]></title>
@@ -37,6 +119,13 @@
 <li><p>rb-site install，建议直接放到var下，reviewboard的结构跟apache的默认/var/www下类似的。</p></li>
 </ol>
 </li>
+</ol>
+
+
+<!--more-->
+
+
+<ol>
 <li><p>yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见<a href="http://cxh.me/2015/02/27/django-to-apache/" title="Django Mod_wsgi配置的一些问题">文档</a>。网上也看到过<a href="http://m.oschina.net/blog/341289" title="mod_wsgi在多个Python版本下配置apache">这个问题</a>。</p></li>
 <li><p>apache log报错：couldn&rsquo;t perform authentication. AuthType not set!: /。</p>
 
@@ -836,68 +925,6 @@ $0    Stores the first word of the entered command (the name of the shell progra
 $*    Stores all the arguments that were entered on thecommand line ($1 $2 ...).
 "$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[gcc命令行参数总结]]></title>
-    <link href="http://cxh.me/2015/02/04/gc-gcc-parameters-summary/"/>
-    <updated>2015-02-04T11:36:00+08:00</updated>
-    <id>http://cxh.me/2015/02/04/gc-gcc-parameters-summary</id>
-    <content type="html"><![CDATA[<p>   总结一下混乱的GCC命令行参数，帮助写Makefile:</p>
-
-<ol>
-<li><p>编译阶段</p>
-
-<ol>
-<li>预编译E->生成汇编S(ccl)&ndash;>生成机器码c(as)&ndash;>链接生成目标程序(ld)</li>
-</ol>
-</li>
-<li><p>输出类型：</p>
-
-<ol>
-<li>-E 只执行到预编译</li>
-<li>-S 只执行到汇编阶段。生成汇编代码。</li>
-<li>-c 只执行到编译。输出目标文件。</li>
-<li>空。生成链接目标代码。</li>
-<li>-o 指定输出文件名。</li>
-</ol>
-</li>
-<li><p>输入类型：</p>
-
-<ol>
-<li><p>每个阶段可以接受之前阶段的中间结果（可跨越）。比如：</p>
-
-<pre><code> gcc -E hello.c -o hello.i
- gcc -S hello.i -o hello.s
- 顺序可以换：
- gcc -c -o hello.o hello.c
-</code></pre></li>
-</ol>
-</li>
-<li><p>优化调试相关</p>
-
-<ol>
-<li>-g 生成调试信息</li>
-<li>-s 去掉调试和符号信息</li>
-<li>-O[1|2|3..] 编译优化</li>
-<li>-W[all] 开启额外警告</li>
-</ol>
-</li>
-<li><p>链接相关：</p>
-
-<ol>
-<li>-l, 指定所使用到的函数库</li>
-<li>-L, 指定函数库所在的文件夹。</li>
-<li>-I, 指定头文件所在的文件夹</li>
-</ol>
-</li>
-</ol>
-
-
-<h3>Bibliography:</h3>
-
-<blockquote><p>[1] Linux平台gcc和动态共享库的基础知识, <a href="http://robbinfan.com/blog/9/gcc-linker-basic-usage">http://robbinfan.com/blog/9/gcc-linker-basic-usage</a></p></blockquote>
 ]]></content>
   </entry>
   

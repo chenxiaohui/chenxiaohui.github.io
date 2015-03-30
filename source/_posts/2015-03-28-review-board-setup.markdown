@@ -28,6 +28,8 @@ categories: "Python"
 
 	5. rb-site install，建议直接放到var下，reviewboard的结构跟apache的默认/var/www下类似的。
 
+<!--more-->
+
 3. yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见[文档][4]。网上也看到过[这个问题][5]。
 
 4. apache log报错：couldn't perform authentication. AuthType not set!: /。 
