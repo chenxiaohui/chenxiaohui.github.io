@@ -40,6 +40,15 @@ categories: "Python"
 	
  	这个问题当然不见得都会遇到，是我安装的时候想随意绑一个域名，然后本地用hosts指过去，再搞搞dns欺骗啥的大家就都可以用这个伪域名了，但是django非debug模式好像对这个要求很严...直接用ip就好。详见[这里][6]
 
+6. the executable "git" is not in the path.
+	
+	apache没有环境变量。参见[文献8].
+
+7. ServerLog：SMTPException: SMTP AUTH extension not supported by server. 
+	
+	详见另一篇[文章][9]。
+
+
 
 [1]: https://www.reviewboard.org   "Review Board"
 [2]: https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/ "Creating a Review Board Site"
@@ -48,6 +57,8 @@ categories: "Python"
 [5]: http://m.oschina.net/blog/341289 "mod_wsgi在多个Python版本下配置apache"
 [6]: http://www.zijin5.com/django-1-5-debug-false/ "django 1.5 当DEBUG设置为 False时网页打不开的解决办法"
 [7]: https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/ "How to use Django with Apache and mod_wsgi" 
+[8]: http://serverfault.com/questions/151328/setting-apache2-path-environment-variable "Setting Apache2 PATH environment variable"
+[9]: 
 
 ###Bibliography:
 
@@ -64,3 +75,5 @@ categories: "Python"
 >\[6] django 1.5 当DEBUG设置为 False时网页打不开的解决办法, <http://www.zijin5.com/django-1-5-debug-false/>
 
 >\[7] How to use Django with Apache and mod_wsgi" , <https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/>
+
+>\[8] Setting Apache2 PATH environment variable, <http://serverfault.com/questions/151328/setting-apache2-path-environment-variable>

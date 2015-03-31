@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-30T10:41:27+08:00</updated>
+  <updated>2015-03-31T15:50:52+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ps grep不显示grep自己本身的方法]]></title>
+    <link href="http://cxh.me/2015/03/31/ps-do-not-grep-self/"/>
+    <updated>2015-03-31T15:45:00+08:00</updated>
+    <id>http://cxh.me/2015/03/31/ps-do-not-grep-self</id>
+    <content type="html"><![CDATA[<p>  主要两种方式：</p>
+
+<ol>
+<li><p>不grep自己。</p>
+
+<pre><code> -v, --invert-match
+     Invert the sense of matching, to select non-matching lines.
+ 所以：
+     ps xuf|grep python|grep -v grep
+</code></pre></li>
+<li><p>awk 略去最后一行。</p>
+
+<pre><code> ps xuf|grep python|awk 'NR&gt;1{print p}{p=$2}'
+</code></pre>
+
+<p> 解释下：第一行的时候，NR=1不打印，但是把pid存在p中，下一行打印，最后一行的时候，打印的是上一行的pid。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ReviewBoard客户端配置和代码review流程]]></title>
@@ -133,6 +159,12 @@ rbt post
 <li><p>django报错：ERROR: Invalid HTTP_HOST header: &lsquo;10.16.10.74&rsquo;.You may need to add u&#8217;10.16.10.74&#8217; to ALLOWED_HOSTS.</p>
 
 <p> 这个问题当然不见得都会遇到，是我安装的时候想随意绑一个域名，然后本地用hosts指过去，再搞搞dns欺骗啥的大家就都可以用这个伪域名了，但是django非debug模式好像对这个要求很严&hellip;直接用ip就好。详见<a href="http://www.zijin5.com/django-1-5-debug-false/" title="django 1.5 当DEBUG设置为 False时网页打不开的解决办法">这里</a></p></li>
+<li><p>the executable &ldquo;git&rdquo; is not in the path.</p>
+
+<p> apache没有环境变量。参见[文献8].</p></li>
+<li><p>ServerLog：SMTPException: SMTP AUTH extension not supported by server.</p>
+
+<p> 详见另一篇<a href="">文章</a>。</p></li>
 </ol>
 
 
@@ -150,7 +182,9 @@ rbt post
 
 <p>[6] django 1.5 当DEBUG设置为 False时网页打不开的解决办法, <a href="http://www.zijin5.com/django-1-5-debug-false/">http://www.zijin5.com/django-1-5-debug-false/</a></p>
 
-<p>[7] How to use Django with Apache and mod_wsgi&#8221; , <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/">https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/</a></p></blockquote>
+<p>[7] How to use Django with Apache and mod_wsgi&#8221; , <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/">https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/</a></p>
+
+<p>[8] Setting Apache2 PATH environment variable, <a href="http://serverfault.com/questions/151328/setting-apache2-path-environment-variable">http://serverfault.com/questions/151328/setting-apache2-path-environment-variable</a></p></blockquote>
 ]]></content>
   </entry>
   
@@ -903,28 +937,6 @@ c++ -g -Wall -Wextra -pthread  -isystem -isystem $GTEST_DIR/include/include -c -
 </code></pre>
 
 <p>  用这里的gtest_main.a做libgtest_main.a就行了。不理解为什么在mac上单独打包一个gtest_main.o为什么不行。论坛貌似有人贴了一个patch，不看了，回家，碎觉。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[区分下shell和makefile中的特殊字符]]></title>
-    <link href="http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"/>
-    <updated>2015-02-04T14:51:00+08:00</updated>
-    <id>http://cxh.me/2015/02/04/distinguish-special-symbol-in-shell-and-makefile</id>
-    <content type="html"><![CDATA[<p>  主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：</p>
-
-<pre><code>$@     -is the name of the target currently being processed.
-$&lt;     -is the name of the first dependency.
-</code></pre>
-
-<p>  顺便提下shell下的</p>
-
-<pre><code>$#    Stores the number of command-line arguments that were passed to the shell program.
-$?    Stores the exit value of the last command that was executed.
-$0    Stores the first word of the entered command (the name of the shell program).
-$*    Stores all the arguments that were entered on thecommand line ($1 $2 ...).
-"$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
-</code></pre>
 ]]></content>
   </entry>
   
