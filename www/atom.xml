@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-03-31T15:50:52+08:00</updated>
+  <updated>2015-04-01T21:47:17+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于sendmail邮件服务器的搭建]]></title>
+    <link href="http://cxh.me/2015/04/01/something-about-sendmail-setup/"/>
+    <updated>2015-04-01T20:14:00+08:00</updated>
+    <id>http://cxh.me/2015/04/01/something-about-sendmail-setup</id>
+    <content type="html"><![CDATA[<p>  还是reviewboard的事情，我们需要一个自己的邮件服务器来发通知邮件。sendmail是一个比较好的选择，搭建的方式很简单，安装sendmail，修改配置文件，修改local_host_name就行。如果不需要登陆验证，这样也就直接能用了。现在的问题是reviewboard是必须登陆验证的。至少看报错上是这样。</p>
+
+<pre><code>SMTPException: SMTP AUTH extension not supported by server. reviewboard
+</code></pre>
+
+<p>  具体代码没细看，但是应该默认都有认证，只是认证方式不一样。我们telnet到25端口，执行</p>
+
+<pre><code>ehlo localhost
+</code></pre>
+
+<p>  发现250 AUTH没有支持</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ps grep不显示grep自己本身的方法]]></title>
@@ -33,7 +52,9 @@
 <pre><code> ps xuf|grep python|awk 'NR&gt;1{print p}{p=$2}'
 </code></pre>
 
-<p> 解释下：第一行的时候，NR=1不打印，但是把pid存在p中，下一行打印，最后一行的时候，打印的是上一行的pid。</p></li>
+<p> 解释下：第一行的时候，NR=1不打印，但是把pid存在p中，下一行打印，最后一行的时候，打印的是上一行的pid。</p>
+
+<p> awk博大精深&hellip;</p></li>
 </ol>
 
 ]]></content>
@@ -159,12 +180,19 @@ rbt post
 <li><p>django报错：ERROR: Invalid HTTP_HOST header: &lsquo;10.16.10.74&rsquo;.You may need to add u&#8217;10.16.10.74&#8217; to ALLOWED_HOSTS.</p>
 
 <p> 这个问题当然不见得都会遇到，是我安装的时候想随意绑一个域名，然后本地用hosts指过去，再搞搞dns欺骗啥的大家就都可以用这个伪域名了，但是django非debug模式好像对这个要求很严&hellip;直接用ip就好。详见<a href="http://www.zijin5.com/django-1-5-debug-false/" title="django 1.5 当DEBUG设置为 False时网页打不开的解决办法">这里</a></p></li>
-<li><p>the executable &ldquo;git&rdquo; is not in the path.</p>
+<li><p>the executable &ldquo;git&rdquo; is not in the path. 修改/etc/sysconfig/httpd加入环境变量/</p>
 
 <p> apache没有环境变量。参见[文献8].</p></li>
 <li><p>ServerLog：SMTPException: SMTP AUTH extension not supported by server.</p>
 
-<p> 详见另一篇<a href="">文章</a>。</p></li>
+<p> 详见另一篇<a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ" title="Error uploading new diff: fatal: Not a git repository: 'None'">文章</a>。</p></li>
+<li><p>开始搭建的时候post上去总是报错：Got API Error 224 (HTTP code 400): The specified diff file could not be parsed 。</p>
+
+<p> 开始怀疑是git权限，重新申请了git账号，用reviewboard自己生成的私钥公钥，结果一样。而且有的repo是正常的，后来想到可以手动diff，发现diff里面有修改的时候会报错，新增文件不会。网上搜到这个<a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ" title="Error uploading new diff: fatal: Not a git repository: 'None'">讨论</a>，发现git（至少我安装的版本）不支持对某个commit下某个文件的访问，而reviewboard的逻辑实际上是先根据diff文件提取base revision，然后打上patch来显示两边的diff，这样就需要根据revisionid和filename来随机访问文件。查阅<a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/" title="Repositories">文档10</a> 发现gitweb协议支持，按照gitweb和公司github的格式，填写Raw file URL mask，就可以正常访问了。格式大概是：</p>
+
+<p> git地址：git@github.xxx.com:username/xxx.git</p>
+
+<p> gitweb地址：<a href="http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=">http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=</a><filename>;h=<revision></p></li>
 </ol>
 
 
@@ -184,7 +212,11 @@ rbt post
 
 <p>[7] How to use Django with Apache and mod_wsgi&#8221; , <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/">https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/</a></p>
 
-<p>[8] Setting Apache2 PATH environment variable, <a href="http://serverfault.com/questions/151328/setting-apache2-path-environment-variable">http://serverfault.com/questions/151328/setting-apache2-path-environment-variable</a></p></blockquote>
+<p>[8] Setting Apache2 PATH environment variable, <a href="http://serverfault.com/questions/151328/setting-apache2-path-environment-variable">http://serverfault.com/questions/151328/setting-apache2-path-environment-variable</a></p>
+
+<p>[9] Error uploading new diff: fatal: Not a git repository: &lsquo;None&rsquo;, <a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ">https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ</a></p>
+
+<p>[10] Repositories, <a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/">https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/</a></p></blockquote>
 ]]></content>
   </entry>
   
@@ -911,32 +943,6 @@ Compiled using: APR 1.2.7, APR-Util 1.2.7
 <h3>Bibliography:</h3>
 
 <blockquote><p>[1] Linux下安装Apache并以mod_wsgi方式部署django站点, <a href="http://www.cnblogs.com/fengzheng/p/3619406.html">http://www.cnblogs.com/fengzheng/p/3619406.html</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[gtest在mac上链接的问题]]></title>
-    <link href="http://cxh.me/2015/02/06/gtest-bug-on-mac/"/>
-    <updated>2015-02-06T20:39:00+08:00</updated>
-    <id>http://cxh.me/2015/02/06/gtest-bug-on-mac</id>
-    <content type="html"><![CDATA[<p>  gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：</p>
-
-<pre><code>g++  -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest-all.cc
-g++ -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest_main.cc
-
-ar -rv libgtest.a gtest-all.o
-ar -rv libgtest_main.a gtest_main.o
-
-c++ -g -Wall -Wextra -pthread  -isystem $GTEST_DIR/include  -c -o RemoveElement.o RemoveElement.cpp
-c++ -g -Wall -Wextra -pthread  -isystem -isystem $GTEST_DIR/include/include -c -o SameTree.o SameTree.cpp
-</code></pre>
-
-<p>  在mac下这里会报错：architecture x86_64。关键我一直理解gest_main是包含main函数的gtest，gtest-all是不包含的，知道发现官方的makefile执行的时候是这样的</p>
-
-<pre><code>ar rv gtest_main.a gtest-all.o gtest_main.o   
-</code></pre>
-
-<p>  用这里的gtest_main.a做libgtest_main.a就行了。不理解为什么在mac上单独打包一个gtest_main.o为什么不行。论坛貌似有人贴了一个patch，不看了，回家，碎觉。</p>
 ]]></content>
   </entry>
   

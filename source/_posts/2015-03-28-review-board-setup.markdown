@@ -40,13 +40,22 @@ categories: "Python"
 	
  	这个问题当然不见得都会遇到，是我安装的时候想随意绑一个域名，然后本地用hosts指过去，再搞搞dns欺骗啥的大家就都可以用这个伪域名了，但是django非debug模式好像对这个要求很严...直接用ip就好。详见[这里][6]
 
-6. the executable "git" is not in the path.
+6. the executable "git" is not in the path. 修改/etc/sysconfig/httpd加入环境变量/
 	
 	apache没有环境变量。参见[文献8].
 
 7. ServerLog：SMTPException: SMTP AUTH extension not supported by server. 
 	
 	详见另一篇[文章][9]。
+
+8. 开始搭建的时候post上去总是报错：Got API Error 224 (HTTP code 400): The specified diff file could not be parsed 。
+
+	开始怀疑是git权限，重新申请了git账号，用reviewboard自己生成的私钥公钥，结果一样。而且有的repo是正常的，后来想到可以手动diff，发现diff里面有修改的时候会报错，新增文件不会。网上搜到这个[讨论][9]，发现git（至少我安装的版本）不支持对某个commit下某个文件的访问，而reviewboard的逻辑实际上是先根据diff文件提取base revision，然后打上patch来显示两边的diff，这样就需要根据revisionid和filename来随机访问文件。查阅[文档10][10] 发现gitweb协议支持，按照gitweb和公司github的格式，填写Raw file URL mask，就可以正常访问了。格式大概是：
+
+	git地址：git@github.xxx.com:username/xxx.git
+
+	gitweb地址：http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=<filename>;h=<revision>
+
 
 
 
@@ -58,7 +67,8 @@ categories: "Python"
 [6]: http://www.zijin5.com/django-1-5-debug-false/ "django 1.5 当DEBUG设置为 False时网页打不开的解决办法"
 [7]: https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/ "How to use Django with Apache and mod_wsgi" 
 [8]: http://serverfault.com/questions/151328/setting-apache2-path-environment-variable "Setting Apache2 PATH environment variable"
-[9]: 
+[9]: https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ "Error uploading new diff: fatal: Not a git repository: 'None'"
+[10]: https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/ "Repositories"
 
 ###Bibliography:
 
@@ -77,3 +87,7 @@ categories: "Python"
 >\[7] How to use Django with Apache and mod_wsgi" , <https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/>
 
 >\[8] Setting Apache2 PATH environment variable, <http://serverfault.com/questions/151328/setting-apache2-path-environment-variable>
+
+>\[9] Error uploading new diff: fatal: Not a git repository: 'None', <https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ>
+
+>\[10] Repositories, <https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/>
