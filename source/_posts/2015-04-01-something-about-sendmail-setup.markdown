@@ -15,9 +15,50 @@ categories: "Linux"
 
   	ehlo localhost
 
-  发现250 AUTH没有支持
+  发现250 AUTH没有支持。所以需要配置邮件服务器的身份认证。详见[参考文献1][1][参考文献2][2]。最后测试一下用户是否能通过验证和邮件能否正常发送：
 
+ 	/usr/sbin/testsaslauthd -u username -p sohutest
 
+    mail -s "test" xxx@xxx.com <content.txt
 
-[1]: http://ju.outofmemory.cn/entry/12533   "testsaslauthd “authentication failed” 解决办法"
-[2]:
+  如果邮件不能正常发送可以通过如下方式debug：
+
+  	1. 查看/var/log/messages
+  	2. 查看用户mail
+  	3. 通过telnet模拟一下登陆发邮件的过程：
+
+			HELO localhost
+			AUTH LOGIN 
+			aGFycnljaGVu
+			c29odXRlc3Q=
+			MAIL FROM:<test@xxx.com>
+			RCPT TO:<username@xxx.com>
+			DATA
+			To: username@xxx.com
+			From:test@xxx.com
+			Subject:test mail
+			From:test@xxx.com
+			test body
+			.
+			quit
+
+  安装reviewboard的过程还发现一个问题，邮件服务器已经可以正常发邮件了，reviewboard还是失败，看到如下报错：
+	
+	- Error sending e-mail notification with subject 'Review Request 2: [retrieval-ad][master][NewFeature] Readme' on behalf of '"UserName" <xxx@xxx.com>' to '"UserName" <xxx@xxx.com>,xxx@xxx.com'
+	Traceback (most recent call last):
+	  File "/opt/xxx/rb/lib/python2.7/site-packages/ReviewBoard-2.0.15-py2.7.egg/reviewboard/notifications/email.py", line 294, in send_review_mail
+	    message.send()
+	  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/message.py", line 276, in send
+	    return self.get_connection(fail_silently).send_messages([self])
+	  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 87, in send_messages
+	    new_conn_created = self.open()
+	  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 54, in open
+	    self.connection.login(self.username, self.password)
+	  File "/usr/local/lib/python2.7/smtplib.py", line 613, in login
+	    raise SMTPAuthenticationError(code, resp)
+	SMTPAuthenticationError: (535, '5.7.0 authentication failed')
+  
+  跟到如下smtplib.py里面看验证方法，调整了顺序（我这支持AUTH LOGIN PLAIN，没支持PAM)，然后保证用户名密码正确就基本可以使用了。
+
+[1]: http://blog.sina.com.cn/s/blog_6b61ec070101e161.html "CentOS sendmail安装及邮件域名配置"
+[2]: http://ju.outofmemory.cn/entry/12533   "testsaslauthd “authentication failed” 解决办法"

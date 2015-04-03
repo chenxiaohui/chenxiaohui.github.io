@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-01T21:47:17+08:00</updated>
+  <updated>2015-04-03T19:37:58+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -28,7 +28,53 @@
 <pre><code>ehlo localhost
 </code></pre>
 
-<p>  发现250 AUTH没有支持</p>
+<p>  发现250 AUTH没有支持。所以需要配置邮件服务器的身份认证。详见<a href="http://blog.sina.com.cn/s/blog_6b61ec070101e161.html" title="CentOS sendmail安装及邮件域名配置">参考文献1</a><a href="http://ju.outofmemory.cn/entry/12533" title="testsaslauthd “authentication failed” 解决办法">参考文献2</a>。最后测试一下用户是否能通过验证和邮件能否正常发送：</p>
+
+<pre><code>/usr/sbin/testsaslauthd -u username -p sohutest
+
+mail -s "test" xxx@xxx.com &lt;content.txt
+</code></pre>
+
+<p>  如果邮件不能正常发送可以通过如下方式debug：</p>
+
+<pre><code>1. 查看/var/log/messages
+2. 查看用户mail
+3. 通过telnet模拟一下登陆发邮件的过程：
+
+        HELO localhost
+        AUTH LOGIN 
+        aGFycnljaGVu
+        c29odXRlc3Q=
+        MAIL FROM:&lt;test@xxx.com&gt;
+        RCPT TO:&lt;username@xxx.com&gt;
+        DATA
+        To: username@xxx.com
+        From:test@xxx.com
+        Subject:test mail
+        From:test@xxx.com
+        test body
+        .
+        quit
+</code></pre>
+
+<p>  安装reviewboard的过程还发现一个问题，邮件服务器已经可以正常发邮件了，reviewboard还是失败，看到如下报错：</p>
+
+<pre><code>- Error sending e-mail notification with subject 'Review Request 2: [retrieval-ad][master][NewFeature] Readme' on behalf of '"UserName" &lt;xxx@xxx.com&gt;' to '"UserName" &lt;xxx@xxx.com&gt;,xxx@xxx.com'
+Traceback (most recent call last):
+  File "/opt/xxx/rb/lib/python2.7/site-packages/ReviewBoard-2.0.15-py2.7.egg/reviewboard/notifications/email.py", line 294, in send_review_mail
+    message.send()
+  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/message.py", line 276, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 87, in send_messages
+    new_conn_created = self.open()
+  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 54, in open
+    self.connection.login(self.username, self.password)
+  File "/usr/local/lib/python2.7/smtplib.py", line 613, in login
+    raise SMTPAuthenticationError(code, resp)
+SMTPAuthenticationError: (535, '5.7.0 authentication failed')
+</code></pre>
+
+<p>  跟到如下smtplib.py里面看验证方法，调整了顺序（我这支持AUTH LOGIN PLAIN，没支持PAM)，然后保证用户名密码正确就基本可以使用了。</p>
 ]]></content>
   </entry>
   
