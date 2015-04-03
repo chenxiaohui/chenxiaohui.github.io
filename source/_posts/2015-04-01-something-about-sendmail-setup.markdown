@@ -21,6 +21,8 @@ categories: "Linux"
 
     mail -s "test" xxx@xxx.com <content.txt
 
+<!--more-->
+
   如果邮件不能正常发送可以通过如下方式debug：
 
   	1. 查看/var/log/messages

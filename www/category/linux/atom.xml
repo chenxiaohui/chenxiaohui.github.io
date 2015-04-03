@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-03T19:37:58+08:00</updated>
+  <updated>2015-04-03T19:40:06+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -34,6 +34,9 @@
 
 mail -s "test" xxx@xxx.com &lt;content.txt
 </code></pre>
+
+<!--more-->
+
 
 <p>  如果邮件不能正常发送可以通过如下方式debug：</p>
 
