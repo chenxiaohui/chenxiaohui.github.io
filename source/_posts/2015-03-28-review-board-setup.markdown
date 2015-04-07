@@ -52,9 +52,9 @@ categories: "Python"
 
 	开始怀疑是git权限，重新申请了git账号，用reviewboard自己生成的私钥公钥，结果一样。而且有的repo是正常的，后来想到可以手动diff，发现diff里面有修改的时候会报错，新增文件不会。网上搜到这个[讨论][9]，发现git（至少我安装的版本）不支持对某个commit下某个文件的访问，而reviewboard的逻辑实际上是先根据diff文件提取base revision，然后打上patch来显示两边的diff，这样就需要根据revisionid和filename来随机访问文件。查阅[文档10][10] 发现gitweb协议支持，按照gitweb和公司github的格式，填写Raw file URL mask，就可以正常访问了。格式大概是：
 
-	git地址：git@github.xxx.com:username/xxx.git
+		git地址：git@github.xxx.com:username/xxx.git
 
-	gitweb地址：http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=<filename>;h=<revision>
+		gitweb地址：http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=\<filename\>;h=\<revision\>
 
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-03T19:40:06+08:00</updated>
+  <updated>2015-04-07T09:48:53+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -239,9 +239,10 @@ rbt post
 
 <p> 开始怀疑是git权限，重新申请了git账号，用reviewboard自己生成的私钥公钥，结果一样。而且有的repo是正常的，后来想到可以手动diff，发现diff里面有修改的时候会报错，新增文件不会。网上搜到这个<a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ" title="Error uploading new diff: fatal: Not a git repository: 'None'">讨论</a>，发现git（至少我安装的版本）不支持对某个commit下某个文件的访问，而reviewboard的逻辑实际上是先根据diff文件提取base revision，然后打上patch来显示两边的diff，这样就需要根据revisionid和filename来随机访问文件。查阅<a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/" title="Repositories">文档10</a> 发现gitweb协议支持，按照gitweb和公司github的格式，填写Raw file URL mask，就可以正常访问了。格式大概是：</p>
 
-<p> git地址：git@github.xxx.com:username/xxx.git</p>
+<pre><code> git地址：git@github.xxx.com:username/xxx.git
 
-<p> gitweb地址：<a href="http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=">http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=</a><filename>;h=<revision></p></li>
+ gitweb地址：http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=\&lt;filename\&gt;;h=\&lt;revision\&gt;
+</code></pre></li>
 </ol>
 
 
