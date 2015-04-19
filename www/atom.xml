@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-07T09:48:53+08:00</updated>
+  <updated>2015-04-19T22:35:35+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[maven download dependency挂住的问题]]></title>
+    <link href="http://cxh.me/2015/04/19/maven-download-stuck/"/>
+    <updated>2015-04-19T22:08:00+08:00</updated>
+    <id>http://cxh.me/2015/04/19/maven-download-stuck</id>
+    <content type="html"><![CDATA[<p>  今天迁移工程到mac上，准备以后用mac作为主开发工具。迁移maven的时候发现，maven download会停在那里，如下：</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2015/maven_error.jpg"></p>
+
+<p>   解决如下：</p>
+
+<ol>
+<li>怀疑http_proxy问题，去掉系统环境变量。无效</li>
+<li>怀疑shadowsocks问题，关掉，无效。</li>
+<li>maven配置问题，对比了默认配置，没什么错误的地方。</li>
+<li>怀疑服务器问题，换成开源中国的maven源，ok，就是慢点。</li>
+<li>继续等待，几分钟后报错： java.net.SocketException: Malformed reply from SOCKS server，似乎还是代理的问题。</li>
+<li>查阅发现java还有自己的代理配置，见<a href="https://www.java.com/en/download/help/proxy_setup.xml" title="How do I configure proxy settings for Java?">参考文献</a>，去掉代理。貌似还是无效。</li>
+<li>索性重启，搞定。</li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于sendmail邮件服务器的搭建]]></title>
@@ -925,74 +949,6 @@ make install
 
 
 <p>  手动安装的话，可以通过./configure &mdash;help来查看。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[django mod_wsgi配置的一些问题]]></title>
-    <link href="http://cxh.me/2015/02/27/django-to-apache/"/>
-    <updated>2015-02-27T13:39:00+08:00</updated>
-    <id>http://cxh.me/2015/02/27/django-to-apache</id>
-    <content type="html"><![CDATA[<p>  安装apache不说了，用apache做django容器的时候（详见<a href="http://www.cnblogs.com/fengzheng/p/3619406.html" title="Linux下安装Apache并以mod_wsgi方式部署django站点">参考文献1</a>)遇到如下几个问题，记录一下：</p>
-
-<ol>
-<li><p>apxs找不到。centos上直接装的httpd-2.2.3-83.el5_10，默认没有apxs。想源码编译一个apache，结果发现源里面有。</p>
-
-<p> yum install -y httpd-devel</p></li>
-<li><p>/usr/local/lib/libpython2.7.a: could not read symbols: Bad value</p>
-
-<p> 错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
-     ./configure &mdash;prefix=/usr/local/  –enable-shared CFLAGS=-fPIC
-     make
-     make install</p></li>
-<li><p>ImportError: libpython2.7.so.1.0: cannot open shared object file: No such file or directory</p>
-
-<p> 库路径问题，要么配置LD_LIBRARY_PATH，要么修改ld.so.conf然后ldconfig</p></li>
-<li><p>/ not found.</p>
-
-<p> httpd.conf配置：
-     WSGIScriptAlias / /var/www/html/mysite/mysite/django.wsgi
-     <Directory /var/www/html/mysite>
-         Order allow,deny
-         Allow from all
-     </Directory></p></li>
-<li><p>log/errro_log中 No module named mysite.settings。</p>
-
-<p> wsgi配置：
-     import sys
-     sys.path.append(&ldquo;/var/www/html/mysite/&rdquo;)</p></li>
-<li><p> Cannot load /etc/httpd/modules/mod_ldap.rso into server: /etc/httpd/modules/mod_ldap.so: undefined symbol: apr_ldap_ssl_init</p>
-
-<p>大概是说httpd编译的apr版本和系统的版本不一致，查看httpd -V 显示：</p>
-
-<pre><code>Server loaded:  APR 1.4.6, APR-Util 1.5.2
-Compiled using: APR 1.2.7, APR-Util 1.2.7
-</code></pre>
-
-<p>尝试降级apr：</p>
-
-<pre><code>yum downgrade apr-util
-</code></pre>
-
-<p>或者指到别的apr版本上去，修改环境变量：</p>
-
-<pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64 
-</code></pre>
-
-<p>我不知道httpd是否会去加载当前环境变量，所以顺便删了/etc/ld.so.conf里面的两行</p>
-
-<pre><code>/usr/local/apr/lib
-/usr/local/apr-util/lib
-然后ldconfig   
-</code></pre>
-
-<p>让apr走系统的版本。</p></li>
-</ol>
-
-
-<h3>Bibliography:</h3>
-
-<blockquote><p>[1] Linux下安装Apache并以mod_wsgi方式部署django站点, <a href="http://www.cnblogs.com/fengzheng/p/3619406.html">http://www.cnblogs.com/fengzheng/p/3619406.html</a></p></blockquote>
 ]]></content>
   </entry>
   
