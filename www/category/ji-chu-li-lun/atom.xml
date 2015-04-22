@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-19T22:41:22+08:00</updated>
+  <updated>2015-04-22T16:20:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/04/20/partition-algorith-quit-position-analysis/"/>
+    <updated>2015-04-20T21:27:00+08:00</updated>
+    <id>http://cxh.me/2015/04/20/partition-algorith-quit-position-analysis</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用google来验证一下Maclaurin展开式]]></title>
@@ -302,21 +311,6 @@ ec(test.prototype.age);
 <p>[4] 阮一峰，Javascript面向对象编程（二）：构造函数的继承</p>
 
 <p>[5] 阮一峰，Javascript面向对象编程（三）：非构造函数的继承</p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[各种排序算法的图形化演示]]></title>
-    <link href="http://cxh.me/2011/04/08/visualization-of-all-kinds-of-sort-algorithm/"/>
-    <updated>2011-04-08T00:00:00+08:00</updated>
-    <id>http://cxh.me/2011/04/08/visualization-of-all-kinds-of-sort-algorithm</id>
-    <content type="html"><![CDATA[<p>  一个日本哥哥写的各种排序算法的图形化演示，非常不错，推荐一下。</p>
-
-<p>  Your browser does not support iframes.</p>
-
-<p>  (ps:话说那个bogo算法到底在做甚么??)</p>
-
-<p>  还有之前一直很火的一个视频：排序算法的声音，一起欣赏一下吧~~</p>
 ]]></content>
   </entry>
   
