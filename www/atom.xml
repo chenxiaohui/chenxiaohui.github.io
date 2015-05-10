@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-25T11:15:34+08:00</updated>
+  <updated>2015-05-10T16:55:58+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,11 +14,50 @@
 
   
   <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/05/10/mac-multi-screen-shortcut/"/>
+    <updated>2015-05-10T15:50:00+08:00</updated>
+    <id>http://cxh.me/2015/05/10/mac-multi-screen-shortcut</id>
+    <content type="html"><![CDATA[<p>  mac下使用多屏幕的话，经常需要把一个窗口移动到另一个窗口，windows下有快捷键win+shift+左右，linux下貌似可以通过xdotool实现，绑定一个快捷键，xdotool帮助你移动窗口到一个绝对位置。如下：</p>
+
+<pre><code>xdotool getactivewindow windowmove 0 y windowactivate windowfocus
+xdotool getactivewindow windowmove 1280 y windowactivate windowfocus
+</code></pre>
+
+<p>  mac下我们没有找到对应的系统快捷键，虽然可以一定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过<a href="http://manytricks.com/moom/" title="Moom">Moom</a>实现。</p>
+
+<p>  Moom是一个窗口管理工具，安装之后只有一个配置页面，但是你会发现鼠标移动到左上角窗口最适化的按钮上的时候会弹出一个窗口管理的提示框。如下：</p>
+
+<pre><code>&lt;img class="img-polaroid center" src="http://cxh.me/images/2015/moom_toolip.png"&gt;
+</code></pre>
+
+<p>  然后我们配置窗口移动的功能，首先需要一个全局快捷键：</p>
+
+<pre><code>&lt;img class="img-polaroid center" src="http://cxh.me/images/2015/moom_shortcut.png"&gt;
+</code></pre>
+
+<p>  之后可以按下全局快捷键之后上下左右键的功能。有移动窗口，半最大化窗口，缩小放大和移动窗口到一个屏幕。</p>
+
+<pre><code>&lt;img class="img-polaroid center" src="http://cxh.me/images/2015/moom_config.png"&gt;
+</code></pre>
+
+<p>  这样就可以先按下全局快捷键，如下：</p>
+
+<pre><code>&lt;img class="img-polaroid center" src="http://cxh.me/images/2015/moom_press_shortcut.png"&gt;
+</code></pre>
+
+<p>  再通过你定义的快捷键来移动窗口了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Jenkins 安装配置]]></title>
     <link href="http://cxh.me/2015/04/23/jenkins-setup/"/>
     <updated>2015-04-23T13:57:00+08:00</updated>
     <id>http://cxh.me/2015/04/23/jenkins-setup</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>   首先介绍一下Jenkins，如果你熟悉自动化构建的话，那么肯定听说过hudson。Jenkins是hudson的开发者跟Oracle撕bi之后，另立门户的一个hudson分支。当然这么说似乎不太靠谱，目前hudson已经不维护了毕竟，而Jenkins的开发社区还是很活跃的，各种插件层出不穷。总的来说，如果你不是已经习惯了hudson并且有一个能用的副本，都应该迁移到Jenkins。</p>
+
+<p>   下面说一下如何</p>
 ]]></content>
   </entry>
   
@@ -798,40 +837,6 @@ make install
 <h3>Bibliography:</h3>
 
 <blockquote><p>[1]  bash 深入理解：交互式shell和非交互式shell、登录shell和非登录shell的区别, <a href="http://blog.csdn.net/trochiluses/article/details/13767669">http://blog.csdn.net/trochiluses/article/details/13767669</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[编译hadoop native lib]]></title>
-    <link href="http://cxh.me/2015/03/08/recompile-hadoop-native-lib/"/>
-    <updated>2015-03-08T14:59:00+08:00</updated>
-    <id>http://cxh.me/2015/03/08/recompile-hadoop-native-lib</id>
-    <content type="html"><![CDATA[<p>  跑hadoop的时候总遇到这个问题，不影响但是比较烦：</p>
-
-<pre><code>WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform… using builtin-java classes where applicable   
-</code></pre>
-
-<p>  大概原因是说为hadoop native library是32位系统编译的，在64位系统上会有这个提示，需要下载hadoop的源码重新编译。如下：</p>
-
-<ol>
-<li>安装maven.</li>
-<li>配置好MAVEN_HOME/PATH</li>
-<li>下载 hadoop-2.4.0-src.tar.gz。</li>
-<li>安装protobuf2.5.0。</li>
-<li>安装cmake.</li>
-<li>安装openssl-devel</li>
-<li>安装ant</li>
-<li>安装zlib-devel</li>
-<li>mvn package -Pdist,native -DskipTests -Dtar</li>
-<li><p>配置hadoop 环境变量</p>
-
-<pre><code> export HADOOP_COMMON_LIB_NATIVE_DIR="~/hadoop/lib/"
- export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=~/hadoop/lib/"
-</code></pre></li>
-</ol>
-
-
-<p>  遇到一个问题，openjdk好像没有tools.jar，所以需要安装sun的jdk，重新设置JAVA_HOME</p>
 ]]></content>
   </entry>
   

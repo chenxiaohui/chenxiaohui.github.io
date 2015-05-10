@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-04-25T11:15:34+08:00</updated>
+  <updated>2015-05-10T16:55:58+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,11 +14,50 @@
 
   
   <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/05/10/mac-multi-screen-shortcut/"/>
+    <updated>2015-05-10T15:50:00+08:00</updated>
+    <id>http://cxh.me/2015/05/10/mac-multi-screen-shortcut</id>
+    <content type="html"><![CDATA[<p>  mac下使用多屏幕的话，经常需要把一个窗口移动到另一个窗口，windows下有快捷键win+shift+左右，linux下貌似可以通过xdotool实现，绑定一个快捷键，xdotool帮助你移动窗口到一个绝对位置。如下：</p>
+
+<pre><code>xdotool getactivewindow windowmove 0 y windowactivate windowfocus
+xdotool getactivewindow windowmove 1280 y windowactivate windowfocus
+</code></pre>
+
+<p>  mac下我们没有找到对应的系统快捷键，虽然可以一定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过<a href="http://manytricks.com/moom/" title="Moom">Moom</a>实现。</p>
+
+<p>  Moom是一个窗口管理工具，安装之后只有一个配置页面，但是你会发现鼠标移动到左上角窗口最适化的按钮上的时候会弹出一个窗口管理的提示框。如下：</p>
+
+<pre><code><img class="img-polaroid center" src="/images/2015/moom_toolip.png">
+</code></pre>
+
+<p>  然后我们配置窗口移动的功能，首先需要一个全局快捷键：</p>
+
+<pre><code><img class="img-polaroid center" src="/images/2015/moom_shortcut.png">
+</code></pre>
+
+<p>  之后可以按下全局快捷键之后上下左右键的功能。有移动窗口，半最大化窗口，缩小放大和移动窗口到一个屏幕。</p>
+
+<pre><code><img class="img-polaroid center" src="/images/2015/moom_config.png">
+</code></pre>
+
+<p>  这样就可以先按下全局快捷键，如下：</p>
+
+<pre><code><img class="img-polaroid center" src="/images/2015/moom_press_shortcut.png">
+</code></pre>
+
+<p>  再通过你定义的快捷键来移动窗口了。</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Jenkins 安装配置]]></title>
     <link href="http://cxh.me/2015/04/23/jenkins-setup/"/>
     <updated>2015-04-23T13:57:00+08:00</updated>
     <id>http://cxh.me/2015/04/23/jenkins-setup</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>   首先介绍一下Jenkins，如果你熟悉自动化构建的话，那么肯定听说过hudson。Jenkins是hudson的开发者跟Oracle撕bi之后，另立门户的一个hudson分支。当然这么说似乎不太靠谱，目前hudson已经不维护了毕竟，而Jenkins的开发社区还是很活跃的，各种插件层出不穷。总的来说，如果你不是已经习惯了hudson并且有一个能用的副本，都应该迁移到Jenkins。</p>
+
+<p>   下面说一下如何</p>
 ]]></content>
   </entry>
   
@@ -147,41 +186,6 @@ rbt post
 
 
 <p>  让我突然对这个tag算法很感兴趣。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[mac下ffmpeg的编译]]></title>
-    <link href="http://cxh.me/2015/03/01/compile-ffmpeg-under-mac/"/>
-    <updated>2015-03-01T11:08:00+08:00</updated>
-    <id>http://cxh.me/2015/03/01/compile-ffmpeg-under-mac</id>
-    <content type="html"><![CDATA[<p>  基本步骤可以看<a href="http://www.liaoxuefeng.com/article/0013738927837699a7f3407ea5f4b5caf8e1ab47997d7c5000" title="Mac OS X编译ffmpeg">这个</a>，说两个问题：</p>
-
-<ol>
-<li><p>brew的formulae没有celt这个包。忽略了算了。</p></li>
-<li><p>libaacplus安装的时候，</p>
-
-<ol>
-<li>首先这个地址<code>http://217.20.164.161/~tipok/aacplus/libaacplus-2.0.2.tar.gz</code>已经失效了，从网上下载的话，这个版本还是有问题，configure的时候会卡住，一些patch丢失了好像。建议直接fork <a href="https://github.com/Distrotech/libaacplus" title="Distrotech/libaacplus">github上的</a>。</li>
-<li>这个branch也有问题，frontend链接的时候会提示<code>ld: symbol(s) not found for architecture x86_64</code>，直接从Makefile.am里面把frontend去掉算了。</li>
-</ol>
-</li>
-<li><p>可以通过brew直接安装：</p>
-
-<pre><code> brew install ffmpeg --with-fdk-aac --with-ffplay --with-freetype --with-frei0r --with-libass --with-libvo-aacenc --with-libvorbis --with-libvpx --with-opencore-amr --with-openjpeg --with-opus --with-rtmpdump --with-schroedinger --with-speex --with-theora --with-tools
-</code></pre></li>
-<li><p>libav10.5之后没有avserver的安装了，虽然enable-avserver的选项还在，所以不同版本安装的卸载时候会有些残留文件。我的安装选项是：</p>
-
-<pre><code>  --enable-libfaac --enable-libfdk-aac --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-librtmp --enable-libschroedinger --enable-libspeex --enable-libtheora --enable-libvo-aacenc --enable-libvorbis --enable-avserver --enable-libvpx --enable-shared --enable-libx264 --enable-gpl --enable-nonfree --enable-version3 --enable-openssl --enable-gnutls --enable-zlib
-</code></pre></li>
-<li><p>Besides, 我发现brew可以列出configure选项，如下：</p>
-
-<pre><code> brew options xxx
-</code></pre></li>
-</ol>
-
-
-<p>  手动安装的话，可以通过./configure &mdash;help来查看。</p>
 ]]></content>
   </entry>
   
