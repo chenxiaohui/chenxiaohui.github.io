@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-05-10T16:55:58+08:00</updated>
+  <updated>2015-05-10T17:02:44+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
+    <title type="html"><![CDATA[mac下多屏幕移动窗口的快捷键]]></title>
     <link href="http://cxh.me/2015/05/10/mac-multi-screen-shortcut/"/>
     <updated>2015-05-10T15:50:00+08:00</updated>
     <id>http://cxh.me/2015/05/10/mac-multi-screen-shortcut</id>
@@ -24,27 +24,23 @@
 xdotool getactivewindow windowmove 1280 y windowactivate windowfocus
 </code></pre>
 
-<p>  mac下我们没有找到对应的系统快捷键，虽然可以一定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过<a href="http://manytricks.com/moom/" title="Moom">Moom</a>实现。</p>
+<p>  mac下没有找到对应的系统快捷键，虽然可以设定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过<a href="http://manytricks.com/moom/" title="Moom">Moom</a>实现。</p>
 
 <p>  Moom是一个窗口管理工具，安装之后只有一个配置页面，但是你会发现鼠标移动到左上角窗口最适化的按钮上的时候会弹出一个窗口管理的提示框。如下：</p>
 
-<pre><code><img class="img-polaroid center" src="/images/2015/moom_toolip.png">
-</code></pre>
+<p><img class="img-polaroid center" src="/images/2015/moom_tooltip.png"></p>
 
 <p>  然后我们配置窗口移动的功能，首先需要一个全局快捷键：</p>
 
-<pre><code><img class="img-polaroid center" src="/images/2015/moom_shortcut.png">
-</code></pre>
+<p><img class="img-polaroid center" src="/images/2015/moom_shortcut.png"></p>
 
-<p>  之后可以按下全局快捷键之后上下左右键的功能。有移动窗口，半最大化窗口，缩小放大和移动窗口到一个屏幕。</p>
+<p>  之后可以设置按下全局快捷键之后上下左右键的功能。有移动窗口，半最大化窗口，缩小放大和移动窗口到一个屏幕。</p>
 
-<pre><code><img class="img-polaroid center" src="/images/2015/moom_config.png">
-</code></pre>
+<p><img class="img-polaroid center" src="/images/2015/moom_config.png"></p>
 
 <p>  这样就可以先按下全局快捷键，如下：</p>
 
-<pre><code><img class="img-polaroid center" src="/images/2015/moom_press_shortcut.png">
-</code></pre>
+<p><img class="img-polaroid center" src="/images/2015/moom_press_shortcut.png"></p>
 
 <p>  再通过你定义的快捷键来移动窗口了。</p>
 ]]></content>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "mac下多屏幕移动窗口的快捷键"
 date: 2015-05-10 15:50
 comments: true
 published: true
@@ -12,24 +12,23 @@ categories: "其他"
   	xdotool getactivewindow windowmove 0 y windowactivate windowfocus
 	xdotool getactivewindow windowmove 1280 y windowactivate windowfocus
 
-  mac下我们没有找到对应的系统快捷键，虽然可以一定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过[Moom][1]实现。
+  mac下没有找到对应的系统快捷键，虽然可以设定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过[Moom][1]实现。
 
   Moom是一个窗口管理工具，安装之后只有一个配置页面，但是你会发现鼠标移动到左上角窗口最适化的按钮上的时候会弹出一个窗口管理的提示框。如下：
 
-	{% img img-polaroid center /images/2015/moom_toolip.png %}
+{% img img-polaroid center /images/2015/moom_tooltip.png %}
 
   然后我们配置窗口移动的功能，首先需要一个全局快捷键：
 
-  	{% img img-polaroid center /images/2015/moom_shortcut.png %}
+{% img img-polaroid center /images/2015/moom_shortcut.png %}
 
-  之后可以按下全局快捷键之后上下左右键的功能。有移动窗口，半最大化窗口，缩小放大和移动窗口到一个屏幕。
+  之后可以设置按下全局快捷键之后上下左右键的功能。有移动窗口，半最大化窗口，缩小放大和移动窗口到一个屏幕。
 
-  	{% img img-polaroid center /images/2015/moom_config.png %}
+{% img img-polaroid center /images/2015/moom_config.png %}
 
   这样就可以先按下全局快捷键，如下：
 
-  	{% img img-polaroid center /images/2015/moom_press_shortcut.png %}
-
+{% img img-polaroid center /images/2015/moom_press_shortcut.png %}
 
   再通过你定义的快捷键来移动窗口了。
 
