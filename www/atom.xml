@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-05-27T10:59:53+08:00</updated>
+  <updated>2015-06-16T16:30:28+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,112 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[基于zookeeper的配置管理客户端]]></title>
+    <link href="http://cxh.me/2015/06/16/sohu-zk-client-document/"/>
+    <updated>2015-06-16T16:28:00+08:00</updated>
+    <id>http://cxh.me/2015/06/16/sohu-zk-client-document</id>
+    <content type="html"><![CDATA[<p>名词解释：</p>
+
+<p>  SeviceConfig:</p>
+
+<pre><code>一个服务的所有配置存在一个目录下
+</code></pre>
+
+<p>  BucketConfig:</p>
+
+<pre><code> Bucket的配置存在一个单独的子目录中
+</code></pre>
+
+<p>配置项类型：
+  &ndash; Integer
+  &ndash; Long
+  &ndash; Short
+  &ndash; Float
+  &ndash; Double
+  &ndash; Byte[]
+  &ndash; Boolean
+  &ndash; String
+  &ndash; 自定义配置项 ConfigObject</p>
+
+<p>使用说明：</p>
+
+<h3>POM：</h3>
+
+<pre><code>&lt;dependency&gt;
+  &lt;groupId&gt;com.sohu.adrd&lt;/groupId&gt;
+  &lt;artifactId&gt;sohu-zk-client&lt;/artifactId&gt;
+  &lt;version&gt;1.0.1&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h3>初始化</h3>
+
+<p>  ServiceConfig.Instance().init(&ldquo;ConnectString&rdquo;, &ldquo;serviceName&rdquo;);//如果做测试可以用10.16.3.61:2181</p>
+
+<p>  ServiceConfig.Instance().init(&ldquo;serviceName&rdquo;); 默认使用肖永磊的zk地址</p>
+
+<p>配置项使用</p>
+
+<p>  先给默认值</p>
+
+<pre><code>private static long exploitDiscardTimespan = 7 * 86400L;
+</code></pre>
+
+<p>  可以保存个Instance()的引用</p>
+
+<pre><code>private ServiceConfig serviceConfig = ServiceConfig.Instance();
+</code></pre>
+
+<p>  所有引用到的地方，通过如下方式取配置项（这是默认config）：</p>
+
+<p>   serviceConfig.getLong(&ldquo;exploitDiscardTimespan&rdquo;, exploitDiscardTimespan)</p>
+
+<p>  如果是BucketConfig(bucketConfig会在zookeeper上根目录下再增加一个Node，名字是bucket的名字，在此之下存储config)</p>
+
+<p>   serviceConfig.Bucket(&ldquo;bucketName&rdquo;).getLong(&ldquo;exploitDiscardTimespan&rdquo;, exploitDiscardTimespan)</p>
+
+<p>  这样server端更新配置的时候，serviceConfig会根据通知刷新自己的配置缓存，下次使用getLong的时候就得到了新的配置。</p>
+
+<p>  上述getLong的过程包含了：</p>
+
+<ol>
+<li><p> 如果是Bucket配置，从Bucket中获取，如果找不到，从Service的配置获取，如果还是没有，返回默认值。</p></li>
+<li><p> 对于返回默认值的情况，写回Zookeeper。</p></li>
+<li><p> 如果Zookeeper端有修改，Zkclient会收到消息，重新update本地配置项的缓存。</p></li>
+<li><p> 如果定义了handler调用handler，如下所述：</p></li>
+</ol>
+
+
+<p>  如果需要根据配置修改的通知来做出响应（这是默认事件，node_data_change)：</p>
+
+<pre><code>ServiceConfig.Instance().addEventListener("task_period", new IEventHandler() {
+  @Override
+  public void process(ZkEvent event) {
+    logger.info("update task period.");
+    setDeclaredField(TimerTask.class, ServerTasks.this, "period", ServiceConfig.Instance().getLong("task_period", period));  
+  }
+});
+</code></pre>
+
+<p>  如果需要删除的通知：</p>
+
+<pre><code>  ServiceConfig.Instance().addEventListener("task_period", EventType.NodeDeleted, new IEventHandler() {
+  @Override
+  public void process(ZkEvent event) {
+    logger.info("update task period.");
+    setDeclaredField(TimerTask.class, ServerTasks.this, "period", ServiceConfig.Instance().getLong("task_period", period));  
+  }
+});
+</code></pre>
+
+<h3>结合SpringFramework：</h3>
+
+<pre><code>基本不变，只不过SpringFramework会先填充InitializingBean的域，这些值只有在出默认值的时候才会被采用。
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[一些python小技巧]]></title>
@@ -729,28 +835,6 @@ HOME=/home/cxh #使用者运行的路径,这里是根目录
 <p> 文件夹自然会失败。</p></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Log4cxx安装]]></title>
-    <link href="http://cxh.me/2015/03/16/log4cxx-setup/"/>
-    <updated>2015-03-16T11:49:00+08:00</updated>
-    <id>http://cxh.me/2015/03/16/log4cxx-setup</id>
-    <content type="html"><![CDATA[<p>  apache经典的项目，java下有log4j，c++下的实现是log4cxx，安装见<a href="http://www.codelast.com/?p=3211" title="[原创]    log4cxx在Linux下的安装、使用">参考文献</a>.</p>
-
-<p>  主要有个编译问题，大概是C库和C++库的问题，把出错的地方的头文件都补上就行了。</p>
-
-<ol>
-<li>console.cpp ： #include &lt;string.h> #include &lt;stdio.h></li>
-<li>socketoutputstream.cpp : #include &lt;string.h></li>
-<li>inputstreamreader.cpp: #include &lt;string.h></li>
-</ol>
-
-
-<h3>Bibliography:</h3>
-
-<blockquote><p>[1] [原创]  log4cxx在Linux下的安装、使用, <a href="http://www.codelast.com/?p=3211">http://www.codelast.com/?p=3211</a></p></blockquote>
 ]]></content>
   </entry>
   
