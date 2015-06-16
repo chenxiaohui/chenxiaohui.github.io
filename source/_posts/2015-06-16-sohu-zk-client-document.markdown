@@ -17,6 +17,7 @@ categories: "分布式系统"
      Bucket的配置存在一个单独的子目录中
 
 配置项类型：
+
   - Integer
   - Long
   - Short

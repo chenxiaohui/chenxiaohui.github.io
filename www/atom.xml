@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-06-16T16:30:28+08:00</updated>
+  <updated>2015-06-16T16:37:36+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -30,16 +30,20 @@
 <pre><code> Bucket的配置存在一个单独的子目录中
 </code></pre>
 
-<p>配置项类型：
-  &ndash; Integer
-  &ndash; Long
-  &ndash; Short
-  &ndash; Float
-  &ndash; Double
-  &ndash; Byte[]
-  &ndash; Boolean
-  &ndash; String
-  &ndash; 自定义配置项 ConfigObject</p>
+<p>配置项类型：</p>
+
+<ul>
+<li>Integer</li>
+<li>Long</li>
+<li>Short</li>
+<li>Float</li>
+<li>Double</li>
+<li>Byte[]</li>
+<li>Boolean</li>
+<li>String</li>
+<li>自定义配置项 ConfigObject</li>
+</ul>
+
 
 <p>使用说明：</p>
 
