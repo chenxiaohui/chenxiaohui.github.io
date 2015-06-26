@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Latex | CXH.ME]]></title>
   <link href="http://cxh.me/category/latex/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-06-26T15:49:01+08:00</updated>
+  <updated>2015-06-26T15:53:50+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
+    <title type="html"><![CDATA[简历生成器（基于moderncv+latex）]]></title>
     <link href="http://cxh.me/2015/06/26/resume-generator-using-latex-and-moderncv/"/>
     <updated>2015-06-26T15:47:00+08:00</updated>
     <id>http://cxh.me/2015/06/26/resume-generator-using-latex-and-moderncv</id>
@@ -66,9 +66,11 @@
 
 <p>写好对应的cv和模板之后，make就行。open命令可能在mac之外的系统不能使用，建议注掉。</p>
 
-<p>make distclean清空所有文件包括pdf
-make again 是为了生成页码，xelatex跑第一遍的时候页码是乱码。
-gen.py 文件格式如下：</p>
+<p>make distclean清空所有文件包括pdf</p>
+
+<p>make again 是为了生成页码，xelatex跑第一遍的时候页码是乱码。</p>
+
+<p>gen.py 文件格式如下：</p>
 
 <pre><code>./gen.py &lt;template-file&gt; &lt;cvfile&gt; &lt;output-file&gt;
 </code></pre>
