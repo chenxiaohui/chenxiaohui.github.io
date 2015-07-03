@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-06-26T15:53:50+08:00</updated>
+  <updated>2015-07-03T15:20:35+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -330,15 +330,6 @@ sys.setdefaultencoding("utf-8")
 <p>  还有一种常见的形式：</p>
 
 <p>  这里我们讨论下落点的情况，如果partition算法可以传入任何的value，而不是快排中那样从序列中随机获得一个值，那么结果就会有多重情况了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[]]></title>
-    <link href="http://cxh.me/2015/04/20/mac-screen-app-launch-shortcuts/"/>
-    <updated>2015-04-20T09:36:00+08:00</updated>
-    <id>http://cxh.me/2015/04/20/mac-screen-app-launch-shortcuts</id>
-    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
@@ -881,6 +872,32 @@ HOME=/home/cxh #使用者运行的路径,这里是根目录
 <p>  目录结构太深了，解决方法也很简单，alt+f5 refresh maven project , 目录结构会被收起：</p>
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/after_refresh.png"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[关于Linux 安装和卸载tar ball形式的程序]]></title>
+    <link href="http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball/"/>
+    <updated>2015-03-16T12:11:00+08:00</updated>
+    <id>http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball</id>
+    <content type="html"><![CDATA[<p>  源码安装的一些NOTE:</p>
+
+<ol>
+<li>首先./configure &mdash;helps是可以看到所有编译选项的。</li>
+<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build-dep xx</code></li>
+<li>zsh下，./configure tab是会提示所有的编译选项的。</li>
+<li><p>Makefile如果没有uninstall选项，更合理的办法似乎是：</p>
+
+<ol>
+<li><p>先install到一个单独目录：</p>
+
+<p> find . -exec rm 安装目录/{} \;</p></li>
+</ol>
+
+
+<p> 文件夹自然会失败。</p></li>
+</ol>
+
 ]]></content>
   </entry>
   
