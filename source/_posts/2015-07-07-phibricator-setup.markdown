@@ -26,13 +26,13 @@ categories: "PHP"
 	
 	usermod +x /var/run
 
-给目录加execute的权限
+	给目录加execute的权限
 
 2. mysql_upgrade失败，直接提示FATAL ERROR:Upgrade failed，发现用户名密码的问题，root@localhost密码没变，root@127.0.0.1在升级之后好像没有密码了
 
 	SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('newpass');	
 
-重新设置密码。
+	重新设置密码。
 
   之后去/var/www/html安装源码:
   	

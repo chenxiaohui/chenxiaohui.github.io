@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-07T19:39:46+08:00</updated>
+  <updated>2015-07-07T19:48:33+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -38,20 +38,16 @@ yum install php53-mysql
 <ol>
 <li><p>mysql 启动失败，提示没有权限创建pid。su到mysql用户下发现/var/run目录mysql用户没有execute的权限：</p>
 
-<p> usermod +x /var/run</p></li>
-</ol>
+<p> usermod +x /var/run</p>
 
-
-<p>给目录加execute的权限</p>
-
-<ol>
+<p> 给目录加execute的权限</p></li>
 <li><p>mysql_upgrade失败，直接提示FATAL ERROR:Upgrade failed，发现用户名密码的问题，root@localhost密码没变，root@127.0.0.1在升级之后好像没有密码了</p>
 
-<p> SET PASSWORD FOR &lsquo;root&rsquo;@&lsquo;127.0.0.1&rsquo; = PASSWORD(&lsquo;newpass&rsquo;);</p></li>
+<p> SET PASSWORD FOR &lsquo;root&rsquo;@&lsquo;127.0.0.1&rsquo; = PASSWORD(&lsquo;newpass&rsquo;);</p>
+
+<p> 重新设置密码。</p></li>
 </ol>
 
-
-<p>重新设置密码。</p>
 
 <p>  之后去/var/www/html安装源码:</p>
 
@@ -64,6 +60,7 @@ $ git clone https://github.com/phacility/phabricator.git
 
 <pre><code>sudo yum install pcre-devel
 sudo yum install php-pear
+sudo yum install php53-process
 sudo pecl install apc
 </code></pre>
 
