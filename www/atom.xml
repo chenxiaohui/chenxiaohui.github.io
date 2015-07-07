@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-03T15:20:35+08:00</updated>
+  <updated>2015-07-07T19:39:46+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,110 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Phibricator搭建过程总结]]></title>
+    <link href="http://cxh.me/2015/07/07/phibricator-setup/"/>
+    <updated>2015-07-07T17:45:00+08:00</updated>
+    <id>http://cxh.me/2015/07/07/phibricator-setup</id>
+    <content type="html"><![CDATA[<p>  <a href="http://phabricator.org/" title="Phibricator官网">Phibricator</a>是Facebook开源的一体化项目管理、代码review工具，主要特点是集成度高、界面漂亮。根据搭建的经验看，确实做的非常完善，各种细节用起来像是商业产品，不会像其他的开源产品那么难以配置。这里把配置过程根据回忆写一下：</p>
+
+<p>  官方给出过一个一键安装的脚本，但是下载的时候感觉有点问题吧，下载完不是sh而是网页，而且我只有一台机器，环境都已经预先有了，也不想再搭一套LAMP。这里我们以centos5为例：</p>
+
+<p>  首先安装httpd + mysql + php，由于centos5的版本太低，yum源里的mysql和php均低于phibricator要求的版本，我们需要先升级yum源，参见<a href="http://zengrong.net/post/1595.htm" title="升级CentOS 5.x中的PHP 5.1到5.3">参考文献</a>， 不过好像安装的时候没有php53u，而是直接php53</p>
+
+<p>  之后把对应的扩展也装了:</p>
+
+<pre><code>yum install php53-mbstring
+yum install php53-mysql
+</code></pre>
+
+<!--more-->
+
+
+<p>  升级mysql到mysql5.5，参见<a href="http://www.ha97.com/4145.html" title="RHEL/CentOS 5.x使用yum快速安装MySQL 5.5.x">参考文献</a>。中间遇到两个问题:</p>
+
+<ol>
+<li><p>mysql 启动失败，提示没有权限创建pid。su到mysql用户下发现/var/run目录mysql用户没有execute的权限：</p>
+
+<p> usermod +x /var/run</p></li>
+</ol>
+
+
+<p>给目录加execute的权限</p>
+
+<ol>
+<li><p>mysql_upgrade失败，直接提示FATAL ERROR:Upgrade failed，发现用户名密码的问题，root@localhost密码没变，root@127.0.0.1在升级之后好像没有密码了</p>
+
+<p> SET PASSWORD FOR &lsquo;root&rsquo;@&lsquo;127.0.0.1&rsquo; = PASSWORD(&lsquo;newpass&rsquo;);</p></li>
+</ol>
+
+
+<p>重新设置密码。</p>
+
+<p>  之后去/var/www/html安装源码:</p>
+
+<pre><code>$ git clone https://github.com/phacility/libphutil.git
+$ git clone https://github.com/phacility/arcanist.git
+$ git clone https://github.com/phacility/phabricator.git
+</code></pre>
+
+<p>  顺便装上一些别的php扩展：</p>
+
+<pre><code>sudo yum install pcre-devel
+sudo yum install php-pear
+sudo pecl install apc
+</code></pre>
+
+<p>  主要是提升性能的。然后配置httpd.conf</p>
+
+<pre><code>&lt;VirtualHost *&gt;
+  # Change this to the domain which points to your host.
+  ServerName phabricator.example.com
+
+  # Change this to the path where you put 'phabricator' when you checked it
+  # out from GitHub when following the Installation Guide.
+  #
+  # Make sure you include "/webroot" at the end!
+  DocumentRoot /path/to/phabricator/webroot
+
+  RewriteEngine on
+  RewriteRule ^/rsrc/(.*)     -                       [L,QSA]
+  RewriteRule ^/favicon.ico   -                       [L,QSA]
+  RewriteRule ^(.*)$          /index.php?__path__=$1  [B,L,QSA]
+&lt;/VirtualHost&gt;
+</code></pre>
+
+<p>  最后一个Rule的B在我的httpd下不识别，所以直接去掉了，貌似没什么影响&hellip;重启之后到phibricator的源码目录执行：</p>
+
+<pre><code>phabricator/ $ ./bin/storage upgrade
+</code></pre>
+
+<p>  按照提示可以配置mysql 用户名密码，之后可以看到建立了数据库结构。这时候访问host就能看到界面了。先注册管理员进去，能够看到一系列的TIPs，说明需要配置的地方。Phibricator在这方面非常人性化，按照提示一点点配置就可以了。直到解决大部分的warning。剩下的问题就是注册用户和邮件了。</p>
+
+<p>  首先在auth上开启认证方式，这里我们还是比较传统，选择了用户名密码的方式，你也可以选择其他账号体系打通的方式。一个用户注册之后，管理员需要批准用户，这个用户才能登陆。我找了好久，才发现原来批准在这位置：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/approval-queue.png"></p>
+
+<p>  最后是配置邮件服务器。首先你需要有个本地的或者其他提供商提供的邮件服务器。可以参考<a href="http://blog.csdn.net/lihongxun945/article/details/9030753" title="phabricator 邮件服务配置 备忘">这里</a>，PHP Mailer设置：</p>
+
+<pre><code>phpmailer.mailer: set to "smtp".
+phpmailer.smtp-host: smtp.xxx.com
+phpmailer.smtp-port: 25
+phpmailer.smtp-user: xxxx
+phpmailer.smtp-password: xxxx
+</code></pre>
+
+<p>  之后重启daemon应该就能发送邮件了。删除用户非常有意思，ph只允许从命令行删除</p>
+
+<pre><code>phabricator/ $ ./bin/remove destroy @harrychen
+</code></pre>
+
+<p>  之后会有一个有意思的界面：</p>
+
+<p><img class="img-polaroid center" src="http://cxh.me/images/2015/delete-user.png"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[简历生成器（基于moderncv+latex）]]></title>
@@ -872,32 +976,6 @@ HOME=/home/cxh #使用者运行的路径,这里是根目录
 <p>  目录结构太深了，解决方法也很简单，alt+f5 refresh maven project , 目录结构会被收起：</p>
 
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/after_refresh.png"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于Linux 安装和卸载tar ball形式的程序]]></title>
-    <link href="http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball/"/>
-    <updated>2015-03-16T12:11:00+08:00</updated>
-    <id>http://cxh.me/2015/03/16/linux-install-uninstall-tar-ball</id>
-    <content type="html"><![CDATA[<p>  源码安装的一些NOTE:</p>
-
-<ol>
-<li>首先./configure &mdash;helps是可以看到所有编译选项的。</li>
-<li>centos下，<code>yum install xx.rpm</code>，可以安装依赖，ubuntu下：<code>apt-get build-dep xx</code></li>
-<li>zsh下，./configure tab是会提示所有的编译选项的。</li>
-<li><p>Makefile如果没有uninstall选项，更合理的办法似乎是：</p>
-
-<ol>
-<li><p>先install到一个单独目录：</p>
-
-<p> find . -exec rm 安装目录/{} \;</p></li>
-</ol>
-
-
-<p> 文件夹自然会失败。</p></li>
-</ol>
-
 ]]></content>
   </entry>
   
