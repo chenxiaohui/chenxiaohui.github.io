@@ -4,7 +4,7 @@ title: "gtest在mac上链接的问题"
 date: 2015-02-06 20:39
 comments: true
 published: true
-categories: "C++"
+categories: "mac"
 ---
 
   gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：

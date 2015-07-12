@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-12T18:02:36+08:00</updated>
+  <updated>2015-07-12T18:28:26+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -32,32 +32,6 @@
 <h3>Bibliography:</h3>
 
 <blockquote><p>[1] [原创]  log4cxx在Linux下的安装、使用, <a href="http://www.codelast.com/?p=3211">http://www.codelast.com/?p=3211</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[gtest在mac上链接的问题]]></title>
-    <link href="http://cxh.me/2015/02/06/gtest-bug-on-mac/"/>
-    <updated>2015-02-06T20:39:00+08:00</updated>
-    <id>http://cxh.me/2015/02/06/gtest-bug-on-mac</id>
-    <content type="html"><![CDATA[<p>  gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：</p>
-
-<pre><code>g++  -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest-all.cc
-g++ -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest_main.cc
-
-ar -rv libgtest.a gtest-all.o
-ar -rv libgtest_main.a gtest_main.o
-
-c++ -g -Wall -Wextra -pthread  -isystem $GTEST_DIR/include  -c -o RemoveElement.o RemoveElement.cpp
-c++ -g -Wall -Wextra -pthread  -isystem -isystem $GTEST_DIR/include/include -c -o SameTree.o SameTree.cpp
-</code></pre>
-
-<p>  在mac下这里会报错：architecture x86_64。关键我一直理解gest_main是包含main函数的gtest，gtest-all是不包含的，知道发现官方的makefile执行的时候是这样的</p>
-
-<pre><code>ar rv gtest_main.a gtest-all.o gtest_main.o   
-</code></pre>
-
-<p>  用这里的gtest_main.a做libgtest_main.a就行了。不理解为什么在mac上单独打包一个gtest_main.o为什么不行。论坛貌似有人贴了一个patch，不看了，回家，碎觉。</p>
 ]]></content>
   </entry>
   
@@ -296,6 +270,139 @@ test.server.others.DerivedClass@5d1eb50b
 </code></pre>
 
 <p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[虚函数模板和模板类中的虚函数]]></title>
+    <link href="http://cxh.me/2014/10/29/cpp-virtual-template-function/"/>
+    <updated>2014-10-29T21:05:00+08:00</updated>
+    <id>http://cxh.me/2014/10/29/cpp-virtual-template-function</id>
+    <content type="html"><![CDATA[<p>  自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。</p>
+
+<p>  例子如下：</p>
+
+<!--more-->
+
+
+<pre><code>enum SessionType
+{
+  ROSession,
+  RWSession,
+  RPSession
+};
+class BaseTransCtx
+{
+  public:
+    BaseTransCtx (){}
+    virtual ~BaseTransCtx (){}
+};
+template&lt;typename Type&gt;
+class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+typedef ISessionCtxFactory&lt;SessionType&gt; SessionMgr;
+class TransSessionMgr: public SessionMgr
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    BaseTransCtx *alloc(const SessionType type)
+    {
+      return NULL;
+    }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+int main(int argc, const char *argv[])
+{
+  TransSessionMgr trans;
+  BaseTransCtx* ctx = trans.alloc(RWSession);
+  trans.free(ctx);
+  return 0;
+}
+</code></pre>
+
+<p>  模板类继承虚基类也可以。</p>
+
+<pre><code>template&lt;typename Type&gt;
+class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+template&lt;typename Type&gt;
+class TransSessionMgr: public ISessionCtxFactory&lt;Type&gt;
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    BaseTransCtx *alloc(const Type type)
+    {
+      return NULL;
+    }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+</code></pre>
+
+<p>  但是这样就不行了</p>
+
+<pre><code>class ISessionCtxFactory
+{
+  public:
+    ISessionCtxFactory(){};
+    ~ISessionCtxFactory() {};
+  public:
+    template&lt;typename Type&gt;
+      virtual BaseTransCtx *alloc(const Type type) = 0;
+    virtual void free(BaseTransCtx *ptr) = 0;
+};
+class TransSessionMgr: public ISessionCtxFactory
+{
+  public:
+    TransSessionMgr (){}
+    virtual ~TransSessionMgr (){}
+
+    template&lt;typename Type&gt;
+      BaseTransCtx *alloc(const Type type)
+      {
+        return NULL;
+      }
+
+    void free(BaseTransCtx *ptr)
+    {
+      if (ptr != NULL)
+      {
+        delete ptr;
+      }
+    }
+};
+</code></pre>
 ]]></content>
   </entry>
   

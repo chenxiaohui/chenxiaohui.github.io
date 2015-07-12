@@ -4,7 +4,7 @@ title: "mac下多屏幕移动窗口的快捷键"
 date: 2015-05-10 15:50
 comments: true
 published: true
-categories: "其他"
+categories: "mac"
 ---
   
   mac下使用多屏幕的话，经常需要把一个窗口移动到另一个窗口，windows下有快捷键win+shift+左右，linux下貌似可以通过xdotool实现，绑定一个快捷键，xdotool帮助你移动窗口到一个绝对位置。如下：

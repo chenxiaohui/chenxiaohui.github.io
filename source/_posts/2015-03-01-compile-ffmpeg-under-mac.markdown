@@ -4,7 +4,7 @@ title: "mac下ffmpeg的编译"
 date: 2015-03-01 11:08
 comments: true
 published: true
-categories: "其他"
+categories: "mac"
 ---
 
   基本步骤可以看[这个][1]，说两个问题：
