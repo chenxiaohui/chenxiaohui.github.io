@@ -106,6 +106,7 @@ categories={
         "Java"=>"java",
         "Python"=>"python",
         "vim"=>"vim",
+        "Mac"=>"mac",
         "web相关"=>"web",
         "其他"=>"others",
         "----------"=>"",
