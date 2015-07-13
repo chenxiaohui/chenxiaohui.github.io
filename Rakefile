@@ -141,6 +141,7 @@ task :gen do
     File.open(category_path, 'w') { |file| file.write(html) }
 end
 
+
 # usage rake new_post[my-new-post] or rake new_post['my new post'] or rake new_post (defaults to "new-post")
 desc "Begin a new post in #{source_dir}/#{posts_dir}"
 task :new_post, :title, :category do |t, args|
