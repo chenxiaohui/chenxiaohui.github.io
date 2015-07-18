@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-15T22:45:38+08:00</updated>
+  <updated>2015-07-18T11:58:39+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,134 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[通过父子关系构建话题树]]></title>
+    <link href="http://cxh.me/2015/07/18/build-topic-tree-using-parent-relation/"/>
+    <updated>2015-07-18T11:35:00+08:00</updated>
+    <id>http://cxh.me/2015/07/18/build-topic-tree-using-parent-relation</id>
+    <content type="html"><![CDATA[<p>  一道题目，本来觉得挺简单的，后来卡在一个小问题上。mark一下：</p>
+
+<p>  给定一个数据库表，存了所有话题的关系，形式是：parent->child，表示前面是后面话题的父话题。根据这个关系构建出话题树并打印。</p>
+
+<pre><code>eg:
+输入：
+    a b
+    c a
+    d e
+    e f
+    r c
+    r d
+输出：
+     r
+       c
+         a
+           b
+       d
+         e
+           f
+题目隐含：
+    1. DAG：有向无环
+    2. 节点不重复
+</code></pre>
+
+<p>  直观看类似于Graphviz的算法，只不过保证了是棵树。C++实现上可以直接通过树来做，这里用了Python。</p>
+
+<!--more-->
+
+
+<p>  思路上先找到父节点，再找到子节点，如果都找到，那么移动子节点到父节点下形成一个新的成员，如果父节点没找到，让其成为root节点（加一个叫root的dummynode，反正是话题，我们保证这个话题是保留字）的子节点，如果子节点没找到，让其形成一个新的空节点。</p>
+
+<p>  Python下数据结构类似于：</p>
+
+<pre><code>ret = {
+    "root": {
+        "r": {
+            "c": {
+                "a":{
+                    "b":{}
+                    },
+            },
+            "d":{
+                "e":{
+                    "f":{}
+                }
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>  叶节点都保留了一个空的子节点集合。</p>
+
+<p>  代码如下：</p>
+
+<pre><code>default_indent = 2
+filename='topic'
+
+def print_result(tree, indent):
+    """"""
+    for key, value in tree.items():
+       if key:
+           print ' ' * indent, key
+       if value:
+           print_result(value, indent + default_indent)
+
+
+def find_node(tree, element):
+    """"""
+    for key, value in tree.items():
+        if key == element:
+            return tree, tree[key]
+        elif value:
+            parent, child = find_node(value, element)
+            if parent:
+                return parent, child
+    return None, None
+
+def parse_file(ret, fp):
+    """"""
+    for pair in fp:
+        pair = pair.strip("\n")
+        if pair:
+            parent, child = pair.split()
+            _, parent_element = find_node(ret, parent)
+            child_parent, child_element = find_node(ret, child)
+
+            if parent_element == None:
+                ret["root"][parent] = {}
+                parent_element = ret["root"][parent]
+            if child_element == None:
+                child_element = {}
+
+            parent_element[child] = child_element
+            if child_parent:
+                del child_parent[child]
+
+if __name__ == '__main__':
+    ret = {"root":{}}
+    try:
+        with open(filename, 'r') as fp:
+            parse_file(ret, fp)
+    except Exception:
+        raise
+
+    print_result(ret['root'], 0)
+</code></pre>
+
+<p>  之前出的错误是：</p>
+
+<ol>
+<li>python毕竟是引用计数，把一个节点变成另外一个节点的子节点的时候忘了remove旧的节点</li>
+<li>深度优先搜索找节点的时候直接return find_node(xxx)了，这样的话深度完一个子节点，不会再继续本层循环了。这个也是大意了，随手一测这个find_node函数就没再看。</li>
+</ol>
+
+
+<p>  性能提升的办法主要是：
+1. hash一下所有的节点。把遍历查找的复杂度降下来
+2. 先排序（按照parent)，然后把reduce，这样会先把相同的部分生成一个集合，比如a:[b,c,d]这种。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Phibricator搭建过程总结]]></title>
@@ -958,21 +1086,6 @@ HOME=/home/cxh #使用者运行的路径,这里是根目录
 <p>  python3中不存在这两种不同的编码形式了。string统一变成了unicode。略浪费。</p>
 
 <p>  详见<a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" title="PYTHON-进阶-编码处理小结">参考文献</a>。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[eclipse目录结构]]></title>
-    <link href="http://cxh.me/2015/03/16/eclipse-project-structure/"/>
-    <updated>2015-03-16T15:32:00+08:00</updated>
-    <id>http://cxh.me/2015/03/16/eclipse-project-structure</id>
-    <content type="html"><![CDATA[<p>  eclipse导入Intellij的maven工程的时候经常会出现如下的情况：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/before_refresh.png"></p>
-
-<p>  目录结构太深了，解决方法也很简单，alt+f5 refresh maven project , 目录结构会被收起：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/after_refresh.png"></p>
 ]]></content>
   </entry>
   
