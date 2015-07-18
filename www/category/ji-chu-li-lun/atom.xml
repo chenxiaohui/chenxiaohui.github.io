@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-18T11:58:39+08:00</updated>
+  <updated>2015-07-18T12:05:38+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -135,9 +135,13 @@ if __name__ == '__main__':
 </ol>
 
 
-<p>  性能提升的办法主要是：
-1. hash一下所有的节点。把遍历查找的复杂度降下来
-2. 先排序（按照parent)，然后把reduce，这样会先把相同的部分生成一个集合，比如a:[b,c,d]这种。</p>
+<p>  性能提升的办法主要是：</p>
+
+<ol>
+<li>hash一下所有的节点。把遍历查找的复杂度降下来</li>
+<li>先排序（按照parent)，然后把reduce，这样会先把相同的部分生成一个集合，比如a:[b,c,d]这种。</li>
+</ol>
+
 ]]></content>
   </entry>
   
