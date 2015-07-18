@@ -1,13 +1,11 @@
 <link href="{{ root_url }}/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="{{ root_url }}/javascripts/google-code-prettify/prettify.js"></script>
-<script src="{{ root_url }}/javascripts/md5.js"></script>
 <script type="text/javascript" >
 <!--
     $(document).ready(function() {
       $('pre').addClass('prettyprint').attr('style', 'overflow:auto');
       window.prettyPrint && prettyPrint();
       $('table').addClass('table')
-      $('.author_pic').append("<img src='http://www.gravatar.com/avatar/" + MD5("{{ site.email | downcase }}") + "?s=100' alt='Profile Picture' style='width: 100px;' class='img-polaroid'/>");
 });
 -->
 </script>
