@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-18T12:15:38+08:00</updated>
+  <updated>2015-07-18T13:36:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -18,9 +18,67 @@
     <link href="http://cxh.me/2015/04/23/jenkins-setup/"/>
     <updated>2015-04-23T13:57:00+08:00</updated>
     <id>http://cxh.me/2015/04/23/jenkins-setup</id>
-    <content type="html"><![CDATA[<p>   首先介绍一下Jenkins，如果你熟悉自动化构建的话，那么肯定听说过hudson。Jenkins是hudson的开发者跟Oracle撕bi之后，另立门户的一个hudson分支。当然这么说似乎不太靠谱，目前hudson已经不维护了毕竟，而Jenkins的开发社区还是很活跃的，各种插件层出不穷。总的来说，如果你不是已经习惯了hudson并且有一个能用的副本，都应该迁移到Jenkins。</p>
+    <content type="html"><![CDATA[<p>  首先介绍一下Jenkins，如果你熟悉自动化构建的话，那么肯定听说过hudson。Jenkins是hudson的开发者跟Oracle撕bi之后，另立门户的一个hudson分支。当然这么说似乎不太靠谱，目前hudson已经不维护了毕竟，而Jenkins的开发社区还是很活跃的，各种插件层出不穷。总的来说，如果你不是已经习惯了hudson并且有一个能用的副本，都应该迁移到Jenkins。</p>
 
-<p>   下面说一下如何</p>
+<p>  下面说一下如何配置。</p>
+
+<p>  Jenkins的安装非常简单，只需要从Jenkins的<a href="https://jenkins-ci.org/" title="Jenkins">主页</a>上下载最新的jenkins.war文件然后运行 java -jar jenkins.war。如果需要配置运行参数可以如下设置一些环境变量。</p>
+
+<pre><code>JENKINS_ROOT=/home/harrychen/share/jenkins
+export JENKINS_HOME=$JENKINS_ROOT/jenkins_home
+java -jar $JENKINS_ROOT/jenkins.war --httpPort=8080 &gt;&gt;output.log 2&gt;&amp;1 &amp;
+</code></pre>
+
+<p>  打开对应url可以看到如下界面</p>
+
+<!--more-->
+
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins.png"></p>
+
+<p>  系统管理里面有一些需要配置的项，比如JDK：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_jdk.png"></p>
+
+<p>  GIT</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_git.png"></p>
+
+<p>  MAVEN</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_maven.png"></p>
+
+<p>  ssh-key</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_sshkey.png"></p>
+
+<p>  ssh-server</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_sshserver.png"></p>
+
+<p>  装一下slack的插件可以配置slack</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_slack.png"></p>
+
+<p>  然后是建立项目的配置，Jenkins把每个自动发布的项目作为一个单独的配置，主要是如下几个：</p>
+
+<p>  指定代码路径：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_gitclone.png"></p>
+
+<p>  部署前事件：</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_deploy_pre.png"></p>
+
+<p>  部署后事件:</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_after_deploy.png"></p>
+
+<p>  最后保证这些事件是在之前配置的ssh-server上执行的。</p>
+
+<p>  <img class="img-polaroid center" src="/images/2015/jenkins_enent_server.png"></p>
+
+<p>  细节请看<a href="http://files.cnblogs.com/files/itech/Jenkins%E5%85%A5%E9%97%A8.pdf" title="Jenkins 入门">这里</a></p>
 ]]></content>
   </entry>
   
