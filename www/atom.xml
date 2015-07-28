@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-18T13:41:22+08:00</updated>
+  <updated>2015-07-28T14:08:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[带小团队的一点思考]]></title>
+    <link href="http://cxh.me/2015/07/28/something-about-guide-a-team/"/>
+    <updated>2015-07-28T13:56:00+08:00</updated>
+    <id>http://cxh.me/2015/07/28/something-about-guide-a-team</id>
+    <content type="html"><![CDATA[<p>  事实上我也只是带实习生而已。但是感觉上之前更多的是把自己的任务分出去，而现在是开始跟一些人一起完成一个任务。主要的不同是之前做的事情是在个人工作量里面，自己做也只是慢一点，有时候甚至自己做反倒比分出去更快。现在做的事情已经超过一个人工作量了，必须发挥团队的能动性了，而且之前也只是对自己的工作负责，现在你要负责的是一个团队的KPI了。</p>
+
+<p>  主要有几点感觉：</p>
+
+<ol>
+<li> 分配好工作。需要能力的，需要经验的，需要稳定细心的，每个人的风格不一样，应该做的工作也不一样。</li>
+<li> 规范流程。大部分加班或者事故都是能从流程上避免的，在设计开发测试上省下来的时间最终都会在上线修bug处理问题的过程中补回来。</li>
+<li> 做好计划和项目管理。做一个包含不确定性和风险的事情最重要的是路线图。实现的过程就是把抽象的东西一点点具象化的过程。所以计划上要能够自顶向下，逐步求精。把写程序的思路用进来。</li>
+<li> 最后就是能力的问题了。统筹考虑是种需要一点点培养的能力。这个也就只能慢慢来了。何况只要不是纯做管理，你就一定有自己的工作，自己的KPI，协调好自己工作和他人工作安排的关系，还是非常重要的。</li>
+</ol>
+
+
+<p>  最后补一个我理解的开发流程图：</p>
+
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/dev-flow.png"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[通过父子关系构建话题树]]></title>
@@ -1131,23 +1154,6 @@ HOME=/home/cxh #使用者运行的路径,这里是根目录
 </code></pre>
 
 <p>  crontab出错的信息会发邮件到对应用户，mail或者cat /var/mail/$USER查看。d *清理。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Python2/Python3中文编码]]></title>
-    <link href="http://cxh.me/2015/03/19/pythonencoding-problem-in-python2-and-python3/"/>
-    <updated>2015-03-19T15:03:00+08:00</updated>
-    <id>http://cxh.me/2015/03/19/pythonencoding-problem-in-python2-and-python3</id>
-    <content type="html"><![CDATA[<p>  python2中需要区分另种不同形式的string，字符串和字节串（严格意义上讲，string就是字符串，字节串是bytes）。默认情况下，直接输入字符串格式为str，编码由文件编码指定，可以理解为ascii存储的某种形式，编码由编码方式决定。而python字符串是unicode内码的字符流，无论采用什么编码，长度都是由字符个数决定的，字符是最基本的操作对象。</p>
-
-<p>  转换上，最终字符&#8221;xx&#8221;的编码由文件编码决定，u&#8221;xx&#8221;统一被转成unicode字符，对于某种编码的bytes，decode或者unicode函数把编码转成字符，对于unicode的字符，encode把字符编码为字节。</p>
-
-<p>  命令行打印上看，字符直接打印的时候，程序会按照sys.defaultencoding编码输出字符，如果打印字节，需要保证编码跟terminal/IDE的默认编码一致。输入的时候应该不存在这个问题，terminal会按照编码sys.defaultencoding把输入转成unicode字符。</p>
-
-<p>  python3中不存在这两种不同的编码形式了。string统一变成了unicode。略浪费。</p>
-
-<p>  详见<a href="http://wklken.me/posts/2013/08/31/python-extra-coding-intro.html" title="PYTHON-进阶-编码处理小结">参考文献</a>。</p>
 ]]></content>
   </entry>
   
