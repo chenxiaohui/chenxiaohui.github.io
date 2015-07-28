@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T14:08:22+08:00</updated>
+  <updated>2015-07-28T14:15:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -142,6 +142,8 @@ if __name__ == '__main__':
 <li>先排序（按照parent)，然后把reduce，这样会先把相同的部分生成一个集合，比如a:[b,c,d]这种。</li>
 </ol>
 
+
+<p><strong>事实上，这个题目可以直接用邻接表表示数据结构，然后DFS来打印就好了&hellip;</strong></p>
 ]]></content>
   </entry>
   
