@@ -54,4 +54,4 @@ categories: "Latex"
 
 ### 参考文献:
 
->\[1] http moderncv 的笔记（支持中文）, <http://www.xiangsun.org/tex/notes-on-moderncv>
+[1] http moderncv 的笔记（支持中文）, <http://www.xiangsun.org/tex/notes-on-moderncv>
