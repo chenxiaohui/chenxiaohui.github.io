@@ -9,14 +9,14 @@ categories: "分布式系统"
 
 
 
-名词解释：
+### 名词解释：
   
   SeviceConfig:
     一个服务的所有配置存在一个目录下
   BucketConfig:
      Bucket的配置存在一个单独的子目录中
 
-配置项类型：
+### 配置项类型：
 
   - Integer
   - Long
@@ -28,9 +28,9 @@ categories: "分布式系统"
   - String
   - 自定义配置项 ConfigObject
 
-使用说明：
+###使用说明：
 
-###POM：
+####POM：
 
     <dependency>
       <groupId>com.sohu.adrd</groupId>
@@ -38,13 +38,13 @@ categories: "分布式系统"
       <version>1.0.1</version>
     </dependency>
 
-###初始化 
+####初始化 
 
   ServiceConfig.Instance().init("ConnectString", "serviceName");//如果做测试可以用10.16.3.61:2181
   
   ServiceConfig.Instance().init("serviceName"); 默认使用肖永磊的zk地址
 
-配置项使用
+####配置项使用
 
   先给默认值
 
@@ -95,6 +95,6 @@ categories: "分布式系统"
     });
 
 
-### 结合SpringFramework：
+#### 结合SpringFramework：
 
     基本不变，只不过SpringFramework会先填充InitializingBean的域，这些值只有在出默认值的时候才会被采用。

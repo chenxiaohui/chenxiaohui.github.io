@@ -8,8 +8,8 @@ html body {
     /*background-repeat: repeat;*/
     /*background-position: 0 40px;*/
 }
-.entry-content li { line-height:1.5; margin:5px 0 5px; }
 p { margin:5px 0 5px; }
+.entry-content li { line-height:1.5; margin:5px 0px 5px 2em; }
 .meta, .pager { margin: 10px 0px 10px 0px; }
 .sharing{float:right}
 .page-footer p { text-align: center; }

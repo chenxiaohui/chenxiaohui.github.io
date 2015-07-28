@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T14:15:59+08:00</updated>
+  <updated>2015-07-28T14:58:35+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -278,24 +278,24 @@ phpmailer.smtp-password: xxxx
     <id>http://cxh.me/2015/06/26/resume-generator-using-latex-and-moderncv</id>
     <content type="html"><![CDATA[<p>项目地址: <a href="https://github.com/chenxiaohui/resume">https://github.com/chenxiaohui/resume</a></p>
 
-<h1>说明</h1>
+<h3>说明</h3>
 
-<p>通过文本文件生成简历tex的generator。最终生成pdf还是要靠Latex+Moderncv，环境请自行配置。</p>
+<p>  通过文本文件生成简历tex的generator。最终生成pdf还是要靠Latex+Moderncv，环境请自行配置。</p>
 
 <ul>
 <li>windows下：<a href="http://www.ctex.org/HomePage">http://www.ctex.org/HomePage</a></li>
 <li>Linux下：<a href="https://www.tug.org/texlive/">https://www.tug.org/texlive/</a></li>
-<li>Mac下：<a href="https://tug.org/mactex/">https://tug.org/mactex/</a></li>
+<li><p>Mac下：<a href="https://tug.org/mactex/">https://tug.org/mactex/</a></p>
+
+<p>需要的包都通过sudo tlmgr install package来安装。字体主要使用了Times New Roman（西文）和 Kaiti SC（中文）。可根据喜好换。</p></li>
 </ul>
 
 
-<p>需要的包都通过sudo tlmgr install package来安装。字体主要使用了Times New Roman（西文）和 Kaiti SC（中文）。可根据喜好换。</p>
+<h3>模板配置</h3>
 
-<h1>模板配置</h1>
+<p>  config.tex 定义了公共头文件，包括包含的宏包，版面的布置和字体语言。</p>
 
-<p>config.tex 定义了公共头文件，包括包含的宏包，版面的布置和字体语言。</p>
-
-<p>xxtemplate.tex定义了模板。模板语法比较简单，不给出严谨的语法定义了，主要如下两点：</p>
+<p>  xxtemplate.tex定义了模板。模板语法比较简单，不给出严谨的语法定义了，主要如下两点：</p>
 
 <ol>
 <li>%xxx% 表示一个变量，将来会从cv文件中查找对应名字的变量，找到之后替换这个%xxx%</li>
@@ -309,7 +309,7 @@ phpmailer.smtp-password: xxxx
 </ol>
 
 
-<p>xx.cv包含了简历内容，格式上参考了ini文件格式，但是略有不同。</p>
+<p>  xx.cv包含了简历内容，格式上参考了ini文件格式，但是略有不同。</p>
 
 <ol>
 <li>[section name]顶一个了一个section，对应简历中一个部分。section name的显示名称是在template里面写好的。这里的name只是给程序使用的，可以跟显示名称一致也可以不同。</li>
@@ -318,22 +318,22 @@ phpmailer.smtp-password: xxxx
 </ol>
 
 
-<p>程序中给出了几个实例，分别是英文、中文简历的template和cv文件，供参考。</p>
+<p>  程序中给出了几个实例，分别是英文、中文简历的template和cv文件，供参考。</p>
 
-<h1>使用</h1>
+<h3>使用</h3>
 
-<p>写好对应的cv和模板之后，make就行。open命令可能在mac之外的系统不能使用，建议注掉。</p>
+<p>  写好对应的cv和模板之后，make就行。open命令可能在mac之外的系统不能使用，建议注掉。</p>
 
-<p>make distclean清空所有文件包括pdf</p>
+<p>  make distclean清空所有文件包括pdf</p>
 
-<p>make again 是为了生成页码，xelatex跑第一遍的时候页码是乱码。</p>
+<p>  make again 是为了生成页码，xelatex跑第一遍的时候页码是乱码。</p>
 
-<p>gen.py 文件格式如下：</p>
+<p>  gen.py 文件格式如下：</p>
 
 <pre><code>./gen.py &lt;template-file&gt; &lt;cvfile&gt; &lt;output-file&gt;
 </code></pre>
 
-<h1>参考文献:</h1>
+<h3>参考文献:</h3>
 
 <blockquote><p>[1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p></blockquote>
 ]]></content>
@@ -344,7 +344,7 @@ phpmailer.smtp-password: xxxx
     <link href="http://cxh.me/2015/06/16/sohu-zk-client-document/"/>
     <updated>2015-06-16T16:28:00+08:00</updated>
     <id>http://cxh.me/2015/06/16/sohu-zk-client-document</id>
-    <content type="html"><![CDATA[<p>名词解释：</p>
+    <content type="html"><![CDATA[<h3>名词解释：</h3>
 
 <p>  SeviceConfig:</p>
 
@@ -356,7 +356,7 @@ phpmailer.smtp-password: xxxx
 <pre><code> Bucket的配置存在一个单独的子目录中
 </code></pre>
 
-<p>配置项类型：</p>
+<h3>配置项类型：</h3>
 
 <ul>
 <li>Integer</li>
@@ -371,9 +371,9 @@ phpmailer.smtp-password: xxxx
 </ul>
 
 
-<p>使用说明：</p>
+<h3>使用说明：</h3>
 
-<h3>POM：</h3>
+<h4>POM：</h4>
 
 <pre><code>&lt;dependency&gt;
   &lt;groupId&gt;com.sohu.adrd&lt;/groupId&gt;
@@ -382,13 +382,13 @@ phpmailer.smtp-password: xxxx
 &lt;/dependency&gt;
 </code></pre>
 
-<h3>初始化</h3>
+<h4>初始化</h4>
 
 <p>  ServiceConfig.Instance().init(&ldquo;ConnectString&rdquo;, &ldquo;serviceName&rdquo;);//如果做测试可以用10.16.3.61:2181</p>
 
 <p>  ServiceConfig.Instance().init(&ldquo;serviceName&rdquo;); 默认使用肖永磊的zk地址</p>
 
-<p>配置项使用</p>
+<h4>配置项使用</h4>
 
 <p>  先给默认值</p>
 
@@ -442,7 +442,7 @@ phpmailer.smtp-password: xxxx
 });
 </code></pre>
 
-<h3>结合SpringFramework：</h3>
+<h4>结合SpringFramework：</h4>
 
 <pre><code>基本不变，只不过SpringFramework会先填充InitializingBean的域，这些值只有在出默认值的时候才会被采用。
 </code></pre>
