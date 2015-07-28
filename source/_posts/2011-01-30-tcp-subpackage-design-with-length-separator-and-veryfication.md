@@ -61,13 +61,7 @@ tags:
 
 参考文献：
 
-> [1] 可扩展多线程异步Socket服务器框架EMTASS 2.0，
->
->
->
-> [2] 关于C#序列化结果的长度获取，
->
->
+ [1] 可扩展多线程异步Socket服务器框架EMTASS 2.0，
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/01/thumb.jpg (未命名)
-   [2]: http://www.roybit.com/wp-content/uploads/2011/01/TCPResolvePacket.rar
+ [2] 关于C#序列化结果的长度获取，
+

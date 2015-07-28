@@ -6,13 +6,13 @@ comments: true
 published: true
 categories: "vim"
 ---
-  
+
   对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
 
   首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。
 
     ubuntu下可以直接：
-    	apt-get install exuberant-ctags 
+    	apt-get install exuberant-ctags
     centos下：
     	yum install ctags
     mac下：
@@ -139,13 +139,13 @@ categories: "vim"
 	"查找调用这个函数的地方
 	"nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
 	"}
-  
+
   这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map <m-left> <C-t>。效果如下所示：
 
-  {% img img-polaroid center /images/2015/tags.png "自动load tags" "自动load tags" %}	
+  {% img img-polaroid center /images/2015/tags.png "自动load tags" "自动load tags" %}
   {% img img-polaroid center /images/2015/cscope.png "cscope find reference结果" "cscope find reference结果" %}
 
-  	
+
 
 
 [1]: http://www.vim.org/scripts/script.php?script_id=3465   "Tagbar : Display tags of the current file ordered by scope"
@@ -154,8 +154,8 @@ categories: "vim"
 
 ###Bibliography:
 
->\[1] Tagbar : Display tags of the current file ordered by scope, <http://www.vim.org/scripts/script.php?script_id=3465>
+  \[1] Tagbar : Display tags of the current file ordered by scope, <http://www.vim.org/scripts/script.php?script_id=3465>
 
->\[2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <http://www.vim.org/scripts/script.php?script_id=273>
+  \[2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <http://www.vim.org/scripts/script.php?script_id=273>
 
->\[3] vim_cscope - a vim plugin to configure vim_cscope, <https://github.com/chenxiaohui/vim_cscope>
+  \[3] vim_cscope - a vim plugin to configure vim_cscope, <https://github.com/chenxiaohui/vim_cscope>

@@ -35,6 +35,6 @@ categories: "分布式系统"
 
 ###参考文献:
 
->\[1] Zookeeper的web管理应用, <http://www.blogjava.net/killme2008/archive/2011/06/06/351793.html>
-
->\[2] node-zookeeper安装小记, <http://blog.izturn.mobi/post/15025383777/node-zookeeper-install-note>
+  \[1] Zookeeper的web管理应用, <http://www.blogjava.net/killme2008/archive/2011/06/06/351793.html>
+  
+  \[2] node-zookeeper安装小记, <http://blog.izturn.mobi/post/15025383777/node-zookeeper-install-note>

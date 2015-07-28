@@ -172,4 +172,4 @@ categories: "vim"
 
 ###参考文献:
 
->\[1] Visual Mark : Visual mark, similar to UltraEdit's bookmark, <http://www.vim.org/scripts/script.php?script_id=1026>
+  \[1] Visual Mark : Visual mark, similar to UltraEdit's bookmark, <http://www.vim.org/scripts/script.php?script_id=1026>

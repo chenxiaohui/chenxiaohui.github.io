@@ -20,15 +20,10 @@ tags:
 
   大家可以顺便体验一下Adobe MoleHill的另一个Demo，效果超炫。
 
-> 参考文献：
->
-> [1]Adobe大战3D网页游戏市场,
->
-> [http://www.unity3d8.com/content/adobe大战3d网页游戏市场][2]
->
-> [2] Unity3D在中小型网页游戏团队使用的困境,
->
-> 
+参考文献：
 
-   [1]: http://labs.adobe.com/technologies/flashplatformruntimes/incubator/features/images/zombietycoon.jpg
-   [2]: http://www.unity3d8.com/content/adobe%E5%A4%A7%E6%88%983d%E7%BD%91%E9%A1%B5%E6%B8%B8%E6%88%8F%E5%B8%82%E5%9C%BA
+[1]Adobe大战3D网页游戏市场, 
+
+[2] Unity3D在中小型网页游戏团队使用的困境,
+
+

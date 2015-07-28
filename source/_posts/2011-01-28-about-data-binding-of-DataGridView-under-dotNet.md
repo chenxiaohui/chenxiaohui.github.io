@@ -39,18 +39,3 @@ tags:
     dataGridClient.AutoGenerateColumns = false;
 
   即可避免此问题。
-
-参考文献：
-
-> [1] datagridview如何绑定List，
->
-> 
->
-> [2] 解决DataGridView绑定List后不能排序的问题，
->
-> 
-
-   [1]: http://www.roybit.com/wp-content/uploads/2011/01/1_thumb.jpg (临时1)
-   [2]: http://www.roybit.com/wp-content/uploads/2011/01/3_thumb.jpg (临时3)
-   [3]: http://www.roybit.com/wp-content/uploads/2011/01/2_thumb.jpg (临时2)
-   [4]: http://www.roybit.com/wp-content/uploads/2011/01/test_thumb.jpg (test)

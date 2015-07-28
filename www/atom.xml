@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -335,7 +335,7 @@ phpmailer.smtp-password: xxxx
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p></blockquote>
+<p>  [1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p>
 ]]></content>
   </entry>
   
@@ -841,13 +841,13 @@ rbt post
 
 <h3>Bibliography:</h3>
 
-<blockquote><p>[1] Reviewboard的安装, <a href="http://cxh.me/2015/03/28/review-board-setup/">http://cxh.me/2015/03/28/review-board-setup/</a></p>
+<p>  [1] Reviewboard的安装, <a href="http://cxh.me/2015/03/28/review-board-setup/">http://cxh.me/2015/03/28/review-board-setup/</a></p>
 
-<p>[2] Svn Vim 整合方案, <a href="http://cxh.me/2013/10/15/svn-vim-integration/">http://cxh.me/2013/10/15/svn-vim-integration/</a></p>
+<p>  [2] Svn Vim 整合方案, <a href="http://cxh.me/2013/10/15/svn-vim-integration/">http://cxh.me/2013/10/15/svn-vim-integration/</a></p>
 
-<p>[3] Post-review在svn和git共同存在下的冲突问题, <a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/">http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/</a></p>
+<p>  [3] Post-review在svn和git共同存在下的冲突问题, <a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/">http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/</a></p>
 
-<p>[4] Post-review插件, <a href="http://cxh.me/2014/06/21/ppost-review-plugin/">http://cxh.me/2014/06/21/ppost-review-plugin/</a></p></blockquote>
+<p>  [4] Post-review插件, <a href="http://cxh.me/2014/06/21/ppost-review-plugin/">http://cxh.me/2014/06/21/ppost-review-plugin/</a></p>
 ]]></content>
   </entry>
   
@@ -908,25 +908,25 @@ rbt post
 
 <h3>Bibliography:</h3>
 
-<blockquote><p>[1] Review Board, <a href="https://www.reviewboard.org">https://www.reviewboard.org</a></p>
+<p>  [1] Review Board, <a href="https://www.reviewboard.org">https://www.reviewboard.org</a></p>
 
-<p>[2] Creating a Review Board Site, <a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/">https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/</a></p>
+<p>  [2] Creating a Review Board Site, <a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/">https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/</a></p>
 
-<p>[3] Installing on Linux, <a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/">https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/</a></p>
+<p>  [3] Installing on Linux, <a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/">https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/</a></p>
 
-<p>[4] Django Mod_wsgi配置的一些问题, <a href="http://cxh.me/2015/02/27/django-to-apache/">http://cxh.me/2015/02/27/django-to-apache/</a></p>
+<p>  [4] Django Mod_wsgi配置的一些问题, <a href="http://cxh.me/2015/02/27/django-to-apache/">http://cxh.me/2015/02/27/django-to-apache/</a></p>
 
-<p>[5] mod_wsgi在多个Python版本下配置apache, <a href="http://m.oschina.net/blog/341289">http://m.oschina.net/blog/341289</a></p>
+<p>  [5] mod_wsgi在多个Python版本下配置apache, <a href="http://m.oschina.net/blog/341289">http://m.oschina.net/blog/341289</a></p>
 
-<p>[6] django 1.5 当DEBUG设置为 False时网页打不开的解决办法, <a href="http://www.zijin5.com/django-1-5-debug-false/">http://www.zijin5.com/django-1-5-debug-false/</a></p>
+<p>  [6] django 1.5 当DEBUG设置为 False时网页打不开的解决办法, <a href="http://www.zijin5.com/django-1-5-debug-false/">http://www.zijin5.com/django-1-5-debug-false/</a></p>
 
-<p>[7] How to use Django with Apache and mod_wsgi&#8221; , <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/">https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/</a></p>
+<p>  [7] How to use Django with Apache and mod_wsgi&#8221; , <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/">https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/</a></p>
 
-<p>[8] Setting Apache2 PATH environment variable, <a href="http://serverfault.com/questions/151328/setting-apache2-path-environment-variable">http://serverfault.com/questions/151328/setting-apache2-path-environment-variable</a></p>
+<p>  [8] Setting Apache2 PATH environment variable, <a href="http://serverfault.com/questions/151328/setting-apache2-path-environment-variable">http://serverfault.com/questions/151328/setting-apache2-path-environment-variable</a></p>
 
-<p>[9] Error uploading new diff: fatal: Not a git repository: &lsquo;None&rsquo;, <a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ">https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ</a></p>
+<p>  [9] Error uploading new diff: fatal: Not a git repository: &lsquo;None&rsquo;, <a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ">https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ</a></p>
 
-<p>[10] Repositories, <a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/">https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/</a></p></blockquote>
+<p>  [10] Repositories, <a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/">https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/</a></p>
 ]]></content>
   </entry>
   
@@ -940,7 +940,7 @@ rbt post
 <p>  首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。</p>
 
 <pre><code>ubuntu下可以直接：
-    apt-get install exuberant-ctags 
+    apt-get install exuberant-ctags
 centos下：
     yum install ctags
 mac下：
@@ -1077,16 +1077,16 @@ nmap &lt;leader&gt;ct :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&l
 
 <p>  这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map &lt;m-left> &lt;C-t>。效果如下所示：</p>
 
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/tags.png" title="自动load tags" alt="自动load tags"><p class="align-center">自动load tags</p>  <br/>
+<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/tags.png" title="自动load tags" alt="自动load tags"><p class="align-center">自动load tags</p>
   <img class="img-polaroid center" src="http://cxh.me/images/2015/cscope.png" title="cscope find reference结果" alt="cscope find reference结果"><p class="align-center">cscope find reference结果</p></p>
 
 <h3>Bibliography:</h3>
 
-<blockquote><p>[1] Tagbar : Display tags of the current file ordered by scope, <a href="http://www.vim.org/scripts/script.php?script_id=3465">http://www.vim.org/scripts/script.php?script_id=3465</a></p>
+<p>  [1] Tagbar : Display tags of the current file ordered by scope, <a href="http://www.vim.org/scripts/script.php?script_id=3465">http://www.vim.org/scripts/script.php?script_id=3465</a></p>
 
-<p>[2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></p>
+<p>  [2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></p>
 
-<p>[3] vim_cscope &ndash; a vim plugin to configure vim_cscope, <a href="https://github.com/chenxiaohui/vim_cscope">https://github.com/chenxiaohui/vim_cscope</a></p></blockquote>
+<p>  [3] vim_cscope &ndash; a vim plugin to configure vim_cscope, <a href="https://github.com/chenxiaohui/vim_cscope">https://github.com/chenxiaohui/vim_cscope</a></p>
 ]]></content>
   </entry>
   

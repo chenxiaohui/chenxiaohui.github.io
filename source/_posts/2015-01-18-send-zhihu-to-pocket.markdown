@@ -78,6 +78,6 @@ categories: "web相关"
 [2]: http://getpocket.com/developer/docs "Pocket API Documentation"
 ###参考文献:
 
->\[1] sed 简明教程, <http://coolshell.cn/articles/9104.htm>
-
->\[2] Pocket API Documentation, <http://getpocket.com/developer/docs>
+  \[1] sed 简明教程, <http://coolshell.cn/articles/9104.htm>
+  
+  \[2] Pocket API Documentation, <http://getpocket.com/developer/docs>

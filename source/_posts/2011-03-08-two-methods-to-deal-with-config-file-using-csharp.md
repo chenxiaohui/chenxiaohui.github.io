@@ -22,8 +22,5 @@ tags:
 
 参考文献：
 
-> [1]C#序列化技术详解（转），
->
-> 
+ [1]C#序列化技术详解（转），
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar

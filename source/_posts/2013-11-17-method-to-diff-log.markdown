@@ -31,6 +31,6 @@ categories: "Oceanbase"
 
 ###参考文献:
 
->\[1] Vim 中的正则表达式, <http://qianjigui.iteye.com/blog/368449>
+  \[1] Vim 中的正则表达式, <http://qianjigui.iteye.com/blog/368449>
 
->\[2] Vim日志定位解决方案, <http://cxh.me/2013/11/08/solution-to-locate-log-in-src/>
+  \[2] Vim日志定位解决方案, <http://cxh.me/2013/11/08/solution-to-locate-log-in-src/>

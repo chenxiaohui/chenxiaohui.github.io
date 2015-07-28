@@ -24,6 +24,6 @@ categories: "java"
 [2]: http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions "Are there any Java method ordering conventions?"
 ###参考文献:
 
->\[1] Google Java Style, <https://google-styleguide.googlecode.com/svn/trunk/javaguide.html>
-
->\[2] Are there any Java method ordering conventions?, <http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions>
+  \[1] Google Java Style, <https://google-styleguide.googlecode.com/svn/trunk/javaguide.html>
+  
+  \[2] Are there any Java method ordering conventions?, <http://stackoverflow.com/questions/4668218/are-there-any-java-method-ordering-conventions>

@@ -77,15 +77,3 @@ tags:
 [4] pfSense学习
 
 
-
-   [1]: http://www.roybit.com/wp-content/uploads/2011/11/logo_thumb.png (logo)
-   [2]: http://blog.romant.net/wp-content/uploads/2010/07/Step2.png
-   [3]: http://blog.romant.net/wp-content/uploads/2010/07/Step3_121.png
-   [4]: http://blog.romant.net/wp-content/uploads/2010/07/Step3_13.png
-   [5]: http://blog.romant.net/wp-content/uploads/2010/07/Step_last_summary_2.png
-   [6]: http://www.roybit.com/wp-content/uploads/2011/11/image_thumb.png (image)
-   [7]: http://www.roybit.com/wp-content/uploads/2011/11/image_thumb1.png (image)
-   [8]: http://blog.romant.net/wp-content/uploads/2010/07/Step_last.png
-   [9]: http://blog.romant.net/wp-content/uploads/2010/07/pfsense_config_2.png
-   [10]: http://blog.romant.net/wp-content/uploads/2010/07/pfsense_summary.png
-   [11]: http://blog.romant.net/wp-content/uploads/2010/07/client_network.png

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -236,7 +236,7 @@ else
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] 两阶段提交(2PC)协议, <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
+<p>  [1] 两阶段提交(2PC)协议, <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p>
 ]]></content>
   </entry>
   
@@ -270,7 +270,7 @@ else
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p></blockquote>
+<p>  [1] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p>
 ]]></content>
   </entry>
   
@@ -285,21 +285,21 @@ else
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] 数据库事务隔离级别和锁实现机制, <a href="http://comedsh.iteye.com/blog/698733">http://comedsh.iteye.com/blog/698733</a></p>
+<p>  [1] 数据库事务隔离级别和锁实现机制, <a href="http://comedsh.iteye.com/blog/698733">http://comedsh.iteye.com/blog/698733</a></p>
 
-<p>[2] 数据库事务的实现（一） 故障恢复 （undo日志）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html</a></p>
+<p>  [2] 数据库事务的实现（一） 故障恢复 （undo日志）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657943.html</a></p>
 
-<p>[3] 数据库事务的实现-故障恢复（二）（undo日志检查点）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html</a></p>
+<p>  [3] 数据库事务的实现-故障恢复（二）（undo日志检查点）, <a href="http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html">http://www.cnblogs.com/clam/archive/2012/08/27/2657944.html</a></p>
 
-<p>[4] 为 Key-Value 数据库实现MVCC 事务, <a href="http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/">http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/</a></p>
+<p>  [4] 为 Key-Value 数据库实现MVCC 事务, <a href="http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/">http://juliashine.com/implementation-of-mvcc-transactions-for-key-value-stores/</a></p>
 
-<p>[5] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p>
+<p>  [5] 数据库日志文件&mdash; undo log 、redo log、 undo/redo log, <a href="http://blog.csdn.net/ggxxkkll/article/details/7616739">http://blog.csdn.net/ggxxkkll/article/details/7616739</a></p>
 
-<p>[6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p>
+<p>  [6] 两阶段提交-2PC, <a href="http://blog.csdn.net/ggxxkkll/article/details/7631545">http://blog.csdn.net/ggxxkkll/article/details/7631545</a></p>
 
-<p>[7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p>
+<p>  [7] 分布式系统的事务处理, <a href="http://coolshell.cn/articles/10910.html">http://coolshell.cn/articles/10910.html</a></p>
 
-<p>[8] 两阶段提交(2PC)协议" , <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p></blockquote>
+<p>  [8] 两阶段提交(2PC)协议" , <a href="http://blog.chinaunix.net/uid-20761674-id-75164.html">http://blog.chinaunix.net/uid-20761674-id-75164.html</a></p>
 ]]></content>
   </entry>
   

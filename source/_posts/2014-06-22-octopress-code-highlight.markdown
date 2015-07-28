@@ -32,8 +32,8 @@ categories: "web相关"
 
 ###参考文献:
 
->\[1] google code prettify, <https://code.google.com/p/google-code-prettify/>
-
->\[2] google code prettify theme, <http://jmblog.github.io/color-themes-for-google-code-prettify/>
-
->\[3] Jekyll中使用google-code-prettify高亮代码, <http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/>
+  \[1] google code prettify, <https://code.google.com/p/google-code-prettify/>
+ 
+  \[2] google code prettify theme, <http://jmblog.github.io/color-themes-for-google-code-prettify/>
+ 
+  \[3] Jekyll中使用google-code-prettify高亮代码, <http://blog.evercoding.net/2013/02/27/highlight-code-with-google-code-prettify/>

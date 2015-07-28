@@ -69,4 +69,4 @@ categories: Linux
 
 ###参考文献：
 
-> [1] （原创）htop：一款比top强悍好用的进程管理监控工具, http://www.ha97.com/4075.html
+ [1]:（原创）htop：一款比top强悍好用的进程管理监控工具, http://www.ha97.com/4075.html

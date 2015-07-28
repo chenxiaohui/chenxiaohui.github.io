@@ -33,7 +33,7 @@ categories: "C++"
 	int main()
 	{
 	    srand( (unsigned)time(NULL) ); //rand seed
-	    vector<int> poker; 
+	    vector<int> poker;
 	    //initialize
 	    for (int num = 0; num < POKER_NUM; ++num)
 	    {
@@ -79,6 +79,6 @@ categories: "C++"
 
 ###Bibliography:
 
->\[1] random_shuffle算法小例子, <http://blog.csdn.net/aheroofeast/article/details/3907192>
+  \[1] random_shuffle算法小例子, <http://blog.csdn.net/aheroofeast/article/details/3907192>
 
->\[2] 	"Algorithms, <http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY>
+  \[2] 	"Algorithms, <http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY>

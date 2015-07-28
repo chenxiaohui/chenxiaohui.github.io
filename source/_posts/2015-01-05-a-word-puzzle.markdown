@@ -43,4 +43,4 @@ categories: "IT人生"
 
 ###参考文献:
 
->\[1] LINUX Shell 下求两个文件交集和差集的办法, <http://blog.csdn.net/autofei/article/details/6579320>
+  \[1] LINUX Shell 下求两个文件交集和差集的办法, <http://blog.csdn.net/autofei/article/details/6579320>

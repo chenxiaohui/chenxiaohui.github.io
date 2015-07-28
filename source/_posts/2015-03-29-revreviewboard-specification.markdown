@@ -10,7 +10,7 @@ categories: "其他"
 ## Postreview 客户端配置
 
   reviewboard是群众喜闻乐见的代码review工具。本文主要涉及客户端配置和review流程，server端配置见[文档1][1]。
-  
+
   首先安装python（必须的），之后安装post-review插件:
 
   	pip:
@@ -46,7 +46,7 @@ categories: "其他"
   	git add xx
   	git commit -m "message"
   	rbt post
-  
+
   对同一个更改post之后如果要再次修改，可以：
 
   	rbt post -r <post_id>
@@ -74,10 +74,10 @@ categories: "其他"
 [4]: http://cxh.me/2014/06/21/ppost-review-plugin/ "Post-review插件"
 ###Bibliography:
 
->\[1] Reviewboard的安装, <http://cxh.me/2015/03/28/review-board-setup/>
+  \[1] Reviewboard的安装, <http://cxh.me/2015/03/28/review-board-setup/>
 
->\[2] Svn Vim 整合方案, <http://cxh.me/2013/10/15/svn-vim-integration/>
+  \[2] Svn Vim 整合方案, <http://cxh.me/2013/10/15/svn-vim-integration/>
 
->\[3] Post-review在svn和git共同存在下的冲突问题, <http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/>
+  \[3] Post-review在svn和git共同存在下的冲突问题, <http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/>
 
->\[4] Post-review插件, <http://cxh.me/2014/06/21/ppost-review-plugin/>
+  \[4] Post-review插件, <http://cxh.me/2014/06/21/ppost-review-plugin/>

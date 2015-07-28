@@ -14,23 +14,8 @@ categories: "web相关"
 
   我们可以通过这个形式来生成如下的代码
 
-  	###参考文献:
-
-	>\[1] 百度, <http://www.baidu.com>
-
-	>\[2] 谷歌, <http:://www.google.com>
-
-	>\[3] 404 Not Found, <http://www.facebook.com>
 
   效果如下：
-
-###参考文献:
-
->\[1] 百度, <http://www.baidu.com>
-
->\[2] 谷歌, <http:://www.google.com>
-
->\[3] 404 Not Found, <http://www.facebook.com>
 
 <!--more-->
 
@@ -57,3 +42,12 @@ categories: "web相关"
 	            title = line[idx2:].strip('"')
 	            outlines.append('\n>\%s %s, <%s>'%(index,title,url))
 	        self.view.insert(edit, sel.end(),"\n###参考文献:\n".decode("utf-8") + "\n".join(outlines))
+
+###参考文献:
+
+  \[1] 百度, <http://www.baidu.com>
+
+  \[2] 谷歌, <http:://www.google.com>
+
+  \[3] 404 Not Found, <http://www.facebook.com>
+

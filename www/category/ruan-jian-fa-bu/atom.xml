@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 软件发布 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ruan-jian-fa-bu/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -44,29 +44,29 @@
 
 <p>  我们这里给出正则文法的形式定义</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/03/wenfa_thumb.jpg" title="wenfa" alt="wenfa" /> 这个定义是有二义的，消除二义之后的定义形式如下所示：</p>
+<p><img src="John" alt="wenfa" /> 这个定义是有二义的，消除二义之后的定义形式如下所示：</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/03/wefa1_thumb.jpg" title="wefa1" alt="wefa1" /> 算法的基本思路如下所示：</p>
+<p><img src="%E7%BD%97%E8%B4%B5%E6%98%8E%EF%BC%8C%E8%87%AA%E5%8A%A8%E6%9C%BA%E4%B8%8E%E5%BD%A2%E5%BC%8F%E9%80%BB%E8%BE%91%E8%AF%BE%E4%BB%B6[EB/OL]%EF%BC%8C%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2%EF%BC%8C2010%E3%80%82" alt="wefa1" /> 算法的基本思路如下所示：</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/03/suanfa_thumb.png" title="suanfa" alt="suanfa" /> 类图如下所示：</p>
+<p><img src="%E9%AB%98%E4%BB%B2%E4%BB%AA%EF%BC%8C%E9%87%91%E8%8C%82%E5%BF%A0%EF%BC%8C%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%8F%8A%E7%BC%96%E8%AF%91%E7%A8%8B%E5%BA%8F%E6%9E%84%E9%80%A0[M]%EF%BC%8C%E5%8C%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E8%88%AA%E5%A4%A9%E5%A4%A7%E5%AD%A6%E5%87%BA%E7%89%88%E7%A4%BE%EF%BC%8C1990-12%E3%80%82" alt="suanfa" /> 类图如下所示：</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/03/sdf_thumb.jpg" title="sdf" alt="sdf" /> 另，为了效果能更友好，使用了Latex的几个宏包，无法打包进代码里，所以想要运行请安装CTex套装，代码在CTex2.5以上版本运行通过。</p>
+<p><img src="Alfred" alt="sdf" /> 另，为了效果能更友好，使用了Latex的几个宏包，无法打包进代码里，所以想要运行请安装CTex套装，代码在CTex2.5以上版本运行通过。</p>
 
-<p>  文档和可执行文件<a href="http://www.roybit.com/wp-content/uploads/2011/03/%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E6%A1%A3.rar">这里</a>下载，代码<a href="http://www.roybit.com/wp-content/uploads/2011/03/%E4%BB%A3%E7%A0%81.rar">这里</a>下载。</p>
+<p>  文档和可执行文件<a href="The">这里</a>下载，代码<a href="%E5%A6%82%E4%BD%95%E5%B0%86%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%BD%AC%E5%8C%96%E4%B8%BA%E8%87%AA%E5%8A%A8%E6%9C%BA[EB/OL]%EF%BC%8C.">这里</a>下载。</p>
 
-<blockquote><p>参考文献:</p>
+<p> 参考文献:</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/03/wenfa_thumb.jpg" title="wenfa">1</a> John E. Hopcroft, Rajeev Motwani, Jeffrey D. Ullman，Introduction to Automata Theory, Languages, and Computation[M]，2nd Edition. Addison Wesley Press, November 24, 2000.</p>
+<p>  [1]: John E. Hopcroft, Rajeev Motwani, Jeffrey D. Ullman，Introduction to Automata Theory, Languages, and Computation[M]，2nd Edition. Addison Wesley Press, November 24, 2000.</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/03/wefa1_thumb.jpg" title="wefa1">2</a> 罗贵明，自动机与形式逻辑课件[EB/OL]，清华大学软件学院，2010。</p>
+<p>  [2]: 罗贵明，自动机与形式逻辑课件[EB/OL]，清华大学软件学院，2010。</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/03/suanfa_thumb.png" title="suanfa">3</a> 高仲仪，金茂忠，编译原理及编译程序构造[M]，北京航空航天大学出版社，1990-12。</p>
+<p>  [3]: 高仲仪，金茂忠，编译原理及编译程序构造[M]，北京航空航天大学出版社，1990-12。</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/03/sdf_thumb.jpg" title="sdf">4</a> Alfred V.Aho, Monica S.Lam, Ravi Sethi, Jeffrey D.Ullman, Compilers: Principles, Techniques, and Tools (2nd Edition)[M]，Addison Wesley Press,2009-1.</p>
+<p>  [4]: Alfred V.Aho, Monica S.Lam, Ravi Sethi, Jeffrey D.Ullman, Compilers: Principles, Techniques, and Tools (2nd Edition)[M]，Addison Wesley Press,2009-1.</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/03/%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E5%92%8C%E6%96%87%E6%A1%A3.rar">5</a> The TikZ and PGF manual, Example: State machine[EB/OL],  ,2006-11-08</p>
+<p>  [5]: The TikZ and PGF manual, Example: State machine[EB/OL],  ,2006-11-08</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/03/%E4%BB%A3%E7%A0%81.rar">6</a> 如何将正则表达式转化为自动机[EB/OL]，.</p></blockquote>
+<p>  [6]: 如何将正则表达式转化为自动机[EB/OL]，.</p>
 ]]></content>
   </entry>
   

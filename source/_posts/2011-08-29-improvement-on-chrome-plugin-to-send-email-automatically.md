@@ -33,10 +33,7 @@ tags:
 
   代码[这里][1]下载，不做过多解释了。哎，最近得好好折腾一下开题了。
 
-> 参考文献：
->
-> [1] JavaScript无提示关闭窗口(兼容IE/Firefox/Chrome),
->
-> 
+参考文献：
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B6.rar (chrome插件)
+[1] JavaScript无提示关闭窗口(兼容IE/Firefox/Chrome),
+

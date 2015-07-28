@@ -26,8 +26,7 @@ tags:
 
   1. 参考文献：
 
-> [1] willko，cURL 二次封装的类库Curl_Manager，
->
-> [2] tianxin，php 使用curl模拟登录人人(校内)网，
+ [1] willko，cURL 二次封装的类库Curl_Manager，
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/06/curl.rar (curl)
+ [2] tianxin，php 使用curl模拟登录人人(校内)网，
+

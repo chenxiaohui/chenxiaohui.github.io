@@ -90,12 +90,3 @@ categories:
         }
     }
 
-参考文献：
-
-  C#序列化技术详解（转）：
-
-  序列化和反序列化（Socket中传递Object）：
-
-  C#中JSON的序列化和反序列化：[http://www.dotnetdev.cn/2010/01/c中的json的序列化和反序列化/][1]
-
-   [1]: http://www.dotnetdev.cn/2010/01/c%E4%B8%AD%E7%9A%84json%E7%9A%84%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/

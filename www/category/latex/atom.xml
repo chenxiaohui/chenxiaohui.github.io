@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Latex | CXH.ME]]></title>
   <link href="http://cxh.me/category/latex/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -77,7 +77,7 @@
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p></blockquote>
+<p>  [1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p>
 ]]></content>
   </entry>
   
@@ -141,13 +141,13 @@ if __name__ == '__main__':
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] The-Swift-Programming-Language-in-Chinese, <a href="https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese">https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese</a></p>
+<p>  [1] The-Swift-Programming-Language-in-Chinese, <a href="https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese">https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese</a></p>
 
-<p>[2] pandoc, <a href="http://johnmacfarlane.net/pandoc/">http://johnmacfarlane.net/pandoc/</a></p>
+<p>  [2] pandoc, <a href="http://johnmacfarlane.net/pandoc/">http://johnmacfarlane.net/pandoc/</a></p>
 
-<p>[3] pandoc, <a href="http://johnmacfarlane.net/pandoc/installing.html">http://johnmacfarlane.net/pandoc/installing.html</a></p>
+<p>  [3] pandoc, <a href="http://johnmacfarlane.net/pandoc/installing.html">http://johnmacfarlane.net/pandoc/installing.html</a></p>
 
-<p>[4] texlive, <a href="https://www.tug.org/texlive/">https://www.tug.org/texlive/</a></p></blockquote>
+<p>  [4] texlive, <a href="https://www.tug.org/texlive/">https://www.tug.org/texlive/</a></p>
 ]]></content>
   </entry>
   

@@ -22,9 +22,5 @@ tags:
 
 参考文献：
 
-> Vista风格日历控件C#版，
->
-> 
+ Vista风格日历控件C#版，
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/03/thumb.png (无标题)
-   [2]: http://www.roybit.com/wp-content/uploads/2011/03/VistaCalendar.rar

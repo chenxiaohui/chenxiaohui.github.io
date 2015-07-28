@@ -106,6 +106,6 @@ categories: oceanbase
 
 参考文献：
 
-> \[1] SVN 命令参考（svn command reference）, <http://riaoo.com/subpages/svn_cmd_reference.html>
+ [1] SVN 命令参考（svn command reference）, <http://riaoo.com/subpages/svn_cmd_reference.html>
 
-> \[2] 使用脚本编写 Vim 编辑器, <http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/>
+ [2] 使用脚本编写 Vim 编辑器, <http://www.ibm.com/developerworks/cn/linux/l-vim-script-2/>

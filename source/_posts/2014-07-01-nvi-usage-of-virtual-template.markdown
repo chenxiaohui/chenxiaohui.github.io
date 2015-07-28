@@ -88,6 +88,6 @@ categories: "C++"
 
 ###参考文献:
 
->\[1] 【C++程序设计技巧】NVI（Non-Virtual Interface ）, <http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html>
-
->\[2] 纯虚函数能为private吗？, <http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html>
+  \[1] 【C++程序设计技巧】NVI（Non-Virtual Interface ）, <http://www.cnblogs.com/gnuhpc/archive/2012/01/17/2324836.html>
+ 
+  \[2] 纯虚函数能为private吗？, <http://www.cppblog.com/zhuweisky/archive/2005/09/14/269.html>

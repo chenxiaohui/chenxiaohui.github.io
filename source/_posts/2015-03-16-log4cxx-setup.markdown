@@ -19,4 +19,4 @@ categories: "C++"
 
 ###Bibliography:
 
->\[1] [原创] 	log4cxx在Linux下的安装、使用, <http://www.codelast.com/?p=3211>
+  \[1] [原创] 	log4cxx在Linux下的安装、使用, <http://www.codelast.com/?p=3211>

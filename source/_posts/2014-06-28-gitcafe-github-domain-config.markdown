@@ -56,8 +56,8 @@ categories: "web相关"
 
 ###参考文献:
 
->\[1] 为什么越来越多的网站域名不加www了？, <http://www.zhihu.com/question/20414602>
-
->\[2] 常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录, <http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html>
-
->\[3] Tips for configuring a CNAME record with your DNS provider, <https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider>
+  \[1] 为什么越来越多的网站域名不加www了？, <http://www.zhihu.com/question/20414602>
+ 
+  \[2] 常用域名记录解释：A记录、MX记录、CNAME记录、TXT记录、AAAA记录、NS记录, <http://www.ezloo.com/2011/04/a_mx_cname_txt_aaaa_ns.html>
+ 
+  \[3] Tips for configuring a CNAME record with your DNS provider, <https://help.github.com/articles/tips-for-configuring-a-cname-record-with-your-dns-provider>

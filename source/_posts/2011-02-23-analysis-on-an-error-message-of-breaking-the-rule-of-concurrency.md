@@ -28,8 +28,5 @@ tags:
 
 参考文献：
 
-> [1] Access自动编号 违反并发性原因解析,
->
-> 
+[1]:Access自动编号 违反并发性原因解析,
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/02/UpdateID.rar

@@ -42,5 +42,3 @@ tags:
 [4] ESXi虚拟网络配置的几点认识
 
 
-
-   [1]: http://www.roybit.com/wp-content/uploads/2011/11/1_thumb.png (1)

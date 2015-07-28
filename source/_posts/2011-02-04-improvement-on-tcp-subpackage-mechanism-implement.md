@@ -46,9 +46,4 @@ tags:
     Array.Clear(client.m_receiveBuffer, 0, client.m_receiveBuffer.Length);
 
 参考文献：
-
-> [1] 长度、分隔符加校验的TCP分包设计(C#)，
->
-> 
-
-   [1]: http://www.roybit.com/wp-content/uploads/2011/02/Client.cs
+ [1] 长度、分隔符加校验的TCP分包设计(C#)，

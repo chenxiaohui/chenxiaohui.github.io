@@ -96,4 +96,4 @@ categories: "Oceanbase"
 [1]:http://blog.chinaunix.net/uid-20761674-id-75164.html "两阶段提交(2PC)协议"
 ###参考文献:
 
->\[1] 两阶段提交(2PC)协议, <http://blog.chinaunix.net/uid-20761674-id-75164.html>
+  \[1] 两阶段提交(2PC)协议, <http://blog.chinaunix.net/uid-20761674-id-75164.html>

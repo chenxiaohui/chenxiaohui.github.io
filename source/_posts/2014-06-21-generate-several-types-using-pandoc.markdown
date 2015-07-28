@@ -63,12 +63,13 @@ categories: "Latex"
 [2]:http://johnmacfarlane.net/pandoc/ "pandoc"
 [3]:http://johnmacfarlane.net/pandoc/installing.html "pandoc"
 [4]:https://www.tug.org/texlive/ "texlive"
+
 ###参考文献:
 
->\[1] The-Swift-Programming-Language-in-Chinese, <https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese>
+  \[1] The-Swift-Programming-Language-in-Chinese, <https://github.com/letsswift/The-Swift-Programming-Language-in-Chinese>
 
->\[2] pandoc, <http://johnmacfarlane.net/pandoc/>
+  \[2] pandoc, <http://johnmacfarlane.net/pandoc/>
 
->\[3] pandoc, <http://johnmacfarlane.net/pandoc/installing.html>
+  \[3] pandoc, <http://johnmacfarlane.net/pandoc/installing.html>
 
->\[4] texlive, <https://www.tug.org/texlive/>
+  \[4] texlive, <https://www.tug.org/texlive/>

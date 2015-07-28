@@ -30,4 +30,4 @@ categories: "摄影"
 
 ###参考文献:
 
->\[1] 一篇讲解成像原理的文章, <http://blog.sina.com.cn/s/blog_64cff0510100hid1.html>
+  \[1] 一篇讲解成像原理的文章, <http://blog.sina.com.cn/s/blog_64cff0510100hid1.html>

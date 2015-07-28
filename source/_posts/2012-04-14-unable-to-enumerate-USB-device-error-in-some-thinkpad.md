@@ -29,6 +29,4 @@ format: standard
 
 ###参考文献：
 
->[1] Solved: unable to enumerate USB device on port 1,
-
-><http://uucode.com/blog/2011/01/18/solved-unable-to-enumerate-usb-device-on-port-1/>
+[1] Solved: unable to enumerate USB device on port 1, <http://uucode.com/blog/2011/01/18/solved-unable-to-enumerate-usb-device-on-port-1>

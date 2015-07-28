@@ -26,12 +26,7 @@ tags:
 
   所以有一句总结年广久的话，还是比较精辟的：无大智慧，耍小聪明。共勉之，对事不对人。
 
-> 参考文献：
->
-> 改革开放印迹：三次被小平点名的"傻子"年广久
->
-> 
+ 参考文献：
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/08/6bfea9d3tw1djuw88fas7j_thumb.jpg (6bfea9d3tw1djuw88fas7j)
-   [2]: http://img.t.sinajs.cn/t35/style/images/common/transparent.gif (新浪个人认证)
-   [3]: http://weibo.com/laserstone
+ 改革开放印迹：三次被小平点名的"傻子"年广久
+

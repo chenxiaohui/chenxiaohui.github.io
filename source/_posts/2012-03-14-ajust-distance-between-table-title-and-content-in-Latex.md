@@ -27,7 +27,3 @@ tags:
 
 ![image][2]
 
-参考文献：
-
-   [1]: http://www.roybit.com/wp-content/uploads/2012/03/image_thumb.png (image)
-   [2]: http://www.roybit.com/wp-content/uploads/2012/03/image_thumb1.png (image)

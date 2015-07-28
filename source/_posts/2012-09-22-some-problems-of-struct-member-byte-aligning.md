@@ -56,5 +56,4 @@ format: standard
 
 参考文献：
 
-> [1]Struct大小和内存对齐，
-    ><http://blog.21ic.com/user1/6199/archives/2009/65542.html>
+ [1]: Struct大小和内存对齐， <http://blog.21ic.com/user1/6199/archives/2009/65542.html>

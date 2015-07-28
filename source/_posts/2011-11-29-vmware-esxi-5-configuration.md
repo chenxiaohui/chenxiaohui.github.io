@@ -48,18 +48,11 @@ tags:
 [1] 產品方案 – VMware – ESXi 入門教學，
 
 
-
 [2] ESX还是ESXi？这也是个问题，
-
 
 
 [3] 虚拟化hypervisor：VMware ESXi全面解析，
 
 
-
 [4]Vmware_ESXI_4.0_安装详解(图文)，
 
-
-
-   [1]: http://www.servicetech.com.hk/img/vmware_esxi.gif
-   [2]: https://www.vmware.com/cn/tryvmware/?p=free-esxi5&lp=default

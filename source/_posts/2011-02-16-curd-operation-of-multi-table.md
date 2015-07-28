@@ -54,17 +54,7 @@ tags:
 
 参考文献：
 
-> [1] SQLServer 存储过程简介与使用方法，
->
-> 
->
-> [2] 使用DataSet更新数据库的两种方式，
->
-> 
+ [1]:SQLServer 存储过程简介与使用方法，
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/02/thumb.jpg (未命名)
-   [2]: http://www.roybit.com/wp-content/uploads/2011/02/2_thumb.jpg (未2命名)
-   [3]: http://www.roybit.com/wp-content/uploads/2011/02/testData_thumb.jpg (testData)
-   [4]: http://www.roybit.com/wp-content/uploads/2011/02/thumb.png (数据库)
-   [5]: http://www.roybit.com/wp-content/uploads/2011/02/ui_thumb.png (ui)
-   [6]: http://www.roybit.com/wp-content/uploads/2011/02/testData.rar
+ [2]:使用DataSet更新数据库的两种方式，
+

@@ -50,8 +50,8 @@ categories: "java"
 [3]: http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/ "Solved: Java compiler level does not match the version of the installed Java project facet"
 ###参考文献:
 
->\[1] 关于eclipse里面override上的warning, <http://cxh.me/2014/12/08/eclipse-java-override-warning/>
-
->\[2] What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn't?, <http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b>
-
->\[3] Solved: Java compiler level does not match the version of the installed Java project facet, <http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/>
+  \[1] 关于eclipse里面override上的warning, <http://cxh.me/2014/12/08/eclipse-java-override-warning/>
+  
+  \[2] What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn't?, <http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b>
+  
+  \[3] Solved: Java compiler level does not match the version of the installed Java project facet, <http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/>

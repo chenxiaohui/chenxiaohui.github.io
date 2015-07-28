@@ -69,6 +69,6 @@ categories: "Oceanbase"
 
 ###参考文献:
 
->\[1] 使用 GDB 调试多进程程序, <http://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/>
+  \[1] 使用 GDB 调试多进程程序, <http://www.ibm.com/developerworks/cn/linux/l-cn-gdbmp/>
 
->\[2] 韩富晟 支付宝颜然，玩大数据的，OceanBase工程师, <http://weibo.com/hanfooo>
+  \[2] 韩富晟 支付宝颜然，玩大数据的，OceanBase工程师, <http://weibo.com/hanfooo>

@@ -21,4 +21,4 @@ categories: "分布式系统"
 
 ###参考文献:
 
->\[1] Kafka Consumer接口, <http://www.cnblogs.com/fxjwind/p/3794255.html>
+  \[1] Kafka Consumer接口, <http://www.cnblogs.com/fxjwind/p/3794255.html>

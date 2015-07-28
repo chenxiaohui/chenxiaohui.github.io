@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | CXH.ME]]></title>
   <link href="http://cxh.me/category/vim/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -23,7 +23,7 @@
 <p>  首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。</p>
 
 <pre><code>ubuntu下可以直接：
-    apt-get install exuberant-ctags 
+    apt-get install exuberant-ctags
 centos下：
     yum install ctags
 mac下：
@@ -160,16 +160,16 @@ nmap &lt;leader&gt;ct :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&l
 
 <p>  这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map &lt;m-left> &lt;C-t>。效果如下所示：</p>
 
-<p>  <img class="img-polaroid center" src="/images/2015/tags.png" title="&ldquo;自动load tags&rdquo; &ldquo;自动load tags&rdquo;" > <br/>
+<p>  <img class="img-polaroid center" src="/images/2015/tags.png" title="&ldquo;自动load tags&rdquo; &ldquo;自动load tags&rdquo;" >
   <img class="img-polaroid center" src="/images/2015/cscope.png" title="&ldquo;cscope find reference结果&rdquo; &ldquo;cscope find reference结果&rdquo;" ></p>
 
 <h3>Bibliography:</h3>
 
-<blockquote><p>[1] Tagbar : Display tags of the current file ordered by scope, <a href="http://www.vim.org/scripts/script.php?script_id=3465">http://www.vim.org/scripts/script.php?script_id=3465</a></p>
+<p>  [1] Tagbar : Display tags of the current file ordered by scope, <a href="http://www.vim.org/scripts/script.php?script_id=3465">http://www.vim.org/scripts/script.php?script_id=3465</a></p>
 
-<p>[2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></p>
+<p>  [2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></p>
 
-<p>[3] vim_cscope &ndash; a vim plugin to configure vim_cscope, <a href="https://github.com/chenxiaohui/vim_cscope">https://github.com/chenxiaohui/vim_cscope</a></p></blockquote>
+<p>  [3] vim_cscope &ndash; a vim plugin to configure vim_cscope, <a href="https://github.com/chenxiaohui/vim_cscope">https://github.com/chenxiaohui/vim_cscope</a></p>
 ]]></content>
   </entry>
   
@@ -557,7 +557,7 @@ let g:applist={
 
 <h3>参考文献:</h3>
 
-<blockquote><p>[1] Visual Mark : Visual mark, similar to UltraEdit&rsquo;s bookmark, <a href="http://www.vim.org/scripts/script.php?script_id=1026">http://www.vim.org/scripts/script.php?script_id=1026</a></p></blockquote>
+<p>  [1] Visual Mark : Visual mark, similar to UltraEdit&rsquo;s bookmark, <a href="http://www.vim.org/scripts/script.php?script_id=1026">http://www.vim.org/scripts/script.php?script_id=1026</a></p>
 ]]></content>
   </entry>
   

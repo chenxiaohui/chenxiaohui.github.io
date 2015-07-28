@@ -52,13 +52,9 @@ format: standard
 
 ### 参考文献：
 
-> [1] buf_it : Buffer list in statusline,
->
-> 
->
-> [2] 在windows下给你的右键菜单添加”edit with vim”的方法,
->
-> 
+[1] buf_it : Buffer list in statusline,
 
-   [1]: https://github.com/BitRobt (Bitrobt)
-   [2]: http://www.roybit.com/wp-content/uploads/2012/03/image_thumb4.png (效果图)
+
+[2] 在windows下给你的右键菜单添加”edit with vim”的方法,
+
+

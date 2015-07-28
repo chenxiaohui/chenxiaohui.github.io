@@ -32,4 +32,4 @@ categories: "Oceanbase"
 
 ###参考文献:
 
->\[1] 数据库日志文件-- undo log 、redo log、 undo/redo log, <http://blog.csdn.net/ggxxkkll/article/details/7616739>
+  \[1] 数据库日志文件-- undo log 、redo log、 undo/redo log, <http://blog.csdn.net/ggxxkkll/article/details/7616739>

@@ -42,8 +42,5 @@ tags:
 
 参考文献：
 
-> [1] TaskbarNotifier代码，Created by John O’Byrne，2002-12-2，Modified by Patrick Vanden Driessche ，2003-1-11
+ [1]: TaskbarNotifier代码，Created by John O’Byrne，2002-12-2，Modified by Patrick Vanden Driessche ，2003-1-11
 
-   [1]: http://www.roybit.com/wp-content/uploads/2011/02/thumb3.png (未命名)
-   [2]: http://www.roybit.com/wp-content/uploads/2011/02/TaskbarNotifier.rar
-   [3]: http://www.roybit.com/wp-content/uploads/2011/02/TestQQNotify.rar

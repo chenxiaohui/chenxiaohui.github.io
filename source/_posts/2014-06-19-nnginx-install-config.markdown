@@ -26,8 +26,8 @@ categories: "web相关"
 
 ###参考文献:
 
->\[1] nginx配置入门, <http://www.nginx.cn/591.html>
+  \[1] nginx配置入门, <http://www.nginx.cn/591.html>
 
->\[2] Nginx安装, <http://www.nginx.cn/install>
+  \[2] Nginx安装, <http://www.nginx.cn/install>
 
->\[3] nginx php-fpm安装配置, <http://www.nginx.cn/231.html>
+  \[3] nginx php-fpm安装配置, <http://www.nginx.cn/231.html>

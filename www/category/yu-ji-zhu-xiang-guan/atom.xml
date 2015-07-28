@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 与技术相关 | CXH.ME]]></title>
   <link href="http://cxh.me/category/yu-ji-zhu-xiang-guan/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -79,11 +79,6 @@
 <p>  这时a占用4字节，b占用4字节，c在偏移8的位置占用1字节，这时的偏移是9，无法被double的长度整除，所以需要填充7字节，最后占用24字节，刚好可以被结构体最长元素（double）整除。</p>
 
 <p>参考文献：</p>
-
-<blockquote><p>[1]Struct大小和内存对齐，</p>
-
-<pre><code>&gt;&lt;http://blog.21ic.com/user1/6199/archives/2009/65542.html&gt;
-</code></pre></blockquote>
 ]]></content>
   </entry>
   
@@ -108,9 +103,7 @@
 
 <h3>参考文献：</h3>
 
-<blockquote><p>[1] Solved: unable to enumerate USB device on port 1,</p>
-
-<p><a href="http://uucode.com/blog/2011/01/18/solved-unable-to-enumerate-usb-device-on-port-1/">http://uucode.com/blog/2011/01/18/solved-unable-to-enumerate-usb-device-on-port-1/</a></p></blockquote>
+<p>[1] Solved: unable to enumerate USB device on port 1, <a href="http://uucode.com/blog/2011/01/18/solved-unable-to-enumerate-usb-device-on-port-1">http://uucode.com/blog/2011/01/18/solved-unable-to-enumerate-usb-device-on-port-1</a></p>
 ]]></content>
   </entry>
   

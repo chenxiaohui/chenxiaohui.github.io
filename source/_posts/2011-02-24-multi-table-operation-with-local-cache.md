@@ -39,10 +39,4 @@ tags:
 
 参考文献：
 
-> [1] 多表级联增删查改操作的实现，
->
-> 
-
-   [1]: http://www.roybit.com/wp-content/uploads/2011/02/thumb1.png (视图结构)
-   [2]: http://www.roybit.com/wp-content/uploads/2011/02/thumb2.png (程序)
-   [3]: http://www.roybit.com/wp-content/uploads/2011/02/testDataUpdate.rar
+ [1]:多表级联增删查改操作的实现，

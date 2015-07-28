@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Web | CXH.ME]]></title>
   <link href="http://cxh.me/category/web/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -44,15 +44,15 @@
 
 <p>2 ajax的错误提示可以通过responseText打印出来，这样方便很多调试，当然jquery就会方便很多。</p>
 
-<p>3 js关闭窗口的代码window.close在不同浏览器里会有不同的问题<a href="http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B6.rar" title="chrome插件">1</a>。</p>
+<p>3 js关闭窗口的代码window.close在不同浏览器里会有不同的问题[1]。</p>
 
 <p>4 正常情况下ajax无法跨域访问，但是Chrome插件里Background.html里是可以跨域访问的。</p></blockquote>
 
-<p>  代码<a href="http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B6.rar" title="chrome插件">这里</a>下载，不做过多解释了。哎，最近得好好折腾一下开题了。</p>
+<p>  代码[这里][1]下载，不做过多解释了。哎，最近得好好折腾一下开题了。</p>
 
-<blockquote><p>参考文献：</p>
+<p>参考文献：</p>
 
-<p><a href="http://www.roybit.com/wp-content/uploads/2011/08/chrome%E6%8F%92%E4%BB%B6.rar" title="chrome插件">1</a> JavaScript无提示关闭窗口(兼容IE/Firefox/Chrome),</p></blockquote>
+<p>[1] JavaScript无提示关闭窗口(兼容IE/Firefox/Chrome),</p>
 ]]></content>
   </entry>
   

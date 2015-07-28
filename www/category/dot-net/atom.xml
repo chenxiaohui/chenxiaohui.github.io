@@ -4,7 +4,7 @@
   <title><![CDATA[Category: .Net | CXH.ME]]></title>
   <link href="http://cxh.me/category/dot-net/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-28T15:56:12+08:00</updated>
+  <updated>2015-07-28T16:36:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -235,13 +235,13 @@ namespace testMessage
     <id>http://cxh.me/2011/03/16/a-gorgeous-vista-like-calendar-control</id>
     <content type="html"><![CDATA[<p>  最近需要用一套可编辑的日历控件，ASP.NET里的日历控件是可用的，但是WinForm下的日历控件无法编辑。没时间写，就直接上网找了个控件修改了一下。其实这控件严格说不能叫日历……这明明是月份牌，实际上就是在一张底图上写上一些日期文字而已。主要的改动是加了一些接口，然后写了部分自动生成的代码，可以直接把一个月的日历显示上去。勉强可用，不过总觉得有点山寨。不说了，上图（打牌这部分纯属吐槽，请勿随意联系）。</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/03/thumb.png" title="无标题" alt="无标题" /></p>
+<p>![无标题][1]</p>
 
-<p>  代码<a href="http://www.roybit.com/wp-content/uploads/2011/03/VistaCalendar.rar">这里</a>下载。</p>
+<p>  代码[这里][2]下载。</p>
 
 <p>参考文献：</p>
 
-<blockquote><p>Vista风格日历控件C#版，</p></blockquote>
+<p> Vista风格日历控件C#版，</p>
 ]]></content>
   </entry>
   
@@ -254,13 +254,13 @@ namespace testMessage
 
 <p>  第一种是使用Windows自身的INI文件读写API，在.NET下调用的时候需要对其进行声明，这也是最传统的一类，问题在于INI文件表达能力有限，每次都要费心地去给每个不同的配置项设置不同的KEY，不适合LIST型的配置项的书写。</p>
 
-<p>  另一种是使用XML序列化与反序列化。这里只是用XML作为一个例子，其实.NET下的几种序列化方式<a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">1</a>都可以用来作为配置文件读写的一种方式。XML的表达能力强于INI文件，同时序列化方式也大大简化了配置文件读写的过程，确是一种方便的工具。</p>
+<p>  另一种是使用XML序列化与反序列化。这里只是用XML作为一个例子，其实.NET下的几种序列化方式[1]都可以用来作为配置文件读写的一种方式。XML的表达能力强于INI文件，同时序列化方式也大大简化了配置文件读写的过程，确是一种方便的工具。</p>
 
-<p>  详见<a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">代码</a>。</p>
+<p>  详见[代码][1]。</p>
 
 <p>参考文献：</p>
 
-<blockquote><p><a href="http://www.roybit.com/wp-content/uploads/2011/03/TestConfig.rar">1</a>C#序列化技术详解（转），</p></blockquote>
+<p> [1]C#序列化技术详解（转），</p>
 ]]></content>
   </entry>
   

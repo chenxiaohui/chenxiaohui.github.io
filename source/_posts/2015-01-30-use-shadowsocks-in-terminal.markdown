@@ -23,7 +23,7 @@ categories: "其他"
   	export http_proxy='http://127.0.0.1:8118'
 	export https_proxy='http://127.0.0.1:8118'
 
-  
+
   最后chkconfig设置下开机启动。Mac下略微麻烦一些。主要是配置开机启动。详见[参考文献3][3]。至于Mac下的Shadowsocks，还是ShadowsocksX比较方便，跟Linux下一样，都是会在1080启动监听。
 
 [1]: http://www.privoxy.org/   "Privoxy"
@@ -32,8 +32,8 @@ categories: "其他"
 
 ###Bibliography:
 
->\[1] Privoxy, <http://www.privoxy.org/>
+  \[1] Privoxy, <http://www.privoxy.org/>
 
->\[2] 通过搭建代理来共享网络, <http://cxh.me/2015/01/11/linux-proxy-setup/>
+  \[2] 通过搭建代理来共享网络, <http://cxh.me/2015/01/11/linux-proxy-setup/>
 
->\[3] 使用Privoxy做智能代理切换, <http://blog.devtang.com/blog/2012/12/08/use-privoxy/>
+  \[3] 使用Privoxy做智能代理切换, <http://blog.devtang.com/blog/2012/12/08/use-privoxy/>

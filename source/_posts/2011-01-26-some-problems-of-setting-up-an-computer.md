@@ -25,6 +25,4 @@ tags:
 
 参考文献：
 
-  耗时18天的《机器人瓦力》机箱大改造，
-
-[1]: http://news.mydrivers.com/img/20090410/10555573.jpg
+[1]: http://news.mydrivers.com/img/20090410/10555573.jpg 耗时18天的《机器人瓦力》机箱大改造， 

@@ -37,18 +37,11 @@ tags:
 
   [2]是Adobe官网的关于MoleHill的一个展示，[3]是对此的翻译，从效果看真是非常炫，你可以在这里（）体验一下，当然需要装新的Adobe Flash Player11。
 
-> 参考文献：
->
-> [1] Adobe发布预览版Flash3D引擎MoleHill，
->
-> 
->
-> [2] 3D APIs for Adobe Flash Player and Adobe AIR,
->
-> 
->
-> [3] Molehill 3D APIs － GPU硬件加速的Flash 3D API,
->
-> 
+参考文献：
 
-   [1]: http://www.07073.com/
+[1] Adobe发布预览版Flash3D引擎MoleHill，
+
+[2] 3D APIs for Adobe Flash Player and Adobe AIR,
+
+[3] Molehill 3D APIs － GPU硬件加速的Flash 3D API,
+

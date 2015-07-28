@@ -47,4 +47,4 @@ categories: "分布式系统"
 
 ###参考文献:
 
->\[1] redis-copy, <https://github.com/yaauie/redis-copy>
+  \[1] redis-copy, <https://github.com/yaauie/redis-copy>
