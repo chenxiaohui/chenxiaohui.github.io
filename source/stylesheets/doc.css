@@ -4,9 +4,7 @@ html body {
     background-color: #e6e6e6;
     line-height:1.5;
     font-family:'Open Sans','Helvetica Neue',Arial,'Hiragino Sans GB','Microsoft YaHei','WenQuanYi Micro Hei',sans-serif;
-    /*background-image: url(../images/back.png);*/
-    /*background-repeat: repeat;*/
-    /*background-position: 0 40px;*/
+    font-size:15px;
 }
 p { margin:5px 0 5px; }
 .entry-content li { line-height:1.5; margin:5px 0px 5px 2em; }
