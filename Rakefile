@@ -85,7 +85,7 @@ task :preview do
     [jekyllPid, compassPid, rackupPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
     exit 0
   }
-  system "[ -f `which google-chrome` ] && (nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &) || open http://localhost:4000 "
+  system '[ -f "`which google-chrome`" ] && (nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &) || open http://localhost:4000'
   [jekyllPid, compassPid, rackupPid].each { |pid| Process.wait(pid) }
 end
 category_path ='source/_includes/categories.html'
@@ -305,7 +305,7 @@ task :deploy do
 
   Rake::Task[:copydot].invoke(source_dir, www_dir)
   Rake::Task["#{deploy_default}"].execute
-  system "[ -f `which google-chrome` ] && (nohup google-chrome http://cxh.me >/dev/null 2>&1 &) || open http://cxh.me "
+  system '[ -f "`which google-chrome`" ] && (nohup google-chrome http://cxh.me >/dev/null 2>&1 &) || open http://cxh.me'
 end
 
 desc "Generate website and deploy"

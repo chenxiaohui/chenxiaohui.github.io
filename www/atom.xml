@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-29T17:43:05+08:00</updated>
+  <updated>2015-07-29T17:49:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
+    <title type="html"><![CDATA[关于group commit]]></title>
     <link href="http://cxh.me/2015/07/29/group-commit/"/>
     <updated>2015-07-29T17:25:00+08:00</updated>
     <id>http://cxh.me/2015/07/29/group-commit</id>

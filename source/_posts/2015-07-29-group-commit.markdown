@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "关于group commit"
 date: 2015-07-29 17:25
 comments: true
 published: true
