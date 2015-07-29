@@ -85,7 +85,7 @@ task :preview do
     [jekyllPid, compassPid, rackupPid].each { |pid| Process.kill(9, pid) rescue Errno::ESRCH }
     exit 0
   }
-  system "nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &"
+  system "[ -f `which google-chrome` ] && (nohup google-chrome http://localhost:4000 >/dev/null 2>&1 &) || open http://localhost:4000 "
   [jekyllPid, compassPid, rackupPid].each { |pid| Process.wait(pid) }
 end
 category_path ='source/_includes/categories.html'
@@ -181,7 +181,7 @@ task :new_post, :title, :category do |t, args|
   raise "### You haven't set anything up yet. First run `rake install` to set up an Octopress theme." unless File.directory?(source_dir)
   mkdir_p "#{source_dir}/#{posts_dir}"
   filename = "#{source_dir}/#{posts_dir}/#{Time.now.strftime('%Y-%m-%d')}-#{title.to_url}.#{new_post_ext}"
-  system 'echo #{filename} |[ -f "`which xclip`" ] && xclip -i -selection clipboard || pbcopy'
+  system 'echo #{filename} |([ -f "`which xclip`" ] && xclip -i -selection clipboard || pbcopy)'
   if File.exist?(filename)
     abort("rake aborted!") if ask("#{filename} already exists. Do you want to overwrite?", ['y', 'n']) == 'n'
   end
@@ -305,7 +305,7 @@ task :deploy do
 
   Rake::Task[:copydot].invoke(source_dir, www_dir)
   Rake::Task["#{deploy_default}"].execute
-  system "nohup google-chrome http://cxh.me >/dev/null 2>&1 &"
+  system "[ -f `which google-chrome` ] && (nohup google-chrome http://cxh.me >/dev/null 2>&1 &) || open http://cxh.me "
 end
 
 desc "Generate website and deploy"

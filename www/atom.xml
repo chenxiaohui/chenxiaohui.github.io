@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-07-29T15:36:21+08:00</updated>
+  <updated>2015-07-29T17:43:05+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2015/07/29/group-commit/"/>
+    <updated>2015-07-29T17:25:00+08:00</updated>
+    <id>http://cxh.me/2015/07/29/group-commit</id>
+    <content type="html"><![CDATA[<p>  最近突然想到这个东西，以前Oceanbase的UpdateServer提交的时候是做了group commit的。基本思路如下：</p>
+
+<ol>
+<li> 并发小的时候，超过一个时间窗口就直接提交</li>
+<li> 并发大的时候，等请求填满一个buffer再一起提交。</li>
+</ol>
+
+
+<p>  实现上可以考虑如下伪代码：</p>
+
+<pre><code>while true:
+    start timer
+    if buffer full or timer reach limit:
+        commit
+        reset timer
+    else
+        wait and receive
+</code></pre>
+
+<p>  广泛运用在一些需要组合请求的地方，比如一些rpc因为历史原因（嗯）一直单条请求，不能改协议的情况下，可以考虑转发一下，做个缓冲。当然这种情况下一般是通过队列来缓冲请求压力。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[带小团队的一点思考]]></title>
@@ -1124,38 +1152,6 @@ easy_install只能去安装目录看了。实际上是共享的。
 </code></pre>
 
 <p>  可以用virtualenv来分离不同的环境。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于ubuntu gnome下crontab运行的问题]]></title>
-    <link href="http://cxh.me/2015/03/24/ubuntu-gnome-crontab/"/>
-    <updated>2015-03-24T13:54:00+08:00</updated>
-    <id>http://cxh.me/2015/03/24/ubuntu-gnome-crontab</id>
-    <content type="html"><![CDATA[<p>  今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。</p>
-
-<p>  后来发现对图形界面程序来讲，crontab的进程需要指定输出到哪个显示的，也就是</p>
-
-<pre><code>export DISPLAY=:0 #:0指第一个显示终端，ctrl+alt+f7那个
-/usr/bin/notify-send "亲，该去运动了！！一分钟后关机，请保存所有未保存的Job."
-sudo shutdown -h 1
-</code></pre>
-
-<p>  或者直接在crontab -e中指定环境变量：</p>
-
-<pre><code>DISPLAY=:0
-30 20 * * * /home/cxh/repo/scripts/shutdown.sh
-</code></pre>
-
-<p>  可以顺便制定一下其他变量</p>
-
-<pre><code>SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-MAILTO=cxh #如果出现错误，或者有数据输出，数据作为邮件发给这个帐号
-HOME=/home/cxh #使用者运行的路径,这里是根目录
-</code></pre>
-
-<p>  crontab出错的信息会发邮件到对应用户，mail或者cat /var/mail/$USER查看。d *清理。</p>
 ]]></content>
   </entry>
   
