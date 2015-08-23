@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-08-03T19:21:43+08:00</updated>
+  <updated>2015-08-23T16:37:51+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[gitbook使用指导]]></title>
+    <link href="http://cxh.me/2015/08/23/gitbook-guide/"/>
+    <updated>2015-08-23T16:23:00+08:00</updated>
+    <id>http://cxh.me/2015/08/23/gitbook-guide</id>
+    <content type="html"><![CDATA[<p>  gitbook是nodejs实现的用来帮助书写电子书的，很多开源的书籍项目是基于gitbook的。gitbook的编写语言是markdown，书籍遵循一定的格式完成之后可以通过gitbook发布为各种版本，比如pdf，mobi等电子书格式，或者发布为静态的website，挂到github pages上，对于一些开源项目来说，这是很方便的书写帮助文档的方式。gitbook同样有一个<a href="https://www.gitbook.com/" title="A modern publishing toolchain. Simply taking you from ideas to finished, polished books.">paas的平台</a>，可以允许多人协作在线完成一部电子书</p>
+
+<p>  首先安装gitbook</p>
+
+<pre><code>npm -g install gitbook
+npm -g install gitbook-cli
+npm -g install ebook-convert
+</code></pre>
+
+<p>  第三个是安装生成电子书的插件，但是这里并不会安装bin文件，需要手动安装<a href="http://calibre-ebook.com/" title="calibre: The one stop solution for all your e-book needs. Comprehensive e-book software.">Calibre</a>。Mac下可以安装Calibre的app然后链接一下bin：</p>
+
+<pre><code>ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
+</code></pre>
+
+<p>  这样就可以生成pdf/mobi等格式的电子书了。</p>
+
+<p>  使用方式可以通过gitbook help来查看。主要是如下几个：</p>
+
+<pre><code>gitbook build [book] [output]   生成电子书，通过--format指定输出格式，默认输出为website
+gitbook pdf [book] [output]     生成pdf电子书
+gitbook epub [book] [output]    生成epub电子书
+gitbook mobi [book] [output]    生成mobi电子书
+serve [book]                    生成并开启http server预览
+init [directory]                根据summary建立基本目录结构
+install [book]                  安装依赖和插件
+</code></pre>
+
+<p>  Summary的基本样子见这里：</p>
+
+<pre><code># Summary
+* [Introduction](README.md)
+* [入门](getting_started/README.md)
+   * [初识](getting_started/what_is_it.md)
+   * [安装](getting_started/installing_es.md)
+   * [API](getting_started/api.md)
+   * [文档](getting_started/document.md)
+   * [索引](getting_started/tutorial_indexing.md)
+   * [搜索](getting_started/tutorial_search.md)
+   * [汇总](getting_started/tutorial_aggregations.md)
+   * [小结](getting_started/tutorial_conclusion.md)
+   * [分布式](getting_started/distributed.md)
+   * [本章总结](getting_started/conclusion.md)
+* [分布式集群](distributed_cluster/README.md)
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[工作周年总结]]></title>
+    <link href="http://cxh.me/2015/08/07/work-anniversary-note/"/>
+    <updated>2015-08-07T15:50:00+08:00</updated>
+    <id>http://cxh.me/2015/08/07/work-anniversary-note</id>
+    <content type="html"><![CDATA[<p>  工作两周年了，感觉这两年走了不少弯路，也学到不少东西，最近看到日照的<a href="http://www.nosqlnotes.net/archives/128" title="2010年度总结">周年总结</a>，觉得也应该写写。而且看看日照当时的情况，觉得跟我现在也差不多，同样处在职业的选择期，一个明确的规划还是很重要的。</p>
+
+<h3>总结</h3>
+
+<p>  2013年进入支付宝Oceanbase组，待了一年半的时间吧，第一年主要在0.5上修修改改，第二年换到了UPS组，参与1.0的设计。从第一年的情况看，基本是完成了一个不错的职业素养培训，有了分布式的基本概念，处于了解熟悉的阶段。第二年开始对分布式协议有了一些认识，算是入门了吧。总结两年还是学到了一些东西，但是也算是付出了一些代价。出来之后看之前的组，觉得对应届生还是个不错的选择，ob有点像一个学校，闲的时候有不错的学习机会，就是加班太多了。</p>
+
+<p>  后来身体原因离职，来搜狐大数据中心，开始做推荐系统相关的东西。从那个时候想做算法，搞了半年多吧，有些了解，不算入门，大概处于这样一个状态。对我来说，兴趣总归是第一位的，然而在一个方向上有所积累更重要。这样容易过了几年发现什么都会点什么都不精通。互联网发展这么快，</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[log4cxx安装]]></title>
@@ -919,245 +986,6 @@ rbt post
 <p>  [3] Post-review在svn和git共同存在下的冲突问题, <a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/">http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/</a></p>
 
 <p>  [4] Post-review插件, <a href="http://cxh.me/2014/06/21/ppost-review-plugin/">http://cxh.me/2014/06/21/ppost-review-plugin/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[reviewboard的安装]]></title>
-    <link href="http://cxh.me/2015/03/28/review-board-setup/"/>
-    <updated>2015-03-28T21:15:00+08:00</updated>
-    <id>http://cxh.me/2015/03/28/review-board-setup</id>
-    <content type="html"><![CDATA[<p>  <a href="https://www.reviewboard.org" title="Review Board">reviewboard</a>是群众喜闻乐见的代码review工具。安装过程详见<a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/" title="Creating a Review Board Site">文档1</a><a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/" title="Installing on Linux">文档2</a>。这些写一些遇到的问题：</p>
-
-<ol>
-<li><p>默认支持版本是django 1.6，最新的django1.7不支持。所以最好用virtualenv独立出一个环境来。</p></li>
-<li><p>官方文档的apache不知道是怎样的目录结构，反正我自己安装的apache和yum install的都跟官方的目录结构不太一样。</p>
-
-<ol>
-<li><p>copy或者link apache-wsgi.conf到conf.d目录，etc/httpd结构如下</p>
-
-<p> <img class="img-polaroid center" src="http://cxh.me/images/2015/etc_httpd.png"></p></li>
-<li><p>配置下PythonHome</p>
-
-<p> WSGIPythonHome /opt/harrychen/rb
- #WSGIPythonPath /var/www/reviewboard:/opt/harrychen/rb/lib/python2.7/site-packages</p></li>
-<li><p>WSGIPythonPath <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/" title="How to use Django with Apache and mod_wsgi">文档</a>里说最好还是配置一下，但是有PythonHome貌似就行了</p></li>
-<li><p>按提示给一些目录加权限。</p></li>
-<li><p>rb-site install，建议直接放到var下，reviewboard的结构跟apache的默认/var/www下类似的。</p></li>
-</ol>
-</li>
-</ol>
-
-
-<!--more-->
-
-
-<ol>
-<li><p>yum install mod_wsgi所安装的mod_wsgi版本默认对应的还是2.6的python，所以不会去2.7的环境下找site-package，建议手动安装mod_wsgi。apache 安装mod_wsgi的过程参见<a href="http://cxh.me/2015/02/27/django-to-apache/" title="Django Mod_wsgi配置的一些问题">文档</a>。网上也看到过<a href="http://m.oschina.net/blog/341289" title="mod_wsgi在多个Python版本下配置apache">这个问题</a>。</p></li>
-<li><p>apache log报错：couldn&rsquo;t perform authentication. AuthType not set!: /。</p>
-
-<p> 貌似2.4之后才支持 Require all granted ，直接删掉。</p></li>
-<li><p>django报错：ERROR: Invalid HTTP_HOST header: &lsquo;10.16.10.74&rsquo;.You may need to add u&#8217;10.16.10.74&#8217; to ALLOWED_HOSTS.</p>
-
-<p> 这个问题当然不见得都会遇到，是我安装的时候想随意绑一个域名，然后本地用hosts指过去，再搞搞dns欺骗啥的大家就都可以用这个伪域名了，但是django非debug模式好像对这个要求很严&hellip;直接用ip就好。详见<a href="http://www.zijin5.com/django-1-5-debug-false/" title="django 1.5 当DEBUG设置为 False时网页打不开的解决办法">这里</a></p></li>
-<li><p>the executable &ldquo;git&rdquo; is not in the path. 修改/etc/sysconfig/httpd加入环境变量/</p>
-
-<p> apache没有环境变量。参见[文献8].</p></li>
-<li><p>ServerLog：SMTPException: SMTP AUTH extension not supported by server.</p>
-
-<p> 详见另一篇<a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ" title="Error uploading new diff: fatal: Not a git repository: 'None'">文章</a>。</p></li>
-<li><p>开始搭建的时候post上去总是报错：Got API Error 224 (HTTP code 400): The specified diff file could not be parsed 。</p>
-
-<p> 开始怀疑是git权限，重新申请了git账号，用reviewboard自己生成的私钥公钥，结果一样。而且有的repo是正常的，后来想到可以手动diff，发现diff里面有修改的时候会报错，新增文件不会。网上搜到这个<a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ" title="Error uploading new diff: fatal: Not a git repository: 'None'">讨论</a>，发现git（至少我安装的版本）不支持对某个commit下某个文件的访问，而reviewboard的逻辑实际上是先根据diff文件提取base revision，然后打上patch来显示两边的diff，这样就需要根据revisionid和filename来随机访问文件。查阅<a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/" title="Repositories">文档10</a> 发现gitweb协议支持，按照gitweb和公司github的格式，填写Raw file URL mask，就可以正常访问了。格式大概是：</p>
-
-<pre><code> git地址：git@github.xxx.com:username/xxx.git
-
- gitweb地址：http://git.kernel.org/?p=username/xx.git;a=blob_plain;f=\&lt;filename\&gt;;h=\&lt;revision\&gt;
-</code></pre></li>
-</ol>
-
-
-<h3>Bibliography:</h3>
-
-<p>  [1] Review Board, <a href="https://www.reviewboard.org">https://www.reviewboard.org</a></p>
-
-<p>  [2] Creating a Review Board Site, <a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/">https://www.reviewboard.org/docs/manual/2.5/admin/installation/creating-sites/</a></p>
-
-<p>  [3] Installing on Linux, <a href="https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/">https://www.reviewboard.org/docs/manual/2.5/admin/installation/linux/</a></p>
-
-<p>  [4] Django Mod_wsgi配置的一些问题, <a href="http://cxh.me/2015/02/27/django-to-apache/">http://cxh.me/2015/02/27/django-to-apache/</a></p>
-
-<p>  [5] mod_wsgi在多个Python版本下配置apache, <a href="http://m.oschina.net/blog/341289">http://m.oschina.net/blog/341289</a></p>
-
-<p>  [6] django 1.5 当DEBUG设置为 False时网页打不开的解决办法, <a href="http://www.zijin5.com/django-1-5-debug-false/">http://www.zijin5.com/django-1-5-debug-false/</a></p>
-
-<p>  [7] How to use Django with Apache and mod_wsgi&#8221; , <a href="https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/">https://docs.djangoproject.com/en/1.7/howto/deployment/wsgi/modwsgi/</a></p>
-
-<p>  [8] Setting Apache2 PATH environment variable, <a href="http://serverfault.com/questions/151328/setting-apache2-path-environment-variable">http://serverfault.com/questions/151328/setting-apache2-path-environment-variable</a></p>
-
-<p>  [9] Error uploading new diff: fatal: Not a git repository: &lsquo;None&rsquo;, <a href="https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ">https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ</a></p>
-
-<p>  [10] Repositories, <a href="https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/">https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[vim配置符号和跳转]]></title>
-    <link href="http://cxh.me/2015/03/28/configure-vim-tags-and-jump/"/>
-    <updated>2015-03-28T12:05:00+08:00</updated>
-    <id>http://cxh.me/2015/03/28/configure-vim-tags-and-jump</id>
-    <content type="html"><![CDATA[<p>  对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。</p>
-
-<p>  首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。</p>
-
-<pre><code>ubuntu下可以直接：
-    apt-get install exuberant-ctags
-centos下：
-    yum install ctags
-mac下：
-    brew install ctags-exuberant
-windows下：
-    什么是windows?
-</code></pre>
-
-<p>  cscope如果系统没有默认安装的话也装一下。</p>
-
-<p>  之后安装tags插件，相对<a href="http://www.vim.org/scripts/script.php?script_id=273" title="taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) ">taglist.vim</a>其实我们更推荐<a href="http://www.vim.org/scripts/script.php?script_id=3465" title="Tagbar : Display tags of the current file ordered by scope">tagbar.vim</a>，因其对面向对象特性支持的更好。</p>
-
-<!--more-->
-
-
-<p>  然后配置tagbar，第一部分只是配置了下system标记，效果如图所示:</p>
-
-<pre><code>" system mark
-if(has("win32") || has("win95") || has("win64") || has("win16"))
-    let g:system='win'
-else
-    if has("unix")
-        let s:uname = system("uname")
-        if s:uname == "Darwin\n"
-            let g:system='mac'
-        else
-            let g:system='unix'
-        endif
-    endif
-endif
-
-"{ tagbar - taglist replacement
-    nmap &lt;silent&gt;&lt;S-f8&gt; :TagbarToggle&lt;CR&gt;
-    if g:system=='win'
-        let g:tagbar_ctags_bin = 'ctags.exe'
-    else
-        let g:tagbar_ctags_bin = 'ctags'
-    endif
-    let g:tagbar_autoclose = 1
-    let g:tagbar_width = 30
-    let g:tagbar_autofocus = 1
-    let g:tagbar_sort = 0
-    let g:tagbar_compact = 1
-    let g:tagbar_autofocus = 1
-"}
-</code></pre>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/tagbar.png" title="tagbar界面" alt="tagbar界面"><p class="align-center">tagbar界面</p></p>
-
-<p>  现在有了tag显示，我们希望能够自动加载tags，这样打开一个文件的时候就可以直接操作这个文件所在项目的tags了，针对这种情况，需要先定义一个项目的根目录，这就需要用到base_dir_mark（只是一个变量..名字你随便），我们对一个项目生成且只生成一次tags(和cscope.out)，放在这个目录下。我（改进）的插件cscope_maps.vim包含了对base_dir_mark的查找和定义：</p>
-
-<pre><code>if !exists('g:base_dir_mark')
-    "set base_dir_mark to indicate where to generate tags
-    let g:base_dir_mark = 'tags'
-endif
-
-function! GetBaseDirectory()
-    let max = 5
-    let dir = getcwd()
-    let i = 0
-    while isdirectory(dir) &amp;&amp; i &lt; max
-        if filereadable(dir .'/'. g:base_dir_mark)
-            return dir.'/'
-        endif
-        let idx = strridx(dir, '/')
-        let dir = dir[:idx-1]
-        let i = i + 1
-    endwhile
-    return ''
-endf
-
-function! AutoLoadCTagsAndCScope()
-    silent! execute 'cs kill -1'
-
-    let base_dir=GetBaseDirectory()
-    if !empty(base_dir)
-        silent! execute 'cs add ' .base_dir . 'cscope.out'
-    endif
-
-    let ctags_dir=base_dir
-    if !empty(ctags_dir)
-        silent! execute 'set tags =' . ctags_dir . 'tags,'.$VIMFILES.'/tags/'.&amp;ft.'/tags'
-    else
-        silent! execute 'set tags ='.$VIMFILES.'/tags/'.&amp;ft.'/tags'
-    endif
-endf
-</code></pre>
-
-<p>  之后就可以配置让每次打开一个文件的时候都自动去项目根目录下找tags(和cscope.out)，把这个目录作为项目根目录了。</p>
-
-<pre><code>"{ plugin -ctags 对tag的操作
-set tags=tags
-augroup TagGroup
-    autocmd!
-    "autocmd BufEnter *.* :exec 'set tags=tags,'.$VIMFILES.'/tags/'.&amp;ft.'/tags'
-    autocmd BufEnter * :call AutoLoadCTagsAndCScope()
-    "autocmd BufWritePost *.cpp,*.c,*.h :silent! execute "!ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q ."
-augroup END
-"}
-</code></pre>
-
-<p>  注释掉的一行，我们放到shell中实现</p>
-
-<pre><code>alias cr='find `pwd` -name "*.[ch]" -o -name "*.cpp" &gt; cscope.files &amp;&amp; ctags -R `pwd` --languages=c++ --c++-kinds=+px --fields=+iaKSz --extra=+q &amp;&amp; cscope -Rb &amp;&amp; rm -f cscope.files'
-</code></pre>
-
-<p>  这样在项目根目录执行一下cr来生成tags和cscope.out，这个操作同时确定了项目的根目录是哪里。至于自动更新tags，意义不是很大，而且开销有点高。</p>
-
-<p>  最后是cscope的插件绑定，插件详见这个<a href="https://github.com/chenxiaohui/vim_cscope" title="vim_cscope - a vim plugin to configure vim_cscope">github repo</a>。配置如下：</p>
-
-<pre><code>"{ plugin - cscopemaps.vim里面定义了键盘映射
-let g:base_dir_mark = 'tags'
-map &lt;silent&gt;&lt;F7&gt; :call AutoLoadCTagsAndCScope()&lt;CR&gt;
-map &lt;silent&gt;&lt;C-F7&gt; :call Do_CsTag()&lt;CR&gt;
-"map &lt;F3&gt; &lt;C-]&gt;
-map &lt;F3&gt; :execute(":tj ".expand("&lt;cword&gt;"))&lt;cr&gt;
-map &lt;m-left&gt; &lt;C-o&gt;
-map &lt;m-right&gt; &lt;c-i&gt;
-
-"map &lt;silent&gt;&lt;S-F4&gt;&lt;Esc&gt;:!ctags -R *&lt;CR&gt;
-"map &lt;silent&gt;&lt;C-F4&gt;&lt;Esc&gt;:silent! execute "!ctags -R -c++-kinds=+p --fields=+iaS --extra=+q ."&lt;CR&gt;
-"查找调用这个定义
-"nmap &lt;C-\&gt;g :cs find g &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-"查找调用这个c符号的地方
-nmap &lt;leader&gt;cf :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-nmap &lt;leader&gt;ck :cs find s &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-nmap &lt;leader&gt;cg :cs find g &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-nmap &lt;leader&gt;ct :cs find t &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-
-"查找调用这个函数的地方
-"nmap &lt;C-\&gt;c :cs find c &lt;C-R&gt;=expand("&lt;cword&gt;")&lt;CR&gt;&lt;CR&gt;
-"}
-</code></pre>
-
-<p>  这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map &lt;m-left> &lt;C-t>。效果如下所示：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/tags.png" title="自动load tags" alt="自动load tags"><p class="align-center">自动load tags</p>
-  <img class="img-polaroid center" src="http://cxh.me/images/2015/cscope.png" title="cscope find reference结果" alt="cscope find reference结果"><p class="align-center">cscope find reference结果</p></p>
-
-<h3>Bibliography:</h3>
-
-<p>  [1] Tagbar : Display tags of the current file ordered by scope, <a href="http://www.vim.org/scripts/script.php?script_id=3465">http://www.vim.org/scripts/script.php?script_id=3465</a></p>
-
-<p>  [2] taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) , <a href="http://www.vim.org/scripts/script.php?script_id=273">http://www.vim.org/scripts/script.php?script_id=273</a></p>
-
-<p>  [3] vim_cscope &ndash; a vim plugin to configure vim_cscope, <a href="https://github.com/chenxiaohui/vim_cscope">https://github.com/chenxiaohui/vim_cscope</a></p>
 ]]></content>
   </entry>
   

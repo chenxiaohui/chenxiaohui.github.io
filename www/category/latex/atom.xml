@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Latex | CXH.ME]]></title>
   <link href="http://cxh.me/category/latex/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-08-03T19:21:43+08:00</updated>
+  <updated>2015-08-23T16:37:51+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,58 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[gitbook使用指导]]></title>
+    <link href="http://cxh.me/2015/08/23/gitbook-guide/"/>
+    <updated>2015-08-23T16:23:00+08:00</updated>
+    <id>http://cxh.me/2015/08/23/gitbook-guide</id>
+    <content type="html"><![CDATA[<p>  gitbook是nodejs实现的用来帮助书写电子书的，很多开源的书籍项目是基于gitbook的。gitbook的编写语言是markdown，书籍遵循一定的格式完成之后可以通过gitbook发布为各种版本，比如pdf，mobi等电子书格式，或者发布为静态的website，挂到github pages上，对于一些开源项目来说，这是很方便的书写帮助文档的方式。gitbook同样有一个<a href="https://www.gitbook.com/" title="A modern publishing toolchain. Simply taking you from ideas to finished, polished books.">paas的平台</a>，可以允许多人协作在线完成一部电子书</p>
+
+<p>  首先安装gitbook</p>
+
+<pre><code>npm -g install gitbook
+npm -g install gitbook-cli
+npm -g install ebook-convert
+</code></pre>
+
+<p>  第三个是安装生成电子书的插件，但是这里并不会安装bin文件，需要手动安装<a href="http://calibre-ebook.com/" title="calibre: The one stop solution for all your e-book needs. Comprehensive e-book software.">Calibre</a>。Mac下可以安装Calibre的app然后链接一下bin：</p>
+
+<pre><code>ln -s /Applications/calibre.app/Contents/MacOS/ebook-convert /usr/local/bin
+</code></pre>
+
+<p>  这样就可以生成pdf/mobi等格式的电子书了。</p>
+
+<p>  使用方式可以通过gitbook help来查看。主要是如下几个：</p>
+
+<pre><code>gitbook build [book] [output]   生成电子书，通过--format指定输出格式，默认输出为website
+gitbook pdf [book] [output]     生成pdf电子书
+gitbook epub [book] [output]    生成epub电子书
+gitbook mobi [book] [output]    生成mobi电子书
+serve [book]                    生成并开启http server预览
+init [directory]                根据summary建立基本目录结构
+install [book]                  安装依赖和插件
+</code></pre>
+
+<p>  Summary的基本样子见这里：</p>
+
+<pre><code># Summary
+* [Introduction](README.md)
+* [入门](getting_started/README.md)
+   * [初识](getting_started/what_is_it.md)
+   * [安装](getting_started/installing_es.md)
+   * [API](getting_started/api.md)
+   * [文档](getting_started/document.md)
+   * [索引](getting_started/tutorial_indexing.md)
+   * [搜索](getting_started/tutorial_search.md)
+   * [汇总](getting_started/tutorial_aggregations.md)
+   * [小结](getting_started/tutorial_conclusion.md)
+   * [分布式](getting_started/distributed.md)
+   * [本章总结](getting_started/conclusion.md)
+* [分布式集群](distributed_cluster/README.md)
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[简历生成器（基于moderncv+latex）]]></title>
@@ -198,26 +250,6 @@ start %1.pdf
 \usepackage{cite}
 ewcommand{\upcite}[1]{ extsuperscript{ extsuperscript{
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Latex中使用visio的矢量图(转载+修改）]]></title>
-    <link href="http://cxh.me/2012/03/14/using-visio-vector-diagram-in-Latex/"/>
-    <updated>2012-03-14T00:00:00+08:00</updated>
-    <id>http://cxh.me/2012/03/14/using-visio-vector-diagram-in-Latex</id>
-    <content type="html"><![CDATA[<h1></h1>
-
-<p>  我们知道，visio用来画流程图等专业图很方便，而Latex的专业排版效果是Word所不能比的，而Visio不支持导入eps和dvi格式的矢量图，而导出jpeg毕竟有质量损失，那么怎么才能在Latex中直接使用visio导出的矢量图呢？</p>
-
-<p>1. Visio可以保存为wmf，emf等矢量图形格式（word的默认插图格式），再转换为eps格式（可使用TpX，由本论坛得知早期版本貌似可直接保存eps）插入LaTeX。可转换后的eps图片格式不稳定，图形易错位；另外Visio使用Windows字体，转换后的eps图形只引用而不包含字体，插入LaTex后由于找不到对应字体，中文（或mathtype公式，特殊符号）会乱码。
-2. 用ps虚拟打印的方式虽然可以解决格式和乱码问题，但中文字符（或其他不支持的内容）会按位图处理，得不到完美的矢量图形。</p>
-
-<p>  经过探索，将visio保存为pdf格式是最完美的解决方式，因为pdf文件保存了所有格式和字体信息。借助pdfcrop和ebb程序，调用graphicx宏包插入pdf格式图片，能够得到完美的visio矢量图形。</p>
-
-<p>注：
-1.导入的代码依然可以使用标准的fig标签，例如：
-egin{figure}</p>
 ]]></content>
   </entry>
   
