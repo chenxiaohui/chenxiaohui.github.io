@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-08-23T16:37:51+08:00</updated>
+  <updated>2015-08-28T17:59:38+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,18 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[paxos的一些case分析]]></title>
+    <link href="http://cxh.me/2015/08/28/paxos-case-analysis/"/>
+    <updated>2015-08-28T11:34:00+08:00</updated>
+    <id>http://cxh.me/2015/08/28/paxos-case-analysis</id>
+    <content type="html"><![CDATA[<ol>
+<li></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[gitbook使用指导]]></title>
@@ -904,88 +916,6 @@ SMTPAuthenticationError: (535, '5.7.0 authentication failed')
 <p> awk博大精深&hellip;</p></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ReviewBoard客户端配置和代码review流程]]></title>
-    <link href="http://cxh.me/2015/03/29/revreviewboard-specification/"/>
-    <updated>2015-03-29T20:17:00+08:00</updated>
-    <id>http://cxh.me/2015/03/29/revreviewboard-specification</id>
-    <content type="html"><![CDATA[<h2>Postreview 客户端配置</h2>
-
-<p>  reviewboard是群众喜闻乐见的代码review工具。本文主要涉及客户端配置和review流程，server端配置见<a href="http://cxh.me/2015/03/28/review-board-setup/" title="Reviewboard的安装">文档1</a>。</p>
-
-<p>  首先安装python（必须的），之后安装post-review插件:</p>
-
-<pre><code>pip:
-    pip install --allow-external RBTools --allow-unverified RBTools RBTools
-easy_install：
-    easy_install -U RBTools
-LinuxRPM:
-    sudo yum install RBTools
-直接安装：
-    git clone git://github.com/reviewboard/rbtools.git
-    cd rbtools
-    python setup.py
-</code></pre>
-
-<p>  旧版的post-review有一个post-review的命令，新的只有rbt了，命令格式不太一样。</p>
-
-<pre><code>post - Posts changes to Review Board
-diff - Displays the diff that will be sent to Review Board
-land - Lands a change in a local branch or on a review request
-patch - Patches your tree with a change on a review request
-setup-repo - Sets up RBTools to talk to your repository
-</code></pre>
-
-<p>  首先配置review board，HOME目录下简历.reviewboardrc如下：</p>
-
-<pre><code>REVIEWBOARD_URL = 'http://10.16.10.74/'
-  REPOSITORY = 'adrd-service'
-</code></pre>
-
-<p>  或者在代码目录执行rbt setup-repo，会生成上述文件。REPOSITORY原则上不配置也行。</p>
-
-<h2>PostReview流程。</h2>
-
-<p>　原则上git commit 之后，git push之前要提交post-review，保证代码修改相关人都知悉并ship修改才能提交。基本流程是：</p>
-
-<pre><code>git add xx
-git commit -m "message"
-rbt post
-</code></pre>
-
-<p>  对同一个更改post之后如果要再次修改，可以：</p>
-
-<pre><code>rbt post -r &lt;post_id&gt;
-</code></pre>
-
-<p>  post-id是每个post的url/r/后面的数字。post-review标题原则上按照如下规范：</p>
-
-<pre><code>[repository_name][branch_name][NewFeature|BugFix|Refactor|Log] post-review title
-</code></pre>
-
-<p>  groups/people添加的人员原则上包括：</p>
-
-<pre><code>1. 技术主管[mentor]
-2. 合作者[partner]
-2. 其他需要知悉修改的人[related]
-</code></pre>
-
-<p>  post-review旧版和svn的整合见<a href="http://cxh.me/2013/10/15/svn-vim-integration/" title="Svn Vim 整合方案">文档2</a>。
-  post-review在svn和git同时托管的情况下处理冲突的方法见<a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/" title="Post-review在svn和git共同存在下的冲突问题">文档3</a>。
-  一个post-review的vim插件见<a href="http://cxh.me/2014/06/21/ppost-review-plugin/" title="Post-review插件">文档4</a>。</p>
-
-<h3>Bibliography:</h3>
-
-<p>  [1] Reviewboard的安装, <a href="http://cxh.me/2015/03/28/review-board-setup/">http://cxh.me/2015/03/28/review-board-setup/</a></p>
-
-<p>  [2] Svn Vim 整合方案, <a href="http://cxh.me/2013/10/15/svn-vim-integration/">http://cxh.me/2013/10/15/svn-vim-integration/</a></p>
-
-<p>  [3] Post-review在svn和git共同存在下的冲突问题, <a href="http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/">http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/</a></p>
-
-<p>  [4] Post-review插件, <a href="http://cxh.me/2014/06/21/ppost-review-plugin/">http://cxh.me/2014/06/21/ppost-review-plugin/</a></p>
 ]]></content>
   </entry>
   
