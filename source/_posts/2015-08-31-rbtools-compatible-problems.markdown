@@ -20,9 +20,9 @@ categories: "Python"
 
   这就比较扯了，同样的版本，本地可以服务器不行。直接卸了重装：
 
-  pip uninstall six #注，这里卸载了1.9的six
-  pip uninstall six #日，还有一个1.2的six，不知道pip list为啥显示不出来。
-  pip install six
-  easy_install RBTools
+    pip uninstall six #注，这里卸载了1.9的six
+    pip uninstall six #日，还有一个1.2的six，不知道pip list为啥显示不出来。
+    pip install six
+    easy_install RBTools
 
   然后就ok了。所以还是要习惯在virtualenv下搞啊...

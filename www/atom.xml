@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-08-31T15:46:22+08:00</updated>
+  <updated>2015-09-01T13:50:51+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -32,10 +32,11 @@ ImportError: No module named urllib.parse
 
 <p>  这就比较扯了，同样的版本，本地可以服务器不行。直接卸了重装：</p>
 
-<p>  pip uninstall six #注，这里卸载了1.9的six
-  pip uninstall six #日，还有一个1.2的six，不知道pip list为啥显示不出来。
-  pip install six
-  easy_install RBTools</p>
+<pre><code>pip uninstall six #注，这里卸载了1.9的six
+pip uninstall six #日，还有一个1.2的six，不知道pip list为啥显示不出来。
+pip install six
+easy_install RBTools
+</code></pre>
 
 <p>  然后就ok了。所以还是要习惯在virtualenv下搞啊&hellip;</p>
 ]]></content>
@@ -46,10 +47,22 @@ ImportError: No module named urllib.parse
     <link href="http://cxh.me/2015/08/28/paxos-case-analysis/"/>
     <updated>2015-08-28T11:34:00+08:00</updated>
     <id>http://cxh.me/2015/08/28/paxos-case-analysis</id>
-    <content type="html"><![CDATA[<ol>
-<li></li>
-</ol>
+    <content type="html"><![CDATA[<p>acceptor: a([epoc:4, value:n])  b[epoc:3,value:y]  c[epoc:6,:value:y]</p>
 
+<p>proposor:  x5, x7,   (x4, x3, x6)</p>
+
+<p>prepare:x5[a, b], x7[b, c]</p>
+
+<p>commit:x[4,n] y[6, y]</p>
+
+<p>一共有5个proposer,</p>
+
+<p>1）初始时 x4 (prepare)&ndash;> a, x3 (prepare)&ndash;> b,x6 (prepare)&ndash;> c,
+2） x4, x3, x6 挂掉
+3）x5(prepare)&ndash;> a, b
+4）x5(commit[epoc:4, value:n])&ndash;>a, b
+5) x7(prepare) &ndash;>b, c
+6) x7(commit[epoc:6, value:y])&ndash;>b, c</p>
 ]]></content>
   </entry>
   
