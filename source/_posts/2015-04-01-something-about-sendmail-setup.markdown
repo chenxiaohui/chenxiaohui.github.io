@@ -15,7 +15,6 @@ categories: "Linux"
 
   	ehlo localhost
 
-  发现250 AUTH没有支持。所以需要配置邮件服务器的身份认证。详见[参考文献1][1][参考文献2][2]。最后测试一下用户是否能通过验证和邮件能否正常发送：
 
  	/usr/sbin/testsaslauthd -u username -p sohutest
 
@@ -32,7 +31,7 @@ categories: "Linux"
 			HELO localhost
 			AUTH LOGIN 
 			aGFycnljaGVu
-			c29odXRlc3Q=
+			password
 			MAIL FROM:<test@xxx.com>
 			RCPT TO:<username@xxx.com>
 			DATA

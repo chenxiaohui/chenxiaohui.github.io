@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-09-01T13:50:51+08:00</updated>
+  <updated>2015-09-22T11:26:19+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -90,11 +90,9 @@ ln -s ../../lib64/libexpat.so.0.5.0 libexpat.so
 <p>  具体代码没细看，但是应该默认都有认证，只是认证方式不一样。我们telnet到25端口，执行</p>
 
 <pre><code>ehlo localhost
-</code></pre>
 
-<p>  发现250 AUTH没有支持。所以需要配置邮件服务器的身份认证。详见<a href="http://blog.sina.com.cn/s/blog_6b61ec070101e161.html" title="CentOS sendmail安装及邮件域名配置">参考文献1</a><a href="http://ju.outofmemory.cn/entry/12533" title="testsaslauthd “authentication failed” 解决办法">参考文献2</a>。最后测试一下用户是否能通过验证和邮件能否正常发送：</p>
 
-<pre><code>/usr/sbin/testsaslauthd -u username -p sohutest
+/usr/sbin/testsaslauthd -u username -p sohutest
 
 mail -s "test" xxx@xxx.com &lt;content.txt
 </code></pre>
@@ -111,7 +109,7 @@ mail -s "test" xxx@xxx.com &lt;content.txt
         HELO localhost
         AUTH LOGIN 
         aGFycnljaGVu
-        c29odXRlc3Q=
+        password
         MAIL FROM:&lt;test@xxx.com&gt;
         RCPT TO:&lt;username@xxx.com&gt;
         DATA
