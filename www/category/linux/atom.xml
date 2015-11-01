@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-10-20T17:47:11+08:00</updated>
+  <updated>2015-11-01T14:30:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ssh绑定其他端口]]></title>
+    <link href="http://cxh.me/2015/11/01/ssh-bind-other-port/"/>
+    <updated>2015-11-01T14:14:00+08:00</updated>
+    <id>http://cxh.me/2015/11/01/ssh-bind-other-port</id>
+    <content type="html"><![CDATA[<p>  首先修改/ssh/sshd_config，把Port 22解注释，然后加一行Port xx。之后修改 /etc/sysconfig/iptables，加入该端口的Rules:</p>
+
+<pre><code>-A INPUT -m state --state NEW -m tcp -p tcp --dport xx -j ACCEPT  
+</code></pre>
+
+<p>  重启即可。</p>
+
+<pre><code>/etc/init.d/sshd restart
+</code></pre>
+
+<p>  这么做的目的是如果出现问题，还有一个端口可以上去修改。登录的时候需要对应的指定一下端口：</p>
+
+<pre><code>ssh -p xx user@host
+scp -P xx ... user@host
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[log4cxx安装]]></title>
@@ -168,38 +191,6 @@ SMTPAuthenticationError: (535, '5.7.0 authentication failed')
 <p> awk博大精深&hellip;</p></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于ubuntu gnome下crontab运行的问题]]></title>
-    <link href="http://cxh.me/2015/03/24/ubuntu-gnome-crontab/"/>
-    <updated>2015-03-24T13:54:00+08:00</updated>
-    <id>http://cxh.me/2015/03/24/ubuntu-gnome-crontab</id>
-    <content type="html"><![CDATA[<p>  今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。</p>
-
-<p>  后来发现对图形界面程序来讲，crontab的进程需要指定输出到哪个显示的，也就是</p>
-
-<pre><code>export DISPLAY=:0 #:0指第一个显示终端，ctrl+alt+f7那个
-/usr/bin/notify-send "亲，该去运动了！！一分钟后关机，请保存所有未保存的Job."
-sudo shutdown -h 1
-</code></pre>
-
-<p>  或者直接在crontab -e中指定环境变量：</p>
-
-<pre><code>DISPLAY=:0
-30 20 * * * /home/cxh/repo/scripts/shutdown.sh
-</code></pre>
-
-<p>  可以顺便制定一下其他变量</p>
-
-<pre><code>SHELL=/bin/bash
-PATH=/sbin:/bin:/usr/sbin:/usr/bin
-MAILTO=cxh #如果出现错误，或者有数据输出，数据作为邮件发给这个帐号
-HOME=/home/cxh #使用者运行的路径,这里是根目录
-</code></pre>
-
-<p>  crontab出错的信息会发邮件到对应用户，mail或者cat /var/mail/$USER查看。d *清理。</p>
 ]]></content>
   </entry>
   

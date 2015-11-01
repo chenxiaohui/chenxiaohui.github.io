@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-10-20T17:47:11+08:00</updated>
+  <updated>2015-11-01T14:30:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,29 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[ssh绑定其他端口]]></title>
+    <link href="http://cxh.me/2015/11/01/ssh-bind-other-port/"/>
+    <updated>2015-11-01T14:14:00+08:00</updated>
+    <id>http://cxh.me/2015/11/01/ssh-bind-other-port</id>
+    <content type="html"><![CDATA[<p>  首先修改/ssh/sshd_config，把Port 22解注释，然后加一行Port xx。之后修改 /etc/sysconfig/iptables，加入该端口的Rules:</p>
+
+<pre><code>-A INPUT -m state --state NEW -m tcp -p tcp --dport xx -j ACCEPT  
+</code></pre>
+
+<p>  重启即可。</p>
+
+<pre><code>/etc/init.d/sshd restart
+</code></pre>
+
+<p>  这么做的目的是如果出现问题，还有一个端口可以上去修改。登录的时候需要对应的指定一下端口：</p>
+
+<pre><code>ssh -p xx user@host
+scp -P xx ... user@host
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[RBTools兼容的问题]]></title>
@@ -861,72 +884,6 @@ sys.setdefaultencoding("utf-8")
 <li>索性重启，搞定。</li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于sendmail邮件服务器的搭建]]></title>
-    <link href="http://cxh.me/2015/04/01/something-about-sendmail-setup/"/>
-    <updated>2015-04-01T20:14:00+08:00</updated>
-    <id>http://cxh.me/2015/04/01/something-about-sendmail-setup</id>
-    <content type="html"><![CDATA[<p>  还是reviewboard的事情，我们需要一个自己的邮件服务器来发通知邮件。sendmail是一个比较好的选择，搭建的方式很简单，安装sendmail，修改配置文件，修改local_host_name就行。如果不需要登陆验证，这样也就直接能用了。现在的问题是reviewboard是必须登陆验证的。至少看报错上是这样。</p>
-
-<pre><code>SMTPException: SMTP AUTH extension not supported by server. reviewboard
-</code></pre>
-
-<p>  具体代码没细看，但是应该默认都有认证，只是认证方式不一样。我们telnet到25端口，执行</p>
-
-<pre><code>ehlo localhost
-
-
-/usr/sbin/testsaslauthd -u username -p sohutest
-
-mail -s "test" xxx@xxx.com &lt;content.txt
-</code></pre>
-
-<!--more-->
-
-
-<p>  如果邮件不能正常发送可以通过如下方式debug：</p>
-
-<pre><code>1. 查看/var/log/messages
-2. 查看用户mail
-3. 通过telnet模拟一下登陆发邮件的过程：
-
-        HELO localhost
-        AUTH LOGIN 
-        aGFycnljaGVu
-        password
-        MAIL FROM:&lt;test@xxx.com&gt;
-        RCPT TO:&lt;username@xxx.com&gt;
-        DATA
-        To: username@xxx.com
-        From:test@xxx.com
-        Subject:test mail
-        From:test@xxx.com
-        test body
-        .
-        quit
-</code></pre>
-
-<p>  安装reviewboard的过程还发现一个问题，邮件服务器已经可以正常发邮件了，reviewboard还是失败，看到如下报错：</p>
-
-<pre><code>- Error sending e-mail notification with subject 'Review Request 2: [retrieval-ad][master][NewFeature] Readme' on behalf of '"UserName" &lt;xxx@xxx.com&gt;' to '"UserName" &lt;xxx@xxx.com&gt;,xxx@xxx.com'
-Traceback (most recent call last):
-  File "/opt/xxx/rb/lib/python2.7/site-packages/ReviewBoard-2.0.15-py2.7.egg/reviewboard/notifications/email.py", line 294, in send_review_mail
-    message.send()
-  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/message.py", line 276, in send
-    return self.get_connection(fail_silently).send_messages([self])
-  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 87, in send_messages
-    new_conn_created = self.open()
-  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 54, in open
-    self.connection.login(self.username, self.password)
-  File "/usr/local/lib/python2.7/smtplib.py", line 613, in login
-    raise SMTPAuthenticationError(code, resp)
-SMTPAuthenticationError: (535, '5.7.0 authentication failed')
-</code></pre>
-
-<p>  跟到如下smtplib.py里面看验证方法，调整了顺序（我这支持AUTH LOGIN PLAIN，没支持PAM)，然后保证用户名密码正确就基本可以使用了。</p>
 ]]></content>
   </entry>
   
