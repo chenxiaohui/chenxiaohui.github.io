@@ -23,16 +23,16 @@ categories: "Linux"
 
   1. 客户端配置中转，主要是通过跳板机登录：
 
-	Host xx
-	HostName 192.168.1.1
-	User xx
-	ProxyCommand ssh -q xxx@login2.xxx.xx nc %h %p
+		Host xx
+		HostName 192.168.1.1
+		User xx
+		ProxyCommand ssh -q xxx@login2.xxx.xx nc %h %p
 
   2. 保持会话。 ssh会在.ssh目录下生成一个会话选项，下次登录同一个server公用会话，不需要验证。
 
-	Host *
-	ControlMaster auto
-	ControlPath ~/.ssh/master-%r@%h:%p
+		Host *
+		ControlMaster auto
+		ControlPath ~/.ssh/master-%r@%h:%p
 
-	上面会话共享，所以不能关闭会话。可以通过 ssh -fN xxx 把第一个会话放到后台不退出
+	上面会话共享，所以不能关闭会话。可以通过 `ssh -fN xxx` 把第一个会话放到后台不退出
 

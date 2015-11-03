@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-11-03T17:18:22+08:00</updated>
+  <updated>2015-11-03T17:20:39+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -39,17 +39,19 @@ scp -P xx ... user@host
 <ol>
 <li><p> 客户端配置中转，主要是通过跳板机登录：</p>
 
-<p>Host xx
+<pre><code>Host xx
 HostName 192.168.1.1
 User xx
-ProxyCommand ssh -q <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#58;&#x78;&#120;&#120;&#64;&#108;&#111;&#x67;&#x69;&#x6e;&#x32;&#x2e;&#x78;&#120;&#x78;&#46;&#x78;&#120;">&#x78;&#x78;&#120;&#x40;&#108;&#x6f;&#x67;&#x69;&#x6e;&#x32;&#46;&#120;&#120;&#120;&#x2e;&#120;&#120;</a> nc %h %p</p></li>
+ProxyCommand ssh -q xxx@login2.xxx.xx nc %h %p
+</code></pre></li>
 <li><p> 保持会话。 ssh会在.ssh目录下生成一个会话选项，下次登录同一个server公用会话，不需要验证。</p>
 
-<p>Host *
+<pre><code>Host *
 ControlMaster auto
-ControlPath ~/.ssh/master-%r@%h:%p</p>
+ControlPath ~/.ssh/master-%r@%h:%p
+</code></pre>
 
-<p>上面会话共享，所以不能关闭会话。可以通过 ssh -fN xxx 把第一个会话放到后台不退出</p></li>
+<p>上面会话共享，所以不能关闭会话。可以通过 <code>ssh -fN xxx</code> 把第一个会话放到后台不退出</p></li>
 </ol>
 
 ]]></content>
