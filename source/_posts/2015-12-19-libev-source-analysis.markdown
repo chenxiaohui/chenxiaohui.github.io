@@ -287,13 +287,13 @@ categories: "C++"
  
 2. 通过重新define var关键字和重新包含vars头文件的方式，可以把一组变量变换成不同的形式：
 
-	    \#define VAR(name,decl) decl;
-	      \#include "ev_vars.h"
-	    \#undef VAR
+	    #define VAR(name,decl) decl;
+	      #include "ev_vars.h"
+	    #undef VAR
 
-		\#define VAR(name,decl) static decl;
-		  \#include "ev_vars.h"
-		\#undef VAR
+		#define VAR(name,decl) static decl;
+		  #include "ev_vars.h"
+		#undef VAR
 	  
   	这个技巧也被用在s3_error.h里面，用来同时生成一个错误码的定义和其字符串描述。
 
