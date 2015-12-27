@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-12-27T19:53:51+08:00</updated>
+  <updated>2015-12-27T20:10:32+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -307,7 +307,7 @@ ev_run (EV_P_ int flags)
 
 <p>  <img class="img-polaroid center" src="http://csrd.aliapp.com/wp-content/plugins/libev_loop2.png"></p>
 
-<p> ## 一些技巧</p>
+<h2>一些技巧</h2>
 
 <ol>
 <li><p>首先是通过define来模拟了继承。libev用宏定义了ev_watcher等基类的成员，实现派生类的时候只需要先用宏把公共成员包含进来，然后定义各个子类自己的成员即可。这种技巧也广泛用在其他一些开源项目中。</p></li>

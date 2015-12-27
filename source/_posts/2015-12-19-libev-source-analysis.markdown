@@ -281,19 +281,19 @@ categories: "C++"
 
   {% img img-polaroid center http://csrd.aliapp.com/wp-content/plugins/libev_loop2.png %}
 
- ## 一些技巧
+##一些技巧
 
 1. 首先是通过define来模拟了继承。libev用宏定义了ev_watcher等基类的成员，实现派生类的时候只需要先用宏把公共成员包含进来，然后定义各个子类自己的成员即可。这种技巧也广泛用在其他一些开源项目中。
  
 2. 通过重新define var关键字和重新包含vars头文件的方式，可以把一组变量变换成不同的形式：
 
-    #define VAR(name,decl) decl;
-      #include "ev_vars.h"
-    #undef VAR
+    \#define VAR(name,decl) decl;
+      \#include "ev_vars.h"
+    \#undef VAR
 
-	#define VAR(name,decl) static decl;
-	  #include "ev_vars.h"
-	#undef VAR
+	\#define VAR(name,decl) static decl;
+	  \#include "ev_vars.h"
+	\#undef VAR
   
   这个技巧也被用在s3_error.h里面，用来同时生成一个错误码的定义和其字符串描述。
 
