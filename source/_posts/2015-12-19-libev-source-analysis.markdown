@@ -11,7 +11,7 @@ categories: "C++"
 
   libev是广泛使用的事件库，是一个功能强大的reactor，可以把Timer、IO、进程线程事件放在一个统一的框架下进行管理。如果有其他的事件触发需求也可以改libev源码把该事件加入libev的框架中（当前前提是得理解libev的设计）。有文章说libev性能比libevent好，没实验过，但是从源码角度看，libev要更简洁，当然更费解一点。作者为了追求代码的整洁和统一使用了大量的宏，造成了阅读的不便。这里我们从宏观分析一下libev的设计实现，然后穿插分析一些小的trick。旨在学习总结libev设计中优雅的地方。
 
-## 基本概念
+### 基本概念
 
   首先是一些主要的概念和数据结构。
   
@@ -61,7 +61,7 @@ categories: "C++"
   7. 一些内部流程watcher：ev_idle，ev_prepare，ev_check， ev_fork, ev_cleanup
   8. 异步触发：ev_async
 
-## 使用流程
+### 使用流程
 
   libev库的基本使用流程是：
 
@@ -128,7 +128,7 @@ categories: "C++"
 	  return 0;
 	}
   
-## 实现分析：
+### 实现分析：
 
   下面我们针对上述程序分析一下libev的实现。
    
@@ -281,26 +281,26 @@ categories: "C++"
 
   {% img img-polaroid center http://csrd.aliapp.com/wp-content/plugins/libev_loop2.png %}
 
-##一些技巧
+### 一些技巧
 
 1. 首先是通过define来模拟了继承。libev用宏定义了ev_watcher等基类的成员，实现派生类的时候只需要先用宏把公共成员包含进来，然后定义各个子类自己的成员即可。这种技巧也广泛用在其他一些开源项目中。
  
 2. 通过重新define var关键字和重新包含vars头文件的方式，可以把一组变量变换成不同的形式：
 
-    \#define VAR(name,decl) decl;
-      \#include "ev_vars.h"
-    \#undef VAR
+	    \#define VAR(name,decl) decl;
+	      \#include "ev_vars.h"
+	    \#undef VAR
 
-	\#define VAR(name,decl) static decl;
-	  \#include "ev_vars.h"
-	\#undef VAR
-  
-  这个技巧也被用在s3_error.h里面，用来同时生成一个错误码的定义和其字符串描述。
+		\#define VAR(name,decl) static decl;
+		  \#include "ev_vars.h"
+		\#undef VAR
+	  
+  	这个技巧也被用在s3_error.h里面，用来同时生成一个错误码的定义和其字符串描述。
 
 3. 最后编译libev的时候会发现像epoll.c poll.c等平台相关的backend定义实际上没有加入Makefile。libev实现的时候其实直接在源码里面根据define来包含了c文件。大部分时候我们都是只include头文件，所以这里在使用的时候需要稍加注意。
 
 
-## 总结
+### 总结
 
 libev虽然代码比较晦涩，但是实现还是很清楚的，设计思想对于实现底层系统很有启发，值得仔细研读。时间有限，只涵盖了一下基本框架，如果有兴趣还是自己改写一下，会更有收获。
 
