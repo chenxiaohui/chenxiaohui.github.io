@@ -300,6 +300,11 @@ categories: "C++"
 3. 最后编译libev的时候会发现像epoll.c poll.c等平台相关的backend定义实际上没有加入Makefile。libev实现的时候其实直接在源码里面根据define来包含了c文件。大部分时候我们都是只include头文件，所以这里在使用的时候需要稍加注意。
 
 
+## 总结
+
+libev虽然代码比较晦涩，但是实现还是很清楚的，设计思想对于实现底层系统很有启发，值得仔细研读。时间有限，只涵盖了一下基本框架，如果有兴趣还是自己改写一下，会更有收获。
+
+
 [1]: http://csrd.aliapp.com/?p=1604 "libev ev_io源码分析"
 [2]: https://cnodejs.org/topic/4f16442ccae1f4aa270010a3 "libev 设计分析"
 

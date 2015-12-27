@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-12-27T19:52:01+08:00</updated>
+  <updated>2015-12-27T19:53:51+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -29,6 +29,9 @@
 <p>  libev通过定义watcher来关注一个事件，并且把事件类型和对应的毁回调函数关联起来。libev定义了多种事件类型，同时可以在框架中自己添加感兴趣的事件，libev保证了事件触发的顺序性，并在多线程环境下保证事件的串行触发。</p>
 
 <p>  每一种类型的watcher都包含几个基本的成员，通过EV_WATCHER和EV_WATCHER_LIST宏实现。EV_WATCHER_LIST比EV_WATCHER多了一个纸箱下一个watcher的指针。EV_WATCHER_TIMER是定时器的基类，多一个timestamp。这几个宏这里留一个小的trick分析，在后面阐述。</p>
+
+<!--more-->
+
 
 <pre><code>/* shared by all watchers */
 #define EV_WATCHER(type)            \
@@ -326,6 +329,10 @@ ev_run (EV_P_ int flags)
 <li>最后编译libev的时候会发现像epoll.c poll.c等平台相关的backend定义实际上没有加入Makefile。libev实现的时候其实直接在源码里面根据define来包含了c文件。大部分时候我们都是只include头文件，所以这里在使用的时候需要稍加注意。</li>
 </ol>
 
+
+<h2>总结</h2>
+
+<p>libev虽然代码比较晦涩，但是实现还是很清楚的，设计思想对于实现底层系统很有启发，值得仔细研读。时间有限，只涵盖了一下基本框架，如果有兴趣还是自己改写一下，会更有收获。</p>
 
 <h3>参考文献:</h3>
 
