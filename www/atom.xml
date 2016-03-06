@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2015-12-27T20:15:30+08:00</updated>
+  <updated>2016-03-06T14:53:52+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,31 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[vim编译错误：PyUnicodeUCS4_AsEncodedString]]></title>
+    <link href="http://cxh.me/2016/03/06/vim-comple-error-with-pyunicodeucs4-asencodedstring/"/>
+    <updated>2016-03-06T14:45:00+08:00</updated>
+    <id>http://cxh.me/2016/03/06/vim-comple-error-with-pyunicodeucs4-asencodedstring</id>
+    <content type="html"><![CDATA[<p>  换了个ubuntu的环境想编译一下vim，为了防止不兼容手动编译了python2.7，之后把改过的vim源码放上去编译发现有问题：</p>
+
+<pre><code>undefined symbol: PyUnicodeUCS4_AsEncodedString
+</code></pre>
+
+<p>  于是换回标准的vim源码还是一样的问题，我擦嘞。上网搜一下说Python模式是UnicodeUCS2的支持，从源码里面直接grep一下这个函数发现是有的：</p>
+
+<pre><code>Include/unicodeobject.h:# define PyUnicode_AsEncodedString PyUnicodeUCS4_AsEncodedString
+</code></pre>
+
+<p>  那只可能是没有开启编译选项了，./configure &mdash;help发现有如下一项：</p>
+
+<pre><code>  --enable-unicode[=ucs[24]]
+                      Enable Unicode strings (default is ucs2)
+</code></pre>
+
+<p>  configure到ucs4重新编译python2.7，完美。没毛病。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[libev源码分析]]></title>
@@ -1192,21 +1217,6 @@ sys.setdefaultencoding("utf-8")
 </code></pre>
 
 <p>  Ok.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[partition算法的落点讨论]]></title>
-    <link href="http://cxh.me/2015/04/20/partition-algorith-quit-position-analysis/"/>
-    <updated>2015-04-20T21:27:00+08:00</updated>
-    <id>http://cxh.me/2015/04/20/partition-algorith-quit-position-analysis</id>
-    <content type="html"><![CDATA[<p>  首先这里的partition算法指的是快速排序中把数据分区的算法，算法接受一个数列和一个值，返回一个位置，这个位置之前的元素都小于等于输入值，之后的元素都大于等于输入值。</p>
-
-<p>  算法如下：</p>
-
-<p>  还有一种常见的形式：</p>
-
-<p>  这里我们讨论下落点的情况，如果partition算法可以传入任何的value，而不是快排中那样从序列中随机获得一个值，那么结果就会有多重情况了。</p>
 ]]></content>
   </entry>
   
