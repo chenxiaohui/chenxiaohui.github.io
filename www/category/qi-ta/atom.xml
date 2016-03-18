@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-03-06T14:53:52+08:00</updated>
+  <updated>2016-03-18T17:50:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[go生成xml的时候特殊字符转义的问题]]></title>
+    <link href="http://cxh.me/2016/03/18/go-xml-escape/"/>
+    <updated>2016-03-18T17:43:00+08:00</updated>
+    <id>http://cxh.me/2016/03/18/go-xml-escape</id>
+    <content type="html"><![CDATA[<p>  最近在做http返回的时候发现go的xml生成（marshal）会把引号转义，如下：</p>
+
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+    &lt;Part&gt;
+      &lt;PartNumber&gt;1&lt;/PartNumber&gt;
+      &lt;LastModified&gt;2016-03-18T08:24:25.000Z&lt;/LastModified&gt;
+      &lt;ETag&gt;&amp;#34;0c78aef83f66abc1fa1e8477f296d394&amp;#34;&lt;/ETag&gt;
+      &lt;Size&gt;12121&lt;/Size&gt;
+    &lt;/Part&gt;     
+</code></pre>
+
+<p>  看了下源码，marshal函数的实现就会默认转义。这样就只能加一个Type，不直接用string，然后定义这个Type的marshl函数。上网搜了一下发现可以找个方法绕过去：struct的修饰可以指明当前的struct field不做转义，直接输出。</p>
+
+<pre><code>    type Part struct {
+         XMLName      xml.Name `xml:"Part"`
+         PartNumber   int
+         LastModified string
+         ETag         string `xml:",innerxml"`
+         Size         int64
+    }
+</code></pre>
+
+<p>  这样可以直接在序列化的时候传自己拼成的ETag值。比如：</p>
+
+<pre><code>     Part{PartNumber: 1,
+         LastModified: S3TimeFormat(GetCurrentTime()),
+         ETag:         `&lt;ETag&gt;"acbd18db4cc2f85cedef654fccc4a4d8"&lt;/ETag&gt;`,
+         Size:         12121}
+</code></pre>
+
+<p>  输出结果满足要求：</p>
+
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+    &lt;Part&gt;
+      &lt;PartNumber&gt;1&lt;/PartNumber&gt;
+      &lt;LastModified&gt;2016-03-18T08:32:39.000Z&lt;/LastModified&gt;&lt;ETag&gt;"acbd18db4cc2f85cedef654fccc4a4d8"&lt;/ETag&gt;
+      &lt;Size&gt;12121&lt;/Size&gt;
+    &lt;/Part&gt;
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Jenkins 安装配置]]></title>
@@ -207,41 +256,6 @@ rbt post
 
 
 <p>  让我突然对这个tag算法很感兴趣。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[在命令行使用Shadowsocks翻墙]]></title>
-    <link href="http://cxh.me/2015/01/30/use-shadowsocks-in-terminal/"/>
-    <updated>2015-01-30T18:13:00+08:00</updated>
-    <id>http://cxh.me/2015/01/30/use-shadowsocks-in-terminal</id>
-    <content type="html"><![CDATA[<p>  拜GFW所赐，连tm boot2docker都连接不上了。好在有shadowsocks的服务，可以转成http proxy给命令行使用。</p>
-
-<p>  首先安装<a href="http://www.privoxy.org/" title="Privoxy">privoxy</a>。Linux下直接<code>apt-get install proxy</code>，然后编辑配置文件（etc/privoxy/config)：</p>
-
-<pre><code>forward-socks5   /               127.0.0.1:1080 .
-listen-address  localhost:8118
-#local network do not use proxy
-forward         192.168.*.*/     .
-forward            10.*.*.*/     .
-forward           127.*.*.*/     .
-</code></pre>
-
-<p>  基本上上这两项就可以了。之后在shell配置下代理，详见<a href="http://cxh.me/2015/01/11/linux-proxy-setup/" title="通过搭建代理来共享网络">参考文献2</a>：</p>
-
-<pre><code>export http_proxy='http://127.0.0.1:8118'
-export https_proxy='http://127.0.0.1:8118'
-</code></pre>
-
-<p>  最后chkconfig设置下开机启动。Mac下略微麻烦一些。主要是配置开机启动。详见<a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/" title="使用Privoxy做智能代理切换">参考文献3</a>。至于Mac下的Shadowsocks，还是ShadowsocksX比较方便，跟Linux下一样，都是会在1080启动监听。</p>
-
-<h3>Bibliography:</h3>
-
-<p>  [1] Privoxy, <a href="http://www.privoxy.org/">http://www.privoxy.org/</a></p>
-
-<p>  [2] 通过搭建代理来共享网络, <a href="http://cxh.me/2015/01/11/linux-proxy-setup/">http://cxh.me/2015/01/11/linux-proxy-setup/</a></p>
-
-<p>  [3] 使用Privoxy做智能代理切换, <a href="http://blog.devtang.com/blog/2012/12/08/use-privoxy/">http://blog.devtang.com/blog/2012/12/08/use-privoxy/</a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-03-06T14:53:52+08:00</updated>
+  <updated>2016-03-18T17:50:16+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[go生成xml的时候特殊字符转义的问题]]></title>
+    <link href="http://cxh.me/2016/03/18/go-xml-escape/"/>
+    <updated>2016-03-18T17:43:00+08:00</updated>
+    <id>http://cxh.me/2016/03/18/go-xml-escape</id>
+    <content type="html"><![CDATA[<p>  最近在做http返回的时候发现go的xml生成（marshal）会把引号转义，如下：</p>
+
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+    &lt;Part&gt;
+      &lt;PartNumber&gt;1&lt;/PartNumber&gt;
+      &lt;LastModified&gt;2016-03-18T08:24:25.000Z&lt;/LastModified&gt;
+      &lt;ETag&gt;&amp;#34;0c78aef83f66abc1fa1e8477f296d394&amp;#34;&lt;/ETag&gt;
+      &lt;Size&gt;12121&lt;/Size&gt;
+    &lt;/Part&gt;     
+</code></pre>
+
+<p>  看了下源码，marshal函数的实现就会默认转义。这样就只能加一个Type，不直接用string，然后定义这个Type的marshl函数。上网搜了一下发现可以找个方法绕过去：struct的修饰可以指明当前的struct field不做转义，直接输出。</p>
+
+<pre><code>    type Part struct {
+         XMLName      xml.Name `xml:"Part"`
+         PartNumber   int
+         LastModified string
+         ETag         string `xml:",innerxml"`
+         Size         int64
+    }
+</code></pre>
+
+<p>  这样可以直接在序列化的时候传自己拼成的ETag值。比如：</p>
+
+<pre><code>     Part{PartNumber: 1,
+         LastModified: S3TimeFormat(GetCurrentTime()),
+         ETag:         `&lt;ETag&gt;"acbd18db4cc2f85cedef654fccc4a4d8"&lt;/ETag&gt;`,
+         Size:         12121}
+</code></pre>
+
+<p>  输出结果满足要求：</p>
+
+<pre><code>    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+    &lt;Part&gt;
+      &lt;PartNumber&gt;1&lt;/PartNumber&gt;
+      &lt;LastModified&gt;2016-03-18T08:32:39.000Z&lt;/LastModified&gt;&lt;ETag&gt;"acbd18db4cc2f85cedef654fccc4a4d8"&lt;/ETag&gt;
+      &lt;Size&gt;12121&lt;/Size&gt;
+    &lt;/Part&gt;
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[vim编译错误：PyUnicodeUCS4_AsEncodedString]]></title>
@@ -1197,26 +1246,6 @@ java -jar $JENKINS_ROOT/jenkins.war --httpPort=8080 &gt;&gt;output.log 2&gt;&amp
     <updated>2015-04-22T22:08:00+08:00</updated>
     <id>http://cxh.me/2015/04/22/some-moments</id>
     <content type="html"><![CDATA[<p>  回想一些事情的时候感觉印象最深刻的往往不是一段时间，而是一些瞬间。比如大学毕业晚会的那个晚上，大家喝的一塌糊涂，早晨醒来，看依然灿烂的阳光，那种孤独感是能镌刻很久的。再比如在北航的时候，那时候习惯晚上看书，安静，一个人在三号楼前的空地走走，听学院路上的川流不息的车声。事情已经远去，感觉依然清晰。每个片段好像人生路上的benchmark，只不过留下最深印象的，往往不是所得，而是所感。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[post-review编码问题]]></title>
-    <link href="http://cxh.me/2015/04/22/post-review-encoding-problem/"/>
-    <updated>2015-04-22T16:08:00+08:00</updated>
-    <id>http://cxh.me/2015/04/22/post-review-encoding-problem</id>
-    <content type="html"><![CDATA[<p>  windows下post-review遇到一个问题（不是我，不用windows）。python会报错：</p>
-
-<pre><code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe6 in position xxx: ordinal not in range(128)     
-</code></pre>
-
-<p>  又是编码的问题啊，我不想去看post-review的源码，所以还是改默认环境的源码好了。找到rbtools\utils\process.py，import sys后面加两行：</p>
-
-<pre><code>reload(sys)
-sys.setdefaultencoding("utf-8") 
-</code></pre>
-
-<p>  Ok.</p>
 ]]></content>
   </entry>
   
