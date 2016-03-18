@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-03-18T17:50:16+08:00</updated>
+  <updated>2016-03-19T00:16:08+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于最近的一些事情]]></title>
+    <link href="http://cxh.me/2016/03/18/farwell-yanpo/"/>
+    <updated>2016-03-18T23:47:00+08:00</updated>
+    <id>http://cxh.me/2016/03/18/farwell-yanpo</id>
+    <content type="html"><![CDATA[<p>   最近其实是乏善可陈的，项目差不多写完，修修补补，提升下性能。其他的事情诸多不顺，看房价蹭蹭的涨，看工资慢慢的爬，感情纠结一团，其他的么，牙疼，估计牙周炎犯了。</p>
+
+<p>   然后今天炎泼说要走了，陈闯二话没说也跟着走了，先知先觉的后知后觉的都有各自的想法，只是我比较懵逼，可能最近事情多了，精力都不在这上面。每个人有自己的选择，目前看互联网差不多进入稳定期了，风口还有，但是能飞起来的猪不多了，剩下的人，要么在大公司朝九晚五，要么在创业公司等期权等上市，少数人还追求着理想，不过最后如果没有回到前面两个状态的话，一般是创业去了。</p>
+
+<p>   工作几年觉得介于目的性明确和不明确之间吧。做技术的明显分了两派，以KPI为核心的和以兴趣为核心的，很多时候这两个不是不兼容的。目的明确的，一切跟个人发展不相关的都推掉，目的不明确的，还是选择follow heart多一点。没有褒贬，个人选择而已。最好是大方向下，找点自己喜欢做的，否则工作容易无趣啊。不过这种坑也似乎不好找，当然不排除有人兴趣特别，比如我就是向往资产阶级腐朽堕落的生活方式&hellip;</p>
+
+<p>   博客好久不写了。感觉技术文章吧，一旦开头容易虎头蛇尾，扯扯淡吧，微博微信朋友圈足够了。无聊的时候，也就是刷刷知乎找朋友扯扯淡，看看有没有新梗，翻墙看看。最近整个社会都压抑吧，连门缝里塞小纸片的都少了，可见人民群众都进入到了一种就这样吧还能咋滴的状态里。</p>
+
+<p>   所以我还是一直觉得要找到一点精神的寄托，哪怕是打游戏呢（没鄙视的意思打游戏挺好）。最近听许巍的新歌《生活不止眼前的苟且》，觉得似乎又回到校园了，回到北航的主楼，回到绿园的树荫和荷塘，想起陈旧的宿舍楼里阳光洒在斑驳的墙面，想起清华园的午后，想起月下的荷塘，想起东门外五道口的火车道&hellip;</p>
+
+<pre><code>    生活不止眼前的苟且
+    还有诗和远方的田野
+    你赤手空拳来到人世间
+    为找到那片海不顾一切
+</code></pre>
+
+<p>   所以我这么感性的人是不是应该去搞音乐&hellip;毕竟钢琴比键盘也就是多了几十个键而已，用惯了Emacs的话，和弦弹起来也没什么按不过来的。</p>
+
+<p>   都是幻觉，都是幻觉&hellip;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[go生成xml的时候特殊字符转义的问题]]></title>
@@ -1237,15 +1264,6 @@ java -jar $JENKINS_ROOT/jenkins.war --httpPort=8080 &gt;&gt;output.log 2&gt;&amp
 <p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_enent_server.png"></p>
 
 <p>  细节请看<a href="http://files.cnblogs.com/files/itech/Jenkins%E5%85%A5%E9%97%A8.pdf" title="Jenkins 入门">这里</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[一些瞬间]]></title>
-    <link href="http://cxh.me/2015/04/22/some-moments/"/>
-    <updated>2015-04-22T22:08:00+08:00</updated>
-    <id>http://cxh.me/2015/04/22/some-moments</id>
-    <content type="html"><![CDATA[<p>  回想一些事情的时候感觉印象最深刻的往往不是一段时间，而是一些瞬间。比如大学毕业晚会的那个晚上，大家喝的一塌糊涂，早晨醒来，看依然灿烂的阳光，那种孤独感是能镌刻很久的。再比如在北航的时候，那时候习惯晚上看书，安静，一个人在三号楼前的空地走走，听学院路上的川流不息的车声。事情已经远去，感觉依然清晰。每个片段好像人生路上的benchmark，只不过留下最深印象的，往往不是所得，而是所感。</p>
 ]]></content>
   </entry>
   
