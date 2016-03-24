@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-03-19T17:03:29+08:00</updated>
+  <updated>2016-03-25T00:25:07+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,23 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[记录一个网络库设计的bug]]></title>
+    <link href="http://cxh.me/2016/03/25/netlib-bug-analysis/"/>
+    <updated>2016-03-25T00:14:00+08:00</updated>
+    <id>http://cxh.me/2016/03/25/netlib-bug-analysis</id>
+    <content type="html"><![CDATA[<p>   今天遇到一个设计上没考虑好的问题，记录一下。</p>
+
+<p>   之前Libeasy的逻辑如果一个连接上有超时的报文的话，整个连接会destroy掉。考虑网络拥塞的情况，如果AB两个报文同时在等待发送，A报文先进入发送队列（链表，非TCP发送buffer），B后进入，而A超时时间长，B立即超时，那么清理掉B的待发送报文的时候，如果destroy掉连接，那么本来可以发送出去的A报文就被强制失败了。</p>
+
+<p>   考虑这种情况做了一点修改，让超时的报文被清理掉的时候不会destroy连接。这样编码的时候需要指定一个报文被编码出来的buffer是属于哪个会话（session）的，同时记录一下每个session对应的最后一个buffer位置。清理的时候可以从上述位置回溯到不属于当前session的buffer或者到头部为止。看似没啥问题。今天发现了如下的bug：</p>
+
+<p>   考虑如果一个会话编码的多个buffer（或者一个buffer）被部分发送完毕（write返回大小为准），这时候会话超时，这个会话所属的所有编码过的buffer都被干掉，但是连接并没有被destroy，之后的报文继续发送的话，客户端实际上收到了不完整的报文，相当于之后的TCP流都错位了。这种情况下，destroy连接是明显更安全的做法。</p>
+
+<p>   所以还是要考虑周全啊。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[关于最近的一些事情]]></title>
@@ -1195,75 +1212,6 @@ xdotool getactivewindow windowmove 1280 y windowactivate windowfocus
 <p><img class="img-polaroid center" src="http://cxh.me/images/2015/moom_press_shortcut.png"></p>
 
 <p>  再通过你定义的快捷键来移动窗口了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jenkins 安装配置]]></title>
-    <link href="http://cxh.me/2015/04/23/jenkins-setup/"/>
-    <updated>2015-04-23T13:57:00+08:00</updated>
-    <id>http://cxh.me/2015/04/23/jenkins-setup</id>
-    <content type="html"><![CDATA[<p>  首先介绍一下Jenkins，如果你熟悉自动化构建的话，那么肯定听说过hudson。Jenkins是hudson的开发者跟Oracle撕bi之后，另立门户的一个hudson分支。当然这么说似乎不太靠谱，目前hudson已经不维护了毕竟，而Jenkins的开发社区还是很活跃的，各种插件层出不穷。总的来说，如果你不是已经习惯了hudson并且有一个能用的副本，都应该迁移到Jenkins。</p>
-
-<p>  下面说一下如何配置。</p>
-
-<p>  Jenkins的安装非常简单，只需要从Jenkins的<a href="https://jenkins-ci.org/" title="Jenkins">主页</a>上下载最新的jenkins.war文件然后运行 java -jar jenkins.war。如果需要配置运行参数可以如下设置一些环境变量。</p>
-
-<pre><code>JENKINS_ROOT=/home/harrychen/share/jenkins
-export JENKINS_HOME=$JENKINS_ROOT/jenkins_home
-java -jar $JENKINS_ROOT/jenkins.war --httpPort=8080 &gt;&gt;output.log 2&gt;&amp;1 &amp;
-</code></pre>
-
-<p>  打开对应url可以看到如下界面</p>
-
-<!--more-->
-
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins.png"></p>
-
-<p>  系统管理里面有一些需要配置的项，比如JDK：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_jdk.png"></p>
-
-<p>  GIT</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_git.png"></p>
-
-<p>  MAVEN</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_maven.png"></p>
-
-<p>  ssh-key</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_sshkey.png"></p>
-
-<p>  ssh-server</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_sshserver.png"></p>
-
-<p>  装一下slack的插件可以配置slack</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_slack.png"></p>
-
-<p>  然后是建立项目的配置，Jenkins把每个自动发布的项目作为一个单独的配置，主要是如下几个：</p>
-
-<p>  指定代码路径：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_gitclone.png"></p>
-
-<p>  部署前事件：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_deploy_pre.png"></p>
-
-<p>  部署后事件:</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_after_deploy.png"></p>
-
-<p>  最后保证这些事件是在之前配置的ssh-server上执行的。</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/jenkins_enent_server.png"></p>
-
-<p>  细节请看<a href="http://files.cnblogs.com/files/itech/Jenkins%E5%85%A5%E9%97%A8.pdf" title="Jenkins 入门">这里</a></p>
 ]]></content>
   </entry>
   
