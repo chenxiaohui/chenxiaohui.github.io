@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-03-28T23:29:27+08:00</updated>
+  <updated>2016-03-29T00:02:10+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[关于Paxos和Raft的一些思考]]></title>
+    <link href="http://cxh.me/2016/03/28/thinkthinking-about-paxos-and-raft/"/>
+    <updated>2016-03-28T23:33:00+08:00</updated>
+    <id>http://cxh.me/2016/03/28/thinkthinking-about-paxos-and-raft</id>
+    <content type="html"><![CDATA[<p>   最近在总结一些协议这么设计的原因，比较杂，纯做记录：</p>
+
+<ol>
+<li><p>选主过程相当于Paxos的prepare过程：</p>
+
+<p>选出的Leader得到了多数派的同意，相当于Paxos一阶段完成，由于当前Term下投过票的Server保证不再接受小于等于当前Term的，所以保证了选主最终只能选出一个。</p>
+
+<p>不同于Paxos的地方在于这一轮Term下，follower除非Lease过期，否则不会发起新的选主，也就是发起Epoc更大的提案。Raft可以认为MultiPaxos的一种应用，MultiPaxos可以认为是合并了Prepare阶段的SingleDegreePaxos.</p></li>
+<li><p>raft读一致性和选主timeout</p>
+
+<p>raft协议本身由于主只是续约了follower的lease，所以正常情况下follower不会在lease过期前发起新的选主，但是master网络分区情况下，master本身不维护自己的lease，follower lease过期会发起新的选主从而产生新的主。这时候旧主的写一定不能成功，但是旧主的读不受影响。</p>
+
+<p>以前在ob的时候阳老师设计的选主协议里面通过主lease来解决了这个问题，只是当时没体会到原因在这里。协议要求补充限制：主在自己的lease过期后放弃主的身份，主维持心跳的过程中续约follower的lease，根据rpc的返回，只有收到多数派的回应并且term没有更大的才续约自己的lease。新启动的server在follower状态至少等一个lease周期才发起选主，来让可能的旧主过期。</p></li>
+<li><p>paxos是两阶段提交的一种场景。</p>
+
+<p>两阶段提交的一阶段也是获得所有参与者的同意。只不过是所有而不是多数派，一阶段通过之后，相当于决议已经形成，所以后一阶段不会产生新的决议。2阶段可以完全异步来做，如果2阶段失败，不影响形成的决议。这意味着两阶段提交是非抢占式的。</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[刘鹏《移动时代的营销与变现》笔记]]></title>
@@ -25,22 +51,18 @@
 <ol>
 <li><p> 竞价的历史性作用、gd广告和竞价广告的诞生原因</p>
 
-<pre><code>保量（guarantee delivery）广告相对于品牌广告（CPT），主要解决了流量浪费的问题，CPM的售卖方式相对增加了广告流量的利用率（比如按照性别的售卖，大致可以增加20-25%的收益）。然而保量广告相对来讲对流量的利用并不极致，大部分gd系统都面临超卖或者保守售卖的问题，可能会导致补量或者浪费，在线流量分配和优化也是个比较复杂的问题。所以才有了竞价广告，根据[Nash均衡][1]，广告价格是出价方博弈的结果。这样就可以让广告效益最大化，区分优质流量，同时长尾的流量也有变现的机会。
+<p>保量（guarantee delivery）广告相对于品牌广告（CPT），主要解决了流量浪费的问题，CPM的售卖方式相对增加了广告流量的利用率（比如按照性别的售卖，大致可以增加20-25%的收益）。然而保量广告相对来讲对流量的利用并不极致，大部分gd系统都面临超卖或者保守售卖的问题，可能会导致补量或者浪费，在线流量分配和优化也是个比较复杂的问题。所以才有了竞价广告，根据<a href="https://www.zhihu.com/question/19804990" title="怎样向非专业人士专业地解释「纳什均衡」？">Nash均衡</a>，广告价格是出价方博弈的结果。这样就可以让广告效益最大化，区分优质流量，同时长尾的流量也有变现的机会。</p>
 
-当然也就引入了程序化交易。程序化交易是工业化的结果，但是对于广告来讲，良莠不齐的广告对于场景融入是非常不利的。程序化交易在移动时代带来了更不好的用户体验。
-</code></pre></li>
+<p>当然也就引入了程序化交易。程序化交易是工业化的结果，但是对于广告来讲，良莠不齐的广告对于场景融入是非常不利的。程序化交易在移动时代带来了更不好的用户体验。</p></li>
 <li><p> 搜索广告的场景和精妙之处</p>
 
-<pre><code>搜索广告实现了两点最精巧的地方：精确判断用户意图，跟媒体内容完美融入，所以历来是兵家必争之地。
-</code></pre></li>
+<p>搜索广告实现了两点最精巧的地方：精确判断用户意图，跟媒体内容完美融入，所以历来是兵家必争之地。</p></li>
 <li><p> 移动广告、gps定位、地理位置</p>
 
-<pre><code>移动时代，广告不能照搬PC时代的经验。移动设备屏幕上广告的体验是很差的。移动时代对于用户意图的判断实际上是更精准了，比如可以通过GPS等判断用户所处的位置，推送更符合场景的广告。但是广告体验就更加困难了，这是有利有弊的地方。
-</code></pre></li>
+<p>移动时代，广告不能照搬PC时代的经验。移动设备屏幕上广告的体验是很差的。移动时代对于用户意图的判断实际上是更精准了，比如可以通过GPS等判断用户所处的位置，推送更符合场景的广告。但是广告体验就更加困难了，这是有利有弊的地方。</p></li>
 <li><p> O2O是潜在的广告市场</p>
 
-<pre><code>O2O商家是之前几乎不可能成为广告主的一个群体。O2O广告有相当的地域要求，所以对Targeting的要求更高，相对PC时代，移动时代才是O2O广告能发力的地方。智能手机的普及提供了更精准的Targeting，使这部分人群有可能成为潜在广告主。
-</code></pre></li>
+<p>O2O商家是之前几乎不可能成为广告主的一个群体。O2O广告有相当的地域要求，所以对Targeting的要求更高，相对PC时代，移动时代才是O2O广告能发力的地方。智能手机的普及提供了更精准的Targeting，使这部分人群有可能成为潜在广告主。</p></li>
 </ol>
 
 
@@ -1195,27 +1217,6 @@ phpmailer.smtp-password: xxxx
 </code></pre></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git远程分支不存在的问题]]></title>
-    <link href="http://cxh.me/2015/05/11/git-remote-branch-not-exists/"/>
-    <updated>2015-05-11T12:11:00+08:00</updated>
-    <id>http://cxh.me/2015/05/11/git-remote-branch-not-exists</id>
-    <content type="html"><![CDATA[<p>  建立了一个远程分支，提交到origin上之后，发现之前有一个同样的远程Repository存在，而且名字一样，这就比较D疼了，git branch -a 显示的分支里面的分支提交到了另一个Repository，但是这个Repository已经改名字了，虽然地址一样。</p>
-
-<p>  搞来搞去之后发现git checkout远程分支的时候报不存在的问题，删除这个分支的时候同样有这个问题：</p>
-
-<pre><code>unable to delete 'refactor': remote ref does not exist
-</code></pre>
-
-<p>  导致这个分支就这么存在着删不掉了。查stackoverflow有人给出<a href="http://stackoverflow.com/questions/10292480/when-deleting-remote-git-branch-error-unable-to-push-to-unqualified-destinatio" title="When deleting remote git branch “error: unable to push to unqualified destination”">如下的方案</a>：</p>
-
-<pre><code>git fetch -p origin
-</code></pre>
-
-<p>  问题是能解决了，但是不太理解为什么。</p>
 ]]></content>
   </entry>
   
