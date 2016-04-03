@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-04-02T17:07:56+08:00</updated>
+  <updated>2016-04-03T19:35:15+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,71 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[数据库锁和隔离级别的总结]]></title>
+    <link href="http://cxh.me/2016/04/03/summarize-isolation-lock/"/>
+    <updated>2016-04-03T19:34:00+08:00</updated>
+    <id>http://cxh.me/2016/04/03/summarize-isolation-lock</id>
+    <content type="html"><![CDATA[<p>  最近在琢磨MVCC和悲观乐观锁的问题，感觉有些以前学习的点没有串联起来，主要是隔离级别和锁相关的，这里总结思考一下：</p>
+
+<ol>
+<li><p> 两阶段锁解决了什么问题</p>
+
+<p>两阶段锁主要解决事务调度的可串行化，保证了调度是正确的。一个简单的例子参考<a href="http://baike.baidu.com/view/3798716.htm" title="两阶段封锁">度娘</a>这里。</p></li>
+<li><p> 实现两阶段锁对应了什么隔离级别。</p>
+
+<p>两阶段锁保证了基本的隔离级别正确性，RC之上的隔离级别（包含RC）都需要至少保证两阶段锁。一个例外是如果wher条件不走索引的话，是可能全表加锁的，这种情况下mysql为了性能提前解锁了不满足条件的行，参见<a href="http://hedengcheng.com/?p=771#_Toc374698312" title="MySQL 加锁处理分析">这里</a>。</p></li>
+<li><p> 各个隔离级别对应的加锁策略。</p>
+
+<p>这个比较简单了：</p>
+
+<p>RU：读加S锁，写加X锁，完成即可释放。
+RC：读加S锁，写加X锁，读锁完成可释放，写锁一直到事务完成再释放。
+RR：读加S锁，写加X锁，读写锁都一直到事务完成再释放。
+SE: RR基础上再加范围锁。</p></li>
+<li><p> select如何防止丢失更新。</p>
+
+<p>按照<a href="http://hedengcheng.com/?p=771#_Toc374698312" title="MySQL 加锁处理分析">何等成</a>博客里面的定义，可以区分MVCC下两种读。</p>
+
+<p>快照读
+select * from table where ?;</p>
+
+<p>当前读。
+select * from table where ? lock in share mode;
+select * from table where ? for update;
+insert into table values (…);
+update table set ? where ?;
+delete from table where ?;</p>
+
+<p>快照读级别下，写事务可能丢失更新，因为select并不阻塞写，两个读写事务可能基于同一个快照点。当前读级别下，写阻塞读，所以涉及同一行的读写事务一定是串行的。不会丢失更新。</p>
+
+<p>基于乐观锁的方式下，也不会丢失更新，因为检查到更新可能被覆盖的操作都会回滚（打回重试）了。</p></li>
+<li><p> MVCC和锁（悲观乐观）的实现方式下，隔离级别是怎么实现的？</p>
+
+<p>MVCC主要针对冲突数据的处理，乐观锁、悲观锁决定了最终原子的更新一行的方式。</p>
+
+<p>MVCC加乐观锁的方式基本思路如下：</p>
+
+<pre><code>定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。[引用][3]
+</code></pre>
+
+<p>MVCC加悲观锁主要是提供了不加锁的读。按<a href="http://hedengcheng.com/?p=771#_Toc374698312" title="MySQL 加锁处理分析">何等成</a>的文章里看，就是快照读+当前读。快照读级别下，直接按照版本读就行，当前读级别下，如果有锁冲突还是要加锁。</p>
+
+<p>在ob里的实现上看比较明显，行的修改增量组织为一棵B树，历史版本表现为B树叶子节点上挂的链表。链表的按照版本号串接起所有历史版本，全局Publish version决定了当前可见的最新版本。</p>
+
+<p>在快照读级别下，select不需要加锁，只需要每次按照publish version去链表遍历，找到可见的结果并返回。如果不修改transaction consistency set的情况下，这种读取可能导致两次读结果不一致，不满足RR或者SI(Snapshot Isolation)。OB0.5增加了一个readonly snapshot的级别，可以提供对一个快照的只读操作，保证了多次读取的一致，但是没有snapshot级别不加锁的读写事务（快照写），毕竟基于一个旧的快照做写操作可能使新的提交丢失。这里要么类似乐观锁验证一下版本，要么加锁来延迟读写。</p>
+
+<p>当前读级别下，select也要加锁直到事务结束释放，跟mysql的实现一致。</p>
+
+<p>总结来讲，如果把当前读看成写事务的话，那么ob事实上是读操作只看版本号，写操作只看锁。如果只考虑当前读和写操作的话，那么相当于有冲突的时候读锁延迟了写操作，写锁延迟了读操作，保证了调度的串行。这种情况下，多次读取的结果是一致的。</p></li>
+<li><p> select for update在mvcc下如何实现。</p>
+
+<p> 道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）</p></li>
+</ol>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[cgo实践]]></title>
@@ -1125,116 +1190,6 @@ phpmailer.smtp-password: xxxx
 <h3>参考文献:</h3>
 
 <p>  [1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[基于zookeeper的配置管理客户端]]></title>
-    <link href="http://cxh.me/2015/06/16/sohu-zk-client-document/"/>
-    <updated>2015-06-16T16:28:00+08:00</updated>
-    <id>http://cxh.me/2015/06/16/sohu-zk-client-document</id>
-    <content type="html"><![CDATA[<h3>名词解释：</h3>
-
-<p>  SeviceConfig:</p>
-
-<pre><code>一个服务的所有配置存在一个目录下
-</code></pre>
-
-<p>  BucketConfig:</p>
-
-<pre><code> Bucket的配置存在一个单独的子目录中
-</code></pre>
-
-<h3>配置项类型：</h3>
-
-<ul>
-<li>Integer</li>
-<li>Long</li>
-<li>Short</li>
-<li>Float</li>
-<li>Double</li>
-<li>Byte[]</li>
-<li>Boolean</li>
-<li>String</li>
-<li>自定义配置项 ConfigObject</li>
-</ul>
-
-
-<h3>使用说明：</h3>
-
-<h4>POM：</h4>
-
-<pre><code>&lt;dependency&gt;
-  &lt;groupId&gt;com.sohu.adrd&lt;/groupId&gt;
-  &lt;artifactId&gt;sohu-zk-client&lt;/artifactId&gt;
-  &lt;version&gt;1.0.1&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-
-<h4>初始化</h4>
-
-<p>  ServiceConfig.Instance().init(&ldquo;ConnectString&rdquo;, &ldquo;serviceName&rdquo;);//如果做测试可以用10.16.3.61:2181</p>
-
-<p>  ServiceConfig.Instance().init(&ldquo;serviceName&rdquo;); 默认使用肖永磊的zk地址</p>
-
-<h4>配置项使用</h4>
-
-<p>  先给默认值</p>
-
-<pre><code>private static long exploitDiscardTimespan = 7 * 86400L;
-</code></pre>
-
-<p>  可以保存个Instance()的引用</p>
-
-<pre><code>private ServiceConfig serviceConfig = ServiceConfig.Instance();
-</code></pre>
-
-<p>  所有引用到的地方，通过如下方式取配置项（这是默认config）：</p>
-
-<p>   serviceConfig.getLong(&ldquo;exploitDiscardTimespan&rdquo;, exploitDiscardTimespan)</p>
-
-<p>  如果是BucketConfig(bucketConfig会在zookeeper上根目录下再增加一个Node，名字是bucket的名字，在此之下存储config)</p>
-
-<p>   serviceConfig.Bucket(&ldquo;bucketName&rdquo;).getLong(&ldquo;exploitDiscardTimespan&rdquo;, exploitDiscardTimespan)</p>
-
-<p>  这样server端更新配置的时候，serviceConfig会根据通知刷新自己的配置缓存，下次使用getLong的时候就得到了新的配置。</p>
-
-<p>  上述getLong的过程包含了：</p>
-
-<ol>
-<li><p> 如果是Bucket配置，从Bucket中获取，如果找不到，从Service的配置获取，如果还是没有，返回默认值。</p></li>
-<li><p> 对于返回默认值的情况，写回Zookeeper。</p></li>
-<li><p> 如果Zookeeper端有修改，Zkclient会收到消息，重新update本地配置项的缓存。</p></li>
-<li><p> 如果定义了handler调用handler，如下所述：</p></li>
-</ol>
-
-
-<p>  如果需要根据配置修改的通知来做出响应（这是默认事件，node_data_change)：</p>
-
-<pre><code>ServiceConfig.Instance().addEventListener("task_period", new IEventHandler() {
-  @Override
-  public void process(ZkEvent event) {
-    logger.info("update task period.");
-    setDeclaredField(TimerTask.class, ServerTasks.this, "period", ServiceConfig.Instance().getLong("task_period", period));  
-  }
-});
-</code></pre>
-
-<p>  如果需要删除的通知：</p>
-
-<pre><code>  ServiceConfig.Instance().addEventListener("task_period", EventType.NodeDeleted, new IEventHandler() {
-  @Override
-  public void process(ZkEvent event) {
-    logger.info("update task period.");
-    setDeclaredField(TimerTask.class, ServerTasks.this, "period", ServiceConfig.Instance().getLong("task_period", period));  
-  }
-});
-</code></pre>
-
-<h4>结合SpringFramework：</h4>
-
-<pre><code>基本不变，只不过SpringFramework会先填充InitializingBean的域，这些值只有在出默认值的时候才会被采用。
-</code></pre>
 ]]></content>
   </entry>
   
