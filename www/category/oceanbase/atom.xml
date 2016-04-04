@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-04-04T16:10:22+08:00</updated>
+  <updated>2016-04-04T16:15:18+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -69,10 +69,7 @@
 
 <p>MVCC加乐观锁的方式基本思路如下：</p>
 
-<ul>
-<li>定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。<a href="http://coolshell.cn/articles/6790.html" title="多版本并发控制(MVCC)在分布式系统中的应用">引用</a></li>
-</ul>
-
+<blockquote><p>定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。<a href="http://coolshell.cn/articles/6790.html" title="多版本并发控制(MVCC)在分布式系统中的应用">引用</a></p></blockquote>
 
 <p>MVCC加悲观锁主要是提供了不加锁的读。按<a href="http://hedengcheng.com/?p=771#_Toc374698312" title="MySQL 加锁处理分析">何等成</a>的文章里看，就是快照读+当前读。快照读级别下，直接按照版本读就行，当前读级别下，如果有锁冲突还是要加锁。</p>
 

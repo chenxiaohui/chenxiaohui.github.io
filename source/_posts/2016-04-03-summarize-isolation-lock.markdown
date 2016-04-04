@@ -53,7 +53,7 @@ categories: "Oceanbase"
 
   	MVCC加乐观锁的方式基本思路如下：
 
-    -  定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。[引用][3]
+    > 定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。[引用][3]
 
   	MVCC加悲观锁主要是提供了不加锁的读。按[何等成][2]的文章里看，就是快照读+当前读。快照读级别下，直接按照版本读就行，当前读级别下，如果有锁冲突还是要加锁。
 
