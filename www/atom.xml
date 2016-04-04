@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-04-03T19:39:30+08:00</updated>
+  <updated>2016-04-04T16:10:22+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -31,23 +31,34 @@
 
 <p>这个比较简单了：</p>
 
-<p>RU：读加S锁，写加X锁，完成即可释放。
-RC：读加S锁，写加X锁，读锁完成可释放，写锁一直到事务完成再释放。
-RR：读加S锁，写加X锁，读写锁都一直到事务完成再释放。
-SE: RR基础上再加范围锁。</p></li>
+<ul>
+<li>RU：读加S锁，写加X锁，完成即可释放。</li>
+<li>RC：读加S锁，写加X锁，读锁完成可释放，写锁一直到事务完成再释放。</li>
+<li>RR：读加S锁，写加X锁，读写锁都一直到事务完成再释放。</li>
+<li>SE: RR基础上再加范围锁。</li>
+</ul>
+</li>
 <li><p> select如何防止丢失更新。</p>
 
 <p>按照<a href="http://hedengcheng.com/?p=771#_Toc374698312" title="MySQL 加锁处理分析">何等成</a>博客里面的定义，可以区分MVCC下两种读。</p>
 
-<p>快照读
-select * from table where ?;</p>
+<p>快照读</p>
 
-<p>当前读。
-select * from table where ? lock in share mode;
-select * from table where ? for update;
-insert into table values (…);
-update table set ? where ?;
-delete from table where ?;</p>
+<ul>
+<li>select * from table where ?;</li>
+</ul>
+
+
+<p>当前读。</p>
+
+<ul>
+<li>select * from table where ? lock in share mode;</li>
+<li>select * from table where ? for update;</li>
+<li>insert into table values (…);</li>
+<li>update table set ? where ?;</li>
+<li>delete from table where ?;</li>
+</ul>
+
 
 <p>快照读级别下，写事务可能丢失更新，因为select并不阻塞写，两个读写事务可能基于同一个快照点。当前读级别下，写阻塞读，所以涉及同一行的读写事务一定是串行的。不会丢失更新。</p>
 
@@ -58,8 +69,10 @@ delete from table where ?;</p>
 
 <p>MVCC加乐观锁的方式基本思路如下：</p>
 
-<pre><code>定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。[引用][3]
-</code></pre>
+<ul>
+<li>定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。<a href="http://coolshell.cn/articles/6790.html" title="多版本并发控制(MVCC)在分布式系统中的应用">引用</a></li>
+</ul>
+
 
 <p>MVCC加悲观锁主要是提供了不加锁的读。按<a href="http://hedengcheng.com/?p=771#_Toc374698312" title="MySQL 加锁处理分析">何等成</a>的文章里看，就是快照读+当前读。快照读级别下，直接按照版本读就行，当前读级别下，如果有锁冲突还是要加锁。</p>
 

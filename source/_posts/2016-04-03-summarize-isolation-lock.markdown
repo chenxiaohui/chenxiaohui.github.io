@@ -22,24 +22,26 @@ categories: "Oceanbase"
 
   	这个比较简单了：
 
-  	RU：读加S锁，写加X锁，完成即可释放。
-  	RC：读加S锁，写加X锁，读锁完成可释放，写锁一直到事务完成再释放。
-  	RR：读加S锁，写加X锁，读写锁都一直到事务完成再释放。
-  	SE: RR基础上再加范围锁。
+  	- RU：读加S锁，写加X锁，完成即可释放。
+  	- RC：读加S锁，写加X锁，读锁完成可释放，写锁一直到事务完成再释放。
+  	- RR：读加S锁，写加X锁，读写锁都一直到事务完成再释放。
+  	- SE: RR基础上再加范围锁。
 
   4. select如何防止丢失更新。
 
   	按照[何等成][2]博客里面的定义，可以区分MVCC下两种读。
 
   	快照读
-  	select * from table where ?;
+
+  	- select * from table where ?;
 
   	当前读。
-  	select * from table where ? lock in share mode;
-	select * from table where ? for update;
-	insert into table values (…);
-	update table set ? where ?;
-	delete from table where ?;
+
+  	- select * from table where ? lock in share mode;
+	- select * from table where ? for update;
+	- insert into table values (…);
+	- update table set ? where ?;
+	- delete from table where ?;
 
     快照读级别下，写事务可能丢失更新，因为select并不阻塞写，两个读写事务可能基于同一个快照点。当前读级别下，写阻塞读，所以涉及同一行的读写事务一定是串行的。不会丢失更新。
 
@@ -48,10 +50,10 @@ categories: "Oceanbase"
   4. MVCC和锁（悲观乐观）的实现方式下，隔离级别是怎么实现的？
 
   	MVCC主要针对冲突数据的处理，乐观锁、悲观锁决定了最终原子的更新一行的方式。
-  	
+
   	MVCC加乐观锁的方式基本思路如下：
 
-  		定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。[引用][3]
+    -  定义一个keyValueSet，Conditional Update在此基础上加上了一组更新条件conditionSet { … data[keyx]=valuex, … }，即只有在D满足更新条件的情况下才将数据更新为keyValueSet’；否则，返回错误信息。[引用][3]
 
   	MVCC加悲观锁主要是提供了不加锁的读。按[何等成][2]的文章里看，就是快照读+当前读。快照读级别下，直接按照版本读就行，当前读级别下，如果有锁冲突还是要加锁。
 
