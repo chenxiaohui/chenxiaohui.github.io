@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-05-15T15:32:59+08:00</updated>
+  <updated>2016-05-15T23:58:48+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[迷失在时间里]]></title>
+    <link href="http://cxh.me/2016/05/15/lost-in-time/"/>
+    <updated>2016-05-15T23:34:00+08:00</updated>
+    <id>http://cxh.me/2016/05/15/lost-in-time</id>
+    <content type="html"><![CDATA[<p>   好久没写写自己心里的感受了。大概自从毕业工作之后，每天忙很多的事情，就不再有心情去体会一些事情。习惯了忙碌于工作，在这个城市的街头、地铁和公交站穿行，每天想的是五环的房价、今天有没有雾霾和路上堵不堵，只有夜深人静的时候才会想起以前的日子。</p>
+
+<p>   想起北航的参天大树，想起以前的同学，想起清华的荷塘，想起校园里美好的日子和可爱的女生，想起晚上安静的校园和校园外的车水马龙。大学的生活确实是人生最美好的几年，让你无论什么时候回想起来都觉得心底柔软、岁月静好。</p>
+
+<p>   有时候觉得自己迷失在时间里了。每天早晨醒来，想的都是匆匆逝去的时间和忙不完的事情。停下脚步，听见风穿过的声音，才觉得时间的洪流里面，也有这些许的温存，有难得的避风港，让灵魂停下来歇息一下。哎，我曾经是多么感性的一个人啊&hellip;</p>
+
+<p>   物是人非。尽量不去想这些事情。每每回忆以前都觉得会触动心里的痛点，看时光匆匆流去，那些逝去的画面，变得越发模糊，而又无可奈何。于是习惯了让工作占据思想，理性太多而湮没感性，这如何又不是一种躯壳。生活节奏已经进入快车道，每每停下来的时候都会觉得不安，这偶然的感性就变得异常奢侈。</p>
+
+<p>   入夜。这座熟悉而陌生的城市，又一次慢慢进入梦乡。同一面蓝天下的人啊，有人睡去，有人醒着，有人睡不着。窗外灯火阑珊，寂寞的人，愿你在时光中找到温暖。</p>
+
+<p>   <img class="img-polaroid center" src="http://cxh.me/images/2016/campus.jpg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[dirname和basename的一些细节]]></title>
@@ -1080,107 +1099,6 @@ if __name__ == '__main__':
 
 
 <p><strong>事实上，这个题目可以直接用邻接表表示数据结构，然后DFS来打印就好了&hellip;</strong></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Phibricator搭建过程总结]]></title>
-    <link href="http://cxh.me/2015/07/07/phibricator-setup/"/>
-    <updated>2015-07-07T17:45:00+08:00</updated>
-    <id>http://cxh.me/2015/07/07/phibricator-setup</id>
-    <content type="html"><![CDATA[<p>  <a href="http://phabricator.org/" title="Phibricator官网">Phibricator</a>是Facebook开源的一体化项目管理、代码review工具，主要特点是集成度高、界面漂亮。根据搭建的经验看，确实做的非常完善，各种细节用起来像是商业产品，不会像其他的开源产品那么难以配置。这里把配置过程根据回忆写一下：</p>
-
-<p>  官方给出过一个一键安装的脚本，但是下载的时候感觉有点问题吧，下载完不是sh而是网页，而且我只有一台机器，环境都已经预先有了，也不想再搭一套LAMP。这里我们以centos5为例：</p>
-
-<p>  首先安装httpd + mysql + php，由于centos5的版本太低，yum源里的mysql和php均低于phibricator要求的版本，我们需要先升级yum源，参见<a href="http://zengrong.net/post/1595.htm" title="升级CentOS 5.x中的PHP 5.1到5.3">参考文献</a>， 不过好像安装的时候没有php53u，而是直接php53</p>
-
-<p>  之后把对应的扩展也装了:</p>
-
-<pre><code>yum install php53-mbstring
-yum install php53-mysql
-</code></pre>
-
-<!--more-->
-
-
-<p>  升级mysql到mysql5.5，参见<a href="http://www.ha97.com/4145.html" title="RHEL/CentOS 5.x使用yum快速安装MySQL 5.5.x">参考文献</a>。中间遇到两个问题:</p>
-
-<ol>
-<li><p>mysql 启动失败，提示没有权限创建pid。su到mysql用户下发现/var/run目录mysql用户没有execute的权限：</p>
-
-<p> usermod +x /var/run</p>
-
-<p> 给目录加execute的权限</p></li>
-<li><p>mysql_upgrade失败，直接提示FATAL ERROR:Upgrade failed，发现用户名密码的问题，root@localhost密码没变，root@127.0.0.1在升级之后好像没有密码了</p>
-
-<p> SET PASSWORD FOR &lsquo;root&rsquo;@&lsquo;127.0.0.1&rsquo; = PASSWORD(&lsquo;newpass&rsquo;);</p>
-
-<p> 重新设置密码。</p></li>
-</ol>
-
-
-<p>  之后去/var/www/html安装源码:</p>
-
-<pre><code>$ git clone https://github.com/phacility/libphutil.git
-$ git clone https://github.com/phacility/arcanist.git
-$ git clone https://github.com/phacility/phabricator.git
-</code></pre>
-
-<p>  顺便装上一些别的php扩展：</p>
-
-<pre><code>sudo yum install pcre-devel
-sudo yum install php-pear
-sudo yum install php53-process
-sudo pecl install apc
-</code></pre>
-
-<p>  主要是提升性能的。然后配置httpd.conf</p>
-
-<pre><code>&lt;VirtualHost *&gt;
-  # Change this to the domain which points to your host.
-  ServerName phabricator.example.com
-
-  # Change this to the path where you put 'phabricator' when you checked it
-  # out from GitHub when following the Installation Guide.
-  #
-  # Make sure you include "/webroot" at the end!
-  DocumentRoot /path/to/phabricator/webroot
-
-  RewriteEngine on
-  RewriteRule ^/rsrc/(.*)     -                       [L,QSA]
-  RewriteRule ^/favicon.ico   -                       [L,QSA]
-  RewriteRule ^(.*)$          /index.php?__path__=$1  [B,L,QSA]
-&lt;/VirtualHost&gt;
-</code></pre>
-
-<p>  最后一个Rule的B在我的httpd下不识别，所以直接去掉了，貌似没什么影响&hellip;重启之后到phibricator的源码目录执行：</p>
-
-<pre><code>phabricator/ $ ./bin/storage upgrade
-</code></pre>
-
-<p>  按照提示可以配置mysql 用户名密码，之后可以看到建立了数据库结构。这时候访问host就能看到界面了。先注册管理员进去，能够看到一系列的TIPs，说明需要配置的地方。Phibricator在这方面非常人性化，按照提示一点点配置就可以了。直到解决大部分的warning。剩下的问题就是注册用户和邮件了。</p>
-
-<p>  首先在auth上开启认证方式，这里我们还是比较传统，选择了用户名密码的方式，你也可以选择其他账号体系打通的方式。一个用户注册之后，管理员需要批准用户，这个用户才能登陆。我找了好久，才发现原来批准在这位置：</p>
-
-<p>  <img class="img-polaroid center" src="http://cxh.me/images/2015/approval-queue.png"></p>
-
-<p>  最后是配置邮件服务器。首先你需要有个本地的或者其他提供商提供的邮件服务器。可以参考<a href="http://blog.csdn.net/lihongxun945/article/details/9030753" title="phabricator 邮件服务配置 备忘">这里</a>，PHP Mailer设置：</p>
-
-<pre><code>phpmailer.mailer: set to "smtp".
-phpmailer.smtp-host: smtp.xxx.com
-phpmailer.smtp-port: 25
-phpmailer.smtp-user: xxxx
-phpmailer.smtp-password: xxxx
-</code></pre>
-
-<p>  之后重启daemon应该就能发送邮件了。删除用户非常有意思，ph只允许从命令行删除</p>
-
-<pre><code>phabricator/ $ ./bin/remove destroy @harrychen
-</code></pre>
-
-<p>  之后会有一个有意思的界面：</p>
-
-<p><img class="img-polaroid center" src="http://cxh.me/images/2015/delete-user.png"></p>
 ]]></content>
   </entry>
   

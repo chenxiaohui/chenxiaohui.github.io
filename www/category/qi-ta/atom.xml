@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 其他 | CXH.ME]]></title>
   <link href="http://cxh.me/category/qi-ta/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-05-15T15:32:59+08:00</updated>
+  <updated>2016-05-15T23:58:48+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,25 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[迷失在时间里]]></title>
+    <link href="http://cxh.me/2016/05/15/lost-in-time/"/>
+    <updated>2016-05-15T23:34:00+08:00</updated>
+    <id>http://cxh.me/2016/05/15/lost-in-time</id>
+    <content type="html"><![CDATA[<p>   好久没写写自己心里的感受了。大概自从毕业工作之后，每天忙很多的事情，就不再有心情去体会一些事情。习惯了忙碌于工作，在这个城市的街头、地铁和公交站穿行，每天想的是五环的房价、今天有没有雾霾和路上堵不堵，只有夜深人静的时候才会想起以前的日子。</p>
+
+<p>   想起北航的参天大树，想起以前的同学，想起清华的荷塘，想起校园里美好的日子和可爱的女生，想起晚上安静的校园和校园外的车水马龙。大学的生活确实是人生最美好的几年，让你无论什么时候回想起来都觉得心底柔软、岁月静好。</p>
+
+<p>   有时候觉得自己迷失在时间里了。每天早晨醒来，想的都是匆匆逝去的时间和忙不完的事情。停下脚步，听见风穿过的声音，才觉得时间的洪流里面，也有这些许的温存，有难得的避风港，让灵魂停下来歇息一下。哎，我曾经是多么感性的一个人啊&hellip;</p>
+
+<p>   物是人非。尽量不去想这些事情。每每回忆以前都觉得会触动心里的痛点，看时光匆匆流去，那些逝去的画面，变得越发模糊，而又无可奈何。于是习惯了让工作占据思想，理性太多而湮没感性，这如何又不是一种躯壳。生活节奏已经进入快车道，每每停下来的时候都会觉得不安，这偶然的感性就变得异常奢侈。</p>
+
+<p>   入夜。这座熟悉而陌生的城市，又一次慢慢进入梦乡。同一面蓝天下的人啊，有人睡去，有人醒着，有人睡不着。窗外灯火阑珊，寂寞的人，愿你在时光中找到温暖。</p>
+
+<p>   <img class="img-polaroid center" src="/images/2016/campus.jpg"></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[cgo实践]]></title>
@@ -212,26 +231,6 @@ java -jar $JENKINS_ROOT/jenkins.war --httpPort=8080 &gt;&gt;output.log 2&gt;&amp
 <p>  <img class="img-polaroid center" src="/images/2015/jenkins_enent_server.png"></p>
 
 <p>  细节请看<a href="http://files.cnblogs.com/files/itech/Jenkins%E5%85%A5%E9%97%A8.pdf" title="Jenkins 入门">这里</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[post-review编码问题]]></title>
-    <link href="http://cxh.me/2015/04/22/post-review-encoding-problem/"/>
-    <updated>2015-04-22T16:08:00+08:00</updated>
-    <id>http://cxh.me/2015/04/22/post-review-encoding-problem</id>
-    <content type="html"><![CDATA[<p>  windows下post-review遇到一个问题（不是我，不用windows）。python会报错：</p>
-
-<pre><code>UnicodeDecodeError: 'ascii' codec can't decode byte 0xe6 in position xxx: ordinal not in range(128)     
-</code></pre>
-
-<p>  又是编码的问题啊，我不想去看post-review的源码，所以还是改默认环境的源码好了。找到rbtools\utils\process.py，import sys后面加两行：</p>
-
-<pre><code>reload(sys)
-sys.setdefaultencoding("utf-8") 
-</code></pre>
-
-<p>  Ok.</p>
 ]]></content>
   </entry>
   
