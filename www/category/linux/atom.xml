@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-05-15T14:49:41+08:00</updated>
+  <updated>2016-05-15T15:32:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -52,6 +52,8 @@ int main(int argc, const char *argv[]) {
 abc
 /abc
 </code></pre>
+
+<p>  还有一个更有意思的问题&hellip;.如果对同一个path先后调用dirname和basename，那么返回的只有一个是对的&hellip;.因为源已经被修改了。反过来可以。</p>
 
 <p>  path在执行过程中被修改了。C系的函数很多面临这个问题，如果不这么做的话要申请一块额外的内存，然后返回，而释放这块内存的工作得调用方完成，这种情况下，内存泄露的可能性很大，所以很多c库函数的选择是用全局变量（getopt等)或者修改入参（basename等）。</p>
 ]]></content>
