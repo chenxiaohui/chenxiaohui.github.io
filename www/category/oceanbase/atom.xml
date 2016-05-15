@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Oceanbase | CXH.ME]]></title>
   <link href="http://cxh.me/category/oceanbase/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-04-05T14:28:37+08:00</updated>
+  <updated>2016-05-15T14:49:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -82,7 +82,10 @@
 <p>总结来讲，如果把当前读看成写事务的话，那么ob事实上是读操作只看版本号，写操作只看锁。如果只考虑当前读和写操作的话，那么相当于有冲突的时候读锁延迟了写操作，写锁延迟了读操作，保证了调度的串行。这种情况下，多次读取的结果是一致的。</p></li>
 <li><p> select for update在mvcc下如何实现。</p>
 
-<p> 道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）</p></li>
+<p>道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）</p></li>
+<li><p> 分布式环境下的快照读</p>
+
+<p>单点的快照相对来讲比较容易，因为每次可以取一下publish version，来决定什么是可以读取的，但是分布式环境下，每个点读取的时候不能总去看全局publish version(似乎也可以)， 这样本地读取的时候可能由于时间偏移出现全局本地开启事务的时间戳大于全局publish version的问题，</p></li>
 </ol>
 
 ]]></content>

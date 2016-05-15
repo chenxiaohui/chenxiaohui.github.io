@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-04-05T14:28:37+08:00</updated>
+  <updated>2016-05-15T14:49:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[dirname和basename的一些细节]]></title>
+    <link href="http://cxh.me/2016/05/15/dirname-and-basename-cautions/"/>
+    <updated>2016-05-15T14:42:00+08:00</updated>
+    <id>http://cxh.me/2016/05/15/dirname-and-basename-cautions</id>
+    <content type="html"><![CDATA[<p>  作为获取文件名和文件路径的函数，dirname和basename的签名是：</p>
+
+<pre><code>#include &lt;libgen.h&gt;
+
+char *dirname(char *path);
+
+char *basename(char *path);
+</code></pre>
+
+<p>  之前没注意的地方是这个函数的输入输出都不是const的，也就意味着这个函数调用过程可能会修改char*指向的string内容。所以直接输出一个不可变字符串是不行的，同理，也要考虑这个非const函数会破坏入参。也就是：</p>
+
+<pre><code>char *str = "/abc/def";
+printf("%s\n", dirname(str));
+</code></pre>
+
+<p>  会core掉。而</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;libgen.h&gt;
+int main(int argc, const char *argv[]) {
+  char str[] = "/abc/def";
+  printf("%s\n", dirname(str));
+  printf("%s\n", basename(str));
+  printf("%s\n", str);
+  return 0;
+}
+</code></pre>
+
+<p>  输出结果是：</p>
+
+<pre><code>/abc
+abc
+/abc
+</code></pre>
+
+<p>  path在执行过程中被修改了。C系的函数很多面临这个问题，如果不这么做的话要申请一块额外的内存，然后返回，而释放这块内存的工作得调用方完成，这种情况下，内存泄露的可能性很大，所以很多c库函数的选择是用全局变量（getopt等)或者修改入参（basename等）。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[记录一个网络库设计的bug]]></title>
@@ -135,72 +179,6 @@ ln -s ../../lib64/libexpat.so.0.5.0 libexpat.so
 </code></pre>
 
 <p>  问题是能解决了，但是不太理解为什么。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[关于sendmail邮件服务器的搭建]]></title>
-    <link href="http://cxh.me/2015/04/01/something-about-sendmail-setup/"/>
-    <updated>2015-04-01T20:14:00+08:00</updated>
-    <id>http://cxh.me/2015/04/01/something-about-sendmail-setup</id>
-    <content type="html"><![CDATA[<p>  还是reviewboard的事情，我们需要一个自己的邮件服务器来发通知邮件。sendmail是一个比较好的选择，搭建的方式很简单，安装sendmail，修改配置文件，修改local_host_name就行。如果不需要登陆验证，这样也就直接能用了。现在的问题是reviewboard是必须登陆验证的。至少看报错上是这样。</p>
-
-<pre><code>SMTPException: SMTP AUTH extension not supported by server. reviewboard
-</code></pre>
-
-<p>  具体代码没细看，但是应该默认都有认证，只是认证方式不一样。我们telnet到25端口，执行</p>
-
-<pre><code>ehlo localhost
-
-
-/usr/sbin/testsaslauthd -u username -p sohutest
-
-mail -s "test" xxx@xxx.com &lt;content.txt
-</code></pre>
-
-<!--more-->
-
-
-<p>  如果邮件不能正常发送可以通过如下方式debug：</p>
-
-<pre><code>1. 查看/var/log/messages
-2. 查看用户mail
-3. 通过telnet模拟一下登陆发邮件的过程：
-
-        HELO localhost
-        AUTH LOGIN 
-        aGFycnljaGVu
-        password
-        MAIL FROM:&lt;test@xxx.com&gt;
-        RCPT TO:&lt;username@xxx.com&gt;
-        DATA
-        To: username@xxx.com
-        From:test@xxx.com
-        Subject:test mail
-        From:test@xxx.com
-        test body
-        .
-        quit
-</code></pre>
-
-<p>  安装reviewboard的过程还发现一个问题，邮件服务器已经可以正常发邮件了，reviewboard还是失败，看到如下报错：</p>
-
-<pre><code>- Error sending e-mail notification with subject 'Review Request 2: [retrieval-ad][master][NewFeature] Readme' on behalf of '"UserName" &lt;xxx@xxx.com&gt;' to '"UserName" &lt;xxx@xxx.com&gt;,xxx@xxx.com'
-Traceback (most recent call last):
-  File "/opt/xxx/rb/lib/python2.7/site-packages/ReviewBoard-2.0.15-py2.7.egg/reviewboard/notifications/email.py", line 294, in send_review_mail
-    message.send()
-  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/message.py", line 276, in send
-    return self.get_connection(fail_silently).send_messages([self])
-  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 87, in send_messages
-    new_conn_created = self.open()
-  File "/opt/xxx/rb/lib/python2.7/site-packages/Django-1.6.11-py2.7.egg/django/core/mail/backends/smtp.py", line 54, in open
-    self.connection.login(self.username, self.password)
-  File "/usr/local/lib/python2.7/smtplib.py", line 613, in login
-    raise SMTPAuthenticationError(code, resp)
-SMTPAuthenticationError: (535, '5.7.0 authentication failed')
-</code></pre>
-
-<p>  跟到如下smtplib.py里面看验证方法，调整了顺序（我这支持AUTH LOGIN PLAIN，没支持PAM)，然后保证用户名密码正确就基本可以使用了。</p>
 ]]></content>
   </entry>
   

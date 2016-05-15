@@ -67,7 +67,12 @@ categories: "Oceanbase"
 
   5. select for update在mvcc下如何实现。
 
-     道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）
+    道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）
+
+  6. 分布式环境下的快照读
+    
+    单点的快照相对来讲比较容易，因为每次可以取一下publish version，来决定什么是可以读取的，但是分布式环境下，每个点读取的时候不能总去看全局publish version(似乎也可以)， 这样本地读取的时候可能由于时间偏移出现全局本地开启事务的时间戳大于全局publish version的问题，
+
 
 [1]: http://baike.baidu.com/view/3798716.htm "两阶段封锁"
 [2]: http://hedengcheng.com/?p=771#_Toc374698312 "MySQL 加锁处理分析"

@@ -8,7 +8,7 @@ categories: "其他"
 ---
   拜GFW所赐，连tm boot2docker都连接不上了。好在有shadowsocks的服务，可以转成http proxy给命令行使用。
 
-  首先安装[privoxy][1]。Linux下直接`apt-get install proxy`，然后编辑配置文件（etc/privoxy/config)：
+  首先安装[privoxy][1]。Linux下直接`apt-get install privoxy`，然后编辑配置文件（etc/privoxy/config)：
 
     forward-socks5   /               127.0.0.1:1080 .
 	listen-address  localhost:8118

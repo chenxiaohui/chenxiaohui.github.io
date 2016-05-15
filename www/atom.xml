@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-04-05T14:28:37+08:00</updated>
+  <updated>2016-05-15T14:49:41+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[dirname和basename的一些细节]]></title>
+    <link href="http://cxh.me/2016/05/15/dirname-and-basename-cautions/"/>
+    <updated>2016-05-15T14:42:00+08:00</updated>
+    <id>http://cxh.me/2016/05/15/dirname-and-basename-cautions</id>
+    <content type="html"><![CDATA[<p>  作为获取文件名和文件路径的函数，dirname和basename的签名是：</p>
+
+<pre><code>#include &lt;libgen.h&gt;
+
+char *dirname(char *path);
+
+char *basename(char *path);
+</code></pre>
+
+<p>  之前没注意的地方是这个函数的输入输出都不是const的，也就意味着这个函数调用过程可能会修改char*指向的string内容。所以直接输出一个不可变字符串是不行的，同理，也要考虑这个非const函数会破坏入参。也就是：</p>
+
+<pre><code>char *str = "/abc/def";
+printf("%s\n", dirname(str));
+</code></pre>
+
+<p>  会core掉。而</p>
+
+<pre><code>#include &lt;stdio.h&gt;
+#include &lt;libgen.h&gt;
+int main(int argc, const char *argv[]) {
+  char str[] = "/abc/def";
+  printf("%s\n", dirname(str));
+  printf("%s\n", basename(str));
+  printf("%s\n", str);
+  return 0;
+}
+</code></pre>
+
+<p>  输出结果是：</p>
+
+<pre><code>/abc
+abc
+/abc
+</code></pre>
+
+<p>  path在执行过程中被修改了。C系的函数很多面临这个问题，如果不这么做的话要申请一块额外的内存，然后返回，而释放这块内存的工作得调用方完成，这种情况下，内存泄露的可能性很大，所以很多c库函数的选择是用全局变量（getopt等)或者修改入参（basename等）。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[数据库锁和隔离级别的总结]]></title>
@@ -82,7 +126,10 @@
 <p>总结来讲，如果把当前读看成写事务的话，那么ob事实上是读操作只看版本号，写操作只看锁。如果只考虑当前读和写操作的话，那么相当于有冲突的时候读锁延迟了写操作，写锁延迟了读操作，保证了调度的串行。这种情况下，多次读取的结果是一致的。</p></li>
 <li><p> select for update在mvcc下如何实现。</p>
 
-<p> 道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）</p></li>
+<p>道理是一样的，跟mvcc没什么关系，select for update实际上相当于写事务（select的时候加写锁，直到事务结束再释放，update操作本身也是一样的过程，先检索符合条件的记录加锁，再修改并提交，这样才能保证是原子的）</p></li>
+<li><p> 分布式环境下的快照读</p>
+
+<p>单点的快照相对来讲比较容易，因为每次可以取一下publish version，来决定什么是可以读取的，但是分布式环境下，每个点读取的时候不能总去看全局publish version(似乎也可以)， 这样本地读取的时候可能由于时间偏移出现全局本地开启事务的时间戳大于全局publish version的问题，</p></li>
 </ol>
 
 ]]></content>
@@ -1132,74 +1179,6 @@ phpmailer.smtp-password: xxxx
 <p>  之后会有一个有意思的界面：</p>
 
 <p><img class="img-polaroid center" src="http://cxh.me/images/2015/delete-user.png"></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[简历生成器（基于moderncv+latex）]]></title>
-    <link href="http://cxh.me/2015/06/26/resume-generator-using-latex-and-moderncv/"/>
-    <updated>2015-06-26T15:47:00+08:00</updated>
-    <id>http://cxh.me/2015/06/26/resume-generator-using-latex-and-moderncv</id>
-    <content type="html"><![CDATA[<p>项目地址: <a href="https://github.com/chenxiaohui/resume">https://github.com/chenxiaohui/resume</a></p>
-
-<h3>说明</h3>
-
-<p>  通过文本文件生成简历tex的generator。最终生成pdf还是要靠Latex+Moderncv，环境请自行配置。</p>
-
-<ul>
-<li>windows下：<a href="http://www.ctex.org/HomePage">http://www.ctex.org/HomePage</a></li>
-<li>Linux下：<a href="https://www.tug.org/texlive/">https://www.tug.org/texlive/</a></li>
-<li><p>Mac下：<a href="https://tug.org/mactex/">https://tug.org/mactex/</a></p>
-
-<p>需要的包都通过sudo tlmgr install package来安装。字体主要使用了Times New Roman（西文）和 Kaiti SC（中文）。可根据喜好换。</p></li>
-</ul>
-
-
-<h3>模板配置</h3>
-
-<p>  config.tex 定义了公共头文件，包括包含的宏包，版面的布置和字体语言。</p>
-
-<p>  xxtemplate.tex定义了模板。模板语法比较简单，不给出严谨的语法定义了，主要如下两点：</p>
-
-<ol>
-<li>%xxx% 表示一个变量，将来会从cv文件中查找对应名字的变量，找到之后替换这个%xxx%</li>
-<li><p>%for=>xx% %endfor%表示一个循环，xx是section的name，将来会从cv文件中找到对应的section，然后parse section下的每个单独的项目，用结果替换for循环中的内容</p>
-
-<ol>
-<li>for循环中{0}{1}..表示一个for循环变量，cv中section下的条目会被分割成多个变量，顺序依次是0，1，2..，渲染的时候会对应的替换上述{0}{1}变量。如果数量不匹配会报错。</li>
-</ol>
-</li>
-<li><p>如上语法部分关键字可以配置，在config.py中。可以酌情修改。</p></li>
-</ol>
-
-
-<p>  xx.cv包含了简历内容，格式上参考了ini文件格式，但是略有不同。</p>
-
-<ol>
-<li>[section name]顶一个了一个section，对应简历中一个部分。section name的显示名称是在template里面写好的。这里的name只是给程序使用的，可以跟显示名称一致也可以不同。</li>
-<li>不包含在某个section下的条目通过 key = value的方式定义。不能跨行，程序parse的时候只找第一个等号，后面有空格等符号都不影响。</li>
-<li>section下的条目每条可以包含多个字段，字段之间默认用竖线（|）分割（可修改）。字段的数量需要跟模板中对应section下for循环体中变量的数量一致。</li>
-</ol>
-
-
-<p>  程序中给出了几个实例，分别是英文、中文简历的template和cv文件，供参考。</p>
-
-<h3>使用</h3>
-
-<p>  写好对应的cv和模板之后，make就行。open命令可能在mac之外的系统不能使用，建议注掉。</p>
-
-<p>  make distclean清空所有文件包括pdf</p>
-
-<p>  make again 是为了生成页码，xelatex跑第一遍的时候页码是乱码。</p>
-
-<p>  gen.py 文件格式如下：</p>
-
-<pre><code>./gen.py &lt;template-file&gt; &lt;cvfile&gt; &lt;output-file&gt;
-</code></pre>
-
-<h3>参考文献:</h3>
-
-<p>  [1] http moderncv 的笔记（支持中文）, <a href="http://www.xiangsun.org/tex/notes-on-moderncv">http://www.xiangsun.org/tex/notes-on-moderncv</a></p>
 ]]></content>
   </entry>
   
