@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-05-15T23:58:48+08:00</updated>
+  <updated>2016-05-18T16:05:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,62 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[logrotate版本问题]]></title>
+    <link href="http://cxh.me/2016/05/18/loglogrotate-version-problem/"/>
+    <updated>2016-05-18T16:02:00+08:00</updated>
+    <id>http://cxh.me/2016/05/18/loglogrotate-version-problem</id>
+    <content type="html"><![CDATA[<p>  线上运维过程中切日志用了logrotate，但无奈日志打的太多，一天的日志几十G难以分析，遂决定改成每小时切分一次日志。从logrotate的说明看有hourly的支持，但是直接把daily改成hourly之后启动报错：</p>
+
+<pre><code>unknown option 'hourly'
+</code></pre>
+
+<p>  感觉是logrotate 3.8.7的版本不支持hourly语法</p>
+
+<p>  rpm安装logrotate高版本的包提示缺少fillup和其他的依赖，同时glibc的版本也要求高版本。于是下载了logrotate的源码安装，以最新版本3.9.2为例</p>
+
+<pre><code>./autogen.sh
+./configure
+</code></pre>
+
+<p>  提示缺少libpopt头文件，下载了libpopt 1.5的源码安装，提示libtool版本不对。我擦嘞。</p>
+
+<p>  后来突然想到libpopt是debian下的命名，试一下centos下</p>
+
+<pre><code>yum install popt-devel -y
+</code></pre>
+
+<p>  搞定。于是继续源码安装，直接用logrotate的官网版本好了。</p>
+
+<pre><code>yum install popt-devel -y
+wget https://fedorahosted.org/releases/l/o/logrotate/logrotate-3.8.6.tar.gz
+tar zxvf  logrotate-3.8.6.tar.gz
+cd logrotate-3.8.6 &amp;&amp; make &amp;&amp; make install
+</code></pre>
+
+<p>  这个版本是可以稳定使用的。中间试了几个别的版本，3.8.3还是不支持hourly语法，3.8.5支持了语法，但是测试的时候</p>
+
+<pre><code>logrotate -d /etc/logrotate.conf
+</code></pre>
+
+<p>  有core，跟进源码去感觉是依赖bug，换到3.8.6终于ok了&hellip;回去看作者更新日志：</p>
+
+<pre><code>3.8.4 -&gt; 3.8.5
+     - Improved rotation during daylight saving time and between timezone
+       changes.
+     - Fixed ACL setting problem caused by ext3 erroneously reporting ENOSYS
+       instead of ENOSUP.
+     - Do not continue with rotation if state file is corrupted.
+     - Make logrotate.status creation atomic.
+     - Allow "hourly" rotation. See manpage for more information.
+     - Use "/bin/echo" in tests. Fixes tests execution in Dash.
+     - Do no try to parse config files bigger than 16MB.
+     - Improved manpage consistency and formatting.
+     - Fix race condition between acl_set_fd() and fchmod().
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[dirname和basename的一些细节]]></title>
@@ -160,27 +216,6 @@ ln -s ../../lib64/libexpat.so.0.5.0 libexpat.so
 </code></pre>
 
 <p>   应该就OK了。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Git远程分支不存在的问题]]></title>
-    <link href="http://cxh.me/2015/05/11/git-remote-branch-not-exists/"/>
-    <updated>2015-05-11T12:11:00+08:00</updated>
-    <id>http://cxh.me/2015/05/11/git-remote-branch-not-exists</id>
-    <content type="html"><![CDATA[<p>  建立了一个远程分支，提交到origin上之后，发现之前有一个同样的远程Repository存在，而且名字一样，这就比较D疼了，git branch -a 显示的分支里面的分支提交到了另一个Repository，但是这个Repository已经改名字了，虽然地址一样。</p>
-
-<p>  搞来搞去之后发现git checkout远程分支的时候报不存在的问题，删除这个分支的时候同样有这个问题：</p>
-
-<pre><code>unable to delete 'refactor': remote ref does not exist
-</code></pre>
-
-<p>  导致这个分支就这么存在着删不掉了。查stackoverflow有人给出<a href="http://stackoverflow.com/questions/10292480/when-deleting-remote-git-branch-error-unable-to-push-to-unqualified-destinatio" title="When deleting remote git branch “error: unable to push to unqualified destination”">如下的方案</a>：</p>
-
-<pre><code>git fetch -p origin
-</code></pre>
-
-<p>  问题是能解决了，但是不太理解为什么。</p>
 ]]></content>
   </entry>
   
