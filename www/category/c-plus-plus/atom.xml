@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-05-18T16:05:23+08:00</updated>
+  <updated>2016-06-06T15:03:17+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,87 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[union和struct相互嵌套时的初始化]]></title>
+    <link href="http://cxh.me/2016/05/26/union-struct-initialize/"/>
+    <updated>2016-05-26T11:01:00+08:00</updated>
+    <id>http://cxh.me/2016/05/26/union-struct-initialize</id>
+    <content type="html"><![CDATA[<pre><code>typedef union {
+volatile int64_t atomic;
+struct{
+  int32_t pid;
+  int32_t atomic32;
+};
+} S3Atomic;
+
+int main(int argc, const char *argv[]) {
+S3Atomic atomic = ;
+printf("%x\n", atomic.pid);
+printf("%x\n", atomic.atomic32);
+printf("%lx\n", atomic.atomic);
+return 0;
+}
+</code></pre>
+
+<p><a href="http://smilejay.com/2011/12/gcc_union_in_struct/" title="联合体(UNION)在结构体(STRUCT)中的初始化（GCC语法）">参考如下代码</a></p>
+
+<p>/<em>
+ * This sample shows definition and initiation of a struct and a union in a struct.
+ * using GCC to compile this C file
+ * Author: Jay Ren
+</em>/</p>
+
+<h1>include &lt;stdio.h></h1>
+
+<p>int main(int argc, char *argv[])
+{</p>
+
+<pre><code>struct my_struct1 {
+    int num1;
+    union {
+        int num2;
+        char ch;
+    };
+};
+
+struct my_struct1 my_st1 = {
+    .num1 = 111,
+    /* the following commented line will cause a syntax error. */
+    /* .num2 = 123456,*/
+};
+
+/* num2 or ch in the union of the struct can't be initiated before. */
+my_st1.num2 = 123456;
+
+printf("my_st1.num1 = %d\n", my_st1.num1);
+printf("my_st1.num2 = %d\n", my_st1.num2);
+
+struct my_struct2 {
+    int num1;
+    union my_union {
+        int num2;
+        char ch;
+    } my_u;
+};
+
+struct my_struct2 my_st2 = {
+    .num1 = 222,
+    /*  the following line for initiating num2 works fine. */
+    .my_u.num2 = 123456,
+};
+
+printf("my_st2.num1 = %d\n", my_st2.num1);
+printf("my_st2.num2 = %d\n", my_st2.my_u.num2);
+
+return 0;
+</code></pre>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>\ , &lt;>}</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[libev源码分析]]></title>
@@ -503,99 +584,6 @@ public:
 <p>  [1] random_shuffle算法小例子, <a href="http://blog.csdn.net/aheroofeast/article/details/3907192">http://blog.csdn.net/aheroofeast/article/details/3907192</a></p>
 
 <p>  [2]  &ldquo;Algorithms, <a href="http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY">http://www.amazon.cn/%E7%AE%97%E6%B3%95%E5%AF%BC%E8%AE%BA-Thomas-H-Cormen/dp/B00AK7BYJY</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[协变返回类型]]></title>
-    <link href="http://cxh.me/2015/01/27/convariant-return-type/"/>
-    <updated>2015-01-27T15:48:00+08:00</updated>
-    <id>http://cxh.me/2015/01/27/convariant-return-type</id>
-    <content type="html"><![CDATA[<p>  协变返回类型（Convariant Return Type）是指override的函数，返回值有继承关系（子类函数返回类型是父类返回类型的子类）。例子如下：</p>
-
-<!--more-->
-
-
-<pre><code>class Base
-{
-  public:
-    Base (){}
-    virtual void print(){
-      printf("Base");
-    }
-};
-
-class Derived : public Base
-{
-  public:
-    Derived(){}
-    virtual ~Derived (){}
-    void print(){
-      printf("Derived");
-    }
-};
-
-class TestBase
-{
-  public:
-    TestBase (){}
-    virtual Base* getObject(){
-      return new Base();
-    }
-};
-
-class TestDerived : public TestBase
-{
-  public:
-    TestDerived (){}
-    virtual ~TestDerived (){}
-    Derived* getObject(){
-      printf("invoke here\n");
-      return new Derived;
-    }
-};
-
-int main(int argc, const char *argv[])
-{
-  TestBase * base = new TestDerived();
-  Base* b = base-&gt;getObject();
-  b-&gt;print();
-  return 0;
-}
-
-结果：
-invoke here
-Derived
-</code></pre>
-
-<p>  java同理，只不过验证起来比较容易。直接打印对象就行。</p>
-
-<pre><code>public class BaseClass {
-}
-public class DerivedClass extends BaseClass{
-}
-
-public class TestBase {
-    public BaseClass getObject(){
-        return new BaseClass();
-    }
-}
-
-public class TestDerived extends TestBase{
-    public DerivedClass getObject(){
-        return new DerivedClass();
-    }
-    public static void main(String[] args) {
-        TestBase base = new TestDerived();
-        System.out.println(base.getObject());
-    }
-}
-
-返回值：
-test.server.others.DerivedClass@5d1eb50b
-</code></pre>
-
-<p>  这里想验证的其实是返回引用是可以的。返回对象是不行的。java只有返回引用，所以都可以。可自行验证。</p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-05-18T16:05:23+08:00</updated>
+  <updated>2016-06-06T15:03:17+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[有关coredump没有符号的问题]]></title>
+    <link href="http://cxh.me/2016/06/06/glibc-no-symbol-problem/"/>
+    <updated>2016-06-06T15:02:00+08:00</updated>
+    <id>http://cxh.me/2016/06/06/glibc-no-symbol-problem</id>
+    <content type="html"><![CDATA[<p>  线上server core掉了，看dmesg能看到core的日志，</p>
+
+<pre><code>s3store[16586]: segfault at 2a28000 ip 00007fda20543b58 sp 00007fd9e9894128 error 4 in libc-2.12.so[7fda204ba000+18a000]
+</code></pre>
+
+<p>  但是/proc/sys/kernel/core_pattern指向的位置并没有core文件，改一下core_pattern再跑应该能core出来，不过并不是稳定复现的。所以只能先凭这条日志来分析了。从core的位置看，大概率应该是malloc里面的问题。用</p>
+
+<pre><code>addr2line -e xxx  00007fda20543b58
+</code></pre>
+
+<p>  看到的结果是??:0。怀疑是glibc没有调试信息。看一下系统的glibc版本：</p>
+
+<pre><code>rpm -qa |grep glibc
+glibc-common-2.12-1.166.el6_7.7.x86_64
+glibc-static-2.12-1.166.el6_7.7.x86_64
+glibc-2.12-1.166.el6_7.7.x86_64
+glibc-devel-2.12-1.166.el6_7.7.x86_64
+glibc-debuginfo-common-2.12-1.166.el6_7.7.x86_64
+glibc-headers-2.12-1.166.el6_7.7.x86_64
+glibc-debuginfo-2.12-1.166.el6_7.7.x86_64
+</code></pre>
+
+<p>  去centos网站上下对应版本的glibc debuginfo并安装</p>
+
+<pre><code>http://debuginfo.centos.org/6/x86_64/
+wget http://debuginfo.centos.org/6/x86_64/glibc-debuginfo-2.12-1.166.el6_7.7.x86_64.rpm
+wget http://debuginfo.centos.org/6/x86_64/glibc-debuginfo-common-2.12-1.166.el6_7.7.x86_64.rpm
+rpm -ivh glibc-debuginfo-common-2.12-1.166.el6_7.7.x86_64.rpm
+rpm -ivh  glibc-debuginfo-2.12-1.166.el6_7.7.x86_64.rpm
+</code></pre>
+
+<p>  之后继续addr2line -e xxx 00007fda20543b58还是没有&hellip;</p>
+
+<p>  我擦嘞。改天继续。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[logrotate版本问题]]></title>
@@ -173,49 +215,6 @@ ControlPath ~/.ssh/master-%r@%h:%p
 <p>上面会话共享，所以不能关闭会话。可以通过 <code>ssh -fN xxx</code> 把第一个会话放到后台不退出</p></li>
 </ol>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[log4cxx安装]]></title>
-    <link href="http://cxh.me/2015/07/30/log4cxx-setup/"/>
-    <updated>2015-07-30T15:55:00+08:00</updated>
-    <id>http://cxh.me/2015/07/30/log4cxx-setup</id>
-    <content type="html"><![CDATA[<p>  log4cxx是apache基金会的log开源项目，log4j的c++实现，安装的时候遇到一个小问题：</p>
-
-<p>  首先正常安装：</p>
-
-<pre><code>wget http://mirrors.cnnic.cn/apache/logging/log4cxx/0.10.0/apache-log4cxx-0.10.0.tar.gz
-tar zxvf apache-log4cxx-0.10.0.tar.gz
-cd apache-log4cxx-0.10.0
-./configure
-make
-</code></pre>
-
-<p>   报错libdb-4.3.so 格式错误。开始以为是文件损坏了，查了一下这个文件</p>
-
-<pre><code>yum provides */libdb-4.3.so
-</code></pre>
-
-<p>   提示在db4里面，重新安装db4</p>
-
-<pre><code>yum reinstall db4
-</code></pre>
-
-<p>   回去还是报错。后来看了一下格式，貌似链接到了32位版本。修改软连接：</p>
-
-<pre><code>cd /usr/lib/
-rm libdb-4.3.so
-ln -s ../../lib64/libdb-4.3.so .
-</code></pre>
-
-<p>   同样处理另外一个库</p>
-
-<pre><code>rm libexpat.so
-ln -s ../../lib64/libexpat.so.0.5.0 libexpat.so
-</code></pre>
-
-<p>   应该就OK了。</p>
 ]]></content>
   </entry>
   
