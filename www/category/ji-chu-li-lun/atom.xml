@@ -4,7 +4,7 @@
   <title><![CDATA[Category: 基础理论 | CXH.ME]]></title>
   <link href="http://cxh.me/category/ji-chu-li-lun/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-17T12:15:27+08:00</updated>
+  <updated>2016-06-17T14:44:52+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -60,7 +60,7 @@ void lock_destructor () {
 3. func本身存在潜在的并发问题，一个线程可能跳转到exit去解别的线程加的锁。
 </code></pre>
 
-<p>  根据<a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html">文档</a>这几种情况下的行为是未定义的。</p>
+<p>  根据<a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html" title="The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004 Edition">文档</a>这几种情况下的行为是未定义的。</p>
 
 <pre><code>  The pthread_spin_lock() function shall lock the spin lock referenced by lock. The calling thread shall acquire the lock if it is not held by another thread. Otherwise, the thread shall spin (that is, shall not return from the pthread_spin_lock() call) until the lock becomes available. The results are undefined if the calling thread holds the lock at the time the call is made. The pthread_spin_trylock() function shall lock the spin lock referenced by lock if it is not held by any thread. Otherwise, the function shall fail.
 
@@ -132,6 +132,13 @@ void lock_destructor () {
 </code></pre>
 
 <p>  简单解释几个关键点：</p>
+
+<ol>
+<li> ngx_atomic_cmp_set等是nginx封装的原子操作，可以从字面意思理解。能直接对应到gcc支持的一些原子操作。</li>
+<li> ngx_cpu_pause是不切换cpu上下文的让cpu让出时间片的操作，可对应到后文的<strong>asm</strong>(&ldquo;.byte 0xf3, 0x90&rdquo;);</li>
+<li> ngx_sched_yield 暂时挂起上下文，让cpu调度其他任务。</li>
+</ol>
+
 
 <p>  nginx的实现解决了静态初始化的问题，但是解决不了上述问题2和3。为此我们可以考虑在表征spinlock状态的整形变量中加入线程id，来区分操作者是否是锁持有者。参考实现如下：</p>
 
@@ -216,13 +223,15 @@ static __inline__ void _spin_lock(Atomic *lock) {
 <p>  简单解释几个问题：</p>
 
 <ol>
-<li>  <strong>asm</strong>(&ldquo;.byte 0xf3, 0x90&rdquo;);是intel的一条指令，实际上就是上面的ngx_cpu_pause</li>
+<li> <strong>asm</strong>(&ldquo;.byte 0xf3, 0x90&rdquo;);是intel的一条指令，实际上就是上面的ngx_cpu_pause</li>
 <li> sched_yield实现等同于ngx_sched_yield</li>
-<li></li>
+<li> 用两个int32拼成了一个64位整数，考虑截取了tid有风险，后期可以优化成只用一位表示加锁状态，剩下63位依然给tid用。</li>
 </ol>
 
 
-<p>IEEE Std 1003.1, 2004 Edition"</p>
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004 Edition, <a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html">http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html</a></p></blockquote>
 ]]></content>
   </entry>
   

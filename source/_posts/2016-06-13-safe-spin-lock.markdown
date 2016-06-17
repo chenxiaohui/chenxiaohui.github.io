@@ -120,6 +120,10 @@ categories: "基础理论"
 
   简单解释几个关键点：
 
+  1. ngx_atomic_cmp_set等是nginx封装的原子操作，可以从字面意思理解。能直接对应到gcc支持的一些原子操作。
+  2. ngx_cpu_pause是不切换cpu上下文的让cpu让出时间片的操作，可对应到后文的__asm__(".byte 0xf3, 0x90");
+  3. ngx_sched_yield 暂时挂起上下文，让cpu调度其他任务。
+
   nginx的实现解决了静态初始化的问题，但是解决不了上述问题2和3。为此我们可以考虑在表征spinlock状态的整形变量中加入线程id，来区分操作者是否是锁持有者。参考实现如下：
 
 	typedef volatile int64_t Atomic;
@@ -201,9 +205,12 @@ categories: "基础理论"
   
   简单解释几个问题：
 
-  1.  __asm__(".byte 0xf3, 0x90");是intel的一条指令，实际上就是上面的ngx_cpu_pause
+  1. __asm__(".byte 0xf3, 0x90");是intel的一条指令，实际上就是上面的ngx_cpu_pause
   2. sched_yield实现等同于ngx_sched_yield
-  2. 
+  2. 用两个int32拼成了一个64位整数，考虑截取了tid有风险，后期可以优化成只用一位表示加锁状态，剩下63位依然给tid用。
 
-[1]: http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html "The Open Group Base Specifications Issue 6
-IEEE Std 1003.1, 2004 Edition"
+[1]: http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html "The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004 Edition"
+
+###参考文献:
+
+>\[1] The Open Group Base Specifications Issue 6 IEEE Std 1003.1, 2004 Edition, <http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html>

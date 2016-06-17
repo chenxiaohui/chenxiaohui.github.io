@@ -20,7 +20,7 @@ categories: "Linux"
     文件/etc/exports:
     /tmp rz*(rw,async) yf*(ro)
 
-  简单解释一下： /tmp是挂载的目录路径，后面跟权限控制，可以是主机名或者ip，rz*表示rz开头的主机，括号里面是权限。整条语句表示把/tmp目录共享以rw权限和async方式共享给rz开头的机器，同时以ro权限共享给yf开头的机器。
+  简单解释一下： /tmp是挂载的目录路径，后面跟权限控制，可以是主机名或者ip，rz*表示rz开头的主机，括号里面是权限。整条语句表示把/tmp目录共享以rw权限和async方式共享给rz开头的机器，同时以ro权限共享给yf开头的机器。其他属性可以参考[这里][1]:
 
   之后启动nfs服务：
 
@@ -35,3 +35,9 @@ categories: "Linux"
     mkdir fs && mount -t nfs xxx.xxx.xx.xx:/tmp ./fs
 
   xxx指定机器名或者ip
+
+[1]: http://www.liusuping.com/ubuntu-linux/Redhat-Linux-NFS-setting.html "Redhat Linux下NFS的配置及操作"
+
+###参考文献:
+
+>\[1] Redhat Linux下NFS的配置及操作, <http://www.liusuping.com/ubuntu-linux/Redhat-Linux-NFS-setting.html>
