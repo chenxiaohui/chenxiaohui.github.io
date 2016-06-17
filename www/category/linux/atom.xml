@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-06T15:03:17+08:00</updated>
+  <updated>2016-06-17T12:15:27+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用nfs挂载网络磁盘]]></title>
+    <link href="http://cxh.me/2016/06/17/export-disk-using-nfs/"/>
+    <updated>2016-06-17T11:58:00+08:00</updated>
+    <id>http://cxh.me/2016/06/17/export-disk-using-nfs</id>
+    <content type="html"><![CDATA[<p>  分布式环境下经常需要到各个节点启动server，常见的方式推的方式，比如scp到各个结点，但是有时候更新的文件少儿需要scp的文件比较多。这时候可以选择nfs挂载的方式把编译好的文件放到网络磁盘上，然后共享到其他的服务器，这样可以按需使用。</p>
+
+<p>  首先配置一下nfs服务器。假设系统都是centos：</p>
+
+<pre><code>yum install -y nfs-utils
+yum install -y portmap
+rpm -qa | grep nfs
+</code></pre>
+
+<p>  事实上看centos6.5以上portmap应该被rpcbind替代了，而已安装nfs-utils的时候应该顺便安装了rpcbind。之后配置一下需要挂载的磁盘：</p>
+
+<pre><code>文件/etc/exports:
+/tmp rz*(rw,async) yf*(ro)
+</code></pre>
+
+<p>  简单解释一下： /tmp是挂载的目录路径，后面跟权限控制，可以是主机名或者ip，rz*表示rz开头的主机，括号里面是权限。整条语句表示把/tmp目录共享以rw权限和async方式共享给rz开头的机器，同时以ro权限共享给yf开头的机器。</p>
+
+<p>  之后启动nfs服务：</p>
+
+<pre><code>service nfs start
+</code></pre>
+
+<p>  需要挂载机器上同样安装客户端：</p>
+
+<pre><code>yum install -y nfs-utils
+</code></pre>
+
+<p>  挂载到指定的目录：</p>
+
+<pre><code>mkdir fs &amp;&amp; mount -t nfs xxx.xxx.xx.xx:/tmp ./fs
+</code></pre>
+
+<p>  xxx指定机器名或者ip</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[有关coredump没有符号的问题]]></title>
@@ -171,50 +212,6 @@ abc
 <p>   考虑如果一个会话编码的多个buffer（或者一个buffer）被部分发送完毕（write返回大小为准），这时候会话超时，这个会话所属的所有编码过的buffer都被干掉，但是连接并没有被destroy，之后的报文继续发送的话，客户端实际上收到了不完整的报文，相当于之后的TCP流都错位了。这种情况下，destroy连接是明显更安全的做法。</p>
 
 <p>   所以还是要考虑周全啊。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ssh绑定其他端口]]></title>
-    <link href="http://cxh.me/2015/11/01/ssh-bind-other-port/"/>
-    <updated>2015-11-01T14:14:00+08:00</updated>
-    <id>http://cxh.me/2015/11/01/ssh-bind-other-port</id>
-    <content type="html"><![CDATA[<p>  首先修改/ssh/sshd_config，把Port 22解注释，然后加一行Port xx。之后修改 /etc/sysconfig/iptables，加入该端口的Rules:</p>
-
-<pre><code>-A INPUT -m state --state NEW -m tcp -p tcp --dport xx -j ACCEPT  
-</code></pre>
-
-<p>  重启即可。</p>
-
-<pre><code>/etc/init.d/sshd restart
-</code></pre>
-
-<p>  这么做的目的是如果出现问题，还有一个端口可以上去修改。登录的时候需要对应的指定一下端口：</p>
-
-<pre><code>ssh -p xx user@host
-scp -P xx ... user@host
-</code></pre>
-
-<p>  补充两个SSH技巧：</p>
-
-<ol>
-<li><p> 客户端配置中转，主要是通过跳板机登录：</p>
-
-<pre><code>Host xx
-HostName 192.168.1.1
-User xx
-ProxyCommand ssh -q xxx@login2.xxx.xx nc %h %p
-</code></pre></li>
-<li><p> 保持会话。 ssh会在.ssh目录下生成一个会话选项，下次登录同一个server公用会话，不需要验证。</p>
-
-<pre><code>Host *
-ControlMaster auto
-ControlPath ~/.ssh/master-%r@%h:%p
-</code></pre>
-
-<p>上面会话共享，所以不能关闭会话。可以通过 <code>ssh -fN xxx</code> 把第一个会话放到后台不退出</p></li>
-</ol>
-
 ]]></content>
   </entry>
   

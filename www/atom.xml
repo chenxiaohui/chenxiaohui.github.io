@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-06T15:03:17+08:00</updated>
+  <updated>2016-06-17T12:15:27+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,260 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[使用nfs挂载网络磁盘]]></title>
+    <link href="http://cxh.me/2016/06/17/export-disk-using-nfs/"/>
+    <updated>2016-06-17T11:58:00+08:00</updated>
+    <id>http://cxh.me/2016/06/17/export-disk-using-nfs</id>
+    <content type="html"><![CDATA[<p>  分布式环境下经常需要到各个节点启动server，常见的方式推的方式，比如scp到各个结点，但是有时候更新的文件少儿需要scp的文件比较多。这时候可以选择nfs挂载的方式把编译好的文件放到网络磁盘上，然后共享到其他的服务器，这样可以按需使用。</p>
+
+<p>  首先配置一下nfs服务器。假设系统都是centos：</p>
+
+<pre><code>yum install -y nfs-utils
+yum install -y portmap
+rpm -qa | grep nfs
+</code></pre>
+
+<p>  事实上看centos6.5以上portmap应该被rpcbind替代了，而已安装nfs-utils的时候应该顺便安装了rpcbind。之后配置一下需要挂载的磁盘：</p>
+
+<pre><code>文件/etc/exports:
+/tmp rz*(rw,async) yf*(ro)
+</code></pre>
+
+<p>  简单解释一下： /tmp是挂载的目录路径，后面跟权限控制，可以是主机名或者ip，rz*表示rz开头的主机，括号里面是权限。整条语句表示把/tmp目录共享以rw权限和async方式共享给rz开头的机器，同时以ro权限共享给yf开头的机器。</p>
+
+<p>  之后启动nfs服务：</p>
+
+<pre><code>service nfs start
+</code></pre>
+
+<p>  需要挂载机器上同样安装客户端：</p>
+
+<pre><code>yum install -y nfs-utils
+</code></pre>
+
+<p>  挂载到指定的目录：</p>
+
+<pre><code>mkdir fs &amp;&amp; mount -t nfs xxx.xxx.xx.xx:/tmp ./fs
+</code></pre>
+
+<p>  xxx指定机器名或者ip</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[跨线程解锁安全的spinlock]]></title>
+    <link href="http://cxh.me/2016/06/13/safe-spin-lock/"/>
+    <updated>2016-06-13T17:36:00+08:00</updated>
+    <id>http://cxh.me/2016/06/13/safe-spin-lock</id>
+    <content type="html"><![CDATA[<p>  在C语言下面我们可能会写出如下的代码：</p>
+
+<pre><code>static pthread_spinlock_t lock;
+
+__attribute__((constructor))
+void lock_constructor () {
+    if ( pthread_spin_init ( &amp;lock, 0 ) != 0 ) {
+        exit ( 1 );
+    }
+}
+
+int func(xx) {
+  int ret = 0;
+  if (xx) {
+    ret = ERR1;
+    goto exit;
+  }
+  pthread_spin_lock(&amp;lock);
+  if (xx) {
+    ret = ERR2;
+    goto exit;
+  }
+exit:
+  pthread_spin_unlock(&amp;lock);
+  return 0;
+}
+
+__attribute__((destructor))
+void lock_destructor () {
+    if ( pthread_spin_destroy ( &amp;lock ) != 0 ) {
+        exit ( 3 );
+    }
+}
+</code></pre>
+
+<p>  这段代码存在下面几个问题：</p>
+
+<pre><code>1. spinlock没有静态初始化函数，需要确保使用前调用了pthread_spin_init.
+2. 跳转到exit标记去unlock的时候，并不能保证lock已经被加过锁了。
+3. func本身存在潜在的并发问题，一个线程可能跳转到exit去解别的线程加的锁。
+</code></pre>
+
+<p>  根据<a href="http://pubs.opengroup.org/onlinepubs/009695399/functions/pthread_spin_lock.html">文档</a>这几种情况下的行为是未定义的。</p>
+
+<pre><code>  The pthread_spin_lock() function shall lock the spin lock referenced by lock. The calling thread shall acquire the lock if it is not held by another thread. Otherwise, the thread shall spin (that is, shall not return from the pthread_spin_lock() call) until the lock becomes available. The results are undefined if the calling thread holds the lock at the time the call is made. The pthread_spin_trylock() function shall lock the spin lock referenced by lock if it is not held by any thread. Otherwise, the function shall fail.
+
+  The results are undefined if any of these functions is called with an uninitialized spin lock.
+</code></pre>
+
+<p>  为了情况1，我们可以考虑通过原子操作实现spin_lock，用一个volatile int64类型的整数来标识当前锁的状态。nginx里面的实现如下：</p>
+
+<pre><code>    /* 
+     * Copyright (C) Igor Sysoev 
+     * Copyright (C) Nginx, Inc. 
+     */  
+
+
+    #include &lt;ngx_config.h&gt;  
+    #include &lt;ngx_core.h&gt;  
+
+    //Function: to achieve spin atomic operation lock method based on ngx_spinlock  
+    //Parameter interpretation:   
+    //lock: Lock the atomic variable expression  
+    //value: Flag, whether the lock is a process  
+    //spin: In a multi processor system, when the ngx_spinlock method did not get the lock, the current process in a scheduling kernel in the waiting for the other processors to release the lock time  
+    void  
+    ngx_spinlock(ngx_atomic_t *lock, ngx_atomic_int_t value, ngx_uint_t spin)  
+    {  
+
+    #if (NGX_HAVE_ATOMIC_OPS)//Support atomic operations  
+
+        ngx_uint_t  i, n;  
+
+        //Has been in circulation, until the lock is acquired  
+        for ( ;; ) {  
+
+            //Lock 0 said no other process holding the lock, then the lock value indicates the current process holding the lock is set to value parameters  
+            if (*lock == 0 &amp;&amp; ngx_atomic_cmp_set(lock, 0, value)) {  
+                return;  
+            }  
+
+            //If it is a multi processor system  
+            if (ngx_ncpu &gt; 1) {  
+                for (n = 1; n &lt;spin; n &lt;&lt;= 1) {  
+                    //With the increasing number of the actual to wait, inspection interval and lock more  
+                    for (i = 0; i &lt;n; i++) {  
+                        ngx_cpu_pause();//Tell CPU now in the spin lock wait state  
+                    }  
+
+                    //Check the lock is released  
+                    if (*lock == 0 &amp;&amp; ngx_atomic_cmp_set(lock, 0, value)) {  
+                        return;  
+                    }  
+                }  
+            }  
+
+            //The current process for the processor, but still in the executable state  
+            ngx_sched_yield();  
+        }  
+
+    #else  
+
+    #if (NGX_THREADS)  
+
+    #error ngx_spinlock() or ngx_atomic_cmp_set() are not defined !  
+
+    #endif  
+
+    #endif  
+
+    }       
+</code></pre>
+
+<p>  简单解释几个关键点：</p>
+
+<p>  nginx的实现解决了静态初始化的问题，但是解决不了上述问题2和3。为此我们可以考虑在表征spinlock状态的整形变量中加入线程id，来区分操作者是否是锁持有者。参考实现如下：</p>
+
+<pre><code>typedef volatile int64_t Atomic;
+
+#define _spin_unlock_safe   _unlock_safe
+
+typedef struct {
+ union {
+  struct {
+    int32_t tid;
+    int32_t atomic32;
+  };
+  volatile int64_t atomic;
+ };
+} CACHE_ALIGNED SpinLock;
+
+static __inline__ int64_t _get_tid() {
+  static __thread int64_t tid = -1;
+  if _unlikely(tid == -1) {
+    tid = (int64_t)(syscall(__NR_gettid));
+  }
+  return tid;
+}
+
+static __inline__ int _try_lock_safe(SpinLock *lock) {
+  SpinLock lock_val = };
+  return lock-&gt;atomic == 0 &amp;&amp; _atomic_cmp_set(&amp;lock-&gt;atomic, 0, lock_val.atomic);
+}
+
+static __inline__ int _unlock_safe(SpinLock *lock) {
+  SpinLock lock_val = };
+  return _atomic_cmp_set(&amp;lock-&gt;atomic, lock_val.atomic, 0);
+}
+
+static __inline__ void _spin_lock_safe(SpinLock *lock) {
+  int i, n;
+  SpinLock lock_val = };
+  for (; ;) {
+    if (lock-&gt;atomic == 0 &amp;&amp; _atomic_cmp_set(&amp;lock-&gt;atomic, 0, lock_val.atomic)) {
+      return;
+    }
+
+    for (n = 1; n &lt; 1024; n &lt;&lt;= 1) {
+
+      for (i = 0; i &lt; n; i++) {
+        __asm__(".byte 0xf3, 0x90");
+      }
+
+      if (lock-&gt;atomic == 0 &amp;&amp; _atomic_cmp_set(&amp;lock-&gt;atomic, 0, lock_val.atomic)) {
+        return;
+      }
+    }
+
+    sched_yield();
+  }
+}
+
+static __inline__ void _spin_lock(Atomic *lock) {
+  int i, n;
+  for (; ;) {
+    if (*lock == 0 &amp;&amp; _atomic_cmp_set(lock, 0, 1)) {
+      return;
+    }
+
+    for (n = 1; n &lt; 1024; n &lt;&lt;= 1) {
+
+      for (i = 0; i &lt; n; i++) {
+        __asm__(".byte 0xf3, 0x90");
+      }
+
+      if (*lock == 0 &amp;&amp; _atomic_cmp_set(lock, 0, 1)) {
+        return;
+      }
+    }
+
+    sched_yield();
+  }
+}
+</code></pre>
+
+<p>  简单解释几个问题：</p>
+
+<ol>
+<li>  <strong>asm</strong>(&ldquo;.byte 0xf3, 0x90&rdquo;);是intel的一条指令，实际上就是上面的ngx_cpu_pause</li>
+<li> sched_yield实现等同于ngx_sched_yield</li>
+<li></li>
+</ol>
+
+
+<p>IEEE Std 1003.1, 2004 Edition&#8221;</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[有关coredump没有符号的问题]]></title>
@@ -1035,64 +1289,6 @@ install [book]                  安装依赖和插件
    * [本章总结](getting_started/conclusion.md)
 * [分布式集群](distributed_cluster/README.md)
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[工作周年总结]]></title>
-    <link href="http://cxh.me/2015/08/07/work-anniversary-note/"/>
-    <updated>2015-08-07T15:50:00+08:00</updated>
-    <id>http://cxh.me/2015/08/07/work-anniversary-note</id>
-    <content type="html"><![CDATA[<p>  工作两周年了，感觉这两年走了不少弯路，也学到不少东西，最近看到日照的<a href="http://www.nosqlnotes.net/archives/128" title="2010年度总结">周年总结</a>，觉得也应该写写。而且看看日照当时的情况，觉得跟我现在也差不多，同样处在职业的选择期，一个明确的规划还是很重要的。</p>
-
-<h3>总结</h3>
-
-<p>  2013年进入支付宝Oceanbase组，待了一年半的时间吧，第一年主要在0.5上修修改改，第二年换到了UPS组，参与1.0的设计。从第一年的情况看，基本是完成了一个不错的职业素养培训，有了分布式的基本概念，处于了解熟悉的阶段。第二年开始对分布式协议有了一些认识，算是入门了吧。总结两年还是学到了一些东西，但是也算是付出了一些代价。出来之后看之前的组，觉得对应届生还是个不错的选择，ob有点像一个学校，闲的时候有不错的学习机会，就是加班太多了。</p>
-
-<p>  后来身体原因离职，来搜狐大数据中心，开始做推荐系统相关的东西。从那个时候想做算法，搞了半年多吧，有些了解，不算入门，大概处于这样一个状态。对我来说，兴趣总归是第一位的，然而在一个方向上有所积累更重要。这样容易过了几年发现什么都会点什么都不精通。互联网发展这么快，</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[log4cxx安装]]></title>
-    <link href="http://cxh.me/2015/07/30/log4cxx-setup/"/>
-    <updated>2015-07-30T15:55:00+08:00</updated>
-    <id>http://cxh.me/2015/07/30/log4cxx-setup</id>
-    <content type="html"><![CDATA[<p>  log4cxx是apache基金会的log开源项目，log4j的c++实现，安装的时候遇到一个小问题：</p>
-
-<p>  首先正常安装：</p>
-
-<pre><code>wget http://mirrors.cnnic.cn/apache/logging/log4cxx/0.10.0/apache-log4cxx-0.10.0.tar.gz
-tar zxvf apache-log4cxx-0.10.0.tar.gz
-cd apache-log4cxx-0.10.0
-./configure
-make
-</code></pre>
-
-<p>   报错libdb-4.3.so 格式错误。开始以为是文件损坏了，查了一下这个文件</p>
-
-<pre><code>yum provides */libdb-4.3.so
-</code></pre>
-
-<p>   提示在db4里面，重新安装db4</p>
-
-<pre><code>yum reinstall db4
-</code></pre>
-
-<p>   回去还是报错。后来看了一下格式，貌似链接到了32位版本。修改软连接：</p>
-
-<pre><code>cd /usr/lib/
-rm libdb-4.3.so
-ln -s ../../lib64/libdb-4.3.so .
-</code></pre>
-
-<p>   同样处理另外一个库</p>
-
-<pre><code>rm libexpat.so
-ln -s ../../lib64/libexpat.so.0.5.0 libexpat.so
-</code></pre>
-
-<p>   应该就OK了。</p>
 ]]></content>
   </entry>
   
