@@ -14,7 +14,7 @@ categories: "Linux"
     yum install -y nfs-utils
     yum install -y portmap
     rpm -qa | grep nfs
-   
+
   事实上看centos6.5以上portmap应该被rpcbind替代了，而已安装nfs-utils的时候应该顺便安装了rpcbind。之后配置一下需要挂载的磁盘：
 
     文件/etc/exports:
@@ -29,7 +29,7 @@ categories: "Linux"
   需要挂载机器上同样安装客户端：
 
     yum install -y nfs-utils
-  
+
   挂载到指定的目录：
 
     mkdir fs && mount -t nfs xxx.xxx.xx.xx:/tmp ./fs
