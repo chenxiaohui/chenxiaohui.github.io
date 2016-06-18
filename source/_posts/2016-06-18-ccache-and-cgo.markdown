@@ -46,12 +46,14 @@ categories: "C++"
   	yum install asciidoc
   	make install
 
-   发现还是一样。后来想可以用shell包一层啊，看[网上][1]有相应的方案：
+   然后export set CC='gcc ccache'，再重新automake就行了。
+
+   但是发现还是一样。后来想可以用shell包一层啊，看[网上][1]有相应的方案：
 
    	 #!/bin/bash
   	 ccache gcc "$@"
 
-   貌似这样ccache不认识的参数就不传递了？反正是ok了，改天研究下。
+   保存这个到path路径下，改名ccached之类，export set CC=ccached，貌似这样ccache不认识的参数就不传递了？反正是ok了，改天研究下。
    
 
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-18T20:22:07+08:00</updated>
+  <updated>2016-06-18T20:31:59+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -58,13 +58,15 @@ yum install asciidoc
 make install
 </code></pre>
 
-<p>   发现还是一样。后来想可以用shell包一层啊，看<a href="https://bbs.archlinux.org/viewtopic.php?id=204639" title="ccache does not work with nvcc (CUDA)">网上</a>有相应的方案：</p>
+<p>   然后export set CC=&lsquo;gcc ccache'，再重新automake就行了。</p>
+
+<p>   但是发现还是一样。后来想可以用shell包一层啊，看<a href="https://bbs.archlinux.org/viewtopic.php?id=204639" title="ccache does not work with nvcc (CUDA)">网上</a>有相应的方案：</p>
 
 <pre><code> #!/bin/bash
  ccache gcc "$@"
 </code></pre>
 
-<p>   貌似这样ccache不认识的参数就不传递了？反正是ok了，改天研究下。</p>
+<p>   保存这个到path路径下，改名ccached之类，export set CC=ccached，貌似这样ccache不认识的参数就不传递了？反正是ok了，改天研究下。</p>
 ]]></content>
   </entry>
   
