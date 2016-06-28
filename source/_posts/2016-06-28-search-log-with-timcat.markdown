@@ -30,4 +30,9 @@ categories: "Linux"
   非常快。
 
   作者的[博客][1]讲解如下：
+
+###参考文献:
+
+>\[1] 如何对日志文件进行二分查找？开源文件二分查找工具『timecat』介绍, <http://blog.reetsee.com/archives/502>
+
 [1]: http://blog.reetsee.com/archives/502 "如何对日志文件进行二分查找？开源文件二分查找工具『timecat』介绍"

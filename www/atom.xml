@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-28T14:35:21+08:00</updated>
+  <updated>2016-06-28T15:02:23+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -45,6 +45,10 @@ For more: timecat -h
 <p>  非常快。</p>
 
 <p>  作者的<a href="http://blog.reetsee.com/archives/502" title="如何对日志文件进行二分查找？开源文件二分查找工具『timecat』介绍">博客</a>讲解如下：</p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] 如何对日志文件进行二分查找？开源文件二分查找工具『timecat』介绍, <a href="http://blog.reetsee.com/archives/502">http://blog.reetsee.com/archives/502</a></p></blockquote>
 ]]></content>
   </entry>
   
