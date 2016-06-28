@@ -24,8 +24,8 @@ categories: "Linux"
   使用：
 
   	timecat -d '2016-01-02' -s '20:13:14' -e '20:14:13' LOGFILE1.log LOGFILE2.log ...
-	imecat -s '2016-01-02 20:13:14' -e '2016-01-02 20:14:13' LOGFILE1.log LOGFILE2.log ...
-	For more: timecat -h
+    timecat -s '2016-01-02 20:13:14' -e '2016-01-02 20:14:13' LOGFILE1.log LOGFILE2.log ...
+	  For more: timecat -h
 
   非常快。
 

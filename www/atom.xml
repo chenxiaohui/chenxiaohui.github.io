@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-28T15:02:23+08:00</updated>
+  <updated>2016-06-28T16:42:01+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -38,8 +38,8 @@
 <p>  使用：</p>
 
 <pre><code>timecat -d '2016-01-02' -s '20:13:14' -e '20:14:13' LOGFILE1.log LOGFILE2.log ...
-imecat -s '2016-01-02 20:13:14' -e '2016-01-02 20:14:13' LOGFILE1.log LOGFILE2.log ...
-For more: timecat -h
+timecat -s '2016-01-02 20:13:14' -e '2016-01-02 20:14:13' LOGFILE1.log LOGFILE2.log ...
+  For more: timecat -h
 </code></pre>
 
 <p>  非常快。</p>
