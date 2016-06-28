@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | CXH.ME]]></title>
   <link href="http://cxh.me/category/linux/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-20T20:32:18+08:00</updated>
+  <updated>2016-06-28T14:35:21+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,41 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[用timecat来定位日志]]></title>
+    <link href="http://cxh.me/2016/06/28/search-log-with-timcat/"/>
+    <updated>2016-06-28T14:33:00+08:00</updated>
+    <id>http://cxh.me/2016/06/28/search-log-with-timcat</id>
+    <content type="html"><![CDATA[<p>  介绍一个日志grep的神器。
+  做系统开发的人都有从海量日志里面定位bug的经历，大家一般用如下几种方法：</p>
+
+<ol>
+<li>head -n xxx|tail -n 1，大概定位位置</li>
+<li>直接grep日志来找到对应的行号并用sed cut一段出来。</li>
+<li>把日志灌倒hive等ETL工具里面。</li>
+</ol>
+
+
+<p>  但是如上几种方式要么太慢，要么太复杂。最近突然想到有没有二分·grep的工具，搜到如下一个工具timcat:</p>
+
+<p>  安装：</p>
+
+<pre><code>pip install timecat
+</code></pre>
+
+<p>  使用：</p>
+
+<pre><code>timecat -d '2016-01-02' -s '20:13:14' -e '20:14:13' LOGFILE1.log LOGFILE2.log ...
+imecat -s '2016-01-02 20:13:14' -e '2016-01-02 20:14:13' LOGFILE1.log LOGFILE2.log ...
+For more: timecat -h
+</code></pre>
+
+<p>  非常快。</p>
+
+<p>  作者的<a href="http://blog.reetsee.com/archives/502" title="如何对日志文件进行二分查找？开源文件二分查找工具『timecat』介绍">博客</a>讲解如下：</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[使用nfs挂载网络磁盘]]></title>
@@ -199,23 +234,6 @@ abc
 <p>  还有一个更有意思的问题&hellip;.如果对同一个path先后调用dirname和basename，那么返回的只有一个是对的&hellip;.因为源已经被修改了。反过来可以。</p>
 
 <p>  path在执行过程中被修改了。C系的函数很多面临这个问题，如果不这么做的话要申请一块额外的内存，然后返回，而释放这块内存的工作得调用方完成，这种情况下，内存泄露的可能性很大，所以很多c库函数的选择是用全局变量（getopt等)或者修改入参（basename等）。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[记录一个网络库设计的bug]]></title>
-    <link href="http://cxh.me/2016/03/25/netlib-bug-analysis/"/>
-    <updated>2016-03-25T00:14:00+08:00</updated>
-    <id>http://cxh.me/2016/03/25/netlib-bug-analysis</id>
-    <content type="html"><![CDATA[<p>   今天遇到一个设计上没考虑好的问题，记录一下。</p>
-
-<p>   之前Libeasy的逻辑如果一个连接上有超时的报文的话，整个连接会destroy掉。考虑网络拥塞的情况，如果AB两个报文同时在等待发送，A报文先进入发送队列（链表，非TCP发送buffer），B后进入，而A超时时间长，B立即超时，那么清理掉B的待发送报文的时候，如果destroy掉连接，那么本来可以发送出去的A报文就被强制失败了。</p>
-
-<p>   考虑这种情况做了一点修改，让超时的报文被清理掉的时候不会destroy连接。这样编码的时候需要指定一个报文被编码出来的buffer是属于哪个会话（session）的，同时记录一下每个session对应的最后一个buffer位置。清理的时候可以从上述位置回溯到不属于当前session的buffer或者到头部为止。看似没啥问题。今天发现了如下的bug：</p>
-
-<p>   考虑如果一个会话编码的多个buffer（或者一个buffer）被部分发送完毕（write返回大小为准），这时候会话超时，这个会话所属的所有编码过的buffer都被干掉，但是连接并没有被destroy，之后的报文继续发送的话，客户端实际上收到了不完整的报文，相当于之后的TCP流都错位了。这种情况下，destroy连接是明显更安全的做法。</p>
-
-<p>   所以还是要考虑周全啊。</p>
 ]]></content>
   </entry>
   
