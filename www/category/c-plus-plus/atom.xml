@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++ | CXH.ME]]></title>
   <link href="http://cxh.me/category/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-07-04T16:41:47+08:00</updated>
+  <updated>2016-07-04T16:45:24+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[]]></title>
+    <title type="html"><![CDATA[gcc的格式化字符串检查]]></title>
     <link href="http://cxh.me/2016/07/04/gcc-printf-format-attribute/"/>
     <updated>2016-07-04T14:53:00+08:00</updated>
     <id>http://cxh.me/2016/07/04/gcc-printf-format-attribute</id>
@@ -34,8 +34,11 @@ The format attribute specifies that a function takes printf, scanf, strftime or 
 
 <p>  这样自定义的函数也可以依赖gcc做参数检查了。</p>
 
-<pre><code>详细的参见[这里][1]
-</code></pre>
+<p>  详细的参见<a href="https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Function-Attributes.html" title="Declaring Attributes of Functions">这里</a></p>
+
+<h3>参考文献:</h3>
+
+<blockquote><p>[1] Declaring Attributes of Functions, <a href="https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Function-Attributes.html">https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Function-Attributes.html</a></p></blockquote>
 ]]></content>
   </entry>
   

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ""
+title: "gcc的格式化字符串检查"
 date: 2016-07-04 14:53
 comments: true
 published: true
@@ -21,5 +21,10 @@ categories: "C++"
   
   这样自定义的函数也可以依赖gcc做参数检查了。
 
-  	详细的参见[这里][1]
+  详细的参见[这里][1]
+
+###参考文献:
+
+>\[1] Declaring Attributes of Functions, <https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Function-Attributes.html>
+
 [1]: https://gcc.gnu.org/onlinedocs/gcc-3.2/gcc/Function-Attributes.html "Declaring Attributes of Functions"
