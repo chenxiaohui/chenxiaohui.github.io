@@ -4,7 +4,7 @@
   <title><![CDATA[CXH.ME]]></title>
   <link href="http://cxh.me/atom.xml" rel="self"/>
   <link href="http://cxh.me/"/>
-  <updated>2016-06-28T16:42:01+08:00</updated>
+  <updated>2016-07-04T16:41:47+08:00</updated>
   <id>http://cxh.me/</id>
   <author>
     <name><![CDATA[Harry Chen]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[]]></title>
+    <link href="http://cxh.me/2016/07/04/gcc-printf-format-attribute/"/>
+    <updated>2016-07-04T14:53:00+08:00</updated>
+    <id>http://cxh.me/2016/07/04/gcc-printf-format-attribute</id>
+    <content type="html"><![CDATA[<p>  之前很好奇为什么printf参数类型跟格式化字符串不匹配的时候为啥有时候可以报错，有时候不能报错。printf的时候如果不匹配经常会看到这种错误：</p>
+
+<pre><code> format ‘%s’ expects type ‘char *’, but argument 12 has type ‘struct S3ListHead * const’
+</code></pre>
+
+<p>  很多core是因为这种问题导致的，所以能放到编译期检查的话，确实有助于提高代码质量。后来白哥指点gcc有单独的attribute来指定检查匹配。作为一个编译器，真是良心啊。</p>
+
+<pre><code>format (archetype, string-index, first-to-check)
+The format attribute specifies that a function takes printf, scanf, strftime or strfmon style arguments which should be type-checked against a format string. For example, the declaration:
+          extern int
+          my_printf (void *my_object, const char *my_format, ...)
+                __attribute__ ((format (printf, 2, 3)));
+</code></pre>
+
+<p>  这样自定义的函数也可以依赖gcc做参数检查了。</p>
+
+<pre><code>详细的参见[这里][1]
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[用timecat来定位日志]]></title>
@@ -1296,50 +1322,6 @@ ev_run (EV_P_ int flags)
 <blockquote><p>[1] libev ev_io源码分析, <a href="http://csrd.aliapp.com/?p=1604">http://csrd.aliapp.com/?p=1604</a></p>
 
 <p>[2] libev 设计分析, <a href="https://cnodejs.org/topic/4f16442ccae1f4aa270010a3">https://cnodejs.org/topic/4f16442ccae1f4aa270010a3</a></p></blockquote>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ssh绑定其他端口]]></title>
-    <link href="http://cxh.me/2015/11/01/ssh-bind-other-port/"/>
-    <updated>2015-11-01T14:14:00+08:00</updated>
-    <id>http://cxh.me/2015/11/01/ssh-bind-other-port</id>
-    <content type="html"><![CDATA[<p>  首先修改/ssh/sshd_config，把Port 22解注释，然后加一行Port xx。之后修改 /etc/sysconfig/iptables，加入该端口的Rules:</p>
-
-<pre><code>-A INPUT -m state --state NEW -m tcp -p tcp --dport xx -j ACCEPT  
-</code></pre>
-
-<p>  重启即可。</p>
-
-<pre><code>/etc/init.d/sshd restart
-</code></pre>
-
-<p>  这么做的目的是如果出现问题，还有一个端口可以上去修改。登录的时候需要对应的指定一下端口：</p>
-
-<pre><code>ssh -p xx user@host
-scp -P xx ... user@host
-</code></pre>
-
-<p>  补充两个SSH技巧：</p>
-
-<ol>
-<li><p> 客户端配置中转，主要是通过跳板机登录：</p>
-
-<pre><code>Host xx
-HostName 192.168.1.1
-User xx
-ProxyCommand ssh -q xxx@login2.xxx.xx nc %h %p
-</code></pre></li>
-<li><p> 保持会话。 ssh会在.ssh目录下生成一个会话选项，下次登录同一个server公用会话，不需要验证。</p>
-
-<pre><code>Host *
-ControlMaster auto
-ControlPath ~/.ssh/master-%r@%h:%p
-</code></pre>
-
-<p>上面会话共享，所以不能关闭会话。可以通过 <code>ssh -fN xxx</code> 把第一个会话放到后台不退出</p></li>
-</ol>
-
 ]]></content>
   </entry>
   
