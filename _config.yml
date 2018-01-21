@@ -141,7 +141,7 @@ cnzz: false
 youyan: false
 
 #cdn
-cdn: true
+cdn: false
 
 #changyan
 changyan: false
