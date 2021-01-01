@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 group :development do
-  gem 'rake', '~> 10.0'
+  gem 'rake', '~>13.0.1a '
   gem 'jekyll', '~> 4.0.0'
   gem 'rdiscount', '~> 2.2.0.2'
   gem 'pygments.rb', '~> 1.1.0'
