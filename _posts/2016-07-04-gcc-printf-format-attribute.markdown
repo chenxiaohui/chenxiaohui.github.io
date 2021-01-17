@@ -5,8 +5,7 @@ date: 2016-07-04 14:53
 comments: true
 published: true
 categories: "C++"
-aside:
-  toc: true
+key: gcc-printf-format-attribute
 ---
   之前很好奇为什么printf参数类型跟格式化字符串不匹配的时候为啥有时候可以报错，有时候不能报错。printf的时候如果不匹配经常会看到这种错误：
 
