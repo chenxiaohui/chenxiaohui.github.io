@@ -8,7 +8,7 @@ categories: oceanbase
 ---
   所有迭代器的类图如下所示：
 
-![](/images/2013/iterator.png "iterator类图" "iterator类图")
+![](/assets/images/2013/iterator.png "iterator类图" "iterator类图")
 
 #### ObRootTabletIterator
 

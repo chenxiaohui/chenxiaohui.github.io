@@ -27,7 +27,7 @@ categories: vim
 
   octopress的一大优点是插图片方便, 拷贝到source/images目录下, 然后在markdown里插入就行了, 但是不是很智能啊...其实如果大家在vim里装了nerdtree的话, 完全可以通过nerdtree找到图片, 然后拷贝图片链接. 问题是nerd_tree不支持这个操作...
 
-![](/images/2013/are-you-fucking-kidding-me.jpg  "你特么在逗我?")
+![](/assets/images/2013/are-you-fucking-kidding-me.jpg  "你特么在逗我?")
 
   不过我们可以 [扩展一下nerd_tree][1]. 在$VIM/nerdtree_plugin下建立yank_mapping.vim, 内容如下
 

@@ -56,11 +56,11 @@ categories: "Oceanbase"
 
   断点命中的情况如图1所示：
   
-  ![](/images/2013/gdb_multi_server.png "图1：断点命中的情况" "图1：断点命中的情况")
+  ![](/assets/images/2013/gdb_multi_server.png "图1：断点命中的情况" "图1：断点命中的情况")
   
   唯一的问题是gdb有时候会退出，如图2。感觉上是rpc超时了？
 
-  ![](/images/2013/gdb_quit.png "图2：gdb退出" "图2：gdb退出")
+  ![](/assets/images/2013/gdb_quit.png "图2：gdb退出" "图2：gdb退出")
 
   感谢玩大数据的[颜然师兄][2]提供非daemon方式启动的方法。
 

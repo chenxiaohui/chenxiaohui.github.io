@@ -22,4 +22,4 @@ categories: "java"
 
   如果依然有问题，可以直接改一下Compliance Level：
 
-  ![](/images/2014/compliance.png)
+  ![](/assets/images/2014/compliance.png)

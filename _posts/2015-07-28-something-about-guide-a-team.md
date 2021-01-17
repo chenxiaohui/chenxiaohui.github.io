@@ -19,4 +19,4 @@ categories: "IT人生"
 
   最后补一个我理解的开发流程图：
 
-  ![](/images/2015/dev-flow.png)
+  ![](/assets/images/2015/dev-flow.png)

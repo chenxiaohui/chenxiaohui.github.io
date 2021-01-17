@@ -7,7 +7,7 @@ comments: true
 categories: "世情百态"
 ---
    
-   ![](/images/2014/brick_mansions.jpg)
+   ![](/assets/images/2014/brick_mansions.jpg)
 
    虽说是翻拍，但是也不能一模一样啊，这剧情的相似度不是一般的高啊....
 

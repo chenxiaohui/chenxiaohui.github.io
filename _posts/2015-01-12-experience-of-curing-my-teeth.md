@@ -24,7 +24,7 @@ categories: "世情百态"
 
   今天才注意到北大口腔的字还是老江题的。联想到今天疼爽了的经历，真是excited啊
 
-  ![](/images/2015/excited.png)
+  ![](/assets/images/2015/excited.png)
 
 ----------
   

@@ -7,7 +7,7 @@ comments: true
 categories: "Oceanbase"
 ---
 
-![](/images/2014/interesting.gif "贴张图" "贴张图")
+![](/assets/images/2014/interesting.gif "贴张图" "贴张图")
 
   具体的可以看[这里][1]，解释几个作者没解释清楚的问题：
 

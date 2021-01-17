@@ -9,4 +9,4 @@ categories: "摄影"
 
   测试一下机器，镜头是18-55套头，表现中规中矩吧，K10D色彩不错。图压缩过。
 
-![](/images/2014/flower.jpg)
+![](/assets/images/2014/flower.jpg)

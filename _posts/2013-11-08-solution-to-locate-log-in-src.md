@@ -91,11 +91,11 @@ categories: "Oceanbase"
   
   截图如下：
 
-  ![](/images/2013/three-log.png "log文件" "log文件")
+  ![](/assets/images/2013/three-log.png "log文件" "log文件")
 
-  ![](/images/2013/one-line.png "定位到对应的源码行c" "定位到对应的源码行")
+  ![](/assets/images/2013/one-line.png "定位到对应的源码行c" "定位到对应的源码行")
 
-  ![](/images/2013/two-line.png "定位到对应的源码行cpp" "定位到对应的源码行")
+  ![](/assets/images/2013/two-line.png "定位到对应的源码行cpp" "定位到对应的源码行")
 
 [1]: http://cxh.me/2013/10/29/use-gdb-to-test-multi-servers-in-ob/ "用gdb调试分布式系统（OB中的应用）"
 [2]: http://cxh.me/2013/11/08/a-vim-plugin-to-deal-with-file-list/ "自己写的一个根据路径打开文件的插件"

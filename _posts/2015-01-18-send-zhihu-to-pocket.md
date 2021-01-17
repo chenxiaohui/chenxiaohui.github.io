@@ -17,7 +17,7 @@ categories: "web相关"
   
   然后需要打通跟Pocket的渠道。首先去注册Pocket SDK <http://getpocket.com/developer/>
 
-  ![](/images/2015/pocket.png)
+  ![](/assets/images/2015/pocket.png)
 
   将会得到如下的几个授权码。我只注册了Web和Desktop
 

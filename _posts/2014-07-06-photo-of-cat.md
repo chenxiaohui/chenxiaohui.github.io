@@ -7,4 +7,4 @@ comments: true
 categories: "摄影"
 ---
 
-  ![](/images/2014/cat.jpg)
+  ![](/assets/images/2014/cat.jpg)

@@ -58,7 +58,7 @@ categories: "vim"
 		let g:tagbar_autofocus = 1
 	"}
 
-  ![](/images/2015/tagbar.png "tagbar界面" "tagbar界面")
+  ![](/assets/images/2015/tagbar.png "tagbar界面" "tagbar界面")
 
   现在有了tag显示，我们希望能够自动加载tags，这样打开一个文件的时候就可以直接操作这个文件所在项目的tags了，针对这种情况，需要先定义一个项目的根目录，这就需要用到base_dir_mark（只是一个变量..名字你随便），我们对一个项目生成且只生成一次tags(和cscope.out)，放在这个目录下。我（改进）的插件cscope_maps.vim包含了对base_dir_mark的查找和定义：
 
@@ -143,8 +143,8 @@ categories: "vim"
 
   这样就实现了在tag的跳转和查找。 Do_CsTag函数实现的功能跟shell alias基本一样。没有安装neocomplcache的可以map <m-left> <C-t>。效果如下所示：
 
-  ![](/images/2015/tags.png "自动load tags" "自动load tags")
-  ![](/images/2015/cscope.png "cscope find reference结果" "cscope find reference结果")
+  ![](/assets/images/2015/tags.png "自动load tags" "自动load tags")
+  ![](/assets/images/2015/cscope.png "cscope find reference结果" "cscope find reference结果")
 
 
 

@@ -22,49 +22,49 @@ categories: "其他"
 
 <!--more-->
 
-  ![](/images/2015/jenkins.png)
+  ![](/assets/images/2015/jenkins.png)
 
   系统管理里面有一些需要配置的项，比如JDK：
 
-  ![](/images/2015/jenkins_jdk.png)
+  ![](/assets/images/2015/jenkins_jdk.png)
 
   GIT
 
-  ![](/images/2015/jenkins_git.png)
+  ![](/assets/images/2015/jenkins_git.png)
 
   MAVEN
 
-  ![](/images/2015/jenkins_maven.png)
+  ![](/assets/images/2015/jenkins_maven.png)
 
   ssh-key
 
-  ![](/images/2015/jenkins_sshkey.png)
+  ![](/assets/images/2015/jenkins_sshkey.png)
 
   ssh-server
 
-  ![](/images/2015/jenkins_sshserver.png)
+  ![](/assets/images/2015/jenkins_sshserver.png)
 
   装一下slack的插件可以配置slack
 
-  ![](/images/2015/jenkins_slack.png)
+  ![](/assets/images/2015/jenkins_slack.png)
 
   然后是建立项目的配置，Jenkins把每个自动发布的项目作为一个单独的配置，主要是如下几个：
 
   指定代码路径：
 
-  ![](/images/2015/jenkins_gitclone.png)
+  ![](/assets/images/2015/jenkins_gitclone.png)
 
   部署前事件：
 
-  ![](/images/2015/jenkins_deploy_pre.png)
+  ![](/assets/images/2015/jenkins_deploy_pre.png)
 
   部署后事件:
 
-  ![](/images/2015/jenkins_after_deploy.png)
+  ![](/assets/images/2015/jenkins_after_deploy.png)
 
   最后保证这些事件是在之前配置的ssh-server上执行的。
 
-  ![](/images/2015/jenkins_enent_server.png)
+  ![](/assets/images/2015/jenkins_enent_server.png)
 
 
   细节请看[这里][1]

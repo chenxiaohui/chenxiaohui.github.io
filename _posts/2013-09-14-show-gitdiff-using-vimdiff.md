@@ -22,7 +22,7 @@ categories: vim
 
   第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下的结果:
 
-  ![](/images/2013/difftool-prompt.png "git diff prompt")
+  ![](/assets/images/2013/difftool-prompt.png "git diff prompt")
 
   当然我们也可以替换掉默认的diff工具, 可以指定
 
@@ -39,7 +39,7 @@ categories: vim
 
   执行git diff的时候就可以看到效果
 
-![](/images/2013/git-vimdiff.png "vim diff 效果")
+![](/assets/images/2013/git-vimdiff.png "vim diff 效果")
 
   可以看出git其实就是调用了一个外部命令然后把参数传入(分别是当前修改的文件和从版本库获取的文件, 这个文件会在tmp下生成).
 

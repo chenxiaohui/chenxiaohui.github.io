@@ -29,7 +29,7 @@ svndiff use vimdiff: see [link](http://www.ccvita.com/445.html "svndiff use vimd
 
 gitdiff use vimdiff: see [link](http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/ "svn diff use vimdiff")
 
-![](/images/2013/git-vimdiff.png)
+![](/assets/images/2013/git-vimdiff.png)
 
 <!--more-->
 
@@ -72,19 +72,19 @@ after you added all files you need to review, chmod +x post-review.sh and execut
 
   比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊
 
-![](/images/common/ask.jpg)
+![](/assets/images/common/ask.jpg)
 
 > 难道不应该写一部分就post-review的嘛
 
   好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交
 
-![](/images/common/ask.jpg)
+![](/assets/images/common/ask.jpg)
 
     What a fucking job!!!
 
   这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它...
     
-![](/images/common/ask.jpg)
+![](/assets/images/common/ask.jpg)
 
 > 跑题了...
 
