@@ -1,6 +1,7 @@
 ---
 title: 读阎崇年《正说清十二帝》
 author: Harry Chen
+key: twelve-empires-in-Qing-dynasty-yanchongnian
 layout: article
 
 dsq_thread_id:

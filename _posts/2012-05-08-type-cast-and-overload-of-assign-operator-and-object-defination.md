@@ -1,6 +1,7 @@
 ---
 title: >
   区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值
+key: type-cast-and-overload-of-assign-operator-and-object-defination
 author: Harry Chen
 layout: article
 ---

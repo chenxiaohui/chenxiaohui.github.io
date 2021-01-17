@@ -1,6 +1,7 @@
 ---
 title: 那一年的春晚
 author: Harry Chen
+key: that-spring-festival-ceremony
 layout: article
 
 dsq_thread_id:

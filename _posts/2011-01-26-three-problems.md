@@ -1,6 +1,7 @@
 ---
 title: 记三个小问题
 author: Harry Chen
+key: three-problems
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: '夏夜 二胡 萤火虫'
 author: Harry Chen
+key: summer-night-erhu-and-firefly
 layout: article
 
 categories:

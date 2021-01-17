@@ -1,6 +1,7 @@
 ---
 title: 父性贝多芬
 author: Harry Chen
+key: fathership_Beethoven
 layout: article
 
 categories:

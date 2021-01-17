@@ -1,6 +1,7 @@
 ---
 title: 听龙应台谈文化接轨
 author: Harry Chen
+key: culture-connection-with-longyingtai
 layout: article
 
 categories:

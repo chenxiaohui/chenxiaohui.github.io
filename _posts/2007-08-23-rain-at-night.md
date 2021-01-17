@@ -1,6 +1,7 @@
 ---
 title: 夜雨
 author: Harry Chen
+key: rain-at-night
 layout: article
 
 categories:

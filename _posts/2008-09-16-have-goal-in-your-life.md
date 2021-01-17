@@ -1,6 +1,7 @@
 ---
 title: 做人要有追求
 author: Harry Chen
+key: have-goal-in-your-life
 layout: article
 
 categories:

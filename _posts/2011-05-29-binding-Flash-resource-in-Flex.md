@@ -1,6 +1,7 @@
 ---
 title: 关于Flex绑定Flash资源
 author: Harry Chen
+key: binding-Flash-resource-in-Flex
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: '香山 老人 易拉罐'
 author: Harry Chen
+key: xiangshan-oldman-popcan
 layout: article
 
 categories:

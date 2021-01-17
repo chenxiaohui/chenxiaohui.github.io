@@ -1,6 +1,7 @@
 ---
 title: 应邀写的新生寄语
 author: Harry Chen
+key: words-to-freshman
 layout: article
 
 categories:

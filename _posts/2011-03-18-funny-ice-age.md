@@ -1,6 +1,7 @@
 ---
 title: 日和版《冰河世纪》
 author: Harry Chen
+key: funny-ice-age
 layout: article
 
 categories:

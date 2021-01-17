@@ -1,6 +1,7 @@
 ---
 title: 这个段子很有罗永浩的风格
 author: Harry Chen
+key: an-article-has-the-characteristic-of-luoyonghao
 layout: article
 
 categories:

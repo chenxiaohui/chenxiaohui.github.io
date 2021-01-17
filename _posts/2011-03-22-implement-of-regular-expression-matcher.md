@@ -1,6 +1,7 @@
 ---
 title: 正则表达式匹配器的实现
 author: Harry Chen
+key: implement-of-regular-expression-matcher
 layout: article
 
 dsq_thread_id:

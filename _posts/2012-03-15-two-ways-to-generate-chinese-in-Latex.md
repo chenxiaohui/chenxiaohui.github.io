@@ -1,6 +1,7 @@
 ---
 title: 两种可行的Latex中文生成方式(GBK/UTF8)
 author: Harry Chen
+key: two-ways-to-generate-chinese-in-Latex
 layout: article
 
 dsq_thread_id:

@@ -1,6 +1,7 @@
 ---
 title: 指针数组，数组指针与函数指针
 author: Harry Chen
+key: pointer-to-array-and-array-of-pointer-and-pointer-to-a-function
 layout: article
 
 categories:

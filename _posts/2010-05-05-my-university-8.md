@@ -1,6 +1,7 @@
 ---
 title: 我的大学（八）
 author: Harry Chen
+key: my-university-8
 layout: article
 
 categories:

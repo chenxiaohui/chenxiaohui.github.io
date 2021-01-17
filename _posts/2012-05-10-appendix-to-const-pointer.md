@@ -1,6 +1,7 @@
 ---
 title: 关于Const指针的一点补充
 author: Harry Chen
+key: appendix-to-const-pointer
 layout: article
 categories:
   - Others

@@ -1,6 +1,7 @@
 ---
 title: 想起一件事情
 author: Harry Chen
+key: think-of-one-thing
 layout: article
 comments: true
 dsq_thread_id:

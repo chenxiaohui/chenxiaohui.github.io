@@ -1,6 +1,7 @@
 ---
 title: 关于转型
 author: Harry Chen
+key: about-changing
 layout: article
 
 categories:

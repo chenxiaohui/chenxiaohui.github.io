@@ -1,6 +1,7 @@
 ---
 title: 生命是种易碎的东西
 author: Harry Chen
+key: life-is-fragile
 layout: article
 
 categories:

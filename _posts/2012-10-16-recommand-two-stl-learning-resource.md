@@ -1,6 +1,7 @@
 ---
 title: 推荐两个STL学习资源
 author: Harry Chen
+key: recommand-two-stl-learning-resource
 layout: article
 dsq_thread_id:
   - 1272393772

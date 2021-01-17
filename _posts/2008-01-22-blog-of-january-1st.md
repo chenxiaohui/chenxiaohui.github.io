@@ -1,6 +1,7 @@
 ---
 title: 1月3号的日志
 author: Harry Chen
+key: blog-of-january-1st
 layout: article
 
 categories:

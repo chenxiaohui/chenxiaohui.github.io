@@ -1,6 +1,7 @@
 ---
 title: 渐行渐远
 author: Harry Chen
+key: walking-away
 layout: article
 
 categories:

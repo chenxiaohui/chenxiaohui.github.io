@@ -1,6 +1,7 @@
 ---
 title: Latex中使用visio的矢量图(转载+修改）
 author: Harry Chen
+key: using-visio-vector-diagram-in-Latex
 layout: article
 
 dsq_thread_id:

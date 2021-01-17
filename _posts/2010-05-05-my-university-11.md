@@ -1,6 +1,7 @@
 ---
 title: 我的大学（十一）
 author: Harry Chen
+key: my-university-11
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 关于马哲考试
 author: Harry Chen
+key: about-the-exam-of-Marxism-philosophy
 layout: article
 
 categories:

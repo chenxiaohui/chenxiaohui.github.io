@@ -1,6 +1,7 @@
 ---
 title: 王垠：完全用Linux工作
 author: Harry Chen
+key: wangyin-totally-use-linux-to-work
 layout: article
 
 dsq_thread_id:

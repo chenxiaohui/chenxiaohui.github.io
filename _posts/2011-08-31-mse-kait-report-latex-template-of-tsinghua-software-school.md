@@ -1,6 +1,7 @@
 ---
 title: 清华大学软件学院MSE开题报告Latex模板
 author: Harry Chen
+key: mse-kait-report-latex-template-of-tsinghua-software-school
 layout: article
 
 dsq_thread_id:

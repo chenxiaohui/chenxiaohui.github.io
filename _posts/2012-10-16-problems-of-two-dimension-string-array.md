@@ -1,6 +1,7 @@
 ---
 title: 二维字符串数组的问题
 author: Harry Chen
+key: problems-of-two-dimension-string-array
 layout: article
 
 dsq_thread_id:

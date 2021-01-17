@@ -1,6 +1,7 @@
 ---
 title: Win7与多Linux并存的安装方法
 author: Harry Chen
+key: methods-for-win7-to-coexist-with-several-linux
 layout: article
 
 categories:

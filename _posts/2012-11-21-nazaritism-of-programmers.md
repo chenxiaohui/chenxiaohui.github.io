@@ -1,6 +1,7 @@
 ---
 title: 技术人员之修行
 author: Harry Chen
+key: nazaritism-of-programmers
 layout: article
 dsq_thread_id:
   - 1290441693

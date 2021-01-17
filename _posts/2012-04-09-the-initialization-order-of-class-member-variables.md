@@ -1,6 +1,7 @@
 ---
 title: 关于类成员变量初始化顺序
 author: Harry Chen
+key: the-initialization-order-of-class-member-variables
 layout: article
 ----
 

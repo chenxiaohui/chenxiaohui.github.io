@@ -1,6 +1,7 @@
 ---
 title: 中国第一代程序员列传
 author: Harry Chen
+key: the-story-of-first-generation-of-chinese-programmer
 layout: article
 
 categories:

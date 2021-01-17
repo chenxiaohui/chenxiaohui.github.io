@@ -1,6 +1,7 @@
 ---
 title: 我的大学（九）
 author: Harry Chen
+key: my-university-9
 layout: article
 
 categories:

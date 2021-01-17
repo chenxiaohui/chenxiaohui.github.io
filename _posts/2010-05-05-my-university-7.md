@@ -1,6 +1,7 @@
 ---
 title: 我的大学（七）
 author: Harry Chen
+key: my-university-7
 layout: article
 
 categories:

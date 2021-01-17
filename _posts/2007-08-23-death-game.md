@@ -1,6 +1,7 @@
 ---
 title: 死亡游戏
 author: Harry Chen
+key: death-game
 layout: article
 
 categories:

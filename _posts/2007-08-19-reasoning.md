@@ -1,6 +1,7 @@
 ---
 title: 讲道理
 author: Harry Chen
+key: reasoning
 layout: article
 
 categories:

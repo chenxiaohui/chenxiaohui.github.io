@@ -1,6 +1,7 @@
 ---
 title: 曼殊沙华
 author: Harry Chen
+key: equinox-flower
 layout: article
 
 categories:

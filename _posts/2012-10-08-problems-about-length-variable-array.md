@@ -1,6 +1,7 @@
 ---
 title: 变长数组的问题
 author: Harry Chen
+key: problems-about-length-variable-array
 layout: article
 
 dsq_thread_id:

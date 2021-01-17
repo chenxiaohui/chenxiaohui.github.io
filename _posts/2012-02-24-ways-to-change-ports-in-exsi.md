@@ -1,6 +1,7 @@
 ---
 title: ESXi修改默认端口的方法(zz)
 author: Harry Chen
+key: ways-to-change-ports-in-exsi
 layout: article
 
 dsq_thread_id:

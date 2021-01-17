@@ -1,6 +1,7 @@
 ---
 title: 老文章了：人生导师的倒掉
 author: Harry Chen
+key: old-article-fall-down-of-life-coach
 layout: article
 
 categories:

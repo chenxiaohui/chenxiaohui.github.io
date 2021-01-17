@@ -1,6 +1,7 @@
 ---
 title: Nerd_Tree插件自动退出
 author: Harry Chen
+key: auto-exit-problem-of-nerd-tree-plugin
 layout: article
 
 dsq_thread_id:

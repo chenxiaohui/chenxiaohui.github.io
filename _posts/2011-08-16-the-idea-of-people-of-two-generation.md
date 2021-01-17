@@ -1,6 +1,7 @@
 ---
 title: 关于两代人的理念
 author: Harry Chen
+key: the-idea-of-people-of-two-generation
 layout: article
 
 categories:

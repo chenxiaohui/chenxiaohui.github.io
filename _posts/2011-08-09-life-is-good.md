@@ -1,6 +1,7 @@
 ---
 title: 美好人生
 author: Harry Chen
+key: life-is-good
 layout: article
 
 categories:

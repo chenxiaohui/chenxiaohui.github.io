@@ -1,6 +1,7 @@
 ---
 title: 历史是最大的清算者
 author: Harry Chen
+key: history-is-the-major-judge
 layout: article
 
 categories:

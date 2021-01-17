@@ -1,6 +1,7 @@
 ---
 title: 闯红灯
 author: Harry Chen
+key: run-the-red-light
 layout: article
 
 categories:

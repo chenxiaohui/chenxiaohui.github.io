@@ -1,6 +1,7 @@
 ---
 title: 深入解析C++输入输出运算符重载
 author: Harry Chen
+key: deep-understanding-of-cplusplus-input-output-operation-reload
 layout: article
 categories:
   - MFC

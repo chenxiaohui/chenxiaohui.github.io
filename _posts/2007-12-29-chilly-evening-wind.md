@@ -1,6 +1,7 @@
 ---
 title: 夜风微冷
 author: Harry Chen
+key: chilly-evening-wind
 layout: article
 
 categories:

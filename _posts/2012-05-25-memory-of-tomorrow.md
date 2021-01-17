@@ -1,6 +1,7 @@
 ---
 title: 明天的记忆
 author: Harry Chen
+key: memory-of-tomorrow
 layout: article
 
 dsq_thread_id:

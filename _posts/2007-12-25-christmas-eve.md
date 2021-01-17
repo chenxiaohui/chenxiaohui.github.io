@@ -1,6 +1,7 @@
 ---
 title: 平安夜
 author: Harry Chen
+key: christmas-eve
 layout: article
 
 categories:

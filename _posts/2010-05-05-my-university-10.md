@@ -1,6 +1,7 @@
 ---
 title: 我的大学（十）
 author: Harry Chen
+key: my-university-10
 layout: article
 
 categories:

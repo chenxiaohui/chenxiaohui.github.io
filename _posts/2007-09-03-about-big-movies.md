@@ -1,6 +1,7 @@
 ---
 title: 关于大片
 author: Harry Chen
+key: about-big-movies
 layout: article
 
 categories:

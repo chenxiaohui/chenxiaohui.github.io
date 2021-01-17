@@ -1,6 +1,7 @@
 ---
 title: '在ubuntu10.10中安装VMWare Tool，遇到The path &quot; &quot; is not valid 的问题'
 author: Harry Chen
+key: install-vmware-tool-in-ubuntu-10.10
 layout: article
 
 dsq_thread_id:

@@ -1,6 +1,7 @@
 ---
 title: 特质
 author: Harry Chen
+key: characteristic
 layout: article
 
 categories:

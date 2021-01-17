@@ -1,6 +1,7 @@
 ---
 title: weka命令行脚本
 author: Harry Chen
+key: weka-command-line-script
 layout: article
 
 dsq_thread_id:

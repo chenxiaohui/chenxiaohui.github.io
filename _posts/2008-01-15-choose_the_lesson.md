@@ -1,6 +1,7 @@
 ---
 title: 选课
 author: Harry Chen
+key: choose_the_lesson
 layout: article
 
 categories:

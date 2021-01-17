@@ -1,6 +1,7 @@
 ---
 title: 春天来了
 author: Harry Chen
+key: spring-comes
 layout: article
 
 categories:

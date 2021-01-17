@@ -1,6 +1,7 @@
 ---
 title: 关于兴趣
 author: Harry Chen
+key: about-interest
 layout: article
 
 categories:

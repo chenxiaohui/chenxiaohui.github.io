@@ -1,6 +1,7 @@
 ---
 title: '第一人称马里奥[v]'
 author: Harry Chen
+key: first-person-Mario
 layout: article
 
 categories:

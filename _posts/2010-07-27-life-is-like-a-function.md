@@ -1,6 +1,7 @@
 ---
 title: Life is like a function
 author: Harry Chen
+key: life-is-like-a-function
 layout: article
 
 categories:

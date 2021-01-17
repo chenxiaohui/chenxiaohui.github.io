@@ -1,6 +1,7 @@
 ---
 title: FTP命令
 author: Harry Chen
+key: ftp-commands
 layout: article
 
 categories:

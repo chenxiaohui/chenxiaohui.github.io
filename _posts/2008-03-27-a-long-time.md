@@ -1,6 +1,7 @@
 ---
 title: 好久
 author: Harry Chen
+key: a-long-time
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 理想与现实
 author: Harry Chen
+key: rationality-and-nasty
 layout: article
 
 categories:

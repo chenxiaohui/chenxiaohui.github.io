@@ -1,6 +1,7 @@
 ---
 title: '简短总结一下C#里跨线程更新UI'
 author: Harry Chen
+key: summary-of-cross-thread-ui-update-in-csharp
 layout: article
 dsq_thread_id:
   - 1258318261

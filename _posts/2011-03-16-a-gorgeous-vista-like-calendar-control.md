@@ -1,6 +1,7 @@
 ---
 title: 发一套华丽的Vista风格日历控件
 author: Harry Chen
+key: a-gorgeous-vista-like-calendar-control
 layout: article
 
 dsq_thread_id:

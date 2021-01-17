@@ -1,6 +1,7 @@
 ---
 title: 博客域名更改
 author: Harry Chen
+key: change-the-name-of-blog
 layout: article
 
 dsq_thread_id:

@@ -1,6 +1,7 @@
 ---
 title: 父爱如山
 author: Harry Chen
+key: fathership_Beethoven
 layout: article
 
 dsq_thread_id:

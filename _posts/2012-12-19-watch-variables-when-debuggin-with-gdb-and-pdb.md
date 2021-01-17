@@ -1,6 +1,7 @@
 ---
 title: GDB/PDB调试时变量的监视
 layout: article
+key: watch-variables-when-debuggin-with-gdb-and-pdb
 dsq_thread_id:
   - 1264071274
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 关于腾讯12年品牌广告
 author: Harry Chen
+key: tecent-advertisement
 layout: article
 
 categories:

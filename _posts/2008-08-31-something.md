@@ -1,6 +1,7 @@
 ---
 title: 有些事
 author: Harry Chen
+key: something
 layout: article
 
 categories:

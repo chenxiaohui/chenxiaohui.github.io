@@ -1,6 +1,7 @@
 ---
 title: 超现实的想象力
 author: Harry Chen
+key: super-imaginary
 layout: article
 
 categories:

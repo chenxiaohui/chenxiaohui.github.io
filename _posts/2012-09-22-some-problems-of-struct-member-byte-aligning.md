@@ -1,6 +1,7 @@
 ---
 title: 关于结构体字节对齐的一些问题
 author: Harry Chen
+key: some-problems-of-struct-member-byte-aligning
 layout: article
 dsq_thread_id:
   - 1282626515

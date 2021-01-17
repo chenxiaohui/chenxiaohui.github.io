@@ -1,6 +1,7 @@
 ---
 title: VMware ESXi 网络配置
 author: Harry Chen
+key: vmware-esxi-5-network-configuration
 layout: article
 
 categories:

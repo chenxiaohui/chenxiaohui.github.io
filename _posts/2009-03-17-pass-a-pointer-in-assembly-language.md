@@ -1,6 +1,7 @@
 ---
 title: 汇编传指针
 author: Harry Chen
+key: pass-a-pointer-in-assembly-language
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 写的一段介绍宿舍的文字
 author: Harry Chen
+key: an-article-to-introduce-dormitory
 layout: article
 
 categories:

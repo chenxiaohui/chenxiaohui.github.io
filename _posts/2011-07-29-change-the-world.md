@@ -1,6 +1,7 @@
 ---
 title: 改变世界
 author: Harry Chen
+key: change-the-world
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 永远的三年二班(1)
 author: Harry Chen
+key: class-two-of-2003-forever-1
 layout: article
 
 categories:

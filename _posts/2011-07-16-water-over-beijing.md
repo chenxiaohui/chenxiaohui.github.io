@@ -1,6 +1,7 @@
 ---
 title: 水漫帝都这点事
 author: Harry Chen
+key: water-over-beijing
 layout: article
 
 categories:

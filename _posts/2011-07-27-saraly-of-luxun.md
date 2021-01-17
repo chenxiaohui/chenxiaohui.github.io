@@ -1,6 +1,7 @@
 ---
 title: 鲁迅工资
 author: Harry Chen
+key: saraly-of-luxun
 layout: article
 
 categories:

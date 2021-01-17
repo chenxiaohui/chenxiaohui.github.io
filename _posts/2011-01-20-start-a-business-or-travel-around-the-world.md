@@ -1,6 +1,7 @@
 ---
 title: 去创业还是去环游世界
 author: Harry Chen
+key: start-a-business-or-travel-around-the-world
 layout: article
 
 categories:

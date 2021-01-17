@@ -1,6 +1,7 @@
 ---
 title: '由&#8221;喵&#8221;代码想到的'
 author: Harry Chen
+key: from-the-miao-code
 layout: article
 comments: true
 dsq_thread_id:

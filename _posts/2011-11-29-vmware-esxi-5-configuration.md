@@ -1,6 +1,7 @@
 ---
 title: VMware ESXi 5安装配置部分
 author: Harry Chen
+key: vmware-esxi-5-configuration
 layout: article
 
 dsq_thread_id:

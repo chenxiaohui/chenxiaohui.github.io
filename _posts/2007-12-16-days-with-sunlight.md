@@ -1,6 +1,7 @@
 ---
 title: 阳光灿烂的日子
 author: Harry Chen
+key: days-with-sunlight
 layout: article
 
 categories:

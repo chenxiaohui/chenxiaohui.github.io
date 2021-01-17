@@ -1,6 +1,7 @@
 ---
 title: 澄清几个关于Latex参考文献的问题
 author: Harry Chen
+key: some-problems-of-latex-reference
 layout: article
 
 dsq_thread_id:

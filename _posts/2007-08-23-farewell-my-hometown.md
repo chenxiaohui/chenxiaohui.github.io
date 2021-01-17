@@ -1,6 +1,7 @@
 ---
 title: 再见，我的故乡
 author: Harry Chen
+key: farewell-my-hometown
 layout: article
 
 categories:

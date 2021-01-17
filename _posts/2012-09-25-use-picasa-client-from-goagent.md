@@ -1,6 +1,7 @@
 ---
 title: 通过goagent使用Picasa客户端
 author: Harry Chen
+key: use-picasa-client-from-goagent
 layout: article
 
 dsq_thread_id:

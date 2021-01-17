@@ -1,6 +1,7 @@
 ---
 title: 万水千山总是情，预装下header行不行？
 author: Harry Chen
+key: cannnot-you-install-the-headers
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 当大学生活成为一种过往
 author: Harry Chen
+key: when-university-becomes-a-memory
 layout: article
 
 categories:

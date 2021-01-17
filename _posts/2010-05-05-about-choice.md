@@ -1,6 +1,7 @@
 ---
 title: 关于选择
 author: Harry Chen
+key: about-choice
 layout: article
 
 categories:

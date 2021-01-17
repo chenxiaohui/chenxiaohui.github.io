@@ -1,6 +1,7 @@
 ---
 title: 雨中
 author: Harry Chen
+key: in-the-rain
 layout: article
 
 categories:

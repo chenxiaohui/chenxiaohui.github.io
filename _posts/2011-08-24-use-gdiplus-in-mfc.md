@@ -1,6 +1,7 @@
 ---
 title: 在MFC程序中使用GDI+
 author: Harry Chen
+key: use-gdiplus-in-mfc
 layout: article
 
 categories:

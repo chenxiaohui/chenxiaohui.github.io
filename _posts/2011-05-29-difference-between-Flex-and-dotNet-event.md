@@ -1,6 +1,7 @@
 ---
 title: 关于Flex和.NET自定义事件的比较
 author: Harry Chen
+key: difference-between-Flex-and-dotNet-event
 layout: article
 
 categories:

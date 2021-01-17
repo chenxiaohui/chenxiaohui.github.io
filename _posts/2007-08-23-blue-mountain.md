@@ -1,6 +1,7 @@
 ---
 title: 青山
 author: Harry Chen
+key: blue-mountain
 layout: article
 
 categories:

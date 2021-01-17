@@ -1,6 +1,7 @@
 ---
 title: 清醒纪
 author: Harry Chen
+key: sober-words
 layout: article
 
 categories:

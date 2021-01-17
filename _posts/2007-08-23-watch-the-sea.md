@@ -1,6 +1,7 @@
 ---
 title: 看海
 author: Harry Chen
+key: watch-the-sea
 layout: article
 
 categories:

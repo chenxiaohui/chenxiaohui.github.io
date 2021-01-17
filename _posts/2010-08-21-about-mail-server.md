@@ -1,6 +1,7 @@
 ---
 title: 关于邮件服务器
 author: Harry Chen
+key: about-mail-server
 layout: article
 
 categories:

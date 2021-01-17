@@ -1,6 +1,7 @@
 ---
 title: C++ Primer 读书笔记
 author: Harry Chen
+key: cplusplus-primer-book-review
 layout: article
 date: 2013-09-02 12:55
 dsq_thread_id:

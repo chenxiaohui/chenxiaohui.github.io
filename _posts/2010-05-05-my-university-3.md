@@ -1,6 +1,7 @@
 ---
 title: 我的大学（三）
 author: Harry Chen
+key: my-university-3
 layout: article
 
 categories:

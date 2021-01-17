@@ -1,6 +1,7 @@
 ---
 title: 淡然
 author: Harry Chen
+key: indifferent
 layout: article
 
 categories:

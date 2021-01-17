@@ -1,6 +1,7 @@
 ---
 title: 我就不是一个单纯的人
 author: Harry Chen
+key: i-am-not-a-simple-person
 layout: article
 
 categories:

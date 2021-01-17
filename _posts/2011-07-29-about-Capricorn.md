@@ -1,6 +1,7 @@
 ---
 title: 关于摩羯
 author: Harry Chen
+key: about-Capricorn
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 修车记
 author: Harry Chen
+key: fix-a-bicycle
 layout: article
 
 categories:

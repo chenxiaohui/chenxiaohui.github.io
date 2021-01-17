@@ -1,6 +1,7 @@
 ---
 title: 关于装机的一些问题
 author: Harry Chen
+key: some-problems-of-setting-up-an-computer
 layout: article
 
 categories:

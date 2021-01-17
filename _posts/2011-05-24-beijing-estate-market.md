@@ -1,6 +1,7 @@
 ---
 title: 北京房事
 author: Harry Chen
+key: beijing-estate-market
 layout: article
 
 categories:

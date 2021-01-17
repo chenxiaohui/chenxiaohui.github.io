@@ -1,6 +1,7 @@
 ---
 title: 我的大学（六）
 author: Harry Chen
+key: my-university-6
 layout: article
 
 categories:

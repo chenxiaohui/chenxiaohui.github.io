@@ -1,6 +1,7 @@
 ---
 title: WordPress统计
 author: Harry Chen
+key: wordpress-statistics
 layout: article
 
 dsq_thread_id:

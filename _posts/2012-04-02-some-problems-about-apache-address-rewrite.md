@@ -1,6 +1,7 @@
 ---
 title: Apache地址重写的几个问题
 author: Harry Chen
+key: some-problems-about-apache-address-rewrite
 layout: article
 
 categories:

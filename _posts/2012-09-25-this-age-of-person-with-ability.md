@@ -1,6 +1,7 @@
 ---
 title: 在这个才人辈出的时代
 author: Harry Chen
+key: this-age-of-person-with-ability
 layout: article
 
 dsq_thread_id:

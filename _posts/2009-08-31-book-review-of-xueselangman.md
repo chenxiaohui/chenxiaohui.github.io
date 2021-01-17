@@ -1,6 +1,7 @@
 ---
 title: 《血色浪漫》书评
 author: Harry Chen
+key: book-review-of-xueselangman
 layout: article
 
 dsq_thread_id:

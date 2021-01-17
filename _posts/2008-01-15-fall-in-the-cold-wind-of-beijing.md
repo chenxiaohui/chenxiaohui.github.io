@@ -1,6 +1,7 @@
 ---
 title: 倒在北京的寒流里
 author: Harry Chen
+key: fall-in-the-cold-wind-of-beijing
 layout: article
 
 categories:

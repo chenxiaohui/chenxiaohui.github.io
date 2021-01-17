@@ -1,6 +1,7 @@
 ---
 title: 纪念北航甲流君
 author: Harry Chen
+key: words-to-memorize-the-boy-died-in-H1N1-of-buaa
 layout: article
 
 categories:

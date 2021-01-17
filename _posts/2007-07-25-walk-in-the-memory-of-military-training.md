@@ -1,6 +1,7 @@
 ---
 title: 行走在军训的回忆中
 author: Harry Chen
+key: walk-in-the-memory-of-military-training
 layout: article
 
 categories:

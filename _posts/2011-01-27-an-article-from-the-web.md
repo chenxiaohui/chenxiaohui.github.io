@@ -1,6 +1,7 @@
 ---
 title: 转一篇网络文章
 author: Harry Chen
+key: an-article-from-the-web
 layout: article
 
 categories:

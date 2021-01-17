@@ -1,6 +1,7 @@
 ---
 title: 关注一切大学生关注的事情
 author: Harry Chen
+key: pay-attention-to-all-things-college-students-like
 layout: article
 
 categories:

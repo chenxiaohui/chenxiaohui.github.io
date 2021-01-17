@@ -1,6 +1,7 @@
 ---
 title: 迷茫常有，孤独总有
 author: Harry Chen
+key: lonely-always-exists
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: C++变量的初始化方式
 author: Harry Chen
+key: ways-to-initialize-variables-in-cplusplus
 layout: article
 
 categories:

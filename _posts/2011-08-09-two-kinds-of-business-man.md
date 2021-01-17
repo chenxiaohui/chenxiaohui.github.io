@@ -1,6 +1,7 @@
 ---
 title: 两种生意人
 author: Harry Chen
+key: two-kinds-of-business-man
 layout: article
 
 dsq_thread_id:

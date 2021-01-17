@@ -1,6 +1,7 @@
 ---
 title: 'C#配置文件读写的两种思路'
 author: Harry Chen
+key: two-methods-to-deal-with-config-file-using-csharp
 layout: article
 
 categories:

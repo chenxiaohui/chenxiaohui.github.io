@@ -1,6 +1,7 @@
 ---
 title: 我的大学（二）
 author: Harry Chen
+key: my-university-2
 layout: article
 
 categories:

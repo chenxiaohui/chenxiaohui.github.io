@@ -1,6 +1,7 @@
 ---
 title: zz 明朝那些事 读书笔记
 author: Harry Chen
+key: zz-book-review-of-stories-about-ming-dynasty
 layout: article
 
 dsq_thread_id:

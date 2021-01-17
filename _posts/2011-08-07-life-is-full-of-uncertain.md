@@ -1,6 +1,7 @@
 ---
 title: 人的一生，充满了许多不确定
 author: Harry Chen
+key: life-is-full-of-uncertain
 layout: article
 
 dsq_thread_id:

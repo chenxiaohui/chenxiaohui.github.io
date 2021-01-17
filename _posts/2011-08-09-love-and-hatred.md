@@ -1,6 +1,7 @@
 ---
 title: 爱恨恢恢
 author: Harry Chen
+key: love-and-hatred
 layout: article
 
 categories:

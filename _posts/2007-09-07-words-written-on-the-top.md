@@ -1,6 +1,7 @@
 ---
 title: 写在前面
 author: Harry Chen
+key: words-written-on-the-top
 layout: article
 
 categories:

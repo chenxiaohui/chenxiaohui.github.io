@@ -1,6 +1,7 @@
 ---
 title: Latex里图片与表格标题与正文距离的调整
 author: Harry Chen
+key: ajust-distance-between-table-title-and-content-in-Latex
 layout: article
 
 dsq_thread_id:

@@ -1,6 +1,7 @@
 ---
 title: 世上不平事
 author: Harry Chen
+key: unfairs-things-in-the-world
 layout: article
 
 categories:

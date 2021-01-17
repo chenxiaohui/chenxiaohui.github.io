@@ -1,6 +1,7 @@
 ---
 title: ELLEMEN纪实影片《睿士传奇》完整版
 author: Harry Chen
+key: the-movie-legend-of-elegent-man
 layout: article
 
 categories:

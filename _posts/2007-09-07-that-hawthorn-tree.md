@@ -1,6 +1,7 @@
 ---
 title: 那一棵山楂树
 author: Harry Chen
+key: that-hawthorn-tree
 layout: article
 
 categories:

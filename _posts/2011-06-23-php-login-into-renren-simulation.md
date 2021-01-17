@@ -1,6 +1,7 @@
 ---
 title: PHP模拟登陆人人
 author: Harry Chen
+key: php-login-into-renren-simulation
 layout: article
 
 dsq_thread_id:

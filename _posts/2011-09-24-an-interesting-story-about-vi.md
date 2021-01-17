@@ -1,6 +1,7 @@
 ---
 title: 关于VI的一则趣事
 author: Harry Chen
+key: an-interesting-story-about-vi
 layout: article
 
 categories:

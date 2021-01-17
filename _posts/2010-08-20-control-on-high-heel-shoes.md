@@ -1,6 +1,7 @@
 ---
 title: 高跟鞋管制
 author: Harry Chen
+key: control-on-high-heel-shoes
 layout: article
 
 categories:

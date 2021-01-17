@@ -1,6 +1,7 @@
 ---
 title: 生命瞬间的感动
 author: Harry Chen
+key: move-at-a-moment-of-life
 layout: article
 
 categories:

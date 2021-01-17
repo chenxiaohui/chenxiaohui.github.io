@@ -1,6 +1,7 @@
 ---
 title: '文件查找利器&mdash;&mdash;FuzzyFinder'
 author: Harry Chen
+key: file-find-tool-fuzzy-finder
 layout: article
 
 dsq_thread_id:

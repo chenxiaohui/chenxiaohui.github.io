@@ -1,6 +1,7 @@
 ---
 title: 关于人生的一些Bug
 author: Harry Chen
+key: some-bugs-of-life
 layout: article
 
 categories:

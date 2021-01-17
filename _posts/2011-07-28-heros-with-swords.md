@@ -1,6 +1,7 @@
 ---
 title: 刀剑英雄
 author: Harry Chen
+key: heros-with-swords
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 盒子的梦想
 author: Harry Chen
+key: dream-in-the-box
 layout: article
 
 categories:

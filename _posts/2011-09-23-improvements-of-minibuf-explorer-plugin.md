@@ -1,6 +1,7 @@
 ---
 title: Vim 的MiniBufExplorer插件改进
 author: Harry Chen
+key: improvements-of-minibuf-explorer-plugin
 layout: article
 
 dsq_thread_id:

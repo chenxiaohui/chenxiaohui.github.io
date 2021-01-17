@@ -1,6 +1,7 @@
 ---
 title: 我的奥运生活
 author: Harry Chen
+key: my-olympic-days
 layout: article
 
 categories:

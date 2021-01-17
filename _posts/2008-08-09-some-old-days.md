@@ -1,6 +1,7 @@
 ---
 title: 一些过往
 author: Harry Chen
+key: some-old-days
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 一点心情
 author: Harry Chen
+key: some-feelings
 layout: article
 dsq_thread_id:
   - 1262682750

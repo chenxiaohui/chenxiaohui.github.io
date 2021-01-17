@@ -1,6 +1,7 @@
 ---
 title: 莫名
 author: Harry Chen
+key: inexplicably
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 关于Django url映射的一些小问题
 author: Harry Chen
+key: some-problems-of-django-url-mapping
 layout: article
 dsq_thread_id:
   - 1256058711

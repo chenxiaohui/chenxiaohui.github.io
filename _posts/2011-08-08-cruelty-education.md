@@ -1,6 +1,7 @@
 ---
 title: 残忍教育
 author: Harry Chen
+key: cruelty-education
 layout: article
 
 categories:

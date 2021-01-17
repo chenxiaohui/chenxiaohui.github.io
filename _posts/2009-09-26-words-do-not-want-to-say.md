@@ -1,6 +1,7 @@
 ---
 title: 不想说的一些话
 author: Harry Chen
+key: words-do-not-want-to-say
 layout: article
 
 categories:

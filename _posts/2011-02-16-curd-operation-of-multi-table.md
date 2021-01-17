@@ -1,6 +1,7 @@
 ---
 title: '多表级联增删查改操作的实现（C#）'
 author: Harry Chen
+key: curd-operation-of-multi-table
 layout: article
 
 dsq_thread_id:

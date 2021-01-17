@@ -1,6 +1,7 @@
 ---
 title: 推荐《大国崛起》
 author: Harry Chen
+key: recommand-the-rise-of-great-nations
 layout: article
 
 categories:

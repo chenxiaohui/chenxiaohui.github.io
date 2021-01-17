@@ -1,6 +1,7 @@
 ---
 title: 一点文字
 author: Harry Chen
+key: some-words
 layout: article
 
 categories:

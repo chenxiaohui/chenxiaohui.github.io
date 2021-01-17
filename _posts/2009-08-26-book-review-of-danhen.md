@@ -1,6 +1,7 @@
 ---
 title: 《弹痕》书评
 author: Harry Chen
+key: book-review-of-danhen
 layout: article
 
 categories:

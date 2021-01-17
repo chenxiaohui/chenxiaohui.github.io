@@ -1,6 +1,7 @@
 ---
 title: 学期总结
 author: Harry Chen
+key: summary-of-a-semester
 layout: article
 
 categories:

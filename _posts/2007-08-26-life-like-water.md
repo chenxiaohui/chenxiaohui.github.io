@@ -1,6 +1,7 @@
 ---
 title: 水样年华
 author: Harry Chen
+key: life-like-water
 layout: article
 
 categories:

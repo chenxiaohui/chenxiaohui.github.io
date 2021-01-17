@@ -1,6 +1,7 @@
 ---
 title: 关于吞灯泡问题
 author: Harry Chen
+key: about-swallowing-the-bulb
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: '《非诚勿扰》两位哈佛男&mdash;&mdash;陆宏毅&amp;安田剪辑对比。窥二人而知哈佛。'
 author: Harry Chen
+key: two-harvard-man-in-take-me-out
 layout: article
 
 dsq_thread_id:

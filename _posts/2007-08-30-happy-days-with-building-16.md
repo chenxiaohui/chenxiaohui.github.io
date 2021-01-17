@@ -1,6 +1,7 @@
 ---
 title: 16楼的美好
 author: Harry Chen
+key: happy-days-with-building-16
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: '对&ldquo;基于长度和定界符带校验的TCP分包方式&rdquo;的一些改进'
 author: Harry Chen
+key: improvement-on-tcp-subpackage-mechanism-implement
 layout: article
 
 dsq_thread_id:

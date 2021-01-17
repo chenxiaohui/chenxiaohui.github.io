@@ -1,6 +1,7 @@
 ---
 title: 关于对越反击战
 author: Harry Chen
+key: about-war-of-china-against-vietnam
 layout: article
 
 categories:

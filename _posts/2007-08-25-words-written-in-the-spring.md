@@ -1,6 +1,7 @@
 ---
 title: 写在春天的文字
 author: Harry Chen
+key: words-written-in-the-spring
 layout: article
 
 categories:

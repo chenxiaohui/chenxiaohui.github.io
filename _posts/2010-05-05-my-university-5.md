@@ -1,6 +1,7 @@
 ---
 title: 我的大学（五）
 author: Harry Chen
+key: my-university-5
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 英雄迟暮
 author: Harry Chen
+key: hero-fade-away
 layout: article
 
 categories:

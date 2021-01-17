@@ -1,6 +1,7 @@
 ---
 title: 3D APIs for Adobe Flash Player and Adobe AIR
 author: Harry Chen
+key: 3d-apis-for-adobe-flash-player-and-adobe-air
 layout: article
 
 categories:

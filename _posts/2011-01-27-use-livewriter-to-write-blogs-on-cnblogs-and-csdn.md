@@ -1,6 +1,7 @@
 ---
 title: 用LiveWriter写CNBlogs和CSDN的博客
 author: Harry Chen
+key: use-livewriter-to-write-blogs-on-cnblogs-and-csdn
 layout: article
 
 categories:

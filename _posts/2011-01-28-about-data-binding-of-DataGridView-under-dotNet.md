@@ -1,6 +1,7 @@
 ---
 title: 关于.Net下DataGridView绑定自定义数据结构的问题
 author: Harry Chen
+key: about-data-binding-of-DataGridView-under-dotNet
 layout: article
 
 dsq_thread_id:

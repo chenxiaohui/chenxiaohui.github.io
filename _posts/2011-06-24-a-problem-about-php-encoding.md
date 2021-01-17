@@ -1,6 +1,7 @@
 ---
 title: 关于php编码一个弱弱的问题
 author: Harry Chen
+key: a-problem-about-php-encoding
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: VMware ESXi 管理端口的NAT配置
 author: Harry Chen
+key: vmware-esxi-5-nat-on-admin-ports
 layout: article
 
 dsq_thread_id:

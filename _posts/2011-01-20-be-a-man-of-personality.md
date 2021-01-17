@@ -1,6 +1,7 @@
 ---
 title: 做人要个性
 author: Harry Chen
+key: be-a-man-of-personality
 layout: article
 
 categories:

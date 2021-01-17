@@ -1,6 +1,7 @@
 ---
 title: 转两首词，评《亮剑》
 author: Harry Chen
+key: two-poem-about-liangjian
 layout: article
 
 categories:

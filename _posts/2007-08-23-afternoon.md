@@ -1,6 +1,7 @@
 ---
 title: 午后
 author: Harry Chen
+key: afternoon
 layout: article
 
 dsq_thread_id:

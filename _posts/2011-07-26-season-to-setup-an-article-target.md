@@ -1,6 +1,7 @@
 ---
 title: 一年一度开题季
 author: Harry Chen
+key: season-to-setup-an-article-target
 layout: article
 
 categories:

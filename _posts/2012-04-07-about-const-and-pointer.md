@@ -1,6 +1,7 @@
 ---
 title: 关于const和指针的专题
 author: Harry Chen
+key: about-const-and-pointer
 layout: article
 
 categories:

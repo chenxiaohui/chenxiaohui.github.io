@@ -1,6 +1,7 @@
 ---
 title: 我的大学（四）
 author: Harry Chen
+key: my-university-4
 layout: article
 
 categories:

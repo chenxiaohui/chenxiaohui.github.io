@@ -1,6 +1,7 @@
 ---
 title: 关于函数式编程
 author: Harry Chen
+key: about-functional-programming
 layout: article
 
 dsq_thread_id:

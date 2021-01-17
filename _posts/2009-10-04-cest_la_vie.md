@@ -1,6 +1,7 @@
 ---
 title: 这就是生活
 author: Harry Chen
+key: cest_la_vie
 layout: article
 
 categories:

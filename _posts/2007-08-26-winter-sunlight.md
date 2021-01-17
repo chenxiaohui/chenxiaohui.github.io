@@ -1,6 +1,7 @@
 ---
 title: 冬日阳光
 author: Harry Chen
+key: winter-sunlight
 layout: article
 
 categories:

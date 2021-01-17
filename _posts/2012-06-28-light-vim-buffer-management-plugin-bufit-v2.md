@@ -1,6 +1,7 @@
 ---
 title: Vim轻量级缓冲区管理插件Buf_it修订版Buf_itv2
 author: Harry Chen
+key: light-vim-buffer-management-plugin-bufit-v2
 layout: article
 dsq_thread_id:
   - 1257607419

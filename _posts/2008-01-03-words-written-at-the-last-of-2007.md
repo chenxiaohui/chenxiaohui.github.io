@@ -1,6 +1,7 @@
 ---
 title: 写在07年的最后
 author: Harry Chen
+key: words-written-at-the-last-of-2007
 layout: article
 
 categories:

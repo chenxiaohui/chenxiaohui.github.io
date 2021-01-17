@@ -1,6 +1,7 @@
 ---
 title: 东庄
 author: Harry Chen
+key: dong-zhuang
 layout: article
 
 categories:

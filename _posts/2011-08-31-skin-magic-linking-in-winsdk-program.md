@@ -1,6 +1,7 @@
 ---
 title: SkinMagic在WinSDK程序中的链接
 author: Harry Chen
+key: skin-magic-linking-in-winsdk-program
 layout: article
 
 categories:

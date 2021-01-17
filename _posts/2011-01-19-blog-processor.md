@@ -1,6 +1,7 @@
 ---
 title: 日志格式处理BlogProcessor
 author: Harry Chen
+key: blog-processor
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 很好很强大很和谐
 author: Harry Chen
+key: good-strong-harmony
 layout: article
 
 categories:

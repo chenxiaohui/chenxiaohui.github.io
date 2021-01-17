@@ -1,6 +1,7 @@
 ---
 title: 光山三日
 author: Harry Chen
+key: three-days-in-guangshan
 layout: article
 
 categories:

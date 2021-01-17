@@ -1,6 +1,7 @@
 ---
 title: 关于生活
 author: Harry Chen
+key: about-life
 layout: article
 
 categories:

@@ -1,6 +1,7 @@
 ---
 title: 写给自己的话
 author: Harry Chen
+key: words-wirtten-to-me
 layout: article
 
 categories:

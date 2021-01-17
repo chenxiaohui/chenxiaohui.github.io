@@ -1,6 +1,7 @@
 ---
 title: 社会责任
 author: Harry Chen
+key: social_responsibility
 layout: article
 
 categories:
