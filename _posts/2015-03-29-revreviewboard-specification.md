@@ -73,7 +73,7 @@ categories: "其他"
 [2]: http://cxh.me/2013/10/15/svn-vim-integration/ "Svn Vim 整合方案"
 [3]: http://cxh.me/2013/10/11/post-review-conflict-under-git-svn/ "Post-review在svn和git共同存在下的冲突问题"
 [4]: http://cxh.me/2014/06/21/ppost-review-plugin/ "Post-review插件"
-###Bibliography:
+#### Bibliography:
 
   \[1] Reviewboard的安装, <http://cxh.me/2015/03/28/review-board-setup/>
 

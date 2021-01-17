@@ -153,7 +153,7 @@ categories: "vim"
 [2]: http://www.vim.org/scripts/script.php?script_id=273 "taglist.vim : Source code browser (supports C/C++, java, perl, python, tcl, sql, php, etc) "
 [3]: https://github.com/chenxiaohui/vim_cscope "vim_cscope - a vim plugin to configure vim_cscope"
 
-###Bibliography:
+#### Bibliography:
 
   \[1] Tagbar : Display tags of the current file ordered by scope, <http://www.vim.org/scripts/script.php?script_id=3465>
 

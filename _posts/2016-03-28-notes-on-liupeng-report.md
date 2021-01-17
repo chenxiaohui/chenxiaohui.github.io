@@ -34,6 +34,6 @@ categories: "其他"
 
 [1]: https://www.zhihu.com/question/19804990 "怎样向非专业人士专业地解释「纳什均衡」？"
 
-###Bibliography:
+#### Bibliography:
 
   \[1] 怎样向非专业人士专业地解释「纳什均衡」？, <https://www.zhihu.com/question/19804990>

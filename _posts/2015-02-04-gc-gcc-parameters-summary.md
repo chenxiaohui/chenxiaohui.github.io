@@ -45,6 +45,6 @@ categories: "C++"
 
 [1]: http://robbinfan.com/blog/9/gcc-linker-basic-usage   "Linux平台gcc和动态共享库的基础知识"
 [2]: http://www.cppblog.com/deane/articles/165216.html "Linux下Gcc生成和使用静态库和动态库详解（转）"
-###Bibliography:
+#### Bibliography:
 
   \[1] Linux平台gcc和动态共享库的基础知识, <http://robbinfan.com/blog/9/gcc-linker-basic-usage>

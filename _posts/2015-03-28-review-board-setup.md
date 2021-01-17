@@ -71,7 +71,7 @@ categories: "Python"
 [9]: https://groups.google.com/forum/#!msg/reviewboard/13BAerbTT7g/84uAp6VZ6fEJ "Error uploading new diff: fatal: Not a git repository: 'None'"
 [10]: https://www.reviewboard.org/docs/manual/2.0/admin/configuration/repositories/ "Repositories"
 
-###Bibliography:
+#### Bibliography:
 
   \[1] Review Board, <https://www.reviewboard.org>
 

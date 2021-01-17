@@ -20,6 +20,6 @@ categories: "Linux"
   	Defaults    env_keep =  "COLORS DISPLAY HOSTNAME HISTSIZE INPUTRC KDEDIR LS_COLORS JAVA_HOME PATH"
 
 [1]: http://blog.csdn.net/trochiluses/article/details/13767669   " bash 深入理解：交互式shell和非交互式shell、登录shell和非登录shell的区别"
-###Bibliography:
+#### Bibliography:
 
   \[1]  bash 深入理解：交互式shell和非交互式shell、登录shell和非登录shell的区别, <http://blog.csdn.net/trochiluses/article/details/13767669>
