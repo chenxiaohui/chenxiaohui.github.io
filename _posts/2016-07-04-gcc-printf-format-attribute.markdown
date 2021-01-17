@@ -8,7 +8,6 @@ categories: "C++"
 aside:
   toc: true
 ---
-# header
   之前很好奇为什么printf参数类型跟格式化字符串不匹配的时候为啥有时候可以报错，有时候不能报错。printf的时候如果不匹配经常会看到这种错误：
 
   	 format ‘%s’ expects type ‘char *’, but argument 12 has type ‘struct S3ListHead * const’
