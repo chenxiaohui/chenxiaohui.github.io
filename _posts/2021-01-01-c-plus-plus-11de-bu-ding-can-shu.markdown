@@ -11,7 +11,7 @@ categories: "C++"
 
   之前C++ 或者C语言里面经常会看到这种写法：
 
-```C++
+    ```C++
 	#define log(...) \
 	    printf(__VA_ARGS__);
 
@@ -45,5 +45,5 @@ categories: "C++"
 	    func("%d = %d", 1, 2);
 	    return 0;
 	}
-```
+    ```
 TODO
