@@ -1,5 +1,5 @@
 ---
-title: Dumbo: Faster Asynchronous BFT Protocols 翻译
+title: Dumbo Faster Asynchronous BFT Protocols 翻译
 layout: article
 key: dumbo_faster_asynchronous_BFT_protocols_translate
 date: 2021-02-09 01:17
