@@ -15,4 +15,5 @@ date: 2021-02-10 00:16
 
 有个相关的电影可以看一下： 《人类之子》（英语：Children of Men，香港译《末代浩劫》
 
-
+顺便发一个B站的视频，讨论日本的低欲望社会
+<iframe src="//player.bilibili.com/player.html?aid=331283615&bvid=BV1cA411p7L4&cid=285700598&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
