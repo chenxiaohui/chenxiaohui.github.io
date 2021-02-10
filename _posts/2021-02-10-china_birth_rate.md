@@ -14,6 +14,8 @@ date: 2021-02-10 00:16
 如果全球出生率持续下降可能会最终走向社会化抚养，随着生产力的提升，社会分工已经渗透到各个方面，最终可能会影响到生理层面，最终导致家庭解体，个人生活被社会分工所解构，从而把一个人的存在价值更加单一化。这不好说是物种发展的必然还是走向灭亡的前兆。
 
 有个相关的电影可以看一下： 《人类之子》（英语：Children of Men，香港译《末代浩劫》
+<iframe src="//player.bilibili.com/player.html?aid=629027186&bvid=BV1Ct4y1B7yy&cid=295192838&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+
 
 顺便发一个B站的视频，讨论日本的低欲望社会
 <iframe src="//player.bilibili.com/player.html?aid=331283615&bvid=BV1cA411p7L4&cid=285700598&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
