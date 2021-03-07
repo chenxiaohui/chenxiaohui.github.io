@@ -21,13 +21,11 @@ git submodule add https://github.com/voldikss/vim-floaterm
 后来发现其实可以控制floaterm不使用默认的float方式，也就是改split或者vsplit，顺便重定义快捷键。
 
 ```vimscript
-"{{{ floaterm
-let g:floaterm_wintype = "vsplit"
-let g:floaterm_keymap_toggle = '<leader>s'
-let g:floaterm_keymap_new = '<leader>sn'
-let g:floaterm_keymap_prev = '<leader>sl'
-let g:floaterm_keymap_next = '<leader>sh'
-"}}}
+    let g:floaterm_wintype = "vsplit"
+    let g:floaterm_keymap_toggle = '<leader>s'
+    let g:floaterm_keymap_new = '<leader>sn'
+    let g:floaterm_keymap_prev = '<leader>sl'
+    let g:floaterm_keymap_next = '<leader>sh'
 ```
 
 但是发现vim8.0的版本下，这个快捷键定义直接会报错，查了一下function load，发现FloatermNew什么的在这个版本直接不支持。看来只能手动编译8.2了。
