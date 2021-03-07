@@ -14,7 +14,7 @@ This is a fork of Mongoose, branched at the last commit of Mongoose that was rel
 
 所以用旧版本还是可以的。
 
-之所以注意到是因为在yugabyte-db里面偶然看到。
+之所以注意到是因为在yugabyte-db里面偶然看到。关注下的意义主要是c++毕竟没有go那么方便的pprof，用来做个统计信息debug还是比较方便的。
 
 核心就是一个文件，如果不需要用lua写handler的话，直接编译到lib或者加到source里就行。需要的lib主要是ssl\crypto
 
