@@ -5,26 +5,8 @@ key: inline_static_since_c++17
 date: 2021-03-21 19:49
 ---
 
-非静态非const变量当然是通过初始化列表，C++primer会告诉你初始化列表能减少一次初始化，所以不要在构造函数里初始化。
 
-比如
-
-```cpp
-#pragma once
-class File {
-  private:
-    const std::string filename;
-  public:
-    File(): filename("test") {
-    }
-    void print() const {
-      std::cout << filename << std::endl;
-    }
-};
-```
-
-
-const变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。
+c++非静态变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。
 
 比如
 
@@ -70,7 +52,6 @@ char File::filename[] = "file.txt";
 class File {
   private:
   static const int file_size = 1025;
-  //static constexpr char filename[] = "std::string";//not supported
   public:
     void print() const {
       std::cout << filename << std::endl;
@@ -78,7 +59,7 @@ class File {
 };
 ```
 
-所以c++17继续从编译器层面支持了多个编译单元对static const的展开，也就是inline变量，是的，不只是函数，变量本身也可以inline了。
+所以c++17继续从编译器层面支持了多个编译单元对static的展开，也就是inline变量，是的，不只是函数，变量本身也可以inline了。
 
 比如：
 
@@ -111,6 +92,19 @@ class File {
 };
 
 inline char File::filename[] = "file.txt";
+```
+
+或者
+
+```cpp
+class File {
+  private:
+    inline static char filename[] = "file.txt";
+  public:
+    void print() const {
+      std::cout << filename << std::endl;
+    }
+};
 
 ```
 
