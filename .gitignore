@@ -21,7 +21,13 @@ node_modules/
 yarn.lock
 package-lock.json
 Gemfile.lock
+bun.lock
+bun.lockb
 
 _site/
 .jekyll-metadata
 .jekyll-cache/
+
+# Claude Code
+.claude/
+.claude_history
