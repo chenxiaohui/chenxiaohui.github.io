@@ -1,8 +1,11 @@
 ---
-title: 大模型时代的一些感想
 layout: article
+title: "大模型时代的一些感想"
 key: reflections_on_the_age_of_large_models
 date: 2025-12-21 10:00
+published: true
+categories: "技术"
+comments: true
 ---
 
 这个博客好久没更新了，时间过去了快有四五年了吧。中间经历了疫情，疫情过后感觉什么都变了，整个世界好像进入了一个完全不同的时代。
