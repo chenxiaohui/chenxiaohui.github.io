@@ -32,13 +32,11 @@ comments: true
 
 ## 2025 总结
 
-今年最大的事就是换工作、换城市了。虽然还是做技术，但公司、团队、业务全变了。
+今年最大的事就是换了方向和团队。虽然还在同一家公司，但做的事和合作的人都不一样了。
 
-刚开始那几个月真是手忙脚乱。新技术要学，新业务要熟悉，团队文化也得适应。每天都在学新东西，每天都有新问题。说不焦虑是假的，总担心自己搞不定。不过另一方面也挺兴奋的，终于跳出舒适区了。
+刚开始那几个月真是手忙脚乱。新方向要摸索，新业务要熟悉，团队文化也不太一样。每天都在学新东西，每天都有新问题。说不焦虑是假的，总担心自己搞不定。不过另一方面也挺兴奋的，终于跳出舒适区了。
 
-换城市也挺折腾的。通勤路线、买菜的地方、看病去哪，全得重新摸索。有时候还是会想念以前的便利，不过新地方也有新地方的好。
-
-工作还是一样忙，压力也没少，但感觉不太一样了。以前是熟悉的环境，知道会发生什么，怎么解决。现在虽然每天都是新问题，但慢慢摸出了套路。这种感觉挺久违的，好像又在成长了。
+工作还是一样忙，压力也没少，但感觉不太一样了。以前是熟悉的方向，知道会发生什么，怎么解决。现在虽然每天都是新问题，但慢慢摸出了套路。这种感觉挺久违的，好像又在成长了。
 
 这一年挺快的，也挺充实的。
 
@@ -72,7 +70,7 @@ It's better now with AI help though. At least I don't have to wrestle with all t
 
 ### 2025
 
-Biggest thing this year was changing jobs and moving to a new city. Still doing tech work but everything else is different. The first few months were rough - new tech stack, new business, new team. Every day was something new. Stressful, but also kind of exciting.
+Biggest thing this year was switching to a new direction and team. Still at the same company, but different work and different people. The first few months were rough - new direction to figure out, new business to learn, different team culture. Every day was something new. Stressful, but also kind of exciting.
 
 Work's still busy and stressful, but it feels different. Like I'm growing again.
 
