@@ -3,6 +3,9 @@ title: 双溪布洛湿地(Sungei Buloh Wetland Reserve)
 layout: article
 key: sungei_buloh
 date: 2021-03-01 17:01
+published: true
+comments: true
+categories: "生活"
 ---
 周末抽时间去了一下，算是一个比较小众的原始保留区，非常靠北，跟马来西亚隔海相望。
 

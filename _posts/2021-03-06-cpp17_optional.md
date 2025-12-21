@@ -3,6 +3,9 @@ title: c++17的optional
 layout: article
 key: cpp17_optional
 date: 2021-03-06 13:36
+published: true
+comments: true
+categories: "技术"
 ---
 
 最近代码里看到一个optional的头文件，正常用10.2的g++加上c++17无法编译，看了下应该没没有进c++17的标准，比如参考一个例子：

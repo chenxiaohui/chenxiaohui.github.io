@@ -3,6 +3,9 @@ title: 关于两会的提案
 layout: article
 key: proposal_of_two_meeting
 date: 2021-03-13 14:21
+published: true
+comments: true
+categories: "生活"
 ---
 
 最近两会提案的新闻又多起来了，原则上民众平时是没有什么参政议政机会，到每年两会的时候算是有一个集中的意见出口，而媒体也倾向于这时候报道一些有话题性的提案，博一把眼球的同时，也能合理合法的在政策问题上赚点点击率。

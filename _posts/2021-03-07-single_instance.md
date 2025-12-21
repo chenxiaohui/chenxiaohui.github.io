@@ -3,6 +3,9 @@ title: 单例模式讨论
 layout: article
 key: single_instance
 date: 2021-03-07 16:09
+published: true
+comments: true
+categories: "技术"
 ---
 
 其实就是记录下。。不算自己写的。

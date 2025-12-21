@@ -3,6 +3,9 @@ title: 安好与晴天
 layout: article
 key: peaceful_is_a_gift
 date: 2021-02-09 00:49
+published: true
+categories: "生活"
+comments: true
 ---
 
 

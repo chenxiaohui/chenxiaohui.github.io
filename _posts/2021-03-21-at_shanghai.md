@@ -3,6 +3,9 @@ title: 在上海
 layout: article
 key: at_shanghai
 date: 2021-03-21 22:22
+published: true
+comments: true
+categories: "生活"
 ---
 
 

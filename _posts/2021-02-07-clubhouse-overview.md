@@ -3,6 +3,9 @@ title: clubhouse体验
 layout: article
 key: clubhouse-overview
 date: 2021-02-07 01:02
+published: true
+categories: "科技"
+comments: true
 ---
 
 最近试用了一下clubhouse，算是凑个热闹。

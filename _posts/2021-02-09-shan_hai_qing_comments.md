@@ -3,6 +3,9 @@ title: 《山海情》观感
 layout: article
 key: shan_hai_qing_comments
 date: 2021-02-09 00:45
+published: true
+categories: "生活"
+comments: true
 ---
 
 

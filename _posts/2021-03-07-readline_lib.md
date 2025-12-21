@@ -3,6 +3,9 @@ title: 一个比较有意思的输入库
 layout: article
 key: readline_lib
 date: 2021-03-07 14:59
+published: true
+comments: true
+categories: "技术"
 ---
 
 其实很多项目里面最后都依赖了readline，但是之前没注意过。readline主要提供了命令行输入的快捷键，历史查询什么的。一个例子：

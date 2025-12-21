@@ -3,6 +3,9 @@ title: c++禁止拷贝
 layout: article
 key: cpp_non_copy
 date: 2021-02-18 11:25
+published: true
+comments: true
+categories: "技术"
 ---
 
 最近突然想一个事情，如果只是控制了赋值预算和拷贝构造，在这种情况下移动构造是否还能默认生成呢？

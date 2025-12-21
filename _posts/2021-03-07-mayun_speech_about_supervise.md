@@ -3,6 +3,9 @@ title: 关于马云在外滩的演讲
 layout: article
 key: mayun_speech_about_supervise
 date: 2021-03-07 16:14
+published: true
+comments: true
+categories: "生活"
 ---
 
 事情大家都知道，只是之前没注意马云在外滩关于监管的演讲到底讲了什么。原文在这里。

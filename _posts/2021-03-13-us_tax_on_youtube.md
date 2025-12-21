@@ -3,6 +3,9 @@ title: 美国对Youtuber收税的影响
 layout: article
 key: us_tax_on_youtube
 date: 2021-03-13 20:14
+published: true
+comments: true
+categories: "生活"
 ---
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/TbYpKlabY3k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

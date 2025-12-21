@@ -3,6 +3,9 @@ title: vim-floaterm配置
 layout: article
 key: vim_floaterm
 date: 2021-03-07 15:02
+published: true
+comments: true
+categories: "技术"
 ---
 
 这个插件主要是提供vim内部调用shell环境的，安装是比较容易，但是发现会有很多不兼容的地方。

@@ -3,6 +3,9 @@ title: c++的线程传参
 layout: article
 key: cplusplus_thread_ref
 date: 2021-02-14 14:21
+published: true
+comments: true
+categories: "技术"
 ---
 
 平时我们经常thread传递参数的时候看到std::ref，之前一直简单理解这个是给智能指针增加了一个引用，后来想不对啊，智能指针拷贝本身就是增加引用。

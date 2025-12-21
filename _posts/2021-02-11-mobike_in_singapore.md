@@ -4,6 +4,9 @@ title:  新加坡的共享单车
 layout: article
 key: mobike_in_singapore
 date: 2021-02-11 01:08
+published: true
+comments: true
+categories: "生活"
 ---
 
 摩拜单车在新加坡是有一个出海品牌的，叫SGBike，后来独立运营了，跟摩拜单车实际上没什么关系了，但是车的颜色和款式还是几乎一样。如果有什么区别的话，就是管理更规范更严格一些，比如停车的位置是有严格规定的，只有在停车点才能还车，需要扫描地上的二维码，否则会被罚款10SGD。这就避免了很多乱停乱放的行为。
