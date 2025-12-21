@@ -20,7 +20,7 @@ text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate"
 highlight_theme: tomorrow # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : http://chenxiaohui.me # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl :  # does not include hostname
-title   : CHENXIAOHUi.ME
+title   : CHENXIAOHUI.ME
 description: > # this means to ignore newlines until "Language & timezone"
   北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
 
