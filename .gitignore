@@ -31,3 +31,6 @@ _site/
 # Claude Code
 .claude/
 .claude_history
+
+# Environment variables (contains sensitive keys)
+.env
