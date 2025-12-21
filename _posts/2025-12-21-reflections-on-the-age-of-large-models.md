@@ -2,7 +2,7 @@
 layout: article
 title: "大模型时代的一些感想"
 key: reflections_on_the_age_of_large_models
-date: 2025-12-21 10:00
+date: 2025-12-21 06:00
 published: true
 categories: "技术"
 comments: true
