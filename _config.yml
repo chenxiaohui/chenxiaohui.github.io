@@ -222,4 +222,4 @@ plugins:
   - jekyll-feed
   - jekyll-paginate
   - jekyll-sitemap
-  - jemoji
+  # - jemoji  # Temporarily disabled due to nokogiri compatibility issue
