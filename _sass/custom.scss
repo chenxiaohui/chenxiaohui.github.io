@@ -1,3 +1,23 @@
 /* start custom scss snippet */
 
+// 统一所有背景色为柔和的深灰色
+body,
+html,
+.root,
+.layout,
+.layout--home,
+.layout--page,
+.layout--article,
+.page,
+.page__content,
+.article__content,
+.main {
+  background-color: #1e1e1e !important;
+}
+
+// 确保页脚也是同样的颜色
+.footer {
+  background-color: #1e1e1e !important;
+}
+
 /* end custom scss snippet */
