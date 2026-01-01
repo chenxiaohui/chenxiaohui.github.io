@@ -6,6 +6,7 @@ date: 2025-12-21 06:00
 published: true
 categories: "生活"
 comments: true
+cover: https://harrychen.oss-cn-beijing.aliyuncs.com/2021-02-06-173104.jpg
 ---
 
 好久没写东西了，想记录一下最近的变化。
