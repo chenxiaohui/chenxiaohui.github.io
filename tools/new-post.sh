@@ -41,6 +41,7 @@ date: $DATETIME
 published: true
 categories: "技术"
 comments: true
+cover:
 ---
 
 这里写文章摘要...

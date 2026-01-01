@@ -6,6 +6,7 @@ date: 2021-03-13 14:21
 published: true
 comments: true
 categories: "生活"
+cover: https://harrychen.oss-cn-beijing.aliyuncs.com/2021-03-13-122238.jpg
 ---
 
 最近在上海，远郊区，看整体交通状况感觉比北京好多了。上海市里估计也是一样的堵，但是北京G6到了回龙观也就还那样，属于比较奇葩的了。
