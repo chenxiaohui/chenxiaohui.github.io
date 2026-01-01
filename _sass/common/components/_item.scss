@@ -1,12 +1,12 @@
 .item {
   @include flexbox();
+  @include flex-direction(row-reverse);
   @include media-breakpoint-down(md) {
     @include flex-direction(column);
   }
 }
 
 .item__image {
-  order: 2;
   margin-left: map-get($spacers, 3);
   flex-shrink: 0;
   & + .item__content {
@@ -18,7 +18,6 @@
     }
   }
   @include media-breakpoint-down(md) {
-    order: 0;
     margin-left: 0;
   }
 }
@@ -26,7 +25,6 @@
 .item__content {
   @include flex(1);
   min-width: 0;
-  order: 1;
 }
 
 a > .item__header, a.item__header, .item__header > a {
