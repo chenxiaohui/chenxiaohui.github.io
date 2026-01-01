@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2014-12-25-thrift-and-slf4j.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Thrift依赖和Slf4j"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 25, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T18:24:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T18:24:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>用Thrift做一个分布式系统的RPC，发现跑起来的时候总提示<code class="language-plaintext highlighter-rouge">Failed to load class org.slf4j.impl.StaticLoggerBinder</code>，看了看maven依赖感觉没啥问题啊，slf4j-api-xx.jar好好的在呢。分析了maven的依赖，eclipse的问题，最后发现都没问题啊。最后发现还是不了解slf4j，以为跟log4j一样的，其实作为一个proxy，slf4j-api只是一套接口，实现的依赖没有添加进来。</p>
@@ -326,7 +326,7 @@ SLF4J: See http://www.slf4j.org/codes.html#version_mismatch for further details.
 <p>[1] SLF4J warning or error messages and their meanings, <a href="http://www.slf4j.org/codes.html#StaticLoggerBinder">http://www.slf4j.org/codes.html#StaticLoggerBinder</a></p>
 
 <p>[2]  slf4j-api、slf4j-log4j12以及log4j之间什么关系？, <a href="http://blog.csdn.net/robert_mm/article/details/8197108">http://blog.csdn.net/robert_mm/article/details/8197108</a></p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2014-12-25T18:24:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2014-12-25T18:24:00-08:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

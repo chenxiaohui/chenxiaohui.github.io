@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2016-03-25-netlib-bug-analysis.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="记录一个网络库设计的bug"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 25, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-25T00:14:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-25T00:14:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>今天遇到一个设计上没考虑好的问题，记录一下。</p>
@@ -296,7 +296,7 @@
 <p>考虑如果一个会话编码的多个buffer（或者一个buffer）被部分发送完毕（write返回大小为准），这时候会话超时，这个会话所属的所有编码过的buffer都被干掉，但是连接并没有被destroy，之后的报文继续发送的话，客户端实际上收到了不完整的报文，相当于之后的TCP流都错位了。这种情况下，destroy连接是明显更安全的做法。</p>
 
 <p>所以还是要考虑周全啊。</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2016-03-25T00:14:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2016-03-25T00:14:00-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

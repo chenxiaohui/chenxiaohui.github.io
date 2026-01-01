@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2014-10-29-cpp-virtual-template-function.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="虚函数模板和模板类中的虚函数"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。</p>
@@ -411,7 +411,7 @@ class TransSessionMgr: public ISessionCtxFactory
     }
 };
 </code></pre></div></div>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2014-10-29T21:05:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2014-10-29T21:05:00-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

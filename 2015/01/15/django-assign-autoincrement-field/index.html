@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2015-01-15-django-assign-autoincrement-field.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="处理Django的自增字段"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T22:00:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T22:00:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>有时候需要手动构造一个Django model对象并保存，遇到如下的情况：</p>
@@ -311,7 +311,7 @@ history = AuthHistory("cxh", tid, datetime.datetime.now(), item['url'], item['ti
 <p>但是未免很麻烦。传值肯定不合理，毕竟id是数据库记录的。试了一下，给id域直接传NULL就行了。</p>
 
   	history = AuthHistory(None, “cxh”, tid, datetime.datetime.now(), item[‘url’], item[‘title’], operation)
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2015-01-15T22:00:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2015-01-15T22:00:00-08:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

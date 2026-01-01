@@ -292,7 +292,7 @@
 首先，测试目录和代码目录是分开的，我们在测试目录运行的时候会生成测试文件的代码覆盖率统计，但是实际上被测试的文件的代码覆盖率是在源码目录生成的。这是需要注意的一点，之前我考虑过合并两处的代码覆盖率统计文件，后来发现没有必要，毕竟你关注的是源码目录的统计文件。这样我们通过如下脚本实现代码覆盖率的生成和拉取。
 
 #...</div><p><a href="/2013/10/16/user-script-to-get-coverage/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T20:56:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T20:56:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/16/test-coverage-percentage-statistics/"><h2 itemprop="headline" class="item__header">测试覆盖率统计</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">###什么是代码覆盖率(code coverage)
@@ -319,7 +319,7 @@
 
 
 gcc这里需要做的工作是编译的时候打...</div><p><a href="/2013/10/16/test-coverage-percentage-statistics/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T10:15:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T10:15:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/15/git-reset-revert/"><h2 itemprop="headline" class="item__header">git reset和git revert</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">git reset 作用
@@ -339,7 +339,7 @@ git reset 主要完成到版本库某个特定版本的回退，分为如下三�
 git revert 作用
 
 git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特...</div><p><a href="/2013/10/15/git-reset-revert/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 15, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-15T14:50:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-15T14:50:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/15/svn-vim-integration/"><h2 itemprop="headline" class="item__header">svn vim 整合方案</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">这也是实际工作中遇到的问题，所以还是分类到了oceabase分类里面。
@@ -351,7 +351,7 @@ alias sta='st|grep ^A '
 alias stm='st|grep ^M '
 alias std='st|grep ^D '
 alias po='echo "#!/bin/sh" &gt;post-review...</div><p><a href="/2013/10/15/svn-vim-integration/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 15, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-15T11:53:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-15T11:53:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/12/svn-commit-failed/"><h2 itemprop="headline" class="item__header">关于svn commit fail的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？
@@ -368,7 +368,7 @@ alias po='echo "#!/bin/sh" &gt;post-review...</div><p><a href="/2013/10/15/svn-v
 PS: commit 完后, 还是要手动 rm svn-commit.tmp.
 
 另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表...</div><p><a href="/2013/10/12/svn-commit-failed/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T21:39:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T21:39:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/12/several-svn-problems/"><h2 itemprop="headline" class="item__header">几个svn的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">误用rm删除了未提交文件
@@ -391,7 +391,7 @@ svn revert ob_alive_table_tablet_iter.h
 版本控制中移除文件
 
 经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的...</div><p><a href="/2013/10/12/several-svn-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T19:27:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T19:27:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/12/a-strange-error/"><h2 itemprop="headline" class="item__header">记几个诡异的bug</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">ERROR: mutli target patterns
@@ -412,7 +412,7 @@ ob集群无法启动
 rs的日志如下：
 
 [2013-10-12 14:41:56.484203] WARN  create_first_table (ob_ro...</div><p><a href="/2013/10/12/a-strange-error/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T15:57:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T15:57:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/11/post-review-conflict-under-git-svn/"><h2 itemprop="headline" class="item__header">post-review在svn和git共同存在下的冲突问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如
@@ -430,7 +430,7 @@ rs的日志如下：
 比如我们建立了一个新的版本库（repository）
 
   	mkdir repository.git &a...</div><p><a href="/2013/10/11/post-review-conflict-under-git-svn/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 11, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-11T21:24:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-11T21:24:00-07:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

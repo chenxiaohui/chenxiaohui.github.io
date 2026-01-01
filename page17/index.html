@@ -289,7 +289,7 @@
     &lt;param name="movie" value="http://xxx/xxx.swf" /&gt;
     &lt;param name="allowScriptAccess" value="always" /&gt;
     &lt;...</div><p><a href="/2014/12/12/flash-cookie-cross-domain/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 12, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-12T12:35:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-12T12:35:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/09/notes-on-kafka-consumer-api/"><h2 itemprop="headline" class="item__header">kafka Consumer API几个问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">一直不理解这里的topicCountMap是什么意思。kafka的High Level Consumer API设计实在是比较费解。源码又比较费解。
@@ -298,7 +298,7 @@ Map&lt;String, Integer&gt; topicCountMap = new HashMap&lt;String, Integer&gt;();
 topicCountMap.put(topic, new Integer(1));
 Map&lt;String, List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt;&gt; consumerMap = consumer.createMessageStreams(topicCountMap);
 List&lt;KafkaStream&lt;...</div><p><a href="/2014/12/09/notes-on-kafka-consumer-api/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 09, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-09T10:12:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-09T10:12:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/08/eclipse-java-override-warning/"><h2 itemprop="headline" class="item__header">关于eclipse里面override上的warning</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：
@@ -312,7 +312,7 @@ List&lt;KafkaStream&lt;...</div><p><a href="/2014/12/09/notes-on-kafka-consumer-
 后来发现当前项目JRE的版本是1.5，~~貌似1.5的JRE有个bug~。切到1.6以上版本就可以了。原因如下：
 
 Eclipse is defaulting to Java 1.5 and you have classes implementing interface methods (which in Java 1.6 can be annotated with @Override, but in Java 1.5 can only be applied to methods overriding a supercla...</div><p><a href="/2014/12/08/eclipse-java-override-warning/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 08, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-08T16:53:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-08T16:53:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/01/redis-copy-usage/"><h2 itemprop="headline" class="item__header">redis-copy的使用</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们需要迁移redis的数据，从本质上看，这基本上是个rehash的过程。我们这里使用redis-copy实现。
@@ -333,7 +333,7 @@ Eclipse is defaulting to Java 1.5 and you have classes implementing interface me
 
   	redis-server redis.src.conf //6379 port
   	redis-server redis.dst.conf //638...</div><p><a href="/2014/12/01/redis-copy-usage/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 01, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-01T17:01:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-01T17:01:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/11/25/flash-shared-cookie/"><h2 itemprop="headline" class="item__header">跨浏览器cookie</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候为了标识一个用户，我们需要跨浏览器的cookie，这样用户在一个浏览器的行为可以被另一个浏览器读取。当然这种行为也备受争议，对于保护用户隐私来讲，这简直是后门。所以cookie里面一定不要存任何重要数据。
@@ -356,7 +356,7 @@ Eclipse is defaulting to Java 1.5 and you have classes implementing interface me
 
 
 关于第二种有一个解释：一般装了silverlight的人都装了flas...</div><p><a href="/2014/11/25/flash-shared-cookie/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 25, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-25T16:57:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-25T16:57:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/11/19/error-with-node-zk-browser/"><h2 itemprop="headline" class="item__header">node_zk_browser安装时的一个问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">zookeeper基本是基于API和console进行znode的操作，并没有一个比较方便的操作界面，taobao 伯岩大神写过一个工具node_zk_browser，可以比较方便的查询zookeeper信息。地址在
@@ -374,7 +374,7 @@ Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeep
 
 
 这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也...</div><p><a href="/2014/11/19/error-with-node-zk-browser/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-19T18:56:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-19T18:56:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/11/13/du-to-display-one-level/"><h2 itemprop="headline" class="item__header">du显示只显示一层子目录/文件的大小</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">经常需要看当前目录下的子目录大小，比如开发机被人占满的情况，du -lh显示的是递归的所有文件大小，du -s又只统计了所有文件/文件夹合起来的大小。正常情况下需要执行：
@@ -386,13 +386,13 @@ Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeep
   	du -sh *
 
 果然是学无止境啊</div><p><a href="/2014/11/13/du-to-display-one-level/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 13, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-13T17:55:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-13T17:55:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/10/29/cpp-virtual-template-function/"><h2 itemprop="headline" class="item__header">虚函数模板和模板类中的虚函数</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。
 
 例子如下：</div><p><a href="/2014/10/29/cpp-virtual-template-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00-07:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

@@ -296,7 +296,7 @@ rpm安装logrotate高版本的包提示缺少fillup和其他的依赖，同时gl
 提示缺少libpopt头文件，下载了libpopt 1.5的源码安装，提示libtool版本不对。我擦嘞。
 
 后来突...</div><p><a href="/2016/05/18/loglogrotate-version-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 18, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-18T16:02:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-18T16:02:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/05/15/lost-in-time/"><h2 itemprop="headline" class="item__header">迷失在时间里</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">好久没写写自己心里的感受了。大概自从毕业工作之后，每天忙很多的事情，就不再有心情去体会一些事情。习惯了忙碌于工作，在这个城市的街头、地铁和公交站穿行，每天想的是五环的房价、今天有没有雾霾和路上堵不堵，只有夜深人静的时候才会想起以前的日子。
@@ -306,7 +306,7 @@ rpm安装logrotate高版本的包提示缺少fillup和其他的依赖，同时gl
 有时候觉得自己迷失在时间里了。每天早晨醒来，想的都是匆匆逝去的时间和忙不完的事情。停下脚步，听见风穿过的声音，才觉得时间的洪流里面，也有这些许的温存，有难得的避风港，让灵魂停下来歇息一下。哎，我曾经是多么感性的一个人啊…
 
 物是人非。尽量不...</div><p><a href="/2016/05/15/lost-in-time/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 15, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T23:34:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T23:34:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/05/15/dirname-and-basename-cautions/"><h2 itemprop="headline" class="item__header">dirname和basename的一些细节</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">作为获取文件名和文件路径的函数，dirname和basename的签名是：
@@ -327,7 +327,7 @@ char *basename(char *path);
 
 #include &lt;stdio.h&gt;
 #include &lt;lib...</div><p><a href="/2016/05/15/dirname-and-basename-cautions/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 15, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T14:42:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T14:42:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/04/03/summarize-isolation-lock/"><h2 itemprop="headline" class="item__header">数据库锁和隔离级别的总结</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在琢磨MVCC和悲观乐观锁的问题，感觉有些以前学习的点没有串联起来，主要是隔离级别和锁相关的，这里总结思考一下：
@@ -352,7 +352,7 @@ char *basename(char *path);
 
   	- RU：读加S锁，写加X锁，完成即可释放。
   	- RC：读加S锁，写加X锁，读锁完成可释放，写锁一直...</div><p><a href="/2016/04/03/summarize-isolation-lock/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 03, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-03T19:34:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-03T19:34:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/04/02/cgo-practice/"><h2 itemprop="headline" class="item__header">cgo实践</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">工作里遇到一个问题，想把mysql的crc直接封装一下让go来调用，因为查表的crc计算性能实在是不快，对我们这种文件系统的大报文计算来看，crc容易变成瓶颈。大概性能对比如下：
@@ -372,7 +372,7 @@ crc rate : 8039.278809m/s
 c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼容的问题。出于兼容和性能考虑，用cgo封装一下。
 
 首先在...</div><p><a href="/2016/04/02/cgo-practice/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 02, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-02T16:56:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-02T16:56:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/03/28/thinkthinking-about-paxos-and-raft/"><h2 itemprop="headline" class="item__header">关于Paxos和Raft的一些思考</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在总结一些协议这么设计的原因，比较杂，纯做记录：
@@ -390,7 +390,7 @@ c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼�
     raft读一致性和选主timeout
 
     raft协议本身由于主只是续约了follower的l...</div><p><a href="/2016/03/28/thinkthinking-about-paxos-and-raft/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:33:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:33:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/03/28/notes-on-liupeng-report/"><h2 itemprop="headline" class="item__header">刘鹏《移动时代的营销与变现》笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">上次见刘鹏老师可能还是搜狐实习的时候，后来刘鹏走了，峰扬走了，整个团队改做推荐系统，最后又回到效果广告，算是绕了一个圈吧。买了本计算广告，更多的是给自己一个念想，念念不忘必有回响么。
@@ -402,7 +402,7 @@ c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼�
 
 
   	保量（guarantee delivery）广告相对于品牌广告（CPT），主要解决了流量浪费的问题，CPM的售卖方式相对增加了广告流量的利用率（比如按照性别的售卖，大致可以增加20-25%的收益）。然而保量广告相对来讲对流量的利用并不极致，大部分gd系统都面临超卖或者保守售卖的问题，可能会导致补量或者浪费，在线流量分配和优化也是个比较复杂的问题。所以才有了竞价广告，根据Nash均衡，广告价格是出价方博弈的结果...</div><p><a href="/2016/03/28/notes-on-liupeng-report/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:13:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:13:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/03/25/netlib-bug-analysis/"><h2 itemprop="headline" class="item__header">记录一个网络库设计的bug</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个设计上没考虑好的问题，记录一下。
@@ -410,7 +410,7 @@ c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼�
 之前Libeasy的逻辑如果一个连接上有超时的报文的话，整个连接会destroy掉。考虑网络拥塞的情况，如果AB两个报文同时在等待发送，A报文先进入发送队列（链表，非TCP发送buffer），B后进入，而A超时时间长，B立即超时，那么清理掉B的待发送报文的时候，如果destroy掉连接，那么本来可以发送出去的A报文就被强制失败了。
 
 考虑这种情况做了一点修改，让超时的报文被清理掉的时候不会destroy连接。这样编码的时候需要指定一个报文被编码出来的buffer是属于哪个会话（session）的，同时记录一下每个session对应的最后一个buffer位置。清理的时候可以从上述位置回溯到不属于当前session的buffer或者到头部为止...</div><p><a href="/2016/03/25/netlib-bug-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 25, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-25T00:14:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-25T00:14:00-07:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2015-01-23-java-reuse-bug.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="java中重用对象的bug"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-23T11:15:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-23T11:15:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>首先这不是java编译器的问题，就是写代码的时候大意了。</p>
@@ -304,7 +304,7 @@
 <p>当时觉得还挺好，复用了一个对象。实际明显有问题的，这个对象的生命周期不见得只在for循环内部，一旦引用被传递出去，就会有悬挂（java里是不是不这么叫）的问题。多个引用指向了一个对象，计算结果是不可预测的。</p>
 
 <p>主要问题是java里面默认都是传引用的，所以要时刻保持对gc机制的警惕。或者直接实现clone接口。</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2015-01-23T11:15:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2015-01-23T11:15:00-08:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

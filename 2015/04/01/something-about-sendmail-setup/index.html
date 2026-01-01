@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2015-04-01-something-about-sendmail-setup.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="关于sendmail邮件服务器的搭建"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-01T20:14:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-01T20:14:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>还是reviewboard的事情，我们需要一个自己的邮件服务器来发通知邮件。sendmail是一个比较好的选择，搭建的方式很简单，安装sendmail，修改配置文件，修改local_host_name就行。如果不需要登陆验证，这样也就直接能用了。现在的问题是reviewboard是必须登陆验证的。至少看报错上是这样。</p>
@@ -343,7 +343,7 @@ SMTPAuthenticationError: (535, '5.7.0 authentication failed')
 
 <p>跟到如下smtplib.py里面看验证方法，调整了顺序（我这支持AUTH LOGIN PLAIN，没支持PAM)，然后保证用户名密码正确就基本可以使用了。</p>
 
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2015-04-01T20:14:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2015-04-01T20:14:00-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

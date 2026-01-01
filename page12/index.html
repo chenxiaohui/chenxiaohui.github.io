@@ -292,7 +292,7 @@
   		Defaults    secure_path = /root/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
 
 OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 03, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-03T18:34:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-03T18:34:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/01/test-cloudsight/"><h2 itemprop="headline" class="item__header">测试下CloudSight的图像识别</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然看到这个链接，一个识别图像并标注的，还蛮有意思。代码直接用示例里面的就可以, 需要注意两个问题：
@@ -311,7 +311,7 @@ OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class=
 
 
 让我突然对这个tag算法很感兴趣。</div><p><a href="/2015/03/01/test-cloudsight/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T20:58:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T20:58:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/01/compile-ffmpeg-under-mac/"><h2 itemprop="headline" class="item__header">mac下ffmpeg的编译</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">基本步骤可以看这个，说两个问题：
@@ -327,7 +327,7 @@ OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class=
       首先这个地址http://217.20.164.161/~tipok/aacplus/libaacplus-2.0.2.tar.gz已经失效了，从网上下载的话，这个版本还是有问题，configure的时候会卡住，一些patch丢失了好像。建议直接fork github上的。
       这个branch也有问题，frontend链接的时候会提示ld: symbol(s) not found for architecture x86_64，直接从Makefile.am里面把frontend去掉算了。
 ...</div><p><a href="/2015/03/01/compile-ffmpeg-under-mac/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T11:08:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T11:08:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/27/django-to-apache/"><h2 itemprop="headline" class="item__header">django mod_wsgi配置的一些问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">安装apache不说了，用apache做django容器的时候（详见参考文献1)遇到如下几个问题，记录一下：
@@ -344,7 +344,7 @@ OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class=
 
     错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
      ./configure –prefix=/usr/local/  –enabl...</div><p><a href="/2015/02/27/django-to-apache/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 27, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-27T13:39:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-27T13:39:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/06/gtest-bug-on-mac/"><h2 itemprop="headline" class="item__header">gtest在mac上链接的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：
@@ -356,7 +356,7 @@ ar -rv libgtest.a gtest-all.o
 ar -rv libgtest_main.a gtest_main.o
 
 c++ -g -Wall -Wextra -pthread  -isystem $GTEST_DIR/include  -c -o R...</div><p><a href="/2015/02/06/gtest-bug-on-mac/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 06, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-06T20:39:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-06T20:39:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"><h2 itemprop="headline" class="item__header">区分下shell和makefile中的特殊字符</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：
@@ -370,7 +370,7 @@ $&lt;     -is the name of the first dependency.
   	$#    Stores the number of command-line arguments that were passed to the shell program.
 $?    Stores the exit value of the last command that was executed.
 $0    Sto...</div><p><a href="/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T14:51:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T14:51:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/04/gc-gcc-parameters-summary/"><h2 itemprop="headline" class="item__header">gcc命令行参数总结</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">总结一下混乱的GCC命令行参数，帮助写Makefile:
@@ -401,7 +401,7 @@ $0    Sto...</div><p><a href="/2015/02/04/distinguish-special-symbol-in-shell-an
 
          gcc -E hello.c -o hello.i
  gcc -S hel...</div><p><a href="/2015/02/04/gc-gcc-parameters-summary/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T11:36:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T11:36:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/02/python-config-inheritance/"><h2 itemprop="headline" class="item__header">Python Configuration Inheritance</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">While refactoring a project, I met with a situation that one configuration extends another configuration, like this:
@@ -411,7 +411,7 @@ ConfigB extends ConfigA + {"a":yy, c:"yy"}
 
 
 Code before refactor treats configA and configB separately. So after a few code iterations you will find configA has something same with configB. So I change...</div><p><a href="/2015/02/02/python-config-inheritance/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 02, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-02T11:54:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-02T11:54:00-08:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2013-09-27-depend-problem-in-oceanbase.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="oceanbase的库依赖问题"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 27, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-27T16:15:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-27T16:15:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。</p>
@@ -329,7 +329,7 @@
 <p>另外的办法是指定Xlinker， 让ld链接的时候全局搜索符号， 但是明显效率会低很多。 所以维护一下依赖关系还是必要的。</p>
 
 <p>ps: 刚刚看到<a href="http://weibo.com/raywill2" title="研究员Raywill">晓楚师兄</a>的博客里也有<a href="http://blog.csdn.net/maray/article/details/7666022" title="gcc库的链接顺序导致编译出错的问题">一篇</a>说这个事情的….w</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-09-27T16:15:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-09-27T16:15:00-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

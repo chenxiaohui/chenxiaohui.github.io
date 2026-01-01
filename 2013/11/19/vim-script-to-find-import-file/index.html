@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2013-11-19-vim-script-to-find-import-file.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="分布式调试之导入import文件"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T17:41:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T17:41:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：</p>
@@ -344,7 +344,7 @@ ctags -R  -c++-kinds=+p --fields=+iaS --extra=+q . //c++
 </code></pre></div></div>
 
 <p>生成tags，插件会去去找tags文件，然后把找到的位置定义为项目目录，之后的引用路径会按照这路径来生成相对路径。strip_prefix_arr制定要去掉的前缀，比如我们的路径是/home/dev/src/rootserver/xxx.h，tags生成在dev下，按照base_dir_mark/src去掉项目路径得到 rootserver/xxx.h，根据strip_prefix_arr去掉rootserver，最后得到import “xxx.h”。</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-19T17:41:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-19T17:41:00-08:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

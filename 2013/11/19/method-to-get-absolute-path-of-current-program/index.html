@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2013-11-19-method-to-get-absolute-path-of-current-program.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="关于得到当前执行文件所在的目录"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T21:47:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T21:47:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。</p>
@@ -305,7 +305,7 @@ else
 </code></pre></div></div>
 
 <p>这样就可以拼合当前程序所在目录和schema_file_name得到这个文件的绝对路径了。这里/proc/self/exe是运行时的当前执行程序软链接。看来proc目录下要好好研究一下啊。</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-19T21:47:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-19T21:47:00-08:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

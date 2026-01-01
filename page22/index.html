@@ -287,7 +287,7 @@
 
 &lt;link href="/javascripts/google-code-prettify/prettify.css" media="screen, projection" rel="stylesheet" type="text/css"&gt;
 &lt;script type="text/javascript" sr...</div><p><a href="/2014/06/22/octopress-code-highlight/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 22, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-22T11:15:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-22T11:15:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/21/generate-several-types-using-pandoc/"><h2 itemprop="headline" class="item__header">直接从markdown生成各种电子书</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们需要把编辑的markdown转成各种格式，这不失为一种写书的方式。借助pandoc这把瑞士军刀，我们可以实现一个脚本编译各种格式的功能，代码如下：
@@ -299,7 +299,7 @@ import glob,os,sys,shutil
 
 cmd_template={'html':"pandoc %s -o output/html/%s.html --template=default.html",
               'pdf':'pandoc -N --toc --template=default.latex --latex-engine=xelatex %s -o output/pdf/%s.pdf...</div><p><a href="/2014/06/21/generate-several-types-using-pandoc/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T21:23:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T21:23:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/21/ppost-review-plugin/"><h2 itemprop="headline" class="item__header">post-review插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">###post-review.vim
@@ -325,11 +325,11 @@ nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
 svndiff use vimdiff: see link
 
 gitdiff use vimdiff: see link</div><p><a href="/2014/06/21/ppost-review-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T20:57:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T20:57:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/21/photography-test/"><h2 itemprop="headline" class="item__header">测试一下机器和镜头</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">测试一下机器，镜头是18-55套头，表现中规中矩吧，K10D色彩不错。图压缩过。</div><p><a href="/2014/06/21/photography-test/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T13:24:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T13:24:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/21/bin-txt-file-read-write/"><h2 itemprop="headline" class="item__header">文本文件和二进制文件读写</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。
@@ -351,7 +351,7 @@ int main(int argc, const char *argv[])
   fp  = fopen("output.bin", "wb");
   int32_t length[] ={0x0a, 0x12345678};
   fwrite(&amp;leng...</div><p><a href="/2014/06/21/bin-txt-file-read-write/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T12:28:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T12:28:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/20/susublime-plugin-to-generate-refrence/"><h2 itemprop="headline" class="item__header">sublime根据markdown引用生成参考文献的插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">写这个的目的主要是每次写博客需要生成以下版权声明，免得引用了别人的文章被人说盗版。markdown里面支持通过列表组织引用的url，如下所示：
@@ -364,7 +364,7 @@ int main(int argc, const char *argv[])
 我们可以通过这个形式来生成如下的代码
 
 效果如下：</div><p><a href="/2014/06/20/susublime-plugin-to-generate-refrence/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T21:21:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T21:21:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/20/octopress-pandoc-table/"><h2 itemprop="headline" class="item__header">octopress支持markdown表格</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">pandoc支持扩展的markdown，也就是支持类似于如下的表格：
@@ -373,7 +373,7 @@ int main(int argc, const char *argv[])
 测量指标                    低程度中心性             低亲近中心性                      低居间中心性
 --------------------   -------------------   -----------------------------  -------------------------------------
 高程度中心...</div><p><a href="/2014/06/20/octopress-pandoc-table/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:57:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:57:00-07:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/20/octopress-indent-plugin/"><h2 itemprop="headline" class="item__header">octopress的缩进插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">我们写中文的时候通常有首行缩进的需求，markdown默认是不支持的，octopress和wordpress也没有缩进的css。这里我们通过加个插件的方式完成。
@@ -392,7 +392,7 @@ Liquid::Template.register_filter(Jekyll::IndentFilter)
 
 
 这个就是做了个替换。会把行首的两...</div><p><a href="/2014/06/20/octopress-indent-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:45:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:45:00-07:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

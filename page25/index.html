@@ -284,7 +284,7 @@
           <div class="item__description"><div class="article__content" itemprop="description articleBody">王垠虽然挺扯，这段话还是有道理的：
 
 我对清华，还有 Princeton，Harvard，MIT，Stanford，Berkeley，CMU 等学校的学生都有了解。这些所谓的“世界一流大学”或者“世界一流大学 wannabee”差不多都是类似的气氛。你冲着它们的名气和“关系网”挤破了头皮进去，然后就每天有人在你耳边对其它人感叹：哇，他好牛啊！发了好多 paper，还得了XX奖。跟参加传销大会似的，让你怀疑这些人还有没有自尊。然后就是填鸭式的教育，无止境的作业和考试，让你感觉他们不是在“教育”你，而是在“筛选”你。这种筛选总是筛掉最差的，但也筛掉最好的。因为最好的学生能意识到你在干什么，他们不给你筛选他们的机会。一旦发现其实没学到东西，中途就辍学出去创业了。所以剩下来的就是最一般的，循规...</div><p><a href="/2014/01/06/wangyin-words/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 06, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-01-06T21:59:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-01-06T21:59:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/24/thinking-in-java-notes/"><h2 itemprop="headline" class="item__header">Thinking In Java读书笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">静态成员只有被引用（首次生成所在类的对象或者被首次访问，即使从为生成过那个类的对象）的时候才会初始化。
@@ -311,7 +311,7 @@ TestJava.java
 		public Cup cup3 = new Cup(3);
 		public static Cup cup1 = new Cup(1);
 ...</div><p><a href="/2013/11/24/thinking-in-java-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 24, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-24T20:32:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-24T20:32:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/23/effective-notes/"><h2 itemprop="headline" class="item__header">Effective C++ 读书笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">Effective前面有几节是说构造析构赋值过程中基类和派生类的调用关系的，做了一个综合一点的例子，来验证一下这个问题。代码如下，话说贴代码是在是很没溜的做法，尤其是如果在出版的书中看到的话，这种行为基本属于骗稿费的…
@@ -331,11 +331,11 @@ class Object: public BaseObject
     Object (int magic);
     Object (const Object &amp; obj);
     virtual ~Object ()...</div><p><a href="/2013/11/23/effective-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 23, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-23T16:41:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-23T16:41:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/21/use-mock-to-debug/"><h2 itemprop="headline" class="item__header">分布式调试系列之行为模拟</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</div><p><a href="/2013/11/21/use-mock-to-debug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 21, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/"><h2 itemprop="headline" class="item__header">关于ob代码规范里面的行末空格</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：
@@ -349,7 +349,7 @@ augroup ExtraWhitespaceGroup
     autocmd!
     autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
     autocmd InsertEnter * match ExtraWhitespa...</div><p><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 20, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-20T10:50:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-20T10:50:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/"><h2 itemprop="headline" class="item__header">关于得到当前执行文件所在的目录</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。
@@ -359,7 +359,7 @@ augroup ExtraWhitespaceGroup
 #include "libgen.h"
 #define MAX_PATH_SIZE 100
 char current...</div><p><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T21:47:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T21:47:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/19/vim-script-to-find-import-file/"><h2 itemprop="headline" class="item__header">分布式调试之导入import文件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：
@@ -373,7 +373,7 @@ endif
 
 if !exists('g:strip_prefix_arr')
     "set base_dir_mark to indicate where to gen...</div><p><a href="/2013/11/19/vim-script-to-find-import-file/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T17:41:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T17:41:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/17/method-to-diff-log/"><h2 itemprop="headline" class="item__header">分布式调试系列：关于日志的比对</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何写个插件通过log来定位源码行，这篇日志我们讨论一下如何快速定位自己的错误日志。
@@ -382,7 +382,7 @@ if !exists('g:strip_prefix_arr')
 
 
   得到当前的错误日志，假使命名为log.core...</div><p><a href="/2013/11/17/method-to-diff-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 17, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-17T22:00:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-17T22:00:00-08:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

@@ -298,7 +298,7 @@
 当时觉得还挺好，复用了一个对象。实际明显有问题的，这个对象的生命周期不见得只在for循环内部，一旦引用被传递出去，就会有悬挂（java里是不是不这么叫）的问题。多个引用指向了一个对象，计算结果是不可预测的。
 
 主要问题是j...</div><p><a href="/2015/01/23/java-reuse-bug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-23T11:15:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-23T11:15:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/22/simulate-group-by-in-bash/"><h2 itemprop="headline" class="item__header">bash下模拟group by功能</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个问题：有一堆数据，需要统计相同key下相同的column的重复出现次数，实际上就是数据库里面的group by功能，但是建表导入然后计算未免麻烦，何况数据是临时数据，导入计算完毕之后就不需要了。这里用shell下的一些命令来完成。
@@ -311,7 +311,7 @@ AAAAAAAAAAA		tag1	Click		2015:13:37:16
 AAAAAAAAAAA		tag2	Click		2015:13:37:16
 BBBBBBBBBBB		tag2	Click		2015:13:37:16
 BBBBBBBBBBB		tag2	Click	    2015:...</div><p><a href="/2015/01/22/simulate-group-by-in-bash/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 22, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-22T15:56:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-22T15:56:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/22/sort-using-multiple-columns/"><h2 itemprop="headline" class="item__header">sort多列排序</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个需求，希望按照第二列排序，第二列相同的情况下按照第一列排序，数据如下：
@@ -335,7 +335,7 @@ b   2   c   可以看到实际上先按照第二列排序，第二列相同按�
   	sort -k 2，2 -k 1 input.txt
 
 换个角度说，sort -k 1 -k 2 的效果跟 sort -k 1 是一样的。所以最好还是让数据按照排序列生成，这样看起来也最直观。</div><p><a href="/2015/01/22/sort-using-multiple-columns/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 22, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-22T13:38:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-22T13:38:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/19/django-checkbox/"><h2 itemprop="headline" class="item__header">关于Django下获取checkbox的返回值</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">HTML中我们可以在form中这样写复选框：
@@ -348,7 +348,7 @@ b   2   c   可以看到实际上先按照第二列排序，第二列相同按�
 
 
 但是作为服务端处理起来未免不变，尤其是checkbox list是自动生成的时候。此时可以用group方...</div><p><a href="/2015/01/19/django-checkbox/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 19, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-19T16:46:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-19T16:46:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/19/python-encoding/"><h2 itemprop="headline" class="item__header">Python编码</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">众所周知Python的内码编码是Unicode，所有输入的编码都需要转换成unicode然后转出成为其他编码。Python2中存在unicode对象和str对象两种，在中文处理的时候很容易出问题，而Python3直接全部统一了编码到unicode。
@@ -364,7 +364,7 @@ LC_COLLATE="zh_CN.UTF-8"
 LC_MONETARY="zh_CN.UTF-8"
 LC_MESSAGES="zh_CN.UTF-8"
 LC_PAPER="z...</div><p><a href="/2015/01/19/python-encoding/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 19, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-19T14:34:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-19T14:34:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/18/send-zhihu-to-pocket/"><h2 itemprop="headline" class="item__header">保存知乎日报到pocket</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">知乎日报是中国人民喜闻乐见的资讯类应用，Pocket是深受世界人民喜爱的阅读工具。鉴于反碎片化阅读的个人习惯，决定把散落在各个地方的有价值咨询集中到一个应用里面，于是有了如下的工具。
@@ -372,7 +372,7 @@ LC_PAPER="z...</div><p><a href="/2015/01/19/python-encoding/">Read more</a></p><
 首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了sed工具。
 
 curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story'</div><p><a href="/2015/01/18/send-zhihu-to-pocket/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 18, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-18T15:30:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-18T15:30:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/17/life-has-peom-and-distance/"><h2 itemprop="headline" class="item__header">转载：生活不是眼前的苟且，生活有诗和远方——高晓松</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">“我妈说生活不是眼前的苟且，生活有诗和远方。我 和我妹妹深受这教育。谁要觉得你眼前这点儿苟且就是你的人生，那你这一生就完了。生活就是适合远方，能走多远走多远；走不远，一分钱没有，那么就读诗，诗 就是你坐在这，它就是远方。”
@@ -380,7 +380,7 @@ curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/
 关于房子，我跟大多数人概念不一样。我从小住在清华校园里，家是那种二层的小楼，外表看起来很普通，面积也不是特大，但是特别安静。
 
 这地儿都没动过，也没装修之说，从我生下来就是这样红色的，很老很旧。但我在那儿真觉得挺好，有一个家，但我在那儿真觉得挺好，有一个家，不仅仅是睡觉的 地方，我自己也不知道这房子多少年了，我们也在感慨：后边的院子多好啊，出门就是操场、游泳馆，还有漂亮的女生，白发的先生；四周的邻居，随便踹开一家的 门，里面住的都是中国顶级的大知识分子，进去聊会儿...</div><p><a href="/2015/01/17/life-has-peom-and-distance/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 17, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-17T18:41:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-17T18:41:00-08:00"></div>
       </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/15/django-assign-autoincrement-field/"><h2 itemprop="headline" class="item__header">处理Django的自增字段</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候需要手动构造一个Django model对象并保存，遇到如下的情况：
@@ -393,7 +393,7 @@ datetime = models.DateTimeField()
 url = models.CharField(max_length=1000)
 title = models.CharField(max_length=1000)
 operation = models.CharField(max_length=...</div><p><a href="/2015/01/15/django-assign-autoincrement-field/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T22:00:00+08:00"></div>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T22:00:00-08:00"></div>
       </article></div>
 </div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">

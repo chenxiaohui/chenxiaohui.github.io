@@ -284,12 +284,12 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2013-11-21-use-mock-to-debug.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="分布式调试系列之行为模拟"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 21, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</p>
 
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-21T17:31:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-21T17:31:00-08:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

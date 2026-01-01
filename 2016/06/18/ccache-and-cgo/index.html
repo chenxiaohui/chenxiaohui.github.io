@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2016-06-18-ccache-and-cgo.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="ccache和cgo并存的问题"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 18, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-18T20:15:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-18T20:15:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>ccache是加快编译的神器，有了ccache，忘了distcc。但是发现go和c混编的项目里面如果用了cgo的话，go编译的时候ccache会报错。主要是传给ccache的某些参数ccache不认识。错误如下：</p>
@@ -335,7 +335,7 @@ dpkg-architecture: warning: Couldn't determine gcc system type, falling back to 
 
 <p>保存这个到path路径下，改名ccached之类，export set CC=ccached，貌似这样ccache不认识的参数就不传递了？反正是ok了，改天研究下。</p>
 
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2016-06-18T20:15:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2016-06-18T20:15:00-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>

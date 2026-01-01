@@ -284,7 +284,7 @@
             title="Edit on Github"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2009-03-17-pass-a-pointer-in-assembly-language.md">
             <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="汇编传指针"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 17, 2009</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2009-03-17T00:00:00+08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2009-03-17T00:00:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
 <div class="article__content" itemprop="articleBody"><p>写接口实验程序，想写个函数，函数里读入一个数字，存到内存一个变量里，传了变量的偏移值进去，函数里怎么也写不进内存，调了很长时间后才发现mov [bp 4]，ax是不对的，[bp 4]只取出了地址，想在写进去还要再寻一次值，我觉得一般的办法就是寄存器间接寻址了，加一条：</p>
@@ -299,7 +299,7 @@ MOV [SI],AX
 <p>当然如果用invoke指令应该会简单很多…..</p>
 
 <p>C语言还是最伟大的语言啊，简化多少操作…..</p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2009-03-17T00:00:00+08:00"><!-- start custom article footer snippet -->
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2009-03-17T00:00:00-07:00"><!-- start custom article footer snippet -->
 
 <!-- end custom article footer snippet -->
 <div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>
