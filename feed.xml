@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-01T11:56:37+08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+</subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">AI这些年的进步，主要靠的是什么</title><link href="http://chenxiaohui.me/2025/12/28/ai/" rel="alternate" type="text/html" title="AI这些年的进步，主要靠的是什么" /><published>2025-12-28T09:35:00+08:00</published><updated>2025-12-28T09:35:00+08:00</updated><id>http://chenxiaohui.me/2025/12/28/ai</id><content type="html" xml:base="http://chenxiaohui.me/2025/12/28/ai/"><![CDATA[<p>最近读到一篇有意思的论文 <a href="https://arxiv.org/pdf/2511.21622">On the Origin of Algorithmic Progress in AI</a>，结论有点出乎意料。</p>
+
+<!--more-->
+
+<p>从2012到2023年，训练同样性能的模型，需要的算力降低了大约22,000倍。</p>
+
+<p>这个数字挺夸张的。那这22,000倍的提升是怎么来的？论文作者做了一堆实验，把Transformer里那些”现代改进”一个个拆开来看 - SwiGLU激活函数、RoPE位置编码、各种Norm层、学习率调度、Adam优化器等等。</p>
+
+<p>结果发现了些意外的东西。</p>
+
+<h2 id="小改进的贡献没那么大">小改进的贡献没那么大</h2>
+
+<p>论文作者在小规模模型（360万参数）上做了实验，测试了各种”现代改进”的实际效果：</p>
+
+<ul>
+  <li>SwiGLU激活函数：1.17倍</li>
+  <li>RoPE位置编码：1.44倍</li>
+  <li>Pre-RMSNorm归一化：1.87倍</li>
+  <li>AdamW优化器（相比SGD）：1.87倍</li>
+  <li>学习率调度：几乎没区别（&lt;1.05倍）</li>
+</ul>
+
+<p>把这些改进全加起来，效率提升不到10倍。那剩下的2000多倍从哪来的？</p>
+
+<h2 id="transformer的规模效应">Transformer的规模效应</h2>
+
+<p>Transformer不是一开始就吊打LSTM的，而是越大越强。</p>
+
+<p>小规模时（10¹⁵ FLOPs），Transformer比LSTM强6.28倍，优势不算特别明显。但随着规模增长，这个优势会越来越大。</p>
+
+<p>也就是说，算力不够的话，你根本看不出Transformer有多强。</p>
+
+<p>Chinchilla也是类似。Kaplan scaling是模型大数据少，Chinchilla是模型和数据等比例增长。大规模下Chinchilla明显更省算力，但小规模时差别不大。</p>
+
+<p>论文最后算出，能解释的效率提升大约是6,930倍（不是之前估计的22,000倍）。更关键的是，这6,930倍里有91%来自两个规模依赖的变化：</p>
+
+<ol>
+  <li>LSTM到Transformer的架构转变（贡献了68%）</li>
+  <li>Kaplan到Chinchilla的scaling策略调整（贡献了剩余的大部分）</li>
+</ol>
+
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2025-12-28-104604.png" alt="AI效率提升的来源分布" /></p>
+
+<p><em>图：AI效率提升的来源 - 规模依赖的架构变化占主导</em></p>
+
+<h2 id="所以">所以</h2>
+
+<p>过去十来年AI的飞跃，主要不是靠那些精巧的训练技巧堆出来的，而是靠少数几个只有在大规模下才能发挥作用的结构性变化。</p>
+
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2025-12-28-104553.png" alt="世界实际GDP增长曲线" /></p>
+
+<p><em>工业革命后的GDP增长曲线 - 真正的质变来自生产方式的根本变革</em></p>
+
+<p>没有足够的算力，很多”先进算法”的优势根本体现不出来。小规模下看着有效的改进，放到工业规模可能也就那样。</p>
+
+<p>小的算法改进当然也有价值，但想要质的飞跃，还是得靠那些能在大规模下发挥作用的创新，以及支撑这些创新的算力。</p>
+
+<p>技术发展从来都不是线性的。工业革命之前，人类发展了几千年，工艺不断进步，工匠技艺越来越好，但本质上生产力没提升多少。真正的质变来自蒸汽机、纺织机、炼钢技术这些生产方式的根本变革。</p>
+
+<p>AI现在有点这个感觉。真正改变游戏的，不是那些小改进，而是在大规模下才能发挥优势的结构性变革，还有支撑这些变革的”蒸汽机”——算力。</p>
+
+<p>说白了：力大砖飞。</p>
+
+<hr />
+
+<p>论文链接：<a href="https://arxiv.org/pdf/2511.21622">On the Origin of Algorithmic Progress in AI</a></p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="技术" /><summary type="html"><![CDATA[最近读到一篇有意思的论文 On the Origin of Algorithmic Progress in AI，结论有点出乎意料。]]></summary></entry><entry><title type="html">Life’s Quiet Transformations - Reflections on 2025</title><link href="http://chenxiaohui.me/2025/12/21/lifes-quiet-transformations-reflections-on-2025/" rel="alternate" type="text/html" title="Life’s Quiet Transformations - Reflections on 2025" /><published>2025-12-21T06:00:00+08:00</published><updated>2025-12-21T06:00:00+08:00</updated><id>http://chenxiaohui.me/2025/12/21/lifes-quiet-transformations-reflections-on-2025</id><content type="html" xml:base="http://chenxiaohui.me/2025/12/21/lifes-quiet-transformations-reflections-on-2025/"><![CDATA[<p>好久没写东西了，想记录一下最近的变化。</p>
+
+<!--more-->
+
+<h2 id="生活的变化">生活的变化</h2>
+
+<p>说起来也挺神奇的，前几年尤其疫情那段时间，每天就是起床、工作、吃饭、睡觉，感觉日子都是一个样。时间过得很慢，又好像什么都没发生。</p>
+
+<p>去年结婚了，今年要当爸爸了。说实话这些事来得挺突然的，虽然也不能说完全没准备，但真的发生了还是有点懵。你总觉得还需要再等等，再准备准备，但生活不等人，该来的时候就来了。</p>
+
+<p>结婚之前想的挺多，觉得会有很大变化。实际上倒也还好，就是多了个人一起过日子，有什么事能商量着来，不用一个人扛。现在想到要有孩子了，才觉得真的不一样了。开始想一些以前不会想的事，比如学区、教育、未来十几年的规划这些。”责任”这词以前听着挺虚的，现在感觉沉甸甸的。</p>
+
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2025-12-21-181444.png" alt="" />
+<em>我的猫猫越来越可爱了</em></p>
+
+<h2 id="关于博客更新">关于博客更新</h2>
+
+<p>这博客好久没更新了，翻了翻上一篇都不知道多久之前了。一个原因是工作忙，生活也挺单调的，感觉没啥可写的。每天上班下班，回家就累了，也懒得动笔。</p>
+
+<p>另一个原因是这博客更新太麻烦了。虽然当时搭起来还挺满意的，访问也快，但要写东西得折腾一堆工具 —— rake、ruby、bundler 啥的。上次更新为了修点问题升级了 Octopress，光处理升级后的兼容性就搞了一下午。主题配置变了，插件用法也不一样了，各种调。</p>
+
+<p>那次之后就更不想动了，一想到这些破事就头疼。很多技术博客最后都荒了，大概就是这个原因 —— 不是没得写，是写起来太累。</p>
+
+<p>不过现在好多了，有 AI 帮忙。配置问题直接问，环境问题让它诊断，写文章也能帮着组织下思路。虽然还是得自己写，但至少不用为那些技术细节头疼了。</p>
+
+<h2 id="2025-总结">2025 总结</h2>
+
+<p>今年最大的事就是换了方向和团队。虽然还在同一家公司，但做的事和合作的人都不一样了。</p>
+
+<p>刚开始那几个月真是手忙脚乱。新方向要摸索，新业务要熟悉，团队文化也不太一样。每天都在学新东西，每天都有新问题。说不焦虑是假的，总担心自己搞不定。不过另一方面也挺兴奋的，终于跳出舒适区了。</p>
+
+<p>工作还是一样忙，压力也没少，但感觉不太一样了。以前是熟悉的方向，知道会发生什么，怎么解决。现在虽然每天都是新问题，但慢慢摸出了套路。这种感觉挺久违的，好像又在成长了。</p>
+
+<p>这一年挺快的，也挺充实的。</p>
+
+<h2 id="展望-2026">展望 2026</h2>
+
+<p>明年最重要的事当然是孩子要出生了。网上看了不少育儿的东西，也和朋友聊过，但我知道真到时候肯定还是会手忙脚乱。不过也就这样了，走一步看一步吧。紧张是肯定的，但也挺期待的。</p>
+
+<p>工作上希望能再进步一些。这两年 AI 发展太快了，很多东西都在变。得跟上，不然就落后了。不过也不能光追新东西，还是得在自己的方向上深耕。</p>
+
+<p>有了孩子之后时间肯定更紧张了。工作、家庭怎么平衡是个问题。既要照顾家里，又不能落下事业，还得有时间陪家人。说起来容易，真做起来估计够呛。</p>
+
+<p>博客的话，希望能保持更新吧。不一定写很长的技术文章，记录点生活也行。多年后回头看，这些文字应该挺有意思的。</p>
+
+<p>2025 变化挺大，2026 估计更忙。不管怎样，过好每一天吧。</p>
+
+<hr />
+
+<h2 id="english-version">English Version</h2>
+
+<p>Haven’t written anything in a while. Thought I’d jot down some recent changes.</p>
+
+<p>The past few years, especially during the pandemic, every day felt the same - wake up, work, eat, sleep, repeat. Time moved slowly yet nothing seemed to happen.</p>
+
+<p>Got married last year, having a baby this year. Honestly it all happened pretty fast. You always think you need more time to prepare, but life doesn’t wait.</p>
+
+<h3 id="about-the-blog">About the Blog</h3>
+
+<p>Haven’t updated this blog in forever. Part of it was being busy with work and not having much to say. The other part - updating this thing is such a pain. You need to deal with rake, ruby, bundler and all that stuff. Last time I tried updating, I upgraded Octopress and spent a whole afternoon just fixing compatibility issues. After that I just didn’t want to deal with it anymore.</p>
+
+<p>It’s better now with AI help though. At least I don’t have to wrestle with all the technical details.</p>
+
+<h3 id="2025">2025</h3>
+
+<p>Biggest thing this year was switching to a new direction and team. Still at the same company, but different work and different people. The first few months were rough - new direction to figure out, new business to learn, different team culture. Every day was something new. Stressful, but also kind of exciting.</p>
+
+<p>Work’s still busy and stressful, but it feels different. Like I’m growing again.</p>
+
+<h3 id="2026">2026</h3>
+
+<p>Next year the baby’s coming. That’s the big one. I’m nervous but also looking forward to it.</p>
+
+<p>Work-wise, hoping to keep improving. AI’s changing everything so fast, gotta keep up. And with a kid on the way, figuring out work-life balance is going to be interesting.</p>
+
+<p>Hoping to keep updating this blog too. Even if it’s just short notes about life. Years later it’ll be nice to look back on.</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[好久没写东西了，想记录一下最近的变化。]]></summary></entry><entry><title type="html">大模型时代的一些感想</title><link href="http://chenxiaohui.me/2025/12/21/reflections-on-the-age-of-large-models/" rel="alternate" type="text/html" title="大模型时代的一些感想" /><published>2025-12-21T06:00:00+08:00</published><updated>2025-12-21T06:00:00+08:00</updated><id>http://chenxiaohui.me/2025/12/21/reflections-on-the-age-of-large-models</id><content type="html" xml:base="http://chenxiaohui.me/2025/12/21/reflections-on-the-age-of-large-models/"><![CDATA[<p>这个博客好久没更新了，时间过去了快有四五年了吧。中间经历了疫情，疫情过后感觉什么都变了，整个世界好像进入了一个完全不同的时代。</p>
+
+<p>经济和社会发展这些年感觉有点停滞，但科技真的是飞速发展，尤其是AI这块。短短几年，从GPT-3到GPT-4，从ChatGPT横空出世到现在各种大模型遍地开花，真的是太快了。</p>
+
+<p>说实话，在这个复杂混乱的世界里，大模型给人的感觉就像是真的看到了未来一样。</p>
+
+<p>以前的AI感觉就是个工具，但现在用着大模型，有时候会想，会不会哪天人反而变成AI的工具了？这不是开玩笑，是真的有这种担忧。</p>
+
+<p>想起来之前看过的美剧《疑犯追踪》，里面就讲AI无处不在地监控和帮助人类的故事。感觉离那个世界真的不远了。</p>
+
+<p>虽然科幻里想象的机器人大战没发生，但AI带来的变化还是挺大的。可以想象，未来几年AI肯定会把社会结构翻个底朝天：很多工作会消失，AI会替代大量岗位，效率提升成百上千倍，这真不比工业革命的影响小。</p>
+
+<p>时代总是在往前走的，不会因为谁的意愿而停下来。未来会不会更好？不知道。但肯定会很不一样。</p>
+
+<p>所以还是要拥抱变化吧，期待AI带来的改变，学着去理解和用好它，尽量抓住机会。</p>
+
+<p>重新开始写这个博客，也算是我试着去适应这个新时代的一个小动作吧。</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="技术" /><summary type="html"><![CDATA[这个博客好久没更新了，时间过去了快有四五年了吧。中间经历了疫情，疫情过后感觉什么都变了，整个世界好像进入了一个完全不同的时代。 经济和社会发展这些年感觉有点停滞，但科技真的是飞速发展，尤其是AI这块。短短几年，从GPT-3到GPT-4，从ChatGPT横空出世到现在各种大模型遍地开花，真的是太快了。 说实话，在这个复杂混乱的世界里，大模型给人的感觉就像是真的看到了未来一样。 以前的AI感觉就是个工具，但现在用着大模型，有时候会想，会不会哪天人反而变成AI的工具了？这不是开玩笑，是真的有这种担忧。 想起来之前看过的美剧《疑犯追踪》，里面就讲AI无处不在地监控和帮助人类的故事。感觉离那个世界真的不远了。 虽然科幻里想象的机器人大战没发生，但AI带来的变化还是挺大的。可以想象，未来几年AI肯定会把社会结构翻个底朝天：很多工作会消失，AI会替代大量岗位，效率提升成百上千倍，这真不比工业革命的影响小。 时代总是在往前走的，不会因为谁的意愿而停下来。未来会不会更好？不知道。但肯定会很不一样。 所以还是要拥抱变化吧，期待AI带来的改变，学着去理解和用好它，尽量抓住机会。 重新开始写这个博客，也算是我试着去适应这个新时代的一个小动作吧。]]></summary></entry><entry><title type="html">在上海</title><link href="http://chenxiaohui.me/2021/03/21/at_shanghai/" rel="alternate" type="text/html" title="在上海" /><published>2021-03-21T22:22:00+08:00</published><updated>2021-03-21T22:22:00+08:00</updated><id>http://chenxiaohui.me/2021/03/21/at_shanghai</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/21/at_shanghai/"><![CDATA[<p>感觉比北京要精致多了。天气不见得好多少，这几天看外面都是雾蒙蒙的，外滩看着也属于分辨率不高的状态。但是城市管理的细节还是比北京到位，堵车是一样的堵，可能没有北京司机那么大的情绪？反正是交通警力足够多，鸡贼司机少不少。</p>
+
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2021-03-21-142437.jpg" alt="" /></p>
+
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2021-03-21-142500.jpg" alt="" /></p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[感觉比北京要精致多了。天气不见得好多少，这几天看外面都是雾蒙蒙的，外滩看着也属于分辨率不高的状态。但是城市管理的细节还是比北京到位，堵车是一样的堵，可能没有北京司机那么大的情绪？反正是交通警力足够多，鸡贼司机少不少。]]></summary></entry><entry><title type="html">inline static的成员初始化</title><link href="http://chenxiaohui.me/2021/03/21/inline_static_since_c++17/" rel="alternate" type="text/html" title="inline static的成员初始化" /><published>2021-03-21T19:49:00+08:00</published><updated>2021-03-21T19:49:00+08:00</updated><id>http://chenxiaohui.me/2021/03/21/inline_static_since_c++17</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/21/inline_static_since_c++17/"><![CDATA[<p>c++非静态变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。</p>
+
+<p>比如</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma once
+</span><span class="k">class</span> <span class="nc">File</span> <span class="p">{</span>
+  <span class="nl">private:</span>
+    <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span> <span class="o">=</span> <span class="s">"test"</span><span class="p">;</span>
+  <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>而静态变量不太一样。静态变量本身定义跟声明是分开的，这本来也合理，所以在不同的编译单元里面，静态变量可以各自实现，当然相互影响。一般情况下因为.h和 .cpp的相互对应，也不会出现多次包含之后定义的重复的问题。</p>
+
+<p>但是static变量毕竟是可以寻址的，从这个角度看，一个头文件如果包含了定义和声明，同时被多个编译单元包含，还是会出现multiple definition的问题。</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma once
+</span><span class="k">class</span> <span class="nc">File</span> <span class="p">{</span>
+  <span class="nl">private:</span>
+    <span class="k">static</span> <span class="kt">char</span> <span class="n">filename</span><span class="p">[];</span>
+  <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">char</span> <span class="n">File</span><span class="o">::</span><span class="n">filename</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"file.txt"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>静态的const变量因为不涉及修改，可以认为编译期能确定，所以可以直接在定义的时候声明。同时c++11提供了constexpr来现实说明编译期可以确定。但是constexpr不能支持复杂类型。</p>
+
+<p>比如：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma once
+</span><span class="k">class</span> <span class="nc">File</span> <span class="p">{</span>
+  <span class="nl">private:</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">file_size</span> <span class="o">=</span> <span class="mi">1025</span><span class="p">;</span>
+  <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p>所以c++17继续从编译器层面支持了多个编译单元对static的展开，也就是inline变量，是的，不只是函数，变量本身也可以inline了。</p>
+
+<p>比如：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#pragma once
+</span><span class="k">class</span> <span class="nc">File</span> <span class="p">{</span>
+  <span class="nl">private:</span>
+    <span class="c1">// static constexpr std::string filename = "test";//not supported</span>
+    <span class="kr">inline</span> <span class="k">static</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">filename</span> <span class="o">=</span> <span class="s">"test"</span><span class="p">;</span><span class="c1">//c++17 supported</span>
+  <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+</code></pre></div></div>
+
+<p>同样支持非const的static初始化，比如：</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="cp">#pragma once
+</span><span class="k">class</span> <span class="nc">File</span> <span class="p">{</span>
+  <span class="nl">private:</span>
+    <span class="k">static</span> <span class="kt">char</span> <span class="n">filename</span><span class="p">[];</span>
+  <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kr">inline</span> <span class="kt">char</span> <span class="n">File</span><span class="o">::</span><span class="n">filename</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"file.txt"</span><span class="p">;</span>
+</code></pre></div></div>
+
+<p>或者</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">File</span> <span class="p">{</span>
+  <span class="nl">private:</span>
+    <span class="kr">inline</span> <span class="k">static</span> <span class="kt">char</span> <span class="n">filename</span><span class="p">[]</span> <span class="o">=</span> <span class="s">"file.txt"</span><span class="p">;</span>
+  <span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+</code></pre></div></div>
+
+<p>感觉并不是很有用，主要是支持了static const std::string的定义初始化?</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="技术" /><summary type="html"><![CDATA[c++非静态变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。 比如 #pragma once class File { private: const std::string filename = "test"; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 而静态变量不太一样。静态变量本身定义跟声明是分开的，这本来也合理，所以在不同的编译单元里面，静态变量可以各自实现，当然相互影响。一般情况下因为.h和 .cpp的相互对应，也不会出现多次包含之后定义的重复的问题。 但是static变量毕竟是可以寻址的，从这个角度看，一个头文件如果包含了定义和声明，同时被多个编译单元包含，还是会出现multiple definition的问题。 #pragma once class File { private: static char filename[]; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; char File::filename[] = "file.txt"; 静态的const变量因为不涉及修改，可以认为编译期能确定，所以可以直接在定义的时候声明。同时c++11提供了constexpr来现实说明编译期可以确定。但是constexpr不能支持复杂类型。 比如： #pragma once class File { private: static const int file_size = 1025; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 所以c++17继续从编译器层面支持了多个编译单元对static的展开，也就是inline变量，是的，不只是函数，变量本身也可以inline了。 比如： #pragma once class File { private: // static constexpr std::string filename = "test";//not supported inline static const std::string filename = "test";//c++17 supported public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 同样支持非const的static初始化，比如： #pragma once class File { private: static char filename[]; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; inline char File::filename[] = "file.txt"; 或者 class File { private: inline static char filename[] = "file.txt"; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 感觉并不是很有用，主要是支持了static const std::string的定义初始化?]]></summary></entry><entry><title type="html">李显龙的一个演讲</title><link href="http://chenxiaohui.me/2021/03/14/lee_hsien_loong_speech/" rel="alternate" type="text/html" title="李显龙的一个演讲" /><published>2021-03-14T18:58:00+08:00</published><updated>2021-03-14T18:58:00+08:00</updated><id>http://chenxiaohui.me/2021/03/14/lee_hsien_loong_speech</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/14/lee_hsien_loong_speech/"><![CDATA[<iframe width="560" height="315" src="https://www.youtube.com/embed/xEeFZ1ceEVY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>从里面能看到新加坡一贯的社会治理理念，里面关于养老的一些设计，关于大家长式的执政理念，都有比较到位的体现。</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[从里面能看到新加坡一贯的社会治理理念，里面关于养老的一些设计，关于大家长式的执政理念，都有比较到位的体现。]]></summary></entry><entry><title type="html">美国对Youtuber收税的影响</title><link href="http://chenxiaohui.me/2021/03/13/us_tax_on_youtube/" rel="alternate" type="text/html" title="美国对Youtuber收税的影响" /><published>2021-03-13T20:14:00+08:00</published><updated>2021-03-13T20:14:00+08:00</updated><id>http://chenxiaohui.me/2021/03/13/us_tax_on_youtube</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/13/us_tax_on_youtube/"><![CDATA[<iframe width="560" height="315" src="https://www.youtube.com/embed/TbYpKlabY3k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<p>最近看有的youtuber收到了美国的海外课税单，具体细节上面的up主已经讲很清楚了。
+这里主要分析下对海外的影响。</p>
+
+<p>首先这种税如果确定的推进下去，相当于是长臂管辖的2.0版本。1.0版本的长臂管辖大家应该还有印象，比如华为孟晚舟事件，Tiktok事件。2.0的长臂管辖扩大了美国在全球的剥削范围，只是没有1.0那么致命。美元的全球霸权已经不够了，放水放太多了导致全球对美元信心下降，同时美元贬值美联储也不能坐视不理，通胀这么下去，美联储肯定还是要加息的，但是现在这么印钱发救济金，美债是要创新高的。而加息之后美债的压力肯定要上去，从这个角度看，节流不了那就开源，Biden的全球收税也就可以理解了。毕竟收国内的税压力太大了，那就收不影响选票的税呗。</p>
+
+<p>从另外一个角度想，如果推行的下去的话，避税就已经不是一个本地行业了，避税行业即将国际化。尤其对全球的科技公司会带来长远的影响，现在在开曼群岛，百慕大注册的公司可能会被美国盯上。Tiktok的例子可能会有其他的版本，比如以美国市场准入为条件，不限制你必须把公司卖给美国，但是对这家公司的海外营收收取更高的税，相当于把营业税转嫁成了消费税。相反的，不注册在美国本土但是涉足美国市场的公司，可能会被要求实体注册在美国本土，从而导致更多的公司需要为美国市场拆分一个实体，否则这个平台就变成了美国平台，平台上的用户都被加了一道美国消费税。</p>
+
+<p>另外，BTC可能会创新高吧，倒逼支付手段的匿名化来避免海外课税。</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[最近看有的youtuber收到了美国的海外课税单，具体细节上面的up主已经讲很清楚了。 这里主要分析下对海外的影响。 首先这种税如果确定的推进下去，相当于是长臂管辖的2.0版本。1.0版本的长臂管辖大家应该还有印象，比如华为孟晚舟事件，Tiktok事件。2.0的长臂管辖扩大了美国在全球的剥削范围，只是没有1.0那么致命。美元的全球霸权已经不够了，放水放太多了导致全球对美元信心下降，同时美元贬值美联储也不能坐视不理，通胀这么下去，美联储肯定还是要加息的，但是现在这么印钱发救济金，美债是要创新高的。而加息之后美债的压力肯定要上去，从这个角度看，节流不了那就开源，Biden的全球收税也就可以理解了。毕竟收国内的税压力太大了，那就收不影响选票的税呗。 从另外一个角度想，如果推行的下去的话，避税就已经不是一个本地行业了，避税行业即将国际化。尤其对全球的科技公司会带来长远的影响，现在在开曼群岛，百慕大注册的公司可能会被美国盯上。Tiktok的例子可能会有其他的版本，比如以美国市场准入为条件，不限制你必须把公司卖给美国，但是对这家公司的海外营收收取更高的税，相当于把营业税转嫁成了消费税。相反的，不注册在美国本土但是涉足美国市场的公司，可能会被要求实体注册在美国本土，从而导致更多的公司需要为美国市场拆分一个实体，否则这个平台就变成了美国平台，平台上的用户都被加了一道美国消费税。 另外，BTC可能会创新高吧，倒逼支付手段的匿名化来避免海外课税。]]></summary></entry><entry><title type="html">关于两会的提案</title><link href="http://chenxiaohui.me/2021/03/13/proposal_of_two_meeting/" rel="alternate" type="text/html" title="关于两会的提案" /><published>2021-03-13T14:21:00+08:00</published><updated>2021-03-13T14:21:00+08:00</updated><id>http://chenxiaohui.me/2021/03/13/proposal_of_two_meeting</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/13/proposal_of_two_meeting/"><![CDATA[<p>最近两会提案的新闻又多起来了，原则上民众平时是没有什么参政议政机会，到每年两会的时候算是有一个集中的意见出口，而媒体也倾向于这时候报道一些有话题性的提案，博一把眼球的同时，也能合理合法的在政策问题上赚点点击率。</p>
+
+<p>其实很多提案感觉并没有什么意义，真正被报道出来的，大部分也不见得能通过，核心问题的提案也一般不会拿出来报道。每年两会都有几个特别有话题性但是影响面特别低的提案报道出来，感觉是媒体把握了安全性和话题性之后作出的最优选择。</p>
+
+<p>而且这些提案大部分也没什么可行性，从标题上看有相当一部分有比较强的话题性，但是不具备执行条件，比如增加春节假期的长度。从受众的角度看，那我举双手赞成啊，但是实际上集中春节假期大部分是对个人观感上会好一些，对社会经济没有大的促进。首先边际效应递减让春节假期从7天到10天没有很好的投入产出比，其次春节后也不是一个消费性节日，传统意义上这是个商业停止，大家回老家过年的节日，唯一的好处可能是带动了四五线城市的突击购物需求。增加在春节远不如增加一个新的假期，来拉动旅游消费。</p>
+
+<p>另外一些提案就是影响面特别低那种，比如什么汉服日汉字日，要么是利益相关要么是造消费风口，本身的影响面非常小，只对行业里面的细分商家和消费者有用，属于用公共资源投资正向明显但是影响面低的策略，这种也放到两会去launch review?</p>
+
+<p>还有把女性产假提高到三年这种。。不知道适是何居心。。。不想喷了都。。</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[最近两会提案的新闻又多起来了，原则上民众平时是没有什么参政议政机会，到每年两会的时候算是有一个集中的意见出口，而媒体也倾向于这时候报道一些有话题性的提案，博一把眼球的同时，也能合理合法的在政策问题上赚点点击率。 其实很多提案感觉并没有什么意义，真正被报道出来的，大部分也不见得能通过，核心问题的提案也一般不会拿出来报道。每年两会都有几个特别有话题性但是影响面特别低的提案报道出来，感觉是媒体把握了安全性和话题性之后作出的最优选择。 而且这些提案大部分也没什么可行性，从标题上看有相当一部分有比较强的话题性，但是不具备执行条件，比如增加春节假期的长度。从受众的角度看，那我举双手赞成啊，但是实际上集中春节假期大部分是对个人观感上会好一些，对社会经济没有大的促进。首先边际效应递减让春节假期从7天到10天没有很好的投入产出比，其次春节后也不是一个消费性节日，传统意义上这是个商业停止，大家回老家过年的节日，唯一的好处可能是带动了四五线城市的突击购物需求。增加在春节远不如增加一个新的假期，来拉动旅游消费。 另外一些提案就是影响面特别低那种，比如什么汉服日汉字日，要么是利益相关要么是造消费风口，本身的影响面非常小，只对行业里面的细分商家和消费者有用，属于用公共资源投资正向明显但是影响面低的策略，这种也放到两会去launch review? 还有把女性产假提高到三年这种。。不知道适是何居心。。。不想喷了都。。]]></summary></entry><entry><title type="html">关于新加坡和北京的交通比较</title><link href="http://chenxiaohui.me/2021/03/13/traffic_of_beijing_and_singapore/" rel="alternate" type="text/html" title="关于新加坡和北京的交通比较" /><published>2021-03-13T14:21:00+08:00</published><updated>2021-03-13T14:21:00+08:00</updated><id>http://chenxiaohui.me/2021/03/13/traffic_of_beijing_and_singapore</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/13/traffic_of_beijing_and_singapore/"><![CDATA[<p>最近在上海，远郊区，看整体交通状况感觉比北京好多了。上海市里估计也是一样的堵，但是北京G6到了回龙观也就还那样，属于比较奇葩的了。</p>
+
+<p>对比一下新加坡的交通，能明显感觉城市规划的一些想法上的不一样，两边似乎都没有可以相互参考的地方，但是可以拿出来比较一下。</p>
+
+<p>新加坡地方小，人口密度大，车相对人口算，其实不低了。100万辆车，大概去年到了105万辆吧，人口大概是470万人，北京大概常驻人口3000万人，车710万辆，应该也是去年的数字，从这个角度看，其实人车比差不多。从面积上看呢，新加坡总面积大约730平方公里左右，比海淀区和朝阳区加起来还大些。从这个角度看，应该也有可比性，北京的车相对来说等人口、面积比例下会多一点点，外牌的比例之前控制了一把，所以可以认为差不多。</p>
+
+<p>但是整体交通状况新加坡就比北京好太多了。一个是路网密度更高，大部分祖屋社区都是不封闭的，少量的condo虽然封闭但是也只有很少几栋楼，大部分空间拿出来规划了城市道路。北京之前有段时间也想做开放社区，迫于强大的居民压力放弃了。从这个角度看政策跟人性的博弈是一直存在的，民众的想法永远是堵车就是政府不修路，政府跑我们小区修路那我跟你没完。。。</p>
+
+<p>其次是交通执法的压力上很不一样，新加坡这种执法程度放到北京的话，估计短期内交通会有不少改观，很多问题不都是规划，鸡贼的司机占了很大一部分。违法成本低，罚款罚分都是属于广撒网但是力度小，长期执行下去之后违法和查违法之间就形成了一个稳态，加上也不是每次都被抓，交通违章就成为一个是期望为正的事情。新加坡的执法效率没感觉有多高，但是罚的是挺狠，北京这种时不时看到的遮挡号牌，在新加坡试一下，绝对罚的你此生难忘。</p>
+
+<p>另外这边核心区也是有拥堵费的，只不过北京是通过限行调节的。没办法，我们是社会主义国家嘛。要讲公平，不能什么都向钱看。再就是北京停车位是真的不够，新加坡这边祖屋的停车场就没怎么看到停满的，毕竟车是真的贵。</p>
+
+<p>增量控制上，那新加坡是全世界买车最贵的地方，拥车证最近的价格应该是已在4-5w新币徘徊，加上车本身的价格+100%的税，额外的注册费，算下来比北京至少贵个4-5倍？一辆卡罗拉50w人民币是差不多要的，而拥车证只有10年的有效期，这基本上就是说穷人就别开车了吧。公共交通上，两个城市都不错，新加坡因为小，公共交通密度相对更高，也一定程度上补齐了买不了车的短板。按照新加坡政府的规划，应该车的总数就控制在这个量级了，以后可能没有退出就没有新增。而北京就很奇葩了，且不说摇号比彩票的概率还低，存量怎么一下子放到这个程度的，北京政府就没有什么反思么。。车辆控制基本上跟城市摊大饼的规划保持了一致，属于以后的事情以后再说。。</p>
+
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2021-03-13-122238.jpg" alt="" /></p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[最近在上海，远郊区，看整体交通状况感觉比北京好多了。上海市里估计也是一样的堵，但是北京G6到了回龙观也就还那样，属于比较奇葩的了。 对比一下新加坡的交通，能明显感觉城市规划的一些想法上的不一样，两边似乎都没有可以相互参考的地方，但是可以拿出来比较一下。 新加坡地方小，人口密度大，车相对人口算，其实不低了。100万辆车，大概去年到了105万辆吧，人口大概是470万人，北京大概常驻人口3000万人，车710万辆，应该也是去年的数字，从这个角度看，其实人车比差不多。从面积上看呢，新加坡总面积大约730平方公里左右，比海淀区和朝阳区加起来还大些。从这个角度看，应该也有可比性，北京的车相对来说等人口、面积比例下会多一点点，外牌的比例之前控制了一把，所以可以认为差不多。 但是整体交通状况新加坡就比北京好太多了。一个是路网密度更高，大部分祖屋社区都是不封闭的，少量的condo虽然封闭但是也只有很少几栋楼，大部分空间拿出来规划了城市道路。北京之前有段时间也想做开放社区，迫于强大的居民压力放弃了。从这个角度看政策跟人性的博弈是一直存在的，民众的想法永远是堵车就是政府不修路，政府跑我们小区修路那我跟你没完。。。 其次是交通执法的压力上很不一样，新加坡这种执法程度放到北京的话，估计短期内交通会有不少改观，很多问题不都是规划，鸡贼的司机占了很大一部分。违法成本低，罚款罚分都是属于广撒网但是力度小，长期执行下去之后违法和查违法之间就形成了一个稳态，加上也不是每次都被抓，交通违章就成为一个是期望为正的事情。新加坡的执法效率没感觉有多高，但是罚的是挺狠，北京这种时不时看到的遮挡号牌，在新加坡试一下，绝对罚的你此生难忘。 另外这边核心区也是有拥堵费的，只不过北京是通过限行调节的。没办法，我们是社会主义国家嘛。要讲公平，不能什么都向钱看。再就是北京停车位是真的不够，新加坡这边祖屋的停车场就没怎么看到停满的，毕竟车是真的贵。 增量控制上，那新加坡是全世界买车最贵的地方，拥车证最近的价格应该是已在4-5w新币徘徊，加上车本身的价格+100%的税，额外的注册费，算下来比北京至少贵个4-5倍？一辆卡罗拉50w人民币是差不多要的，而拥车证只有10年的有效期，这基本上就是说穷人就别开车了吧。公共交通上，两个城市都不错，新加坡因为小，公共交通密度相对更高，也一定程度上补齐了买不了车的短板。按照新加坡政府的规划，应该车的总数就控制在这个量级了，以后可能没有退出就没有新增。而北京就很奇葩了，且不说摇号比彩票的概率还低，存量怎么一下子放到这个程度的，北京政府就没有什么反思么。。车辆控制基本上跟城市摊大饼的规划保持了一致，属于以后的事情以后再说。。]]></summary></entry><entry><title type="html">关于马云在外滩的演讲</title><link href="http://chenxiaohui.me/2021/03/07/mayun_speech_about_supervise/" rel="alternate" type="text/html" title="关于马云在外滩的演讲" /><published>2021-03-07T16:14:00+08:00</published><updated>2021-03-07T16:14:00+08:00</updated><id>http://chenxiaohui.me/2021/03/07/mayun_speech_about_supervise</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/07/mayun_speech_about_supervise/"><![CDATA[<p>事情大家都知道，只是之前没注意马云在外滩关于监管的演讲到底讲了什么。原文在这里。</p>
+
+<p>https://finance.sina.com.cn/tech/2020-10-25/doc-iiznezxr8009643.shtml</p>
+
+<p>摘抄一点：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>理论和系统是不一样的，专家和学者是不一样的，专家是干出来的，干得很厉害，但不一定会总结，很多学者是不具体干，但是能形成理论。只有专家和学者结合起来，只有理论和实践结合起来，才能真正去创新解决今天和明天的问题。我们需要来自实践的理论，不是来自办公室理论的实践，P2P是来自办公室理论的实践，它给我们的启发，不是否定互联网，而是不要再重复办公室理论的实践。
+
+我觉得有一个现象，就是我们的一些处长，监管到后来，变成了自己没有风险，自己部门没有风险，但是整个经济有风险，整个经济不发展的风险。未来的比赛是创新的比赛，不仅仅是监管技能的比赛。我的理解，习主席说的执政能力的提升，是指发展了并且监管有序的发展，而不是监管了没发展。
+</code></pre></div></div>
+
+<p>水平高不高不知道。。反正有点沈万三那味了。。</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[事情大家都知道，只是之前没注意马云在外滩关于监管的演讲到底讲了什么。原文在这里。 https://finance.sina.com.cn/tech/2020-10-25/doc-iiznezxr8009643.shtml 摘抄一点： 理论和系统是不一样的，专家和学者是不一样的，专家是干出来的，干得很厉害，但不一定会总结，很多学者是不具体干，但是能形成理论。只有专家和学者结合起来，只有理论和实践结合起来，才能真正去创新解决今天和明天的问题。我们需要来自实践的理论，不是来自办公室理论的实践，P2P是来自办公室理论的实践，它给我们的启发，不是否定互联网，而是不要再重复办公室理论的实践。 我觉得有一个现象，就是我们的一些处长，监管到后来，变成了自己没有风险，自己部门没有风险，但是整个经济有风险，整个经济不发展的风险。未来的比赛是创新的比赛，不仅仅是监管技能的比赛。我的理解，习主席说的执政能力的提升，是指发展了并且监管有序的发展，而不是监管了没发展。 水平高不高不知道。。反正有点沈万三那味了。。]]></summary></entry></feed>
