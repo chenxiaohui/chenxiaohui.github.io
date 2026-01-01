@@ -280,6 +280,10 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/02/01/random-shuffle/"><h2 itemprop="headline" class="item__header">About random shuffle in cplusplus</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes the output as index to place current element while shuffling. Here is a...</div><p><a href="/2015/02/01/random-shuffle/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 01, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-01T19:14:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/01/experience-of-curing-my-teeth/"><h2 itemprop="headline" class="item__header">我的治牙经历</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">2015.1.12，生日，去做了第一轮刮治的第一次治疗。痛不欲生啊。
 
@@ -358,28 +362,8 @@ mac下下载了客户端直接打开配置好地址就能用，linux下需要自
   	tar zxvf node-v0.10.35.tar.gz 
  ...</div><p><a href="/2015/01/26/shadow-socks-proxy/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 26, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-26T15:39:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/23/java-reuse-bug/"><h2 itemprop="headline" class="item__header">java中重用对象的bug</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">首先这不是java编译器的问题，就是写代码的时候大意了。
-
-有这样一个函数
-
-  	int parse(String msg, Message out)；
-
-解析一个String，返回一个结构体。这么做的目的主要是避开try catch的性能问题，通过返回码来处理异常。这里就很容易出现这样的用法了：
-
-  	Message msg = new Message();
-  	for (xxxx){
-  		if (0 == parse(str, msg))
-
-  	}
-
-当时觉得还挺好，复用了一个对象。实际明显有问题的，这个对象的生命周期不见得只在for循环内部，一旦引用被传递出去，就会有悬挂（java里是不是不这么叫）的问题。多个引用指向了一个对象，计算结果是不可预测的。
-
-主要问题是j...</div><p><a href="/2015/01/23/java-reuse-bug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-23T11:15:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page12">
             <i class="fas fa-angle-left"></i>

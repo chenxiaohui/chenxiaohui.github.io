@@ -280,6 +280,17 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/07/04/gcc-printf-format-attribute/"><h2 itemprop="headline" class="item__header">gcc的格式化字符串检查</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">之前很好奇为什么printf参数类型跟格式化字符串不匹配的时候为啥有时候可以报错，有时候不能报错。printf的时候如果不匹配经常会看到这种错误：
+
+  	 format ‘%s’ expects type ‘char *’, but argument 12 has type ‘struct S3ListHead * const’
+
+很多core是因为这种问题导致的，所以能放到编译期检查的话，确实有助于提高代码质量。后来白哥指点gcc有单独的attribute来指定检查匹配。作为一个编译器，真是良心啊。
+
+  	format (archetype, string-index, first-to-check)
+The format attribute specifies that a f...</div><p><a href="/2016/07/04/gcc-printf-format-attribute/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 04, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-07-04T14:53:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/06/28/search-log-with-timcat/"><h2 itemprop="headline" class="item__header">用timecat来定位日志</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">介绍一个日志grep的神器。
   做系统开发的人都有从海量日志里面定位bug的经历，大家一般用如下几种方法：
@@ -412,26 +423,8 @@ int main(int argc, const char *argv[]) {
 /* 
  * This sample shows definition and initiation of a struct...</div><p><a href="/2016/05/26/union-struct-initialize/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 26, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-26T11:01:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2016/05/18/loglogrotate-version-problem/"><h2 itemprop="headline" class="item__header">logrotate版本问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">线上运维过程中切日志用了logrotate，但无奈日志打的太多，一天的日志几十G难以分析，遂决定改成每小时切分一次日志。从logrotate的说明看有hourly的支持，但是直接把daily改成hourly之后启动报错：
-
-   	unknown option ‘hourly’
-
-感觉是logrotate 3.8.7的版本不支持hourly语法
-
-rpm安装logrotate高版本的包提示缺少fillup和其他的依赖，同时glibc的版本也要求高版本。于是下载了logrotate的源码安装，以最新版本3.9.2为例
-
-./autogen.sh
-./configure
-
-
-提示缺少libpopt头文件，下载了libpopt 1.5的源码安装，提示libtool版本不对。我擦嘞。
-
-后来突...</div><p><a href="/2016/05/18/loglogrotate-version-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 18, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-18T16:02:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page4">
             <i class="fas fa-angle-left"></i>

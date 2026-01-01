@@ -280,6 +280,29 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/10/28/cpp-derive-problems/"><h2 itemprop="headline" class="item__header">澄清几个关于C++继承的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：
+
+  	#include 
+class Base
+{
+  public:
+    Base (){}
+    virtual ~Base (){}
+    virtual void print() {printf("Base\n");}
+};
+
+class Middle : public Base
+{
+  public:
+    Middle(){}
+    virtual ~Middle(){}
+    void print() {printf("Middle\n");}
+};
+
+class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 28, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-28T15:56:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/10/22/destruct-and-member-destruct/"><h2 itemprop="headline" class="item__header">析构函数和成员析构的先后顺序</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">肖总问到这个问题，写了个程序验证：
   	class Member
@@ -385,27 +408,8 @@ class MemPool
     {}
     virtual ~MemPool ...</div><p><a href="/2014/09/06/error-in-cpp-150-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 06, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-06T11:41:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/08/26/paxos-study/"><h2 itemprop="headline" class="item__header">Paxos算法学习</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">本来想写点东西，后来觉得都是一知半解。这里转载一点学习资料吧。
-
-一个是知行学社的分布式系统与Paxos算法视频课程，循序渐进，讲解地比较浅显易懂。
-
-
-&lt;/embed&gt;
-
-另一个是百度刘杰《分布式系统原理介绍》。当然Lamport的几篇论文是不能不看的，虽然都不太好懂。
-
-
-  The Part-Time Parliament
-  Paxos Made Simple
-  The Byzantine Generals Problem
-
-
-相比较而言，paxos的wiki可能更好懂一些。有余力的同学可以做一下MIT Distributed Systems Labs。</div><p><a href="/2014/08/26/paxos-study/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 26, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-08-26T20:53:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page17">
             <i class="fas fa-angle-left"></i>

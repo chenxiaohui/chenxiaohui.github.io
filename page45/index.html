@@ -280,6 +280,35 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/02/24/multi-table-operation-with-local-cache/"><h2 itemprop="headline" class="item__header">基于本地缓存的多表级联操作的实现（C#）</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">背景：数据库操作中我们经常会遇到级联修改的问题，在之前的一篇文章1里我们探讨了多表级联的一种实现方式，这篇文章我们将探讨另一种实现方式，即通过本地缓存的方式，避免不必要的存储过程。
+
+定义：
+
+
+  事实表：中央表，它包含联系事实与维度表的数字度量值和键。简单说，事实表包括各个维度的ID。
+
+  维表：述事实数据表中的数据。维度表包含创建维度所基于的数据。
+
+
+首先，我们的条件是，级联不是很复杂，存在一张事实表和若干维表，通过单ID将事实表和维表进行级联。思路是：首先本地缓存维表的所有数据，然后将事实表的数据绑定到DataGridView上，将ID列设置为DataGridViewComboBoxColumn，绑定相应的维表，指定值字段和显示字段，让结果自动对应。
+
+举个简单的例子：订单...</div><p><a href="/2011/02/24/multi-table-operation-with-local-cache/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E4%BA%8B%E5%AE%9E%E8%A1%A8">事实表</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%A4%9A%E8%A1%A8%E7%BA%A7%E8%81%94">多表级联</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%9C%AC%E5%9C%B0%E7%BC%93%E5%AD%98">本地缓存</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BB%B4%E8%A1%A8">维表</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-24T00:00:00+08:00">
+    <meta itemprop="keywords" content="事实表,多表级联,本地缓存,维表"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/02/24/message-box-like-qq-or-msn/"><h2 itemprop="headline" class="item__header">仿QQ、MSN消息提示窗口的实现（C#）</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">前言：我们在QQ、MSN、飞信等即时通信软件中经常看到消息弹出提示，即屏幕右下角弹出一个消息提示框，然后过一段时间隐去（有时候也不隐去，比如一个艰难的决定）。这种提示方式在消息通信中比弹MessageBox更符合用户习惯，前者往往阻碍用户正常操作。我们尝试在.Net下模拟这种方式。
 
@@ -465,39 +494,8 @@
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00+08:00">
     <meta itemprop="keywords" content="TCP,分包,分隔符,校验,长度"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/01/30/get-url-of-songs-from-baidu/"><h2 itemprop="headline" class="item__header">关于从某度扒取歌曲下载链接</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">时常从百度下载歌曲但是百度的一个链接点开还会打开一个页面再点再打开一个页面……
-
-所以我们可以从页面分析下载链接然后扒取百度的歌曲链接本来写了一个程序但是百度各个页面之间css差别太大所以发现没有通用性。只能把思想写一下了。
-
-例如我们分析一个页面里有罗大佑的《光阴的故事》HTML源码如下
-
-
-  end =
-
-
-至于中间的部分直接查找然后字符串分割即可。
-
-参考文献
-
-
-  [1] C# Regex 深入正则表达式
-
-  [2] c#用正则表达式获得指定开始和结束字符串中间的一段文本</div><p><a href="/2011/01/30/get-url-of-songs-from-baidu/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%AD%8C%E6%9B%B2">歌曲</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%99%BE%E5%BA%A6">百度</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00+08:00">
-    <meta itemprop="keywords" content="歌曲,正则表达式,百度"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page44">
             <i class="fas fa-angle-left"></i>

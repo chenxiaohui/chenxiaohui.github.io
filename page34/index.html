@@ -280,6 +280,30 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/11/29/vmware-esxi-5-network-configuration/"><h2 itemprop="headline" class="item__header">VMware ESXi 网络配置</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+上一讲忘了扯一下vCenter，大家应该经常会看到Sphere vCenter，这个是用来管理多台ESX(i) Server的，换句话说，是虚拟云的管理端，详见官方白皮书[1]。所以如果你只有一台服务器，大可不必搭理。另外大家应该也经常看到VMware Appliance这种名字，实际上就是装好的VMWare虚拟机镜像，我们可以用VMware Converter安装到远程服务器上。这个之后我们也会提到。
+
+现在我们搭建了好了ESXi Server，同时建立了虚拟机，现在开始为虚拟机配置网络。ESXi的网络理念和VMware WorkStation完全不一样，我们在WorkStation里用的那一套[3]没法在这里用。ESXi Server里，你能看到类似于这样的网络拓扑结构，虚拟...</div><p><a href="/2011/11/29/vmware-esxi-5-network-configuration/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=NAT">NAT</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=VMware+vCenter">VMware vCenter</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=WorkStation">WorkStation</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%A1%A5%E6%8E%A5">桥接</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%99%9A%E6%8B%9F%E4%BA%A4%E6%8D%A2%E6%9C%BA">虚拟交换机</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 29, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-11-29T00:00:00+08:00">
+    <meta itemprop="keywords" content="NAT,VMware vCenter,WorkStation,桥接,虚拟交换机"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/11/29/vmware-esxi-5-nat/"><h2 itemprop="headline" class="item__header">VMware ESXi NAT实现</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -471,49 +495,8 @@ Point p = new...</div><p><a href="/2011/11/13/about-the-AutoScrollPosition-prope
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 08, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-10-08T00:00:00+08:00">
     <meta itemprop="keywords" content="公民,慕容雪村,政府,真理"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/10/03/blumind-a-light-mind-map-tool/"><h2 itemprop="headline" class="item__header">Blumind一个超轻量的思维导图工具</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-二话不说，上图：
-
-![blumind_1_3_b][1]
-
-基本功能都有，支持多种图表，思维导图，组织架构图，逻辑图，树状图都支持，总有一款适合你，oh yeah。无用的功能都没有，这是比对了FreeMind，Mindproject，XMind和MindManger之后得出的结论，当然不是说这些软件不好，个人用不到而已。
-
-界面及其精简，支持多种风格，作者正在开发跨平台的版本，当然这跟基于java的XMind比是个劣势，但是至少人速度快啊。Blumind快捷键也很方便，支持插入注解和图标，确实是好东东啊。
-
-一篇比对文章
-
-最后是Blumind的下载地址和作者主页
-
-
-  下载地址：
-
-
-
-  作者主页：
-
-
-向作者致以崇高敬意。
-
- [1]: http://www.roybi...</div><p><a href="/2011/10/03/blumind-a-light-mind-map-tool/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=blumind">blumind</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=MindManger">MindManger</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=xMind">xMind</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE">思维导图</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 03, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-10-03T00:00:00+08:00">
-    <meta itemprop="keywords" content="blumind,MindManger,xMind,思维导图"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page33">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,30 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/15/maven-execute-java-program/"><h2 itemprop="headline" class="item__header">用maven执行java程序</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">Eclipse中需要执行一个java程序的之后只需要在入口类Run就行，但是有时候需要同时开两个程序，尤其对C/S模式的应用来说。针对这种情况，可以分如下三种方式启动另一个程序：
+
+
+  java -cp 指定的类。shell（或者ZSH才有）下貌似是会有提示如下：
+
+
+![](/assets/images/2015/javacp.png)
+
+以上方式至少需要保证用到的jar都在classpath中。 
+
+
+
+  从eclipse中copy执行命令。去调试页面，查看刚才执行的command的属性页面。会看到如下界面，copy命令到shell中执行即可。
+
+
+![](/assets/images/2015/eclipse_command.png)
+
+
+
+  
+    maven exec...</div><p><a href="/2015/01/15/maven-execute-java-program/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T17:08:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/14/django-custom-filter/"><h2 itemprop="headline" class="item__header">Django自定义Filter</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个问题：Django中有字段是根据位来存储信息的，并且不是对应Model数据库中的字段，BitField使用起来比较不太适合。这样就得在模板中根据位来显示不同的内容。查Django并试验，好像位操作不能直接写在if操作符中，同时django也不支持在模板直接调用函数。一个合理的选择是建立自定义的Filter。详见参考文献。基本代码如下：
 
@@ -370,31 +394,8 @@ tinyproxy的配置如下：
 
 What is important is that each class order its members in some logical order, which its maint...</div><p><a href="/2015/01/08/java-code-style/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 08, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-08T14:34:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/05/a-word-puzzle/"><h2 itemprop="headline" class="item__header">源于一个文字游戏的题目</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">起源是这样一道题目：
-
-
-
-于是想到通过word dict来算一下：
-
-先去下载了中文词库：
-
-git clone git@github.com:ling0322/webdict.git 
-
-
-然后去掉词频信息：
-
-   	awk  ‘{ if (length($1)==2) print $1}’ webdict_with_freq.txt &gt;webdict.txt
-
-先按照出现位置来正则过滤候选集，并且去掉大/日/风/思四个字：
-
-   	grep ‘^大.*’ webdict.txt| sed ‘s/大//g’ &gt;da.txt
-grep '^日.*' webdict.txt| sed 's/日//g' &gt;ri.txt
-grep '.*风$' webdict.txt...</div><p><a href="/2015/01/05/a-word-puzzle/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 05, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-05T20:31:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page14">
             <i class="fas fa-angle-left"></i>

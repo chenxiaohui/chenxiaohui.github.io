@@ -280,6 +280,37 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/01/30/get-url-of-songs-from-baidu/"><h2 itemprop="headline" class="item__header">关于从某度扒取歌曲下载链接</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">时常从百度下载歌曲但是百度的一个链接点开还会打开一个页面再点再打开一个页面……
+
+所以我们可以从页面分析下载链接然后扒取百度的歌曲链接本来写了一个程序但是百度各个页面之间css差别太大所以发现没有通用性。只能把思想写一下了。
+
+例如我们分析一个页面里有罗大佑的《光阴的故事》HTML源码如下
+
+
+  end =
+
+
+至于中间的部分直接查找然后字符串分割即可。
+
+参考文献
+
+
+  [1] C# Regex 深入正则表达式
+
+  [2] c#用正则表达式获得指定开始和结束字符串中间的一段文本</div><p><a href="/2011/01/30/get-url-of-songs-from-baidu/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%AD%8C%E6%9B%B2">歌曲</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F">正则表达式</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%99%BE%E5%BA%A6">百度</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00+08:00">
+    <meta itemprop="keywords" content="歌曲,正则表达式,百度"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/01/30/dream-in-the-box/"><h2 itemprop="headline" class="item__header">盒子的梦想</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">——我们的人生其实还很长，还有太多的时间去实现自己的梦想
 
@@ -458,26 +489,8 @@
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-23T00:00:00+08:00">
     <meta itemprop="keywords" content="买房,留学"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/01/21/wordpress-statistics/"><h2 itemprop="headline" class="item__header">WordPress统计</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">博主们往往比较关注网站来访信息，毕竟这反映了自己博客是否受欢迎，本文简要介绍两种统计方法。
-
-首先介绍CNZZ，算是网站流量统计里比较专业的一个，大家的网站如果要拉广告的话，广告商比较认可这个，作为个人博客，没必要那么关注人气，不过加一个还是蛮好玩的，而且不占地方，不影响博客美观。
-
-要启用CNZZ需要去注册一个账号，输入完信息之后CNZZ会给出1种文字 3种图片形式的代码，这部分是需要嵌入到你的网站里的，作为WordPress用户，我们只需要到添加插件里搜索CNZZ，然后启用CNZZ&amp;51LA for WordPress即可，配置里写入统计代码（以上给出的四种类型都可），可以选择是否显示文字或那个小图片。保存后就能在页面底部看到CNZZ的链接（如果你选择显示的话），单击之后可...</div><p><a href="/2011/01/21/wordpress-statistics/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=CNZZ">CNZZ</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=WordPress">WordPress</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%BB%9F%E8%AE%A1">统计</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 21, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-21T00:00:00+08:00">
-    <meta itemprop="keywords" content="CNZZ,WordPress,统计"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page45">
             <i class="fas fa-angle-left"></i>

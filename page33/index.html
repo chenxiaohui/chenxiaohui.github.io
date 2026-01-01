@@ -280,6 +280,31 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/"><h2 itemprop="headline" class="item__header">解决Latex中Itemize距离过大的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">默认的itemize存在行距过大的问题，大概是如下的样子：
+
+
+
+用paralist包可以减少行距，代码如下
+
+
+  \usepackage{paralist}
+\let\itemize</div><p><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Itemize">Itemize</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Latex">Latex</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=paralist">paralist</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%A1%8C%E8%B7%9D">行距</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 16, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-16T00:00:00+08:00">
+    <meta itemprop="keywords" content="Itemize,Latex,paralist,行距"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/"><h2 itemprop="headline" class="item__header">两种可行的Latex中文生成方式(GBK/UTF8)</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -481,32 +506,8 @@ VMware ESXi使用桥接（猜测，错了不管）的方式实现网络配置，
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-02-24T00:00:00+08:00">
     <meta itemprop="keywords" content="ESXi,NAT,pfSense,管理端口"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/11/29/vmware-esxi-5-network-configuration/"><h2 itemprop="headline" class="item__header">VMware ESXi 网络配置</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-上一讲忘了扯一下vCenter，大家应该经常会看到Sphere vCenter，这个是用来管理多台ESX(i) Server的，换句话说，是虚拟云的管理端，详见官方白皮书[1]。所以如果你只有一台服务器，大可不必搭理。另外大家应该也经常看到VMware Appliance这种名字，实际上就是装好的VMWare虚拟机镜像，我们可以用VMware Converter安装到远程服务器上。这个之后我们也会提到。
-
-现在我们搭建了好了ESXi Server，同时建立了虚拟机，现在开始为虚拟机配置网络。ESXi的网络理念和VMware WorkStation完全不一样，我们在WorkStation里用的那一套[3]没法在这里用。ESXi Server里，你能看到类似于这样的网络拓扑结构，虚拟...</div><p><a href="/2011/11/29/vmware-esxi-5-network-configuration/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=NAT">NAT</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=VMware+vCenter">VMware vCenter</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=WorkStation">WorkStation</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%A1%A5%E6%8E%A5">桥接</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%99%9A%E6%8B%9F%E4%BA%A4%E6%8D%A2%E6%9C%BA">虚拟交换机</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 29, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-11-29T00:00:00+08:00">
-    <meta itemprop="keywords" content="NAT,VMware vCenter,WorkStation,桥接,虚拟交换机"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page32">
             <i class="fas fa-angle-left"></i>

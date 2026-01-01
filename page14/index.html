@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/23/java-reuse-bug/"><h2 itemprop="headline" class="item__header">java中重用对象的bug</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">首先这不是java编译器的问题，就是写代码的时候大意了。
+
+有这样一个函数
+
+  	int parse(String msg, Message out)；
+
+解析一个String，返回一个结构体。这么做的目的主要是避开try catch的性能问题，通过返回码来处理异常。这里就很容易出现这样的用法了：
+
+  	Message msg = new Message();
+  	for (xxxx){
+  		if (0 == parse(str, msg))
+
+  	}
+
+当时觉得还挺好，复用了一个对象。实际明显有问题的，这个对象的生命周期不见得只在for循环内部，一旦引用被传递出去，就会有悬挂（java里是不是不这么叫）的问题。多个引用指向了一个对象，计算结果是不可预测的。
+
+主要问题是j...</div><p><a href="/2015/01/23/java-reuse-bug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 23, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-23T11:15:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/22/simulate-group-by-in-bash/"><h2 itemprop="headline" class="item__header">bash下模拟group by功能</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个问题：有一堆数据，需要统计相同key下相同的column的重复出现次数，实际上就是数据库里面的group by功能，但是建表导入然后计算未免麻烦，何况数据是临时数据，导入计算完毕之后就不需要了。这里用shell下的一些命令来完成。
 
@@ -374,32 +394,8 @@ url = models.CharField(max_length=1000)
 title = models.CharField(max_length=1000)
 operation = models.CharField(max_length=...</div><p><a href="/2015/01/15/django-assign-autoincrement-field/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T22:00:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/15/maven-execute-java-program/"><h2 itemprop="headline" class="item__header">用maven执行java程序</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Eclipse中需要执行一个java程序的之后只需要在入口类Run就行，但是有时候需要同时开两个程序，尤其对C/S模式的应用来说。针对这种情况，可以分如下三种方式启动另一个程序：
-
-
-  java -cp 指定的类。shell（或者ZSH才有）下貌似是会有提示如下：
-
-
-![](/assets/images/2015/javacp.png)
-
-以上方式至少需要保证用到的jar都在classpath中。 
-
-
-
-  从eclipse中copy执行命令。去调试页面，查看刚才执行的command的属性页面。会看到如下界面，copy命令到shell中执行即可。
-
-
-![](/assets/images/2015/eclipse_command.png)
-
-
-
-  
-    maven exec...</div><p><a href="/2015/01/15/maven-execute-java-program/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T17:08:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page13">
             <i class="fas fa-angle-left"></i>

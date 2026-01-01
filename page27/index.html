@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/10/16/user-script-to-get-coverage/"><h2 itemprop="headline" class="item__header">通过脚本统计代码覆盖率</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">只是记录一下工作里面的一些trick。我发现我对这些trick的兴趣无比的高。
+
+我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。
+
+关于gcc coverage选项和gcov/lcov工具的使用已经在 上篇文章里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。
+
+
+
+首先，测试目录和代码目录是分开的，我们在测试目录运行的时候会生成测试文件的代码覆盖率统计，但是实际上被测试的文件的代码覆盖率是在源码目录生成的。这是需要注意的一点，之前我考虑过合并两处的代码覆盖率统计文件，后来发现没有必要，毕竟你关注的是源码目录的统计文件。这样我们通过如下脚本实现代码覆盖率的生成和拉取。
+
+#...</div><p><a href="/2013/10/16/user-script-to-get-coverage/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T20:56:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/16/test-coverage-percentage-statistics/"><h2 itemprop="headline" class="item__header">测试覆盖率统计</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">###什么是代码覆盖率(code coverage)
 
@@ -417,33 +431,8 @@ rs的日志如下：
 
   	mkdir repository.git &a...</div><p><a href="/2013/10/11/post-review-conflict-under-git-svn/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 11, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-11T21:24:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/10/the-best-monitor-under-linux-htop/"><h2 itemprop="headline" class="item__header">霸气风骚的系统监视器htop</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">做测试和运维的同学都比较熟悉top工具，top工具提供了强大的系统性能监视能力，但是top毕竟比较简陋，而服务器端又不能运行需要X的程序，所以需要一款更人性更强大的系统监视器。HTOP就是一个很好的选择。
-
-
-###介绍
-
-
-  htop 是Linux系统中的一个互动的进程查看器，一个文本模式的应用程序(在控制台或者X终端中)，需要ncurses。
-
-
-
-  与Linux传统的top相比，htop更加人性化。它可让用户交互式操作，支持颜色主题，可横向或纵向滚动浏览进程列表，并支持鼠标操作。
-
-
-
-  与top相比，htop有以下优点：
-
-
-
-  
-    可以横向或纵向滚动浏览进程列表，以便看到所有的进程和完整的命令行。
-    在启动上，比top 更快。
-    杀进程时不需要输入进...</div><p><a href="/2013/10/10/the-best-monitor-under-linux-htop/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 10, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-10T20:12:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page26">
             <i class="fas fa-angle-left"></i>

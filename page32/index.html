@@ -280,6 +280,28 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/"><h2 itemprop="headline" class="item__header">深入解析C++输入输出运算符重载</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。
+
+我们以输出运算符为例。首先输出运算符重载的一般形式是
+
+:::cpp
+friend ostream&amp; operator&lt;&lt;(ostream&amp; o,const ClassName&amp; c);[1]</div><p><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=C%23">C#</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=CArchive">CArchive</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA">输入输出</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD">运算符重载</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 07, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-05-07T00:00:00+08:00">
+    <meta itemprop="keywords" content="C#,CArchive,输入输出,运算符重载"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/"><h2 itemprop="headline" class="item__header">简短总结一下C#里跨线程更新UI</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用
 
@@ -512,33 +534,8 @@ VIM默认使用的过程中有一个重要的问题，就是打开多个文件�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-28T00:00:00+08:00">
     <meta itemprop="keywords" content="buf_it,gvim,Windows,优化,缓冲区"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/"><h2 itemprop="headline" class="item__header">解决Latex中Itemize距离过大的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">默认的itemize存在行距过大的问题，大概是如下的样子：
-
-
-
-用paralist包可以减少行距，代码如下
-
-
-  \usepackage{paralist}
-\let\itemize</div><p><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Itemize">Itemize</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Latex">Latex</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=paralist">paralist</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%A1%8C%E8%B7%9D">行距</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 16, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-16T00:00:00+08:00">
-    <meta itemprop="keywords" content="Itemize,Latex,paralist,行距"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page31">
             <i class="fas fa-angle-left"></i>

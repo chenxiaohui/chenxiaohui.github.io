@@ -280,6 +280,17 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/12/12/flash-cookie-cross-domain/"><h2 itemprop="headline" class="item__header">Flash Cookie的跨域读取</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">关于Flash Cookie相关的问题见参考文献1。这里主要说如何实现跨域的Flash Cookie读取。
+
+首先，我们要实现Js调用Flash插件。比较简单的实现是用swfobject。简单的示例代码如下：
+
+&lt;object id="myCom" name="myCom" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="0" height="0"&gt;
+    &lt;param name="movie" value="http://xxx/xxx.swf" /&gt;
+    &lt;param name="allowScriptAccess" value="always" /&gt;
+    &lt;...</div><p><a href="/2014/12/12/flash-cookie-cross-domain/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 12, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-12T12:35:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/09/notes-on-kafka-consumer-api/"><h2 itemprop="headline" class="item__header">kafka Consumer API几个问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">一直不理解这里的topicCountMap是什么意思。kafka的High Level Consumer API设计实在是比较费解。源码又比较费解。
 
@@ -382,31 +393,8 @@ Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeep
 
 例子如下：</div><p><a href="/2014/10/29/cpp-virtual-template-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/10/28/cpp-derive-problems/"><h2 itemprop="headline" class="item__header">澄清几个关于C++继承的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：
-
-  	#include 
-class Base
-{
-  public:
-    Base (){}
-    virtual ~Base (){}
-    virtual void print() {printf("Base\n");}
-};
-
-class Middle : public Base
-{
-  public:
-    Middle(){}
-    virtual ~Middle(){}
-    void print() {printf("Middle\n");}
-};
-
-class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 28, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-28T15:56:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page16">
             <i class="fas fa-angle-left"></i>

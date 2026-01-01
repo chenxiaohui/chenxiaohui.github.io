@@ -280,6 +280,42 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/"><h2 itemprop="headline" class="item__header">IE8无法调试ActiveX控件的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近调ActiveX控件，发现总是无法停到一个断点去，这不坑爹呢？
+
+后来找来找去，发现IE8 默认是多进程工作的，通过修改注册表可以改为单进程工作，多进程的时候，启动的ie进程和加载要调试的ocx的ie进程不是一个进程，所以不能调试。
+
+注册表操作如下：
+
+
+  Windows Registry Editor Version 5.00
+[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
+“TabProcGrowth”=dword:00000000
+
+
+参考文献：
+
+[1] VC做的OCX控件，IE下断点调试问题,
+
+[2] IE8调试VC6的OCX控件不能进入断点问题解决方法</div><p><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=ActiveX">ActiveX</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=IE8">IE8</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%8D%95%E8%BF%9B%E7%A8%8B">单进程</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%96%AD%E7%82%B9">断点</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%B0%83%E8%AF%95">调试</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 05, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-05-05T00:00:00+08:00">
+    <meta itemprop="keywords" content="ActiveX,IE8,单进程,断点,调试"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/04/08/visualization-of-all-kinds-of-sort-algorithm/"><h2 itemprop="headline" class="item__header">各种排序算法的图形化演示</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">一个日本哥哥写的各种排序算法的图形化演示，非常不错，推荐一下。
 
@@ -443,30 +479,8 @@ Molehill是Adobe官方将推出的一套底层3D渲染引擎，该引擎能够�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 22, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-03-22T00:00:00+08:00">
     <meta itemprop="keywords" content="匹配器,正则表达式"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/03/20/super-imaginary/"><h2 itemprop="headline" class="item__header">超现实的想象力</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">这个 Infinity 广告，用无比意识流的方式，超多华丽的特效镜头，堆叠出一个视觉狂想曲。当你的眼球被惊得一塌糊涂时，恐怕很容易喜欢它了吧。整个广告都非常好莱坞科幻大片风范，恢弘又淡定的画面，效果超级拉风啊！
-
-以下是制作花絮：
-
-
-  转载自：超现实的想象力！媲美科幻大片的超级特效华丽广告 Infinity！ (Batelco电信),</div><p><a href="/2011/03/20/super-imaginary/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=infinity">infinity</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%A4%A7%E7%89%87">大片</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%A5%BD%E8%8E%B1%E5%9D%9E">好莱坞</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%A7%91%E5%B9%BB">科幻</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 20, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-03-20T00:00:00+08:00">
-    <meta itemprop="keywords" content="infinity,大片,好莱坞,科幻"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page42">
             <i class="fas fa-angle-left"></i>

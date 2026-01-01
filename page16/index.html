@@ -280,6 +280,29 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/05/a-word-puzzle/"><h2 itemprop="headline" class="item__header">源于一个文字游戏的题目</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">起源是这样一道题目：
+
+
+
+于是想到通过word dict来算一下：
+
+先去下载了中文词库：
+
+git clone git@github.com:ling0322/webdict.git 
+
+
+然后去掉词频信息：
+
+   	awk  ‘{ if (length($1)==2) print $1}’ webdict_with_freq.txt &gt;webdict.txt
+
+先按照出现位置来正则过滤候选集，并且去掉大/日/风/思四个字：
+
+   	grep ‘^大.*’ webdict.txt| sed ‘s/大//g’ &gt;da.txt
+grep '^日.*' webdict.txt| sed 's/日//g' &gt;ri.txt
+grep '.*风$' webdict.txt...</div><p><a href="/2015/01/05/a-word-puzzle/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 05, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-05T20:31:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/05/django-redirect-render/"><h2 itemprop="headline" class="item__header">django重定向的参数传递</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">其实就是想实现如下一个功能，重定向到一个网页，但是这个网页根据传参的不同显示不同的内容。基于Django各种render的shortcut理所当然的想有没有render_redirect，但是想想网络请求的流程，redirect只是返回了一个302，让浏览器直接去请求新的网页了，首先这个response很简单没有携带其他信息，此外，浏览器也不会把302code和url之外的内容作为下一次请求的参数。
 
@@ -383,19 +406,8 @@ Thrift的依赖加进来的时候（如下），Dependency Hierachy解析会添�
 		&lt;buildCommand&gt;
 			&lt;name...</div><p><a href="/2014/12/25/maven-revert-eclipse-jdk-version/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 25, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T14:49:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/12/12/flash-cookie-cross-domain/"><h2 itemprop="headline" class="item__header">Flash Cookie的跨域读取</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">关于Flash Cookie相关的问题见参考文献1。这里主要说如何实现跨域的Flash Cookie读取。
-
-首先，我们要实现Js调用Flash插件。比较简单的实现是用swfobject。简单的示例代码如下：
-
-&lt;object id="myCom" name="myCom" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="0" height="0"&gt;
-    &lt;param name="movie" value="http://xxx/xxx.swf" /&gt;
-    &lt;param name="allowScriptAccess" value="always" /&gt;
-    &lt;...</div><p><a href="/2014/12/12/flash-cookie-cross-domain/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 12, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-12T12:35:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page15">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,30 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/05/27/python-tricks/"><h2 itemprop="headline" class="item__header">一些python小技巧</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">生成一个重复列表可以通过如下语句:
+
+     [i] * n #这比[ i for _ in range(0,n) ]简洁太多
+ 同样可以"i" * n来生成字符串
+    
+  
+  
+    map函数。
+
+    可以用来分类函数和其调用参数，对于线程池比较有用。比如
+
+     import urllib2 
+ from multiprocessing.dummy import Pool as ThreadPool 
+
+ urls = [
+         'http://www.python.org', 
+         # etc.. 
+         ]
+
+ pool = ThreadPool(4) 
+ results = pool.map(urllib2.urlo...</div><p><a href="/2015/05/27/python-tricks/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 27, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-05-27T10:54:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/05/11/git-remote-branch-not-exists/"><h2 itemprop="headline" class="item__header">Git远程分支不存在的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">建立了一个远程分支，提交到origin上之后，发现之前有一个同样的远程Repository存在，而且名字一样，这就比较D疼了，git branch -a 显示的分支里面的分支提交到了另一个Repository，但是这个Repository已经改名字了，虽然地址一样。
 
@@ -359,20 +383,8 @@ Ok.</div><p><a href="/2015/04/22/post-review-encoding-problem/">Read more</a></p
   查阅发现java还有自己的代理配置，见参考文献，去掉代理。貌似还是无效。
   索性重启，搞定。</div><p><a href="/2015/04/19/maven-download-stuck/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 19, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-19T22:08:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/04/01/something-about-sendmail-setup/"><h2 itemprop="headline" class="item__header">关于sendmail邮件服务器的搭建</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">还是reviewboard的事情，我们需要一个自己的邮件服务器来发通知邮件。sendmail是一个比较好的选择，搭建的方式很简单，安装sendmail，修改配置文件，修改local_host_name就行。如果不需要登陆验证，这样也就直接能用了。现在的问题是reviewboard是必须登陆验证的。至少看报错上是这样。
-
-  	SMTPException: SMTP AUTH extension not supported by server. reviewboard
-
-具体代码没细看，但是应该默认都有认证，只是认证方式不一样。我们telnet到25端口，执行
-
-  	ehlo localhost
-
- 	/usr/sbin/testsaslauthd -u username -p soh...</div><p><a href="/2015/04/01/something-about-sendmail-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-01T20:14:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page8">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,39 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/06/23/php-login-into-renren-simulation/"><h2 itemprop="headline" class="item__header">PHP模拟登陆人人</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">PHP的Curl组件可以完成模拟http请求并获取返回结果的功能，并支持SSL和cookie，我们可以用Curl模拟登陆一个网站，并获取登陆后的结果。这里我们用人人做个测试。人人实现了与开心账号互通之后，增加了一个验证服务器，所以需要先到验证服务器验证并获取跳转链接，同时保存cookie，之后请求网页的时候都加上cookie即可。
+
+代码见附件，主要需要注意的几点如下：
+
+
+  登陆Https网站需要PHP支持SSL并生成服务器认可的证书。
+  设置CURLOPT_FOLLOWLOCATION的目的是登陆成功后直接按照返回的跳转值跳转，并抓取之后的页面。
+  代码
+
+
+[这里][1]下载。
+
+
+  参考文献：
+
+
+[1] willko，cURL 二次封装的类库Curl_Manager，...</div><p><a href="/2011/06/23/php-login-into-renren-simulation/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Curl">Curl</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=php">php</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E4%BA%BA%E4%BA%BA">人人</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%A8%A1%E6%8B%9F%E7%99%BB%E9%99%86">模拟登陆</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jun 23, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-06-23T00:00:00+08:00">
+    <meta itemprop="keywords" content="Curl,php,人人,模拟登陆"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/06/11/dong-zhuang/"><h2 itemprop="headline" class="item__header">东庄</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然的机会，翻出机器上很久之前存的一部电影来，一部反映北京上访群众生活的纪录片，《东庄》。里面最让人觉得心酸的是一个老奶奶，异常平静地对记者讲自己的经历。在这个遥远而陌生的北京，远离子女，而又不敢见子女，怕他们受牵连，让人觉得异常心酸。一个母亲，流干了眼泪，远离了子女，承受着迫害，只身来北京上访，该有如何的冤屈。真正触动一个人内心的，不是眼泪，而往往是眼泪背后的东西。如许平静的眼神，却让人无地自容。而不远处，却是我们巍峨的政府机构。生活如此反复，日复一日，年复一年。生命在这点点的抗争里，显得如此无奈，而又如此坚强。这也是值得我们深思，并去做些事情的地方吧。</div><p><a href="/2011/06/11/dong-zhuang/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
@@ -416,44 +449,8 @@ package assets
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 14, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-05-14T00:00:00+08:00">
     <meta itemprop="keywords" content="glibc-headers,preprocessor fails sanity check,RedHat,rpm"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/"><h2 itemprop="headline" class="item__header">IE8无法调试ActiveX控件的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近调ActiveX控件，发现总是无法停到一个断点去，这不坑爹呢？
-
-后来找来找去，发现IE8 默认是多进程工作的，通过修改注册表可以改为单进程工作，多进程的时候，启动的ie进程和加载要调试的ocx的ie进程不是一个进程，所以不能调试。
-
-注册表操作如下：
-
-
-  Windows Registry Editor Version 5.00
-[HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main]
-“TabProcGrowth”=dword:00000000
-
-
-参考文献：
-
-[1] VC做的OCX控件，IE下断点调试问题,
-
-[2] IE8调试VC6的OCX控件不能进入断点问题解决方法</div><p><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ActiveX">ActiveX</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=IE8">IE8</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%8D%95%E8%BF%9B%E7%A8%8B">单进程</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%96%AD%E7%82%B9">断点</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%B0%83%E8%AF%95">调试</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 05, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-05-05T00:00:00+08:00">
-    <meta itemprop="keywords" content="ActiveX,IE8,单进程,断点,调试"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page41">
             <i class="fas fa-angle-left"></i>

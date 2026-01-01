@@ -280,6 +280,19 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/10/an-overwrite-problem-in-cplusplus/"><h2 itemprop="headline" class="item__header">记一个实际中遇到的覆盖问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">工作中遇到一个继承结构如下：
+
+ObServerSchemaService : init_core_schema(const ObSchemaManagerV2 &amp;schema)
+         |
+ObRootSchemaSerivice : init_core_schema()
+
+
+基类的init_core_schema接收一个核心表的schema，而这个schema往往是从rootserver传过来的，所以下面的子类RootSchemaService不需要传参，直接自己生成就好了。
+
+问题是如果在ObRootSchemaService的对象上想要调用ObServerSchemaService的init_core_schema函数会报错。因为命名空间上Root的会覆盖Se...</div><p><a href="/2014/06/10/an-overwrite-problem-in-cplusplus/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T19:32:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/09/oceanbase-introduction-note/"><h2 itemprop="headline" class="item__header">Oceanbase简介 - 笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">数据库简介
 
@@ -412,14 +425,8 @@ function! ThreadLog()
         if(!empty(match))
       ...</div><p><a href="/2014/02/14/vim-script-to-write-thread-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 14, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-02-14T21:32:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/01/06/wangyin-words/"><h2 itemprop="headline" class="item__header">转载王垠的一段话</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">王垠虽然挺扯，这段话还是有道理的：
-
-我对清华，还有 Princeton，Harvard，MIT，Stanford，Berkeley，CMU 等学校的学生都有了解。这些所谓的“世界一流大学”或者“世界一流大学 wannabee”差不多都是类似的气氛。你冲着它们的名气和“关系网”挤破了头皮进去，然后就每天有人在你耳边对其它人感叹：哇，他好牛啊！发了好多 paper，还得了XX奖。跟参加传销大会似的，让你怀疑这些人还有没有自尊。然后就是填鸭式的教育，无止境的作业和考试，让你感觉他们不是在“教育”你，而是在“筛选”你。这种筛选总是筛掉最差的，但也筛掉最好的。因为最好的学生能意识到你在干什么，他们不给你筛选他们的机会。一旦发现其实没学到东西，中途就辍学出去创业了。所以剩下来的就是最一般的，循规...</div><p><a href="/2014/01/06/wangyin-words/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 06, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-01-06T21:59:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page23">
             <i class="fas fa-angle-left"></i>

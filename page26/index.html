@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/08/solution-to-locate-log-in-src/"><h2 itemprop="headline" class="item__header">分布式调试之vim日志定位解决方案</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">做分布式系统看日志解决问题是基本功了，毕竟多个server跑在不同的机器上，即使用gdb能attach到某个进程上，或者用非daemon模式启动并调试但是case往往很复杂，难以用测试环境完全模拟case，所以大部分情况下还是需要看日志解决问题的。
+
+不过日志多了之后往往容易跟丢，在浩如烟海的日志里面定位到发生错误的地方也不是见容易的事情。这周大部分时间就费在这上面了（不过还是不熟）。期间写了一个简单的vim插件实现日志的定位。想法如下：
+
+
+
+偶然发现通过deploy.py ob1.rs0.less打开less窗口之后按v键可以转到vim窗口，这就解决很多问题了，毕竟我可不想在less下实现什么功能。vim script就熟悉多了。
+
+ob的log格式是这样的
+
+  	[2013-1...</div><p><a href="/2013/11/08/solution-to-locate-log-in-src/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 08, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-08T21:31:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/"><h2 itemprop="headline" class="item__header">自己写的一个根据路径打开文件的插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim
 
@@ -412,22 +426,8 @@ ObTableTabletIterator
           <header><a href="/2013/10/18/update-to-ubuntu-13-10/"><h2 itemprop="headline" class="item__header">升级到ubuntu13.10</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</div><p><a href="/2013/10/18/update-to-ubuntu-13-10/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 18, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-18T10:49:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/16/user-script-to-get-coverage/"><h2 itemprop="headline" class="item__header">通过脚本统计代码覆盖率</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">只是记录一下工作里面的一些trick。我发现我对这些trick的兴趣无比的高。
-
-我们有时候需要在开发机上统计代码覆盖率，这可能是做测试的同学经常的工作，做开发的同学也难免会遇到。对于某些分支复杂的逻辑，代码覆盖工具是极大的助力。
-
-关于gcc coverage选项和gcov/lcov工具的使用已经在 上篇文章里面说过了，我们这里说的是如何实现方便的统计和拉取数据并显示。
-
-
-
-首先，测试目录和代码目录是分开的，我们在测试目录运行的时候会生成测试文件的代码覆盖率统计，但是实际上被测试的文件的代码覆盖率是在源码目录生成的。这是需要注意的一点，之前我考虑过合并两处的代码覆盖率统计文件，后来发现没有必要，毕竟你关注的是源码目录的统计文件。这样我们通过如下脚本实现代码覆盖率的生成和拉取。
-
-#...</div><p><a href="/2013/10/16/user-script-to-get-coverage/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T20:56:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

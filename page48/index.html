@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/01/19/get-the-length-of-csharp-serialization-result/"><h2 itemprop="headline" class="item__header">关于C#序列化结果的长度获取</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">关于C#序列化的文章真的是好多，但是内容大致一样，主要分四类：
+
+
+  BinarySerialize
+  SoapSerialize
+  XmlSerialize
+  JSON.Net和DataContractJsonSerializer
+
+
+最近的一个项目需要使用Socket进行通信，所以必然涉及序列化的问题。使用BinarySerialize序列化之后发现无论如何获取不了序列化后的实际长度，代码如下
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+
+na...</div><p><a href="/2011/01/19/get-the-length-of-csharp-serialization-result/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 19, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-19T00:00:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/01/19/blog-processor/"><h2 itemprop="headline" class="item__header">日志格式处理BlogProcessor</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">从之前的博客转文章的时候发现存在格式问题，之前格式贴到LiveWriter里总是一堆混乱。LiveWriter也是微软一大神器，格式莫名奇妙，如果直接拷贝一篇文章进去，那么段前的空格缩进都会消失，又没有什么好的缩进方式。不知道有没有牛人给解释一下？
 
@@ -360,20 +381,8 @@ While True
     Call Work
     If (bJobCompleted = F...</div><p><a href="/2010/07/27/life-is-like-a-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jul 27, 2010</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2010-07-27T00:00:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2010/06/28/walking-away/"><h2 itemprop="headline" class="item__header">渐行渐远</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">曾经觉得毕业的时候我不会吐也不会哭，结果吐的一塌糊涂，哭的一发不可收拾。
-
-青春是一场放肆的狂欢。醉饮欢歌，挥不去离愁万点，举杯相祝，却发觉手中不是美酒，点点是离人泪。
-
-七月，还未离别，已开始想念。放不下熟悉的校园，放不下熟悉的老师同学，放不下四年的欢乐悲伤。四年，北航让我们学会宽容，领会坚忍，品味寂寞，体会欢乐与悲伤。爱过，恨过，哭过，笑过，我们在奋斗中挥洒着汗水，在拼搏中体验着百味人生。
-
-然而，这一切毕竟要离开了。我曾不止一次想象离别的情景，却总无力面对。悄悄是别离的笙箫，或许清晨醒来，周围已少了一个熟悉的身影，多了一张告别的纸条。独自站立在空旷的宿舍楼，我不知道那是怎样一种落寞。
-
-人生天地间，忽如远行客。人在旅途，总有停留，总要离开。挥手告别的时候，有朋友相送，有别酒，有离...</div><p><a href="/2010/06/28/walking-away/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2010</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2010-06-28T00:00:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page47">
             <i class="fas fa-angle-left"></i>

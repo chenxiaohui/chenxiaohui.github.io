@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/16/eclipse-project-structure/"><h2 itemprop="headline" class="item__header">eclipse目录结构</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">eclipse导入Intellij的maven工程的时候经常会出现如下的情况：
+
+
+
+目录结构太深了，解决方法也很简单，alt+f5 refresh maven project , 目录结构会被收起：</div><p><a href="/2015/03/16/eclipse-project-structure/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 16, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-16T15:32:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/16/linux-install-uninstall-tar-ball/"><h2 itemprop="headline" class="item__header">关于Linux 安装和卸载tar ball形式的程序</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">源码安装的一些NOTE:
 
@@ -387,22 +395,8 @@ WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platfo
 
 配置如下：</div><p><a href="/2015/03/03/apache-virtual-server-conf/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 03, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-03T20:12:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/03/sudo-env/"><h2 itemprop="headline" class="item__header">sudo的环境变量</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">sudo的时候不会加载.bashrc什么的，今天就遇到了一个比较扯的问题。在home下安装了高版本的vim，bashrc里面PATH是home高于/bin的，但sudo vi的时候会调用系统的。尝试如下方式：
-
-
-  修改其他配置如.profile什么的。比较麻烦。
-  修改sudoers里面env_keep，发现还是不起作用。
-  修改sudoers里面secure_path，如下：
-
-
-  		Defaults    secure_path = /root/bin:/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/bin
-
-OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 03, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-03T18:34:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page10">
             <i class="fas fa-angle-left"></i>

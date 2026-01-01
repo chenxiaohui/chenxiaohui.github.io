@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/"><h2 itemprop="headline" class="item__header">oceanbase源码分析-RootServer主要框架</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">这里记录一下RootServer主要框架的阅读和心得。
+
+
+
+###BaseMain
+
+BaseMain的逻辑从start开始,首先定义了日志格式(ob_easy_log_format),具体定义在ob_easy_log.cpp中
+日志格式如何使用需要跟到Libeasy里去看了.
+
+之后parse_cmd_line解析命令行参数.既然继承自同一个基类,那么这几个server的启动函数就非常相似
+
+之后是一些启动琐事,建立pid文件,建立log文件,设置log级别等.有些地方引用到了TBsys和libeasy,如果需要了解的话可以跟进去看看.
+
+start的最后注册了signal ,并调用do_work开始逻辑.do_work需要子类重载实现.
+restart处理了重启的问题.
+
+###...</div><p><a href="/2013/09/15/oceanbase-sources-analyze-rootserver-main-frame/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 15, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-15T12:55:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/09/15/to-be-a-hero/"><h2 itemprop="headline" class="item__header">普通英雄</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">只是想起一首老歌:
 
@@ -462,26 +482,8 @@ printf("%s
 
 记得很久之前，要么高中要么快考高中的时候，爸爸的一个朋友找来说，看能不能让你孩子帮忙考个计算机一级啊，评职称要用的，人老了，学不会电脑了。于是爸爸征求我的意见，我那时候年少气盛，立场坚定，转了个弯说我直接考计算机二级的，这些形而上学的Word操作我实在不研究啊。想想也算是回绝的不留余地，不知道那人是信了还是觉得不好强求，于是说那好，我再找找别...</div><p><a href="/2013/01/10/think-of-one-thing/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 10, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-01-10T00:00:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/12/19/watch-variables-when-debuggin-with-gdb-and-pdb/"><h2 itemprop="headline" class="item__header">GDB/PDB调试时变量的监视</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">gdb下有几个监视变量的命令，比如watch可以监视一个变量是否更改，rwatch监视读，awatch监视写等等。这里说的主要是另一个命令，display。
-
-display命令做的事情是指定一个变量，然后在每次调试停住的时候显示这个变量的值。这个是很有用的操作，等于在命令行调试的时候提供了类似于IDE里监视变量（Add to Watch）的功能。但是一直没有发现python的调试工具pdb里有类似的功能。后来在Python官方文档里看到一个命令:commands，提供了类似的功能。
-
-commands命令的使用是 commands [bpnumber] 。bpnumber指定了断点的id（集），省略的话表示上一个断点（集）。之后可以输入需要做的事情，然后以end结尾，一个简单的例子如...</div><p><a href="/2012/12/19/watch-variables-when-debuggin-with-gdb-and-pdb/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=pdb">pdb</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%9B%91%E8%A7%86">监视</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%B0%83%E8%AF%95">调试</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 19, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-12-19T00:00:00+08:00">
-    <meta itemprop="keywords" content="pdb,监视,调试"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page28">
             <i class="fas fa-angle-left"></i>

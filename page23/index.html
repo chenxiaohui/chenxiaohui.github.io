@@ -280,6 +280,17 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/19/oceanbase-design-notes/"><h2 itemprop="headline" class="item__header">oceanbase设计中的注意事项</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">没有情况什么是不可能发生的
+  RPC或者其他网络调用是不一定能够返回结果的。也就是有三种可能，正确，失败，超时。
+  开发文档是需要一边写一边改最后再补的。
+  自顶向下，逐步求精还是有效的办法。方便解决很多设计上想不到的地方，细节永远最后再做，毕竟之前想的可能过一段时间决定不做了。
+  复杂任务要分成多个可测试的阶段完成，每个阶段保证能单独测试。为此多写一些代码也是值得的。
+  我们不是业务驱动，也不是技术驱动，而是测试驱动的…..
+  做好单测
+  做好单测…</div><p><a href="/2014/06/19/oceanbase-design-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 19, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-19T21:37:00+08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/19/phphotography-theorem/"><h2 itemprop="headline" class="item__header">成像入门</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">其实我只是感性的解释一下一些基本的原理。
 
@@ -400,21 +411,8 @@ oceanbase的特点
 
 相对来讲，优化了写入，牺牲了部分读取（完全命中bloomfilter的可以不读静态，相当于内存数据库，不存在动态数据的查询相当于传统数据库）。</div><p><a href="/2014/06/10/o-transaction/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T19:39:00+08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/10/an-overwrite-problem-in-cplusplus/"><h2 itemprop="headline" class="item__header">记一个实际中遇到的覆盖问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">工作中遇到一个继承结构如下：
-
-ObServerSchemaService : init_core_schema(const ObSchemaManagerV2 &amp;schema)
-         |
-ObRootSchemaSerivice : init_core_schema()
-
-
-基类的init_core_schema接收一个核心表的schema，而这个schema往往是从rootserver传过来的，所以下面的子类RootSchemaService不需要传参，直接自己生成就好了。
-
-问题是如果在ObRootSchemaService的对象上想要调用ObServerSchemaService的init_core_schema函数会报错。因为命名空间上Root的会覆盖Se...</div><p><a href="/2014/06/10/an-overwrite-problem-in-cplusplus/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T19:32:00+08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>498 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-left"></i>
