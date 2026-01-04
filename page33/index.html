@@ -280,6 +280,41 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/"><h2 itemprop="headline" class="item__header">发布VIM缓冲区切换插件buf_it升级版</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+VIM默认使用的过程中有一个重要的问题，就是打开多个文件的时候无法可视化看到打开的文件，并在这些文件中切换。MiniBufExplorer是一个常用的buffer切换插件，但是这个插件在Windows下使用的时候有许多问题，同时也太繁琐。buf_it[1]则实现了轻量的buffer管理，但是buf_it同样在windows下有许多问题，而buf_it的退出机制也会出现只想关闭一个文件确关闭了整个vim的情况。
+
+基于这两个问题，我修改了buf_it插件，这里共享出来，欢迎大家提意见。先给张图
+
+![image][1]
+
+修改：
+
+
+  1 windows下使用GVIM优化，方式多开一个空白缓冲区，windows下gvim右键配置见参考文献2
+
+  2 增加自定义退出方式
+
+  3...</div><p><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=buf_it">buf_it</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=gvim">gvim</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Windows">Windows</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E4%BC%98%E5%8C%96">优化</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BC%93%E5%86%B2%E5%8C%BA">缓冲区</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-28T00:00:00-07:00">
+    <meta itemprop="keywords" content="buf_it,gvim,Windows,优化,缓冲区"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/03/16/solve-the-problem-of-too-large-space-between-itemize-in-Latex/"><h2 itemprop="headline" class="item__header">解决Latex中Itemize距离过大的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">默认的itemize存在行距过大的问题，大概是如下的样子：
 
@@ -481,33 +516,8 @@ ESX 4.0测试通过</div><p><a href="/2012/02/24/ways-to-change-ports-in-exsi/">
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-02-24T00:00:00-08:00">
     <meta itemprop="keywords" content="ESXi,修改,默认端口"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/02/24/vmware-esxi-5-nat-on-admin-ports/"><h2 itemprop="headline" class="item__header">VMware ESXi 管理端口的NAT配置</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-先复习一下VMWare的基本网络概念。
-
-VMware ESXi使用桥接（猜测，错了不管）的方式实现网络配置，通过虚拟交换机的概念来模拟物理交换机，这样连接在同一个交换机下的虚拟机相当于处于一个网段之内，如下图所示，管理端口和pfSense（NAT系统）处于一个网段，pfSense添加了两个虚拟交换机，这样就等于接通了两个网段，起NAT的作用，WAN口处于8网段，LAN口在1网段做DHCP，其他两个操作系统（win2k8和RHEL5.4）只连接内网，通过pfSense做NAT到这些虚拟机上。
-
-
-
-接着说为什么要重做NAT。前几篇文章我们已经实现了一个ESXi上的NAT架构，但新的问题出现了：之前管理端口（8.232）是单独的一个IP，而我们的服务器搭建好之后往往只绑定一个外网I...</div><p><a href="/2012/02/24/vmware-esxi-5-nat-on-admin-ports/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ESXi">ESXi</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=NAT">NAT</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=pfSense">pfSense</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%A1%E7%90%86%E7%AB%AF%E5%8F%A3">管理端口</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-02-24T00:00:00-08:00">
-    <meta itemprop="keywords" content="ESXi,NAT,pfSense,管理端口"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page32">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/12/25/maven-revert-eclipse-jdk-version/"><h2 itemprop="headline" class="item__header">关于Maven回滚了eclipse中项目的JRE版本</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：
+
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;projectDescription&gt;
+	&lt;name&gt;realtime_ua&lt;/name&gt;
+	&lt;comment&gt;&lt;/comment&gt;
+	&lt;projects&gt;
+	&lt;/projects&gt;
+	&lt;buildSpec&gt;
+		&lt;buildCommand&gt;
+			&lt;name...</div><p><a href="/2014/12/25/maven-revert-eclipse-jdk-version/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 25, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T14:49:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/12/flash-cookie-cross-domain/"><h2 itemprop="headline" class="item__header">Flash Cookie的跨域读取</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">关于Flash Cookie相关的问题见参考文献1。这里主要说如何实现跨域的Flash Cookie读取。
 
@@ -387,14 +401,8 @@ Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeep
 
 果然是学无止境啊</div><p><a href="/2014/11/13/du-to-display-one-level/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 13, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-13T17:55:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/10/29/cpp-virtual-template-function/"><h2 itemprop="headline" class="item__header">虚函数模板和模板类中的虚函数</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。
-
-例子如下：</div><p><a href="/2014/10/29/cpp-virtual-template-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page16">
             <i class="fas fa-angle-left"></i>

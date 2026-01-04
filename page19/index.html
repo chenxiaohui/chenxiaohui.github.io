@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/09/06/error-in-cpp-150-notes/"><h2 itemprop="headline" class="item__header">《改善C++程序的150个建议》勘误</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">翻了一下编写高质量代码：改善C++程序的150个建议，感觉一般，主要是能下到pdf。看到两个错误。
+
+第一个错误是内存池的那里，内部类使用了外部类的成员变量，这是C++啊，不是java，内部类默认不持有外部类指针。
+
+class MemPool
+{
+  public:
+    MemPool (int nItemSize, int nMemBlockSize = 2048):
+      m_nItemSize(nItemSize),
+      m_nMemBlockSize(nMemBlockSize),
+      m_pMemBlockHeader(NULL),
+      m_pFreeNodeHeader(NULL)
+    {}
+    virtual ~MemPool ...</div><p><a href="/2014/09/06/error-in-cpp-150-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 06, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-06T11:41:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/08/26/paxos-study/"><h2 itemprop="headline" class="item__header">Paxos算法学习</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">本来想写点东西，后来觉得都是一知半解。这里转载一点学习资料吧。
 
@@ -384,40 +401,8 @@ void ar_cnt(int cnt,...)
         int value=va_arg(arg_ptr,int);
         printf("posation %d=%d\...</div><p><a href="/2014/07/17/c-variable-argument/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 17, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-17T14:42:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/17/java-c-plus-plus-variable-scope-diff/"><h2 itemprop="headline" class="item__header">java/c++变量作用域的一点小区别</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然遇到一个问题，java里面这么写是有问题的
-
-int x = 1;
-	{
-		int x = 2;
-	}
-
-
-作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。
-
-	{
-		int x = 2;
-	}
-  	int x = 1;
-
-
-C++里面这样是没问题的
-
-  int x = 1 ;
-  {
-    int x  = 2;
-  }
-
-
-相对于脚本语言，这种限制似乎就宽多了。这样都可以。
-
-  	for i in range(1,10):
-	pass
-print i</div><p><a href="/2014/07/17/java-c-plus-plus-variable-scope-diff/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 17, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-17T11:16:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page18">
             <i class="fas fa-angle-left"></i>

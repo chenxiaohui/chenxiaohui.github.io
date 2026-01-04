@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/"><h2 itemprop="headline" class="item__header">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值
+</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。
+
+首先是强制类型转换运算符的重载，作用是当前对象向其他类型的转换，常见的形式是
+
+:::cpp
+operator int();
+Integer::operator int()
+{
+    return x;
+}</div><p><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 08, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-05-08T00:00:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/05/07/deep-understanding-of-cplusplus-input-output-operation-reload/"><h2 itemprop="headline" class="item__header">深入解析C++输入输出运算符重载</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">其实算不上什么深入解析，只不过最近看CArchive类的实现，其中一些写法完全颠覆了我对输入输出运算符重载的一些理解，所以在这里mark一下。
 
@@ -499,43 +513,8 @@ httpd.conf的配置可以全局生效也可以只配置一个目录需要做的�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 02, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-02T00:00:00-07:00">
     <meta itemprop="keywords" content=".htaccess,httpd.conf,rewrite,地址重写"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/"><h2 itemprop="headline" class="item__header">发布VIM缓冲区切换插件buf_it升级版</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-VIM默认使用的过程中有一个重要的问题，就是打开多个文件的时候无法可视化看到打开的文件，并在这些文件中切换。MiniBufExplorer是一个常用的buffer切换插件，但是这个插件在Windows下使用的时候有许多问题，同时也太繁琐。buf_it[1]则实现了轻量的buffer管理，但是buf_it同样在windows下有许多问题，而buf_it的退出机制也会出现只想关闭一个文件确关闭了整个vim的情况。
-
-基于这两个问题，我修改了buf_it插件，这里共享出来，欢迎大家提意见。先给张图
-
-![image][1]
-
-修改：
-
-
-  1 windows下使用GVIM优化，方式多开一个空白缓冲区，windows下gvim右键配置见参考文献2
-
-  2 增加自定义退出方式
-
-  3...</div><p><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=buf_it">buf_it</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=gvim">gvim</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Windows">Windows</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E4%BC%98%E5%8C%96">优化</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%BC%93%E5%86%B2%E5%8C%BA">缓冲区</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-28T00:00:00-07:00">
-    <meta itemprop="keywords" content="buf_it,gvim,Windows,优化,缓冲区"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page31">
             <i class="fas fa-angle-left"></i>

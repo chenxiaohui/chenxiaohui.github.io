@@ -280,6 +280,12 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/10/29/cpp-virtual-template-function/"><h2 itemprop="headline" class="item__header">虚函数模板和模板类中的虚函数</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。
+
+例子如下：</div><p><a href="/2014/10/29/cpp-virtual-template-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-29T21:05:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/10/28/cpp-derive-problems/"><h2 itemprop="headline" class="item__header">澄清几个关于C++继承的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">之前讨论编码规范的时候遇到过一个问题，继承的类覆盖基类的虚函数，不写virtual关键字是否依然有覆盖（override)的效果。是个基础问题，但是大家的理解好像都不一样。验证如下：
 
@@ -391,25 +397,8 @@ class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a><
 
 不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</div><p><a href="/2014/09/07/using-google-verify-maclaurin-series/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 07, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-07T15:35:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/09/06/error-in-cpp-150-notes/"><h2 itemprop="headline" class="item__header">《改善C++程序的150个建议》勘误</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">翻了一下编写高质量代码：改善C++程序的150个建议，感觉一般，主要是能下到pdf。看到两个错误。
-
-第一个错误是内存池的那里，内部类使用了外部类的成员变量，这是C++啊，不是java，内部类默认不持有外部类指针。
-
-class MemPool
-{
-  public:
-    MemPool (int nItemSize, int nMemBlockSize = 2048):
-      m_nItemSize(nItemSize),
-      m_nMemBlockSize(nMemBlockSize),
-      m_pMemBlockHeader(NULL),
-      m_pFreeNodeHeader(NULL)
-    {}
-    virtual ~MemPool ...</div><p><a href="/2014/09/06/error-in-cpp-150-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 06, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-06T11:41:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page17">
             <i class="fas fa-angle-left"></i>

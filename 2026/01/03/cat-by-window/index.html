@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Home - CHENXIAOHUI.ME</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>我家猫的一天 - CHENXIAOHUI.ME</title>
 
-<meta name="description" content="北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
-">
-<link rel="canonical" href="http://chenxiaohui.me/page10/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="记录一下我家猫主子的日常。">
+<link rel="canonical" href="http://chenxiaohui.me/2026/01/03/cat-by-window/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -255,7 +254,7 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -274,175 +273,102 @@
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/04/19/maven-download-stuck/"><h2 itemprop="headline" class="item__header">maven download dependency挂住的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天迁移工程到mac上，准备以后用mac作为主开发工具。迁移maven的时候发现，maven download会停在那里，如下：
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>我家猫的一天</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2026-01-03-cat-by-window.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="我家猫的一天"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 03, 2026</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2026-01-03T19:00:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><p>记录一下我家猫主子的日常。</p>
 
+<!--more-->
 
-解决如下：
+<h2 id="早上窗边发呆">早上：窗边发呆</h2>
 
+<p><img src="/assets/img/2026/cat-by-window.png" alt="窗边的猫咪" /></p>
 
-  怀疑http_proxy问题，去掉系统环境变量。无效
-  怀疑shadowsocks问题，关掉，无效。
-  maven配置问题，对比了默认配置，没什么错误的地方。
-  怀疑服务器问题，换成开源中国的maven源，ok，就是慢点。
-  继续等待，几分钟后报错： java.net.SocketException: Malformed reply from SOCKS server，似乎还是代理的问题。
-  查阅发现java还有自己的代理配置，见参考文献，去掉代理。貌似还是无效。
-  索性重启，搞定。</div><p><a href="/2015/04/19/maven-download-stuck/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 19, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-19T22:08:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/04/01/something-about-sendmail-setup/"><h2 itemprop="headline" class="item__header">关于sendmail邮件服务器的搭建</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">还是reviewboard的事情，我们需要一个自己的邮件服务器来发通知邮件。sendmail是一个比较好的选择，搭建的方式很简单，安装sendmail，修改配置文件，修改local_host_name就行。如果不需要登陆验证，这样也就直接能用了。现在的问题是reviewboard是必须登陆验证的。至少看报错上是这样。
+<p>每天早上都要趴窗台上看一会儿。也不知道在看什么，就是喜欢这个位置。</p>
 
-  	SMTPException: SMTP AUTH extension not supported by server. reviewboard
+<h2 id="中午睡觉">中午：睡觉</h2>
 
-具体代码没细看，但是应该默认都有认证，只是认证方式不一样。我们telnet到25端口，执行
+<p><img src="/assets/img/2026/cat-on-bed.png" alt="床上的猫咪" /></p>
 
-  	ehlo localhost
+<p>看累了就回床上睡。一睡就是几个小时，雷打不动。</p>
 
- 	/usr/sbin/testsaslauthd -u username -p soh...</div><p><a href="/2015/04/01/something-about-sendmail-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-01T20:14:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/31/ps-do-not-grep-self/"><h2 itemprop="headline" class="item__header">ps grep不显示grep自己本身的方法</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">主要两种方式：
+<h2 id="下午坐着">下午：坐着</h2>
 
+<p><img src="/assets/img/2026/cat-sitting.png" alt="端坐的猫咪" /></p>
 
-  
-    不grep自己。
+<p>睡醒了就这么坐着，一脸不高兴的样子。估计是饿了在催我喂饭。</p>
 
-     -v, --invert-match
-     Invert the sense of matching, to select non-matching lines.
- 所以：
-     ps xuf|grep python|grep -v grep
-    
-  
-  
-    awk 略去最后一行。
+<hr />
 
-     ps xuf|grep python|awk 'NR&gt;1{print p}{p=$2}'
-    
+<p>每天都是这样，日复一日。挺好的。</p>
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-01-03T19:00:00-08:00"><!-- start custom article footer snippet -->
 
-    解释下：第一行的时候，NR=1不打印，但是把pid存在p中，下一行打印，最后一行的时候，打印的是上一行的pid。
+<!-- end custom article footer snippet -->
+<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>
+</div><div class="article__license"><div class="license">
+    <p>This work is licensed under a <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> license.
+      <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+      </a>
+    </p>
+  </div></div></footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/2025/12/31/transformations-and-new-beginnings/">2025：转变与新的开始</a></div></div></div>
 
-    awk博大精深…</div><p><a href="/2015/03/31/ps-do-not-grep-self/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 31, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-31T15:45:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/29/revreviewboard-specification/"><h2 itemprop="headline" class="item__header">ReviewBoard客户端配置和代码review流程</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Postreview 客户端配置
+</div>
 
-reviewboard是群众喜闻乐见的代码review工具。本文主要涉及客户端配置和review流程，server端配置见文档1。
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
-首先安装python（必须的），之后安装post-review插件:
-
-  	pip:
-  		pip install –allow-external RBTools –allow-unverified RBTools RBTools
-  	easy_install：
-  		easy_install -U RBTools
-  	LinuxRPM:
-  		sudo yum install RBTools
-  	直接安装：
-  		git clone git://github.com/reviewboard/rbtoo...</div><p><a href="/2015/03/29/revreviewboard-specification/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 29, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-29T20:17:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/28/review-board-setup/"><h2 itemprop="headline" class="item__header">reviewboard的安装</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">reviewboard是群众喜闻乐见的代码review工具。安装过程详见文档1文档2。这些写一些遇到的问题：
-
-
-  
-    默认支持版本是django 1.6，最新的django1.7不支持。所以最好用virtualenv独立出一个环境来。
-  
-  
-    官方文档的apache不知道是怎样的目录结构，反正我自己安装的apache和yum install的都跟官方的目录结构不太一样。
-
-    
-      
-        copy或者link apache-wsgi.conf到conf.d目录，etc/httpd结构如下
-
-        
-      
-      
-        配置下PythonHome
-
-        WSGIPythonHome /opt/ha...</div><p><a href="/2015/03/28/review-board-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-28T21:15:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/28/configure-vim-tags-and-jump/"><h2 itemprop="headline" class="item__header">vim配置符号和跳转</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
-
-首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。
-
-ubuntu下可以直接：
-	apt-get install exuberant-ctags
-centos下：
-	yum install ctags
-mac下：
-	brew install ctags-exuberant
-windows下：
-	什么是windows?
-
-
-cscope如果系统没有默认安装的话也装一下。
-
-之后安装tags插件，相对taglist...</div><p><a href="/2015/03/28/configure-vim-tags-and-jump/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-28T12:05:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/27/notes-on-easy-install-and-pip/"><h2 itemprop="headline" class="item__header">easy_install和pip的注意事项</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">关于安装目录：
-
-dist-packages instead of site-packages. Third party Python software installed from Debian packages goes into dist-packages, not site-packages. This is to reduce conflict between the system Python, and any from-source Python build you might install manually.
-
-dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 ...</div><p><a href="/2015/03/27/notes-on-easy-install-and-pip/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 27, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-27T11:13:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/24/ubuntu-gnome-crontab/"><h2 itemprop="headline" class="item__header">关于ubuntu gnome下crontab运行的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。
-
-后来发现对图形界面程序来讲，crontab的进程需要指定输出到哪个显示的，也就是
-
-   	export DISPLAY=:0 #:0指第一个显示终端，ctrl+alt+f7那个
-/usr/bin/notify-send "亲，该去运动了！！一分钟后关机，请保存所有未保存的Job."
-sudo shutdown -h 1
-
-
-或者直接在crontab -e中指定环境变量：
-
-   	DISPLAY=:0
-30 20 * * * /home/cxh...</div><p><a href="/2015/03/24/ubuntu-gnome-crontab/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 24, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-24T13:54:00-07:00"></div>
-      </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
-    <div class="pagination__menu">
-      <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page9">
-            <i class="fas fa-angle-left"></i>
-          </a></li><li>
-              <a class="button button--secondary button--circle" href="/"><span>1</span></a>
-            </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page9"><span>9</span></a>
-                </li><li>
-              <div class="button button--primary button--circle focus"><span>10</span></div>
-            </li><li>
-                  <a class="button button--secondary button--circle" href="/page11"><span>11</span></a>
-                </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
-                </li><li><a class="button button--secondary button--circle" href="/page11">
-            <i class="fas fa-angle-right"></i>
-          </a></li></ul>
-    </div>
-  </div></div>
-<script>/*(function () {
-
-})();*/
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
 </script>
-
-
-
-</div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
+</div><section class="page__comments d-print-none"><div id="disqus_thread"></div>
+  <script>
+  /**
+  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+  var disqus_config = function () {
+    this.page.url = 'http://chenxiaohui.me/2026/01/03/cat-by-window/';
+    this.page.identifier = 'cat-daily-life-2026';
+  };
+  (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://harrychen.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
 </div>
@@ -982,6 +908,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script>
     </div>
     <script>(function () {

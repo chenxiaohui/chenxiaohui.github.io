@@ -280,6 +280,19 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/15/django-assign-autoincrement-field/"><h2 itemprop="headline" class="item__header">处理Django的自增字段</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候需要手动构造一个Django model对象并保存，遇到如下的情况：
+
+  	model定义如下：
+  	class AuthHistory(models.Model):
+user_name = models.CharField(max_length=100, default=None)
+item_id = models.CharField(max_length=100)
+datetime = models.DateTimeField()
+url = models.CharField(max_length=1000)
+title = models.CharField(max_length=1000)
+operation = models.CharField(max_length=...</div><p><a href="/2015/01/15/django-assign-autoincrement-field/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 15, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-15T22:00:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/15/maven-execute-java-program/"><h2 itemprop="headline" class="item__header">用maven执行java程序</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">Eclipse中需要执行一个java程序的之后只需要在入口类Run就行，但是有时候需要同时开两个程序，尤其对C/S模式的应用来说。针对这种情况，可以分如下三种方式启动另一个程序：
 
@@ -386,16 +399,8 @@ tinyproxy的配置如下：
   分类做成map是因为category生成的时候名字自动做成了英文/拼音/中横线的形式…我没搞明白怎么弄的。所以自己手动填一下好了。以后有空想做成手动指定的。
   system sublime那个是自动打...</div><p><a href="/2015/01/10/octopress-category-auto-generate/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 10, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-10T22:28:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/08/java-code-style/"><h2 itemprop="headline" class="item__header">关于java编码规范</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">首先推荐google的编码规范，其次，关于class member ordering的问题，google的解释是：
-
-  	The ordering of the members of a class can have a great effect on learnability, but there is no single correct recipe for how to do it. Different classes may order their members differently.
-
-What is important is that each class order its members in some logical order, which its maint...</div><p><a href="/2015/01/08/java-code-style/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 08, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-08T14:34:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page14">
             <i class="fas fa-angle-left"></i>

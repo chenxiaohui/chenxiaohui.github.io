@@ -280,6 +280,38 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/17/java-c-plus-plus-variable-scope-diff/"><h2 itemprop="headline" class="item__header">java/c++变量作用域的一点小区别</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然遇到一个问题，java里面这么写是有问题的
+
+int x = 1;
+	{
+		int x = 2;
+	}
+
+
+作为一个写了多年C++的人，不能忍啊。java子域里的变量看样子不会覆盖父域。但是这样是没问题的，可见子域的生命周期还是局限于子域里面。
+
+	{
+		int x = 2;
+	}
+  	int x = 1;
+
+
+C++里面这样是没问题的
+
+  int x = 1 ;
+  {
+    int x  = 2;
+  }
+
+
+相对于脚本语言，这种限制似乎就宽多了。这样都可以。
+
+  	for i in range(1,10):
+	pass
+print i</div><p><a href="/2014/07/17/java-c-plus-plus-variable-scope-diff/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 17, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-17T11:16:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/16/ich-war-noch-niemals-in-new-york/"><h2 itemprop="headline" class="item__header">Ich war noch niemals in New York</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">&lt;/embed&gt;
 
@@ -365,22 +397,8 @@ namespace oceanbase
 
 转一张网上的图，我觉得拍的极好（当然模特漂亮是主要的）：</div><p><a href="/2014/07/05/two-photo-of-still-life/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 05, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-05T19:49:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/04/backup-file-management/"><h2 itemprop="headline" class="item__header">关于备份文件管理</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在写一个备份的工作，备份线程每次会把需要备份的数据写到文件，同时需要保存一定数量的旧文件。
-
-首先为了写失败的时候不会损坏之前的旧备份文件，我们需要写一个临时文件然后覆盖回去。同时，为了保存旧文件，需要每次写一个不同的文件，同时维护一个当前的最新文件，然后删除超过了一定期限的文件，假定临时文件名是file.bin.2014xxxx，最新文件名是file.bin，有如下三个方法：
-
-
-  每次写临时文件，同时写一个内容一样的file.bin。造成空间浪费。
-  每次写临时文件，同时更新软链接file.bin。不兼容非linux系统。
-  写manifest，文件内容是当前最新文件名。比较麻烦。
-
-
-最后还是按2方案实现的，代码如下：</div><p><a href="/2014/07/04/backup-file-management/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 04, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-04T11:20:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page19">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,25 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/20/octopress-indent-plugin/"><h2 itemprop="headline" class="item__header">octopress的缩进插件</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">我们写中文的时候通常有首行缩进的需求，markdown默认是不支持的，octopress和wordpress也没有缩进的css。这里我们通过加个插件的方式完成。
+
+首先，处理markdown的渲染。我们建立如下插件:
+
+  	module Jekyll
+    module IndentFilter
+        def indent(content)
+            content.gsub(/&lt;p&gt;\s\s/, '&lt;p class="indent"&gt;')
+        end
+    end
+end
+
+Liquid::Template.register_filter(Jekyll::IndentFilter)
+
+
+这个就是做了个替换。会把行首的两...</div><p><a href="/2014/06/20/octopress-indent-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:45:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/19/oceanbase-design-notes/"><h2 itemprop="headline" class="item__header">oceanbase设计中的注意事项</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">没有情况什么是不可能发生的
   RPC或者其他网络调用是不一定能够返回结果的。也就是有三种可能，正确，失败，超时。
@@ -399,20 +418,8 @@
   奇数台机器才可以
   3/5 &gt; 2/3 &gt; 2/2</div><p><a href="/2014/06/10/distributed-selection/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T21:08:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/10/o-transaction/"><h2 itemprop="headline" class="item__header">oceanbase事务引擎-笔记</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">外存数据库的特点
-
-每次写入需要读取一个完整单元，不同的块做不同的修改，再写回硬盘
-
-oceanbase的特点
-
-本质上差不多，但是快大小不一样，但是增量数据(修改点)集中存储。可以更好的利用内存，利用低峰期合并到内存。但是每次需要读取静态数据和修改。
-
-相对来讲，优化了写入，牺牲了部分读取（完全命中bloomfilter的可以不读静态，相当于内存数据库，不存在动态数据的查询相当于传统数据库）。</div><p><a href="/2014/06/10/o-transaction/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T19:39:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-left"></i>

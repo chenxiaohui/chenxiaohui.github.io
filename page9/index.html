@@ -280,6 +280,38 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/06/16/sohu-zk-client-document/"><h2 itemprop="headline" class="item__header">基于zookeeper的配置管理客户端</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">名词解释：
+
+SeviceConfig:
+    一个服务的所有配置存在一个目录下
+  BucketConfig:
+     Bucket的配置存在一个单独的子目录中
+
+配置项类型：
+
+
+  Integer
+  Long
+  Short
+  Float
+  Double
+  Byte[]
+  Boolean
+  String
+  自定义配置项 ConfigObject
+
+
+###使用说明：
+
+####POM：
+
+&lt;dependency&gt;
+  &lt;groupId&gt;com.sohu.adrd&lt;/groupId&gt;
+  &lt;artifactId&gt;sohu-zk-client&lt;/artifactId&gt;
+  &lt;version&gt;1....</div><p><a href="/2015/06/16/sohu-zk-client-document/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 16, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-06-16T16:28:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/05/27/python-tricks/"><h2 itemprop="headline" class="item__header">一些python小技巧</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">生成一个重复列表可以通过如下语句:
 
@@ -366,25 +398,8 @@ Ok.</div><p><a href="/2015/04/22/post-review-encoding-problem/">Read more</a></p
 
 这里我们讨论下落点的情况，如果partition算法可以传入任何的value，而不是快排中那样从序列中随机获得一个值，那么结果就会有多重情况了。</div><p><a href="/2015/04/20/partition-algorith-quit-position-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 20, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-20T21:27:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/04/19/maven-download-stuck/"><h2 itemprop="headline" class="item__header">maven download dependency挂住的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天迁移工程到mac上，准备以后用mac作为主开发工具。迁移maven的时候发现，maven download会停在那里，如下：
-
-
-
-解决如下：
-
-
-  怀疑http_proxy问题，去掉系统环境变量。无效
-  怀疑shadowsocks问题，关掉，无效。
-  maven配置问题，对比了默认配置，没什么错误的地方。
-  怀疑服务器问题，换成开源中国的maven源，ok，就是慢点。
-  继续等待，几分钟后报错： java.net.SocketException: Malformed reply from SOCKS server，似乎还是代理的问题。
-  查阅发现java还有自己的代理配置，见参考文献，去掉代理。貌似还是无效。
-  索性重启，搞定。</div><p><a href="/2015/04/19/maven-download-stuck/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 19, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-19T22:08:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page8">
             <i class="fas fa-angle-left"></i>

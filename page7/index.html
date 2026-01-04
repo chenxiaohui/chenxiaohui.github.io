@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/03/25/netlib-bug-analysis/"><h2 itemprop="headline" class="item__header">记录一个网络库设计的bug</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个设计上没考虑好的问题，记录一下。
+
+之前Libeasy的逻辑如果一个连接上有超时的报文的话，整个连接会destroy掉。考虑网络拥塞的情况，如果AB两个报文同时在等待发送，A报文先进入发送队列（链表，非TCP发送buffer），B后进入，而A超时时间长，B立即超时，那么清理掉B的待发送报文的时候，如果destroy掉连接，那么本来可以发送出去的A报文就被强制失败了。
+
+考虑这种情况做了一点修改，让超时的报文被清理掉的时候不会destroy连接。这样编码的时候需要指定一个报文被编码出来的buffer是属于哪个会话（session）的，同时记录一下每个session对应的最后一个buffer位置。清理的时候可以从上述位置回溯到不属于当前session的buffer或者到头部为止...</div><p><a href="/2016/03/25/netlib-bug-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 25, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-25T00:14:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/03/18/farwell-yanpo/"><h2 itemprop="headline" class="item__header">关于最近的一些事情</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近其实是乏善可陈的，项目差不多写完，修修补补，提升下性能。其他的事情诸多不顺，看房价蹭蹭的涨，看工资慢慢的爬，感情纠结一团，其他的么，牙疼，估计牙周炎犯了。
 
@@ -388,20 +396,8 @@ commit:x[4,n] y[6, y]
 5) x7(prepare) -&gt;b, c
 6...</div><p><a href="/2015/08/28/paxos-case-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 28, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-08-28T11:34:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/08/23/gitbook-guide/"><h2 itemprop="headline" class="item__header">gitbook使用指导</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">gitbook是nodejs实现的用来帮助书写电子书的，很多开源的书籍项目是基于gitbook的。gitbook的编写语言是markdown，书籍遵循一定的格式完成之后可以通过gitbook发布为各种版本，比如pdf，mobi等电子书格式，或者发布为静态的website，挂到github pages上，对于一些开源项目来说，这是很方便的书写帮助文档的方式。gitbook同样有一个paas的平台，可以允许多人协作在线完成一部电子书
-
-首先安装gitbook
-
-  	npm -g install gitbook
-  	npm -g install gitbook-cli
-  	npm -g install ebook-convert
-
-第三个是安装生成电子书的插件，但是这里并不会安装bin...</div><p><a href="/2015/08/23/gitbook-guide/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 23, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-08-23T16:23:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page6">
             <i class="fas fa-angle-left"></i>

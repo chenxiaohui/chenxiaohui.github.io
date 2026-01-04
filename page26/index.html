@@ -280,6 +280,15 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/17/method-to-diff-log/"><h2 itemprop="headline" class="item__header">分布式调试系列：关于日志的比对</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何写个插件通过log来定位源码行，这篇日志我们讨论一下如何快速定位自己的错误日志。
+
+首先，前面的状况至少可以保证一点，你check一份新的代码或者回滚本地修改然后运行，得到的错误日志和你当前的错误日志是可比较的。也就是说，你的错误至少不会导致错误日志之中有巨大的变化。这样的话我们可以采取如下的策略比较错误日志。
+
+
+  得到当前的错误日志，假使命名为log.core...</div><p><a href="/2013/11/17/method-to-diff-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 17, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-17T22:00:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/08/solution-to-locate-log-in-src/"><h2 itemprop="headline" class="item__header">分布式调试之vim日志定位解决方案</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">做分布式系统看日志解决问题是基本功了，毕竟多个server跑在不同的机器上，即使用gdb能attach到某个进程上，或者用非daemon模式启动并调试但是case往往很复杂，难以用测试环境完全模拟case，所以大部分情况下还是需要看日志解决问题的。
 
@@ -422,12 +431,8 @@ ObTableTabletIterator
 
   接受返回值的传入参数table...</div><p><a href="/2013/10/21/table-tablet-iterator/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 21, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-21T16:26:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/18/update-to-ubuntu-13-10/"><h2 itemprop="headline" class="item__header">升级到ubuntu13.10</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</div><p><a href="/2013/10/18/update-to-ubuntu-13-10/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 18, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-18T10:49:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

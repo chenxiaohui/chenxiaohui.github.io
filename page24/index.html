@@ -280,6 +280,18 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/10/o-transaction/"><h2 itemprop="headline" class="item__header">oceanbase事务引擎-笔记</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">外存数据库的特点
+
+每次写入需要读取一个完整单元，不同的块做不同的修改，再写回硬盘
+
+oceanbase的特点
+
+本质上差不多，但是快大小不一样，但是增量数据(修改点)集中存储。可以更好的利用内存，利用低峰期合并到内存。但是每次需要读取静态数据和修改。
+
+相对来讲，优化了写入，牺牲了部分读取（完全命中bloomfilter的可以不读静态，相当于内存数据库，不存在动态数据的查询相当于传统数据库）。</div><p><a href="/2014/06/10/o-transaction/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T19:39:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/10/an-overwrite-problem-in-cplusplus/"><h2 itemprop="headline" class="item__header">记一个实际中遇到的覆盖问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">工作中遇到一个继承结构如下：
 
@@ -411,22 +423,8 @@ def calc_temperature(filename):
   最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。
   发一条count()先统计所有数据，然...</div><p><a href="/2014/04/18/offset-and-limit-in-ob/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 18, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-04-18T20:54:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/02/14/vim-script-to-write-thread-log/"><h2 itemprop="headline" class="item__header">用来把一个线程的日志输出到单独文件的脚本</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">很多开源项目的日志都是把多个线程的日志打印到一个文件的，有时候我们需要查看一个线程号下的所有日志，vim选中高亮线程号固然是一种方法，但是看起来不直观，以下脚本完成输出一个线程所有日志到一个文件的功能。
-
-"plugin-写一个线程的log到单独文件
-function! ThreadLog()
-    let file = readfile(expand("%:p"))
-    let pattern = expand('&lt;cword&gt;')
-    let matches = []
-    for line in file
-        let match = matchstr(line, pattern)
-        if(!empty(match))
-      ...</div><p><a href="/2014/02/14/vim-script-to-write-thread-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 14, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-02-14T21:32:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page23">
             <i class="fas fa-angle-left"></i>

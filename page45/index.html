@@ -280,6 +280,30 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/02/25/about-swallowing-the-bulb/"><h2 itemprop="headline" class="item__header">关于吞灯泡问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">之前网上有一个很火的帖子，关于为什么不能吞灯泡的问题[1]，还有很多被好奇心害死娃们前仆后继的证明并跟帖[2]。不过最近果壳传出一个视频辟谣，看结果貌似吞灯泡没神马大不了的。
+
+PS:这位哥哥真是很有献身精神和娱乐精神啊。
+
+视频1 吞宝剑吞铁球算个毛，真的猛士敢于吞灯泡
+
+参考文献：
+
+[1] 为什么不能吞灯泡（好奇心太强者慎入），
+
+[2] 为什么不能吞灯泡(亮点在下面的跟帖)，</div><p><a href="/2011/02/25/about-swallowing-the-bulb/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%90%9E%E7%81%AF%E6%B3%A1">吞灯泡</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%9E%9C%E5%A3%B3">果壳</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%BE%9F%E8%B0%A3">辟谣</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 25, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-25T00:00:00-08:00">
+    <meta itemprop="keywords" content="吞灯泡,果壳,辟谣"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/02/24/multi-table-operation-with-local-cache/"><h2 itemprop="headline" class="item__header">基于本地缓存的多表级联操作的实现（C#）</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">背景：数据库操作中我们经常会遇到级联修改的问题，在之前的一篇文章1里我们探讨了多表级联的一种实现方式，这篇文章我们将探讨另一种实现方式，即通过本地缓存的方式，避免不必要的存储过程。
 
@@ -467,35 +491,8 @@
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-04T00:00:00-08:00">
     <meta itemprop="keywords" content="分包,改进,校验,长度"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/01/30/tcp-subpackage-design-with-length-separator-and-veryfication/"><h2 itemprop="headline" class="item__header">长度、分隔符加校验的TCP分包设计(C#)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">我们做TCP程序的时候最经常遇到的问题就是分包，这也是激动人心的程序开发（可能你不这么认为）中最不激动人心的一部分，换句话说，确实挺枯燥的。
-
-这里简要说一下分包问题的来源吧，毕竟有人并没做过TCP。TCP或者说流式套接字都会面临一个同样的问题，就是逻辑上我们会引入报文或包的概念，通过报文传播消息，但是基于流的套接字不会在套接字层区分这个概念。传递来传递去的东西永远是一串串的char（抑或byte），不会有人告诉你从一个报文是从哪里开始到哪里结束，而且一个报文可能被拆成两部分传递。所以，我们要分包。
-
-分包其实是个挺常见的问题，从Socket到串口，只要做流式套接字，都要在底层实现一个分包机制，然后给上层一个接口，实现对底层的透明。大体有如下两种常见的方式
-
-
-  特殊字符做分界符：比...</div><p><a href="/2011/01/30/tcp-subpackage-design-with-length-separator-and-veryfication/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=TCP">TCP</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%88%86%E5%8C%85">分包</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%88%86%E9%9A%94%E7%AC%A6">分隔符</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%A0%A1%E9%AA%8C">校验</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%95%BF%E5%BA%A6">长度</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00-08:00">
-    <meta itemprop="keywords" content="TCP,分包,分隔符,校验,长度"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page44">
             <i class="fas fa-angle-left"></i>

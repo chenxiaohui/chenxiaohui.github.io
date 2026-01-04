@@ -280,6 +280,31 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/02/24/vmware-esxi-5-nat-on-admin-ports/"><h2 itemprop="headline" class="item__header">VMware ESXi 管理端口的NAT配置</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+先复习一下VMWare的基本网络概念。
+
+VMware ESXi使用桥接（猜测，错了不管）的方式实现网络配置，通过虚拟交换机的概念来模拟物理交换机，这样连接在同一个交换机下的虚拟机相当于处于一个网段之内，如下图所示，管理端口和pfSense（NAT系统）处于一个网段，pfSense添加了两个虚拟交换机，这样就等于接通了两个网段，起NAT的作用，WAN口处于8网段，LAN口在1网段做DHCP，其他两个操作系统（win2k8和RHEL5.4）只连接内网，通过pfSense做NAT到这些虚拟机上。
+
+
+
+接着说为什么要重做NAT。前几篇文章我们已经实现了一个ESXi上的NAT架构，但新的问题出现了：之前管理端口（8.232）是单独的一个IP，而我们的服务器搭建好之后往往只绑定一个外网I...</div><p><a href="/2012/02/24/vmware-esxi-5-nat-on-admin-ports/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=ESXi">ESXi</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=NAT">NAT</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=pfSense">pfSense</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%AE%A1%E7%90%86%E7%AB%AF%E5%8F%A3">管理端口</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-02-24T00:00:00-08:00">
+    <meta itemprop="keywords" content="ESXi,NAT,pfSense,管理端口"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/11/29/vmware-esxi-5-network-configuration/"><h2 itemprop="headline" class="item__header">VMware ESXi 网络配置</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -476,27 +501,8 @@ Point p = new...</div><p><a href="/2011/11/13/about-the-AutoScrollPosition-prope
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 13, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-11-13T00:00:00-08:00">
     <meta itemprop="keywords" content="AutoScrollPosition"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/10/08/we-only-bend-to-truth-by-murongxuecun/"><h2 itemprop="headline" class="item__header">慕容雪村对大学生的演讲稿:我们只向真理低头</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-郭英剑院长让我在这里讲几句话，我想他也许找错人了，因为我不是什么成功人士，收不到激励人心之效。按这个时代公认的标准，成功人士就是要有很多钱，住很大的房子，开很大的车子，如果你是女的，脖子上要戴条几十斤的链子；如果你是男，身边要带个女的，女的脖子上要戴条几十斤的链子。这些东西我一样也没有，我是个作家，照大多数人的理解，作家这种东西有三个特点：一是穷，二是脏，三是骚。有些青春文学作家穷倒不穷，但后两个特点依然还保留着。就我所见，“作家”这个词跟落魄、潦倒有很大关系，跟二奶和二奶的链子屁关系也没有。我唯一的成就，就是出过几本书，有人觉得还行，有人觉得这纯粹是浪费木材，所以今天站在这里，我自己都有点羞愧，因为我不是什么好榜样。但最后，我还是鼓足勇气站了上来，原因只有一个：我想你们也许需要...</div><p><a href="/2011/10/08/we-only-bend-to-truth-by-murongxuecun/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%85%AC%E6%B0%91">公民</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%85%95%E5%AE%B9%E9%9B%AA%E6%9D%91">慕容雪村</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%94%BF%E5%BA%9C">政府</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%9C%9F%E7%90%86">真理</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 08, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-10-08T00:00:00-07:00">
-    <meta itemprop="keywords" content="公民,慕容雪村,政府,真理"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page33">
             <i class="fas fa-angle-left"></i>

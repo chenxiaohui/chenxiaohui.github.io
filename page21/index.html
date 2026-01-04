@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/04/backup-file-management/"><h2 itemprop="headline" class="item__header">关于备份文件管理</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在写一个备份的工作，备份线程每次会把需要备份的数据写到文件，同时需要保存一定数量的旧文件。
+
+首先为了写失败的时候不会损坏之前的旧备份文件，我们需要写一个临时文件然后覆盖回去。同时，为了保存旧文件，需要每次写一个不同的文件，同时维护一个当前的最新文件，然后删除超过了一定期限的文件，假定临时文件名是file.bin.2014xxxx，最新文件名是file.bin，有如下三个方法：
+
+
+  每次写临时文件，同时写一个内容一样的file.bin。造成空间浪费。
+  每次写临时文件，同时更新软链接file.bin。不兼容非linux系统。
+  写manifest，文件内容是当前最新文件名。比较麻烦。
+
+
+最后还是按2方案实现的，代码如下：</div><p><a href="/2014/07/04/backup-file-management/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 04, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-04T11:20:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/02/article-on-transaction/"><h2 itemprop="headline" class="item__header">跟事务相关的一些文章</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">主要纪录一下跟事务相关的一些文章。主要是博客，有论文加论文。顺便纪念下女神订婚。图是转载。
 
@@ -398,27 +412,8 @@ git push origin master
 * master
   remotes/origin/maste...</div><p><a href="/2014/06/28/git-remote-branch/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-28T11:14:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/26/a-macro-problem/"><h2 itemprop="headline" class="item__header">一个关于宏的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：
-
-#define OB_FIRST_ROOT_TABLE_TID 21
-#define OB_INVALID_ID INT_MAX
-const char* OB_FIRST_ROOT_TABLE_TABLE_NAME  =  "__first_root_table";
-
-struct TableBackupSQL
-{
-  uint64_t table_id_;
-  const char* sql_;
-  const char * table_name_;
-  TableBackupSQL()
-  {
-    sql_ = NULL;
-    table_name_ = NULL;
-    table_i...</div><p><a href="/2014/06/26/a-macro-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 26, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-26T10:53:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page20">
             <i class="fas fa-angle-left"></i>

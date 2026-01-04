@@ -280,6 +280,18 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/08/23/gitbook-guide/"><h2 itemprop="headline" class="item__header">gitbook使用指导</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">gitbook是nodejs实现的用来帮助书写电子书的，很多开源的书籍项目是基于gitbook的。gitbook的编写语言是markdown，书籍遵循一定的格式完成之后可以通过gitbook发布为各种版本，比如pdf，mobi等电子书格式，或者发布为静态的website，挂到github pages上，对于一些开源项目来说，这是很方便的书写帮助文档的方式。gitbook同样有一个paas的平台，可以允许多人协作在线完成一部电子书
+
+首先安装gitbook
+
+  	npm -g install gitbook
+  	npm -g install gitbook-cli
+  	npm -g install ebook-convert
+
+第三个是安装生成电子书的插件，但是这里并不会安装bin...</div><p><a href="/2015/08/23/gitbook-guide/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 23, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-08-23T16:23:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/08/07/work-anniversary-note/"><h2 itemprop="headline" class="item__header">工作周年总结</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">工作两周年了，感觉这两年走了不少弯路，也学到不少东西，最近看到日照的周年总结，觉得也应该写写。而且看看日照当时的情况，觉得跟我现在也差不多，同样处在职业的选择期，一个明确的规划还是很重要的。
 
@@ -403,40 +415,8 @@ make
 
 config.tex 定义了公共头文件，包...</div><p><a href="/2015/06/26/resume-generator-using-latex-and-moderncv/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 26, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-06-26T15:47:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/06/16/sohu-zk-client-document/"><h2 itemprop="headline" class="item__header">基于zookeeper的配置管理客户端</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">名词解释：
-
-SeviceConfig:
-    一个服务的所有配置存在一个目录下
-  BucketConfig:
-     Bucket的配置存在一个单独的子目录中
-
-配置项类型：
-
-
-  Integer
-  Long
-  Short
-  Float
-  Double
-  Byte[]
-  Boolean
-  String
-  自定义配置项 ConfigObject
-
-
-###使用说明：
-
-####POM：
-
-&lt;dependency&gt;
-  &lt;groupId&gt;com.sohu.adrd&lt;/groupId&gt;
-  &lt;artifactId&gt;sohu-zk-client&lt;/artifactId&gt;
-  &lt;version&gt;1....</div><p><a href="/2015/06/16/sohu-zk-client-document/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 16, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-06-16T16:28:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page7">
             <i class="fas fa-angle-left"></i>

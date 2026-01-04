@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/02/02/python-config-inheritance/"><h2 itemprop="headline" class="item__header">Python Configuration Inheritance</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">While refactoring a project, I met with a situation that one configuration extends another configuration, like this:
+
+ConfigA = {"a":xx, "b":xx}
+ConfigB extends ConfigA + {"a":yy, c:"yy"}
+
+
+Code before refactor treats configA and configB separately. So after a few code iterations you will find configA has something same with configB. So I change...</div><p><a href="/2015/02/02/python-config-inheritance/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 02, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-02T11:54:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/01/random-shuffle/"><h2 itemprop="headline" class="item__header">About random shuffle in cplusplus</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">Actually I just want to memorize the usage of STL function random_shuffle. It takes two or threes arguments, the begin iterator, end iterator and a generator. What makes it interesting is the optional third parameter. Random_shuffle will pass the index to generator and takes the output as index to place current element while shuffling. Here is a...</div><p><a href="/2015/02/01/random-shuffle/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 01, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-01T19:14:00-08:00"></div>
@@ -346,24 +356,8 @@ public class TestDerived extends BaseClass {
 	}
 	public stati...</div><p><a href="/2015/01/27/java-cpp-derive-difference/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 27, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-27T14:51:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/26/shadow-socks-proxy/"><h2 itemprop="headline" class="item__header">使用shadow socks翻墙</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">拜GFW所赐，连tm boot2docker都连接不上了。而且最近红杏抽风，遂决定买shadowsocks服务翻墙。服务直接在官网购买，90一年，比红杏略便宜一点，主要还是可控性比较大，因为是socks5的代理。
-
-这里购买服务，一年99，这个优惠码可以再打一点折imouto985。之后进入后台可以看到分配给自己的密码，服务器主要是日本，美国和新加坡的，实测貌似日本的响应更快一点。
-
-
-
-mac下下载了客户端直接打开配置好地址就能用，linux下需要自己配置代理。
-
-首先下载安装node.js
-
-  	wget http://nodejs.org/dist/v0.10.35/node-v0.10.35.tar.gz
-  	tar zxvf node-v0.10.35.tar.gz 
- ...</div><p><a href="/2015/01/26/shadow-socks-proxy/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 26, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-26T15:39:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page12">
             <i class="fas fa-angle-left"></i>

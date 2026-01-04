@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/19/pythonencoding-problem-in-python2-and-python3/"><h2 itemprop="headline" class="item__header">Python2/Python3中文编码</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">python2中需要区分另种不同形式的string，字符串和字节串（严格意义上讲，string就是字符串，字节串是bytes）。默认情况下，直接输入字符串格式为str，编码由文件编码指定，可以理解为ascii存储的某种形式，编码由编码方式决定。而python字符串是unicode内码的字符流，无论采用什么编码，长度都是由字符个数决定的，字符是最基本的操作对象。
+
+转换上，最终字符”xx”的编码由文件编码决定，u”xx”统一被转成unicode字符，对于某种编码的bytes，decode或者unicode函数把编码转成字符，对于unicode的字符，encode把字符编码为字节。
+
+命令行打印上看，字符直接打印的时候，程序会按照sys.defaultencoding编码输出字符，如果打印...</div><p><a href="/2015/03/19/pythonencoding-problem-in-python2-and-python3/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 19, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-19T15:03:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/16/eclipse-project-structure/"><h2 itemprop="headline" class="item__header">eclipse目录结构</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">eclipse导入Intellij的maven工程的时候经常会出现如下的情况：
 
@@ -383,20 +391,8 @@ WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platfo
 
     res...</div><p><a href="/2015/03/07/ssh-debug-and-passless-login/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 07, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-07T17:56:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/03/apache-virtual-server-conf/"><h2 itemprop="headline" class="item__header">Apache的Virtual Server配置</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">首先，virtual server的概念是说一个apache实例可以模拟出多个server，这些server通过不同的标识来区分（网卡IP/ServerName/端口/ServerPath)，每个虚拟的server最终对应到一个DocumentRoot。
-
-我们期望如下配置
-
-  		80 	 -&gt; / 	 		网站
-  			    /mysite 	子网站mysite
-  		8080 -&gt;	/ 			网站news_auth
-
-配置如下：</div><p><a href="/2015/03/03/apache-virtual-server-conf/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 03, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-03T20:12:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page10">
             <i class="fas fa-angle-left"></i>

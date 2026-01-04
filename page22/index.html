@@ -280,6 +280,25 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/26/a-macro-problem/"><h2 itemprop="headline" class="item__header">一个关于宏的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：
+
+#define OB_FIRST_ROOT_TABLE_TID 21
+#define OB_INVALID_ID INT_MAX
+const char* OB_FIRST_ROOT_TABLE_TABLE_NAME  =  "__first_root_table";
+
+struct TableBackupSQL
+{
+  uint64_t table_id_;
+  const char* sql_;
+  const char * table_name_;
+  TableBackupSQL()
+  {
+    sql_ = NULL;
+    table_name_ = NULL;
+    table_i...</div><p><a href="/2014/06/26/a-macro-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 26, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-26T10:53:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/22/octopress-code-highlight/"><h2 itemprop="headline" class="item__header">octopress代码着色</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">markdown有自己支持的代码模块，但是想支持着色，就需要单独对代码进行parse和加上css。octopress支持自己的代码语法，但是比较麻烦，并且是本地渲染，对不同语言需要指定。
 
@@ -374,27 +393,8 @@ int main(int argc, const char *argv[])
 --------------------   -------------------   -----------------------------  -------------------------------------
 高程度中心...</div><p><a href="/2014/06/20/octopress-pandoc-table/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:57:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/20/octopress-indent-plugin/"><h2 itemprop="headline" class="item__header">octopress的缩进插件</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">我们写中文的时候通常有首行缩进的需求，markdown默认是不支持的，octopress和wordpress也没有缩进的css。这里我们通过加个插件的方式完成。
-
-首先，处理markdown的渲染。我们建立如下插件:
-
-  	module Jekyll
-    module IndentFilter
-        def indent(content)
-            content.gsub(/&lt;p&gt;\s\s/, '&lt;p class="indent"&gt;')
-        end
-    end
-end
-
-Liquid::Template.register_filter(Jekyll::IndentFilter)
-
-
-这个就是做了个替换。会把行首的两...</div><p><a href="/2014/06/20/octopress-indent-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:45:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>499 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page21">
             <i class="fas fa-angle-left"></i>
