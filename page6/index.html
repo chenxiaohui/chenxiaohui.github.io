@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/06/06/glibc-no-symbol-problem/"><h2 itemprop="headline" class="item__header">有关coredump没有符号的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">线上server core掉了，看dmesg能看到core的日志，
+
+s3store[16586]: segfault at 2a28000 ip 00007fda20543b58 sp 00007fd9e9894128 error 4 in libc-2.12.so[7fda204ba000+18a000]
+
+
+但是/proc/sys/kernel/core_pattern指向的位置并没有core文件，改一下core_pattern再跑应该能core出来，不过并不是稳定复现的。所以只能先凭这条日志来分析了。从core的位置看，大概率应该是malloc里面的问题。用
+
+addr2line -e xxx  00007fda20543b58
+
+
+看到的结果是??:0。怀疑是glibc没有调...</div><p><a href="/2016/06/06/glibc-no-symbol-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 06, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-06T15:02:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/05/26/union-struct-initialize/"><h2 itemprop="headline" class="item__header">union和struct相互嵌套时的初始化</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">typedef union {
 volatile int64_t atomic;
@@ -415,20 +429,8 @@ c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼�
 
     raft协议本身由于主只是续约了follower的l...</div><p><a href="/2016/03/28/thinkthinking-about-paxos-and-raft/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:33:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2016/03/28/notes-on-liupeng-report/"><h2 itemprop="headline" class="item__header">刘鹏《移动时代的营销与变现》笔记</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">上次见刘鹏老师可能还是搜狐实习的时候，后来刘鹏走了，峰扬走了，整个团队改做推荐系统，最后又回到效果广告，算是绕了一个圈吧。买了本计算广告，更多的是给自己一个念想，念念不忘必有回响么。
-
-主要记录几个知识点或者观点：
-
-
-  竞价的历史性作用、gd广告和竞价广告的诞生原因
-
-
-  	保量（guarantee delivery）广告相对于品牌广告（CPT），主要解决了流量浪费的问题，CPM的售卖方式相对增加了广告流量的利用率（比如按照性别的售卖，大致可以增加20-25%的收益）。然而保量广告相对来讲对流量的利用并不极致，大部分gd系统都面临超卖或者保守售卖的问题，可能会导致补量或者浪费，在线流量分配和优化也是个比较复杂的问题。所以才有了竞价广告，根据Nash均衡，广告价格是出价方博弈的结果...</div><p><a href="/2016/03/28/notes-on-liupeng-report/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:13:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page5">
             <i class="fas fa-angle-left"></i>

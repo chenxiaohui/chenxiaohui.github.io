@@ -280,6 +280,40 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/"><h2 itemprop="headline" class="item__header">FencView插件在windows下的配置</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+坦白的讲，我没觉得这插件有什么用……
+
+FencView的作用是Auto detect the file encoding. 自动探测编码，防止乱码的插件。但是_vimrc设置了内部编码之后，至少在Windows下我没遇到什么明显的乱码……
+
+set encoding=utf-8
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 " 如果你要打开的文件编码不在此列，那就添加进去
+set termencoding=utf-8
+
+
+Windows下这插件主要的问题是找不到iconv，也正常，这么华丽丽的编码转换工具必然是linux下的，不过我们可以下载Libiconv for Windows，这样就可以在w...</div><p><a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=fencview">fencview</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=iconv">iconv</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=libiconv">libiconv</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=vim">vim</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Windows">Windows</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BC%96%E7%A0%81">编码</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 23, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-23T00:00:00-07:00">
+    <meta itemprop="keywords" content="fencview,iconv,libiconv,vim,Windows,编码"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/09/22/eclipse-full-screen-plugin/"><h2 itemprop="headline" class="item__header">eclipse全屏插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -456,39 +490,8 @@ VERIFY( 1 == LoadSkinFromResource(NULL,MAKEINTRESOURCE(IDR_SKIN5...</div><p><a h
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 29, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-29T00:00:00-07:00">
     <meta itemprop="keywords" content="Linux,Windows,清华,王垠"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/08/29/improvement-on-chrome-plugin-to-send-email-automatically/"><h2 itemprop="headline" class="item__header">对Chrome自动发送邮件插件的改进</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-针对之前那个插件存在的一些问题，这两天又做了一点改进。主要的功能改进包括：
-
-
-  1 如果直接点击右键，那么获取当前网页的链接，然后跳转到一个服务器的页面，发送邮件完成之后自动关闭。
-
-  2 如果选择了文字再点击邮件，那么程序通过ajax将所选文字发送到一个服务，发送邮件完成之后弹出提示。
-
-
-过程中遇到过几个主要问题，这里与大家共勉一下：
-
-
-  1 有的虚拟主机的设置不允许Get参数里包含http://（不明所以，不知道怎么设置的），后来程序先把http替换成ptth，再替换回来，这样就绕过了这个问题。
-
-  2 ajax的错误提示可以通过responseText打印出来，这样方便很多调试，当然jquery就会方便很多。
-
-  3 js关闭窗口的代码window.clos...</div><p><a href="/2011/08/29/improvement-on-chrome-plugin-to-send-email-automatically/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Chrome">Chrome</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6">发送邮件</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%8F%92%E4%BB%B6">插件</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 29, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-29T00:00:00-07:00">
-    <meta itemprop="keywords" content="Chrome,发送邮件,插件"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page35">
             <i class="fas fa-angle-left"></i>

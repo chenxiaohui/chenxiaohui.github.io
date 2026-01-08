@@ -280,6 +280,36 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/04/02/some-problems-about-apache-address-rewrite/"><h2 itemprop="headline" class="item__header">Apache地址重写的几个问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。
+
+首先要打开rewrite模块windows下的配置是
+
+LoadModule rewrite_module modules/mod_rewrite.so
+
+
+httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。
+
+.htaccess的则放到相应目录下或者根目录即可这是VPS里常用的一种方式毕竟作为一个VPS购买者不可能要求提供商去更改全局配置文件。这种方式需要注意的有如下两点
+
+首先.htaccess要想起作用必须要在httpd.conf中相应的Directory标签下配置AllowOverride Al...</div><p><a href="/2012/04/02/some-problems-about-apache-address-rewrite/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=.htaccess">.htaccess</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=httpd.conf">httpd.conf</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=rewrite">rewrite</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99">地址重写</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 02, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-02T00:00:00-07:00">
+    <meta itemprop="keywords" content=".htaccess,httpd.conf,rewrite,地址重写"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/03/28/publish-the-vim-buffer-management-plugin/"><h2 itemprop="headline" class="item__header">发布VIM缓冲区切换插件buf_it升级版</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -473,51 +503,8 @@ Roy这名字似乎是某个英国国王的名字，也有不少人用这个做�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-01T00:00:00-08:00">
     <meta itemprop="keywords" content="博客域名,布拉德比特,布拉德皮特,罗伊贝特"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/02/24/ways-to-change-ports-in-exsi/"><h2 itemprop="headline" class="item__header">ESXi修改默认端口的方法(zz)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-转载自网络，找不到出处了，没试过，应该是对的。
-
-修改默认端口的方法： 端口 80 (http) 443 (https)
-  root登录后
-
- vi /etc/vmware/hostd/proxy.xml
-
-
-找到下添加以下内容
-
-custom port #
-custom port #
-
-
-保存文件
-
-重新启动vmware-hostd服务
-
-    # service mgmt-vmware restart
-
-
-例子：添加以下为分别改为81 444
-
-81
-444
-
-
-ESX 4.0测试通过</div><p><a href="/2012/02/24/ways-to-change-ports-in-exsi/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ESXi">ESXi</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E4%BF%AE%E6%94%B9">修改</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%BB%98%E8%AE%A4%E7%AB%AF%E5%8F%A3">默认端口</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-02-24T00:00:00-08:00">
-    <meta itemprop="keywords" content="ESXi,修改,默认端口"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page32">
             <i class="fas fa-angle-left"></i>

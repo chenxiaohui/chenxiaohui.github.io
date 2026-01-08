@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/17/c-variable-argument/"><h2 itemprop="headline" class="item__header">c/c++的不定参数</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：
+
+void ar_cnt(int cnt,...);
+int main(int argc, char* argv[])
+{
+    ar_cnt(4,1,2,3,4);
+    return 0; 
+}
+void ar_cnt(int cnt,...)
+{
+    int arg_cnt = cnt;
+    va_list arg_ptr;
+    va_start(arg_ptr, cnt);
+    for(int i=0; i &lt; cnt;i++)
+    {
+        int value=va_arg(arg_ptr,int);
+        printf("posation %d=%d\...</div><p><a href="/2014/07/17/c-variable-argument/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 17, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-17T14:42:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/17/java-c-plus-plus-variable-scope-diff/"><h2 itemprop="headline" class="item__header">java/c++变量作用域的一点小区别</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然遇到一个问题，java里面这么写是有问题的
 
@@ -387,18 +407,8 @@ namespace oceanbase
 
     只使用undo的时候commit日志要等...</div><p><a href="/2014/07/05/redo-undo-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 05, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-05T21:20:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/05/two-photo-of-still-life/"><h2 itemprop="headline" class="item__header">发两张静物</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">发两张静物，镜头宾得 SMC FA 50mm F1.4
-
-
-
-
-
-转一张网上的图，我觉得拍的极好（当然模特漂亮是主要的）：</div><p><a href="/2014/07/05/two-photo-of-still-life/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 05, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-05T19:49:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page19">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,18 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/"><h2 itemprop="headline" class="item__header">指针数组，数组指针与函数指针</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">指针数组是指由指针组成的数组，这个比较好理解；数组指针是指向一个数组的指针，其实字面上也比较好理解。容易混淆的地方在于书写形式有些类似
+
+:::cpp
+int *p[n];  //array of pointers
+int (*p)[n];//pointer to an array</div><p><a href="/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=C%23">C#</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 08, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-10-08T00:00:00-07:00">
+    <meta itemprop="keywords" content="C#"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/10/03/some-problems-of-django-url-mapping/"><h2 itemprop="headline" class="item__header">关于Django url映射的一些小问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -435,41 +447,8 @@ nnoremap x :call BufClose(1)
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 25, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-05-25T00:00:00-07:00">
     <meta itemprop="keywords" content="MV,明天的记忆"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/05/10/appendix-to-const-pointer/"><h2 itemprop="headline" class="item__header">关于Const指针的一点补充</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-OsChina上一个朋友给出的例子，很能说明问题：
-
-typedef char * CharPtr;
-const CharPtr mycharptr = "Hello, World";
-mycharptr[0]='h'; //OK[1]
-mycharptr = "It's Wrong"; //Err[2]
-
-
-如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char _是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char_被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它...</div><p><a href="/2012/05/10/appendix-to-const-pointer/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=const">const</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=define">define</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=typedef">typedef</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AE%8F%E6%9B%BF%E6%8D%A2">宏替换</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%8C%87%E9%92%88">指针</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%BC%96%E8%AF%91%E5%99%A8">编译器</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 10, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-05-10T00:00:00-07:00">
-    <meta itemprop="keywords" content="const,define,typedef,宏替换,指针,编译器"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page30">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/04/20/partition-algorith-quit-position-analysis/"><h2 itemprop="headline" class="item__header">partition算法的落点讨论</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">首先这里的partition算法指的是快速排序中把数据分区的算法，算法接受一个数列和一个值，返回一个位置，这个位置之前的元素都小于等于输入值，之后的元素都大于等于输入值。
+
+算法如下：
+
+还有一种常见的形式：
+
+这里我们讨论下落点的情况，如果partition算法可以传入任何的value，而不是快排中那样从序列中随机获得一个值，那么结果就会有多重情况了。</div><p><a href="/2015/04/20/partition-algorith-quit-position-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 20, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-20T21:27:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/04/19/maven-download-stuck/"><h2 itemprop="headline" class="item__header">maven download dependency挂住的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">今天迁移工程到mac上，准备以后用mac作为主开发工具。迁移maven的时候发现，maven download会停在那里，如下：
 
@@ -399,24 +409,8 @@ dist-packages instead of site-packages. Third party Python software installed fr
 
 dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 ...</div><p><a href="/2015/03/27/notes-on-easy-install-and-pip/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 27, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-27T11:13:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/24/ubuntu-gnome-crontab/"><h2 itemprop="headline" class="item__header">关于ubuntu gnome下crontab运行的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。
-
-后来发现对图形界面程序来讲，crontab的进程需要指定输出到哪个显示的，也就是
-
-   	export DISPLAY=:0 #:0指第一个显示终端，ctrl+alt+f7那个
-/usr/bin/notify-send "亲，该去运动了！！一分钟后关机，请保存所有未保存的Job."
-sudo shutdown -h 1
-
-
-或者直接在crontab -e中指定环境变量：
-
-   	DISPLAY=:0
-30 20 * * * /home/cxh...</div><p><a href="/2015/03/24/ubuntu-gnome-crontab/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 24, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-24T13:54:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page9">
             <i class="fas fa-angle-left"></i>

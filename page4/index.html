@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2021/02/14/cplusplus_thread_ref/"><h2 itemprop="headline" class="item__header">c++的线程传参</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">平时我们经常thread传递参数的时候看到std::ref，之前一直简单理解这个是给智能指针增加了一个引用，后来想不对啊，智能指针拷贝本身就是增加引用。
+
+翻了下StackOverflow发现想错了，一个例子如下：
+
+struct fst {
+  int test(std::string &amp; str) const {
+    str = "bbb";
+    std::cout&lt;&lt; __FILE__ &lt;&lt; ":"&lt;&lt; __LINE__&lt;&lt; ":=&gt;" &lt;&lt; str &lt;&lt; std::endl;
+    return 0;
+  }
+};
+
+int main(int argc, char *argv[])
+...</div><p><a href="/2021/02/14/cplusplus_thread_ref/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 14, 2021</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-14T14:21:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/02/11/mobike_in_singapore/"><h2 itemprop="headline" class="item__header">新加坡的共享单车</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">摩拜单车在新加坡是有一个出海品牌的，叫SGBike，后来独立运营了，跟摩拜单车实际上没什么关系了，但是车的颜色和款式还是几乎一样。如果有什么区别的话，就是管理更规范更严格一些，比如停车的位置是有严格规定的，只有在停车点才能还车，需要扫描地上的二维码，否则会被罚款10SGD。这就避免了很多乱停乱放的行为。
 
@@ -337,24 +354,8 @@
 
 当然仔细想一下其实有很多现象值得玩味。clubhouse也不是一个很新颖的东西，何况国内也有一款app递爪非常类似，而一直不瘟不火。所以到底是什么催生了clubhouse的现象级火热呢？一致的好评是因为clubhouse确实促进了沟通提供了革命性的交...</div><p><a href="/2021/02/07/clubhouse-overview/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 07, 2021</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-07T01:02:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/01/01/c-plus-plus-11de-bu-ding-can-shu/"><h2 itemprop="headline" class="item__header">c++11的不定参数</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">不定参数之前其实用的比较少，一个项目里面能用到的大概只有log函数什么的。C++11支持了新的不定参数定义，之前也看过，但是毕竟使用的场景少，也没怎么研究。最近看了一下，感觉还是挺有意思的，至少比C++11之前方便了非常多，可以灵活的应用到很多场景里面，特别是模板。
-
-之前C++ 或者C语言里面经常会看到这种写法：
-
-	#define log(...) \
-	    printf(__VA_ARGS__);
-
-	// tuple example
-	template&lt;typename ... T&gt;
-	void f(T ... args) 
-	{
-	    cout &lt;&lt; sizeof...(args) &lt;&lt; endl; //打印变参的个数
-	    l...</div><p><a href="/2021/01/01/c-plus-plus-11de-bu-ding-can-shu/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 01, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-01-01T22:03:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page3">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,36 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/28/git-remote-branch/"><h2 itemprop="headline" class="item__header">git远程分支和refs文件详解</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近同时同步博客到github和gitcafe上，遇到一些问题，我们分如下几个方面来分析一下：
+
+推送远程分支到同一个服务器
+
+比如首先建立git服务器，顺便clone出两个副本
+
+mkdir server
+cd server
+git init --bare
+cd ..
+git clone server git1
+git clone server git2
+
+
+目前git branch是空的。我们提交一点东西建立master分支。
+
+cd git1
+touch a.txt
+git add .
+git commit -m "init"
+git push origin master
+
+
+现在git branch -a 显示:
+
+* master
+  remotes/origin/maste...</div><p><a href="/2014/06/28/git-remote-branch/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-28T11:14:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/26/a-macro-problem/"><h2 itemprop="headline" class="item__header">一个关于宏的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">写了一段代码，我想实现宏里面拼接一个变量然后取得这个变量的值的效果，但是没有成功：
 
@@ -384,17 +414,8 @@ int main(int argc, const char *argv[])
 
 效果如下：</div><p><a href="/2014/06/20/susublime-plugin-to-generate-refrence/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T21:21:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/20/octopress-pandoc-table/"><h2 itemprop="headline" class="item__header">octopress支持markdown表格</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">pandoc支持扩展的markdown，也就是支持类似于如下的表格：
-
------------------------------------------------------------------------------------------------------------------
-测量指标                    低程度中心性             低亲近中心性                      低居间中心性
---------------------   -------------------   -----------------------------  -------------------------------------
-高程度中心...</div><p><a href="/2014/06/20/octopress-pandoc-table/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:57:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page21">
             <i class="fas fa-angle-left"></i>

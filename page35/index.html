@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/"><h2 itemprop="headline" class="item__header">关于.NET中的AutoScrollPosition属性</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天写一个能滚动的PictureBox，PictureBox默认没有滚动条，所以又两种实现方式，要么在PictureBox外套一个规定大小的Panel，然后设置Panel有滚动条，要么单独做一个UserControl，自己管理重绘。
+
+但是都发现一个问题，我写拖动的代码的时候，获得了两次拖动事件之间的移动距离，然后想加到AutoScrollPosition属性上，控制滚动，但是总会跳回原点。经过了无数次艰苦卓绝的测试，最后发现一个哭笑不得的问题。
+
+.Net实在太智能了，智能的你都想不到他智能哪里去了。
+
+Point p = new Point(20, 0);
+panel1.AutoScrollPosition = p;
+
+
+上面这句会设定有滚动20个像素
+
+Point p = new...</div><p><a href="/2011/11/13/about-the-AutoScrollPosition-property-under-dotNet/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=AutoScrollPosition">AutoScrollPosition</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 13, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-11-13T00:00:00-08:00">
+    <meta itemprop="keywords" content="AutoScrollPosition"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/10/08/we-only-bend-to-truth-by-murongxuecun/"><h2 itemprop="headline" class="item__header">慕容雪村对大学生的演讲稿:我们只向真理低头</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -494,42 +514,8 @@ ServerRoot "D:/Program Files/httpd-2.2-x64"
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 23, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-23T00:00:00-07:00">
     <meta itemprop="keywords" content="bufexplorer,Minibufexplorer,vim,切换,右键"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/"><h2 itemprop="headline" class="item__header">FencView插件在windows下的配置</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-坦白的讲，我没觉得这插件有什么用……
-
-FencView的作用是Auto detect the file encoding. 自动探测编码，防止乱码的插件。但是_vimrc设置了内部编码之后，至少在Windows下我没遇到什么明显的乱码……
-
-set encoding=utf-8
-set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1 " 如果你要打开的文件编码不在此列，那就添加进去
-set termencoding=utf-8
-
-
-Windows下这插件主要的问题是找不到iconv，也正常，这么华丽丽的编码转换工具必然是linux下的，不过我们可以下载Libiconv for Windows，这样就可以在w...</div><p><a href="/2011/09/23/configuration-of-plugin-fenview-under-windows/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=fencview">fencview</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=iconv">iconv</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=libiconv">libiconv</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=vim">vim</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Windows">Windows</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%BC%96%E7%A0%81">编码</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 23, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-23T00:00:00-07:00">
-    <meta itemprop="keywords" content="fencview,iconv,libiconv,vim,Windows,编码"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page34">
             <i class="fas fa-angle-left"></i>

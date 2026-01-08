@@ -280,6 +280,18 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/11/13/du-to-display-one-level/"><h2 itemprop="headline" class="item__header">du显示只显示一层子目录/文件的大小</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">经常需要看当前目录下的子目录大小，比如开发机被人占满的情况，du -lh显示的是递归的所有文件大小，du -s又只统计了所有文件/文件夹合起来的大小。正常情况下需要执行：
+
+  	du -lh –max-depth=1
+
+未免太过麻烦。后来肖总提示发现这样就行了：
+
+  	du -sh *
+
+果然是学无止境啊</div><p><a href="/2014/11/13/du-to-display-one-level/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 13, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-13T17:55:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/10/29/cpp-virtual-template-function/"><h2 itemprop="headline" class="item__header">虚函数模板和模板类中的虚函数</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">自从知道了C++不支持虚函数模板之后就觉得相关的一概不支持，今天写程序的时候想把基类做成模板，然后继承基类。以为也不支持，写了一下才发现支持的，无论是非模板类继承一个特化之后的模板还是模板类继承包含虚函数的模板基类都是没问题的。从实现上看，反正使用的时候都会特化的，特化之后虚函数表指针是固定的。不存在像函数模板这种类生成的时候无法确定虚函数表的情况。
 
@@ -387,18 +399,8 @@ class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a><
 
 一首歌的意味只有联想到背景才体会得到...</div><p><a href="/2014/09/08/the-love-of-the-world/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 08, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-08T20:03:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/09/07/using-google-verify-maclaurin-series/"><h2 itemprop="headline" class="item__header">用google来验证一下Maclaurin展开式</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。
-
-泰勒级数的定义如下：
-
-
-
-不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</div><p><a href="/2014/09/07/using-google-verify-maclaurin-series/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 07, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-07T15:35:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page17">
             <i class="fas fa-angle-left"></i>

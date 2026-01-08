@@ -280,6 +280,15 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/20/octopress-pandoc-table/"><h2 itemprop="headline" class="item__header">octopress支持markdown表格</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">pandoc支持扩展的markdown，也就是支持类似于如下的表格：
+
+-----------------------------------------------------------------------------------------------------------------
+测量指标                    低程度中心性             低亲近中心性                      低居间中心性
+--------------------   -------------------   -----------------------------  -------------------------------------
+高程度中心...</div><p><a href="/2014/06/20/octopress-pandoc-table/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T20:57:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/20/octopress-indent-plugin/"><h2 itemprop="headline" class="item__header">octopress的缩进插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">我们写中文的时候通常有首行缩进的需求，markdown默认是不支持的，octopress和wordpress也没有缩进的css。这里我们通过加个插件的方式完成。
 
@@ -393,33 +402,8 @@ Liquid::Template.register_filter(Jekyll::IndentFilter)
 之后在内存里面做Join。由于是有序的，所以join过程直接采用了二分查找。之于没有用散列做Join或者直接
    SQL语句里做...</div><p><a href="/2014/06/15/a-performance-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 15, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-15T12:16:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/10/distributed-selection/"><h2 itemprop="headline" class="item__header">分布式选主-笔记</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">数据库主备复制
-
-同步模式
-
-
-  备机是否写盘之后应答
-  性能收主备机之间通讯距离，网络抖动影响
-
-
-异步模式
-
-
-  主机不等待备机的应答
-  性能最优，可能造成数据丢失不一致
-
-
-半异步
-
-
-  超过多数成功则返回
-  奇数台机器才可以
-  3/5 &gt; 2/3 &gt; 2/2</div><p><a href="/2014/06/10/distributed-selection/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T21:08:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-left"></i>

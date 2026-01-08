@@ -280,6 +280,33 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/10/21/table-tablet-iterator/"><h2 itemprop="headline" class="item__header">Oceanbase迭代器说明</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">所有迭代器的类图如下所示：
+
+
+
+ObRootTabletIterator
+
+所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。
+
+
+
+ObTableTabletIterator
+
+最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。
+
+######实现机理 :
+
+从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。
+
+######错误码与错误原因对应
+
+断言失败：
+
+
+  接受返回值的传入参数table...</div><p><a href="/2013/10/21/table-tablet-iterator/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 21, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-21T16:26:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/18/update-to-ubuntu-13-10/"><h2 itemprop="headline" class="item__header">升级到ubuntu13.10</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。</div><p><a href="/2013/10/18/update-to-ubuntu-13-10/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 18, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-18T10:49:00-07:00"></div>
@@ -396,29 +423,8 @@ svn revert ob_alive_table_tablet_iter.h
 
 经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的...</div><p><a href="/2013/10/12/several-svn-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T19:27:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/12/a-strange-error/"><h2 itemprop="headline" class="item__header">记几个诡异的bug</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">ERROR: mutli target patterns
-
-这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。
-
-后来 聿明 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。
-
-alias make='make -s -j 4' #这里开到4-5就不要更多了
-
-
-
-
-ob集群无法启动
-
-怀疑是机器的问题，但是如果大部分机器我都无法启动这算怎么一回事，
-
-rs的日志如下：
-
-[2013-10-12 14:41:56.484203] WARN  create_first_table (ob_ro...</div><p><a href="/2013/10/12/a-strange-error/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T15:57:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page26">
             <i class="fas fa-angle-left"></i>

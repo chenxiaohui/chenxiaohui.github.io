@@ -280,6 +280,47 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/05/29/from-the-miao-code/"><h2 itemprop="headline" class="item__header">由&#8221;喵&#8221;代码想到的</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+网上看到这样一段代码
+
+
+
+还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：
+
+#include 
+
+#define aaa "3a"
+#define a "1a"
+#define aa "2a"
+
+int main(int argc, const char *argv[])
+{
+    printf("%s
+",aaa);
+}
+
+
+这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况
+
+printf("%s
+",aa a);
+
+
+替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
+另外一种字符串跨行的方式是：
+
+...</div><p><a href="/2013/05/29/from-the-miao-code/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%9A%E8%A1%8C">字符串多行</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%AE%8F%E6%9B%BF%E6%8D%A2">宏替换</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 29, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-05-29T00:00:00-07:00">
+    <meta itemprop="keywords" content="字符串多行,宏替换"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/01/10/think-of-one-thing/"><h2 itemprop="headline" class="item__header">想起一件事情</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -376,20 +417,8 @@ int a[n];//当然这里一定要有合法性判断
 
   在C99中新加入了对变长数组的支持，即数组的长度可以由某个非const变量来定义。可变数组的空间大小直到程序运行时才能确定，因此只有程序在运行时才能为程序分配空间。在gcc编译器程序会在运行时根据实际指定的大小(变量当前的值)调节esp的值，为数组在栈上分配适当大小的空间。由于要在运行时才能...</div><p><a href="/2012/10/08/problems-about-length-variable-array/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 08, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-10-08T00:00:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/"><h2 itemprop="headline" class="item__header">指针数组，数组指针与函数指针</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">指针数组是指由指针组成的数组，这个比较好理解；数组指针是指向一个数组的指针，其实字面上也比较好理解。容易混淆的地方在于书写形式有些类似
-
-:::cpp
-int *p[n];  //array of pointers
-int (*p)[n];//pointer to an array</div><p><a href="/2012/10/08/pointer-to-array-and-array-of-pointer-and-pointer-to-a-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=C%23">C#</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 08, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-10-08T00:00:00-07:00">
-    <meta itemprop="keywords" content="C#"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page29">
             <i class="fas fa-angle-left"></i>

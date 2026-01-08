@@ -280,6 +280,33 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/03/08/two-methods-to-deal-with-config-file-using-csharp/"><h2 itemprop="headline" class="item__header">C#配置文件读写的两种思路</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">配置文件是增加软件扩展性不可获取的一部分。本文提供两种C#配置文件读写的方式。
+
+第一种是使用Windows自身的INI文件读写API，在.NET下调用的时候需要对其进行声明，这也是最传统的一类，问题在于INI文件表达能力有限，每次都要费心地去给每个不同的配置项设置不同的KEY，不适合LIST型的配置项的书写。
+
+另一种是使用XML序列化与反序列化。这里只是用XML作为一个例子，其实.NET下的几种序列化方式[1]都可以用来作为配置文件读写的一种方式。XML的表达能力强于INI文件，同时序列化方式也大大简化了配置文件读写的过程，确是一种方便的工具。
+
+详见[代码][1]。
+
+参考文献：
+
+[1]C#序列化技术详解（转），</div><p><a href="/2011/03/08/two-methods-to-deal-with-config-file-using-csharp/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=INI">INI</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=XML">XML</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%BA%8F%E5%88%97%E5%8C%96">序列化</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">配置文件</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 08, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-03-08T00:00:00-08:00">
+    <meta itemprop="keywords" content="INI,XML,序列化,配置文件"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/02/25/about-swallowing-the-bulb/"><h2 itemprop="headline" class="item__header">关于吞灯泡问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">之前网上有一个很火的帖子，关于为什么不能吞灯泡的问题[1]，还有很多被好奇心害死娃们前仆后继的证明并跟帖[2]。不过最近果壳传出一个视频辟谣，看结果貌似吞灯泡没神马大不了的。
 
@@ -466,33 +493,8 @@ PS:这位哥哥真是很有献身精神和娱乐精神啊。
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 16, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-16T00:00:00-08:00">
     <meta itemprop="keywords" content="DataAdapter,DataSet,DataTable,增删查改,多表,更新,级联"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/02/04/improvement-on-tcp-subpackage-mechanism-implement/"><h2 itemprop="headline" class="item__header">对&ldquo;基于长度和定界符带校验的TCP分包方式&rdquo;的一些改进</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">“长度、分隔符加校验的TCP分包设计(C#)”[1]一文提出了一种综合长度和特殊字符定界两种TCP分包方式的新的分包方式，原文给出的实现没有考虑长度字符被分开两次传播的情况，同时原算法没有明确的算法描述，基于多种情况的综合，容易遗漏，这里给出改进后的算法：
-
-
-  如果WaitForLength置位，则拼上原来的字段，凑齐长度字段信息。
-  如果LeftLength不为0，则判断剩余缓冲区是否包含了报文剩余部分，如果包含则拼合字段，判断结尾是不是结束定界符&gt;，否则拼合剩余缓冲区，LeftLength更新。
-  找到一个开始定界符，否则拼合剩余缓冲区，等待下次数据到达。
-
-
-总的来说，就是通过开始定界符标定一个报文的开始，通过长度字段得到报文的结尾位置，通过结尾位置是不是结束定界符...</div><p><a href="/2011/02/04/improvement-on-tcp-subpackage-mechanism-implement/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%88%86%E5%8C%85">分包</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%94%B9%E8%BF%9B">改进</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%A0%A1%E9%AA%8C">校验</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%95%BF%E5%BA%A6">长度</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-04T00:00:00-08:00">
-    <meta itemprop="keywords" content="分包,改进,校验,长度"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page44">
             <i class="fas fa-angle-left"></i>

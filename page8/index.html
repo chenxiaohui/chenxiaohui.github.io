@@ -280,6 +280,25 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/08/28/paxos-case-analysis/"><h2 itemprop="headline" class="item__header">paxos的一些case分析</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">acceptor: a([epoc:4, value:n])  b[epoc:3,value:y]  c[epoc:6,:value:y]
+
+proposor:  x5, x7,   (x4, x3, x6)
+
+prepare:x5[a, b], x7[b, c]
+
+commit:x[4,n] y[6, y]
+
+一共有5个proposer,
+
+1）初始时 x4 (prepare)-&gt; a, x3 (prepare)-&gt; b,x6 (prepare)-&gt; c,
+2） x4, x3, x6 挂掉
+3）x5(prepare)-&gt; a, b
+4）x5(commit[epoc:4, value:n])-&gt;a, b
+5) x7(prepare) -&gt;b, c
+6...</div><p><a href="/2015/08/28/paxos-case-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 28, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-08-28T11:34:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/08/23/gitbook-guide/"><h2 itemprop="headline" class="item__header">gitbook使用指导</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">gitbook是nodejs实现的用来帮助书写电子书的，很多开源的书籍项目是基于gitbook的。gitbook的编写语言是markdown，书籍遵循一定的格式完成之后可以通过gitbook发布为各种版本，比如pdf，mobi等电子书格式，或者发布为静态的website，挂到github pages上，对于一些开源项目来说，这是很方便的书写帮助文档的方式。gitbook同样有一个paas的平台，可以允许多人协作在线完成一部电子书
 
@@ -393,30 +412,8 @@ make
 
 之后把对应的扩展也装...</div><p><a href="/2015/07/07/phibricator-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 07, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-07-07T17:45:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/06/26/resume-generator-using-latex-and-moderncv/"><h2 itemprop="headline" class="item__header">简历生成器（基于moderncv+latex）</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">项目地址: https://github.com/chenxiaohui/resume
-
-说明
-
-通过文本文件生成简历tex的generator。最终生成pdf还是要靠Latex+Moderncv，环境请自行配置。
-
-
-  windows下：http://www.ctex.org/HomePage
-  Linux下：https://www.tug.org/texlive/
-  
-    Mac下：https://tug.org/mactex/
-
-    需要的包都通过sudo tlmgr install package来安装。字体主要使用了Times New Roman（西文）和 Kaiti SC（中文）。可根据喜好换。
-  
-
-
-模板配置
-
-config.tex 定义了公共头文件，包...</div><p><a href="/2015/06/26/resume-generator-using-latex-and-moderncv/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 26, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-06-26T15:47:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page7">
             <i class="fas fa-angle-left"></i>

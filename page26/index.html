@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/19/vim-script-to-find-import-file/"><h2 itemprop="headline" class="item__header">分布式调试之导入import文件</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：
+
+
+
+if !exists('g:base_dir_mark')
+    "set base_dir_mark to indicate where to generate post-review.sh
+    let g:base_dir_mark = 'tags'
+endif
+
+if !exists('g:strip_prefix_arr')
+    "set base_dir_mark to indicate where to gen...</div><p><a href="/2013/11/19/vim-script-to-find-import-file/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T17:41:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/17/method-to-diff-log/"><h2 itemprop="headline" class="item__header">分布式调试系列：关于日志的比对</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们其实会遇到这种情况，本地修改了一点东西，然后发现跑跟预期结果不一致，这时候去看日志发现各种日志里面有各种ERROR，但是这些ERROR实际上并不是这个问题导致的，因为你回滚修改之后发现这些ERROR依然存在。如果有core文件当然最好，但是如果没有或者core里面并看不出问题就比较纠结了。前面一篇文章我们探讨了如何写个插件通过log来定位源码行，这篇日志我们讨论一下如何快速定位自己的错误日志。
 
@@ -404,35 +418,8 @@ data loss的最大因素：drop table, 所以要做好充分的容错。
 六月，高丽内乱。帝诏命停战，不听。
 九...</div><p><a href="/2013/10/25/history-of-tian-chao/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 25, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-25T21:26:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/21/table-tablet-iterator/"><h2 itemprop="headline" class="item__header">Oceanbase迭代器说明</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">所有迭代器的类图如下所示：
-
-
-
-ObRootTabletIterator
-
-所有tablet类迭代器，也就是ObRootTableIterator, ObTableTabletIterator等的直接父类，定义了迭代接口。
-
-
-
-ObTableTabletIterator
-
-最基本的迭代器，继承ObRootTabletIterator, 负责迭代一个表的所有（或者某个指定range里面的）Tablet。
-
-######实现机理 :
-
-从Rowkey::MINROWKEY开始，每次迭代的tablet的endkey（加一个ObRowkey::MIN_OBJECT防止找到同一个）作为下次迭代的起始值。
-
-######错误码与错误原因对应
-
-断言失败：
-
-
-  接受返回值的传入参数table...</div><p><a href="/2013/10/21/table-tablet-iterator/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 21, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-21T16:26:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

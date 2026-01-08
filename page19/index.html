@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/09/07/using-google-verify-maclaurin-series/"><h2 itemprop="headline" class="item__header">用google来验证一下Maclaurin展开式</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然发现google可以直接画出函数图像来，精准度极高，于是想起来用这个功能来看一下Maclaurin展开是如何随精度增加而逼近展开式的。从某种角度上讲，这是一个极好的拟合过程，相对于梯度下降的逐步拟合来讲，泰勒公式或者麦克劳林展开直接推导出了每一个拟合因子。
+
+泰勒级数的定义如下：
+
+
+
+不过这是带拉格朗日余项的形式。让基准值=0可以得到 Maclaurin 展开式，当然这也就意味着Maclaurin展开式在0附近的拟合是最精确的。定义如下：</div><p><a href="/2014/09/07/using-google-verify-maclaurin-series/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 07, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-09-07T15:35:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/09/06/error-in-cpp-150-notes/"><h2 itemprop="headline" class="item__header">《改善C++程序的150个建议》勘误</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">翻了一下编写高质量代码：改善C++程序的150个建议，感觉一般，主要是能下到pdf。看到两个错误。
 
@@ -381,28 +391,8 @@ When I was a little boy，当我还是一个小男孩的时候，我想，这个
   他们为何离去
   那声再见竟是他最后的一句</div><p><a href="/2014/07/19/continent/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 19, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-19T14:34:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/17/c-variable-argument/"><h2 itemprop="headline" class="item__header">c/c++的不定参数</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：
-
-void ar_cnt(int cnt,...);
-int main(int argc, char* argv[])
-{
-    ar_cnt(4,1,2,3,4);
-    return 0; 
-}
-void ar_cnt(int cnt,...)
-{
-    int arg_cnt = cnt;
-    va_list arg_ptr;
-    va_start(arg_ptr, cnt);
-    for(int i=0; i &lt; cnt;i++)
-    {
-        int value=va_arg(arg_ptr,int);
-        printf("posation %d=%d\...</div><p><a href="/2014/07/17/c-variable-argument/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 17, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-17T14:42:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page18">
             <i class="fas fa-angle-left"></i>

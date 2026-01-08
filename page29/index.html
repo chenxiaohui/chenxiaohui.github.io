@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/"><h2 itemprop="headline" class="item__header">防止通过rm误删文件</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.
+
+为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.
+
+这里我们首先建立如下脚本:
+
+#!/bin/sh 
+dirpath=/tmp/recycle_$USER # find a place for recycle
+now=`date +%Y%m%d_%H_%M_%S_`  
+arg=$1
+if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # ...</div><p><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 22, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-22T20:46:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/09/16/oceanbase-sources-analyze-roottable/"><h2 itemprop="headline" class="item__header">oceanbase源码分析-Rowkey相关</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">这里分析一下ObRowkey相关的源码.
 
@@ -454,49 +468,8 @@ int ival=1024; //复制初始化
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 02, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-02T12:55:00-07:00">
     <meta itemprop="keywords" content="C#,Primer"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/05/29/from-the-miao-code/"><h2 itemprop="headline" class="item__header">由&#8221;喵&#8221;代码想到的</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-网上看到这样一段代码
-
-
-
-还是挺无聊的，于是想到一个问题，宏替换的时候假如有多个匹配，应该匹配哪一个的问题，于是实验如下：
-
-#include 
-
-#define aaa "3a"
-#define a "1a"
-#define aa "2a"
-
-int main(int argc, const char *argv[])
-{
-    printf("%s
-",aaa);
-}
-
-
-这里最终输入结果是3a，也符合我们的思维方式，最长匹配嘛，值得一提的是这种情况
-
-printf("%s
-",aa a);
-
-
-替换结果是”2a” “a”，通过空格间隔。C Primer中提到过这种书写方式，这也是字符串跨行的一种有效的写法，但是毕竟很少在实际情况中看到。
-另外一种字符串跨行的方式是：
-
-...</div><p><a href="/2013/05/29/from-the-miao-code/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%9A%E8%A1%8C">字符串多行</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AE%8F%E6%9B%BF%E6%8D%A2">宏替换</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 29, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-05-29T00:00:00-07:00">
-    <meta itemprop="keywords" content="字符串多行,宏替换"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page28">
             <i class="fas fa-angle-left"></i>

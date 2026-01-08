@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/12/25/thrift-and-slf4j/"><h2 itemprop="headline" class="item__header">Thrift依赖和Slf4j</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">用Thrift做一个分布式系统的RPC，发现跑起来的时候总提示Failed to load class org.slf4j.impl.StaticLoggerBinder，看了看maven依赖感觉没啥问题啊，slf4j-api-xx.jar好好的在呢。分析了maven的依赖，eclipse的问题，最后发现都没问题啊。最后发现还是不了解slf4j，以为跟log4j一样的，其实作为一个proxy，slf4j-api只是一套接口，实现的依赖没有添加进来。
+
+Thrift的依赖加进来的时候（如下），Dependency Hierachy解析会添加相关的包，但是只添加了slf4j-api，动态编译也不会出错，毕竟接口都有了，但是运行时从classpath找不到对应的包。
+
+  &lt;depen...</div><p><a href="/2014/12/25/thrift-and-slf4j/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 25, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T18:24:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/25/maven-revert-eclipse-jdk-version/"><h2 itemprop="headline" class="item__header">关于Maven回滚了eclipse中项目的JRE版本</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：
 
@@ -389,20 +397,8 @@ Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeep
 
 这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也...</div><p><a href="/2014/11/19/error-with-node-zk-browser/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-19T18:56:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/11/13/du-to-display-one-level/"><h2 itemprop="headline" class="item__header">du显示只显示一层子目录/文件的大小</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">经常需要看当前目录下的子目录大小，比如开发机被人占满的情况，du -lh显示的是递归的所有文件大小，du -s又只统计了所有文件/文件夹合起来的大小。正常情况下需要执行：
-
-  	du -lh –max-depth=1
-
-未免太过麻烦。后来肖总提示发现这样就行了：
-
-  	du -sh *
-
-果然是学无止境啊</div><p><a href="/2014/11/13/du-to-display-one-level/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 13, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-13T17:55:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page16">
             <i class="fas fa-angle-left"></i>

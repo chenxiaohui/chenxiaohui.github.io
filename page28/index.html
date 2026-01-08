@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/10/12/a-strange-error/"><h2 itemprop="headline" class="item__header">记几个诡异的bug</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">ERROR: mutli target patterns
+
+这个莫名其妙啊，不知道在Makefile.am里改了什么，然后就这样，网上的解释大部分是说target里面有多余的冒号，但是我发现问题啊。最后该来该去bug没了，但是也复现不出来，只是在这里记一下，如果有复现的时候再说。
+
+后来 聿明 解决了这个问题，原来是编译的线程开太多了，而开发机性能又不好，争用然后冲突。
+
+alias make='make -s -j 4' #这里开到4-5就不要更多了
+
+
+
+
+ob集群无法启动
+
+怀疑是机器的问题，但是如果大部分机器我都无法启动这算怎么一回事，
+
+rs的日志如下：
+
+[2013-10-12 14:41:56.484203] WARN  create_first_table (ob_ro...</div><p><a href="/2013/10/12/a-strange-error/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T15:57:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/11/post-review-conflict-under-git-svn/"><h2 itemprop="headline" class="item__header">post-review在svn和git共同存在下的冲突问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们会同时用多种版本管理工具进行管理，或许这听着很eggache，但是有时候确实会发生，比如
 
@@ -397,22 +418,8 @@ gcc –o test main.c libtest2.a libtest1.a
 
     …...</div><p><a href="/2013/09/26/root-table-manager/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 26, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-26T12:15:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/"><h2 itemprop="headline" class="item__header">防止通过rm误删文件</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.
-
-为了防止误删文件, 我们可以把删除的文件先转移到/tmp下, /tmp下的文件会被系统定时清除, 也就起到了回收站的作用.
-
-这里我们首先建立如下脚本:
-
-#!/bin/sh 
-dirpath=/tmp/recycle_$USER # find a place for recycle
-now=`date +%Y%m%d_%H_%M_%S_`  
-arg=$1
-if [ "$arg" = "-rf" ] || [ "$arg" = "-fr" ] || [ "$arg" = "-r" ]; then # ...</div><p><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 22, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-22T20:46:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page27">
             <i class="fas fa-angle-left"></i>

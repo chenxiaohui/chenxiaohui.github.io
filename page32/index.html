@@ -280,6 +280,39 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/05/10/appendix-to-const-pointer/"><h2 itemprop="headline" class="item__header">关于Const指针的一点补充</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+OsChina上一个朋友给出的例子，很能说明问题：
+
+typedef char * CharPtr;
+const CharPtr mycharptr = "Hello, World";
+mycharptr[0]='h'; //OK[1]
+mycharptr = "It's Wrong"; //Err[2]
+
+
+如果把CharPtr替代掉的话，那么似乎[1]是错的，[2]是对的，因为const char _是指向const char的指针，指针可以指向别的，但是指向的内容不能变。实际上，const只是编译器的一种规范，所以编译的时候只按照语法检查是不是改变了，char_被typedef之后，可以当成一种简单类型看，那么const CharPtr 就只一个CharPtr型的常量，对它...</div><p><a href="/2012/05/10/appendix-to-const-pointer/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=const">const</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=define">define</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=typedef">typedef</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%AE%8F%E6%9B%BF%E6%8D%A2">宏替换</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%8C%87%E9%92%88">指针</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BC%96%E8%AF%91%E5%99%A8">编译器</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 10, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-05-10T00:00:00-07:00">
+    <meta itemprop="keywords" content="const,define,typedef,宏替换,指针,编译器"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/05/08/type-cast-and-overload-of-assign-operator-and-object-defination/"><h2 itemprop="headline" class="item__header">区分一下强制类型转换运算符重载/赋值运算符重载/对象定义的赋值
 </h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">这三个名字可能很绕，看着也很不一样，但其实是三个很容易混淆的概念，并且经常在实际编程中遇到。这里拿出来比较一下。
@@ -483,38 +516,8 @@ const int* const a = &amp;b; [4]
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 07, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-07T00:00:00-07:00">
     <meta itemprop="keywords" content="const,微软,指针,面试"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/04/02/some-problems-about-apache-address-rewrite/"><h2 itemprop="headline" class="item__header">Apache地址重写的几个问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-Apache地址重写的配置分为两种方式即通过httpd.conf配置和.htaccess文件。
-
-首先要打开rewrite模块windows下的配置是
-
-LoadModule rewrite_module modules/mod_rewrite.so
-
-
-httpd.conf的配置可以全局生效也可以只配置一个目录需要做的事情是在相应目录的Directory标签下配置Rewrite规则。
-
-.htaccess的则放到相应目录下或者根目录即可这是VPS里常用的一种方式毕竟作为一个VPS购买者不可能要求提供商去更改全局配置文件。这种方式需要注意的有如下两点
-
-首先.htaccess要想起作用必须要在httpd.conf中相应的Directory标签下配置AllowOverride Al...</div><p><a href="/2012/04/02/some-problems-about-apache-address-rewrite/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=.htaccess">.htaccess</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=httpd.conf">httpd.conf</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=rewrite">rewrite</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%9C%B0%E5%9D%80%E9%87%8D%E5%86%99">地址重写</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 02, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-02T00:00:00-07:00">
-    <meta itemprop="keywords" content=".htaccess,httpd.conf,rewrite,地址重写"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page31">
             <i class="fas fa-angle-left"></i>

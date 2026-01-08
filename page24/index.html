@@ -280,6 +280,31 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/10/distributed-selection/"><h2 itemprop="headline" class="item__header">分布式选主-笔记</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">数据库主备复制
+
+同步模式
+
+
+  备机是否写盘之后应答
+  性能收主备机之间通讯距离，网络抖动影响
+
+
+异步模式
+
+
+  主机不等待备机的应答
+  性能最优，可能造成数据丢失不一致
+
+
+半异步
+
+
+  超过多数成功则返回
+  奇数台机器才可以
+  3/5 &gt; 2/3 &gt; 2/2</div><p><a href="/2014/06/10/distributed-selection/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 10, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-10T21:08:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/10/o-transaction/"><h2 itemprop="headline" class="item__header">oceanbase事务引擎-笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">外存数据库的特点
 
@@ -413,18 +438,8 @@ import os,datetime,time
 def calc_temperature(filename):
   ...</div><p><a href="/2014/05/25/pi-temperature-sensor/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 25, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-05-25T14:16:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/04/18/offset-and-limit-in-ob/"><h2 itemprop="headline" class="item__header">OB的Offset和Limit</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">数据库的实现里面很重要的两个功能就是Limit和Offset,在web里面，这是分页的基本功能依赖。对于用户来说，一屏不可能显示全部的数据，所以数据请求可以拆散成多个，每次从上次的offset开始读取下一个limit的数据。有些情况下， 我们不需要知道一共有多少数据，只需要循环获取并统计期望的数据和得到的数据，直到两个不匹配。在实际web使用中，这种策略一般不使用，因为预先知道分页数。当然我也真见过这么用的，这nm简直就是无底洞。不知道点到什么时候是个头。
-
-相应的，正常的策略我们是需要知道数据有多少页的。也就有如下几种策略：
-
-
-  最烂的实现当然是直接刷出所有数据分页显示其他隐藏。其实数据量如果确实很小的情况下，这样也合理。提高响应速度。
-  发一条count()先统计所有数据，然...</div><p><a href="/2014/04/18/offset-and-limit-in-ob/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 18, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-04-18T20:54:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page23">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,24 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/07/ssh-debug-and-passless-login/"><h2 itemprop="headline" class="item__header">Linux ssh免密登陆和调试</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">把一个公钥上传到服务器配置了免密登陆，ok之后再配置几台服务器之间的免密，发现不成功。尝试了如下几种定位方法：
+
+
+  ssh目录权限。修改成.ssh 700，下面文件600。解决了一个的问题。其他几台还是不行。
+  查看sshd_config是否允许公钥登陆。看来不是这个问题。
+  ssh -v 看调试信息，发现尝试过publickey但是验证未通过。手动比对ssh 公钥发现无误。
+  
+    搜索错误信息：Offering public key: /root/.ssh/id_rsa，有人说是因为.ssh目录没有ssh_home_t标签， 通过这个命令查看文件夹或文件的标签
+
+    [root@localhost ~]# ls -laZ
+    
+
+    通过
+
+    res...</div><p><a href="/2015/03/07/ssh-debug-and-passless-login/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 07, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-07T17:56:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/03/apache-virtual-server-conf/"><h2 itemprop="headline" class="item__header">Apache的Virtual Server配置</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">首先，virtual server的概念是说一个apache实例可以模拟出多个server，这些server通过不同的标识来区分（网卡IP/ServerName/端口/ServerPath)，每个虚拟的server最终对应到一个DocumentRoot。
 
@@ -383,39 +401,8 @@ $&lt;     -is the name of the first dependency.
 $?    Stores the exit value of the last command that was executed.
 $0    Sto...</div><p><a href="/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T14:51:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/02/04/gc-gcc-parameters-summary/"><h2 itemprop="headline" class="item__header">gcc命令行参数总结</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">总结一下混乱的GCC命令行参数，帮助写Makefile:
-
-
-  编译阶段
-    
-      预编译E-&gt;生成汇编S(ccl)-&gt;生成机器码c(as)-&gt;链接生成目标程序(ld)
-    
-  
-  
-    输出类型：
-
-    
-      -E 只执行到预编译
-      -S 只执行到汇编阶段。生成汇编代码。
-      -c 只执行到编译。输出目标文件。
-      空。生成链接目标代码。
-      -o 指定输出文件名。
-    
-  
-  
-    输入类型：
-
-    
-      
-        每个阶段可以接受之前阶段的中间结果（可跨越）。比如：
-
-         gcc -E hello.c -o hello.i
- gcc -S hel...</div><p><a href="/2015/02/04/gc-gcc-parameters-summary/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T11:36:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page11">
             <i class="fas fa-angle-left"></i>

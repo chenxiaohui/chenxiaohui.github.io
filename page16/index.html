@@ -280,6 +280,17 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/10/octopress-category-auto-generate/"><h2 itemprop="headline" class="item__header">自动生成octopress的分类目录</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">在octopress里面添加一个分类的时候，经常会遇到分类跟导航页面没有同步更新的情况，即加了一个分类，生成了文章，文章被生成在指定的路径下了，但是首页导航栏的分类没有跟着更新。针对这种情况，修改了一下Rakefile，把分类做成了配置，添加分类的时候可以直接修改一下分类信息，然后rake gen就可以生成对应的导航栏html代码。
+
+修改如下（我以前增加过交互的提示选择分类的功能），需要解释的有如下几点：
+
+
+  ”—-“是分割线，-的数量不能都一样，毕竟是作为map的key的。
+  分类做成map是因为category生成的时候名字自动做成了英文/拼音/中横线的形式…我没搞明白怎么弄的。所以自己手动填一下好了。以后有空想做成手动指定的。
+  system sublime那个是自动打...</div><p><a href="/2015/01/10/octopress-category-auto-generate/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 10, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-10T22:28:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/08/java-code-style/"><h2 itemprop="headline" class="item__header">关于java编码规范</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">首先推荐google的编码规范，其次，关于class member ordering的问题，google的解释是：
 
@@ -392,16 +403,8 @@ ssh xx@x...</div><p><a href="/2015/01/04/linux-remote-log-watch/">Read more</a><
 
     find . -name ‘.pyc’ -o -name ‘.swp’...</div><p><a href="/2015/01/04/del-cached-files-in-git/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 04, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-04T16:49:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/12/25/thrift-and-slf4j/"><h2 itemprop="headline" class="item__header">Thrift依赖和Slf4j</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">用Thrift做一个分布式系统的RPC，发现跑起来的时候总提示Failed to load class org.slf4j.impl.StaticLoggerBinder，看了看maven依赖感觉没啥问题啊，slf4j-api-xx.jar好好的在呢。分析了maven的依赖，eclipse的问题，最后发现都没问题啊。最后发现还是不了解slf4j，以为跟log4j一样的，其实作为一个proxy，slf4j-api只是一套接口，实现的依赖没有添加进来。
-
-Thrift的依赖加进来的时候（如下），Dependency Hierachy解析会添加相关的包，但是只添加了slf4j-api，动态编译也不会出错，毕竟接口都有了，但是运行时从classpath找不到对应的包。
-
-  &lt;depen...</div><p><a href="/2014/12/25/thrift-and-slf4j/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 25, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T18:24:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>500 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page15">
             <i class="fas fa-angle-left"></i>
