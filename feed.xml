@@ -1,40 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-08T20:27:38-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-08T20:41:35-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
 </subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">从 Claude 换到 Opencode，聊聊我的真实感受</title><link href="http://chenxiaohui.me/2026/01/08/why-i-chose-opencode-not-claude/" rel="alternate" type="text/html" title="从 Claude 换到 Opencode，聊聊我的真实感受" /><published>2026-01-08T00:00:00-08:00</published><updated>2026-01-08T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/08/why-i-chose-opencode-not-claude</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/08/why-i-chose-opencode-not-claude/"><![CDATA[<p>最近把主力工具从 Claude 换成了 Opencode，用了一段时间后，想聊聊这个选择背后的思考。</p>
 
 <!--more-->
 
-<h2 id="从完美到够用">从「完美」到「够用」</h2>
+<h2 id="claude-的实际问题">Claude 的实际问题</h2>
 
-<p>Claude 很强，这点毋庸置疑。回答详尽、逻辑严密、几乎不出错。但用了一段时间后，我发现自己有点”审美疲劳”——每次得到的都是一个标准答案，像是在跟教科书对话。</p>
+<p><strong>1. 太容易触发使用限制</strong></p>
 
-<p>更实际的问题是：<strong>被锁定在单一模型上</strong>。想用更便宜的中文模型？不行。想试试新出的开源模型？不行。你只能用 Claude，没得选。</p>
+<p>这是最大的痛点。Claude 有两种限制会打断你的工作：</p>
+<ul>
+  <li><strong>短期限制</strong>：连续问几个问题就提示”usage limit reached”，要等几小时</li>
+  <li><strong>配额限制</strong>：Pro 用户每月也有总量上限，一个大项目就能把 quota 耗光</li>
+</ul>
 
-<p>这让我开始思考：我真的需要一个”全能助手”，还是需要一个”灵活的工具箱”？</p>
+<p>最崩溃的场景：正在调试代码，改了几版突然告诉你”已达上限，请稍后再试”。工作被迫中断，只能干等着。</p>
+
+<p><strong>2. 被锁定在单一模型上</strong></p>
+
+<p>想用更便宜的中文模型处理简单任务？不行。想试试新出的开源模型？不行。你只能用 Claude，而且还得”省着用”。</p>
+
+<p>这感觉就像：买了辆跑车，但油费太贵还限行，不敢随便开。</p>
+
+<p><strong>3. 价格不灵活</strong></p>
+
+<p>简单问题也要按 Claude 的价格计费。比如问个 API 用法、写段样板代码，其实便宜模型就能搞定，但你没得选。</p>
+
+<p>这让我开始思考：我需要的是一个”强但受限的工具”，还是一个”能随便用的工具箱”？</p>
 
 <hr />
 
-<h2 id="opencode-的吸引力">Opencode 的吸引力</h2>
+<h2 id="opencode-怎么解决这些问题">Opencode 怎么解决这些问题</h2>
 
 <p>Opencode 本质上是个壳，但这正是它的优势：</p>
 
-<p><strong>1. 模型自由</strong></p>
+<p><strong>1. 没有使用限制</strong></p>
 
-<p>我现在的配置是这样的：</p>
+<p>这是最爽的点。API key 自己买，配额自己控制：</p>
 <ul>
-  <li>主力：智谱 AI（中文语境下理解更准确，成本低）</li>
-  <li>复杂推理：通过插件 redirect 到 Claude</li>
-  <li>纯代码生成：Codex（不废话，直接给代码）</li>
+  <li>智谱 AI：每天随便用，quota 便宜</li>
+  <li>Claude API：只在需要时才调用，自己管理预算</li>
+  <li>本地模型：完全免费，跑多少都行</li>
 </ul>
 
-<p>相当于用开源框架”白嫖”了各家模型的优势，而不是被单一供应商绑架。</p>
+<p>不会再有”正干活突然被限制”的窘境。</p>
 
-<p><strong>2. 轻量快速</strong></p>
+<p><strong>2. 模型自由切换</strong></p>
 
-<p>Claude 启动要加载一堆功能，Opencode 打开就能用。对我这种经常需要快速查个 API、写段代码的场景，体验好很多。</p>
+<p>我现在的配置：</p>
+<ul>
+  <li><strong>日常任务</strong>：智谱 AI（问 API、写简单代码，便宜够用）</li>
+  <li><strong>复杂问题</strong>：redirect 到 Claude（架构设计、性能优化）</li>
+  <li><strong>纯生成代码</strong>：Codex（不废话，直接给代码）</li>
+</ul>
 
-<p><strong>3. 可定制性</strong></p>
+<p>简单任务用便宜的，复杂问题才用贵的。钱花在刀刃上。</p>
 
-<p>遇到问题可以自己改源码，不用等官方更新。比如我给 Opencode 加了个自动保存对话的功能，Claude 就做不到。</p>
+<p><strong>3. 成本可控</strong></p>
+
+<p>举个例子：</p>
+<ul>
+  <li>用 Claude 官方：一天写代码，可能就把 Pro 会员的 quota 用掉 1/5</li>
+  <li>用 Opencode + 智谱：同样任务，API 成本可能只要几块钱</li>
+</ul>
+
+<p>而且随时能看到 API 消耗，心里有数。</p>
 
 <hr />
 
@@ -54,35 +83,47 @@
 
 <p>Codex 最爽。不讲废话，直接给代码。写测试、重构代码这种机械性工作交给它，效率高。</p>
 
-<p><strong>后备方案</strong></p>
+<hr />
 
-<p>因为 Antigravity 偶尔会 load model 失败，我还配了 VS Code 插件、Chrome 上的 Gemini 和 Atlas。工具冗余，但保证随时有得用。</p>
+<h2 id="几点实际体会">几点实际体会</h2>
+
+<p><strong>1. 工具冗余很重要</strong></p>
+
+<p>因为 Antigravity 偶尔会挂，我还配了：</p>
+<ul>
+  <li>VS Code 插件（备用 API）</li>
+  <li>Chrome 上的 Gemini（应急用）</li>
+  <li>本地模型（离线也能干活）</li>
+</ul>
+
+<p>多准备几个工具，关键时刻不会被卡住。</p>
+
+<p><strong>2. 成本意识带来的自由</strong></p>
+
+<p>用 Claude 官方时，我会潜意识”省着用”——怕把 quota 用光。</p>
+
+<p>用 Opencode 后，便宜模型随便用，反而更高效。该问就问，不用纠结。</p>
+
+<p><strong>3. 够用就是最好的</strong></p>
+
+<p>Claude 功能很多，但我常用的就那几个。Opencode 简单，但覆盖了 90% 的场景。</p>
+
+<p>与其要一个”什么都能做但处处受限”的工具，不如要一个”功能够用且随便用”的工具。</p>
 
 <hr />
 
-<h2 id="几点思考">几点思考</h2>
+<h2 id="总结">总结</h2>
 
-<p><strong>1. 不要过度依赖单一工具</strong></p>
+<p>换到 Opencode 的核心原因就三点：</p>
+<ol>
+  <li><strong>不会突然被限制打断工作</strong></li>
+  <li><strong>成本可控，不用省着用</strong></li>
+  <li><strong>能根据任务选模型，该用啥用啥</strong></li>
+</ol>
 
-<p>AI 领域变化太快。今天 Claude 最强，明天可能是 GPT-5 或者某个开源模型。保持灵活性，随时能切换，是一种风险对冲。</p>
+<p>Claude 很强，但这些实际问题让它不适合作为主力工具。</p>
 
-<p><strong>2. 功能全 ≠ 适合你</strong></p>
-
-<p>Claude 有很多功能我根本用不到。Opencode 简单，但覆盖了我 90% 的需求。够用就好，不用追求大而全。</p>
-
-<p><strong>3. 开源带来的自主权</strong></p>
-
-<p>开源意味着你可以掌控工具的演进方向。社区活跃、迭代快，遇到 bug 能自己修。这种自主权在商业产品上是不可能有的。</p>
-
-<hr />
-
-<h2 id="结语">结语</h2>
-
-<p>Opencode 不完美，功能确实没有 Claude 丰富。但它给了我一样更重要的东西：<strong>选择的自由</strong>。</p>
-
-<p>不被绑定、不被限制、能根据场景灵活切换——这才是我需要的工作方式。</p>
-
-<p>工具只是手段，适合自己的才是最好的。</p>]]></content><author><name>Harry Chen</name></author><category term="技术思考" /><summary type="html"><![CDATA[最近把主力工具从 Claude 换成了 Opencode，用了一段时间后，想聊聊这个选择背后的思考。]]></summary></entry><entry><title type="html">我家猫的一天</title><link href="http://chenxiaohui.me/2026/01/03/cat-by-window/" rel="alternate" type="text/html" title="我家猫的一天" /><published>2026-01-03T19:00:00-08:00</published><updated>2026-01-03T19:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/03/cat-by-window</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/03/cat-by-window/"><![CDATA[<p>记录一下我家猫主子的日常。</p>
+<p>工具是为人服务的，能随便用、不受限，才是好工具。</p>]]></content><author><name>Harry Chen</name></author><category term="技术思考" /><summary type="html"><![CDATA[最近把主力工具从 Claude 换成了 Opencode，用了一段时间后，想聊聊这个选择背后的思考。]]></summary></entry><entry><title type="html">我家猫的一天</title><link href="http://chenxiaohui.me/2026/01/03/cat-by-window/" rel="alternate" type="text/html" title="我家猫的一天" /><published>2026-01-03T19:00:00-08:00</published><updated>2026-01-03T19:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/03/cat-by-window</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/03/cat-by-window/"><![CDATA[<p>记录一下我家猫主子的日常。</p>
 
 <!--more-->
 
