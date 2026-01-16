@@ -9,6 +9,8 @@ categories:
 
 最近把主力工具从 Claude 换成了 Opencode，用了一段时间后，想聊聊这个选择背后的思考。
 
+![AI 工具对比](/assets/images/ai-tools-transition.jpg)
+
 <!--more-->
 
 ## Claude 的实际问题
