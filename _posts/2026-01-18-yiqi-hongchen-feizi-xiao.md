@@ -2,11 +2,12 @@
 layout: article
 title: "一骑红尘妃子笑，然后呢？"
 date: 2026-01-18
-tags: [随笔, 读书]
 cover: https://harrychen.oss-cn-beijing.aliyuncs.com/2026-01-18-224135.png
 ---
 
 最近看了《长安的荔枝》，马伯庸写的那个故事。说实话，看完之后心里堵得慌。
+
+![长安的荔枝](https://harrychen.oss-cn-beijing.aliyuncs.com/2026-01-18-224135.png)
 
 故事不复杂。杨贵妃想吃新鲜荔枝，皇帝一句话，底下就得办。问题是荔枝产在岭南，长安在西北，隔着几千里地。那年头没冰箱没飞机，荔枝摘下来三五天就烂。怎么办？有个叫李善德的小吏，稀里糊涂接了这活。
 
