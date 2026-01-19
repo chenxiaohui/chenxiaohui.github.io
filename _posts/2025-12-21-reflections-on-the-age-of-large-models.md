@@ -6,11 +6,12 @@ date: 2025-12-21 06:00
 published: true
 categories: "技术"
 comments: true
+cover: https://harrychen.oss-cn-beijing.aliyuncs.com/2026-01-18-220851.png
 ---
 
 这个博客好久没更新了，时间过去了快有四五年了吧。中间经历了疫情，疫情过后感觉什么都变了，整个世界好像进入了一个完全不同的时代。
 
-![AI 时代](/assets/images/ai-era-reflections.png)
+![AI 时代](https://harrychen.oss-cn-beijing.aliyuncs.com/2026-01-18-220851.png)
 
 经济和社会发展这些年感觉有点停滞，但AI这块变化太大了。2022年底ChatGPT刚出来的时候还只是个新鲜玩意，到现在我写代码、写文档基本离不开它了。
 
