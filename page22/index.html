@@ -280,6 +280,21 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/28/gitsync-github-gitcafe/"><h2 itemprop="headline" class="item__header">同步github上的项目到gitcafe</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">github固然好，只是国内访问有点慢。为了提高博客访问速度我决定把github上托管的博客同步到gitcafe上。最好能在DNS那里做CDN，但是貌似没有免费的服务。那直接指向gitcafe好了，反正没有什么国外访问的需求。简单记一下过程。
+
+gitcafe自己有导入的功能，但是貌似不是很好用。而且不够智能。所以我们先建立一个跟用户名一样的目录。gitcafe只允许这种方式的Html页面生成。并且只渲染gitcafe-pages分支。
+
+我们修改source分支.git/config加入
+
+[remote "cafe"]
+  url = git@gitcafe.com:xxx/xxx.git
+  fetch = +refs/heads/*:refs/remotes/cafe/*
+
+
+...</div><p><a href="/2014/06/28/gitsync-github-gitcafe/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-28T12:41:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/28/git-remote-branch/"><h2 itemprop="headline" class="item__header">git远程分支和refs文件详解</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近同时同步博客到github和gitcafe上，遇到一些问题，我们分如下几个方面来分析一下：
 
@@ -401,21 +416,8 @@ int main(int argc, const char *argv[])
   int32_t length[] ={0x0a, 0x12345678};
   fwrite(&amp;leng...</div><p><a href="/2014/06/21/bin-txt-file-read-write/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T12:28:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/20/susublime-plugin-to-generate-refrence/"><h2 itemprop="headline" class="item__header">sublime根据markdown引用生成参考文献的插件</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">写这个的目的主要是每次写博客需要生成以下版权声明，免得引用了别人的文章被人说盗版。markdown里面支持通过列表组织引用的url，如下所示：
-
-  [1]: http://www.baidu.com   "百度"
-  [2]: http:://www.google.com "谷歌"
-  [3]: http://www.facebook.com "404 Not Found"
-
-
-我们可以通过这个形式来生成如下的代码
-
-效果如下：</div><p><a href="/2014/06/20/susublime-plugin-to-generate-refrence/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T21:21:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page21">
             <i class="fas fa-angle-left"></i>

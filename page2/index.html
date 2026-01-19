@@ -280,6 +280,25 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2021/03/21/inline_static_since_c++17/"><h2 itemprop="headline" class="item__header">inline static的成员初始化</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">c++非静态变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。
+
+比如
+
+#pragma once
+class File {
+  private:
+    const std::string filename = "test";
+  public:
+    void print() const {
+      std::cout &lt;&lt; filename &lt;&lt; std::endl;
+    }
+};
+
+
+而静态变量不太一样。静态变量本身定义跟声明是分开的，这本来也合理，所以在不同的编译单元里面，静态变量可以各自实现，当然相互影响。一般情况下因为.h和 .cpp的相互对应，也不会出现多次包含之...</div><p><a href="/2021/03/21/inline_static_since_c++17/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 21, 2021</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-21T19:49:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/03/14/lee_hsien_loong_speech/"><h2 itemprop="headline" class="item__header">李显龙的一个演讲</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">从里面能看到新加坡一贯的社会治理理念，里面关于养老的一些设计，关于大家长式的执政理念，都有比较到位的体现。</div><p><a href="/2021/03/14/lee_hsien_loong_speech/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 14, 2021</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-14T18:58:00-07:00"></div>
@@ -356,26 +375,8 @@ This is a fork of Mongoose, branched at the last commit of Mongoose that was rel
 
 之所以注意到是因为在yugabyte-db里面偶然看到。关注下的意义主要是c++毕竟没有go那么方便的pprof，用来做个统计信息debug还是比较方便...</div><p><a href="/2021/03/07/cpp_http_server_lib_squeasel/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 07, 2021</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-07T15:22:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/03/07/vim_floaterm/"><h2 itemprop="headline" class="item__header">vim-floaterm配置</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">这个插件主要是提供vim内部调用shell环境的，安装是比较容易，但是发现会有很多不兼容的地方。
-
-https://github.com/voldikss/vim-floaterm
-
-安装可以用vundle、bundle或者手动等。我这边一直是bundle
-
-git submodule add https://github.com/voldikss/vim-floaterm
-
-首先这个插件默认配置直接跟tabnine冲突，大概是window的问题，仔细看了下代码，注释掉tabnine里面的vimsupport的window切换部分可以，但是看着不优雅啊。
-
-
-
-后来发现其实可以控制floaterm不使用默认的float方式，也就是改split或者vsplit，顺便重定义快捷键。
-
-  ...</div><p><a href="/2021/03/07/vim_floaterm/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 07, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-07T15:02:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/">
             <i class="fas fa-angle-left"></i>

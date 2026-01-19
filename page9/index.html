@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/07/07/phibricator-setup/"><h2 itemprop="headline" class="item__header">Phibricator搭建过程总结</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">Phibricator是Facebook开源的一体化项目管理、代码review工具，主要特点是集成度高、界面漂亮。根据搭建的经验看，确实做的非常完善，各种细节用起来像是商业产品，不会像其他的开源产品那么难以配置。这里把配置过程根据回忆写一下：
+
+官方给出过一个一键安装的脚本，但是下载的时候感觉有点问题吧，下载完不是sh而是网页，而且我只有一台机器，环境都已经预先有了，也不想再搭一套LAMP。这里我们以centos5为例：
+
+首先安装httpd + mysql + php，由于centos5的版本太低，yum源里的mysql和php均低于phibricator要求的版本，我们需要先升级yum源，参见参考文献， 不过好像安装的时候没有php53u，而是直接php53
+
+之后把对应的扩展也装...</div><p><a href="/2015/07/07/phibricator-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 07, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-07-07T17:45:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/06/26/resume-generator-using-latex-and-moderncv/"><h2 itemprop="headline" class="item__header">简历生成器（基于moderncv+latex）</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">项目地址: https://github.com/chenxiaohui/resume
 
@@ -397,21 +407,8 @@ Jenkins的安装非常简单，只需要从Jenkins的主页上下载最新的jen
           <header><a href="/2015/04/22/some-moments/"><h2 itemprop="headline" class="item__header">一些瞬间</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">回想一些事情的时候感觉印象最深刻的往往不是一段时间，而是一些瞬间。比如大学毕业晚会的那个晚上，大家喝的一塌糊涂，早晨醒来，看依然灿烂的阳光，那种孤独感是能镌刻很久的。再比如在北航的时候，那时候习惯晚上看书，安静，一个人在三号楼前的空地走走，听学院路上的川流不息的车声。事情已经远去，感觉依然清晰。每个片段好像人生路上的benchmark，只不过留下最深印象的，往往不是所得，而是所感。</div><p><a href="/2015/04/22/some-moments/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 22, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-22T22:08:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/04/22/post-review-encoding-problem/"><h2 itemprop="headline" class="item__header">post-review编码问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">windows下post-review遇到一个问题（不是我，不用windows）。python会报错：
-
-  	UnicodeDecodeError: ‘ascii’ codec can’t decode byte 0xe6 in position xxx: ordinal not in range(128) 	
-又是编码的问题啊，我不想去看post-review的源码，所以还是改默认环境的源码好了。找到rbtools\utils\process.py，import sys后面加两行：
-
-  	reload(sys)
-sys.setdefaultencoding("utf-8") 
-
-
-Ok.</div><p><a href="/2015/04/22/post-review-encoding-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 22, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-22T16:08:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page8">
             <i class="fas fa-angle-left"></i>

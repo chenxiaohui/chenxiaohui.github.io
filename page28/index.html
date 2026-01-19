@@ -280,6 +280,29 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/10/12/several-svn-problems/"><h2 itemprop="headline" class="item__header">几个svn的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">误用rm删除了未提交文件
+
+经常会遇到这种情况：本地修改了一部分东西，增增改改删删，后来发现已经用svn add过的的文件被删除了，但是这个文件只是加入了版本控制，而并不再版本库里，这时候post-review就会有各种问题。如图（前面有感叹号的文件）：
+
+
+
+
+
+解决办法也很简单，我们直接:
+
+svn revert ob_alive_table_tablet_iter.h
+
+
+这时候文件并不会被恢复，但是svn status上已经显示删除了，post-review不会再报错，如下图所示：
+
+
+
+版本控制中移除文件
+
+经常会遇到错误的把文件加入了版本控制的情况，比如我加了一个Makefile.in到版本控制里（如图），但是svn rm 会同时从版本库和本地删除这个文件，这是我所不希望的...</div><p><a href="/2013/10/12/several-svn-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T19:27:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/12/a-strange-error/"><h2 itemprop="headline" class="item__header">记几个诡异的bug</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">ERROR: mutli target patterns
 
@@ -388,38 +411,8 @@ gcc –o test main.c libtest2.a libtest1.a
 
 这里编译的时候会认为lib...</div><p><a href="/2013/09/27/depend-problem-in-oceanbase/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 27, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-27T16:15:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/09/26/root-table-manager/"><h2 itemprop="headline" class="item__header">oceanbase源码分析-root_table_manager相关</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">记录一下root_table_manager相关类的阅读和心得。
-
-
-
-###ObTableNameIterator
-
-一个Iterator, 用于获取所有的TableName
-
-
-  
-    init
-
-    初始化并调用scan_tables执行查询表名的sql语句
-  
-  
-    scan_tables
-
-    执行sql语句 “select table_name, table_id from __all_table” 来得到所有表的表名
-  
-  
-    get_next
-
-    获取下一个表名, 如果 table_idx_ &lt; 3 获取的是内部表的信息, 否则从sql执行结果中迭代返回普通表名
-
-    table_idx_对应的表名分别是:
-
-    …...</div><p><a href="/2013/09/26/root-table-manager/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 26, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-26T12:15:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page27">
             <i class="fas fa-angle-left"></i>

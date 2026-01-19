@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/18/send-zhihu-to-pocket/"><h2 itemprop="headline" class="item__header">保存知乎日报到pocket</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">知乎日报是中国人民喜闻乐见的资讯类应用，Pocket是深受世界人民喜爱的阅读工具。鉴于反碎片化阅读的个人习惯，决定把散落在各个地方的有价值咨询集中到一个应用里面，于是有了如下的工具。
+
+首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了sed工具。
+
+curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story'</div><p><a href="/2015/01/18/send-zhihu-to-pocket/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 18, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-18T15:30:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/17/life-has-peom-and-distance/"><h2 itemprop="headline" class="item__header">转载：生活不是眼前的苟且，生活有诗和远方——高晓松</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">“我妈说生活不是眼前的苟且，生活有诗和远方。我 和我妹妹深受这教育。谁要觉得你眼前这点儿苟且就是你的人生，那你这一生就完了。生活就是适合远方，能走多远走多远；走不远，一分钱没有，那么就读诗，诗 就是你坐在这，它就是远方。”
 
@@ -373,26 +381,8 @@ from...</div><p><a href="/2015/01/14/django-custom-filter/">Read more</a></p></d
 
   	#wget http://py...</div><p><a href="/2015/01/11/redhat-upgrade-python/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 11, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-11T18:56:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/11/linux-proxy-setup/"><h2 itemprop="headline" class="item__header">通过搭建代理来共享网络</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个问题，开发机只有一台能上外网，其他的机器上手动更新依赖包简直是要死的感觉。尝试了如下几种方式：
-
-
-  vpn
-   	1. pptp
-   	2. openvpn
-  ssh反向代理（其实不是干这个事情的貌似）
-  proxy
-
-
-开始一直不想用proxy，毕竟需要为yum什么的单独配置，不是所有的程序都会去读shell的http_proxy配置。但是vpn配置搞了一天都不成功。openvpn能连接，但是不能共享网络，大概是路由配错了，pptp linux下直接链接不上，可能是只用了chap的握手？反正没成功。最后还是配了proxy，配完才觉得proxy简单易行啊，大部分问题能解决，出现了特别的需求就单独为其设置代理好了。问题不大。
-
-tinyproxy的配置如下：
-
- ...</div><p><a href="/2015/01/11/linux-proxy-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 11, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-11T17:16:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page14">
             <i class="fas fa-angle-left"></i>

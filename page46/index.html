@@ -280,6 +280,46 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/02/16/curd-operation-of-multi-table/"><h2 itemprop="headline" class="item__header">多表级联增删查改操作的实现（C#）</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">本文背景：
+
+我们经常会遇到这样的问题：从数据库里通过几个表级联查询数据，然后显示到界面上，用户修改了这些级联之后的数据后，如何将数据更新到数据库里去？我们查询的时候完全可以使用视图，但是视图不支持增删查操作。如何实现视图的可更新呢？
+
+本文的实现主要采用了.Net DataTable(和DataSet)，使用DataAdapter可更新数据的特性，底层通过存储过程更新数据。逻辑结构如图1所示：
+
+
+
+图 1 逻辑结构
+
+基本的想法是：
+
+
+  通过视图进行数据的查询操作，而且这样可以通过SQLServer等工具自动生成视图。
+  删除，插入和修改分别实现存储过程（或Sql语句），然后构建DataAdapter，将DataAdapter的InsertCommand,UpdateComm...</div><p><a href="/2011/02/16/curd-operation-of-multi-table/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=DataAdapter">DataAdapter</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=DataSet">DataSet</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=DataTable">DataTable</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%A2%9E%E5%88%A0%E6%9F%A5%E6%94%B9">增删查改</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%A4%9A%E8%A1%A8">多表</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%9B%B4%E6%96%B0">更新</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BA%A7%E8%81%94">级联</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 16, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-16T00:00:00-08:00">
+    <meta itemprop="keywords" content="DataAdapter,DataSet,DataTable,增删查改,多表,更新,级联"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/02/04/improvement-on-tcp-subpackage-mechanism-implement/"><h2 itemprop="headline" class="item__header">对&ldquo;基于长度和定界符带校验的TCP分包方式&rdquo;的一些改进</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">“长度、分隔符加校验的TCP分包设计(C#)”[1]一文提出了一种综合长度和特殊字符定界两种TCP分包方式的新的分包方式，原文给出的实现没有考虑长度字符被分开两次传播的情况，同时原算法没有明确的算法描述，基于多种情况的综合，容易遗漏，这里给出改进后的算法：
 
@@ -473,40 +513,8 @@
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 27, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-27T00:00:00-08:00">
     <meta itemprop="keywords" content="popcap,乔布斯,创业,扎克伯格,盖茨,马克"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/01/26/three-problems/"><h2 itemprop="headline" class="item__header">记三个小问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到的三个小问题，这里记下来，留个备份吧。
-
-第一个是装机的时候想要是能自动安装软件到D盘就好了，省了每次手动填写安装路径的麻烦，解决方法其实很简单：
-
-
-  开始菜单里的“运行”，输入“regedit”，来运行注册表编辑器，展开
-“HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion”分支。在右侧的窗口中，把“ProgramFilesDir”和“CommonFilesDir”字符串值改为其它目录即可
-
-
-第二个问题是恢复数据库的时候，遇到一个错误提示：
-
-
-  System.Data.SqlClient.SqlError: 在对 ‘C:\Program Files\Microsoft SQL Server\MSS...</div><p><a href="/2011/01/26/three-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=sql+server">sql server</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84">安装路径</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%BC%95%E5%AF%BC%E8%8F%9C%E5%8D%95">引导菜单</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%8B%92%E7%BB%9D%E8%AE%BF%E9%97%AE">拒绝访问</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%BB%98%E8%AE%A4">默认</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 26, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-26T00:00:00-08:00">
-    <meta itemprop="keywords" content="sql server,安装路径,引导菜单,拒绝访问,默认"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page45">
             <i class="fas fa-angle-left"></i>

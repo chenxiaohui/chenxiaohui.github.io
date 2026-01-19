@@ -280,6 +280,36 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/09/26/root-table-manager/"><h2 itemprop="headline" class="item__header">oceanbase源码分析-root_table_manager相关</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">记录一下root_table_manager相关类的阅读和心得。
+
+
+
+###ObTableNameIterator
+
+一个Iterator, 用于获取所有的TableName
+
+
+  
+    init
+
+    初始化并调用scan_tables执行查询表名的sql语句
+  
+  
+    scan_tables
+
+    执行sql语句 “select table_name, table_id from __all_table” 来得到所有表的表名
+  
+  
+    get_next
+
+    获取下一个表名, 如果 table_idx_ &lt; 3 获取的是内部表的信息, 否则从sql执行结果中迭代返回普通表名
+
+    table_idx_对应的表名分别是:
+
+    …...</div><p><a href="/2013/09/26/root-table-manager/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 26, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-26T12:15:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/09/22/avoid-delete-wrong-files-using-rm/"><h2 itemprop="headline" class="item__header">防止通过rm误删文件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">相信大家都有通过rm误删文件的经历, 而且Linux下又貌似没有Final Data之类的工具. 相对于Windows或者Nautilus里的删除机制, rm虽然高效, 但是很危险.
 
@@ -430,46 +460,8 @@ git config --global difftool.prompt No
 
 犀骆是OceanBase 0.4.2版本的吉祥物.</div><p><a href="/2013/09/11/rhinoceros-camel/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 11, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-11T15:46:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/09/02/cplusplus-primer-book-review/"><h2 itemprop="headline" class="item__header">C++ Primer 读书笔记</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。
-
-
-  关于初始化变量和未初始化变量
-
-
-
-  这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出
-
-
-int a;
-int b;
-int c;
-printf("a=%d  b=%d  c=%dn", a, b, c);
-
-
-2.块注释不能嵌套
-
-3.两种初始化方式
-
-int ival(1024);//直接初始化
-int ival=1024; //复制初始化
-
-
-
-  c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替
-
-  初始化语句中前面定义的...</div><p><a href="/2013/09/02/cplusplus-primer-book-review/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=C%23">C#</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Primer">Primer</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 02, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-02T12:55:00-07:00">
-    <meta itemprop="keywords" content="C#,Primer"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page28">
             <i class="fas fa-angle-left"></i>

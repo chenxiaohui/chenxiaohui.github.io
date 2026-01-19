@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/05/redo-undo-log/"><h2 itemprop="headline" class="item__header">undo 日志和redo 日志</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">具体的可以看这里，解释几个作者没解释清楚的问题：
+
+
+  
+    只用REDO日志为什么数据修改要每次修改刷盘
+
+    如果不刷盘，不会导致数据不一致，但是数据修改过程相当于写redo日志-修改内存-写commit日志（修改内存的顺序也无所谓了），这个过程结束已经应答用户了，但是修改没有刷下去断电恢复的话也无法通过redolog恢复到当前状态，所以会丢失修改。
+  
+  
+    修改数据和写redo/undo log/commit log之间的关系是什么
+
+    任何对磁盘的数据修改落实之前都需要先写log，无论是redo还是undo。undo保证了一旦数据写了一半（脏数据）能够回滚，redo保证了写了日志的事务能够回放出来。
+
+    只使用undo的时候commit日志要等...</div><p><a href="/2014/07/05/redo-undo-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 05, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-05T21:20:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/05/two-photo-of-still-life/"><h2 itemprop="headline" class="item__header">发两张静物</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">发两张静物，镜头宾得 SMC FA 50mm F1.4
 
@@ -377,23 +394,8 @@ struct TableBackupSQL
     sql_ = sql;
     table_name_ = table...</div><p><a href="/2014/06/28/a-desgin-problem-of-config/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-28T16:27:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/28/gitsync-github-gitcafe/"><h2 itemprop="headline" class="item__header">同步github上的项目到gitcafe</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">github固然好，只是国内访问有点慢。为了提高博客访问速度我决定把github上托管的博客同步到gitcafe上。最好能在DNS那里做CDN，但是貌似没有免费的服务。那直接指向gitcafe好了，反正没有什么国外访问的需求。简单记一下过程。
-
-gitcafe自己有导入的功能，但是貌似不是很好用。而且不够智能。所以我们先建立一个跟用户名一样的目录。gitcafe只允许这种方式的Html页面生成。并且只渲染gitcafe-pages分支。
-
-我们修改source分支.git/config加入
-
-[remote "cafe"]
-  url = git@gitcafe.com:xxx/xxx.git
-  fetch = +refs/heads/*:refs/remotes/cafe/*
-
-
-...</div><p><a href="/2014/06/28/gitsync-github-gitcafe/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-28T12:41:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page20">
             <i class="fas fa-angle-left"></i>

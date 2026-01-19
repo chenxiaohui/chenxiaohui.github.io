@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/27/notes-on-easy-install-and-pip/"><h2 itemprop="headline" class="item__header">easy_install和pip的注意事项</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">关于安装目录：
+
+dist-packages instead of site-packages. Third party Python software installed from Debian packages goes into dist-packages, not site-packages. This is to reduce conflict between the system Python, and any from-source Python build you might install manually.
+
+dist-packages取代了site-packages。从Debian安装包安装的第三方的Python软件 被 安装到 dist-packages,不是 ...</div><p><a href="/2015/03/27/notes-on-easy-install-and-pip/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 27, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-27T11:13:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/24/ubuntu-gnome-crontab/"><h2 itemprop="headline" class="item__header">关于ubuntu gnome下crontab运行的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">今天想在gnome下运行一个自动关机前的提示，发现crontab根本不起作用啊。以为是路径和root权限的问题，但是路径没问题，而且root的crontab必须要sudo crontab -e的，也就是说crontab还是执行在当前用户下。
 
@@ -371,26 +379,8 @@ yum install autoconf automake gcc gcc-c++ git libtool make nasm pkgconfig wget z
   sudo su 只是用sudo的权限来执行su命令，跟su本身一样。
   visudo可以配置sudo的继承环...</div><p><a href="/2015/03/08/env-with-login-non-login-shell-and-sudo/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 08, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-08T21:21:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/08/recompile-hadoop-native-lib/"><h2 itemprop="headline" class="item__header">编译hadoop native lib</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">跑hadoop的时候总遇到这个问题，不影响但是比较烦：
-
-WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform… using builtin-java classes where applicable	
-
-
-大概原因是说为hadoop native library是32位系统编译的，在64位系统上会有这个提示，需要下载hadoop的源码重新编译。如下：
-
-
-  安装maven.
-  配置好MAVEN_HOME/PATH
-  下载 hadoop-2.4.0-src.tar.gz。
-  安装protobuf2.5.0。
-  安装cmake.
-  安装openssl-devel
- ...</div><p><a href="/2015/03/08/recompile-hadoop-native-lib/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 08, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-08T14:59:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page10">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,24 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/11/linux-proxy-setup/"><h2 itemprop="headline" class="item__header">通过搭建代理来共享网络</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个问题，开发机只有一台能上外网，其他的机器上手动更新依赖包简直是要死的感觉。尝试了如下几种方式：
+
+
+  vpn
+   	1. pptp
+   	2. openvpn
+  ssh反向代理（其实不是干这个事情的貌似）
+  proxy
+
+
+开始一直不想用proxy，毕竟需要为yum什么的单独配置，不是所有的程序都会去读shell的http_proxy配置。但是vpn配置搞了一天都不成功。openvpn能连接，但是不能共享网络，大概是路由配错了，pptp linux下直接链接不上，可能是只用了chap的握手？反正没成功。最后还是配了proxy，配完才觉得proxy简单易行啊，大部分问题能解决，出现了特别的需求就单独为其设置代理好了。问题不大。
+
+tinyproxy的配置如下：
+
+ ...</div><p><a href="/2015/01/11/linux-proxy-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 11, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-11T17:16:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/10/octopress-category-auto-generate/"><h2 itemprop="headline" class="item__header">自动生成octopress的分类目录</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">在octopress里面添加一个分类的时候，经常会遇到分类跟导航页面没有同步更新的情况，即加了一个分类，生成了文章，文章被生成在指定的路径下了，但是首页导航栏的分类没有跟着更新。针对这种情况，修改了一下Rakefile，把分类做成了配置，添加分类的时候可以直接修改一下分类信息，然后rake gen就可以生成对应的导航栏html代码。
 
@@ -377,34 +395,8 @@ ssh -t xx@xxx "tail filePath"
 
 ssh xx@x...</div><p><a href="/2015/01/04/linux-remote-log-watch/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 04, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-04T17:34:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/04/del-cached-files-in-git/"><h2 itemprop="headline" class="item__header">git中删除已经缓存的文件</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">经常遇到一种情况，开始项目的时候没加.gitignore文件，提交之后发现有大量的pyc文件残留，这样两地共同修改的时候pyc文件会造成大量的冲突。针对这种情况，可以如下解决：
-
-
-  建立.gitignore文件并写入：
-
-
-  		.pyc
-  		.swp
-
-
-  删除所有缓存中的数据：
-
-
-  		find . -name ‘.pyc’ -o -name ‘.swp’ &gt; /tmp/files
-  		while read line; do
-  			git rm –cached $line
-  		done &lt; /tmp/files
-
-
-  
-    在冲突的一端回滚所有pyc冲突：
-
-    find . -name ‘.pyc’ -o -name ‘.swp’...</div><p><a href="/2015/01/04/del-cached-files-in-git/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 04, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-04T16:49:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page15">
             <i class="fas fa-angle-left"></i>

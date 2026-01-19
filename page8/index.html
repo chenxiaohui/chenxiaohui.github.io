@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/08/31/rbtools-compatible-problems/"><h2 itemprop="headline" class="item__header">RBTools兼容的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">某天ReviewBoard客户端突然用不了，使用	rbt post的时候报错:
+
+  	from six.moves.urllib.parse import quote
+ImportError: No module named urllib.parse
+
+
+乍一看以为什么包被卸载了。于是pip install six –upgrade，无果。pip uninstall RBTools再重新安装RBTools，也无效。
+
+查了一下six是python2、python3的兼容包，直接修改源码，不要兼容了，发现用到的地方好多，改不过来（ps，兼容python2、python3真不容啊）。
+
+查看six的版本，发现跟本地一样的，本地没什么问题。说明不是six的问题。直接在命令行from six...</div><p><a href="/2015/08/31/rbtools-compatible-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 31, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-08-31T15:26:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/08/28/paxos-case-analysis/"><h2 itemprop="headline" class="item__header">paxos的一些case分析</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">acceptor: a([epoc:4, value:n])  b[epoc:3,value:y]  c[epoc:6,:value:y]
 
@@ -402,18 +416,8 @@ make
 
 直观看类似于Graphviz的算法，只不过保证了是棵树。C++实现上可以直接通过树来做，这里用了Python。</div><p><a href="/2015/07/18/build-topic-tree-using-parent-relation/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 18, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-07-18T11:35:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/07/07/phibricator-setup/"><h2 itemprop="headline" class="item__header">Phibricator搭建过程总结</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Phibricator是Facebook开源的一体化项目管理、代码review工具，主要特点是集成度高、界面漂亮。根据搭建的经验看，确实做的非常完善，各种细节用起来像是商业产品，不会像其他的开源产品那么难以配置。这里把配置过程根据回忆写一下：
-
-官方给出过一个一键安装的脚本，但是下载的时候感觉有点问题吧，下载完不是sh而是网页，而且我只有一台机器，环境都已经预先有了，也不想再搭一套LAMP。这里我们以centos5为例：
-
-首先安装httpd + mysql + php，由于centos5的版本太低，yum源里的mysql和php均低于phibricator要求的版本，我们需要先升级yum源，参见参考文献， 不过好像安装的时候没有php53u，而是直接php53
-
-之后把对应的扩展也装...</div><p><a href="/2015/07/07/phibricator-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 07, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-07-07T17:45:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page7">
             <i class="fas fa-angle-left"></i>

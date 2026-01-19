@@ -280,6 +280,10 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/27/convariant-return-type/"><h2 itemprop="headline" class="item__header">协变返回类型</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">协变返回类型（Convariant Return Type）是指override的函数，返回值有继承关系（子类函数返回类型是父类返回类型的子类）。例子如下：</div><p><a href="/2015/01/27/convariant-return-type/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 27, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-27T15:48:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/27/java-cpp-derive-difference/"><h2 itemprop="headline" class="item__header">Java和C++继承上的一点不同</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">之前没注意过这里：
 
@@ -401,16 +405,8 @@ LC_MONETARY="zh_CN.UTF-8"
 LC_MESSAGES="zh_CN.UTF-8"
 LC_PAPER="z...</div><p><a href="/2015/01/19/python-encoding/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 19, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-19T14:34:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/18/send-zhihu-to-pocket/"><h2 itemprop="headline" class="item__header">保存知乎日报到pocket</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">知乎日报是中国人民喜闻乐见的资讯类应用，Pocket是深受世界人民喜爱的阅读工具。鉴于反碎片化阅读的个人习惯，决定把散落在各个地方的有价值咨询集中到一个应用里面，于是有了如下的工具。
-
-首先我们要parse知乎日报的URL。按照官方的说法每天三次投放，那抓一次就行了。直接用了sed工具。
-
-curl -s http://daily.zhihu.com | sed 's/&lt;a href="\(http:\/\/daily.zhihu.com\/story[^"]*\)"/\n\1\n/g' |grep 'http://daily.zhihu.com/story'</div><p><a href="/2015/01/18/send-zhihu-to-pocket/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 18, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-18T15:30:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page13">
             <i class="fas fa-angle-left"></i>

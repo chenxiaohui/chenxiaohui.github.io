@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2021/02/07/clubhouse-overview/"><h2 itemprop="headline" class="item__header">clubhouse体验</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近试用了一下clubhouse，算是凑个热闹。
+
+体验clubhouse之前觉得似乎就是个聊天室的翻版，相当于村头无所事事老大爷谈天的地方，但加了几个讨论感觉确实是一个给背景不同的人提供了不错的交流途径，尤其是加了几个政治局，听了之后你才会觉得其实他们是这样想的哦。疫情实际上给用户普及了在线会议的使用，而音频更大的拉近了沟通的距离，clubhouse这种聊天室也降低了参与的门槛，避免了单向的你说我听。让我想起多年前T大梁博的西瓜大会。
+
+当然仔细想一下其实有很多现象值得玩味。clubhouse也不是一个很新颖的东西，何况国内也有一款app递爪非常类似，而一直不瘟不火。所以到底是什么催生了clubhouse的现象级火热呢？一致的好评是因为clubhouse确实促进了沟通提供了革命性的交...</div><p><a href="/2021/02/07/clubhouse-overview/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 07, 2021</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-07T01:02:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/01/01/c-plus-plus-11de-bu-ding-can-shu/"><h2 itemprop="headline" class="item__header">c++11的不定参数</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">不定参数之前其实用的比较少，一个项目里面能用到的大概只有log函数什么的。C++11支持了新的不定参数定义，之前也看过，但是毕竟使用的场景少，也没怎么研究。最近看了一下，感觉还是挺有意思的，至少比C++11之前方便了非常多，可以灵活的应用到很多场景里面，特别是模板。
 
@@ -383,32 +391,8 @@ rpm -qa | grep nfs
 
 ...</div><p><a href="/2016/06/17/export-disk-using-nfs/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 17, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-17T11:58:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2016/06/13/safe-spin-lock/"><h2 itemprop="headline" class="item__header">跨线程解锁安全的spinlock</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">在C语言下面我们可能会写出如下的代码：
-
-	static pthread_spinlock_t lock;
-
-	__attribute__((constructor))
-	void lock_constructor () {
-	    if ( pthread_spin_init ( &amp;lock, 0 ) != 0 ) {
-	        exit ( 1 );
-	    }
-	}
-
-	int func(xx) {
-	  int ret = 0;
-	  if (xx) {
-	    ret = ERR1;
-	    goto exit;
-	  }
-	  pthread_spin_lock(&amp;lock);
-	  if (xx) {
-	    ret = ERR2;
-	 ...</div><p><a href="/2016/06/13/safe-spin-lock/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 13, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-13T17:36:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page4">
             <i class="fas fa-angle-left"></i>

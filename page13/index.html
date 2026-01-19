@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"><h2 itemprop="headline" class="item__header">区分下shell和makefile中的特殊字符</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：
+
+  	$@     -is the name of the target currently being processed.
+$&lt;     -is the name of the first dependency.
+
+
+顺便提下shell下的
+
+  	$#    Stores the number of command-line arguments that were passed to the shell program.
+$?    Stores the exit value of the last command that was executed.
+$0    Sto...</div><p><a href="/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 04, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-04T14:51:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/04/gc-gcc-parameters-summary/"><h2 itemprop="headline" class="item__header">gcc命令行参数总结</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">总结一下混乱的GCC命令行参数，帮助写Makefile:
 
@@ -363,12 +377,8 @@ forward           1...</div><p><a href="/2015/01/30/use-shadowsocks-in-terminal/
           <header><a href="/2015/01/29/eclipse-multi-console/"><h2 itemprop="headline" class="item__header">eclipse多命令行窗口</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候需要在eclipse中同时运行客户端程序和服务器程序，开始都是一个在eclipse里面运行，另一个在命令行单独启动，未免不方便。后来发现，其实可以直接在eclipse中运行两次。调试视图会有两个显示，同时新建一个console窗口，关联另一个实例的显示就可以同时监视两个程序的输出了。</div><p><a href="/2015/01/29/eclipse-multi-console/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 29, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-29T20:41:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/27/convariant-return-type/"><h2 itemprop="headline" class="item__header">协变返回类型</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">协变返回类型（Convariant Return Type）是指override的函数，返回值有继承关系（子类函数返回类型是父类返回类型的子类）。例子如下：</div><p><a href="/2015/01/27/convariant-return-type/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 27, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-27T15:48:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page12">
             <i class="fas fa-angle-left"></i>

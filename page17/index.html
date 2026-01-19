@@ -280,6 +280,32 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/04/del-cached-files-in-git/"><h2 itemprop="headline" class="item__header">git中删除已经缓存的文件</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">经常遇到一种情况，开始项目的时候没加.gitignore文件，提交之后发现有大量的pyc文件残留，这样两地共同修改的时候pyc文件会造成大量的冲突。针对这种情况，可以如下解决：
+
+
+  建立.gitignore文件并写入：
+
+
+  		.pyc
+  		.swp
+
+
+  删除所有缓存中的数据：
+
+
+  		find . -name ‘.pyc’ -o -name ‘.swp’ &gt; /tmp/files
+  		while read line; do
+  			git rm –cached $line
+  		done &lt; /tmp/files
+
+
+  
+    在冲突的一端回滚所有pyc冲突：
+
+    find . -name ‘.pyc’ -o -name ‘.swp’...</div><p><a href="/2015/01/04/del-cached-files-in-git/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 04, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-04T16:49:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/25/thrift-and-slf4j/"><h2 itemprop="headline" class="item__header">Thrift依赖和Slf4j</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">用Thrift做一个分布式系统的RPC，发现跑起来的时候总提示Failed to load class org.slf4j.impl.StaticLoggerBinder，看了看maven依赖感觉没啥问题啊，slf4j-api-xx.jar好好的在呢。分析了maven的依赖，eclipse的问题，最后发现都没问题啊。最后发现还是不了解slf4j，以为跟log4j一样的，其实作为一个proxy，slf4j-api只是一套接口，实现的依赖没有添加进来。
 
@@ -379,26 +405,8 @@ Eclipse is defaulting to Java 1.5 and you have classes implementing interface me
 
 关于第二种有一个解释：一般装了silverlight的人都装了flas...</div><p><a href="/2014/11/25/flash-shared-cookie/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 25, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-25T16:57:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/11/19/error-with-node-zk-browser/"><h2 itemprop="headline" class="item__header">node_zk_browser安装时的一个问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">zookeeper基本是基于API和console进行znode的操作，并没有一个比较方便的操作界面，taobao 伯岩大神写过一个工具node_zk_browser，可以比较方便的查询zookeeper信息。地址在
-
-https://github.com/killme2008/node-zk-browser
-
-
-界面如下所示：
-
-
-
-安装的时候遇到一个问题
-
-Downloading zookeeper-3.4.3 from http://apache.mirrors.tds.net/zookeeper/zookeeper-3.4.3/zookeeper-3.4.3.tar.gz
-
-
-这个地址是找不到的。apache的这个mirror上只有3.4.6的包了。改package.json也...</div><p><a href="/2014/11/19/error-with-node-zk-browser/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-11-19T18:56:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page16">
             <i class="fas fa-angle-left"></i>

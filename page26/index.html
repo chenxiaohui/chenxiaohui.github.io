@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/"><h2 itemprop="headline" class="item__header">关于得到当前执行文件所在的目录</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。
+
+首先，直接 realpath(“./”) 和 getcwd 获取的都是当前路径，也就是当前shell所在的路径。__FILE__获取的是文件名，不包含路径，而且是编译过程确定的，最简单的办法当然是argv[0]，但是在test_case(gtest)里面不方便传来传去，后来发现最好的办法是这样的：
+
+#include "libgen.h"
+#define MAX_PATH_SIZE 100
+char current...</div><p><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 19, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-19T21:47:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/19/vim-script-to-find-import-file/"><h2 itemprop="headline" class="item__header">分布式调试之导入import文件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近看元启师兄写了一个脚本更新所有重构之后的include引用，我暂时没有需要如此伤筋动骨的代码，所以暂时用不上。但是有时候引用一个类要去找所在的文件，而有时候经常会记错地方。写了一个简单的vim插件依赖ctags来找对象或函数所在的位置。代码如下：
 
@@ -390,36 +400,8 @@ data loss的最大因素：drop table, 所以要做好充分的容错。
           <header><a href="/2013/10/27/brightest-star-in-the-sky/"><h2 itemprop="headline" class="item__header">夜空中最亮的星</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">&lt;/embed&gt;</div><p><a href="/2013/10/27/brightest-star-in-the-sky/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 27, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-27T10:41:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/25/history-of-tian-chao/"><h2 itemprop="headline" class="item__header">(转)天朝六十年编年史</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">作者： 李舒扬
-
-
-  
-    高祖武帝开国元年 49
-
-    二月，王师入京，吏民欣喜。北土悉平。帝遣六军征南朝，号百万。
-四月，六军涉江，灭南朝。南酋蒋氏遁，入海，据澎湖以抗圣化。迁九鼎于京。江南诸道初定。
-十月，帝登基于天丨安门。入太庙，誓，立政，改元“开国“。周文正公相。封六辅政亲王。
-王曰：“华夏诸民今日立也！“
-十一月，大将军刘，西路招抚使邓统王师十万入蜀，前朝余孽星散，蜀，滇，黔传徼而定。
-邓平公封西南节度使，坐镇西南以图吐蕃。
-是年，帝下《别了，司徒雷登》等三诏，用赐西夷美利坚使，夷使惭去。史称“三诏去西夷”。
-  
-
-
-
-
-
-  
-    高祖武帝开国二年 50
-
-    二月，北狄俄罗斯遣使来朝，盟，世世代代约为兄弟之邦。
-六月，高丽内乱。帝诏命停战，不听。
-九...</div><p><a href="/2013/10/25/history-of-tian-chao/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 25, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-25T21:26:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

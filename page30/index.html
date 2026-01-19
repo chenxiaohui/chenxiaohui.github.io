@@ -280,6 +280,44 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/09/02/cplusplus-primer-book-review/"><h2 itemprop="headline" class="item__header">C++ Primer 读书笔记</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个c 的问题，上网查了查，发现答案的出处其实就是C Primer，想想这本经典的书其实没怎么细度过，很多细节其实模棱两可，所以决定每天读一点，务必求细致，不为速度，写点读书笔记权当是打卡了。
+
+
+  关于初始化变量和未初始化变量
+
+
+
+  这里有个很蛋疼的例子，VC我没试过，gcc下有匪夷所思的输出
+
+
+int a;
+int b;
+int c;
+printf("a=%d  b=%d  c=%dn", a, b, c);
+
+
+2.块注释不能嵌套
+
+3.两种初始化方式
+
+int ival(1024);//直接初始化
+int ival=1024; //复制初始化
+
+
+
+  c 中初始化不是赋值，初始化指创建变量并赋值，赋值则是擦去对象当前值并用新值代替
+
+  初始化语句中前面定义的...</div><p><a href="/2013/09/02/cplusplus-primer-book-review/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=C%23">C#</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Primer">Primer</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 02, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-02T12:55:00-07:00">
+    <meta itemprop="keywords" content="C#,Primer"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/05/29/from-the-miao-code/"><h2 itemprop="headline" class="item__header">由&#8221;喵&#8221;代码想到的</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -401,24 +439,8 @@ commands命令的使用是 commands [bpnumber] 。bpnumber指定了断点的id�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-10-16T00:00:00-07:00">
     <meta itemprop="keywords" content="字符串数组"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/10/08/problems-about-length-variable-array/"><h2 itemprop="headline" class="item__header">变长数组的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-今天在gcc里写代码，偶然发现好像下标可以用变量（非const），比如：
-
-int n=0;
-scanf("%d",&amp;n);
-int a[n];//当然这里一定要有合法性判断
-
-
-这个理念太颠覆了，从学c语言的时候就被灌输说数组长度是不可变的，想用可变长度的话，要么malloc一块内存，要么用vector这种动态表。后来试了试发现vc里是直接无法通过编译的。查到如下一段说明：
-
-
-  在C99中新加入了对变长数组的支持，即数组的长度可以由某个非const变量来定义。可变数组的空间大小直到程序运行时才能确定，因此只有程序在运行时才能为程序分配空间。在gcc编译器程序会在运行时根据实际指定的大小(变量当前的值)调节esp的值，为数组在栈上分配适当大小的空间。由于要在运行时才能...</div><p><a href="/2012/10/08/problems-about-length-variable-array/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 08, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-10-08T00:00:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page29">
             <i class="fas fa-angle-left"></i>

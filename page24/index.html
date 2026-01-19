@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/15/a-performance-problem/"><h2 itemprop="headline" class="item__header">记工作中遇到的一个性能问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">工作中遇到一个问题，更新schema的过程发现耗时太长，30多s。导致其他一系列流程阻住。记录一下这个问题的分析解决。
+
+开始觉得估计是数据量大sql执行时间过长，整个过程分为3条sql，也就是schema被分表成为的三个表的查询：
+
+    select * from __all_table;  //主键table_id
+    select * from __all_column; //主键table_id,column_id
+    select * from __all_join;//主键left_table_id, let_column_id
+
+
+之后在内存里面做Join。由于是有序的，所以join过程直接采用了二分查找。之于没有用散列做Join或者直接
+   SQL语句里做...</div><p><a href="/2014/06/15/a-performance-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 15, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-15T12:16:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/10/distributed-selection/"><h2 itemprop="headline" class="item__header">分布式选主-笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">数据库主备复制
 
@@ -413,33 +427,8 @@ ObRootSchemaSerivice : init_core_schema()
      int* it = NULL;
      for(int * it =xxx;it != xxx; it ++...</div><p><a href="/2014/06/09/oceanbase-cplusplus-note/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 09, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-09T10:38:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/05/25/pi-temperature-sensor/"><h2 itemprop="headline" class="item__header">用树莓派和DS18B20监控温度变化</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">基本的教程在这里:
-
-
-  
-    引脚定义
-    传感器教程1
-    传感器教程2
-  
-
-
-鉴于我的硬件水平只限于插板子焊板子和对针脚，其他的都还给数电模电老师了，我还是老老实实买了模块，省的自己焊电阻。
-芯片，模块都是淘宝买的，随便搜一家就行，几块钱的东西一般不会有假的。
-
-整个过程可以按照教程1，2 对应针脚完成，如果顺利基本一次成功。别人的知识产权我就不好摘录了。但是代码我优化了一下，硬件工程师的代码果然是写的异常粗犷。修改后的代码如下：
-
-#!/usr/bin/python
-#coding=utf-8
-#Filename:temperature.py
-import os,datetime,time
-
-def calc_temperature(filename):
-  ...</div><p><a href="/2014/05/25/pi-temperature-sensor/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 25, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-05-25T14:16:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page23">
             <i class="fas fa-angle-left"></i>

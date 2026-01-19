@@ -280,6 +280,19 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/20/susublime-plugin-to-generate-refrence/"><h2 itemprop="headline" class="item__header">sublime根据markdown引用生成参考文献的插件</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">写这个的目的主要是每次写博客需要生成以下版权声明，免得引用了别人的文章被人说盗版。markdown里面支持通过列表组织引用的url，如下所示：
+
+  [1]: http://www.baidu.com   "百度"
+  [2]: http:://www.google.com "谷歌"
+  [3]: http://www.facebook.com "404 Not Found"
+
+
+我们可以通过这个形式来生成如下的代码
+
+效果如下：</div><p><a href="/2014/06/20/susublime-plugin-to-generate-refrence/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-20T21:21:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/20/octopress-pandoc-table/"><h2 itemprop="headline" class="item__header">octopress支持markdown表格</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">pandoc支持扩展的markdown，也就是支持类似于如下的表格：
 
@@ -388,22 +401,8 @@ Liquid::Template.register_filter(Jekyll::IndentFilter)
      getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
          basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str, ...</div><p><a href="/2014/06/16/c-cpp-file-stream-operation-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 16, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-16T20:00:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/15/a-performance-problem/"><h2 itemprop="headline" class="item__header">记工作中遇到的一个性能问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">工作中遇到一个问题，更新schema的过程发现耗时太长，30多s。导致其他一系列流程阻住。记录一下这个问题的分析解决。
-
-开始觉得估计是数据量大sql执行时间过长，整个过程分为3条sql，也就是schema被分表成为的三个表的查询：
-
-    select * from __all_table;  //主键table_id
-    select * from __all_column; //主键table_id,column_id
-    select * from __all_join;//主键left_table_id, let_column_id
-
-
-之后在内存里面做Join。由于是有序的，所以join过程直接采用了二分查找。之于没有用散列做Join或者直接
-   SQL语句里做...</div><p><a href="/2014/06/15/a-performance-problem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 15, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-15T12:16:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-left"></i>

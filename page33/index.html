@@ -280,6 +280,40 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/04/07/about-const-and-pointer/"><h2 itemprop="headline" class="item__header">关于const和指针的专题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+const和指针的问题是笔试里经常出现的问题。这里综合一下各种不同的情况。
+
+首先是几种const与指针组合的区分，比如：
+
+int b = 500;
+const int* a = &amp;b; [1]
+int const *a = &amp;b; [2]
+int* const a = &amp;b; [3]
+const int* const a = &amp;b; [4]
+
+
+[1]和[2]其实是一样的，都是指向int型常量的指针，而[3]是int型常量指针，两者的区别是指向常量的指针本身可以指向别的，所指向的数据不能被修改，而常量指针本身不能被修改。[4]就不用说了，啥都甭想改。
+
+至于例子，可以举下面的一个例子（以[1]为例）。这里小小的牵扯了一点优先级的问题。
+
+#in...</div><p><a href="/2012/04/07/about-const-and-pointer/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=const">const</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%BE%AE%E8%BD%AF">微软</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%8C%87%E9%92%88">指针</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E9%9D%A2%E8%AF%95">面试</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 07, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-07T00:00:00-07:00">
+    <meta itemprop="keywords" content="const,微软,指针,面试"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/04/02/some-problems-about-apache-address-rewrite/"><h2 itemprop="headline" class="item__header">Apache地址重写的几个问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -482,29 +516,8 @@ Typecho是一套超轻量的开源博客，界面简洁，功能紧凑，但是T
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 05, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-05T00:00:00-08:00">
     <meta itemprop="keywords" content="Typecho,xhEditor,文件上传"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/03/01/change-the-name-of-blog/"><h2 itemprop="headline" class="item__header">博客域名更改</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">之所以要改域名，是因为之前的域名无论英文还是中文都被隐藏在一堆布拉德皮特（Brad Pitt）的新闻里，搜索不到，长此以往，博将不博。其实布拉德皮特的电影我只看过《西（和谐）藏十年》，对他并无反感，但是作为一个博客总夹在娱乐新闻里想不娱乐都难，我写的可是正正规规的技术文章啊亲……
-
-Roy这名字似乎是某个英国国王的名字，也有不少人用这个做姓，老外的姓氏和名字还真是混乱啊，不过想想同学里似乎也有叫王林的，也就无所了，反正我可是注册到了六位的还有一定含义的域名，六位啊亲……
-
-就这样吧。</div><p><a href="/2012/03/01/change-the-name-of-blog/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%8D%9A%E5%AE%A2%E5%9F%9F%E5%90%8D">博客域名</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%B8%83%E6%8B%89%E5%BE%B7%E6%AF%94%E7%89%B9">布拉德比特</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%B8%83%E6%8B%89%E5%BE%B7%E7%9A%AE%E7%89%B9">布拉德皮特</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%BD%97%E4%BC%8A%E8%B4%9D%E7%89%B9">罗伊贝特</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-01T00:00:00-08:00">
-    <meta itemprop="keywords" content="博客域名,布拉德比特,布拉德皮特,罗伊贝特"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page32">
             <i class="fas fa-angle-left"></i>

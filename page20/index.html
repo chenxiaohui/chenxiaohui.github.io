@@ -280,6 +280,17 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/19/continent/"><h2 itemprop="headline" class="item__header">后会无期</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">&lt;/embed&gt;
+
+
+  当一艘船沉入海底
+  当一个人成了谜
+  你不知道
+  他们为何离去
+  那声再见竟是他最后的一句</div><p><a href="/2014/07/19/continent/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 19, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-19T14:34:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/17/c-variable-argument/"><h2 itemprop="headline" class="item__header">c/c++的不定参数</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">c/c++可以通过va_arg等宏实现不定参数。一个例子如下(c++)：
 
@@ -390,25 +401,8 @@ namespace oceanbase
           <header><a href="/2014/07/06/photo-of-cat/"><h2 itemprop="headline" class="item__header">发一张喵星人的照片</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody"></div><p><a href="/2014/07/06/photo-of-cat/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 06, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-06T18:18:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/05/redo-undo-log/"><h2 itemprop="headline" class="item__header">undo 日志和redo 日志</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">具体的可以看这里，解释几个作者没解释清楚的问题：
-
-
-  
-    只用REDO日志为什么数据修改要每次修改刷盘
-
-    如果不刷盘，不会导致数据不一致，但是数据修改过程相当于写redo日志-修改内存-写commit日志（修改内存的顺序也无所谓了），这个过程结束已经应答用户了，但是修改没有刷下去断电恢复的话也无法通过redolog恢复到当前状态，所以会丢失修改。
-  
-  
-    修改数据和写redo/undo log/commit log之间的关系是什么
-
-    任何对磁盘的数据修改落实之前都需要先写log，无论是redo还是undo。undo保证了一旦数据写了一半（脏数据）能够回滚，redo保证了写了日志的事务能够回放出来。
-
-    只使用undo的时候commit日志要等...</div><p><a href="/2014/07/05/redo-undo-log/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 05, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-05T21:20:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page19">
             <i class="fas fa-angle-left"></i>

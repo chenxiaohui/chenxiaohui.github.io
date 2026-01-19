@@ -280,6 +280,24 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/03/28/thinkthinking-about-paxos-and-raft/"><h2 itemprop="headline" class="item__header">关于Paxos和Raft的一些思考</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在总结一些协议这么设计的原因，比较杂，纯做记录：
+
+
+  选主过程相当于Paxos的prepare过程：
+
+
+  	选出的Leader得到了多数派的同意，相当于Paxos一阶段完成，由于当前Term下投过票的Server保证不再接受小于等于当前Term的，所以保证了选主最终只能选出一个。
+
+  	不同于Paxos的地方在于这一轮Term下，follower除非Lease过期，否则不会发起新的选主，也就是发起Epoc更大的提案。Raft可以认为MultiPaxos的一种应用，MultiPaxos可以认为是合并了Prepare阶段的SingleDegreePaxos.
+
+
+  
+    raft读一致性和选主timeout
+
+    raft协议本身由于主只是续约了follower的l...</div><p><a href="/2016/03/28/thinkthinking-about-paxos-and-raft/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-28T23:33:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/03/28/notes-on-liupeng-report/"><h2 itemprop="headline" class="item__header">刘鹏《移动时代的营销与变现》笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">上次见刘鹏老师可能还是搜狐实习的时候，后来刘鹏走了，峰扬走了，整个团队改做推荐系统，最后又回到效果广告，算是绕了一个圈吧。买了本计算广告，更多的是给自己一个念想，念念不忘必有回响么。
 
@@ -375,22 +393,8 @@ scp -P xx ... user@host
     Host xx
    HostNam...</div><p><a href="/2015/11/01/ssh-bind-other-port/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 01, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-11-01T14:14:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/08/31/rbtools-compatible-problems/"><h2 itemprop="headline" class="item__header">RBTools兼容的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">某天ReviewBoard客户端突然用不了，使用	rbt post的时候报错:
-
-  	from six.moves.urllib.parse import quote
-ImportError: No module named urllib.parse
-
-
-乍一看以为什么包被卸载了。于是pip install six –upgrade，无果。pip uninstall RBTools再重新安装RBTools，也无效。
-
-查了一下six是python2、python3的兼容包，直接修改源码，不要兼容了，发现用到的地方好多，改不过来（ps，兼容python2、python3真不容啊）。
-
-查看six的版本，发现跟本地一样的，本地没什么问题。说明不是six的问题。直接在命令行from six...</div><p><a href="/2015/08/31/rbtools-compatible-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 31, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-08-31T15:26:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>501 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page6">
             <i class="fas fa-angle-left"></i>
