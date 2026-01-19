@@ -48,13 +48,13 @@ cover: https://harrychen.oss-cn-beijing.aliyuncs.com/2021-02-06-173104.jpg
 
 明年最重要的事当然是孩子要出生了。网上看了不少育儿的东西，也和朋友聊过，但我知道真到时候肯定还是会手忙脚乱。不过也就这样了，走一步看一步吧。紧张是肯定的，但也挺期待的。
 
-工作上希望能再进步一些。这两年 AI 发展太快了，很多东西都在变。得跟上，不然就落后了。不过也不能光追新东西，还是得在自己的方向上深耕。
+工作上希望能再进步一些。现在做的方向还有很多不懂的，得继续啃。
 
-有了孩子之后时间肯定更紧张了。工作、家庭怎么平衡是个问题。既要照顾家里，又不能落下事业，还得有时间陪家人。说起来容易，真做起来估计够呛。
+有了孩子之后时间肯定更紧张。现在还想不清楚怎么安排，到时候再说吧。
 
 博客的话，希望能保持更新吧。不一定写很长的技术文章，记录点生活也行。多年后回头看，这些文字应该挺有意思的。
 
-2025 变化挺大，2026 估计更忙。不管怎样，过好每一天吧。
+2025 变化挺大，2026 估计更忙。先这样吧。
 
 ---
 
@@ -82,7 +82,7 @@ Work's still busy and stressful, but it feels different. Like I'm growing again.
 
 Next year the baby's coming. That's the big one. I'm nervous but also looking forward to it.
 
-Work-wise, hoping to keep improving. AI's changing everything so fast, gotta keep up. And with a kid on the way, figuring out work-life balance is going to be interesting.
+Work-wise, still a lot to learn in my new area. And with a kid on the way, no idea how I'll manage my time. We'll see.
 
 Hoping to keep updating this blog too. Even if it's just short notes about life. Years later it'll be nice to look back on.
 

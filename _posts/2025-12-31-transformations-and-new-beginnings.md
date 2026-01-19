@@ -19,7 +19,7 @@ cover: https://harrychen.oss-cn-beijing.aliyuncs.com/2025-12-31-202705.png
 
 这个决定其实纠结了挺久。之前的方向做了好几年，积累了一些东西，团队也熟悉，继续做下去应该会比较顺。但总觉得少了点什么——也许是新鲜感，也许是挑战。疫情这几年，每天都在重复差不多的事情，感觉自己在舒适区待太久了。
 
-转到算法方向，等于是重新开始。很多东西都要从头学，很多人都要重新认识。刚开始那几个月真的很难，每天都有新问题，每天都在学新东西。开会的时候经常听不太懂大家在说什么，技术讨论也插不上话。那种感觉有点像刚毕业，既焦虑又兴奋。
+转到算法方向，等于是重新开始。很多东西都要从头学，很多人都要重新认识。刚开始那几个月真的很难，每天都有新问题，每天都在学新东西。开会的时候经常听不太懂大家在说什么，技术讨论也插不上话。那种感觉有点像刚毕业，不知道自己能不能做好，但又忍不住想试试。
 
 现在回头看，这个决定是对的。虽然过程很辛苦，但这几个月学到的东西，可能比过去一两年都多。而且这种"不确定性"反而让人更有动力。每解决一个新问题，都会有那种久违的成就感。
 
@@ -45,15 +45,13 @@ Landing 的过程比想象中麻烦。签证、搬家、找房子、办各种手
 
 ## 展望 2026
 
-工作上，希望在新方向上继续深入。算法这个领域很深，要学的东西还很多。AI 发展这么快，不进则退，得跟上节奏。
+工作上，希望能把算法这块搞得更明白些。现在还是半懂不懂的状态，得多花时间。
 
 生活上，继续适应湾区的节奏，多看看外面的世界。
 
 博客的话，希望能多写一些。不一定都是技术文章，记录点生活、想法也挺好。多年后回头看，这些文字应该会很有意思。
 
-2025 是转变的一年，2026 应该是适应和成长的一年。
-
-不管怎样，往前走就对了。
+2025 折腾够了，希望2026 能稳一点。
 
 ---
 
@@ -67,7 +65,7 @@ The biggest decision this year was switching directions—from graph structures 
 
 This decision took a lot of deliberation. I'd spent several years in my previous direction, built up some expertise, knew the team well. Continuing would have been the safe path. But something felt missing—maybe it was the novelty, maybe the challenge. These pandemic years, every day felt repetitive. I'd been in my comfort zone too long.
 
-Switching to algorithms meant starting over. Learning many things from scratch, meeting new people, building new connections. The first few months were really tough—new problems every day, constantly learning. Often couldn't fully follow discussions in meetings, couldn't contribute much in technical debates. It felt like being fresh out of college again—anxious yet excited.
+Switching to algorithms meant starting over. Learning many things from scratch, meeting new people, building new connections. The first few months were really tough—new problems every day, constantly learning. Often couldn't fully follow discussions in meetings, couldn't contribute much in technical debates. It felt like being fresh out of college—not sure if I could pull it off, but wanting to try anyway.
 
 Looking back now, it was the right call. Though the process was hard, I probably learned more in these few months than in the past couple of years. And this "uncertainty" is actually motivating. Every time I solve a new problem, there's that long-lost sense of accomplishment.
 
@@ -93,12 +91,10 @@ In my thirties, I thought life would become more stable, more routine. Didn't ex
 
 ### Looking Ahead to 2026
 
-Work-wise, hoping to go deeper in the new direction. Algorithms is a deep field, still so much to learn. AI is developing so fast, can't fall behind, need to keep up.
+Work-wise, hoping to actually understand algorithms better. Right now I'm still figuring things out.
 
 Life-wise, continuing to adapt to the Bay Area rhythm, exploring more of the world.
 
 For the blog, hoping to write more. Not necessarily all technical posts—recording life and thoughts is good too. Years later, these words should be quite interesting to look back on.
 
-2025 was a year of transformation. 2026 should be a year of adaptation and growth.
-
-Either way, just keep moving forward.
+2025 was chaotic enough. Hoping 2026 will be calmer.
