@@ -7,7 +7,7 @@ comments: true
 categories: "世情百态"
 ---
 
-![](/assets/images/2014/road.jpg)
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/road.jpg)
 
   去看了《后会无期》。是我心里的样子。
 

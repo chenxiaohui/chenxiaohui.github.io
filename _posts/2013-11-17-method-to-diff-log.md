@@ -25,7 +25,7 @@ categories: "Oceanbase"
 
   实际的效果是这样的。<s>我在考虑要不要把所有的tsi错误都去掉。</s> tsi的错误可以直接剔除0x\w+这些16进制数。
 
-  ![](/assets/images/2013/logdiff.png "日志比较" "日志比较")
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/logdiff.png "日志比较" "日志比较")
 
 [1]: http://qianjigui.iteye.com/blog/368449 "Vim 中的正则表达式"
 [2]: http://qianjigui.iteye.com/blog/368449 "Vim日志定位解决方案"

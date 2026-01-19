@@ -10,7 +10,7 @@ categories: "Java"
   
   今天迁移工程到mac上，准备以后用mac作为主开发工具。迁移maven的时候发现，maven download会停在那里，如下：
 
-![](/assets/images/2015/maven_error.jpg)
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/maven_error.jpg)
 
    解决如下：
 

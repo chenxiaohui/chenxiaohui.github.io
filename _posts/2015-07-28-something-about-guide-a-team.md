@@ -19,4 +19,4 @@ categories: "IT人生"
 
   最后补一个我理解的开发流程图：
 
-  ![](/assets/images/2015/dev-flow.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/dev-flow.png)

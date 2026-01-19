@@ -21,17 +21,17 @@ categories: 世情百态
 
 --------
 
-![](/assets/images/common/ask.jpg 200 "are you kidding me") 你家的土豪是坐公交的啊
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg 200 "are you kidding me") 你家的土豪是坐公交的啊
 
 --------
 
   好了，不管土豪的事情了，上几张照片。
 
-![](/assets/images/2013/IMG_20131006_144718.jpg  "这个是想表达什么" "这个是想表达什么")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/IMG_20131006_144718.jpg  "这个是想表达什么" "这个是想表达什么")
 
-![](/assets/images/2013/IMG_20131006_145824.jpg "话说这个狗狗还是挺可爱的嘛" "话说这个狗狗还是挺可爱的嘛")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/IMG_20131006_145824.jpg "话说这个狗狗还是挺可爱的嘛" "话说这个狗狗还是挺可爱的嘛")
 
-![](/assets/images/2013/IMG_20131006_172509.jpg "最震撼的其实是这个" "最震撼的其实是这个")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/IMG_20131006_172509.jpg "最震撼的其实是这个" "最震撼的其实是这个")
 
   这TM才叫雕塑嘛，毕竟任何一只单独拿出来也可以用嘛...多么的经济实惠
 

@@ -3,14 +3,14 @@ title: 从 Claude 换到 Opencode，聊聊我的真实感受
 author: Harry Chen
 date: 2026-01-08
 layout: article
-cover: /assets/images/ai-tools-transition.jpg
+cover: https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/ai-tools-transition.jpg
 categories:
   - 技术思考
 ---
 
 最近把主力工具从 Claude 换成了 Opencode，用了一段时间后，想聊聊这个选择背后的思考。
 
-![AI 工具对比](/assets/images/ai-tools-transition.jpg)
+![AI 工具对比](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/ai-tools-transition.jpg)
 
 <!--more-->
 

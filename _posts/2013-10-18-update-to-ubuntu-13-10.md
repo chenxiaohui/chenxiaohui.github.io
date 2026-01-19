@@ -9,4 +9,4 @@ categories: Linux
 
   Ubuntu13.10可以升级了，版本名称是：“俏丽的蝾螈”。
 
-![](/assets/images/2013/ubuntu13_10.jpg "俏丽的蝾螈" "俏丽的蝾螈")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/ubuntu13_10.jpg "俏丽的蝾螈" "俏丽的蝾螈")

@@ -22,49 +22,49 @@ categories: "其他"
 
 <!--more-->
 
-  ![](/assets/images/2015/jenkins.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins.png)
 
   系统管理里面有一些需要配置的项，比如JDK：
 
-  ![](/assets/images/2015/jenkins_jdk.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_jdk.png)
 
   GIT
 
-  ![](/assets/images/2015/jenkins_git.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_git.png)
 
   MAVEN
 
-  ![](/assets/images/2015/jenkins_maven.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_maven.png)
 
   ssh-key
 
-  ![](/assets/images/2015/jenkins_sshkey.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_sshkey.png)
 
   ssh-server
 
-  ![](/assets/images/2015/jenkins_sshserver.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_sshserver.png)
 
   装一下slack的插件可以配置slack
 
-  ![](/assets/images/2015/jenkins_slack.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_slack.png)
 
   然后是建立项目的配置，Jenkins把每个自动发布的项目作为一个单独的配置，主要是如下几个：
 
   指定代码路径：
 
-  ![](/assets/images/2015/jenkins_gitclone.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_gitclone.png)
 
   部署前事件：
 
-  ![](/assets/images/2015/jenkins_deploy_pre.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_deploy_pre.png)
 
   部署后事件:
 
-  ![](/assets/images/2015/jenkins_after_deploy.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_after_deploy.png)
 
   最后保证这些事件是在之前配置的ssh-server上执行的。
 
-  ![](/assets/images/2015/jenkins_enent_server.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/jenkins_enent_server.png)
 
 
   细节请看[这里][1]

@@ -16,7 +16,7 @@ categories: "Python"
 
 	1. copy或者link apache-wsgi.conf到conf.d目录，etc/httpd结构如下
 
-		![](/assets/images/2015/etc_httpd.png)
+		![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/etc_httpd.png)
 
 	2. 配置下PythonHome
 

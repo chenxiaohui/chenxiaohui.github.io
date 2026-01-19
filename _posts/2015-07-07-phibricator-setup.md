@@ -75,7 +75,7 @@ categories: "PHP"
 
   首先在auth上开启认证方式，这里我们还是比较传统，选择了用户名密码的方式，你也可以选择其他账号体系打通的方式。一个用户注册之后，管理员需要批准用户，这个用户才能登陆。我找了好久，才发现原来批准在这位置：
 
-  ![](/assets/images/2015/approval-queue.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/approval-queue.png)
 
 
   最后是配置邮件服务器。首先你需要有个本地的或者其他提供商提供的邮件服务器。可以参考[这里][4]，PHP Mailer设置：
@@ -92,7 +92,7 @@ categories: "PHP"
   
   之后会有一个有意思的界面：
 
-![](/assets/images/2015/delete-user.png)
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/delete-user.png)
 
 
 

@@ -9,4 +9,4 @@ categories: "摄影"
 
   测试一张静物：宾得 SMC FA 50mm F1.4， 光圈2.0 快门 1/60
 
-  ![](/assets/images/2014/cup.jpg)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/cup.jpg)

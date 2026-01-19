@@ -13,7 +13,7 @@ categories: "分布式系统"
 
   界面如下所示：
 
-  ![](/assets/images/2014/zk_browser.png "zk_browser" "zk_browser")
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/zk_browser.png "zk_browser" "zk_browser")
 
   安装的时候遇到一个问题
 

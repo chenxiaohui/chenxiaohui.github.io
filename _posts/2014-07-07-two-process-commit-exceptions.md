@@ -12,7 +12,7 @@ categories: "Oceanbase"
 
   在这个前提下，我们根据如下的时序图来讨论异常情况和处理方法。
 
-![](/assets/images/2014/2pc.png "两阶段提交协议时序" "两阶段提交协议时序")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/2pc.png "两阶段提交协议时序" "两阶段提交协议时序")
 
   1. 过程a没有成功，即协调者没有收到部分参与者的回应。超时后，协调者发送abort消息给参与者取消事务。参与者存在两种情况：
 

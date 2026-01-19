@@ -9,7 +9,7 @@ categories: "IT人生"
 ---
   起源是这样一道题目：
 
-  ![](/assets/images/2015/word_puzzle.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/word_puzzle.png)
 
   于是想到通过word dict来算一下：
 
@@ -36,7 +36,7 @@ categories: "IT人生"
   
   最后的~~凶手~~答案只有一个：
 
-  ![](/assets/images/2015/result.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/result.png)
 
   谢谢观看～。
    

@@ -9,7 +9,7 @@ categories: "C++"
 
   探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。
 
-![](/assets/images/2014/binfile.png "用vim显示二进制文件" "用vim显示二进制文件")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/binfile.png "用vim显示二进制文件" "用vim显示二进制文件")
 
   所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)
 

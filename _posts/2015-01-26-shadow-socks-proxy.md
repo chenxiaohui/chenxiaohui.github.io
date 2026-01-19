@@ -12,7 +12,7 @@ categories: "其他"
 
   [这里][1]购买服务，一年99，这个优惠码可以再打一点折`imouto985`。之后进入后台可以看到分配给自己的密码，服务器主要是日本，美国和新加坡的，实测貌似日本的响应更快一点。
 
-  ![](/assets/images/2015/shadow_mac.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2015/shadow_mac.png)
 
   mac下下载了客户端直接打开配置好地址就能用，linux下需要自己配置代理。
 

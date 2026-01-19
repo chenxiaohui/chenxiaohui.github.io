@@ -31,11 +31,11 @@ categories: "web相关"
 
   目前实测IE/Maxthon/Firefox/Safari/360浏览器都是采用系统的Flash实例，所以能够共享flash cookie，目前测到的几个特例是chrome/搜狗/百度浏览器，分别采用了自己浏览器内部打包的flash实例。另外不同系统用户的cookie不共享。从下面一张图可以清晰看出：
 
-  ![](/assets/images/2014/flash_cookie.png)  
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/flash_cookie.png)  
 
   flash cookie的写入可以参考如下项目``，作者在[主页][1]详细说明了使用方法。需要注意的是swf_url控制的写入路径会包含在cookie的namespace里面，也就是说会有如下的目录结构：
 
-  ![](/assets/images/2014/tree.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/tree.png)
 
   另外关于跨域，作者说不同域的js需要使用同一个swf，猜测是js请求swf的时候浏览器不判断在哪个域。swf内部是有跨域安全机制的，如果关闭掉的话，是可以实现请求跨域的。但是js请求其他域的数据会被浏览器拒绝。
 
@@ -43,15 +43,15 @@ categories: "web相关"
 
   在两台机器上部署相同的Flash Cookie测试项目，其中61域和74域的js都请求74域的swf：
 
-  ![](/assets/images/2014/cross.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/cross.png)
 
   在74的机器上写入flash cookie: "74 write"
 
-  ![](/assets/images/2014/74write.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/74write.png)
 
   在61的机器上load:
 
-  ![](/assets/images/2014/61load.png)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/61load.png)
 
   证明可以跨域读取cookie。
 

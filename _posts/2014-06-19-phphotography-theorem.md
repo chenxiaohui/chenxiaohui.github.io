@@ -23,9 +23,9 @@ categories: "摄影"
 
 7. 普通卡片机由于照顾日常使用场景，焦距光圈基本是固定的，并且固定在中短焦距的范围内。所以卡片机画幅不大，景深也不大，适合一般场景的拍照，但难免平淡无特色。
 
-![](/assets/images/2014/photography.gif "成像光路图" "成像光路图")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/photography.gif "成像光路图" "成像光路图")
 
-![](/assets/images/2014/aperture.jpg "光圈对景深的影响" "光圈对景深的影响")
+![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/aperture.jpg "光圈对景深的影响" "光圈对景深的影响")
 
 [1]: http://blog.sina.com.cn/s/blog_64cff0510100hid1.html "一篇讲解成像原理的文章"
 

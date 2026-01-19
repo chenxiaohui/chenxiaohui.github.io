@@ -7,4 +7,4 @@ comments: true
 categories: "摄影"
 ---
 
-  ![](/assets/images/2014/cat.jpg)
+  ![](https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2014/cat.jpg)
