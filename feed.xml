@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-19T19:18:11-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-19T19:35:30-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
 </subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">语音转文字工具横评：找到了一匹黑马</title><link href="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/" rel="alternate" type="text/html" title="语音转文字工具横评：找到了一匹黑马" /><published>2026-01-19T00:00:00-08:00</published><updated>2026-01-19T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/"><![CDATA[<p>最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。</p>
 
 <p><img src="/assets/images/posts/voice-to-text-tnt.jpg" alt="安静！吵着我用TNT了" /></p>
@@ -36,11 +36,11 @@
 
 <p>订阅制，价格和 WhisperFlow Pro 差不多。</p>
 
-<h2 id="一个遗憾都不是原生输入法">一个遗憾：都不是原生输入法</h2>
+<h2 id="桌面端体验已经很自然">桌面端体验已经很自然</h2>
 
-<p>这些工具目前更多是专门用于听写或语音转文字的独立工具，而不像系统输入法那样可以随时随地唤起。</p>
+<p>像 Typeless 这类工具，可以通过快捷键直接唤起，体验其实已经和原生输入法差不多了。不需要切换 App，随时按下快捷键就能开始说话，用完自动输入到当前光标位置。</p>
 
-<p>每次想用都得切换 App 或点开悬浮窗，多了一步操作，自然流畅度就差了。</p>
+<p>真正的遗憾在移动端——手机上还没有这么自然的唤起方式。</p>
 
 <h2 id="关于-iphone-上的理想场景">关于 iPhone 上的理想场景</h2>
 
