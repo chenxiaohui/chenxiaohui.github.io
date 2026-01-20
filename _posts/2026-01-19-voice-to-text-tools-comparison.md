@@ -3,6 +3,7 @@ title: 语音转文字工具横评：找到了一匹黑马
 author: Harry Chen
 date: 2026-01-19
 layout: article
+cover: /assets/images/posts/voice-to-text-tnt.jpg
 categories:
   - 效率工具
 ---
