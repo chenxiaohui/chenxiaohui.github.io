@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/"><h2 itemprop="headline" class="item__header">关于ob代码规范里面的行末空格</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：
+
+" 删除所有行未尾空格
+nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
+"显示空格
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+augroup ExtraWhitespaceGroup
+    autocmd!
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespa...</div><p><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 20, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-20T10:50:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/19/method-to-get-absolute-path-of-current-program/"><h2 itemprop="headline" class="item__header">关于得到当前执行文件所在的目录</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个问题，程序里面用相对路径引用了同一级目录下的一个文件，shell在上一级目录调用程序的时候，发现当前目录变成了上一级目录，于是程序在上一级目录找那个文件。最简单的办法当然是shell脚本里面加cd操作，但是暂时不方便修改脚本。所以直接通过程序获取绝对路径好了。
 
@@ -396,12 +410,8 @@ data loss的最大因素：drop table, 所以要做好充分的容错。
 
 所以最好的方法是直接不要...</div><p><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-29T13:40:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/27/brightest-star-in-the-sky/"><h2 itemprop="headline" class="item__header">夜空中最亮的星</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">&lt;/embed&gt;</div><p><a href="/2013/10/27/brightest-star-in-the-sky/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 27, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-27T10:41:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

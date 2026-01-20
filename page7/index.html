@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/04/02/cgo-practice/"><h2 itemprop="headline" class="item__header">cgo实践</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">工作里遇到一个问题，想把mysql的crc直接封装一下让go来调用，因为查表的crc计算性能实在是不快，对我们这种文件系统的大报文计算来看，crc容易变成瓶颈。大概性能对比如下：
+
+两线程crc32查表 O2优化
+time_elapsed:471.474976s
+total_size_m : 200000.000000M
+crc rate : 424.200684m/s
+
+
+两线程crc64指令 O2优化
+time_elapsed:24.877853s
+total_size_m : 200000.000000M
+crc rate : 8039.278809m/s
+
+
+c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼容的问题。出于兼容和性能考虑，用cgo封装一下。
+
+首先在...</div><p><a href="/2016/04/02/cgo-practice/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 02, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-02T16:56:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/03/28/thinkthinking-about-paxos-and-raft/"><h2 itemprop="headline" class="item__header">关于Paxos和Raft的一些思考</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在总结一些协议这么设计的原因，比较杂，纯做记录：
 
@@ -366,35 +386,8 @@ libev是广泛使用的事件库，是一个功能强大的reactor，可以把Ti
 
 libev通过定义watcher来关注一个事件，并且把事件...</div><p><a href="/2015/12/19/libev-source-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 19, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-12-19T16:29:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/11/01/ssh-bind-other-port/"><h2 itemprop="headline" class="item__header">ssh绑定其他端口</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">首先修改/ssh/sshd_config，把Port 22解注释，然后加一行Port xx。之后修改 /etc/sysconfig/iptables，加入该端口的Rules:
-
--A INPUT -m state --state NEW -m tcp -p tcp --dport xx -j ACCEPT  
-
-
-重启即可。
-
-/etc/init.d/sshd restart
-
-
-这么做的目的是如果出现问题，还有一个端口可以上去修改。登录的时候需要对应的指定一下端口：
-
-ssh -p xx user@host
-scp -P xx ... user@host
-
-
-补充两个SSH技巧：
-
-
-  
-    客户端配置中转，主要是通过跳板机登录：
-
-    Host xx
-   HostNam...</div><p><a href="/2015/11/01/ssh-bind-other-port/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-11-01T14:14:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page6">
             <i class="fas fa-angle-left"></i>

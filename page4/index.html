@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2021/02/19/doxygen_call_graph/"><h2 itemprop="headline" class="item__header">doxygen生成项目调用关系</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">如果要看一个项目的调用关系，可以考虑一些IDE工具，比如正版source insight等，嗯，正版。
+
+但是毕竟兼容性不好。可以考虑doxygen来生成一份，作为参考，主要还是靠看代码和调试。
+
+首先 doxygen -g 生成配置。实测下面这些是需要补充在Doxyfile的
+
+HAVE_DOT               = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+DISABLE_INDEX          = YES 
+GE...</div><p><a href="/2021/02/19/doxygen_call_graph/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 19, 2021</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-19T14:53:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/02/18/cpp_non_copy/"><h2 itemprop="headline" class="item__header">c++禁止拷贝</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近突然想一个事情，如果只是控制了赋值预算和拷贝构造，在这种情况下移动构造是否还能默认生成呢？
 
@@ -365,14 +382,8 @@ int main(int argc, char *argv[])
 
 最近一直在想不同的社会形态下不同阶层的人会有什么体验上的不同。中间遇到缅甸政变的事情，顺便也去看了下电影《昂山素季》。人到一定年纪会变得客观很多，翻之前的博客明显还是有那种愤青的感觉在，这几年就明显不会冲动的去想一些事情了。客观的讲，在中国或者新加坡的政体下，社会均衡相对要好很多，高福利社会相对不利于财富积累，但是利于社会公平，低福利社会有利于社会创新，但是必然影响社会公平。目前看，社...</div><p><a href="/2021/02/09/shan_hai_qing_comments/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 09, 2021</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-09T00:45:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/08/spring_festival_in_singapore/"><h2 itemprop="headline" class="item__header">新加坡的新年活动</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">过年肯定是不能回国了。只能跟同事在这边一边盯报警一边跨年了，因为疫情限制了聚会人数，所以也不能超过8个人。牛车水去逛了下人还是有点年味的，就是人多的地方也有点慌。金沙的灯光秀依然开到很晚，晚上跑步过去的时候灯还没关。鱼尾狮的灯光秀也在调试了，元旦跨年的时候Marina Bay全是人，估计春节也是。再就是这边春节是放初一初二，还都在周末，走一步退一步等于没走..
-
-夜色下的佛牙寺特别好看。</div><p><a href="/2021/02/08/spring_festival_in_singapore/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 08, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-08T00:53:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page3">
             <i class="fas fa-angle-left"></i>

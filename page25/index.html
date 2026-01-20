@@ -280,6 +280,38 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/09/oceanbase-cplusplus-note/"><h2 itemprop="headline" class="item__header">总结Oceanbase编码中需要注意的一些细节</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：
+
+     if (it != NULL)
+ {
+     xxx
+ }
+ else
+ {
+     it不能再使用了
+ }
+    
+  
+  
+    不要使用strcpy而应该使用strncpy。
+  
+  
+    所有成员函数都应该考虑是否为const函数.
+  
+  
+    所有函数都需要判断传入值是否有效。
+  
+  
+    有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如：
+
+     //这样是很容易造成问题的
+ int * xxx(xxx)
+ {
+     int* it = NULL;
+     for(int * it =xxx;it != xxx; it ++...</div><p><a href="/2014/06/09/oceanbase-cplusplus-note/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 09, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-09T10:38:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/05/25/pi-temperature-sensor/"><h2 itemprop="headline" class="item__header">用树莓派和DS18B20监控温度变化</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">基本的教程在这里:
 
@@ -385,22 +417,8 @@ class Object: public BaseObject
           <header><a href="/2013/11/21/use-mock-to-debug/"><h2 itemprop="headline" class="item__header">分布式调试系列之行为模拟</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</div><p><a href="/2013/11/21/use-mock-to-debug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 21, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/"><h2 itemprop="headline" class="item__header">关于ob代码规范里面的行末空格</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：
-
-" 删除所有行未尾空格
-nnoremap &lt;C-f12&gt; :%s/[ \t\r]\+$//g&lt;cr&gt;''
-"显示空格
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-augroup ExtraWhitespaceGroup
-    autocmd!
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespa...</div><p><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 20, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-20T10:50:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page24">
             <i class="fas fa-angle-left"></i>

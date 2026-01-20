@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/28/configure-vim-tags-and-jump/"><h2 itemprop="headline" class="item__header">vim配置符号和跳转</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">对于一个简单的开发环境，能实现tags的定位跳转，以及查询就够用了。这种情况下，vim + 一些插件完全能够满足要求，尤其对于python这样的脚本语言开发，vim比IDE更简洁。这里我们尝试把vim配置成一个精简的IDE。
+
+首先升级你的ctags，换成exuberantCtags，后者功能更强大，且对c++等语言的支持更好。
+
+ubuntu下可以直接：
+	apt-get install exuberant-ctags
+centos下：
+	yum install ctags
+mac下：
+	brew install ctags-exuberant
+windows下：
+	什么是windows?
+
+
+cscope如果系统没有默认安装的话也装一下。
+
+之后安装tags插件，相对taglist...</div><p><a href="/2015/03/28/configure-vim-tags-and-jump/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 28, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-28T12:05:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/27/notes-on-easy-install-and-pip/"><h2 itemprop="headline" class="item__header">easy_install和pip的注意事项</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">关于安装目录：
 
@@ -366,21 +386,8 @@ yum install autoconf automake gcc gcc-c++ git libtool make nasm pkgconfig wget z
 
 剩下lame lame-devel libvpxlame-devel xvidcore xvidcore-devel faac faac-...</div><p><a href="/2015/03/13/centos-compilecentos-compile-ffmpeg/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 13, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-13T11:27:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/08/env-with-login-non-login-shell-and-sudo/"><h2 itemprop="headline" class="item__header">登录非登录shell和sudo的环境变量</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">关于登陆/非登录/交互/非交互shell的问题见参考文献1。今天遇到的问题是su/sudo的时候环境变量到底是怎么样的，执行了什么rc文件。
-
-
-  sudo命令是以root的身份执行command命令，但是环境变量还是当前用户的，执行目录也仍然是当前目录
-  即环境变量和执行目录都不会切换到root
-  su - 命令是切换到另一个用户，环境变量会切换到username，执行目录会切换到目标用户username的家目录
-  su 命令仅切换用户身份，例如从A切换到B，执行whoami命令，显示的是用户B，但当前目录不会切换，
-  环境变量也仍未切换，仍为A用户的环境变量
-  sudo su 只是用sudo的权限来执行su命令，跟su本身一样。
-  visudo可以配置sudo的继承环...</div><p><a href="/2015/03/08/env-with-login-non-login-shell-and-sudo/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 08, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-08T21:21:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page10">
             <i class="fas fa-angle-left"></i>

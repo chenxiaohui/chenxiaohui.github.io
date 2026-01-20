@@ -280,6 +280,28 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/21/bin-txt-file-read-write/"><h2 itemprop="headline" class="item__header">文本文件和二进制文件读写</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">探究这个的起因是我在序列化一个数据结构，用二进制写到文件之后用vim打开发现后面居然多了一个值。
+
+
+
+所以总结一下文件的两种不同写入方式。(当然上面是vim里面xxd显示的问题)
+
+我们用如下代码测试:
+
+int main(int argc, const char *argv[])
+{
+  FILE * fp  = fopen("output.txt", "w");
+  fputc(10, fp);
+  fputc(13, fp);
+  fputc('\n', fp);
+  fclose(fp);
+
+  fp  = fopen("output.bin", "wb");
+  int32_t length[] ={0x0a, 0x12345678};
+  fwrite(&amp;leng...</div><p><a href="/2014/06/21/bin-txt-file-read-write/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T12:28:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/20/susublime-plugin-to-generate-refrence/"><h2 itemprop="headline" class="item__header">sublime根据markdown引用生成参考文献的插件</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">写这个的目的主要是每次写博客需要生成以下版权声明，免得引用了别人的文章被人说盗版。markdown里面支持通过列表组织引用的url，如下所示：
 
@@ -388,21 +410,8 @@ Liquid::Template.register_filter(Jekyll::IndentFilter)
 	sort(beg, end);
 	accumulate(beg, end, original_value...</div><p><a href="/2014/06/19/stl-algorithm-signature/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 19, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-19T09:58:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/16/c-cpp-file-stream-operation-function/"><h2 itemprop="headline" class="item__header">c/c++ 文件/流读取函数总结</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">针对文本文件的，  c++主要有如下几种吧
-
-
-  
-    getline： 实现上，输入istream流，需要支持特定traits的迭代器。从流里面每次一行读入string，遇到delim结束。
-
-       template&lt;typename _CharT, typename _Traits, typename _Alloc&gt;
-     basic_istream&lt;_CharT,_Traits&gt;&amp;
-     getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
-         basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str, ...</div><p><a href="/2014/06/16/c-cpp-file-stream-operation-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 16, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-16T20:00:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-left"></i>

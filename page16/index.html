@@ -280,6 +280,25 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/11/redhat-upgrade-python/"><h2 itemprop="headline" class="item__header">redhat下升级python</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然发现服务器上的python是2.4的，好多语法都不支持。遂决定升级。
+
+首先yum升级是可以升级到2.6的：
+
+  	yum install python26
+  	yum install python26-devel
+  	yum install python26-setuptools
+  	ln -s /usr/bin/python2.6 /usr/bin/python
+
+升级之后发现yum不能用了。yum应该是跟python版本绑定了，于是把yum头部改成：
+
+  	#!/bin/python2.4
+
+之后发现2.6还是不行…我是用了多新的语法啊…就是几个dict comprehension。于是决定升级到2.7。源里面没有，只能手动。
+
+  	#wget http://py...</div><p><a href="/2015/01/11/redhat-upgrade-python/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 11, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-11T18:56:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/11/linux-proxy-setup/"><h2 itemprop="headline" class="item__header">通过搭建代理来共享网络</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个问题，开发机只有一台能上外网，其他的机器上手动更新依赖包简直是要死的感觉。尝试了如下几种方式：
 
@@ -369,34 +388,8 @@ results = [result...</div><p><a href="/2015/01/05/python-dict-update-in-comprehe
 
 解决办法是先把breakpoint里面的ClassNotFoundException: caught and uncaught去掉了。不知道为什么会造成这个结果。</div><p><a href="/2015/01/05/eclipse-class-not-found/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 05, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-05T09:50:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/04/linux-remote-log-watch/"><h2 itemprop="headline" class="item__header">Linux上的远程log监控</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">名字太大，其实只是遇到了一个问题，想远程实时看一个log文件的变化。开始是这么做的。
-
-  	vim 里面 :e scp://xxx@xxx//filePath
-  	:e! 来刷新
-
-太low了。直接用ssh：
-
-   	ssh xx@xxx “less filePath”
-
-发现less直接就退出了。 换成:
-
-   	ssh -t xx@xxx “less filePath”
-
-也不能实时刷新。测试less 本地一个文件同时写入，发现less没有实时刷新的功能。看来是在ob的时候deploy给我的错觉啊。
-
-换tail:
-
-ssh -t xx@xxx "tail filePath"
-
-
-还是直接执行完毕退出。查tail有没有自动刷新的模式，有一个follow：
-
-ssh xx@x...</div><p><a href="/2015/01/04/linux-remote-log-watch/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 04, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-04T17:34:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page15">
             <i class="fas fa-angle-left"></i>

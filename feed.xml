@@ -1,5 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-18T23:00:17-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
-</subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">一骑红尘妃子笑，然后呢？</title><link href="http://chenxiaohui.me/2026/01/18/yiqi-hongchen-feizi-xiao/" rel="alternate" type="text/html" title="一骑红尘妃子笑，然后呢？" /><published>2026-01-18T00:00:00-08:00</published><updated>2026-01-18T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/18/yiqi-hongchen-feizi-xiao</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/18/yiqi-hongchen-feizi-xiao/"><![CDATA[<p>最近看了《长安的荔枝》，马伯庸写的那个故事。说实话，看完之后心里堵得慌。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-19T19:15:56-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+</subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">语音转文字工具横评：找到了一匹黑马</title><link href="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/" rel="alternate" type="text/html" title="语音转文字工具横评：找到了一匹黑马" /><published>2026-01-19T00:00:00-08:00</published><updated>2026-01-19T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/"><![CDATA[<p>最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。</p>
+
+<p><img src="/assets/images/posts/voice-to-text-tnt.jpg" alt="安静！吵着我用TNT了" /></p>
+
+<!--more-->
+
+<h2 id="试用了哪些工具">试用了哪些工具</h2>
+
+<p><strong>WhisperFlow</strong> — 语音转文字领域名气不小，英文识别准确度不错。但中文场景下，总觉得差点意思。</p>
+
+<p><strong>科大讯飞</strong> — 中文输入法领域的老牌选手，中文识别确实厉害。但作为独立工具使用时，功能相对单一。</p>
+
+<p><strong>ChatGPT 原生语音输入</strong> — 手机上偶尔用用。好处是直接和 AI 对话，省去复制粘贴。坏处是唤醒不够方便，体验不如原生输入法自然。</p>
+
+<p><strong>微信语音输入</strong> — 日常聊天用着还行，但专门拿来做 AI 交互的输入工具，总觉得不够专业。</p>
+
+<h2 id="重点对比的几个维度">重点对比的几个维度</h2>
+
+<p>我在评测时主要看：</p>
+<ul>
+  <li>中英文支持情况</li>
+  <li>英文口音识别准确度</li>
+  <li>是否只是机械的逐字听写</li>
+</ul>
+
+<p>大部分工具都是传统的 Dictation 模式：你说什么它写什么，一字不差。听起来很好，但实际用起来问题不少——口语化表达、语气词、重复的内容，全都原样保留，后期还得自己整理。</p>
+
+<h2 id="发现的黑马typelesstalkbase">发现的黑马：Typeless（TalkBase）</h2>
+
+<p>从中文输入角度看，这个工具挺有意思。</p>
+
+<p>它不是简单的逐字转录，而是先提取你的中心思想，再优化改写。虽然有时会改动原话，但基本能保证输入没有大错误。对于 AI 交互场景，这其实更实用——你需要的是准确传达意图，不是逐字记录口语。</p>
+
+<p>另外还支持选中翻译、选中改写。这个功能我之前也想过要做，没想到别人已经做得很完善了。动手晚了。</p>
+
+<p>订阅制，价格和 WhisperFlow Pro 差不多。</p>
+
+<h2 id="一个遗憾都不是原生输入法">一个遗憾：都不是原生输入法</h2>
+
+<p>这些工具目前更多是专门用于听写或语音转文字的独立工具，而不像系统输入法那样可以随时随地唤起。</p>
+
+<p>每次想用都得切换 App 或点开悬浮窗，多了一步操作，自然流畅度就差了。</p>
+
+<h2 id="关于-iphone-上的理想场景">关于 iPhone 上的理想场景</h2>
+
+<p>我一直在想能不能在 iPhone 上把 Apple Intelligence 利用起来。</p>
+
+<p>理想场景是：直接用 Siri 唤醒，语音转文字后和 AI 全局交互。这其实是最自然的体验。</p>
+
+<p>但目前发现 Apple Intelligence 在手机端的语音转文字功能仍受限于语言支持。中文场景下用起来还是有障碍。</p>
+
+<h2 id="用-chatgpt-app-的问题">用 ChatGPT App 的问题</h2>
+
+<p>如果在手机端用 ChatGPT 进行语音交互，有两个麻烦。</p>
+
+<p>首先，唤醒方式不自然。不像 Siri 可以随时喊出来，ChatGPT 要先解锁、打开 App、点语音按钮。</p>
+
+<p>其次，试过把 Action Button 映射到 ChatGPT 的 Shortcut，但锁屏状态下会遇到各种限制，体验不够顺滑。</p>
+
+<h2 id="目前的结论">目前的结论</h2>
+
+<p>还是希望原生功能可以进一步完善。毕竟原生使用的体验最自然，只是目前模型的能力还有待提高。</p>
+
+<p>如果你主要用中文做 AI 交互输入，Typeless 值得一试。但如果追求「随时唤起」的自然体验，目前还没有完美方案，只能等各家把原生能力做得更好。</p>
+
+<p>工具这东西，够用就好，但「能随时用」比「功能强大」更重要。</p>]]></content><author><name>Harry Chen</name></author><category term="效率工具" /><summary type="html"><![CDATA[最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。]]></summary></entry><entry><title type="html">一骑红尘妃子笑，然后呢？</title><link href="http://chenxiaohui.me/2026/01/18/yiqi-hongchen-feizi-xiao/" rel="alternate" type="text/html" title="一骑红尘妃子笑，然后呢？" /><published>2026-01-18T00:00:00-08:00</published><updated>2026-01-18T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/18/yiqi-hongchen-feizi-xiao</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/18/yiqi-hongchen-feizi-xiao/"><![CDATA[<p>最近看了《长安的荔枝》，马伯庸写的那个故事。说实话，看完之后心里堵得慌。</p>
 
 <p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/2026-01-18-224135.png" alt="长安的荔枝" /></p>
 
@@ -536,6 +601,4 @@
 
 </code></pre></div></div>
 
-<p>感觉并不是很有用，主要是支持了static const std::string的定义初始化?</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="技术" /><summary type="html"><![CDATA[c++非静态变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。 比如 #pragma once class File { private: const std::string filename = "test"; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 而静态变量不太一样。静态变量本身定义跟声明是分开的，这本来也合理，所以在不同的编译单元里面，静态变量可以各自实现，当然相互影响。一般情况下因为.h和 .cpp的相互对应，也不会出现多次包含之后定义的重复的问题。 但是static变量毕竟是可以寻址的，从这个角度看，一个头文件如果包含了定义和声明，同时被多个编译单元包含，还是会出现multiple definition的问题。 #pragma once class File { private: static char filename[]; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; char File::filename[] = "file.txt"; 静态的const变量因为不涉及修改，可以认为编译期能确定，所以可以直接在定义的时候声明。同时c++11提供了constexpr来现实说明编译期可以确定。但是constexpr不能支持复杂类型。 比如： #pragma once class File { private: static const int file_size = 1025; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 所以c++17继续从编译器层面支持了多个编译单元对static的展开，也就是inline变量，是的，不只是函数，变量本身也可以inline了。 比如： #pragma once class File { private: // static constexpr std::string filename = "test";//not supported inline static const std::string filename = "test";//c++17 supported public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 同样支持非const的static初始化，比如： #pragma once class File { private: static char filename[]; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; inline char File::filename[] = "file.txt"; 或者 class File { private: inline static char filename[] = "file.txt"; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 感觉并不是很有用，主要是支持了static const std::string的定义初始化?]]></summary></entry><entry><title type="html">李显龙的一个演讲</title><link href="http://chenxiaohui.me/2021/03/14/lee_hsien_loong_speech/" rel="alternate" type="text/html" title="李显龙的一个演讲" /><published>2021-03-14T18:58:00-07:00</published><updated>2021-03-14T18:58:00-07:00</updated><id>http://chenxiaohui.me/2021/03/14/lee_hsien_loong_speech</id><content type="html" xml:base="http://chenxiaohui.me/2021/03/14/lee_hsien_loong_speech/"><![CDATA[<iframe width="560" height="315" src="https://www.youtube.com/embed/xEeFZ1ceEVY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-
-<p>从里面能看到新加坡一贯的社会治理理念，里面关于养老的一些设计，关于大家长式的执政理念，都有比较到位的体现。</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="生活" /><summary type="html"><![CDATA[从里面能看到新加坡一贯的社会治理理念，里面关于养老的一些设计，关于大家长式的执政理念，都有比较到位的体现。]]></summary></entry></feed>
+<p>感觉并不是很有用，主要是支持了static const std::string的定义初始化?</p>]]></content><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><category term="技术" /><summary type="html"><![CDATA[c++非静态变量可以直接在定义的时候初始化。这个算是比较简单的构造方式，相当于对初始化列表的优化，可以认为是初始化列表的一个简单的写法。 比如 #pragma once class File { private: const std::string filename = "test"; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 而静态变量不太一样。静态变量本身定义跟声明是分开的，这本来也合理，所以在不同的编译单元里面，静态变量可以各自实现，当然相互影响。一般情况下因为.h和 .cpp的相互对应，也不会出现多次包含之后定义的重复的问题。 但是static变量毕竟是可以寻址的，从这个角度看，一个头文件如果包含了定义和声明，同时被多个编译单元包含，还是会出现multiple definition的问题。 #pragma once class File { private: static char filename[]; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; char File::filename[] = "file.txt"; 静态的const变量因为不涉及修改，可以认为编译期能确定，所以可以直接在定义的时候声明。同时c++11提供了constexpr来现实说明编译期可以确定。但是constexpr不能支持复杂类型。 比如： #pragma once class File { private: static const int file_size = 1025; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 所以c++17继续从编译器层面支持了多个编译单元对static的展开，也就是inline变量，是的，不只是函数，变量本身也可以inline了。 比如： #pragma once class File { private: // static constexpr std::string filename = "test";//not supported inline static const std::string filename = "test";//c++17 supported public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 同样支持非const的static初始化，比如： #pragma once class File { private: static char filename[]; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; inline char File::filename[] = "file.txt"; 或者 class File { private: inline static char filename[] = "file.txt"; public: void print() const { std::cout &lt;&lt; filename &lt;&lt; std::endl; } }; 感觉并不是很有用，主要是支持了static const std::string的定义初始化?]]></summary></entry></feed>

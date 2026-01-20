@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/10/12/svn-commit-failed/"><h2 itemprop="headline" class="item__header">关于svn commit fail的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">svn commit失败的时候会产生一个svn-commit.tmp 文件， 打开之后发现里面是commit-message，难道下次提交的时候还需要把消息复制进去么？
+
+看看 svn help commit, 发现有 -F 可以用, 平常都只有用 -m ‘message’ 而已。定义如下：
+
+-F: 会把档案内容读进来, 然后直接 commit, 想当然就用 -F 直接取 svn-commit.tmp 来 commit.
+
+例: svn ci -F svn-commit.tmp
+
+
+
+
+PS: commit 完后, 还是要手动 rm svn-commit.tmp.
+
+另一个关于commit的问题是，如果 svn ci 进入填充commit-log的交互界面的时候，突然发现提交文件列表...</div><p><a href="/2013/10/12/svn-commit-failed/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 12, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-12T21:39:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/12/several-svn-problems/"><h2 itemprop="headline" class="item__header">几个svn的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">误用rm删除了未提交文件
 
@@ -392,27 +409,8 @@ rs的日志如下：
 
 兰州: 一种烟, 如图所示:</div><p><a href="/2013/09/30/give-me-a-sigarette-of-lanzhou/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 30, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-30T16:11:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/09/27/depend-problem-in-oceanbase/"><h2 itemprop="headline" class="item__header">oceanbase的库依赖问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个问题: 写测试用例的时候发现总是找不到符号undefined refrence, 第一反应是我去有个没编译的吧, 但是打印了所有的符号，发现其实编译生成库文件里面完全有对应的符号，命名空间也没有错误。这就是很诡异的问题了，刚好手头另一份代码可以编译链接成功，于是对比了一下午结果，发现最后一个函数在类里实现就能编译，类外实现就不能编译，这个问题就太毁三观了。
-
-最后请教了 解伦师兄 ， 发现其实是库依赖的问题， Libtool制定的链接库列表是有相互依赖关系的，比如：
-
-
-
-LDADD = libtest2.a \
-		libtest2.a 
-
-
-或者gcc命令
-
-gcc –o test main.c libtest2.a libtest1.a
-
-
-这里编译的时候会认为lib...</div><p><a href="/2013/09/27/depend-problem-in-oceanbase/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 27, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-27T16:15:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page27">
             <i class="fas fa-angle-left"></i>

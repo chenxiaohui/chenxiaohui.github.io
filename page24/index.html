@@ -280,6 +280,19 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/16/c-cpp-file-stream-operation-function/"><h2 itemprop="headline" class="item__header">c/c++ 文件/流读取函数总结</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">针对文本文件的，  c++主要有如下几种吧
+
+
+  
+    getline： 实现上，输入istream流，需要支持特定traits的迭代器。从流里面每次一行读入string，遇到delim结束。
+
+       template&lt;typename _CharT, typename _Traits, typename _Alloc&gt;
+     basic_istream&lt;_CharT,_Traits&gt;&amp;
+     getline(basic_istream&lt;_CharT, _Traits&gt;&amp; __is,
+         basic_string&lt;_CharT, _Traits, _Alloc&gt;&amp; __str, ...</div><p><a href="/2014/06/16/c-cpp-file-stream-operation-function/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 16, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-16T20:00:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/15/a-performance-problem/"><h2 itemprop="headline" class="item__header">记工作中遇到的一个性能问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">工作中遇到一个问题，更新schema的过程发现耗时太长，30多s。导致其他一系列流程阻住。记录一下这个问题的分析解决。
 
@@ -395,40 +408,8 @@ ObRootSchemaSerivice : init_core_schema()
  --enable-tclinterp \
  --with-pyth...</div><p><a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 09, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-09T10:52:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/09/oceanbase-cplusplus-note/"><h2 itemprop="headline" class="item__header">总结Oceanbase编码中需要注意的一些细节</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">所有指针使用之前都需要判断是否为NULL，尤其是如果有IF分支的情况下，如：
-
-     if (it != NULL)
- {
-     xxx
- }
- else
- {
-     it不能再使用了
- }
-    
-  
-  
-    不要使用strcpy而应该使用strncpy。
-  
-  
-    所有成员函数都应该考虑是否为const函数.
-  
-  
-    所有函数都需要判断传入值是否有效。
-  
-  
-    有返回值的函数，需要先定义返回值的默认值，不能直接返回中间结果。比如：
-
-     //这样是很容易造成问题的
- int * xxx(xxx)
- {
-     int* it = NULL;
-     for(int * it =xxx;it != xxx; it ++...</div><p><a href="/2014/06/09/oceanbase-cplusplus-note/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 09, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-09T10:38:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page23">
             <i class="fas fa-angle-left"></i>

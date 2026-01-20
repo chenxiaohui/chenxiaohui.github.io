@@ -280,6 +280,18 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/02/06/gtest-bug-on-mac/"><h2 itemprop="headline" class="item__header">gtest在mac上链接的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：
+
+  	g++  -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest-all.cc
+g++ -I$GTEST_DIR/include -I$GTEST_DIR -c $GTEST_DIR/src/gtest_main.cc
+
+ar -rv libgtest.a gtest-all.o
+ar -rv libgtest_main.a gtest_main.o
+
+c++ -g -Wall -Wextra -pthread  -isystem $GTEST_DIR/include  -c -o R...</div><p><a href="/2015/02/06/gtest-bug-on-mac/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 06, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-06T20:39:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/04/distinguish-special-symbol-in-shell-and-makefile/"><h2 itemprop="headline" class="item__header">区分下shell和makefile中的特殊字符</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">主要是在Makefile中看到了这种字符($@)，不理解含义，查阅了一下，跟shell中意义不一样：
 
@@ -373,12 +385,8 @@ forward           1...</div><p><a href="/2015/01/30/use-shadowsocks-in-terminal/
 	
 	ZkEventKey(EventType...</div><p><a href="/2015/01/29/java-compare-strategy/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 29, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-29T20:42:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/29/eclipse-multi-console/"><h2 itemprop="headline" class="item__header">eclipse多命令行窗口</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候需要在eclipse中同时运行客户端程序和服务器程序，开始都是一个在eclipse里面运行，另一个在命令行单独启动，未免不方便。后来发现，其实可以直接在eclipse中运行两次。调试视图会有两个显示，同时新建一个console窗口，关联另一个实例的显示就可以同时监视两个程序的输出了。</div><p><a href="/2015/01/29/eclipse-multi-console/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 29, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-29T20:41:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page12">
             <i class="fas fa-angle-left"></i>

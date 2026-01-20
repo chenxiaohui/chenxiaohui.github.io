@@ -280,6 +280,18 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2021/03/07/cpp_http_server_lib_squeasel/"><h2 itemprop="headline" class="item__header">一个简单的httpserver库squeasel</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">cloudera开源的一个lib：https://github.com/cloudera/squeasel
+
+许可是：
+
+This is a fork of Mongoose, branched at the last commit of Mongoose that was released as MIT license. Newer versions of Mongoose are now licensed as GPLv2, so we cannot use them in our projects.
+
+所以用旧版本还是可以的。
+
+之所以注意到是因为在yugabyte-db里面偶然看到。关注下的意义主要是c++毕竟没有go那么方便的pprof，用来做个统计信息debug还是比较方便...</div><p><a href="/2021/03/07/cpp_http_server_lib_squeasel/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 07, 2021</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-07T15:22:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/03/07/vim_floaterm/"><h2 itemprop="headline" class="item__header">vim-floaterm配置</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">这个插件主要是提供vim内部调用shell环境的，安装是比较容易，但是发现会有很多不兼容的地方。
 
@@ -370,25 +382,8 @@ int main()
           <header><a href="/2021/02/19/singapore_attitude_to_china_and_us/"><h2 itemprop="headline" class="item__header">新加坡对中美关系的态度[分享]</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">分享两个视频，一个是新加坡的李显龙总理在National Day Rally 2019的演讲，另一个是UP主小岛的一个视频，观点说的比较清楚了，比较有启发的是南洋华人的身份归属，有些思考就不想说了，看完基本上每个人都会有自己的想法。整体上看，李总理说的还是非常理性且完备，且对中国有相当的启发。</div><p><a href="/2021/02/19/singapore_attitude_to_china_and_us/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 19, 2021</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-19T16:57:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/19/doxygen_call_graph/"><h2 itemprop="headline" class="item__header">doxygen生成项目调用关系</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">如果要看一个项目的调用关系，可以考虑一些IDE工具，比如正版source insight等，嗯，正版。
-
-但是毕竟兼容性不好。可以考虑doxygen来生成一份，作为参考，主要还是靠看代码和调试。
-
-首先 doxygen -g 生成配置。实测下面这些是需要补充在Doxyfile的
-
-HAVE_DOT               = YES
-EXTRACT_ALL            = YES
-EXTRACT_PRIVATE        = YES
-EXTRACT_STATIC         = YES
-CALL_GRAPH             = YES
-CALLER_GRAPH           = YES
-DISABLE_INDEX          = YES 
-GE...</div><p><a href="/2021/02/19/doxygen_call_graph/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 19, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-19T14:53:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>502 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page2">
             <i class="fas fa-angle-left"></i>
