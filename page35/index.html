@@ -280,6 +280,44 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/11/29/vmware-esxi-5-configuration/"><h2 itemprop="headline" class="item__header">VMware ESXi 5安装配置部分</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+折腾了两天，终于搞懂了是怎么回事了。这里写一下详细配置，给其他像我这样的小白一个参考。
+
+首先明确一下ESXi是干嘛的。
+
+
+  VMware ESXi是VMware的嵌入式hypervisor。ESXi没有服务控制台，可以说是一个精简版的ESX。对于由于成本和硬件还没有开始实施虚拟化的组织来说，使用免费的VMware ESXi hypervisor不失为着手虚拟化的好方式。[3]
+
+  ![VMware ESXi ¥i¦bµw¥ó¤Wª½±µ¹B¦æ][1]
+
+  图1：VMware ESX系列架构[1]
+
+
+而ESXi可以看做ESX Server的轻量化版本。
+
+两者的区别见文献[2]，还有一个非常不错的专题[3]
+
+我在一台Dell R710服务器上搭建了一个ESXi Se...</div><p><a href="/2011/11/29/vmware-esxi-5-configuration/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Dell+R710">Dell R710</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=iDRAC">iDRAC</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Sphere+Client">Sphere Client</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=VMware+ESXi">VMware ESXi</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE">安装配置</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 29, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-11-29T00:00:00-08:00">
+    <meta itemprop="keywords" content="Dell R710,iDRAC,Sphere Client,VMware ESXi,安装配置"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/11/26/about-tencent-zhangxiaolong/"><h2 itemprop="headline" class="item__header">转载: 腾讯的张小龙是一个什么样的人</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有人在知乎上问：腾讯的张小龙是一个什么样的人？
 下面是我的回答：
@@ -470,32 +508,8 @@ function! GetAllCommands()
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 29, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-29T00:00:00-07:00">
     <meta itemprop="keywords" content="fuzzyfinder,查找利器"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/09/24/auto-exit-problem-of-nerd-tree-plugin/"><h2 itemprop="headline" class="item__header">Nerd_Tree插件自动退出</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-我们知道（不知道也没事）Taglist插件有自动退出功能，即只剩下一个文件的时候，即使Taglist窗口开着，在主窗口用:q的时候会同时退出Taglist窗口，而Nerd_Tree默认并没有这个功能，我们可以仿照Taglist插件来给Nerd_Tree插件天上这个功能。
-
-首先插入如下代码
-
-" Exit Vim itself if only the taglist window is present (optional)
-let s:NERDTreeBufName = 'NERD_tree_'
-	augroup Exit_onlywindow
-		"当进入Nerd_Tree的buffer时也检测是否需要退出
-		exec "autocmd BufEnter ". s:NERDT...</div><p><a href="/2011/09/24/auto-exit-problem-of-nerd-tree-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Nerd_tree">Nerd_tree</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=taglist">taglist</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%87%AA%E5%8A%A8%E9%80%80%E5%87%BA">自动退出</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 24, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-24T00:00:00-07:00">
-    <meta itemprop="keywords" content="Nerd_tree,taglist,自动退出"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page34">
             <i class="fas fa-angle-left"></i>
@@ -508,7 +522,7 @@ let s:NERDTreeBufName = 'NERD_tree_'
             </li><li>
                   <a class="button button--secondary button--circle" href="/page36"><span>36</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page36">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

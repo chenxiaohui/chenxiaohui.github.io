@@ -280,6 +280,10 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/08/im/"><h2 itemprop="headline" class="item__header">呵呵呵呵以至于我不得不开篇博客说这个事情</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了…</div><p><a href="/2014/07/08/im/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 08, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-08T09:55:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/07/two-process-commit-exceptions/"><h2 itemprop="headline" class="item__header">两阶段提交协议的异常处理</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">两阶段提交的协议大家都比较熟悉了，解释一下每个阶段的异常处理。首先，我们需要持久化协议过程中的状态，这样如果server宕机，那么恢复的时候还能通过日志知道宕机前处于那个阶段。同时，所有对数据的修改都会先写write ahead log，保证宕机重启的之后数据也不会丢失。写日志的顺序假定为:写write ahead log-修改缓冲区-写commit/abort log。
 
@@ -358,24 +362,8 @@
           <header><a href="/2014/07/01/photo-of-a-cup/"><h2 itemprop="headline" class="item__header">测试一张静物</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">测试一张静物：宾得 SMC FA 50mm F1.4， 光圈2.0 快门 1/60</div><p><a href="/2014/07/01/photo-of-a-cup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 01, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-01T19:44:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/01/nvi-usage-of-virtual-template/"><h2 itemprop="headline" class="item__header">NVI的应用-虚函数模板</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">我们有时候需要把一个模板函数实现为虚函数，但是C++不支持模板虚函数（至少目前是），所以需要一些方法绕过去。以下是郁白师兄提供的解决方案，确实比较巧妙，之前没想过NVI（NonVirtual Interface）能解决这个问题。
-
-class IAllocator
-{
-  public:
-    virtual ~IAllocator() {};
-    virtual void *alloc(const int64_t size) = 0;
-};
-template &lt;class T&gt;
-class TAllocator : public IAllocator
-{
-  public:
-    TAllocator(T &amp;allocator) : allocator_(...</div><p><a href="/2014/07/01/nvi-usage-of-virtual-template/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 01, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-01T14:52:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page20">
             <i class="fas fa-angle-left"></i>
@@ -388,7 +376,7 @@ class TAllocator : public IAllocator
             </li><li>
                   <a class="button button--secondary button--circle" href="/page22"><span>22</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

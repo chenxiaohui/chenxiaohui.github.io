@@ -280,6 +280,32 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/21/ppost-review-plugin/"><h2 itemprop="headline" class="item__header">post-review插件</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">###post-review.vim
+
+A plugin to generate post-review script
+
+Usage
+
+####install:
+
+git clone https://github.com/chenxiaohui/post-review.vim 
+
+
+put post-review.vim to your $VIM/plugin
+
+add this to your vimrc
+
+nmap &lt;leader&gt;pr :call PostReview()&lt;cr&gt;
+
+
+####process:
+
+svndiff use vimdiff: see link
+
+gitdiff use vimdiff: see link</div><p><a href="/2014/06/21/ppost-review-plugin/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T20:57:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/21/photography-test/"><h2 itemprop="headline" class="item__header">测试一下机器和镜头</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">测试一下机器，镜头是18-55套头，表现中规中矩吧，K10D色彩不错。图压缩过。</div><p><a href="/2014/06/21/photography-test/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 21, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T13:24:00-07:00"></div>
@@ -371,33 +397,8 @@ Liquid::Template.register_filter(Jekyll::IndentFilter)
   
     镜片如果折光度高的话，那么成像位置靠前，像小，同时光线聚焦点密度增加导致景深增加（算相等的物距，如果两个点聚焦之后的焦深不大的话，那么把底片移动到其中一个点上，另一个点的弥散圈也不大）。这就是短...</div><p><a href="/2014/06/19/phphotography-theorem/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 19, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-19T19:00:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/06/19/nnginx-install-config/"><h2 itemprop="headline" class="item__header">Nginx 安装配置总结</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">具体的可以看参考文献里面的三篇博客，中间遇到一个问题，nignx提示无法找到php文件。主要有两个原因：
-
-
-  
-    确定nginx工作线程的启动用户有权限访问www-root，需要修改nginx.conf的这里：
-
-     user  www-data;
-    
-  
-  
-    确定www-root配置正确，需要修改这里：
-
-     fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
-    
-  
-
-
-参考文献:
-
-[1] nginx配置入门, http://www.nginx.cn/591.html
-
-[2] Nginx安装, http://www.nginx.cn/install...</div><p><a href="/2014/06/19/nnginx-install-config/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 19, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-19T11:57:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page22">
             <i class="fas fa-angle-left"></i>
@@ -410,7 +411,7 @@ Liquid::Template.register_filter(Jekyll::IndentFilter)
             </li><li>
                   <a class="button button--secondary button--circle" href="/page24"><span>24</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page24">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

@@ -280,6 +280,33 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/08/31/skin-magic-linking-in-winsdk-program/"><h2 itemprop="headline" class="item__header">SkinMagic在WinSDK程序中的链接</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+其实这种诡异的搭我配估计没人会遇到。我只是想在SDK程序里做一下美化而已。
+
+SkinMagic在MFC程序里的使用还是很常见的，网上代码有的是，至于大家手里的SkinMagic库，恐怕没有几个是正版的吧？有木有有木有！
+
+其实在SDK下使用SkinMagic还是比较简单的事情，主要解决两个问题：
+
+
+  库的链接
+  皮肤的导入
+
+
+第一个其实好说，注意InitSkinMagicLib传入WinMain的hInstance：
+
+VERIFY( 1 == InitSkinMagicLib(hInstance, NULL , NULL, NULL ));
+VERIFY( 1 == LoadSkinFromResource(NULL,MAKEINTRESOURCE(IDR_SKIN5...</div><p><a href="/2011/08/31/skin-magic-linking-in-winsdk-program/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=SkinMagic">SkinMagic</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=WinSDK">WinSDK</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 31, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-31T00:00:00-07:00">
+    <meta itemprop="keywords" content="SkinMagic,WinSDK"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/"><h2 itemprop="headline" class="item__header">清华大学软件学院MSE开题报告Latex模板</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -451,21 +478,8 @@ Chrome插件实际上是一组JS的脚本 配置文件，可能还有Html的页�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 26, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-26T00:00:00-07:00">
     <meta itemprop="keywords" content="人生导师,倒掉,安妮宝贝,张爱玲,郭敬明"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/08/24/use-gdiplus-in-mfc/"><h2 itemprop="headline" class="item__header">在MFC程序中使用GDI+</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-意义就不说了，细节见如下链接，照片在后面，代码这里下载</div><p><a href="/2011/08/24/use-gdiplus-in-mfc/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=GDI%2B">GDI+</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=MFC">MFC</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 24, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-24T00:00:00-07:00">
-    <meta itemprop="keywords" content="GDI+,MFC"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page36">
             <i class="fas fa-angle-left"></i>
@@ -478,7 +492,7 @@ Chrome插件实际上是一组JS的脚本 配置文件，可能还有Html的页�
             </li><li>
                   <a class="button button--secondary button--circle" href="/page38"><span>38</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page38">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>
