@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/06/18/ccache-and-cgo/"><h2 itemprop="headline" class="item__header">ccache和cgo并存的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">ccache是加快编译的神器，有了ccache，忘了distcc。但是发现go和c混编的项目里面如果用了cgo的话，go编译的时候ccache会报错。主要是传给ccache的某些参数ccache不认识。错误如下：
+
+   	/usr/bin/ccache: invalid option – ‘d’
+Usage:
+    ccache [options]
+    ccache compiler [compiler options]
+    compiler [compiler options] (via symbolic link)
+
+Options:
+    -c, --cleanup delete old files and recalculate size counters
+   ...</div><p><a href="/2016/06/18/ccache-and-cgo/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 18, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-18T20:15:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/06/17/export-disk-using-nfs/"><h2 itemprop="headline" class="item__header">使用nfs挂载网络磁盘</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">分布式环境下经常需要到各个节点启动server，常见的方式推的方式，比如scp到各个结点，但是有时候更新的文件少儿需要scp的文件比较多。这时候可以选择nfs挂载的方式把编译好的文件放到网络磁盘上，然后共享到其他的服务器，这样可以按需使用。
 
@@ -409,33 +423,8 @@ char *basename(char *path);
 #include &lt;stdio.h&gt;
 #include &lt;lib...</div><p><a href="/2016/05/15/dirname-and-basename-cautions/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 15, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T14:42:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2016/04/03/summarize-isolation-lock/"><h2 itemprop="headline" class="item__header">数据库锁和隔离级别的总结</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在琢磨MVCC和悲观乐观锁的问题，感觉有些以前学习的点没有串联起来，主要是隔离级别和锁相关的，这里总结思考一下：
-
-
-  两阶段锁解决了什么问题
-
-
-  	两阶段锁主要解决事务调度的可串行化，保证了调度是正确的。一个简单的例子参考度娘这里。
-
-
-  实现两阶段锁对应了什么隔离级别。
-
-
-  	两阶段锁保证了基本的隔离级别正确性，RC之上的隔离级别（包含RC）都需要至少保证两阶段锁。一个例外是如果where条件不走索引的话，是可能全表加锁的，这种情况下mysql为了性能提前解锁了不满足条件的行，参见这里。
-
-
-  各个隔离级别对应的加锁策略。
-
-
-  	这个比较简单了：
-
-  	- RU：读加S锁，写加X锁，完成即可释放。
-  	- RC：读加S锁，写加X锁，读锁完成可释放，写锁一直...</div><p><a href="/2016/04/03/summarize-isolation-lock/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 03, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-03T19:34:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page5">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/02/27/django-to-apache/"><h2 itemprop="headline" class="item__header">django mod_wsgi配置的一些问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">安装apache不说了，用apache做django容器的时候（详见参考文献1)遇到如下几个问题，记录一下：
+
+
+  apxs找不到。centos上直接装的httpd-2.2.3-83.el5_10，默认没有apxs。想源码编译一个apache，结果发现源里面有。
+
+
+  	yum install -y httpd-devel
+
+
+  
+    /usr/local/lib/libpython2.7.a: could not read symbols: Bad value
+
+    错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
+     ./configure –prefix=/usr/local/  –enabl...</div><p><a href="/2015/02/27/django-to-apache/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 27, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-27T13:39:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/02/06/gtest-bug-on-mac/"><h2 itemprop="headline" class="item__header">gtest在mac上链接的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">gtest鉴于google自己的风格，不提供make install，直接make完之后配置路径链接就行，在linux上这样是ok的：
 
@@ -373,20 +390,8 @@ forward         192.168.*.*/     .
 forward            10.*.*.*/     .
 forward           1...</div><p><a href="/2015/01/30/use-shadowsocks-in-terminal/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-30T18:13:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/29/java-compare-strategy/"><h2 itemprop="headline" class="item__header">Java 中相等的比较</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到如下一个问题，java中使用复杂类型做Hashkey的时候，构造另一个值相同的对象作为key无法获取map的value。原因其实是java的==判断的依据是两个引用是否指向了同一个对象。实际调用了hashCode函数。内置对象的逻辑相等比较需要使用equals，比如String。而对于非内置对象，equals也同样调用了hashCode来判断相等。
-
-所以对于需要逻辑相等判断的对象，需要override两个函数，比如如下一个getkey的类定义了如何从Map中根据path和type得到一个唯一的对象：
-
-  	class ZkEventKey {
-	EventType type = null;
-	String path = null;
-	
-	ZkEventKey(EventType...</div><p><a href="/2015/01/29/java-compare-strategy/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 29, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-29T20:42:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page12">
             <i class="fas fa-angle-left"></i>

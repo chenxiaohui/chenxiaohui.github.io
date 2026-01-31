@@ -280,6 +280,38 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/"><h2 itemprop="headline" class="item__header">清华大学软件学院MSE开题报告Latex模板</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+使用请先编译BIB文件（参考文献），然后直接生成pdflatex（windows下），用Linux的孩纸请自行抉择。
+
+
+  bibtex %1
+
+  pdflatex %1.tex
+
+
+没找到表格分散对齐的命令，只能手动填充空格了。
+
+在CTex下测试通过。下载链接：here</div><p><a href="/2011/08/31/mse-kait-report-latex-template-of-tsinghua-software-school/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Latex">Latex</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=MSE">MSE</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%BC%80%E9%A2%98%E6%8A%A5%E5%91%8A">开题报告</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%B8%85%E5%8D%8E%E5%A4%A7%E5%AD%A6">清华大学</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%BD%AF%E4%BB%B6%E5%AD%A6%E9%99%A2">软件学院</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 31, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-31T00:00:00-07:00">
+    <meta itemprop="keywords" content="Latex,MSE,开题报告,清华大学,软件学院"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/08/30/liangxinshu-unnominated/"><h2 itemprop="headline" class="item__header">转载：中国数字时代：独立候选人梁树新未能通过提名</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -432,42 +464,8 @@ Chrome插件实际上是一组JS的脚本 配置文件，可能还有Html的页�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 24, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-24T00:00:00-07:00">
     <meta itemprop="keywords" content="GDI+,MFC"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/08/24/about-python-class-member-and-javascript-prototype/"><h2 itemprop="headline" class="item__header">关于Python的类成员和Javascript的原型</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然发现两个的设计思路是一致的（个人理解，欢迎指正）。这里简要分析一下：
-
-Python的类成员，也就是直接定义在类里的变量（实例成员是用self.x直接声明的），而类方法就是用@classmethod说明的方法。
-
-
-  Python还有一种@staticmethod，静态方法，其实设立所有的静态方法和变量的目的主要是用类名限制访问范围，编译的时候就直接被改名然后变成了全局变量。
-
-
-Js的原型（prototype）是js里最复杂的一部分了，有的人可能Jquery什么的用的很熟，但是对原型一无所知。最初设计Js的时候设计师没有考虑把它设计成一门完整的语言，后来决定引入面向对象的时候，就采用了原型链这种诡异的设计模式。具体的使用大家应该都熟悉。类名（实际是函数名）.prototype....</div><p><a href="/2011/08/24/about-python-class-member-and-javascript-prototype/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=classmethod">classmethod</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=javascript">javascript</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=prototype">prototype</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Python">Python</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=staticmethod">staticmethod</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%8E%9F%E5%9E%8B">原型</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%98%AE%E4%B8%80%E5%B3%B0">阮一峰</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Aug 24, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-08-24T00:00:00-07:00">
-    <meta itemprop="keywords" content="classmethod,javascript,prototype,Python,staticmethod,原型,阮一峰"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page36">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,33 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/"><h2 itemprop="headline" class="item__header">关于结构体字节对齐的一些问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+字节对齐的目的
+
+字节对齐的作用不仅是便于cpu快速访问，同时合理的利用字节对齐可以有效地节省存储空间。对于32位机来说，4字节对齐能够使cpu访问速度提高，比如说一个long类型的变量，如果跨越了4字节边界存储，那么cpu要读取两次，这样效率就低了。但是在32位机中使用1字节或者2字节对齐，反而会使变量访问速度降低。所以这要考虑处理器类型，另外还得考虑编译器的类型。在vc中默认是4字节对齐的，GNU gcc 也是默认4字节对齐。
+
+字节对齐的基本原则
+
+如下三条
+
+
+  
+    结构体变量的首地址能够被其最宽基本类型成员的大小所整除；
+    结构体每个成员相对于结构体首地址的偏移量（offset）都是成员大小的整数倍，如有需要编译器会在成员之间加上填充字节（internal...</div><p><a href="/2012/09/22/some-problems-of-struct-member-byte-aligning/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%AD%97%E8%8A%82">字节</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%AF%B9%E9%BD%90">对齐</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BB%93%E6%9E%84%E4%BD%93">结构体</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 22, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-09-22T00:00:00-07:00">
+    <meta itemprop="keywords" content="字节,对齐,结构体"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/06/28/light-vim-buffer-management-plugin-bufit-v2/"><h2 itemprop="headline" class="item__header">Vim轻量级缓冲区管理插件Buf_it修订版Buf_itv2</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -448,61 +475,8 @@ Unable to enumerate USB device…..</div><p><a href="/2012/04/14/unable-to-enume
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 14, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-14T00:00:00-07:00">
     <meta itemprop="keywords" content="Linux,thinkpad,Unable to enumerate USB device"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/"><h2 itemprop="headline" class="item__header">C++变量的初始化方式</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-写这个问题是受微软今年实习生招聘的一道笔试题启发，上一篇博客好像提到了。之前还真没细想过这些事情。
-
-首先把需要初始化的成员变量分为几类：
-
-
-  一般变量(int)
-
-  静态成员变量(static int)
-
-  常量(const int )
-
-  静态常量(static const int)
-
-
-对应的初始化方式是：
-
-
-  一般变量可以在初始化列表里或者构造函数里初始化，不能直接初始化或者类外初始化
-
-  静态成员变量必须在类外初始化
-
-  常量必须在初始化列表里初始化
-
-  静态常量必须只能在定义的时候初始化
-
-
-举一个简单的例子
-
-#include 
-using namespace std;
-class Test
-{
-private:
-    int a;
-    s...</div><p><a href="/2012/04/09/ways-to-initialize-variables-in-cplusplus/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=C%23">C#</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%88%9D%E5%A7%8B%E5%8C%96">初始化</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%B8%B8%E9%87%8F">常量</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%9D%99%E6%80%81">静态</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 09, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-09T00:00:00-07:00">
-    <meta itemprop="keywords" content="C#,初始化,常量,静态"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page31">
             <i class="fas fa-angle-left"></i>

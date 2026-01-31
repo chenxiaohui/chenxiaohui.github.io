@@ -280,6 +280,10 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/21/use-mock-to-debug/"><h2 itemprop="headline" class="item__header">分布式调试系列之行为模拟</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</div><p><a href="/2013/11/21/use-mock-to-debug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 21, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/20/method-to-deal-with-blanks-at-line-end/"><h2 itemprop="headline" class="item__header">关于ob代码规范里面的行末空格</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">行尾的空格在post-review的时候会被标识成红色，其实可以通过如下vim配置直接显示出来并全部去掉：
 
@@ -390,28 +394,8 @@ data loss的最大因素：drop table, 所以要做好充分的容错。
 
 减少对外部系统强依赖...</div><p><a href="/2013/11/01/how-to-build-high-available-system/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 01, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-01T18:42:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/"><h2 itemprop="headline" class="item__header">分布式调试之用gdb调试分布式系统</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">分布式系统开发的时候我们最经常遇到的问题就是，从一个server发送了一条报文之后怎么在另一个server查看这条报文的处理逻辑是否正确，单机的debug都不是问题，但是多机debug怎么做呢？
-
-在ob团队里面，正常情况下我们有如下三种方式处理这些问题：
-
-
-  做mock，写单测，隔离开集群环境
-  加调试日志，部署集群环境，看日志。
-  非daemon模式下通过gdb调试。
-
-
-这里我们详细说一下第三种。这也是最有效果的一种。
-
-
-
-需要强调的是，正常情况下ob启动之后各个server会以守护进程方式运行，这时候如果用gdb启动server的话，gdb不知道在fork之后跟哪个进程，而在我测试下，set follow-fork-mode貌似也没成功过。
-
-所以最好的方法是直接不要...</div><p><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 29, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-29T13:40:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

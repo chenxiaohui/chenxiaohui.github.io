@@ -280,6 +280,28 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2021/03/07/single_instance/"><h2 itemprop="headline" class="item__header">单例模式讨论</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">其实就是记录下。。不算自己写的。
+
+mutex版本：
+
+
+std::shared_ptr&lt;some_resource&gt; resource_ptr;
+std::mutex resource_mutex;
+void foo() {
+	std::unique_lock&lt;std::mutex&gt; lk(resource_mutex); // 所有线程在此序列化 
+	if(!resource_ptr)
+		{resource_ptr.reset(new some_resource); // 只有初始化过程需要保护
+  	lk.unlock();
+  resource_ptr-&gt;do_something();
+}
+
+double-checking版本：
+
+
+void u...</div><p><a href="/2021/03/07/single_instance/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 07, 2021</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-07T16:09:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/03/07/cpp_http_server_lib_squeasel/"><h2 itemprop="headline" class="item__header">一个简单的httpserver库squeasel</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">cloudera开源的一个lib：https://github.com/cloudera/squeasel
 
@@ -378,12 +400,8 @@ int main()
 
 开发的不是很完善，路还在铺，沿途能看到工人在施工。据说有鳄鱼，没怎么看到，候鸟能看到一些，再就是各种蛙类，跳跳鱼什么的。新加坡的原始森林公园就真的是原始森林，属于进不去人那种，除了行人的道路，其他都是沼泽湿地，有机质在里面腐败产生各种气味。如果当年诸葛亮七擒孟获就是在这种泥地里面趟过去，那还是放了孟获吧。</div><p><a href="/2021/03/01/sungei_buloh/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2021</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-03-01T17:01:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/19/singapore_attitude_to_china_and_us/"><h2 itemprop="headline" class="item__header">新加坡对中美关系的态度[分享]</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">分享两个视频，一个是新加坡的李显龙总理在National Day Rally 2019的演讲，另一个是UP主小岛的一个视频，观点说的比较清楚了，比较有启发的是南洋华人的身份归属，有些思考就不想说了，看完基本上每个人都会有自己的想法。整体上看，李总理说的还是非常理性且完备，且对中国有相当的启发。</div><p><a href="/2021/02/19/singapore_attitude_to_china_and_us/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 19, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-19T16:57:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page2">
             <i class="fas fa-angle-left"></i>

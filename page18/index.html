@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/12/01/redis-copy-usage/"><h2 itemprop="headline" class="item__header">redis-copy的使用</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们需要迁移redis的数据，从本质上看，这基本上是个rehash的过程。我们这里使用redis-copy实现。
+
+简单写一下步骤。首先得有ruby环境，然后直接安装：
+
+  	gem install redis-copy
+
+可能会遇到几个包缺失的问题，如果有报错，安装如下几个包：
+
+  	gem install redis
+  	gem install hiredis
+  	gem install recommendify
+
+简单测试一下redis-copy
+
+首先建立source和dest redis server：
+
+  	redis-server redis.src.conf //6379 port
+  	redis-server redis.dst.conf //638...</div><p><a href="/2014/12/01/redis-copy-usage/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 01, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-01T17:01:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/11/25/flash-shared-cookie/"><h2 itemprop="headline" class="item__header">跨浏览器cookie</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候为了标识一个用户，我们需要跨浏览器的cookie，这样用户在一个浏览器的行为可以被另一个浏览器读取。当然这种行为也备受争议，对于保护用户隐私来讲，这简直是后门。所以cookie里面一定不要存任何重要数据。
 
@@ -415,21 +436,8 @@ class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a><
 
   [5] 分布式数据库系统原理, htt...</div><p><a href="/2014/10/20/distribute-system-guide/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 20, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-20T11:26:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/10/11/ifdef-generator/"><h2 itemprop="headline" class="item__header">自动生成ifdef标记和作者信息的插件</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">针对团队开发为了统一代码风格往往有比较严格的代码规范。为了自动化的生成一些不变的内容，写了如下两个插件（有的是改动）：
-
-
-  
-    ifdef.vim 生成ifndef标记，防止重复包含。
-    author_info.vim 生成更新作者信息版权声明
-  
-
-
-详见https://github.com/chenxiaohui/ifdef_generator.</div><p><a href="/2014/10/11/ifdef-generator/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 11, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-11T14:28:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page17">
             <i class="fas fa-angle-left"></i>

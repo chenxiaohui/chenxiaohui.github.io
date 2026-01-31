@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/13/centos-compilecentos-compile-ffmpeg/"><h2 itemprop="headline" class="item__header">centos下编译ffmpeg</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">先安装能通过yum直接安装的
+
+yum install autoconf automake gcc gcc-c++ git libtool make nasm pkgconfig wget zlib-devel
+  	yum install yasm SDL SDL-devel dirac dirac-devel gsm gsm-devel libvpx libvpx-devel gnutls gnutls-devel freetype freetype-devel openjpeg openjpeg-devel opus opus-devel
+
+
+剩下lame lame-devel libvpxlame-devel xvidcore xvidcore-devel faac faac-...</div><p><a href="/2015/03/13/centos-compilecentos-compile-ffmpeg/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 13, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-13T11:27:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/08/env-with-login-non-login-shell-and-sudo/"><h2 itemprop="headline" class="item__header">登录非登录shell和sudo的环境变量</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">关于登陆/非登录/交互/非交互shell的问题见参考文献1。今天遇到的问题是su/sudo的时候环境变量到底是怎么样的，执行了什么rc文件。
 
@@ -389,25 +399,8 @@ OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class=
       这个branch也有问题，frontend链接的时候会提示ld: symbol(s) not found for architecture x86_64，直接从Makefile.am里面把frontend去掉算了。
 ...</div><p><a href="/2015/03/01/compile-ffmpeg-under-mac/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T11:08:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/02/27/django-to-apache/"><h2 itemprop="headline" class="item__header">django mod_wsgi配置的一些问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">安装apache不说了，用apache做django容器的时候（详见参考文献1)遇到如下几个问题，记录一下：
-
-
-  apxs找不到。centos上直接装的httpd-2.2.3-83.el5_10，默认没有apxs。想源码编译一个apache，结果发现源里面有。
-
-
-  	yum install -y httpd-devel
-
-
-  
-    /usr/local/lib/libpython2.7.a: could not read symbols: Bad value
-
-    错误提示里面已经说了，libpython2.7.a没有动态编译。下了一个python2.7的源码，重新编译安装一下。
-     ./configure –prefix=/usr/local/  –enabl...</div><p><a href="/2015/02/27/django-to-apache/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 27, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-02-27T13:39:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page11">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,31 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/04/03/summarize-isolation-lock/"><h2 itemprop="headline" class="item__header">数据库锁和隔离级别的总结</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在琢磨MVCC和悲观乐观锁的问题，感觉有些以前学习的点没有串联起来，主要是隔离级别和锁相关的，这里总结思考一下：
+
+
+  两阶段锁解决了什么问题
+
+
+  	两阶段锁主要解决事务调度的可串行化，保证了调度是正确的。一个简单的例子参考度娘这里。
+
+
+  实现两阶段锁对应了什么隔离级别。
+
+
+  	两阶段锁保证了基本的隔离级别正确性，RC之上的隔离级别（包含RC）都需要至少保证两阶段锁。一个例外是如果where条件不走索引的话，是可能全表加锁的，这种情况下mysql为了性能提前解锁了不满足条件的行，参见这里。
+
+
+  各个隔离级别对应的加锁策略。
+
+
+  	这个比较简单了：
+
+  	- RU：读加S锁，写加X锁，完成即可释放。
+  	- RC：读加S锁，写加X锁，读锁完成可释放，写锁一直...</div><p><a href="/2016/04/03/summarize-isolation-lock/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 03, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-04-03T19:34:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/04/02/cgo-practice/"><h2 itemprop="headline" class="item__header">cgo实践</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">工作里遇到一个问题，想把mysql的crc直接封装一下让go来调用，因为查表的crc计算性能实在是不快，对我们这种文件系统的大报文计算来看，crc容易变成瓶颈。大概性能对比如下：
 
@@ -374,20 +399,8 @@ undefined symbol: PyUnicodeUCS4_AsEncodedString
 
   	  –enable-uni...</div><p><a href="/2016/03/06/vim-comple-error-with-pyunicodeucs4-asencodedstring/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 06, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-06T14:45:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/12/19/libev-source-analysis/"><h2 itemprop="headline" class="item__header">libev源码分析</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">本文源码以libev4.20为准，其他版本大同小异。
-
-libev是广泛使用的事件库，是一个功能强大的reactor，可以把Timer、IO、进程线程事件放在一个统一的框架下进行管理。如果有其他的事件触发需求也可以改libev源码把该事件加入libev的框架中（当前前提是得理解libev的设计）。有文章说libev性能比libevent好，没实验过，但是从源码角度看，libev要更简洁，当然更费解一点。作者为了追求代码的整洁和统一使用了大量的宏，造成了阅读的不便。这里我们从宏观分析一下libev的设计实现，然后穿插分析一些小的trick。旨在学习总结libev设计中优雅的地方。
-
-基本概念
-
-首先是一些主要的概念和数据结构。
-
-libev通过定义watcher来关注一个事件，并且把事件...</div><p><a href="/2015/12/19/libev-source-analysis/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 19, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-12-19T16:29:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page6">
             <i class="fas fa-angle-left"></i>

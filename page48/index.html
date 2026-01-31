@@ -280,6 +280,35 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/01/20/ftp-commands/"><h2 itemprop="headline" class="item__header">FTP命令</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">用命令如何把自己写好的网页上传到服务器或者从服务器上下载东西呢。方法有很多。用ftp是个不错的选择。方法如下
+
+echo open 你的ftpip &gt;ftp.txt
+
+echo user &gt;&gt;ftp.txt
+
+echo password&gt;&gt;ftp.txt
+
+echo get test.exe &gt;&gt;ftp.txt
+
+echo bye &gt;&gt;ftp.txt
+
+ftp -s:ftp.txt
+
+del ftp.txt
+
+
+这样就可以把test.exe下载下来。也可以做个批处理
+
+@echo off
+
+echo open 你的ftpip &gt;ftp.txt
+
+echo user &gt;&gt;ftp.txt
+
+echo password&...</div><p><a href="/2011/01/20/ftp-commands/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 20, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-20T00:00:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/01/20/compile-process-of-object-oriented-language-take-cplusplus-as-an-example-2/"><h2 itemprop="headline" class="item__header">面向对象语言的编译过程&#8211;以C++为例(二)</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">摘要:
 
@@ -401,21 +430,8 @@ na...</div><p><a href="/2011/01/19/get-the-length-of-csharp-serialization-result
 
 4.有一种考试叫重在参与。你想，你回了宿舍，吃着火锅还唱着歌，突然...</div><p><a href="/2011/01/01/summary-of-2010/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 01, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-01T00:00:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2010/11/20/weka-command-line-script/"><h2 itemprop="headline" class="item__header">weka命令行脚本</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">例如获取Bagging方法numExecutionSlots=1,2,3,4,5时，训练集image_train.arff上的正确率和测试集image_test.arff上的正确率，可以使用如下批处理：
-
-@echo off
-
-for /l %%i in (1,1,5) do (
-echo numExecutionSlots=%%i
-
-java weka.classifiers.meta.Bagging -t image_train.arff -d train.model
--v -P 100 -S 1 -num-slots %%i -I 10 -W weka.classifiers.trees.REPTree
- -- -M 2 -V 0.0010 -N 3 -S 1 -L -1|fin...</div><p><a href="/2010/11/20/weka-command-line-script/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 20, 2010</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2010-11-20T00:00:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page47">
             <i class="fas fa-angle-left"></i>

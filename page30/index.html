@@ -280,6 +280,24 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/09/14/show-gitdiff-using-vimdiff/"><h2 itemprop="headline" class="item__header">用vimdiff来显示gitdiff</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">git diff默认是调用linux的diff工具的, 一眼看上去毕竟还是不知所云, 不像其他两栏的diff工具那么直观. 我们可以考虑用vimdiff来显示gitdiff的结果.
+
+具体说来有两种办法:
+
+
+
+在~/.gitconfig中我们可以通过如下语句添加一个配置项, 指明使用的diff工具.
+
+git config --global diff.tool vimdiff
+git config --global difftool.prompt No
+
+
+这里需要注意的是我们需要通过git difftool来调用vimdiff, 默认的gitdiff依然是调用Linux diff工具的.
+
+第二行[difftool].prompt 的作用是免除gitdiff时的提示, 否则会有如下...</div><p><a href="/2013/09/14/show-gitdiff-using-vimdiff/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Sep 14, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-09-14T11:40:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/09/11/rhinoceros-camel/"><h2 itemprop="headline" class="item__header">犀骆</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">中文名: 犀骆
 
@@ -425,24 +443,8 @@ commands命令的使用是 commands [bpnumber] 。bpnumber指定了断点的id�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Nov 18, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-11-18T00:00:00-08:00">
     <meta itemprop="keywords" content="心情"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/10/16/recommand-two-stl-learning-resource/"><h2 itemprop="headline" class="item__header">推荐两个STL学习资源</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">本来想自己写一点的，后来觉得见识颇浅，所以直接贴别人的了。两篇文章其实都是说algorithm多于stl的数据结构，不过这也可能是很多人学习的时候忽视的，而且把通用算法用到数组上的方法确实挺方便。
-
-
-  1: http://www.lslnet.com/linux/books/resource/stl.html STL 简介，标准模板库
-
-  2: http://net.pku.edu.cn/~yhf/UsingSTL.htm 三十分钟掌握STL</div><p><a href="/2012/10/16/recommand-two-stl-learning-resource/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=STL">STL</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AD%A6%E4%B9%A0">学习</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-10-16T00:00:00-07:00">
-    <meta itemprop="keywords" content="STL,学习"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>503 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page29">
             <i class="fas fa-angle-left"></i>
