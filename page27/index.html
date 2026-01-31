@@ -280,42 +280,6 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/11/01/how-to-build-high-available-system/"><h2 itemprop="headline" class="item__header">如何构建按高可用系统（分享的笔记）</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">版权所有：[解伦师兄][1]
-
-###介绍篇
-
-可用性vs可靠性
-
-可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。
-
-可用性可靠性是系统的工程，设计开发，管理，运维等等。
-
-宕机几大因素：软件-硬件-网络-人为
-
-data loss的最大因素：drop table, 所以要做好充分的容错。
-
-
-
-###设计篇
-
-减少故障发生的可能
-
-避免单点故障，防止扩散，有效的监控运维配合
-
-常见的冗余设计。
-
-
-  
-    RAID,Replica,Erasure Code
-    BackUp, Reassign,Retry
-    Master-Slave,Mirror,RAC..
-  
-
-
-减少对外部系统强依赖...</div><p><a href="/2013/11/01/how-to-build-high-available-system/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 01, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-01T18:42:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/"><h2 itemprop="headline" class="item__header">分布式调试之用gdb调试分布式系统</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">分布式系统开发的时候我们最经常遇到的问题就是，从一个server发送了一条报文之后怎么在另一个server查看这条报文的处理逻辑是否正确，单机的debug都不是问题，但是多机debug怎么做呢？
 
@@ -439,8 +403,28 @@ ObTableTabletIterator
 
 gcc这里需要做的工作是编译的时候打...</div><p><a href="/2013/10/16/test-coverage-percentage-statistics/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 16, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-16T10:15:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/10/15/git-reset-revert/"><h2 itemprop="headline" class="item__header">git reset和git revert</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">git reset 作用
+
+git reset 主要完成到版本库某个特定版本的回退，分为如下三种方式
+
+
+
+
+  
+    git reset –mixed：此为默认方式，不带任何参数的git reset，即时这种方式，它回退到某个版本，只保留源码，回退commit和index信息
+    git reset –soft：回退到某个版本，只回退了commit的信息，不会恢复到index file一级。如果还要提交，直接commit即可
+    git reset –hard：彻底回退到某个版本，本地的源码也会变为上一个版本的内容
+  
+
+
+git revert 作用
+
+git revert从字面的理解上跟git reset是一样的，不同之处在于git revert生成一个反向的差异（特...</div><p><a href="/2013/10/15/git-reset-revert/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 15, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-10-15T14:50:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page26">
             <i class="fas fa-angle-left"></i>
@@ -453,7 +437,7 @@ gcc这里需要做的工作是编译的时候打...</div><p><a href="/2013/10/16
             </li><li>
                   <a class="button button--secondary button--circle" href="/page28"><span>28</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
+                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page28">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

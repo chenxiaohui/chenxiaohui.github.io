@@ -280,41 +280,6 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/01/28/about-data-binding-of-DataGridView-under-dotNet/"><h2 itemprop="headline" class="item__header">关于.Net下DataGridView绑定自定义数据结构的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">数据绑定是个非常有用的东东，经常在C 下写MVC结构程序的童鞋可能都苦于界面（View）和数据（Model）之间的一致，如果View单一而且需要做的一致性工作不多的话，我们经常会直接在Controller里写更新操作（如图1所示），而如果有多个View，数据同步复杂的话，经常需要手动实现一个观察者模式，每个对数据（Model）的原子操作都需要同时对View进行更新（如图2所示）。
-
-![临时1][1]![临时3][2]
-
-图1 图2
-
-总的来说.Net平台设计还是非常优秀而人性化的，比如说数据绑定。数据绑定相当于自动实现了从Model到View的数据更新（如图3所示），而免去了自己管理数据一致和自己实现观察者模式的麻烦。同时，DataGridView控件的引入极大的方便了表格形式数据的...</div><p><a href="/2011/01/28/about-data-binding-of-DataGridView-under-dotNet/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=AutoGenerateColumns">AutoGenerateColumns</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Controller">Controller</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=DataGridView">DataGridView</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=List">List</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=model">model</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=MVC">MVC</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=View">View</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%BB%91%E5%AE%9A">绑定</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 28, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-28T00:00:00-08:00">
-    <meta itemprop="keywords" content="AutoGenerateColumns,Controller,DataGridView,List,model,MVC,View,绑定"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/01/27/use-livewriter-to-write-blogs-on-cnblogs-and-csdn/"><h2 itemprop="headline" class="item__header">用LiveWriter写CNBlogs和CSDN的博客</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">习惯了LiveWriter写博客，于是想把各个地方的博客整合到一起，CNBlogs非常简单，只需要在添加帐户里选择WordPress填入用户名即可，CSDN非常麻烦，我试了好久没找到对应的组合，后来发现有高人指出应该使用Metaweblog，果然，方法见下：</div><p><a href="/2011/01/27/use-livewriter-to-write-blogs-on-cnblogs-and-csdn/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
@@ -456,8 +421,18 @@
 
 创业办公司需要你做出太多的牺牲。你必须绝对努力工作好几年。(每周工作100小时以上)。所有的努力工作都是为了换取希望中可能实现的巨大回报 —— 也许是一年后，也许五年后，也许没有也许。这个巨大回报理论上会使你经济上变得自主，这样你就可以环游世界(或考察一些外国有趣的地方，比如taking a stab at string theory)。但这有个大问题，如...</div><p><a href="/2011/01/20/start-a-business-or-travel-around-the-world/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 20, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-20T00:00:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/01/20/recommend-a-csharp-socket-framework/"><h2 itemprop="headline" class="item__header">推荐一套C#的Socket框架</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近做一个C#的C/S项目，自己实现了一套底层的框架，想查查有什么好的TCP分包实现，能防止冗余和错误的，结果发现了这套框架，作者是一个非常牛逼而乐于助人的牛人，推荐一下：
+
+可扩展多线程异步Socket服务器框架EMTASS 2.0：
+
+C#实现的可复用Socket接收/发送共享缓冲区类：
+
+期待大家有所收获，希望能与大家一起交流。</div><p><a href="/2011/01/20/recommend-a-csharp-socket-framework/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 20, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-20T00:00:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page46">
             <i class="fas fa-angle-left"></i>
@@ -470,7 +445,7 @@
             </li><li>
                   <a class="button button--secondary button--circle" href="/page48"><span>48</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
+                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page48">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

@@ -280,27 +280,6 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/02/23/analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/"><h2 itemprop="headline" class="item__header">&ldquo;违反并发性: UpdateCommand 影响了预期1条记录中的0条&rdquo;原因分析</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">该问题出现在使用DataAdapter自动对DataTable(或DataSet)进行更新的时候，具体情形是：通过界面添加了一条记录，然后调用DataAdapter的Update方法更新了数据，之后又修改或删除了这条记录。
-
-原因网上有很多说法，大部分的分析我感觉是扯淡，其实主要的原因是自增长字段的值没有跟数据库同步1，即前台的记录里添加了一条记录，但是程序不知道自增长的ID字段应该填充多少，用户也不可能指定这个ID，更新了之后数据库自动填充了自增长ID，但是前台对应的DataTable(或DataSet)里却没有同步更新，从而导致DataAdapter不知道根据什么字段来定位修改的记录，因而出错。
-
-具体的解决方法参考1一文中给出了一种方法，即每次插入记录的时候去服务器查询自增长种子...</div><p><a href="/2011/02/23/analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=UpdateCommand">UpdateCommand</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%BD%B1%E5%93%8D%E4%BA%86">影响了</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%BF%9D%E5%8F%8D%E5%B9%B6%E5%8F%91%E6%80%A7">违反并发性</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E9%A2%84%E6%9C%9F">预期</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 23, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-23T00:00:00-08:00">
-    <meta itemprop="keywords" content="UpdateCommand,影响了,违反并发性,预期"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/02/19/tecent-advertisement/"><h2 itemprop="headline" class="item__header">关于腾讯12年品牌广告</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">据说是春晚前的一个广告，拍的挺感人的。腾讯开始走温情路线了，尤其瞄准了老爸老妈这一辈人。不过不得不说还真是挺有效果。
 
@@ -498,8 +477,43 @@
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00-08:00">
     <meta itemprop="keywords" content="one minute fly,凌霄肃,姚晨,百度,盒子的梦想"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/01/28/about-data-binding-of-DataGridView-under-dotNet/"><h2 itemprop="headline" class="item__header">关于.Net下DataGridView绑定自定义数据结构的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">数据绑定是个非常有用的东东，经常在C 下写MVC结构程序的童鞋可能都苦于界面（View）和数据（Model）之间的一致，如果View单一而且需要做的一致性工作不多的话，我们经常会直接在Controller里写更新操作（如图1所示），而如果有多个View，数据同步复杂的话，经常需要手动实现一个观察者模式，每个对数据（Model）的原子操作都需要同时对View进行更新（如图2所示）。
+
+![临时1][1]![临时3][2]
+
+图1 图2
+
+总的来说.Net平台设计还是非常优秀而人性化的，比如说数据绑定。数据绑定相当于自动实现了从Model到View的数据更新（如图3所示），而免去了自己管理数据一致和自己实现观察者模式的麻烦。同时，DataGridView控件的引入极大的方便了表格形式数据的...</div><p><a href="/2011/01/28/about-data-binding-of-DataGridView-under-dotNet/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=AutoGenerateColumns">AutoGenerateColumns</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Controller">Controller</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=DataGridView">DataGridView</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=List">List</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=model">model</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=MVC">MVC</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=View">View</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%BB%91%E5%AE%9A">绑定</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 28, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-28T00:00:00-08:00">
+    <meta itemprop="keywords" content="AutoGenerateColumns,Controller,DataGridView,List,model,MVC,View,绑定"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page45">
             <i class="fas fa-angle-left"></i>
@@ -512,7 +526,7 @@
             </li><li>
                   <a class="button button--secondary button--circle" href="/page47"><span>47</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
+                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page47">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

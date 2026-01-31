@@ -280,14 +280,6 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2021/02/09/peaceful_is_a_gift/"><h2 itemprop="headline" class="item__header">安好与晴天</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">好久没在午后的阳光里发呆了。闲下来的时候觉得阳光都比平时要柔和一些。之前几个月雨季，差不多每天定时下午下雨，晚上吹风，新加坡确实气候不错，气温高但是海洋气候中和了酷热，白天阳光充足晚上海风徐徐。
-
-快过年的时候总有些想念，想家，想念一些事情，想念一些人，想念一种生活方式。昨天听了一晚上赵英俊的歌，其实也不是歌迷更不是粉丝，只是感慨生死别离的到来是无法抗拒的，而不幸或者幸运的降临也不以任何人的意志为转移。有些事情就是没什么道理可讲，疾病这事情有时候跟生活条件生活方式也没什么关系，能安稳的生活下去，不管遇到什么艰难困苦，其实已经是很幸运的了。
-
-所以安好，就是晴天了。</div><p><a href="/2021/02/09/peaceful_is_a_gift/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Feb 09, 2021</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2021-02-09T00:49:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2021/02/09/shan_hai_qing_comments/"><h2 itemprop="headline" class="item__header">《山海情》观感</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">周末把山海情刷完了。非常值得看，从里面能体会到主旋律电影电视剧的长足进步，从主题上看，这也确实是一部让人信服的命题作文。而且可贵之处在于，这部剧里面没有一点狗血的地方，情节让人觉得合理，不是为了表现而设置，也没有为了吸引观众而增加戏剧性。总的来说，真实就是最大的力量。尤其里面很多细节让人有二刷的想法。
 
@@ -370,8 +362,16 @@ The format attribute specifies that a f...</div><p><a href="/2016/07/04/gcc-prin
 
   	timecat -d ‘2016-01-02’ -s ‘20:13:14’ -e ‘20...</div><p><a href="/2016/06/28/search-log-with-timcat/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-28T14:33:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/06/20/pypython-is-an-eggache-language/"><h2 itemprop="headline" class="item__header">python是一门蛋疼的语言</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在分析一个问题，用python写的测试脚本里面跟store节点通信的时候加了一个starttime和超时，store判断了startime跟当前时间之间是否已经达到超时时间，如果到达就拒绝掉。这个脚本在测试case数少的时候没啥问题，数量大了之后就有超时的问题。开始直接调大了timeout让测试先过去了，最近加了多重timeout判断，不能直接为了测试改参数了，分析一下怀疑timeout只生成了一次，封包代码如下：
+
+def pack_packet(ver, pcode, channel, sess, data):
+
+    fields = (i8(ver), u16(pcode), u16(channel), u64(sess), i64(len(data)), i64(tim...</div><p><a href="/2016/06/20/pypython-is-an-eggache-language/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-20T20:22:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page4">
             <i class="fas fa-angle-left"></i>
@@ -384,7 +384,7 @@ The format attribute specifies that a f...</div><p><a href="/2016/07/04/gcc-prin
             </li><li>
                   <a class="button button--secondary button--circle" href="/page6"><span>6</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
+                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page6">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>
