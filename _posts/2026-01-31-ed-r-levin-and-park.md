@@ -3,7 +3,7 @@ title: "湾区一个小确幸：Ed R. Levin 公园半日散步"
 author: Harry Chen
 date: 2026-01-31
 layout: article
-# cover removed for now
+cover: /assets/images/posts/ed-levin-view.jpg
 categories:
   - 生活记录
   - 湾区
