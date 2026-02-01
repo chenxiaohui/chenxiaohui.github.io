@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-31T20:01:05-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-01-31T20:04:36-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
 </subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">湾区一个小确幸：Ed R. Levin 公园半日散步</title><link href="http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park/" rel="alternate" type="text/html" title="湾区一个小确幸：Ed R. Levin 公园半日散步" /><published>2026-01-31T00:00:00-08:00</published><updated>2026-01-31T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park/"><![CDATA[<p>今天给自己放了半天假——去家门口一个从没好好逛过的公园走一圈，顺便看看这片冬末的山谷到底长什么样。</p>
 
 <p><img src="/assets/images/posts/ed-levin-lake.jpg" alt="湖边的一角" /></p>
@@ -61,79 +61,43 @@
   <li>也记下一条以后可以反复再来的散步路线。</li>
 </ul>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><summary type="html"><![CDATA[今天给自己放了半天假——去家门口一个从没好好逛过的公园走一圈，顺便看看这片冬末的山谷到底长什么样。 目的地很近：Milpitas 的 Ed R. Levin County Park。]]></summary></entry><entry><title type="html">一辆二手现代的车险，为什么贵成这样？</title><link href="http://chenxiaohui.me/2026/01/31/insurance-suv-notes/" rel="alternate" type="text/html" title="一辆二手现代的车险，为什么贵成这样？" /><published>2026-01-31T00:00:00-08:00</published><updated>2026-01-31T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/31/insurance-suv-notes</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/31/insurance-suv-notes/"><![CDATA[<p>今天干了一件挺糟心的事：看车险续约。</p>
 
-<p>车是一辆二手的 Hyundai Santa Fe，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果 Allstate 发过来的续约报价——<strong>6 个月差不多 $1,750</strong>。</p>
-
-<p>看到数字的第一反应就只有一句话：这玩意儿到底在贵什么？</p>
+<p>车是一辆二手的 Hyundai SUV，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果保险公司发过来的续约报价，就是那种「一看就心里一沉」的大几百刀一口价。</p>
 
 <!--more-->
 
 <p><img src="/assets/images/posts/insurance-rant-2026-01-31.png" alt="一辆二手现代在湾区山谷边上的心情插画" /></p>
 
-<h2 id="保单本身没多花但数字看着就烦">保单本身没多花，但数字看着就烦</h2>
+<p>先看一下配置，大概就是：湾区、高费率区、新司机、SUV、全险，再配上一些让人心安的附加项目。</p>
 
-<p>先说配置，其实并不夸张，大概是这样：</p>
-
-<ul>
-  <li>地点：湾区高费率区（Milpitas/San Jose 一带）</li>
-  <li>司机：新司机，没事故、没罚单</li>
-  <li>车：2023 年的 Hyundai Santa Fe（二手）</li>
-  <li>责任险：100 / 300 / 100</li>
-  <li>UM：100 / 300</li>
-  <li>Collision + Comprehensive 都买了</li>
-  <li>再加一点租车、拖车这种“心安就好”的附加</li>
-</ul>
-
-<p>理性上我知道这些东西叠在一起，在保险公司的表格里会画出一个很漂亮的 high risk 区域。<br />
-感性上就很简单：<strong>每个月要掏接近 $300 给一辆二手现代买保险，心里总觉得哪儿不对劲。</strong></p>
+<p>理性上知道，在保险公司的模型里，这几项叠在一起，很容易被划到「贵的那一档」。<br />
+感性上就只有一个直觉：<strong>每个月要掏一大笔钱给一辆二手现代买保险，总觉得有点过头。</strong></p>
 
 <h2 id="想省点钱可以但都是从安全感上扣">想省点钱？可以，但都是从安全感上扣</h2>
 
 <p>既然觉得贵，正常人都会去研究怎么省。</p>
 
-<p>我问了一圈 Allstate 的客服，大概能玩的选项主要是调免赔额和砍 UM：</p>
+<p>问下来之后发现，可操作的空间主要在两块：免赔额和 UM。</p>
 
 <ul>
-  <li>把 Collision 免赔额从 $1,000 提到 $2,000：
-    <ul>
-      <li>每 6 个月大概便宜一百多，摊到一个月也就二十多。</li>
-      <li>出一次事故就要多掏 $1,000 自付，这个交换实在有点尴尬。</li>
-    </ul>
-  </li>
-  <li>
-    <p>再把 Comprehensive 免赔额提上去，省得也不算多，属于“能看出差异，但说不上爽”。</p>
-  </li>
-  <li>真正能立刻降下来的，是 <strong>UM（未投保驾驶人）</strong>：
-    <ul>
-      <li>直接砍掉或者从 100/300 降到 30/60，</li>
-      <li>6 个月一下子能便宜两三百。</li>
-      <li>代价是：以后要是被没保险或者低保额的人撞了，自己和家人的医疗费用基本就得靠健康保险硬扛。</li>
-    </ul>
-  </li>
+  <li>把免赔额往上提，保费是会掉一点，但不是那种「一眼就开心」的差距；真出事的时候，自付部分会立刻提醒你当初贪了这点便宜。</li>
+  <li>真正能大幅拉低价格的是往下砍 UM，甚至干脆不买。但那等于是拿「被没保险的人撞了怎么办」来赌博，想了想还是不敢。</li>
 </ul>
 
-<p>站在纸面上看，这些调节都讲得过去；<br />
-站在“我要不要睡得踏实一点”这个角度，就会有个很直观的感觉：<br />
-<strong>所有便宜，最后都从安全感上扣回去。</strong></p>
+<p>站在纸面上看，这些调整都说得过去；<br />
+站在“我要不要睡得踏实一点”这个角度，就只有一个感觉：<br />
+<strong>便宜大多都不是白来的。</strong></p>
 
 <h2 id="quote-了别家公司发现他们也差不多">quote 了别家公司，发现他们也差不多</h2>
 
-<p>为了不被一家吓住，我也去别家网站上 quote 了一圈，认真填了自己的情况，把保额尽量保持一致。</p>
+<p>为了不被一家吓住，我也去别家网站上 quote 了一圈，尽量让配置保持差不多。</p>
 
-<p>结果很快就看明白了：</p>
-
+<p>大致结论是：</p>
 <ul>
-  <li>价格明显便宜的方案，基本上有一个共同点——
-    <ul>
-      <li>责任险从 100/300/100 悄悄变成 25/50/25 或者更低；</li>
-      <li>UM 要么干脆不买，要么挂个最低档位。</li>
-    </ul>
-  </li>
-  <li>只要坚持“责任险和 UM 不降档”，再把碰撞/综合也留着，<br />
-大多数报价最后还是会回到一个类似的区间里。</li>
+  <li>明显便宜的方案，基本都是在保额上做文章；</li>
+  <li>真要维持「高一点的责任险 + UM + 全险」，几家公司报出来的数字都差不太多。</li>
 </ul>
 
-<p>换句话说：<br />
-<strong>换公司可以调风格，但在“湾区 + 新司机 + 全险”这个组合里，不会有人便宜到离谱。</strong></p>
+<p>换句话说：<strong>你能换的是公司和 UI，换不掉的是这套系统对「新司机+湾区+全险」这类人的定价逻辑。</strong></p>
 
 <h2 id="暂时的答案先接受它但记住这种不爽">暂时的答案：先接受它，但记住这种不爽</h2>
 
@@ -147,20 +111,8 @@
 
 <p>这不是一个很爽的结局，但至少是一个我自己能接受的结局。</p>
 
-<p>写下来有两个目的：</p>
-
-<ol>
-  <li>
-    <p>以后再看到续约邮件，回头翻这篇就知道——<br />
-这不是第一次觉得贵，也不是第一次把所有选项想一遍，<br />
-不是“哪天突然被宰”的感觉，而是“这套系统一贯就这么贵”。</p>
-  </li>
-  <li>
-    <p>提醒自己：有机会的时候，还是要慢慢折腾一下，<br />
-不求把保费压到地上，<br />
-至少要搞明白——作为一个普通人在这个系统里，<strong>到底是在哪些维度上被当成“贵的那类人”了。</strong></p>
-  </li>
-</ol>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><category term="钱和保险" /><summary type="html"><![CDATA[今天干了一件挺糟心的事：看车险续约。 车是一辆二手的 Hyundai Santa Fe，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果 Allstate 发过来的续约报价——6 个月差不多 $1,750。 看到数字的第一反应就只有一句话：这玩意儿到底在贵什么？]]></summary></entry><entry><title type="html">语音转文字工具横评：找到了一匹黑马</title><link href="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/" rel="alternate" type="text/html" title="语音转文字工具横评：找到了一匹黑马" /><published>2026-01-19T00:00:00-08:00</published><updated>2026-01-19T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/"><![CDATA[<p>最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。</p>
+<p>写下来纯粹是给未来的自己看：<br />
+以后再收到续约邮件，看到那个数字，如果又想骂一句「怎么还是这么贵」，就知道——这一切不是突然发生的，而是这套游戏一直就是这么设定的。</p>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><category term="钱和保险" /><summary type="html"><![CDATA[今天干了一件挺糟心的事：看车险续约。 车是一辆二手的 Hyundai SUV，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果保险公司发过来的续约报价，就是那种「一看就心里一沉」的大几百刀一口价。]]></summary></entry><entry><title type="html">语音转文字工具横评：找到了一匹黑马</title><link href="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/" rel="alternate" type="text/html" title="语音转文字工具横评：找到了一匹黑马" /><published>2026-01-19T00:00:00-08:00</published><updated>2026-01-19T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/"><![CDATA[<p>最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。</p>
 
 <p><img src="/assets/images/posts/voice-to-text-tnt.jpg" alt="安静！吵着我用TNT了" /></p>
 
