@@ -280,6 +280,19 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/01/30/use-shadowsocks-in-terminal/"><h2 itemprop="headline" class="item__header">在命令行使用Shadowsocks翻墙</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">拜GFW所赐，连tm boot2docker都连接不上了。好在有shadowsocks的服务，可以转成http proxy给命令行使用。
+
+首先安装privoxy。Linux下直接apt-get install privoxy，然后编辑配置文件（etc/privoxy/config)：
+
+forward-socks5   /               127.0.0.1:1080 .
+listen-address  localhost:8118
+#local network do not use proxy
+forward         192.168.*.*/     .
+forward            10.*.*.*/     .
+forward           1...</div><p><a href="/2015/01/30/use-shadowsocks-in-terminal/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-30T18:13:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/01/29/java-compare-strategy/"><h2 itemprop="headline" class="item__header">Java 中相等的比较</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到如下一个问题，java中使用复杂类型做Hashkey的时候，构造另一个值相同的对象作为key无法获取map的value。原因其实是java的==判断的依据是两个引用是否指向了同一个对象。实际调用了hashCode函数。内置对象的逻辑相等比较需要使用equals，比如String。而对于非内置对象，equals也同样调用了hashCode来判断相等。
 
@@ -368,32 +381,8 @@ AAAAAAAAAAA		tag2	Click		2015:13:37:16
 BBBBBBBBBBB		tag2	Click		2015:13:37:16
 BBBBBBBBBBB		tag2	Click	    2015:...</div><p><a href="/2015/01/22/simulate-group-by-in-bash/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 22, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-22T15:56:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/01/22/sort-using-multiple-columns/"><h2 itemprop="headline" class="item__header">sort多列排序</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">遇到这样一个需求，希望按照第二列排序，第二列相同的情况下按照第一列排序，数据如下：
-
-  	b   2   c
-c   2   b
-a   1   b
-
-
-习惯性的用:
-
-  	sort -k 2 -k 1 input.txt
-
-输出结果是：
-
-  	a   1   b
-c   2   b
-b   2   c   可以看到实际上先按照第二列排序，第二列相同按照第三列排序了。问题在于sort -k默认是按照顺序排序到末尾的。如果要打破默认，需要指定从哪个列到哪个列。
-
-
-  	sort -k 2，2 -k 1 input.txt
-
-换个角度说，sort -k 1 -k 2 的效果跟 sort -k 1 是一样的。所以最好还是让数据按照排序列生成，这样看起来也最直观。</div><p><a href="/2015/01/22/sort-using-multiple-columns/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jan 22, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-01-22T13:38:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page13">
             <i class="fas fa-angle-left"></i>
@@ -406,7 +395,7 @@ b   2   c   可以看到实际上先按照第二列排序，第二列相同按�
             </li><li>
                   <a class="button button--secondary button--circle" href="/page15"><span>15</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page15">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

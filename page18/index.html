@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/12/08/eclipse-java-override-warning/"><h2 itemprop="headline" class="item__header">关于eclipse里面override上的warning</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：
+
+
+
+看AsyncMethodCallback的代码，没有任何问题啊：
+
+
+
+后来发现当前项目JRE的版本是1.5，~~貌似1.5的JRE有个bug~。切到1.6以上版本就可以了。原因如下：
+
+Eclipse is defaulting to Java 1.5 and you have classes implementing interface methods (which in Java 1.6 can be annotated with @Override, but in Java 1.5 can only be applied to methods overriding a supercla...</div><p><a href="/2014/12/08/eclipse-java-override-warning/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 08, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-08T16:53:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/01/redis-copy-usage/"><h2 itemprop="headline" class="item__header">redis-copy的使用</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">有时候我们需要迁移redis的数据，从本质上看，这基本上是个rehash的过程。我们这里使用redis-copy实现。
 
@@ -410,34 +424,8 @@ class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a><
   destruct
   member destru...</div><p><a href="/2014/10/22/destruct-and-member-destruct/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 22, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-22T17:57:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/10/20/distribute-system-guide/"><h2 itemprop="headline" class="item__header">分布式系统/NOSQL入门书单</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">简单记一下我看过的和觉得值得看的。主要是给@赵龙作为参考。
-
-
-  分布式相关
-
-
-
-  [1] 大规模分布式存储系统, http://book.douban.com/subject/25723658/
-  阿里日照的书，全面介绍了分布式系统的原理和实践，入门不可多得的书
-
-
-
-  [2] 分布式系统原理介绍, http://blog.sciencenet.cn/home.php?mod=attachment&amp;id=31413
-  百度刘杰的，讲基本的分布式原理，有些笔误什么的。
-
-
-
-  [3] paxos算法相关, http://cxh.me/2014/08/26/paxos-study/
-  总结了paxos算法一些资料。
-
-
-
-  [5] 分布式数据库系统原理, htt...</div><p><a href="/2014/10/20/distribute-system-guide/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 20, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-20T11:26:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page17">
             <i class="fas fa-angle-left"></i>
@@ -450,7 +438,7 @@ class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a><
             </li><li>
                   <a class="button button--secondary button--circle" href="/page19"><span>19</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page19">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/07/29/group-commit/"><h2 itemprop="headline" class="item__header">关于group commit</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近突然想到这个东西，以前Oceanbase的UpdateServer提交的时候是做了group commit的。基本思路如下：
+
+
+  并发小的时候，超过一个时间窗口就直接提交
+  并发大的时候，等请求填满一个buffer再一起提交。
+
+
+实现上可以考虑如下伪代码：
+
+  	while true:
+  		start timer
+  		if buffer full or timer reach limit:
+  			commit
+  			reset timer
+  		else
+  			wait and receive
+
+广泛运用在一些需要组合请求的地方，比如一些rpc因为历史原因（嗯）一直单条请求，不能改协议的情况下，可以考虑转发一下，做个缓冲。当然这种情况下一般是通过队列...</div><p><a href="/2015/07/29/group-commit/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 29, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-07-29T17:25:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/07/28/something-about-guide-a-team/"><h2 itemprop="headline" class="item__header">带小团队的一点思考</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">事实上我也只是带实习生而已。但是感觉上之前更多的是把自己的任务分出去，而现在是开始跟一些人一起完成一个任务。主要的不同是之前做的事情是在个人工作量里面，自己做也只是慢一点，有时候甚至自己做反倒比分出去更快。现在做的事情已经超过一个人工作量了，必须发挥团队的能动性了，而且之前也只是对自己的工作负责，现在你要负责的是一个团队的KPI了。
 
@@ -421,20 +442,8 @@ SeviceConfig:
 
 问题是能解决了，但是不太理解为什么。</div><p><a href="/2015/05/11/git-remote-branch-not-exists/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 11, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-05-11T12:11:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/05/10/mac-multi-screen-shortcut/"><h2 itemprop="headline" class="item__header">mac下多屏幕移动窗口的快捷键</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">mac下使用多屏幕的话，经常需要把一个窗口移动到另一个窗口，windows下有快捷键win+shift+左右，linux下貌似可以通过xdotool实现，绑定一个快捷键，xdotool帮助你移动窗口到一个绝对位置。如下：
-
-  	xdotool getactivewindow windowmove 0 y windowactivate windowfocus
-xdotool getactivewindow windowmove 1280 y windowactivate windowfocus
-
-
-mac下没有找到对应的系统快捷键，虽然可以设定一个zoom键来完成窗口最适化，但是没有快捷键来完成窗口的移动。这里我们通过Moom实现。
-
-Moom是一个窗口管理工具，安装之后只有一个配置页...</div><p><a href="/2015/05/10/mac-multi-screen-shortcut/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 10, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-05-10T15:50:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page8">
             <i class="fas fa-angle-left"></i>
@@ -447,7 +456,7 @@ Moom是一个窗口管理工具，安装之后只有一个配置页...</div><p><
             </li><li>
                   <a class="button button--secondary button--circle" href="/page10"><span>10</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page10">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

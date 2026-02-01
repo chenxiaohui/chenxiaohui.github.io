@@ -280,6 +280,16 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/06/09/defensive-strategy/"><h2 itemprop="headline" class="item__header">常见的防御性编程策略</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">针对出错之后不能恢复的情况，最好的办法是写另外一个对象，确认成功之后原子的交换对象。同时也能避免对一个对象的修改持锁时间过长。这种思路广泛用在很多地方。
+
+
+  保存备份文件，当前的文件有可能有人在读在写，所以每次线程都写一个单独的备份文件，最后原子的覆盖之前的文件。
+  升级系统。自动升级的时候下载了新的可执行文件，然后删除原来的文件，替换成下载文件。当然估计不会有人直接覆盖之前的文件。
+  一些NOSQL的冻结。OB里面比较典型的就是UpdateServer的内存冻结，当然是copy on write实现的，最后原子的切换B树的根指针。主要是为了minor fqreeze的时候依然能提供写入服务。
+  =运算符重载的时候，如果当前类持有的对象先释放了，但是又没能成功复制需要拷贝的对...</div><p><a href="/2014/06/09/defensive-strategy/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 09, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-09T11:51:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/06/09/vim7-dot-4-and-vimgdb-compile/"><h2 itemprop="headline" class="item__header">vim7.4 && vimgdb编译</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">首先，你下载的vim7.4代码的一般结构跟常见的工程是不一样的，主要体现在configure不会生成Makefile，make的时候是通过Makefile的配置生成config.h的，也就是说你想的好好的希望如下操作：
 
@@ -403,28 +413,8 @@ TestJava.java
 		public static Cup cup1 = new Cup(1);
 ...</div><p><a href="/2013/11/24/thinking-in-java-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 24, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-24T20:32:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/11/23/effective-notes/"><h2 itemprop="headline" class="item__header">Effective C++ 读书笔记</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Effective前面有几节是说构造析构赋值过程中基类和派生类的调用关系的，做了一个综合一点的例子，来验证一下这个问题。代码如下，话说贴代码是在是很没溜的做法，尤其是如果在出版的书中看到的话，这种行为基本属于骗稿费的…
-
-
-
-object.h
-
-#ifndef OCEANBASE_OBJECT_H_
-#define OCEANBASE_OBJECT_H_
-
-#include "base_object.h"
-class Object: public BaseObject
-{
-  public:
-    Object ();
-    Object (int magic);
-    Object (const Object &amp; obj);
-    virtual ~Object ()...</div><p><a href="/2013/11/23/effective-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 23, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-23T16:41:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page24">
             <i class="fas fa-angle-left"></i>
@@ -437,7 +427,7 @@ class Object: public BaseObject
             </li><li>
                   <a class="button button--secondary button--circle" href="/page26"><span>26</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page26">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

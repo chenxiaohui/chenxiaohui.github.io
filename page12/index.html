@@ -280,6 +280,22 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/16/log4cxx-setup/"><h2 itemprop="headline" class="item__header">Log4cxx安装</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">apache经典的项目，java下有log4j，c++下的实现是log4cxx，安装见参考文献.
+
+主要有个编译问题，大概是C库和C++库的问题，把出错的地方的头文件都补上就行了。
+
+
+  console.cpp ： #include  #include 
+  socketoutputstream.cpp : #include 
+  inputstreamreader.cpp: #include 
+
+
+Bibliography:
+
+[1] [原创] 	log4cxx在Linux下的安装、使用, http://www.codelast.com/?p=3211</div><p><a href="/2015/03/16/log4cxx-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 16, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-16T11:49:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/13/centos-compilecentos-compile-ffmpeg/"><h2 itemprop="headline" class="item__header">centos下编译ffmpeg</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">先安装能通过yum直接安装的
 
@@ -383,24 +399,8 @@ OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class=
 
 让我突然对这个tag算法很感兴趣。</div><p><a href="/2015/03/01/test-cloudsight/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T20:58:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/01/compile-ffmpeg-under-mac/"><h2 itemprop="headline" class="item__header">mac下ffmpeg的编译</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">基本步骤可以看这个，说两个问题：
-
-
-  
-    brew的formulae没有celt这个包。忽略了算了。
-  
-  
-    libaacplus安装的时候，
-
-    
-      首先这个地址http://217.20.164.161/~tipok/aacplus/libaacplus-2.0.2.tar.gz已经失效了，从网上下载的话，这个版本还是有问题，configure的时候会卡住，一些patch丢失了好像。建议直接fork github上的。
-      这个branch也有问题，frontend链接的时候会提示ld: symbol(s) not found for architecture x86_64，直接从Makefile.am里面把frontend去掉算了。
-...</div><p><a href="/2015/03/01/compile-ffmpeg-under-mac/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T11:08:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page11">
             <i class="fas fa-angle-left"></i>
@@ -413,7 +413,7 @@ OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class=
             </li><li>
                   <a class="button button--secondary button--circle" href="/page13"><span>13</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page13">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

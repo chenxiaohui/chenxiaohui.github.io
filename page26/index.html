@@ -280,6 +280,26 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/23/effective-notes/"><h2 itemprop="headline" class="item__header">Effective C++ 读书笔记</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">Effective前面有几节是说构造析构赋值过程中基类和派生类的调用关系的，做了一个综合一点的例子，来验证一下这个问题。代码如下，话说贴代码是在是很没溜的做法，尤其是如果在出版的书中看到的话，这种行为基本属于骗稿费的…
+
+
+
+object.h
+
+#ifndef OCEANBASE_OBJECT_H_
+#define OCEANBASE_OBJECT_H_
+
+#include "base_object.h"
+class Object: public BaseObject
+{
+  public:
+    Object ();
+    Object (int magic);
+    Object (const Object &amp; obj);
+    virtual ~Object ()...</div><p><a href="/2013/11/23/effective-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 23, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-23T16:41:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/21/use-mock-to-debug/"><h2 itemprop="headline" class="item__header">分布式调试系列之行为模拟</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近调试分布式系统，感觉实际上什么看日志的方式都不如带集群调试，当然有些行为是比较难以模拟的，可能的情况下，要么重现环境，要么对部分模块做mock。单测带来的便利性是远超过不做mock省下的时间的，比如与sql相关的逻辑完全可以启动一个完整的sql环境，然后把请求发过去，看回来的响应。至于其他的部分，基本的原则是减少变量。比如两个server之间的通信，同时检测两个server只能看日志，所以最好能mock一个server的行为，这样减少调试的不确定性。</div><p><a href="/2013/11/21/use-mock-to-debug/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 21, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-21T17:31:00-08:00"></div>
@@ -358,44 +378,8 @@ ob的log格式是这样的
 "     HomePage: http://www.cxh.me
 "      Ve...</div><p><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 08, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-08T21:26:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/11/01/how-to-build-high-available-system/"><h2 itemprop="headline" class="item__header">如何构建按高可用系统（分享的笔记）</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">版权所有：[解伦师兄][1]
-
-###介绍篇
-
-可用性vs可靠性
-
-可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。
-
-可用性可靠性是系统的工程，设计开发，管理，运维等等。
-
-宕机几大因素：软件-硬件-网络-人为
-
-data loss的最大因素：drop table, 所以要做好充分的容错。
-
-
-
-###设计篇
-
-减少故障发生的可能
-
-避免单点故障，防止扩散，有效的监控运维配合
-
-常见的冗余设计。
-
-
-  
-    RAID,Replica,Erasure Code
-    BackUp, Reassign,Retry
-    Master-Slave,Mirror,RAC..
-  
-
-
-减少对外部系统强依赖...</div><p><a href="/2013/11/01/how-to-build-high-available-system/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 01, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-01T18:42:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>
@@ -408,7 +392,7 @@ data loss的最大因素：drop table, 所以要做好充分的容错。
             </li><li>
                   <a class="button button--secondary button--circle" href="/page27"><span>27</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page27">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

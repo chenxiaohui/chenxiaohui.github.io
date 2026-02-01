@@ -280,6 +280,14 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/06/20/pypython-is-an-eggache-language/"><h2 itemprop="headline" class="item__header">python是一门蛋疼的语言</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在分析一个问题，用python写的测试脚本里面跟store节点通信的时候加了一个starttime和超时，store判断了startime跟当前时间之间是否已经达到超时时间，如果到达就拒绝掉。这个脚本在测试case数少的时候没啥问题，数量大了之后就有超时的问题。开始直接调大了timeout让测试先过去了，最近加了多重timeout判断，不能直接为了测试改参数了，分析一下怀疑timeout只生成了一次，封包代码如下：
+
+def pack_packet(ver, pcode, channel, sess, data):
+
+    fields = (i8(ver), u16(pcode), u16(channel), u64(sess), i64(len(data)), i64(tim...</div><p><a href="/2016/06/20/pypython-is-an-eggache-language/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-06-20T20:22:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/06/18/ccache-and-cgo/"><h2 itemprop="headline" class="item__header">ccache和cgo并存的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">ccache是加快编译的神器，有了ccache，忘了distcc。但是发现go和c混编的项目里面如果用了cgo的话，go编译的时候ccache会报错。主要是传给ccache的某些参数ccache不认识。错误如下：
 
@@ -402,29 +410,8 @@ rpm安装logrotate高版本的包提示缺少fillup和其他的依赖，同时gl
 
 物是人非。尽量不...</div><p><a href="/2016/05/15/lost-in-time/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 15, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T23:34:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2016/05/15/dirname-and-basename-cautions/"><h2 itemprop="headline" class="item__header">dirname和basename的一些细节</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">作为获取文件名和文件路径的函数，dirname和basename的签名是：
-
-#include &lt;libgen.h&gt;
-
-char *dirname(char *path);
-
-char *basename(char *path);
-
-
-之前没注意的地方是这个函数的输入输出都不是const的，也就意味着这个函数调用过程可能会修改char*指向的string内容。所以直接输出一个不可变字符串是不行的，同理，也要考虑这个非const函数会破坏入参。也就是：
-
-  	char *str = “/abc/def”;
-  	printf(“%s\n”, dirname(str));
-
-会core掉。而
-
-#include &lt;stdio.h&gt;
-#include &lt;lib...</div><p><a href="/2016/05/15/dirname-and-basename-cautions/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 15, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T14:42:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page5">
             <i class="fas fa-angle-left"></i>
@@ -437,7 +424,7 @@ char *basename(char *path);
             </li><li>
                   <a class="button button--secondary button--circle" href="/page7"><span>7</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page7">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>

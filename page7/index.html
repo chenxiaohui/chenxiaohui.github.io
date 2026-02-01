@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2016/05/15/dirname-and-basename-cautions/"><h2 itemprop="headline" class="item__header">dirname和basename的一些细节</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">作为获取文件名和文件路径的函数，dirname和basename的签名是：
+
+#include &lt;libgen.h&gt;
+
+char *dirname(char *path);
+
+char *basename(char *path);
+
+
+之前没注意的地方是这个函数的输入输出都不是const的，也就意味着这个函数调用过程可能会修改char*指向的string内容。所以直接输出一个不可变字符串是不行的，同理，也要考虑这个非const函数会破坏入参。也就是：
+
+  	char *str = “/abc/def”;
+  	printf(“%s\n”, dirname(str));
+
+会core掉。而
+
+#include &lt;stdio.h&gt;
+#include &lt;lib...</div><p><a href="/2016/05/15/dirname-and-basename-cautions/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 15, 2016</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-05-15T14:42:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2016/04/03/summarize-isolation-lock/"><h2 itemprop="headline" class="item__header">数据库锁和隔离级别的总结</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近在琢磨MVCC和悲观乐观锁的问题，感觉有些以前学习的点没有串联起来，主要是隔离级别和锁相关的，这里总结思考一下：
 
@@ -384,23 +405,8 @@ c这一端的计算比较容易，go的crc默认是查表， 所以存在不兼�
 	&lt;/Part&gt;  	
 ...</div><p><a href="/2016/03/18/go-xml-escape/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 18, 2016</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-18T17:43:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2016/03/06/vim-comple-error-with-pyunicodeucs4-asencodedstring/"><h2 itemprop="headline" class="item__header">vim编译错误：PyUnicodeUCS4_AsEncodedString</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">换了个ubuntu的环境想编译一下vim，为了防止不兼容手动编译了python2.7，之后把改过的vim源码放上去编译发现有问题：
-
-undefined symbol: PyUnicodeUCS4_AsEncodedString
-
-
-于是换回标准的vim源码还是一样的问题，我擦嘞。上网搜一下说Python模式是UnicodeUCS2的支持，从源码里面直接grep一下这个函数发现是有的：
-
-  	Include/unicodeobject.h:# define PyUnicode_AsEncodedString PyUnicodeUCS4_AsEncodedString
-
-那只可能是没有开启编译选项了，./configure –help发现有如下一项：
-
-  	  –enable-uni...</div><p><a href="/2016/03/06/vim-comple-error-with-pyunicodeucs4-asencodedstring/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 06, 2016</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2016-03-06T14:45:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>504 post articles, 63 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page6">
             <i class="fas fa-angle-left"></i>
@@ -413,7 +419,7 @@ undefined symbol: PyUnicodeUCS4_AsEncodedString
             </li><li>
                   <a class="button button--secondary button--circle" href="/page8"><span>8</span></a>
                 </li><li><span class="pagination__omit"><i class="fas fa-ellipsis-h"></i></span></li><li>
-                  <a class="button button--secondary button--circle" href="/page63"><span>63</span></a>
+                  <a class="button button--secondary button--circle" href="/page64"><span>64</span></a>
                 </li><li><a class="button button--secondary button--circle" href="/page8">
             <i class="fas fa-angle-right"></i>
           </a></li></ul>
