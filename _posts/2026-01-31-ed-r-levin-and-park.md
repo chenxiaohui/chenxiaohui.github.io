@@ -1,5 +1,5 @@
 ---
-title: "湾区一个小确幸：Ed R. Levin 公园半日散步"
+title: "Ed R. Levin 公园半日散步"
 author: Harry Chen
 date: 2026-01-31
 layout: article
