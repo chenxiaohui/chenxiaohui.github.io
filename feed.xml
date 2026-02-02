@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-02-01T16:28:00-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
-</subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">去看 King Tide，结果只看到涨水和一只可爱的猫</title><link href="http://chenxiaohui.me/2026/02/01/alviso-king-tide-and-cat/" rel="alternate" type="text/html" title="去看 King Tide，结果只看到涨水和一只可爱的猫" /><published>2026-02-01T00:00:00-08:00</published><updated>2026-02-01T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/02/01/alviso-king-tide-and-cat</id><content type="html" xml:base="http://chenxiaohui.me/2026/02/01/alviso-king-tide-and-cat/"><![CDATA[<p>这两天湾区到处在转一个海报，说是加州著名的 “King Tides”（帝王潮）又来了——
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.10.0">Jekyll</generator><link href="http://chenxiaohui.me/feed.xml" rel="self" type="application/atom+xml" /><link href="http://chenxiaohui.me/" rel="alternate" type="text/html" /><updated>2026-02-01T16:37:26-08:00</updated><id>http://chenxiaohui.me/feed.xml</id><title type="html">CHENXIAOHUI.ME</title><subtitle>北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+</subtitle><author><name>Harry Chen</name><email>sdqxcxh@gmail.com</email></author><entry><title type="html">去看 King Tide，结果只看到涨水</title><link href="http://chenxiaohui.me/2026/02/01/alviso-king-tide-and-cat/" rel="alternate" type="text/html" title="去看 King Tide，结果只看到涨水" /><published>2026-02-01T00:00:00-08:00</published><updated>2026-02-01T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/02/01/alviso-king-tide-and-cat</id><content type="html" xml:base="http://chenxiaohui.me/2026/02/01/alviso-king-tide-and-cat/"><![CDATA[<p>这两天湾区到处在转一个海报，说是加州著名的 “King Tides”（帝王潮）又来了——
 太阳和月亮一起拉，海水会涨到一年里最夸张的高度。</p>
 
 <p>海报上写得很煽情：
@@ -12,21 +12,16 @@ Embarcadero、Sausalito、Alviso Marina，海水可能漫过路面、淹过湿�
 
 <p><img src="/assets/images/posts/alviso-king-tide-2026-02-01.jpg" alt="Alviso Marina 的 King Tide 现场" /></p>
 
-<h2 id="alviso被水铺平的湿地">Alviso：被水铺平的湿地</h2>
+<h2 id="alviso">Alviso</h2>
 
-<p>之前印象里的 Alviso，就是一片盐沼湿地：
-地势很平，远处有一点点建筑和山影，更多的是裸露的泥地和浅水。</p>
+<p>我印象里的 Alviso，就是一片盐沼湿地：
+地势很平，远处有一点点建筑和山影，更多是裸露的泥地和浅水。</p>
 
-<p>今天过去，确实能看出来水位比平时高了一截：</p>
+<p>今天过去，水位确实比平时高了一截。湿地被水铺得很平，原来露在外面的泥地和草滩，很多都没了。水面颜色有一点点褐红，像是掺了沉积物和藻类——能看到一点”污染色”，但谈不上壮观。</p>
 
-<ul>
-  <li>湿地被水铺得很平，原来露在外面的泥地和草滩，很多都没了；</li>
-  <li>水面颜色有一点点褐红，像是掺了沉积物和藻类，能看到一点“污染色”，但谈不上壮观；</li>
-  <li>天空反而是主角，一整片云刷在天上，倒影在水面上，画面挺干净的。</li>
-</ul>
+<p>天空反倒是主角，一整片云刷在天上，倒影在水面上，画面挺干净的。</p>
 
-<p>如果不是事先看过那个 “King Tides” 活动说明，
-现场的直观感受其实就是：<strong>今天水有点高。</strong></p>
+<p>如果不是事先看过那个 “King Tides” 活动说明，现场的直观感受其实就是：<strong>今天水有点高。</strong></p>
 
 <p>没有大浪，没有海水冲上停车场，没有那种“末日感”的画面。
 更像是一个普通周末，只不过湿地暂时被海湾接管了一下。</p>
@@ -36,57 +31,30 @@ Embarcadero、Sausalito、Alviso Marina，海水可能漫过路面、淹过湿�
 <p>活动说明里写得很认真：</p>
 
 <blockquote>
-  <p>这是一个难得的自然摄影机会，也是教育孩子关于海平面上升的绝佳时刻。<br />
+  <p>这是一个难得的自然摄影机会，也是教育孩子关于海平面上升的绝佳时刻。
 注意安全，不要离浪太近！</p>
 </blockquote>
 
-<p>理论上，这些都没错：
-海平面长期上升，本来就是一件值得被认真盯着的事；
-用一次极端潮汐来做科普，也比枯燥的数据好得多。</p>
+<p>这些话本身没错。海平面长期上升本来就该被盯着，用一次极端潮汐做科普也比枯燥的数据强。</p>
 
-<p>但站在我这个普通游客的视角，今天最大的感受是：</p>
+<p>但我今天站在那儿，最大的感受其实挺简单：</p>
 
-<ul>
-  <li>“是有点不一样，但<strong>没有那么戏剧化</strong>。”</li>
-  <li>和前几天在 Ed R. Levin 看的绿色山谷相比，这里更平、更空、有一点荒凉，但不至于震撼到「必须拍十张照片发朋友」的程度。</li>
-</ul>
+<p><strong>是有点不一样，但没那么戏剧化。</strong></p>
 
-<p>如果以后再有人问我 King Tide 是什么体验，我大概会说：</p>
+<p>和前几天在 Ed R. Levin 看的绿色山谷相比，这里更平、更空、有一点荒凉——但不至于震撼到那种”必须拍十张照片发朋友圈”的程度。</p>
+
+<p>如果以后有人问我 King Tide 是什么体验，我大概会说：</p>
 
 <blockquote>
-  <p>你可以去看看，但别指望看到灾难片。<br />
+  <p>你可以去看看，但别指望看到灾难片。
 更像是日常生活里水位被悄悄调高了一格。</p>
 </blockquote>
 
-<h2 id="然后在网上刷到一只猫">然后在网上刷到一只猫</h2>
-
-<p>回家路上刷手机，信息流里突然蹦出一只小猫的照片：
-圆脸，大眼睛，毛有点炸开，站在水边，一脸“我不太高兴”的表情。</p>
-
-<p><img src="/assets/images/posts/cute-cat-2026-02-01.png" alt="一只看起来有点不高兴的小猫" /></p>
-
-<p>坦白讲，那一瞬间给我的情绪冲击，比今天大半天的 King Tide 都大一点。</p>
-
-<p>有时候网络很魔幻：</p>
-
-<ul>
-  <li>你为了看一场自然奇观开车跑出去半天，最后的总结是「嗯，涨水了」；</li>
-  <li>你随手一刷，看到一只完全不认识的猫，心情会被那个表情戳一下——<br />
-好像它也在某个地方默默承受着自己版本的 “king tide”。</li>
-</ul>
-
 <h2 id="小记">小记</h2>
 
-<p>所以今天这件事的完整版本，大概就是：</p>
+<p>所以今天大概就是这样：去 Alviso 看了一场挺克制的 King Tide，见证了海水把湿地暂时抹平了一次。</p>
 
-<ul>
-  <li>上午在 Alviso 看了一场「其实挺克制」的 King Tide，<br />
-见证了海水把湿地暂时抹平了一次；</li>
-  <li>下午在手机上看了一只莫名其妙很可爱的猫。</li>
-</ul>
-
-<p>自然奇观没那么戏剧化，
-倒是这只猫，把今天的记忆点稳稳占住了。</p>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><summary type="html"><![CDATA[这两天湾区到处在转一个海报，说是加州著名的 “King Tides”（帝王潮）又来了—— 太阳和月亮一起拉，海水会涨到一年里最夸张的高度。 海报上写得很煽情： Embarcadero、Sausalito、Alviso Marina，海水可能漫过路面、淹过湿地，是一次难得的自然奇观。 看完当然还是会心动一下，于是今天就顺路去 Alviso Marina County Park 看了看。 结果发现，对普通人来说，所谓 “King Tide”，大概就是——涨水了。]]></summary></entry><entry><title type="html">Ed R. Levin 公园半日散步</title><link href="http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park/" rel="alternate" type="text/html" title="Ed R. Levin 公园半日散步" /><published>2026-01-31T00:00:00-08:00</published><updated>2026-01-31T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park/"><![CDATA[<p>今天给自己放了半天假——去家门口一个从没好好逛过的公园走一圈，顺便看看这片冬末的山谷到底长什么样。</p>
+<p>自然奇观没那么戏剧化。</p>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><summary type="html"><![CDATA[这两天湾区到处在转一个海报，说是加州著名的 “King Tides”（帝王潮）又来了—— 太阳和月亮一起拉，海水会涨到一年里最夸张的高度。 海报上写得很煽情： Embarcadero、Sausalito、Alviso Marina，海水可能漫过路面、淹过湿地，是一次难得的自然奇观。 看完当然还是会心动一下，于是今天就顺路去 Alviso Marina County Park 看了看。 结果发现，对普通人来说，所谓 “King Tide”，大概就是——涨水了。]]></summary></entry><entry><title type="html">Ed R. Levin 公园半日散步</title><link href="http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park/" rel="alternate" type="text/html" title="Ed R. Levin 公园半日散步" /><published>2026-01-31T00:00:00-08:00</published><updated>2026-01-31T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/31/ed-r-levin-and-park/"><![CDATA[<p>今天给自己放了半天假——去家门口一个从没好好逛过的公园走一圈，顺便看看这片冬末的山谷到底长什么样。</p>
 
 <p><img src="/assets/images/posts/ed-levin-lake.jpg" alt="湖边的一角" /></p>
 
@@ -96,57 +64,35 @@ Embarcadero、Sausalito、Alviso Marina，海水可能漫过路面、淹过湿�
 
 <h2 id="一个小山谷">一个小山谷</h2>
 
-<p>Ed R. Levin 是那种典型的「湾区本地人才知道的公园」：不在最热门的打卡清单上，但真正去一趟会觉得——这地方应该更有名一点。</p>
+<p>Ed R. Levin 是那种典型的「湾区本地人才知道的公园」。它不在最热门的打卡清单上，但我去过之后觉得有点意外——这么舒服的地方，怎么游客不多？</p>
 
-<ul>
-  <li><strong>位置：</strong> 就在 Milpitas 北边，开车从 San Jose 出发二三十分钟左右。</li>
-  <li><strong>人流：</strong> 工作日的早上，人非常少，基本就是本地人遛狗和少量徒步客。</li>
-</ul>
+<p>公园就在 Milpitas 北边，从 San Jose 开车过去也就二三十分钟。工作日的早上人特别少，基本就是本地居民遛狗，再加少量徒步客。</p>
 
 <p>一进门就是一片开阔的草地，旁边有凉亭、野餐桌，湖边一群鹅慢慢啄草。空气里有点湿气，但不是阴冷的那种，而是带着一点春天味道的湿润。</p>
 
-<p>继续往山里走，视野慢慢打开：</p>
+<p>继续往山里走，视野慢慢打开。</p>
 
 <p><img src="/assets/images/posts/ed-levin-cow.jpg" alt="路边的牛和小路" /></p>
 
-<ul>
-  <li>小路沿着山坡延伸上去，两侧是刚刚返青的草坡；</li>
-  <li>篱笆后面有牛低头吃草；</li>
-  <li>路边捡到一个巨大的松果/冷杉果，拿在手里像个外星种子。</li>
-</ul>
+<p>小路沿着山坡延伸上去，两侧是刚刚返青的草坡。篱笆后面有牛低头吃草，路边还能捡到巨大的松果，拿在手里像个外星种子。</p>
 
-<p>那种感觉很简单：<strong>离城市不远，但已经彻底跳出了硅谷那种「高速公路+园区」的气氛。</strong></p>
+<p>那种感觉很简单——离城市才半小时车程，但已经彻底跳出了硅谷那种「高速公路+园区」的气氛。</p>
 
 <h2 id="山脊上的滑翔伞">山脊上的滑翔伞</h2>
 
-<p>继续往上爬，能看到山脊上的风向袋——这里是滑翔伞和伞翼的起飞点。再往上就是视野福利：</p>
+<p>继续往上爬，能看到山脊上的风向袋——这里是滑翔伞和伞翼的起飞点。再往上就是视野福利了。</p>
 
 <p><img src="/assets/images/posts/ed-levin-view.jpg" alt="山脊上的视野" /></p>
 
-<ul>
-  <li>底下是起伏的绿色山丘、牧场和小湖；</li>
-  <li>远处是一道雾/霾线，整条 South Bay 都铺在脚底；</li>
-  <li>天空里零零星星有几个伞翼在飞，有人从山脊跑几步就被风托起来。</li>
-</ul>
+<p>底下是起伏的绿色山丘、牧场和小湖。远处是一道雾线，整条 South Bay 都铺在脚底。天空里零零星星有几个伞翼在飞，有人从山脊跑几步就被风托起来。</p>
 
 <p>站在山脊上看别人起飞、在风里发呆，本身就是一件很划算的事。</p>
 
 <h2 id="其实就在-milpitas-旁边">其实就在 Milpitas 旁边</h2>
 
-<p>很多「感觉很远」的地方，其实离生活圈非常近。Ed R. Levin 就是这样：</p>
+<p>很多「感觉很远」的地方，其实离生活圈非常近。Ed R. Levin 就是这样——地图上看像是某个郊区大山谷，但从公园开出来几分钟就回到了 Milpitas，马上又是熟悉的红绿灯和商场。</p>
 
-<ul>
-  <li>地图上看像是某个郊区大山谷；</li>
-  <li>实际上，从公园开出来几分钟就回到了 Milpitas，马上又是熟悉的红绿灯和商场。</li>
-</ul>
-
-<p>这篇就先当作一次小小的记录：</p>
-
-<ul>
-  <li>记下这个离家不远的山谷；</li>
-  <li>记下湖边的鹅、路边的牛、手里捏着的那颗松果；</li>
-  <li>也记下一条以后可以反复再来的散步路线。</li>
-</ul>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><summary type="html"><![CDATA[今天给自己放了半天假——去家门口一个从没好好逛过的公园走一圈，顺便看看这片冬末的山谷到底长什么样。 目的地很近：Milpitas 的 Ed R. Levin County Park。]]></summary></entry><entry><title type="html">一辆二手现代的车险，为什么贵成这样？</title><link href="http://chenxiaohui.me/2026/01/31/insurance-suv-notes/" rel="alternate" type="text/html" title="一辆二手现代的车险，为什么贵成这样？" /><published>2026-01-31T00:00:00-08:00</published><updated>2026-01-31T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/31/insurance-suv-notes</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/31/insurance-suv-notes/"><![CDATA[<p>车是一辆二手的 Hyundai SUV，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果保险公司发过来的续约报价，就是那种「一看就心里一沉」的大几百刀一口价。</p>
+<p>这篇就先当作一次小小的记录，记下这个离家不远的山谷、湖边的鹅、路边的牛、手里捏着的那颗松果，还有一条以后可以反复再来的散步路线。</p>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><summary type="html"><![CDATA[今天给自己放了半天假——去家门口一个从没好好逛过的公园走一圈，顺便看看这片冬末的山谷到底长什么样。 目的地很近：Milpitas 的 Ed R. Levin County Park。]]></summary></entry><entry><title type="html">一辆二手现代的车险，为什么贵成这样？</title><link href="http://chenxiaohui.me/2026/01/31/insurance-suv-notes/" rel="alternate" type="text/html" title="一辆二手现代的车险，为什么贵成这样？" /><published>2026-01-31T00:00:00-08:00</published><updated>2026-01-31T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/31/insurance-suv-notes</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/31/insurance-suv-notes/"><![CDATA[<p>车是一辆二手的 Hyundai SUV，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果保险公司发过来的续约报价，就是那种「一看就心里一沉」的大几百刀一口价。</p>
 
 <!--more-->
 
@@ -157,32 +103,29 @@ Embarcadero、Sausalito、Alviso Marina，海水可能漫过路面、淹过湿�
 <p>理性上知道，在保险公司的模型里，这几项叠在一起，很容易被划到「贵的那一档」。<br />
 感性上就只有一个直觉：<strong>每个月要掏一大笔钱给一辆二手现代买保险，总觉得有点过头。</strong></p>
 
-<h2 id="quote-了别家公司发现他们也差不多">quote 了别家公司，发现他们也差不多</h2>
+<h2 id="问了别家公司发现他们也差不多">问了别家公司，发现他们也差不多</h2>
 
-<p>为了不被一家吓住，我也去别家网站上 quote 了一圈，尽量让配置保持差不多。</p>
+<p>为了不被一家吓住，我也去别家网站上问了一圈，尽量让配置保持差不多。</p>
 
-<p>大致结论是：</p>
-<ul>
-  <li>明显便宜的方案，基本都是在保额上做文章；</li>
-  <li>真要维持「高一点的责任险 + UM + 全险」，几家公司报出来的数字都差不太多。</li>
-</ul>
+<p>大致结论是：明显便宜的方案，基本都是在保额上做文章；真要维持「高一点的责任险 + UM + 全险」，几家公司报出来的数字都差不太多。</p>
 
-<p>换句话说：<strong>你能换的是公司和 UI，换不掉的是这套系统对「新司机+湾区+全险」这类人的定价逻辑。</strong></p>
+<p>你能换的是公司和 UI，换不掉的是这套系统对「新司机+湾区+全险」这类人的定价逻辑。</p>
 
-<h2 id="暂时的答案先接受它但记住这种不爽">暂时的答案：先接受它，但记住这种不爽</h2>
+<h2 id="先接受它但记住这种不爽">先接受它，但记住这种不爽</h2>
 
 <p>最后我做的决定其实很不英雄主义：</p>
 
 <ul>
   <li>保额不动，责任险和 UM 继续维持在 100/300/100 这一档；</li>
   <li>免赔额先不往天上拱，宁可少省一点，也不想未来某天为这点便宜后悔；</li>
-  <li>续约暂时按原配置走，等自己不是这么心烦的时候，再细致研究“要不要换公司”。</li>
+  <li>续约先按原配置走，等自己不是这么心烦的时候，再研究”要不要换公司”。</li>
 </ul>
 
-<p>这不是一个很爽的结局，但至少是一个我自己能接受的结局。</p>
+<p>这不是一个爽的结局，但至少是我自己能接受的结局。</p>
 
-<p>写下来纯粹是给未来的自己看：<br />
-以后再收到续约邮件，看到那个数字，如果又想骂一句「怎么还是这么贵」，就知道——这一切不是突然发生的，而是这套游戏一直就是这么设定的。</p>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><category term="钱和保险" /><summary type="html"><![CDATA[车是一辆二手的 Hyundai SUV，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果保险公司发过来的续约报价，就是那种「一看就心里一沉」的大几百刀一口价。]]></summary></entry><entry><title type="html">语音转文字工具横评：找到了一匹黑马</title><link href="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/" rel="alternate" type="text/html" title="语音转文字工具横评：找到了一匹黑马" /><published>2026-01-19T00:00:00-08:00</published><updated>2026-01-19T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/"><![CDATA[<p>最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。</p>
+<p>写下来纯粹是给未来的自己看：</p>
+
+<p>以后再收到续约邮件，看到那个数字，如果又想骂一句「怎么还是这么贵」，就知道——这一切不是突然发生的。贵就贵在这一块儿。</p>]]></content><author><name>Harry Chen</name></author><category term="生活记录" /><category term="湾区" /><category term="钱和保险" /><summary type="html"><![CDATA[车是一辆二手的 Hyundai SUV，不是豪车，也不是性能怪兽，就是一台老老实实跑通勤、买菜、带人看医生用的车。结果保险公司发过来的续约报价，就是那种「一看就心里一沉」的大几百刀一口价。]]></summary></entry><entry><title type="html">语音转文字工具横评：找到了一匹黑马</title><link href="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/" rel="alternate" type="text/html" title="语音转文字工具横评：找到了一匹黑马" /><published>2026-01-19T00:00:00-08:00</published><updated>2026-01-19T00:00:00-08:00</updated><id>http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison</id><content type="html" xml:base="http://chenxiaohui.me/2026/01/19/voice-to-text-tools-comparison/"><![CDATA[<p>最近一直在探索更好地与 AI 交互的方式，语音输入是绕不开的一环。试用了几款主流工具后，有些意外发现。</p>
 
 <p><img src="/assets/images/posts/voice-to-text-tnt.jpg" alt="安静！吵着我用TNT了" /></p>
 
