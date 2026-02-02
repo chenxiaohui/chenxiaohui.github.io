@@ -280,6 +280,23 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/09/25/use-picasa-client-from-goagent/"><h2 itemprop="headline" class="item__header">通过goagent使用Picasa客户端</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+goagent这一神器就不多说了，配置详见goagent教程。这里主要探讨picasa客户端使用代理的问题。
+
+picasa本身的代理设置只有一个用户名和密码，不明所以，所以一直用hosts文件的方法，但是后来发现配置里还有一项“自动检测网络设置”，勾选之后只要在系统里设置好goagent代理（PS，Internet选项那里，Linux没试，Linux下也没有picasa端吧），就可以使用代理上传照片了。
+
+最后吐槽一下：picasa也是google神器了，更有牛逼的人脸识别，但自从picasa相册编程google plus相册之后，就有了很多纠结的问题。比如我只是想把认识的人圈点一下，结果你非要在Google Plus群发一条消息，这如何是我等低调之人所能容忍的。算了，pica...</div><p><a href="/2012/09/25/use-picasa-client-from-goagent/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=goagent">goagent</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=picasa">picasa</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 25, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-09-25T00:00:00-07:00">
+    <meta itemprop="keywords" content="goagent,picasa"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/09/25/this-age-of-person-with-ability/"><h2 itemprop="headline" class="item__header">在这个才人辈出的时代</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
   偶然翻bootstrap的资料，在bootstrap的中文网站看到如下三个sample:
@@ -441,41 +458,8 @@ friend ostream&amp; operator&lt;&lt;(ostream&amp; o,const ClassName&amp; c);[1]<
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 07, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-05-07T00:00:00-07:00">
     <meta itemprop="keywords" content="C#,CArchive,输入输出,运算符重载"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/"><h2 itemprop="headline" class="item__header">简短总结一下C#里跨线程更新UI</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用
-
-Control.CheckForIllegalCrossThreadCalls = false;
-
-
-来关闭跨线程检测。但是这样做有一定的风险，容易让程序崩溃。
-
-最好的办法是通过Invoke，这篇博客只是提供一个示例，至于那些线程同步、Invoke和BeginInvoke，Invoke底层实现神马的，有空再说吧。
-
-一个简单的例子如下：（注，Form1 加入了一个名为txt的TextBox）
-
-using System;
-using System.Collections.Generic;
-using System.C...</div><p><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=CheckForIllegalCrossThreadCalls">CheckForIllegalCrossThreadCalls</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Invoke">Invoke</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=UI">UI</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%9B%B4%E6%96%B0">更新</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%B7%A8%E7%BA%BF%E7%A8%8B">跨线程</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 16, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-16T00:00:00-07:00">
-    <meta itemprop="keywords" content="CheckForIllegalCrossThreadCalls,Invoke,UI,更新,跨线程"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page31">
             <i class="fas fa-angle-left"></i>

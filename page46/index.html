@@ -280,6 +280,32 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/02/24/message-box-like-qq-or-msn/"><h2 itemprop="headline" class="item__header">仿QQ、MSN消息提示窗口的实现（C#）</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">前言：我们在QQ、MSN、飞信等即时通信软件中经常看到消息弹出提示，即屏幕右下角弹出一个消息提示框，然后过一段时间隐去（有时候也不隐去，比如一个艰难的决定）。这种提示方式在消息通信中比弹MessageBox更符合用户习惯，前者往往阻碍用户正常操作。我们尝试在.Net下模拟这种方式。
+
+坦白的说核心代码是某位大牛（John O’Byrne）写的，另一位大牛Patrick Vanden Driessche 修改了部分代码，我在此基础上增加了对多弹框的支持，文后附了原代码和我修改之后的代码。
+
+多弹框的实现部分主要写了一个PlaceManager类每次从0下标开始检测哪个位置可用，然后在这个位置弹出消息提示框，消息提示框隐掉之后再回收这个位置。
+
+考虑到同时弹出两个及两个以上框的几率非常小，...</div><p><a href="/2011/02/24/message-box-like-qq-or-msn/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=MSN">MSN</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=QQ">QQ</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%A4%9A%E7%AA%97%E5%8F%A3">多窗口</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%A4%9A%E7%BA%BF%E7%A8%8B">多线程</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%B6%88%E6%81%AF%E6%8F%90%E7%A4%BA">消息提示</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Feb 24, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-02-24T00:00:00-08:00">
+    <meta itemprop="keywords" content="MSN,QQ,多窗口,多线程,消息提示"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/02/23/analysis-on-an-error-message-of-breaking-the-rule-of-concurrency/"><h2 itemprop="headline" class="item__header">&ldquo;违反并发性: UpdateCommand 影响了预期1条记录中的0条&rdquo;原因分析</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">该问题出现在使用DataAdapter自动对DataTable(或DataSet)进行更新的时候，具体情形是：通过界面添加了一条记录，然后调用DataAdapter的Update方法更新了数据，之后又修改或删除了这条记录。
 
@@ -470,36 +496,8 @@
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00-08:00">
     <meta itemprop="keywords" content="歌曲,正则表达式,百度"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/01/30/dream-in-the-box/"><h2 itemprop="headline" class="item__header">盒子的梦想</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">——我们的人生其实还很长，还有太多的时间去实现自己的梦想
-
-
-  这部短片讲述了一个名叫蕾蕾的女孩在工作闲暇巧遇一个装着1993年的自己写给多年后自己的信的盒子，却发现当年给自己制定，要在人生10000天实现的梦想还有很多没有实现，于是她开始了忙碌的人生的第10000天……From Baiduer
-
-
-这是百度年会商业产品部的一段视频。话说某度有时候还是能给人一点惊喜的。作为Share同样思维的一帮IT geek们，能做出这样一段视频，确实堪称经典了。
-
-算算来北京混迹已经四年半了。生活总是强迫一个人改变，然后让他把这种改变称作“成熟”并且写入博客里。大部分的改变总是使你更加适应环境，但改变总意味着失去，于是，但凡写“成熟”的文章最后都会加上一句：聪明的，你告诉我，我们的日子为什么一去...</div><p><a href="/2011/01/30/dream-in-the-box/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=one+minute+fly">one minute fly</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%87%8C%E9%9C%84%E8%82%83">凌霄肃</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%A7%9A%E6%99%A8">姚晨</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%99%BE%E5%BA%A6">百度</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%9B%92%E5%AD%90%E7%9A%84%E6%A2%A6%E6%83%B3">盒子的梦想</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 30, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-30T00:00:00-08:00">
-    <meta itemprop="keywords" content="one minute fly,凌霄肃,姚晨,百度,盒子的梦想"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page45">
             <i class="fas fa-angle-left"></i>

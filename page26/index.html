@@ -280,6 +280,33 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2013/11/24/thinking-in-java-notes/"><h2 itemprop="headline" class="item__header">Thinking In Java读书笔记</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">静态成员只有被引用（首次生成所在类的对象或者被首次访问，即使从为生成过那个类的对象）的时候才会初始化。
+
+一般情况下Java成员变量初始化顺序是，静态成员/静态快-&gt;直接初始化的类成员-&gt;构造函数
+
+一个简单的例子如下:
+
+
+
+Cup.java
+
+public class Cup {
+	public Cup(int i)
+	{
+		System.out.println("constructor" + i);
+	}
+}
+
+
+TestJava.java
+	public class TestJava {
+		public Cup cup;
+		public Cup cup3 = new Cup(3);
+		public static Cup cup1 = new Cup(1);
+...</div><p><a href="/2013/11/24/thinking-in-java-notes/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 24, 2013</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-24T20:32:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2013/11/23/effective-notes/"><h2 itemprop="headline" class="item__header">Effective C++ 读书笔记</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">Effective前面有几节是说构造析构赋值过程中基类和派生类的调用关系的，做了一个综合一点的例子，来验证一下这个问题。代码如下，话说贴代码是在是很没溜的做法，尤其是如果在出版的书中看到的话，这种行为基本属于骗稿费的…
 
@@ -364,22 +391,8 @@ ob的log格式是这样的
 
   	[2013-1...</div><p><a href="/2013/11/08/solution-to-locate-log-in-src/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 08, 2013</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-08T21:31:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/"><h2 itemprop="headline" class="item__header">自己写的一个根据路径打开文件的插件</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">这个其实修改了很多次，最初的目的是在linux下嘛，找电影不方便，只能用locate打印出一个电影列表来，但是每次复制路径到命令行多不方便啊，最好能在vim里面操作，于是想想干脆做成通用的好了，就有了这个filelist.vim
-
-
-
-"=============================================================================
-"     FileName: filelist.vim
-"         Desc:
-"       Author: ChenXiaohui
-"        Email: sdqxcxh@gmail.com
-"     HomePage: http://www.cxh.me
-"      Ve...</div><p><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 08, 2013</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-08T21:26:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page25">
             <i class="fas fa-angle-left"></i>

@@ -280,6 +280,22 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/01/19/blog-processor/"><h2 itemprop="headline" class="item__header">日志格式处理BlogProcessor</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">从之前的博客转文章的时候发现存在格式问题，之前格式贴到LiveWriter里总是一堆混乱。LiveWriter也是微软一大神器，格式莫名奇妙，如果直接拷贝一篇文章进去，那么段前的空格缩进都会消失，又没有什么好的缩进方式。不知道有没有牛人给解释一下？
+
+无奈做了一个格式处理的工具，先处理掉所有的空行，空格和tab，然后在每行前加四个空格的缩进。为了显得好看，每行之间再加一个空行，最后拷贝到剪贴板。也是没办法的办法，不知道各位有什么高招？
+
+程序很简单，在界面拖一个TextBox，一个Button，如下所示：
+
+
+
+代码如下所示：
+
+    using System;
+    using System.Collections.Generic;
+    using System.Compon...</div><p><a href="/2011/01/19/blog-processor/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jan 19, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-01-19T00:00:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/01/01/summary-of-2010/"><h2 itemprop="headline" class="item__header">2010总结</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">1.一年里发觉自己越发geek了。当年差点去学文，如今却欢乐的混迹于计算机界，唯一共性的东西是，我确实还在写东西，而且现在写的东西不仅可以看，可以读，跌宕起伏，还可以运行，碰上运气不好的时候还蹦你一堆Error…….
 
@@ -356,20 +372,8 @@ While True
 
 人生天地间，忽如远行客。人在旅途，总有停留，总要离开。挥手告别的时候，有朋友相送，有别酒，有离...</div><p><a href="/2010/06/28/walking-away/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Jun 28, 2010</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2010-06-28T00:00:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2010/05/05/pay-attention-to-all-things-college-students-like/"><h2 itemprop="headline" class="item__header">关注一切大学生关注的事情</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">我记得很久之前，郎不无感慨的跟我说，你觉得我们进入社会之后别人能理解我们么？或许我们与父辈的文化已经背离很远了——我们创造了太多的名词。从“囧”到“纠结”，从“寂寞”到“杯具”，春哥对他们来说只是一个传说，回家吃饭也是天经地义。
-
-在80后集体奔三的时候，文化的认同感变得越发强烈。弹玻璃球，扔沙包，跳皮筋，《葫芦娃》，《圣斗士》，各色橡皮，贴画……童年的记忆是如此相似，也如此亲切。盼望下课盼望放学的年代，那桌子上的一根三八线，曾经的懵懂曾经的青涩……80后的成长，有着如此相似的轨迹。
-
-而我们终于长大了。
-
-无论你是要踏入社会还是继续求学的路程，请不要忘记我们心底的那份认同。外面的世界很精彩，外面的世界很无奈，在这个陌生的世界里打拼，一个共同的话题，往往可以让两个陌生人彼此相熟。
-
-建...</div><p><a href="/2010/05/05/pay-attention-to-all-things-college-students-like/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>May 05, 2010</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2010-05-05T00:00:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page48">
             <i class="fas fa-angle-left"></i>

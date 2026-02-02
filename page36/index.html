@@ -280,6 +280,41 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2011/09/29/file-find-tool-fuzzy-finder/"><h2 itemprop="headline" class="item__header">文件查找利器&mdash;&mdash;FuzzyFinder</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
+
+这个东东太华丽了……相当VisualAssist的查找符号和查找文件，不过功能更强大，支持正则表达式，支持全文检索。
+
+
+  下载地址：
+
+  需要的支持库：
+
+  L9Library
+
+
+另外，由于命令较多，可以配置一下命令提示，如下所示：
+
+"fuzzyfinder
+"
+" F4和shift F4调用FuzzyFinder命令行菜单"
+"
+function! GetAllCommands()
+  redir =&gt; commands
+  silent command
+  redir END
+  return map((split(commands, "
+")[3:]),
+      \      '":" . matchstr(v:val, ''^....\zs\S*''...</div><p><a href="/2011/09/29/file-find-tool-fuzzy-finder/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=fuzzyfinder">fuzzyfinder</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%9F%A5%E6%89%BE%E5%88%A9%E5%99%A8">查找利器</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 29, 2011</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-29T00:00:00-07:00">
+    <meta itemprop="keywords" content="fuzzyfinder,查找利器"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2011/09/24/auto-exit-problem-of-nerd-tree-plugin/"><h2 itemprop="headline" class="item__header">Nerd_Tree插件自动退出</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">#
 
@@ -487,28 +522,8 @@ Windows下这插件主要的问题是找不到iconv，也正常，这么华丽�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 18, 2011</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-18T00:00:00-07:00">
     <meta itemprop="keywords" content="fedora,grub,Linux,ubuntu,win7,多系统,安装"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2011/09/03/unity-supports-3d-games-import-to-flash/"><h2 itemprop="headline" class="item__header">Unity已支持将3D游戏导出成Flash</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">Unity是一款支持跨平台开发的3D游戏开发工具，生成的游戏可以导出到 包括iOS, Android, PS3, Wii, XBox360在内的众多平台。近日Unity发布了一则视频， 演示了将Unity3D游戏导出到Flash，并运行在Flashplayer11 beta版上的效果。
-
-游戏虽然不如运行在Unity原生平台流畅，但也已远远超出人们对Flashplayer 3D性能的预期了。看起来，Flashplayer11确实朝3D这个方向迈出了一大步。
-该版本的Uinty还未正式发布，但如果你已经安装了Flashplayer11，可以先试试Adobe推荐的3D演示游戏。</div><p><a href="/2011/09/03/unity-supports-3d-games-import-to-flash/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=flash">flash</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=unity3d">unity3d</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AF%BC%E5%87%BA">导出</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%B8%B8%E6%88%8F">游戏</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Sep 03, 2011</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-09-03T00:00:00-07:00">
-    <meta itemprop="keywords" content="flash,unity3d,导出,游戏"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page35">
             <i class="fas fa-angle-left"></i>

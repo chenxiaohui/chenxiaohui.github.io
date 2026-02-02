@@ -280,6 +280,39 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/"><h2 itemprop="headline" class="item__header">简短总结一下C#里跨线程更新UI</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">跨线程更新UI是写多线程程序尤其是通信类的程序经常遇到的问题，这里面主要的问题是冲突，比如数据线程想要更新UI的时候，用户同时也在更新UI，就会出现争用。C#里可以用
+
+Control.CheckForIllegalCrossThreadCalls = false;
+
+
+来关闭跨线程检测。但是这样做有一定的风险，容易让程序崩溃。
+
+最好的办法是通过Invoke，这篇博客只是提供一个示例，至于那些线程同步、Invoke和BeginInvoke，Invoke底层实现神马的，有空再说吧。
+
+一个简单的例子如下：（注，Form1 加入了一个名为txt的TextBox）
+
+using System;
+using System.Collections.Generic;
+using System.C...</div><p><a href="/2012/04/16/summary-of-cross-thread-ui-update-in-csharp/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=CheckForIllegalCrossThreadCalls">CheckForIllegalCrossThreadCalls</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Invoke">Invoke</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=UI">UI</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%9B%B4%E6%96%B0">更新</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E8%B7%A8%E7%BA%BF%E7%A8%8B">跨线程</a>
+            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Apr 16, 2012</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-04-16T00:00:00-07:00">
+    <meta itemprop="keywords" content="CheckForIllegalCrossThreadCalls,Invoke,UI,更新,跨线程"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2012/04/14/unable-to-enumerate-USB-device-error-in-some-thinkpad/"><h2 itemprop="headline" class="item__header">记ThinkPad某些型号下Linux报Unable to enumerate USB device错误的问题</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">这问题确实挺烦的，据说常见于某些ThinkPad系的笔记本，具体表现是不停的报
 
@@ -504,48 +537,8 @@ VIM默认使用的过程中有一个重要的问题，就是打开多个文件�
             </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 16, 2012</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-16T00:00:00-07:00">
     <meta itemprop="keywords" content="Itemize,Latex,paralist,行距"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/"><h2 itemprop="headline" class="item__header">两种可行的Latex中文生成方式(GBK/UTF8)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">#
-
-本来想总结一下Latex里各种中文排版支持，但是发现太乱了，CCT，CJK，CTEX神马的，还有GBK和UTF8下的不同编码方式，再加上XeLatex这样来搅局的……所以最后决定只给出一种可行的排版方式，测试环境是Windows CTex2.8。
-
-ps:每天忍辱负重的在Windows下用Vim和Latex……
-
-第一种是gbk编码下的编译方式
-
-REM taskkill /im AcroRd32.exe
-pdflatex %1
-bibtex %1
-pdflatex %1
-gbk2uni %1.out
-pdflatex %1
-start %1.pdf
-
-
-其中第一句的目的是结束掉当前的PDF文档，但是它会随机选择一个Acrobat Reader进程结束，所以给注掉了。从代码里可以...</div><p><a href="/2012/03/15/two-ways-to-generate-chinese-in-Latex/">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=beamer">beamer</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ctex">ctex</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=gbk">gbk</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Latex">Latex</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=utf8">utf8</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E4%B8%AD%E6%96%87">中文</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>Mar 15, 2012</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2012-03-15T00:00:00-07:00">
-    <meta itemprop="keywords" content="beamer,ctex,gbk,Latex,utf8,中文"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page32">
             <i class="fas fa-angle-left"></i>

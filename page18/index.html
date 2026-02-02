@@ -280,6 +280,15 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/12/09/notes-on-kafka-consumer-api/"><h2 itemprop="headline" class="item__header">kafka Consumer API几个问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">一直不理解这里的topicCountMap是什么意思。kafka的High Level Consumer API设计实在是比较费解。源码又比较费解。
+
+Map&lt;String, Integer&gt; topicCountMap = new HashMap&lt;String, Integer&gt;();
+topicCountMap.put(topic, new Integer(1));
+Map&lt;String, List&lt;KafkaStream&lt;byte[], byte[]&gt;&gt;&gt; consumerMap = consumer.createMessageStreams(topicCountMap);
+List&lt;KafkaStream&lt;...</div><p><a href="/2014/12/09/notes-on-kafka-consumer-api/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Dec 09, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-09T10:12:00-08:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/12/08/eclipse-java-override-warning/"><h2 itemprop="headline" class="item__header">关于eclipse里面override上的warning</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">写一个Thrift的调用。生成的Thrift代码在eclipse里面打开就报错。如下：
 
@@ -396,36 +405,8 @@ class Middle : public Base
 
 class Deriv...</div><p><a href="/2014/10/28/cpp-derive-problems/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 28, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-28T15:56:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/10/22/destruct-and-member-destruct/"><h2 itemprop="headline" class="item__header">析构函数和成员析构的先后顺序</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">肖总问到这个问题，写了个程序验证：
-  	class Member
-	{
-	 public:
-	   Member (){}
-	   virtual ~Member (){printf(“member destruct\n”);}
-	};
-	class Base
-	{
-	  public:
-	    Base (){}
-	    virtual ~Base (){ printf(“destruct\n”);}
-	  private:
-	    Member member_;
-	};
-	int main(int argc, const char *argv[])
-	{
-	  Base c;
-	  return 0;
-	}
-
-结果是：
-
-  destruct
-  member destru...</div><p><a href="/2014/10/22/destruct-and-member-destruct/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 22, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-22T17:57:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page17">
             <i class="fas fa-angle-left"></i>

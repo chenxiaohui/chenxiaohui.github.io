@@ -280,6 +280,29 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/07/10/namespace-conflicts-with-friend/"><h2 itemprop="headline" class="item__header">命名空间和友元冲突</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">今天遇到一个问题，需要跨namespace定义友元，这种情况比较常见的是测试类需要访问源码类，gtest据说有个FRIEND_TEST宏，以前用过好像有问题。这里我们直接用友元:
+
+  	namespace oceanbase
+  	{
+  	namespace election
+    {
+    	class ObElectionServer : public ObSingleServer
+    	{
+    		friend class ObElectionTester;
+    		...
+    	}
+    }
+}
+namespace oceanbase
+{
+  namespace tests
+  {
+    namespace election
+    {
+	    c...</div><p><a href="/2014/07/10/namespace-conflicts-with-friend/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 10, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-10T19:09:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/07/08/im/"><h2 itemprop="headline" class="item__header">呵呵呵呵以至于我不得不开篇博客说这个事情</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">话说变形金刚四中国版里面植入广告已经超越春晚了，就是没找到周黑鸭哪里去了…</div><p><a href="/2014/07/08/im/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 08, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-08T09:55:00-07:00"></div>
@@ -358,12 +381,8 @@
 
 [4] 为 Key-Value 数据库实现MVCC 事务, http://juliashin...</div><p><a href="/2014/07/02/article-on-transaction/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 02, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-02T16:45:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/07/01/photo-of-a-cup/"><h2 itemprop="headline" class="item__header">测试一张静物</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">测试一张静物：宾得 SMC FA 50mm F1.4， 光圈2.0 快门 1/60</div><p><a href="/2014/07/01/photo-of-a-cup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 01, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-07-01T19:44:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page20">
             <i class="fas fa-angle-left"></i>

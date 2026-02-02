@@ -280,6 +280,34 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2014/10/22/destruct-and-member-destruct/"><h2 itemprop="headline" class="item__header">析构函数和成员析构的先后顺序</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">肖总问到这个问题，写了个程序验证：
+  	class Member
+	{
+	 public:
+	   Member (){}
+	   virtual ~Member (){printf(“member destruct\n”);}
+	};
+	class Base
+	{
+	  public:
+	    Base (){}
+	    virtual ~Base (){ printf(“destruct\n”);}
+	  private:
+	    Member member_;
+	};
+	int main(int argc, const char *argv[])
+	{
+	  Base c;
+	  return 0;
+	}
+
+结果是：
+
+  destruct
+  member destru...</div><p><a href="/2014/10/22/destruct-and-member-destruct/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Oct 22, 2014</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-10-22T17:57:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2014/10/20/distribute-system-guide/"><h2 itemprop="headline" class="item__header">分布式系统/NOSQL入门书单</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">简单记一下我看过的和觉得值得看的。主要是给@赵龙作为参考。
 
@@ -376,32 +404,8 @@ class MemPool
 
 相比较而言，paxos的wiki可能更好懂一些。有余力的同学可以做一下MIT Distributed Systems Labs。</div><p><a href="/2014/08/26/paxos-study/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 26, 2014</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-08-26T20:53:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2014/08/24/no-copy-restrict/"><h2 itemprop="headline" class="item__header">C++的限制拷贝</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">如果需要禁止一个类的拷贝（多鉴于RAII的资源类），按习惯我们会把拷贝构造函数和赋值运算符重载设置为私有的。比如：
-
-class Base
-{
-  public:
-    Base (int a)
-    {
-      cout &lt;&lt;"construct"&lt;&lt;endl;
-    }
-    virtual ~Base (){}
-
-  private:
-    Base(const Base&amp; b)
-    Base &amp; operator=(const Base&amp; b)
-};
-
-int main(int argc, const char *argv[])
-{
-  Base b(1);//ok
-  Base c=1;//error[1]
- ...</div><p><a href="/2014/08/24/no-copy-restrict/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Aug 24, 2014</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-08-24T12:44:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page18">
             <i class="fas fa-angle-left"></i>

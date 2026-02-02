@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/07/30/log4cxx-setup/"><h2 itemprop="headline" class="item__header">log4cxx安装</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">log4cxx是apache基金会的log开源项目，log4j的c++实现，安装的时候遇到一个小问题：
+
+首先正常安装：
+
+  	wget http://mirrors.cnnic.cn/apache/logging/log4cxx/0.10.0/apache-log4cxx-0.10.0.tar.gz
+tar zxvf apache-log4cxx-0.10.0.tar.gz
+cd apache-log4cxx-0.10.0
+./configure
+make
+
+
+报错libdb-4.3.so 格式错误。开始以为是文件损坏了，查了一下这个文件
+
+   	yum provides */libdb-4.3.so
+
+提示在db4里面，重新安装db4
+
+   	yum reinstall db...</div><p><a href="/2015/07/30/log4cxx-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 30, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-07-30T15:55:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/07/29/group-commit/"><h2 itemprop="headline" class="item__header">关于group commit</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">最近突然想到这个东西，以前Oceanbase的UpdateServer提交的时候是做了group commit的。基本思路如下：
 
@@ -428,22 +449,8 @@ SeviceConfig:
  pool = ThreadPool(4) 
  results = pool.map(urllib2.urlo...</div><p><a href="/2015/05/27/python-tricks/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 27, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-05-27T10:54:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/05/11/git-remote-branch-not-exists/"><h2 itemprop="headline" class="item__header">Git远程分支不存在的问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">建立了一个远程分支，提交到origin上之后，发现之前有一个同样的远程Repository存在，而且名字一样，这就比较D疼了，git branch -a 显示的分支里面的分支提交到了另一个Repository，但是这个Repository已经改名字了，虽然地址一样。
-
-搞来搞去之后发现git checkout远程分支的时候报不存在的问题，删除这个分支的时候同样有这个问题：
-
-  	unable to delete ‘refactor’: remote ref does not exist
-
-导致这个分支就这么存在着删不掉了。查stackoverflow有人给出如下的方案：
-
-  	git fetch -p origin
-
-问题是能解决了，但是不太理解为什么。</div><p><a href="/2015/05/11/git-remote-branch-not-exists/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 11, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-05-11T12:11:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page8">
             <i class="fas fa-angle-left"></i>

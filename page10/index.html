@@ -280,6 +280,20 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/05/11/git-remote-branch-not-exists/"><h2 itemprop="headline" class="item__header">Git远程分支不存在的问题</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">建立了一个远程分支，提交到origin上之后，发现之前有一个同样的远程Repository存在，而且名字一样，这就比较D疼了，git branch -a 显示的分支里面的分支提交到了另一个Repository，但是这个Repository已经改名字了，虽然地址一样。
+
+搞来搞去之后发现git checkout远程分支的时候报不存在的问题，删除这个分支的时候同样有这个问题：
+
+  	unable to delete ‘refactor’: remote ref does not exist
+
+导致这个分支就这么存在着删不掉了。查stackoverflow有人给出如下的方案：
+
+  	git fetch -p origin
+
+问题是能解决了，但是不太理解为什么。</div><p><a href="/2015/05/11/git-remote-branch-not-exists/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 11, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-05-11T12:11:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/05/10/mac-multi-screen-shortcut/"><h2 itemprop="headline" class="item__header">mac下多屏幕移动窗口的快捷键</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">mac下使用多屏幕的话，经常需要把一个窗口移动到另一个窗口，windows下有快捷键win+shift+左右，linux下貌似可以通过xdotool实现，绑定一个快捷键，xdotool帮助你移动窗口到一个绝对位置。如下：
 
@@ -357,32 +371,8 @@ Ok.</div><p><a href="/2015/04/22/post-review-encoding-problem/">Read more</a></p
 
  	/usr/sbin/testsaslauthd -u username -p soh...</div><p><a href="/2015/04/01/something-about-sendmail-setup/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Apr 01, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-04-01T20:14:00-07:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/31/ps-do-not-grep-self/"><h2 itemprop="headline" class="item__header">ps grep不显示grep自己本身的方法</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">主要两种方式：
-
-
-  
-    不grep自己。
-
-     -v, --invert-match
-     Invert the sense of matching, to select non-matching lines.
- 所以：
-     ps xuf|grep python|grep -v grep
-    
-  
-  
-    awk 略去最后一行。
-
-     ps xuf|grep python|awk 'NR&gt;1{print p}{p=$2}'
-    
-
-    解释下：第一行的时候，NR=1不打印，但是把pid存在p中，下一行打印，最后一行的时候，打印的是上一行的pid。
-
-    awk博大精深…</div><p><a href="/2015/03/31/ps-do-not-grep-self/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 31, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-31T15:45:00-07:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page9">
             <i class="fas fa-angle-left"></i>

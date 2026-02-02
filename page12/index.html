@@ -280,6 +280,27 @@
 
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="Harry Chen"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
+          <header><a href="/2015/03/16/linux-install-uninstall-tar-ball/"><h2 itemprop="headline" class="item__header">关于Linux 安装和卸载tar ball形式的程序</h2></a></header>
+          <div class="item__description"><div class="article__content" itemprop="description articleBody">源码安装的一些NOTE:
+
+
+  首先./configure –helps是可以看到所有编译选项的。
+  centos下，yum install xx.rpm，可以安装依赖，ubuntu下：apt-get build-dep xx
+  zsh下，./configure tab是会提示所有的编译选项的。
+  
+    Makefile如果没有uninstall选项，更合理的办法似乎是：
+
+    
+      
+        先install到一个单独目录：
+
+        find . -exec rm 安装目录/{} \;
+      
+    
+
+    文件夹自然会失败。</div><p><a href="/2015/03/16/linux-install-uninstall-tar-ball/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 16, 2015</span>
+            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-16T12:11:00-07:00"></div>
+      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
           <header><a href="/2015/03/16/log4cxx-setup/"><h2 itemprop="headline" class="item__header">Log4cxx安装</h2></a></header>
           <div class="item__description"><div class="article__content" itemprop="description articleBody">apache经典的项目，java下有log4j，c++下的实现是log4cxx，安装见参考文献.
 
@@ -380,27 +401,8 @@ WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platfo
 
 OK。</div><p><a href="/2015/03/03/sudo-env/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 03, 2015</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-03T18:34:00-08:00"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2015/03/01/test-cloudsight/"><h2 itemprop="headline" class="item__header">测试下CloudSight的图像识别</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">偶然看到这个链接，一个识别图像并标注的，还蛮有意思。代码直接用示例里面的就可以, 需要注意两个问题：
-
-
-  注册一个项目。ResponseType选择Product。
-  必须上传网络链接，不能使用文件。
-
-
-测试几个效果（多次返回结果不一定一样）：
-
-
-  百度首页，识别为”百度标志”
-  陈吉宁校长的头像，识别为”男人的黑色西装外套” 或 “男人的蓝色西装”
-  我博客一张背景图，识别为”女性的黑色T恤” 或 “红色的通勤自行车”
-
-
-让我突然对这个tag算法很感兴趣。</div><p><a href="/2015/03/01/test-cloudsight/">Read more</a></p></div><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Mar 01, 2015</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2015-03-01T20:58:00-08:00"></div>
       </article></div>
-</div><div class="layout--home"><div class="pagination"><p>505 post articles, 64 pages.</p>
+</div><div class="layout--home"><div class="pagination"><p>506 post articles, 64 pages.</p>
     <div class="pagination__menu">
       <ul class="menu menu--nowrap"><li><a class="button button--secondary button--circle" href="/page11">
             <i class="fas fa-angle-left"></i>
