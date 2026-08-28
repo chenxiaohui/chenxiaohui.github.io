@@ -1,0 +1,12 @@
+tech:
+  title: 技术 / AI
+  description: AI、系统、推荐与工具的公开技术笔记
+  topics: [AI, 系统, 推荐, 工具]
+  accent: "#5b8def"
+  feed: /feed-tech.xml
+life:
+  title: 生活 / 湾区
+  description: 湾区日常、阅读、钱和保险
+  topics: [湾区, 生活, 阅读, 钱和保险]
+  accent: "#d9825b"
+  feed: /feed-life.xml
