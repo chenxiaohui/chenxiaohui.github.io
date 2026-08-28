@@ -34,3 +34,5 @@ _site/
 
 # Environment variables (contains sensitive keys)
 .env
+
+automation/output/
