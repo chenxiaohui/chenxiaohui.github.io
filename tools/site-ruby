@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+repo_dir="$(cd "$(dirname "$0")/.." && pwd)"
+exec docker run --rm \
+  -v "$repo_dir:/site" \
+  -v chenxiaohui_bundle:/usr/local/bundle \
+  -w /site \
+  ruby:3.3.12 "$@"

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Example feed</title>
+    <item>
+      <title>Public release</title>
+      <link>/posts/release</link>
+      <pubDate>Thu, 27 Aug 2026 16:00:00 GMT</pubDate>
+      <description><![CDATA[<p>A documented public release.</p>]]></description>
+    </item>
+    <item>
+      <title>Undated note</title>
+      <link>https://example.com/posts/note</link>
+      <description>Public note without a date.</description>
+    </item>
+  </channel>
+</rss>

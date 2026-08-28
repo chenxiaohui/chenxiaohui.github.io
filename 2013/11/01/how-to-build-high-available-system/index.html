@@ -1,15 +1,27 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="zh-CN">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>如何构建按高可用系统（分享的笔记） - CHENXIAOHUI.ME</title>
-
-<meta name="description" content="版权所有：[解伦师兄][1]###介绍篇可用性vs可靠性可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。可用性可靠性是系统的工程，设计开发，管理，运维等等。宕机几大因素：软件-硬件-网络-人为data loss的最大因素：drop ta...">
-<link rel="canonical" href="http://chenxiaohui.me/2013/11/01/how-to-build-high-available-system/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>如何构建按高可用系统（分享的笔记） - CHENXIAOHUI.ME</title><meta name="description" content="版权所有：[解伦师兄][1]###介绍篇可用性vs可靠性可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。可用性可靠性是系统的工程，设计开发，管理，运维等等。宕机几大因素：软件-硬件-网络-人为data loss的最大因素：drop ta...">
+<link rel="canonical" href="https://chenxiaohui.me/2013/11/01/how-to-build-high-available-system/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
 <meta name="theme-color" content="#ffffff">
-<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" ><!-- start custom head snippets -->
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" ><!-- start custom head snippets -->
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何构建按高可用系统（分享的笔记）">
+<meta property="og:description" content="版权所有：[解伦师兄][1]###介绍篇可用性vs可靠性可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。可用性可靠性是系统的工程，设计开发，管理，运维等等。宕机几大因素：软件-硬件-网络-人为data loss的最大因素：drop ta...">
+<meta property="og:url" content="https://chenxiaohui.me/2013/11/01/how-to-build-high-available-system/">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何构建按高可用系统（分享的笔记）">
+<meta name="twitter:description" content="版权所有：[解伦师兄][1]###介绍篇可用性vs可靠性可用性主要是从时间的角度看，可靠的时间。可靠性主要是看不可用的频率。如果一个系统1小时宕机1ms，可用性非常高，可靠性非常低。可用性可靠性是系统的工程，设计开发，管理，运维等等。宕机几大因素：软件-硬件-网络-人为data loss的最大因素：drop ta...">
+
+
 
 <!-- end custom head snippets -->
 <script>(function() {
@@ -227,17 +239,17 @@
     var TEXT_VARIABLES = {
       version: '2.2.6',
       sources: {
-        font_awesome: 'https://use.fontawesome.com/releases/v5.0.13/css/all.css',
-        jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js',
-        leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js',
-        chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js',
+        font_awesome: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css',
+        jquery: 'https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js',
+        leancloud_js_sdk: 'https://cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av-min.js',
+        chart: 'https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js',
         gitalk: {
-          js: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.js',
-          css: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.css'
+          js: 'https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js',
+          css: 'https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css'
         },
-        valine: 'https://unpkg.com/valine/dist/Valine.min.js',
-        mathjax: 'https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML',
-        mermaid: 'https://cdn.bootcss.com/mermaid/8.0.0-rc.8/mermaid.min.js'
+        valine: 'https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js',
+        mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-MML-AM_CHTML',
+        mermaid: 'https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js'
       },
       site: {
         toc: {
@@ -266,9 +278,8 @@
 <path class="st0" d="M1.7,22.3c5.7-5.7,11.3-5.7,17,0c3.3-3.3,3.5-5.3,0.8-6c2.7,0.7,3.5-1.1,2.3-5.6s-3.3-5.2-6.3-2.1
 	c3-3,2.3-5.2-2.1-6.3S7,1.8,7.7,4.6C7,1.8,5,2.1,1.7,5.3C7.3,11,7.3,16.7,1.7,22.3"/>
 </svg>
-<a title="北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
-" href="/">CHENXIAOHUI.ME</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/archive/">Archive</a></li><li class="navigation__item"><a href="/about/">About</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
+<a title="工程师，记录 AI、系统与湾区生活" href="/">CHENXIAOHUI.ME</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
+        <ul><li class="navigation__item"><a href="/">首页</a></li><li class="navigation__item"><a href="/tech/">技术 / AI</a></li><li class="navigation__item"><a href="/life/">生活 / 湾区</a></li><li class="navigation__item"><a href="/archive/">归档</a></li><li class="navigation__item"><a href="/about/">关于</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
@@ -281,9 +292,9 @@
 <!-- end custom main top snippet -->
 <article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>如何构建按高可用系统（分享的笔记）</h1></header><span class="split-space">&nbsp;</span>
           <a class="edit-on-github"
-            title="Edit on Github"
+            title="在 Github 上修改"
             href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2013-11-01-how-to-build-high-available-system.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="如何构建按高可用系统（分享的笔记）"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Nov 01, 2013</span>
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="如何构建按高可用系统（分享的笔记）"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2013年 11月01日</span>
             </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2013-11-01T18:42:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
@@ -447,18 +458,16 @@
 [2]:
 [3]:</p>
 
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-01T18:42:00-07:00"><!-- start custom article footer snippet -->
-
-<!-- end custom article footer snippet -->
-<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">Subscribe</a></div>
+</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2013-11-01T18:42:00-07:00">
+<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a></div>
 </div><div class="article__license"><div class="license">
-    <p>This work is licensed under a <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> license.
+    <p>本文遵守 <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> 许可协议。
       <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
         <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">分布式调试之用gdb调试分布式系统</a></div><div class="next"><span>NEXT</span><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/2013/10/29/use-gdb-to-test-multi-servers-in-ob/">分布式调试之用gdb调试分布式系统</a></div><div class="next"><span>下篇</span><a href="/2013/11/08/a-vim-plugin-to-deal-with-file-list/">自己写的一个根据路径打开文件的插件</a></div></div></div>
 
 </div>
 
@@ -493,7 +502,7 @@
   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
   *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
   var disqus_config = function () {
-    this.page.url = 'http://chenxiaohui.me/2013/11/01/how-to-build-high-available-system/';
+    this.page.url = 'https://chenxiaohui.me/2013/11/01/how-to-build-high-available-system/';
     this.page.identifier = 'how-to-build-high-available-system';
   };
   (function() { // DON'T EDIT BELOW THIS LINE
@@ -507,21 +516,21 @@
 
 <!-- end custom main bottom snippet -->
 </div>
-            </div></div></div><div class="page__footer d-print-none">
-<footer class="footer py-4 js-page-footer">
-  <div class="main"><div itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Harry Chen"><meta itemprop="url" content="http://chenxiaohui.me"><meta itemprop="description" content="北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。"><div class="footer__author-links"><div class="author-links">
-  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="http://chenxiaohui.me"><li title="Send me an Email.">
-      <a class="button button--circle mail-button" itemprop="email" href="mailto:sdqxcxh@gmail.com" target="_blank">
-        <i class="fas fa-envelope"></i>
-      </a></ul>
-</div>
-</div>
-    </div><div class="site-info mt-2">
-      <div>© CHENXIAOHUI.ME 2020,
-        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
-        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
-      </div>
+            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
+  <div class="main">
+    
+    <div itemscope itemtype="https://schema.org/Person">
+      <meta itemprop="name" content="Harry Chen">
+      <meta itemprop="url" content="https://chenxiaohui.me/about/">
+      <meta itemprop="description" content="工程师，记录 AI、系统与湾区生活">
+      <p><a href="/about/">Harry Chen</a> · 工程师，记录 AI、系统与湾区生活</p>
+    </div>
+    
+    
+    <div class="site-info mt-2">
+      © Harry Chen 2020,
+      Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="https://jekyllrb.com/">Jekyll</a> &amp;
+      <a title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
     </div>
   </div>
 </footer>
@@ -678,7 +687,7 @@
 })();
 </script><div class="search search--dark">
   <div class="main">
-    <div class="search__header">Search</div>
+    <div class="search__header">搜索</div>
     <div class="search-bar">
       <div class="search-box js-search-box">
         <div class="search-box__icon-search"><i class="fas fa-search"></i></div>
@@ -688,7 +697,7 @@
         </div>
       </div>
       <button class="button button--theme-dark button--pill search__cancel js-search-toggle">
-        Cancel</button>
+        取消</button>
     </div>
     <div class="search-result js-search-result"></div>
   </div>

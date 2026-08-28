@@ -1,0 +1,1 @@
+Create a 3:2 landscape editorial illustration for a public technical article. Use abstract forms and a restrained composition. Do not include text, logos, watermarks, people, faces, screens, code screenshots, company marks, badges, or personal objects.
