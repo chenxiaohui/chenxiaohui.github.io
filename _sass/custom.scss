@@ -1,6 +1,12 @@
 /* start custom scss snippet */
 
-// 统一所有背景色为柔和的深灰色
+$personal-home-bg: #0c1016;
+$personal-home-panel: #151a22;
+$personal-home-border: #292f39;
+$personal-home-text: #edf0f4;
+$personal-home-muted: #aeb7c5;
+$personal-home-accent: #ff7772;
+
 body,
 html,
 .root,
@@ -12,12 +18,240 @@ html,
 .page__content,
 .article__content,
 .main {
-  background-color: #1e1e1e !important;
+  background-color: #0a0e14 !important;
 }
 
-// 确保页脚也是同样的颜色
 .footer {
-  background-color: #1e1e1e !important;
+  background-color: #0a0e14 !important;
+}
+
+.personal-brand-home {
+  background: $personal-home-bg;
+  border: 1px solid #2a3039;
+  border-radius: 0.875rem;
+  color: $personal-home-text;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 2rem auto;
+  max-width: 61.25rem;
+  overflow: hidden;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.personal-brand-nav {
+  align-items: center;
+  border-bottom: 1px solid #242a33;
+  display: flex;
+  font-size: 0.8125rem;
+  gap: 1.375rem;
+  padding: 1.125rem 1.75rem;
+}
+
+.personal-brand-nav__brand {
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  margin-right: auto;
+}
+
+.personal-brand-nav__links {
+  align-items: center;
+  display: flex;
+  gap: 1.375rem;
+
+  a {
+    color: #d8dde5;
+  }
+
+  a:hover,
+  .is-active {
+    color: $personal-home-accent;
+  }
+}
+
+.personal-brand-hero {
+  align-items: center;
+  background: radial-gradient(circle at 85% 20%, #29243b 0, #111620 34%, $personal-home-bg 72%);
+  display: grid;
+  gap: 1.875rem;
+  grid-template-columns: 1fr 8.75rem;
+  padding: 3.5rem 2.875rem 2.75rem;
+
+  h1 {
+    color: $personal-home-text;
+    font-size: 2.375rem;
+    line-height: 1.1;
+    margin: 0.625rem 0 0.75rem;
+  }
+}
+
+.personal-brand-hero__eyebrow {
+  color: $personal-home-accent;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.personal-brand-hero__tagline {
+  color: #b0b8c5;
+  font-size: 1rem;
+  margin: 0 0 1.375rem;
+}
+
+.personal-brand-hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+
+  a {
+    border: 1px solid #424b59;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.8125rem;
+    transition: border-color 160ms ease, color 160ms ease;
+  }
+
+  a:hover {
+    border-color: $personal-home-accent;
+    color: #ffaaa6;
+  }
+}
+
+.personal-brand-monogram {
+  background: linear-gradient(145deg, #ff817c, #7356c7);
+  border-radius: 50%;
+  box-shadow: 0 0.9375rem 2.5rem rgba(0, 0, 0, 0.53);
+  display: grid;
+  font-size: 1.875rem;
+  font-weight: 750;
+  height: 7rem;
+  justify-self: end;
+  letter-spacing: 0.06em;
+  place-items: center;
+  width: 7rem;
+}
+
+.personal-brand-section {
+  padding: 0 2.875rem 2.375rem;
+}
+
+.personal-brand-section__heading {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+
+  h2 {
+    color: $personal-home-text;
+    font-size: 1.0625rem;
+    margin: 0;
+  }
+
+  p {
+    color: #8d97a6;
+    font-size: 0.6875rem;
+    margin: 0;
+  }
+}
+
+.personal-brand-featured {
+  background: linear-gradient(135deg, #292037, #13283a);
+  border: 1px solid #34394a;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 10.625rem;
+  padding: 1.5rem;
+  transition: border-color 160ms ease, transform 160ms ease;
+
+  &:hover {
+    border-color: #665b7f;
+    transform: translateY(-1px);
+  }
+
+  span {
+    color: #ff9580;
+    font-size: 0.75rem;
+  }
+
+  h3 {
+    color: $personal-home-text;
+    font-size: 1.5rem;
+    margin: 0.4375rem 0;
+    max-width: 65%;
+  }
+
+  p {
+    color: $personal-home-muted;
+    font-size: 0.75rem;
+    margin: 0;
+    max-width: 65%;
+  }
+}
+
+.personal-brand-channels {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.personal-brand-channel {
+  background: $personal-home-panel;
+  border: 1px solid $personal-home-border;
+  border-radius: 0.6875rem;
+  padding: 1.125rem;
+
+  > h2 {
+    color: $personal-home-text;
+    font-size: 0.9375rem;
+    margin: 0 0 0.75rem;
+  }
+
+  > h2 a:hover {
+    color: $personal-home-accent;
+  }
+}
+
+.personal-brand-story {
+  border-top: 1px solid #282e38;
+  padding: 0.6875rem 0;
+
+  &:first-of-type {
+    border-top: 0;
+  }
+
+  h3 {
+    font-size: 0.75rem;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  h3 a:hover {
+    color: #ff9580;
+  }
+
+  p {
+    color: #7f8998;
+    font-size: 0.625rem;
+    margin: 0.125rem 0 0;
+  }
+}
+
+.personal-brand-footer {
+  border-top: 1px solid #242a33;
+  color: #778190;
+  display: flex;
+  font-size: 0.6875rem;
+  gap: 1rem;
+  padding: 1.25rem 2.875rem;
+
+  a:hover {
+    color: $personal-home-text;
+  }
 }
 
 .personal-home {
@@ -37,8 +271,8 @@ html,
 
 .personal-home__channels {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin: 2rem 0;
 }
 
@@ -76,7 +310,62 @@ html,
   padding: 0.75rem 0 1rem;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
+  .personal-brand-home {
+    border-left: 0;
+    border-radius: 0;
+    border-right: 0;
+    margin: 0;
+  }
+
+  .personal-brand-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .personal-brand-nav__links {
+    gap: 1rem;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    white-space: nowrap;
+  }
+
+  .personal-brand-hero {
+    grid-template-columns: 1fr;
+    padding: 2.125rem 1.5rem;
+  }
+
+  .personal-brand-monogram {
+    justify-self: start;
+  }
+
+  .personal-brand-section {
+    padding: 0 1.5rem 1.75rem;
+  }
+
+  .personal-brand-section__heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.375rem;
+  }
+
+  .personal-brand-featured h3,
+  .personal-brand-featured p {
+    max-width: 100%;
+  }
+
+  .personal-brand-channels {
+    grid-template-columns: 1fr;
+  }
+
+  .personal-brand-footer {
+    flex-wrap: wrap;
+    padding: 1.25rem 1.5rem;
+  }
+
   .personal-home__channels {
     grid-template-columns: 1fr;
   }

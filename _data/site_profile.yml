@@ -1,6 +1,10 @@
 name: Harry Chen
 tagline: 工程师，记录 AI、系统与湾区生活
+role: Engineer · Writer
+monogram: HC
 featured_post: _posts/2025-12-28-ai.md
+featured_meta: 技术 / AI · 8 min
+featured_description: 从算法进步、架构变化和 scaling 讨论大模型效率提升。
 about_topics:
   - AI 与软件系统
   - 开源工具

@@ -1,22 +1,74 @@
 ---
-layout: page
-show_title: false
+layout: base
 ---
 {% assign profile = site.data.site_profile %}
 {% assign featured = site.posts | where: "relative_path", profile.featured_post | first %}
-<div class="personal-home">
-  <section class="personal-home__hero">
-    <p class="personal-home__eyebrow">{{ profile.name }}</p>
-    <h1>{{ profile.tagline }}</h1>
-    <div class="personal-home__channels">
-      <a class="channel-card channel-card--tech" href="{{ '/tech/' | relative_url }}">技术 / AI</a>
-      <a class="channel-card channel-card--life" href="{{ '/life/' | relative_url }}">生活 / 湾区</a>
-    </div>
-  </section>
-  {% if featured and featured.resolved_channel %}
-    <section><h2>推荐阅读</h2><h3><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h3></section>
-  {% endif %}
-  <section><h2>技术 / AI 最新</h2>{% include channel-posts.html channel="tech" limit=3 %}</section>
-  <section><h2>生活 / 湾区 最新</h2>{% include channel-posts.html channel="life" limit=3 %}</section>
+<div class="personal-brand-home">
+  <header class="personal-brand-nav">
+    <a class="personal-brand-nav__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="personal-brand-nav__links" aria-label="主导航">
+      {% for item in site.data.navigation.header %}
+        <a{% if item.url == '/' %} class="is-active" aria-current="page"{% endif %} href="{{ item.url | relative_url }}">{{ item.title }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <main>
+    <section class="personal-brand-hero">
+      <div>
+        <p class="personal-brand-hero__eyebrow">{{ profile.role }}</p>
+        <h1>{{ profile.name }}</h1>
+        <p class="personal-brand-hero__tagline">{{ profile.tagline }}</p>
+        <div class="personal-brand-hero__links">
+          <a href="{{ '/tech/' | relative_url }}">阅读技术 / AI</a>
+          <a href="{{ '/life/' | relative_url }}">阅读生活 / 湾区</a>
+        </div>
+      </div>
+      <div class="personal-brand-monogram" aria-hidden="true">{{ profile.monogram }}</div>
+    </section>
+
+    {% if featured and featured.resolved_channel %}
+      <section class="personal-brand-section">
+        <div class="personal-brand-section__heading">
+          <h2>推荐阅读</h2>
+          <p>由作者手动选择，不随时间自动替换</p>
+        </div>
+        <a class="personal-brand-featured" href="{{ featured.url | relative_url }}">
+          <span>{{ profile.featured_meta }}</span>
+          <h3>{{ featured.title }}</h3>
+          <p>{{ profile.featured_description }}</p>
+        </a>
+      </section>
+    {% endif %}
+
+    <section class="personal-brand-section">
+      <div class="personal-brand-channels">
+        {% for channel_entry in site.data.channels %}
+          {% assign channel_key = channel_entry[0] %}
+          {% assign channel = channel_entry[1] %}
+          <section class="personal-brand-channel">
+            <h2><a href="{{ '/' | append: channel_key | append: '/' | relative_url }}">{{ channel.title }} <span aria-hidden="true">→</span></a></h2>
+            {% assign shown = 0 %}
+            {% for post in site.posts %}
+              {% if post.resolved_channel == channel_key %}
+                <article class="personal-brand-story">
+                  <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                  <p>{{ post.categories | first | default: channel.title }} · {{ post.date | date: "%Y-%m-%d" }}</p>
+                </article>
+                {% assign shown = shown | plus: 1 %}
+                {% if shown >= 3 %}{% break %}{% endif %}
+              {% endif %}
+            {% endfor %}
+          </section>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <footer class="personal-brand-footer">
+    <a href="{{ '/archive/' | relative_url }}">Archive</a>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+    <a href="{{ '/about/' | relative_url }}">About</a>
+    <span>© {{ profile.name }}</span>
+  </footer>
 </div>
-{{ content }}
