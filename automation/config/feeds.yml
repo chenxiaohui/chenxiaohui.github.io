@@ -1,0 +1,7 @@
+feeds:
+  - name: OpenAI News
+    url: https://openai.com/news/rss.xml
+  - name: Cloudflare Blog
+    url: https://blog.cloudflare.com/rss/
+  - name: GitHub Blog Engineering
+    url: https://github.blog/engineering/feed/
