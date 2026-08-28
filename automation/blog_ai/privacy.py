@@ -25,6 +25,7 @@ def make_finding(code: str, label: str, line: int, excerpt: str) -> Finding:
 class PrivacyGate:
     EMAIL = re.compile(r"\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b", re.IGNORECASE)
     PHONE = re.compile(r"(?<!\w)\+?\d[\d ().-]{6,}\d(?!\w)")
+    DATE_TIME = re.compile(r"\d{4}-\d{2}-\d{2}(?:[ T]\d{2}:\d{2}(?::\d{2})?)?")
     URL = re.compile(r"https?://[^\s)<>'\"]+")
     SENSITIVE = [
         re.compile(pattern, re.IGNORECASE)
@@ -50,8 +51,10 @@ class PrivacyGate:
         for line_number, line in enumerate(text.splitlines() or [text], start=1):
             if self.EMAIL.search(line):
                 findings.append(make_finding("email", label, line_number, line))
-            for match in self.PHONE.finditer(line):
-                if sum(character.isdigit() for character in match.group()) >= 10:
+            phone_text = self.DATE_TIME.sub("", line)
+            for match in self.PHONE.finditer(phone_text):
+                candidate = match.group()
+                if sum(character.isdigit() for character in candidate) >= 10:
                     findings.append(make_finding("phone", label, line_number, line))
                     break
             for match in self.URL.finditer(line):
