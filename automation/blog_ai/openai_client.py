@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import base64
 import json
 from pathlib import Path
 import re
@@ -103,3 +104,18 @@ class OpenAIWriter:
         if draft.source_conflicts:
             raise RuntimeError("article contains unresolved source conflicts")
         return draft
+
+    def generate_image(self, prompt: str) -> bytes:
+        full_prompt = f"{self._prompt('image_generation.md').strip()}\n\n{prompt.strip()}"
+        result = self.client.images.generate(
+            model=self.image_model,
+            prompt=full_prompt,
+            size="1536x1024",
+            quality="medium",
+        )
+        if len(result.data) != 1 or not result.data[0].b64_json:
+            raise RuntimeError("image response is missing base64 data")
+        try:
+            return base64.b64decode(result.data[0].b64_json, validate=True)
+        except (ValueError, TypeError) as exc:
+            raise RuntimeError("image response contains invalid base64") from exc
