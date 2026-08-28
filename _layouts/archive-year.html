@@ -1,0 +1,7 @@
+---
+layout: page
+---
+<p><a href="{{ '/archive/' | relative_url }}">← 返回归档</a></p>
+<div class="archive-year">
+  {% include article-list.html articles=page.posts type='brief' show_info=true %}
+</div>
