@@ -1,0 +1,12 @@
+---
+layout: page
+---
+{% assign channel = site.data.channels[page.channel] %}
+<div class="channel-page channel-page--{{ page.channel }}" style="--channel-accent: {{ channel.accent }}">
+  <header class="channel-page__header">
+    <h1>{{ channel.title }}</h1>
+    <p>{{ channel.description }}</p>
+    <p><a href="{{ channel.feed | relative_url }}">订阅此频道</a></p>
+  </header>
+  {% include channel-posts.html channel=page.channel %}
+</div>

@@ -1,0 +1,14 @@
+{% assign shown = 0 %}
+<div class="channel-posts">
+  {% for post in site.posts %}
+    {% if post.resolved_channel == include.channel %}
+      <article class="channel-post">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p class="channel-post__meta">{{ post.date | date: "%Y-%m-%d" }}</p>
+        {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+      </article>
+      {% assign shown = shown | plus: 1 %}
+      {% if include.limit and shown >= include.limit %}{% break %}{% endif %}
+    {% endif %}
+  {% endfor %}
+</div>

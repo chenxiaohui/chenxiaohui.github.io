@@ -1,42 +1,22 @@
 ---
-layout: articles
-titles:
-  # @start locale config
-  en      : &EN       Home
-  en-GB   : *EN
-  en-US   : *EN
-  en-CA   : *EN
-  en-AU   : *EN
-  zh-Hans : &ZH_HANS  主页
-  zh      : *ZH_HANS
-  zh-CN   : *ZH_HANS
-  zh-SG   : *ZH_HANS
-  zh-Hant : &ZH_HANT  主頁
-  zh-TW   : *ZH_HANT
-  zh-HK   : *ZH_HANT
-  ko      : &KO       홈
-  ko-KR   : *KO
-  fr      : &FR       Accueil
-  fr-BE   : *FR
-  fr-CA   : *FR
-  fr-CH   : *FR
-  fr-FR   : *FR
-  fr-LU   : *FR
-  # @end locale config
+layout: page
 show_title: false
-articles:
-  data_source: paginator.posts
-  article_type: BlogPosting
-  show_cover: true
-  show_excerpt: true
-  show_readmore: true
-  show_info: true
 ---
-<div class="layout--home">
-  {%- include paginator.html -%}
+{% assign profile = site.data.site_profile %}
+{% assign featured = site.posts | where: "relative_path", profile.featured_post | first %}
+<div class="personal-home">
+  <section class="personal-home__hero">
+    <p class="personal-home__eyebrow">{{ profile.name }}</p>
+    <h1>{{ profile.tagline }}</h1>
+    <div class="personal-home__channels">
+      <a class="channel-card channel-card--tech" href="{{ '/tech/' | relative_url }}">技术 / AI</a>
+      <a class="channel-card channel-card--life" href="{{ '/life/' | relative_url }}">生活 / 湾区</a>
+    </div>
+  </section>
+  {% if featured and featured.resolved_channel %}
+    <section><h2>推荐阅读</h2><h3><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h3></section>
+  {% endif %}
+  <section><h2>技术 / AI 最新</h2>{% include channel-posts.html channel="tech" limit=3 %}</section>
+  <section><h2>生活 / 湾区 最新</h2>{% include channel-posts.html channel="life" limit=3 %}</section>
 </div>
-<script>
-  {%- include scripts/home.js -%}
-</script>
-
 {{ content }}

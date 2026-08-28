@@ -20,4 +20,66 @@ html,
   background-color: #1e1e1e !important;
 }
 
+.personal-home {
+  margin: 0 auto;
+  max-width: 56rem;
+}
+
+.personal-home__hero {
+  padding: 2rem 0 1rem;
+}
+
+.personal-home__eyebrow,
+.channel-post__meta {
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.875rem;
+}
+
+.personal-home__channels {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.channel-card {
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 0.5rem;
+  display: block;
+  font-size: 1.15rem;
+  padding: 1.25rem;
+}
+
+.channel-card--tech:hover,
+.channel-page--tech .channel-page__header {
+  border-color: #5b8def;
+}
+
+.channel-card--life:hover,
+.channel-page--life .channel-page__header {
+  border-color: #d9825b;
+}
+
+.channel-page__header {
+  border-left: 3px solid var(--channel-accent);
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+}
+
+.channel-page__header a,
+.channel-page .channel-post h3 a:hover {
+  color: var(--channel-accent);
+}
+
+.channel-post {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 0.75rem 0 1rem;
+}
+
+@media (max-width: 640px) {
+  .personal-home__channels {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* end custom scss snippet */
