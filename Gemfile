@@ -4,3 +4,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "kramdown-parser-gfm"
+
+group :test do
+  gem "minitest", "~> 5.25"
+end
