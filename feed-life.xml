@@ -1,0 +1,29 @@
+---
+layout: none
+permalink: /feed-life.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>{{ site.data.channels.life.title | xml_escape }} · {{ site.title | xml_escape }}</title>
+    <link>{{ '/life/' | absolute_url }}</link>
+    <description>{{ site.data.channels.life.description | xml_escape }}</description>
+    <language>zh-CN</language>
+    <atom:link href="{{ '/feed-life.xml' | absolute_url }}" rel="self" type="application/rss+xml" />
+    {% assign shown = 0 %}
+    {% for post in site.posts %}
+      {% if post.resolved_channel == 'life' and shown < 20 %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post.url | absolute_url }}</link>
+      <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <author>Harry Chen</author>
+      <description>{{ post.description | default: post.excerpt | strip_html | strip_newlines | strip | truncate: 400 | xml_escape }}</description>
+      {% if post.cover %}<media:content url="{{ post.cover | absolute_url | xml_escape }}" />{% endif %}
+    </item>
+        {% assign shown = shown | plus: 1 %}
+      {% endif %}
+    {% endfor %}
+  </channel>
+</rss>

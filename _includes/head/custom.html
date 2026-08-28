@@ -1,3 +1,26 @@
 <!-- start custom head snippets -->
-
+{% include snippets/get-article-title.html article=page %}
+{% assign _social_title = __return | default: site.title %}
+{% assign _social_description = page.description %}
+{% unless _social_description %}
+  {% if page.excerpt %}
+    {% assign _social_description = page.excerpt | strip_html | strip_newlines | strip | truncate: 160 %}
+  {% else %}
+    {% assign _social_description = site.description %}
+  {% endif %}
+{% endunless %}
+<meta property="og:type" content="{% if page.layout == 'article' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ _social_title | escape }}">
+<meta property="og:description" content="{{ _social_description | escape }}">
+<meta property="og:url" content="{{ page.url | absolute_url }}">
+{% if page.cover %}<meta property="og:image" content="{{ page.cover | absolute_url }}">{% endif %}
+<meta name="twitter:card" content="{% if page.cover %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{{ _social_title | escape }}">
+<meta name="twitter:description" content="{{ _social_description | escape }}">
+{% if page.cover %}<meta name="twitter:image" content="{{ page.cover | absolute_url }}">{% endif %}
+{% assign _feed_channel = page.channel | default: page.resolved_channel %}
+{% if _feed_channel == 'tech' or _feed_channel == 'life' %}
+  {% assign _channel_data = site.data.channels[_feed_channel] %}
+  <link rel="alternate" type="application/rss+xml" title="{{ _channel_data.title | escape }}" href="{{ _channel_data.feed | absolute_url }}">
+{% endif %}
 <!-- end custom head snippets -->

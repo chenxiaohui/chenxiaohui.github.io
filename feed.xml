@@ -1,0 +1,25 @@
+---
+layout: none
+permalink: /feed.xml
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>{{ site.title | xml_escape }}</title>
+    <link>{{ '/' | absolute_url }}</link>
+    <description>{{ site.data.site_profile.tagline | xml_escape }}</description>
+    <language>zh-CN</language>
+    <atom:link href="{{ '/feed.xml' | absolute_url }}" rel="self" type="application/rss+xml" />
+    {% for post in site.posts limit:20 %}
+    <item>
+      <title>{{ post.title | xml_escape }}</title>
+      <link>{{ post.url | absolute_url }}</link>
+      <guid isPermaLink="true">{{ post.url | absolute_url }}</guid>
+      <pubDate>{{ post.date | date_to_rfc822 }}</pubDate>
+      <author>Harry Chen</author>
+      <description>{{ post.description | default: post.excerpt | strip_html | strip_newlines | strip | truncate: 400 | xml_escape }}</description>
+      {% if post.cover %}<media:content url="{{ post.cover | absolute_url | xml_escape }}" />{% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>
