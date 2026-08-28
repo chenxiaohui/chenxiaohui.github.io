@@ -34,4 +34,11 @@ class HomeVisualTest < Minitest::Test
       assert_includes hrefs, href
     end
   end
+
+  def test_main_stylesheet_url_changes_with_each_build
+    stylesheet = @document.at_css('link[rel="stylesheet"][href^="/assets/css/main.css"]')
+
+    refute_nil stylesheet
+    assert_match %r{\A/assets/css/main\.css\?v=\d{14}\z}, stylesheet["href"]
+  end
 end

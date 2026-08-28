@@ -23,7 +23,9 @@
 {%- include head/favicon.html -%}
 
 {%- include snippets/prepend-baseurl.html path='/assets/css/main.css' -%}
-<link rel="stylesheet" href="{{ __return }}">
+{%- assign _main_css = __return -%}
+{%- assign _build_version = site.time | date: "%Y%m%d%H%M%S" -%}
+<link rel="stylesheet" href="{{ _main_css }}?v={{ _build_version }}">
 
 {%- include snippets/get-sources.html -%}
 {%- assign _sources = __return -%}
