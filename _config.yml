@@ -21,8 +21,7 @@ highlight_theme: tomorrow-night # "default" (default), "tomorrow", "tomorrow-nig
 url     : https://chenxiaohui.me # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl :  # does not include hostname
 title   : CHENXIAOHUI.ME
-description: > # this means to ignore newlines until "Language & timezone"
-  北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+description: 工程师，记录 AI、系统与湾区生活
 
 
 ## => Language and Timezone
@@ -38,7 +37,7 @@ author:
   name      : Harry Chen
   url       : https://chenxiaohui.me
   avatar    : # path or url of avatar image (square)
-  bio       : 北航本，清华硕，先后就职于支付宝北京、搜狐大数据中心、美团云。方向分布式数据库系统、分布式文件系统、推荐/广告系统。
+  bio       : 工程师，记录 AI、系统与湾区生活
   email     : sdqxcxh@gmail.com
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
   twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
@@ -64,7 +63,7 @@ repository_tree: master
 paths:
   root    : # title link url, "/" (default)
   home    : # home layout url, "/" (default)
-  archive : # "/archive.html" (default)
+  archive : /archive/
   rss     : # "/feed.xml" (default)
 
 

@@ -8,6 +8,7 @@ module YearArchive
         "layout" => "archive-year",
         "title" => year.to_s,
         "description" => "Harry Chen 的 #{year} 年文章归档",
+        "nav_key" => "archive",
         "archive_year" => year,
         "posts" => posts
       }

@@ -1,0 +1,58 @@
+{% assign archive_groups = include.articles | group_by_exp: "post", "post.date | date: '%Y'" %}
+<div class="archive-browser"
+     data-archive
+     data-batch-size="20"
+     {% if include.fixed_year %}data-fixed-year="{{ include.fixed_year }}"{% endif %}>
+  <div class="archive-controls" aria-label="文章筛选">
+    {% unless include.fixed_year %}
+      <label>
+        <span>年份</span>
+        <select data-archive-year>
+          <option value="">全部年份</option>
+          {% for group in archive_groups %}
+            <option value="{{ group.name }}">{{ group.name }}</option>
+          {% endfor %}
+        </select>
+      </label>
+    {% endunless %}
+    <label>
+      <span>频道</span>
+      <select data-archive-channel>
+        <option value="">全部频道</option>
+        <option value="tech">技术 / AI</option>
+        <option value="life">生活 / 湾区</option>
+        <option value="legacy">旧文</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="archive-status" aria-live="polite">
+    <span data-archive-count></span>
+    <span class="archive-active-tag" data-archive-active-tag hidden></span>
+  </div>
+
+  <ol class="archive-posts">
+    {% for post in include.articles %}
+      {% assign channel = post.resolved_channel | default: 'legacy' %}
+      <li class="archive-post"
+          data-archive-item
+          data-year="{{ post.date | date: '%Y' }}"
+          data-channel="{{ channel }}"
+          data-tags="{{ post.tags | jsonify | escape }}">
+        <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%Y-%m-%d' }}</time>
+        <div>
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span>
+            {% if channel == 'tech' %}技术 / AI{% elsif channel == 'life' %}生活 / 湾区{% else %}旧文{% endif %}
+          </span>
+        </div>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <p class="archive-empty" data-archive-empty hidden>没有符合条件的文章。</p>
+  <button class="archive-load-more" type="button" data-archive-load-more>加载更多</button>
+</div>
+
+{% assign archive_build_version = site.time | date: "%Y%m%d%H%M%S" %}
+<script defer src="{{ '/assets/js/archive.js' | relative_url }}?v={{ archive_build_version }}"></script>

@@ -1,0 +1,14 @@
+<header class="personal-brand-nav">
+  <a class="personal-brand-nav__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <nav class="personal-brand-nav__links" aria-label="主导航">
+    {% for item in site.data.navigation.header %}
+      {% assign active = false %}
+      {% if item.key and page.nav_key == item.key %}
+        {% assign active = true %}
+      {% elsif item.url == page.url %}
+        {% assign active = true %}
+      {% endif %}
+      <a{% if active %} class="is-active" aria-current="page"{% endif %} href="{{ item.url | relative_url }}">{{ item.title }}</a>
+    {% endfor %}
+  </nav>
+</header>

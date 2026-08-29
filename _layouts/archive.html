@@ -1,16 +1,11 @@
 ---
-layout: page
+layout: personal-brand-page
 ---
-{% assign groups = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
-<div class="layout--archive">
-  <ul class="archive-years">
-    {% for group in groups %}
-      <li>
-        <a href="{{ '/archive/' | append: group.name | append: '/' | relative_url }}">{{ group.name }}</a>
-        <span>{{ group.items | size }} 篇</span>
-      </li>
-    {% endfor %}
-  </ul>
-</div>
-
-{{ content }}
+<section class="archive-page">
+  <header class="archive-page__header">
+    <p>Archive</p>
+    <h1>{{ page.title }}</h1>
+    <span>按年份和频道浏览文章，旧文会逐步完成内容与资源校验。</span>
+  </header>
+  {% include archive-list.html articles=site.posts %}
+</section>

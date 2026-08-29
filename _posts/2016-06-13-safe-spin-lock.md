@@ -134,6 +134,7 @@ categories: "基础理论"
 
   nginx的实现解决了静态初始化的问题，但是解决不了上述问题2和3。为此我们可以考虑在表征spinlock状态的整形变量中加入线程id，来区分操作者是否是锁持有者。参考实现如下：
 
+{% raw %}
 ```c++
 	typedef volatile int64_t Atomic;
 
@@ -212,6 +213,7 @@ categories: "基础理论"
 	  }
 	}
 ```
+{% endraw %}
 
   简单解释几个问题：
 

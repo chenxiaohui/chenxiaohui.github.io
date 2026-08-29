@@ -1,11 +1,16 @@
 header:
   - title: 首页
+    key: home
     url: /
   - title: 技术 / AI
+    key: tech
     url: /tech/
   - title: 生活 / 湾区
+    key: life
     url: /life/
   - title: 归档
+    key: archive
     url: /archive/
   - title: 关于
+    key: about
     url: /about/

@@ -87,7 +87,7 @@ FIXED_DESCRIPTIONS.each do |relative, expected|
 end
 
 config = YAML.safe_load_file("_config.yml", permitted_classes: [Date, Time], aliases: true)
-legacy_identity_values = [config["description"], config.dig("author", "bio"), config.dig("author", "email")].compact.reject(&:empty?)
+legacy_identity_values = [config.dig("author", "email")].compact.reject(&:empty?)
 FIXED_DESCRIPTIONS.each_key do |relative|
   next unless build_dir.join(relative).file?
 

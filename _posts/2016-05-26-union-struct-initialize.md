@@ -7,8 +7,7 @@ comments: true
 published: true
 categories: "C++"
 ---
-
-
+{% raw %}
 	typedef union {
 	volatile int64_t atomic;
 		struct{
@@ -24,6 +23,7 @@ categories: "C++"
 		printf("%lx\n", atomic.atomic);
 		return 0;
 	}
+{% endraw %}
 
 
 

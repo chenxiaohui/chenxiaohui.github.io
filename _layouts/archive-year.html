@@ -1,7 +1,11 @@
 ---
-layout: page
+layout: personal-brand-page
 ---
-<p><a href="{{ '/archive/' | relative_url }}">← 返回归档</a></p>
-<div class="archive-year">
-  {% include article-list.html articles=page.posts type='brief' show_info=true %}
-</div>
+<section class="archive-page">
+  <header class="archive-page__header">
+    <p><a href="{{ '/archive/' | relative_url }}">Archive /</a></p>
+    <h1>{{ page.archive_year }}</h1>
+    <span>{{ page.posts | size }} 篇文章</span>
+  </header>
+  {% include archive-list.html articles=page.posts fixed_year=page.archive_year %}
+</section>

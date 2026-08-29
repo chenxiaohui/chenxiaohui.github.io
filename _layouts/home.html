@@ -4,14 +4,7 @@ layout: base
 {% assign profile = site.data.site_profile %}
 {% assign featured = site.posts | where: "relative_path", profile.featured_post | first %}
 <div class="personal-brand-home">
-  <header class="personal-brand-nav">
-    <a class="personal-brand-nav__brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav class="personal-brand-nav__links" aria-label="主导航">
-      {% for item in site.data.navigation.header %}
-        <a{% if item.url == '/' %} class="is-active" aria-current="page"{% endif %} href="{{ item.url | relative_url }}">{{ item.title }}</a>
-      {% endfor %}
-    </nav>
-  </header>
+  {% include personal-brand-nav.html %}
 
   <main>
     <section class="personal-brand-hero">
@@ -65,10 +58,5 @@ layout: base
     </section>
   </main>
 
-  <footer class="personal-brand-footer">
-    <a href="{{ '/archive/' | relative_url }}">Archive</a>
-    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
-    <a href="{{ '/about/' | relative_url }}">About</a>
-    <span>© {{ profile.name }}</span>
-  </footer>
+  {% include personal-brand-footer.html %}
 </div>
