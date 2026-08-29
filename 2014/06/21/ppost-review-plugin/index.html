@@ -1,13 +1,28 @@
-<!DOCTYPE html><html lang="zh-CN">
-  <head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>post-review插件 - CHENXIAOHUI.ME</title><meta name="description" content="###post-review.vimA plugin to generate post-review scriptUsage####install:git clone https://github.com/chenxiaohui/post-review.vim put post-review.vim to you...">
-<link rel="canonical" href="https://chenxiaohui.me/2014/06/21/ppost-review-plugin/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>post-review插件 - CHENXIAOHUI.ME</title>
+<meta name="description" content="###post-review.vimA plugin to generate post-review scriptUsage####install:git clone https://github.com/chenxiaohui/post-review.vim put post-review.vim to you...">
+<link rel="canonical" href="https://chenxiaohui.me/2014/06/21/ppost-review-plugin/">
+<link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml">
+<!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50">
+<link rel="shortcut icon" href="/assets/favicon.ico">
 
-<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#ffc40d">
+<meta name="msapplication-config" content="/assets/browserconfig.xml">
 
 <meta name="theme-color" content="#ffffff">
-<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css?v=20260828160740"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" ><!-- start custom head snippets -->
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css?v=20260828204836">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+<!-- start custom head snippets -->
 
 
 
@@ -266,39 +281,66 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+      <div class="personal-brand-home personal-brand-page">
+  <header class="personal-brand-nav">
+  <a class="personal-brand-nav__brand" href="/">CHENXIAOHUI.ME</a>
+  <nav class="personal-brand-nav__links" aria-label="主导航">
+    
+      
+      
+      <a href="/">首页</a>
+    
+      
+      
+      <a href="/tech/">技术 / AI</a>
+    
+      
+      
+      <a href="/life/">生活 / 湾区</a>
+    
+      
+      
+      <a href="/archive/">归档</a>
+    
+      
+      
+      <a href="/about/">关于</a>
+    
+  </nav>
+</header>
 
-      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
-      <div class="header__title">
-        <div class="header__brand"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="24px" height="24px" viewBox="0 0 24 24">
-<style type="text/css">
-	.st0{fill:#515151;}
-</style>
-<path class="st0" d="M1.7,22.3c5.7-5.7,11.3-5.7,17,0c3.3-3.3,3.5-5.3,0.8-6c2.7,0.7,3.5-1.1,2.3-5.6s-3.3-5.2-6.3-2.1
-	c3-3,2.3-5.2-2.1-6.3S7,1.8,7.7,4.6C7,1.8,5,2.1,1.7,5.3C7.3,11,7.3,16.7,1.7,22.3"/>
-</svg>
-<a title="工程师，记录 AI、系统与湾区生活" href="/">CHENXIAOHUI.ME</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/">首页</a></li><li class="navigation__item"><a href="/tech/">技术 / AI</a></li><li class="navigation__item"><a href="/life/">生活 / 湾区</a></li><li class="navigation__item"><a href="/archive/">归档</a></li><li class="navigation__item"><a href="/about/">关于</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
-      </nav></div>
-  </header>
-</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+  <main class="personal-brand-page__main">
+    <div class="layout--page js-page-root">
+<div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+
+      <div class="page__main-inner">
+        <div class="page__content"><div class="main"><div class="grid grid--reverse">
 
               <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
 </aside></div>
 
-              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+              <div class="col-main cell cell--auto">
+<!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>post-review插件</h1></header><span class="split-space">&nbsp;</span>
-          <a class="edit-on-github"
-            title="在 Github 上修改"
-            href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2014-06-21-ppost-review-plugin.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="post-review插件"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2014年 06月21日</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-06-21T20:57:00-07:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header">
+<header><h1>post-review插件</h1></header><span class="split-space"> </span>
+          <a class="edit-on-github" title="在 Github 上修改" href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2014-06-21-ppost-review-plugin.md">
+            <i class="far fa-edit"></i></a>
+</div>
+<meta itemprop="headline" content="post-review插件">
+<div class="article__info clearfix"><ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>2014年 06月21日</span>
+            </li></ul></div>
+<meta itemprop="author" content="Harry Chen">
+<meta itemprop="datePublished" content="2014-06-21T20:57:00-07:00">
+<div class="js-article-content">
+<div class="layout--article">
+<!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><p>###post-review.vim</p>
+<div class="article__content" itemprop="articleBody">
+<p>###post-review.vim</p>
 
 <p>A plugin to generate post-review script</p>
 
@@ -318,11 +360,11 @@
 
 <p>####process:</p>
 
-<p>svndiff use vimdiff: see <a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">link</a></p>
+<p>svndiff use vimdiff: see <a title="历史链接已失效" class="legacy-link-unavailable">link</a></p>
 
 <p>gitdiff use vimdiff: see <a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">link</a></p>
 
-<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/git-vimdiff.png" alt="" /></p>
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/2013/git-vimdiff.png" alt=""></p>
 
 <!--more-->
 
@@ -336,7 +378,7 @@
 
 <p>(if you set g:chmod_after_create to 1 you will not need to chmod +x)</p>
 
-<hr />
+<hr>
 
 <p>请无视楼主以上装逼的英文:</p>
 
@@ -363,7 +405,7 @@
 
 <p>比如说Jack正欢快的写着代码呢，然后Jack要提交, 猛然发现好多修改啊</p>
 
-<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg" alt="" /></p>
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg" alt=""></p>
 
 <blockquote>
   <p>难道不应该写一部分就post-review的嘛</p>
@@ -371,22 +413,22 @@
 
 <p>好了不要care这种细节, 然后Jack需要一个一个查看修改的文件, 确定是放到哪个Post-review中提交</p>
 
-<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg" alt="" /></p>
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg" alt=""></p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>What a fucking job!!!
 </code></pre></div></div>
 
 <p>这时候你需要的就是这一款全自动, 人性化, 帮你生成post-review命令的插件, 只要998, 打进电话你就能拥有它…</p>
 
-<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg" alt="" /></p>
+<p><img src="https://harrychen.oss-cn-beijing.aliyuncs.com/blog-images/common/ask.jpg" alt=""></p>
 
 <blockquote>
   <p>跑题了…</p>
 </blockquote>
 
-<p>好了, 我们先svn diff或者git diff一下, 为了保证你看到的是如下界面请参考<a href="http://www.ccvita.com/445.html" title="svndiff use vimdiff">这里</a>或者<a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">这里</a>.</p>
+<p>好了, 我们先svn diff或者git diff一下, 为了保证你看到的是如下界面请参考<a title="历史链接已失效" class="legacy-link-unavailable">这里</a>或者<a href="http://cxh.me/2013/09/14/show-gitdiff-using-vimdiff/" title="svn diff use vimdiff">这里</a>.</p>
 
-<p><img src="http://www.ccvita.com/usr/uploads/2011/svn_diff.png" alt="" title="svndiff" /></p>
+<p><span class="legacy-media-unavailable" role="img">历史图片暂不可用</span></p>
 
 <p>好了, 在你需要提交文件的那个窗口用快捷键<leader>pr, 标记完了所有的文件之后进入你的根目录(根目录是什么, 这个待会再说, 不要care这种细节), 下面是不是有一个post-review.sh了? 没有? 卧槽...男子汉大丈夫, 我写的插件, 有问题....我也不承认...</leader></p>
 
@@ -413,16 +455,30 @@ alias sta='st|grep ^A '
 alias stm='st|grep ^M '
 alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post-review.sh ; stm &gt;&gt; post-review.sh ; chmod +x post-review.sh ;sed -i 's/^[MA]\s\+//g' post-review.sh;sed -i 's/$/ \\\\/g' post-review.sh;vi post-review.sh"
 </code></pre></div></div>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2014-06-21T20:57:00-07:00">
-<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a></div>
-</div><div class="article__license"><div class="license">
+</div>
+<section class="article__sharing d-print-none"></section><div class="d-print-none">
+<footer class="article__footer"><meta itemprop="dateModified" content="2014-06-21T20:57:00-07:00">
+<div class="article__subscribe">
+<div class="subscribe">
+<i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a>
+</div>
+</div>
+<div class="article__license"><div class="license">
     <p>本文遵守 <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> 许可协议。
       <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
-        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/2014/06/21/photography-test/">测试一下机器和镜头</a></div><div class="next"><span>下篇</span><a href="/2014/06/21/generate-several-types-using-pandoc/">直接从markdown生成各种电子书</a></div></div></div>
+<div class="article__section-navigator clearfix">
+<div class="previous">
+<span>上篇</span><a href="/2014/06/21/photography-test/">测试一下机器和镜头</a>
+</div>
+<div class="next">
+<span>下篇</span><a href="/2014/06/21/generate-several-types-using-pandoc/">直接从markdown生成各种电子书</a>
+</div>
+</div>
+</div>
 
 </div>
 
@@ -451,7 +507,8 @@ alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post
   });
 })();
 </script>
-</div><section class="page__comments d-print-none"><div id="disqus_thread"></div>
+</div>
+<section class="page__comments d-print-none"><div id="disqus_thread"></div>
   <script>
   /**
   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -467,30 +524,16 @@ alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post
     (d.head || d.body).appendChild(s);
   })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></section></article><!-- start custom main bottom snippet -->
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
 </div>
-            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
-  <div class="main">
-    
-    <div itemscope itemtype="https://schema.org/Person">
-      <meta itemprop="name" content="Harry Chen">
-      <meta itemprop="url" content="https://chenxiaohui.me/about/">
-      <meta itemprop="description" content="工程师，记录 AI、系统与湾区生活">
-      <p><a href="/about/">Harry Chen</a> · 工程师，记录 AI、系统与湾区生活</p>
+            </div></div></div>
+
+      </div>
     </div>
-    
-    
-    <div class="site-info mt-2">
-      © Harry Chen 2020,
-      Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="https://jekyllrb.com/">Jekyll</a> &amp;
-      <a title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
-    </div>
-  </div>
-</footer>
-</div></div>
-    </div><script>(function() {
+<script>(function() {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
     var $body = $('body'), $window = $(window);
@@ -554,7 +597,8 @@ alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post
     $.fn.modal = modal;
   });
 })();
-</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"><script>
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal">
+<script>
 (function () {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
@@ -646,7 +690,7 @@ alias po="echo 'post-review -d' &gt;post-review.sh  &amp;&amp; sta &gt;&gt; post
     <div class="search-bar">
       <div class="search-box js-search-box">
         <div class="search-box__icon-search"><i class="fas fa-search"></i></div>
-        <input type="text" />
+        <input type="text">
         <div class="search-box__icon-clear js-icon-clear">
           <a><i class="fas fa-times"></i></a>
         </div>
@@ -770,7 +814,8 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
   });
 });
 </script>
-</div></div>
+</div>
+</div>
 
 
 <script>(function() {
@@ -1070,6 +1115,17 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
   });
 })();
 </script>
+  </main>
+  
+<footer class="personal-brand-footer">
+  <a href="/archive/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="/about/">About</a>
+  <span>© Harry Chen</span>
+</footer>
+
+</div>
+
     </div>
     <script>(function () {
   var $root = document.getElementsByClassName('root')[0];
@@ -1081,4 +1137,3 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 </script>
   </body>
 </html>
-

@@ -1,25 +1,40 @@
-<!DOCTYPE html><html lang="zh-CN">
-  <head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>关于Maven回滚了eclipse中项目的JRE版本 - CHENXIAOHUI.ME</title><meta name="description" content="发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&amp;...">
-<link rel="canonical" href="https://chenxiaohui.me/2014/12/25/maven-revert-eclipse-jdk-version/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>关于Maven回滚了eclipse中项目的JRE版本 - CHENXIAOHUI.ME</title>
+<meta name="description" content='发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;...'>
+<link rel="canonical" href="https://chenxiaohui.me/2014/12/25/maven-revert-eclipse-jdk-version/">
+<link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml">
+<!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50">
+<link rel="shortcut icon" href="/assets/favicon.ico">
 
-<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#ffc40d">
+<meta name="msapplication-config" content="/assets/browserconfig.xml">
 
 <meta name="theme-color" content="#ffffff">
-<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css?v=20260828160740"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" ><!-- start custom head snippets -->
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css?v=20260828204836">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+<!-- start custom head snippets -->
 
 
 
 
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于Maven回滚了eclipse中项目的JRE版本">
-<meta property="og:description" content="发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&amp;...">
+<meta property="og:description" content='发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;...'>
 <meta property="og:url" content="https://chenxiaohui.me/2014/12/25/maven-revert-eclipse-jdk-version/">
 
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于Maven回滚了eclipse中项目的JRE版本">
-<meta name="twitter:description" content="发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;&amp;...">
+<meta name="twitter:description" content='发现在命令行对一个项目执行mvn install的时候，回eclipse看就会有些错误，原因如这里所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&amp;...'>
 
 
 
@@ -266,39 +281,66 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+      <div class="personal-brand-home personal-brand-page">
+  <header class="personal-brand-nav">
+  <a class="personal-brand-nav__brand" href="/">CHENXIAOHUI.ME</a>
+  <nav class="personal-brand-nav__links" aria-label="主导航">
+    
+      
+      
+      <a href="/">首页</a>
+    
+      
+      
+      <a href="/tech/">技术 / AI</a>
+    
+      
+      
+      <a href="/life/">生活 / 湾区</a>
+    
+      
+      
+      <a href="/archive/">归档</a>
+    
+      
+      
+      <a href="/about/">关于</a>
+    
+  </nav>
+</header>
 
-      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
-      <div class="header__title">
-        <div class="header__brand"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="24px" height="24px" viewBox="0 0 24 24">
-<style type="text/css">
-	.st0{fill:#515151;}
-</style>
-<path class="st0" d="M1.7,22.3c5.7-5.7,11.3-5.7,17,0c3.3-3.3,3.5-5.3,0.8-6c2.7,0.7,3.5-1.1,2.3-5.6s-3.3-5.2-6.3-2.1
-	c3-3,2.3-5.2-2.1-6.3S7,1.8,7.7,4.6C7,1.8,5,2.1,1.7,5.3C7.3,11,7.3,16.7,1.7,22.3"/>
-</svg>
-<a title="工程师，记录 AI、系统与湾区生活" href="/">CHENXIAOHUI.ME</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/">首页</a></li><li class="navigation__item"><a href="/tech/">技术 / AI</a></li><li class="navigation__item"><a href="/life/">生活 / 湾区</a></li><li class="navigation__item"><a href="/archive/">归档</a></li><li class="navigation__item"><a href="/about/">关于</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
-      </nav></div>
-  </header>
-</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+  <main class="personal-brand-page__main">
+    <div class="layout--page js-page-root">
+<div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+
+      <div class="page__main-inner">
+        <div class="page__content"><div class="main"><div class="grid grid--reverse">
 
               <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
 </aside></div>
 
-              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+              <div class="col-main cell cell--auto">
+<!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>关于Maven回滚了eclipse中项目的JRE版本</h1></header><span class="split-space">&nbsp;</span>
-          <a class="edit-on-github"
-            title="在 Github 上修改"
-            href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2014-12-25-maven-revert-eclipse-jdk-version.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="关于Maven回滚了eclipse中项目的JRE版本"><div class="article__info clearfix"><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2014年 12月25日</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2014-12-25T14:49:00-08:00"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header">
+<header><h1>关于Maven回滚了eclipse中项目的JRE版本</h1></header><span class="split-space"> </span>
+          <a class="edit-on-github" title="在 Github 上修改" href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2014-12-25-maven-revert-eclipse-jdk-version.md">
+            <i class="far fa-edit"></i></a>
+</div>
+<meta itemprop="headline" content="关于Maven回滚了eclipse中项目的JRE版本">
+<div class="article__info clearfix"><ul class="right-col menu"><li>
+<i class="far fa-calendar-alt"></i> <span>2014年 12月25日</span>
+            </li></ul></div>
+<meta itemprop="author" content="Harry Chen">
+<meta itemprop="datePublished" content="2014-12-25T14:49:00-08:00">
+<div class="js-article-content">
+<div class="layout--article">
+<!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><p>发现在命令行对一个项目执行<code class="language-plaintext highlighter-rouge">mvn install</code>的时候，回eclipse看就会有些错误，原因如<a href="http://cxh.me/2014/12/08/eclipse-java-override-warning/" title="关于eclipse里面override上的warning">这里</a>所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：</p>
+<div class="article__content" itemprop="articleBody">
+<p>发现在命令行对一个项目执行<code class="language-plaintext highlighter-rouge">mvn install</code>的时候，回eclipse看就会有些错误，原因如<a href="http://cxh.me/2014/12/08/eclipse-java-override-warning/" title="关于eclipse里面override上的warning">这里</a>所说，JRE版本和compliance level被回滚到1.5了。查看配置发现，eclipse导入配置并没有设置这里。如下：</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;projectDescription&gt;
@@ -345,16 +387,30 @@
 <p>[2] What causes a new Maven project in Eclipse to use Java 1.5 instead of Java 1.6 by default and how can I ensure it doesn’t?, <a href="http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b">http://stackoverflow.com/questions/3539139/what-causes-a-new-maven-project-in-eclipse-to-use-java-1-5-instead-of-java-1-6-b</a></p>
 
 <p>[3] Solved: Java compiler level does not match the version of the installed Java project facet, <a href="http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/">http://howtodoinjava.com/2013/06/04/solved-java-compiler-level-does-not-match-the-version-of-the-installed-java-project-facet/</a></p>
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2014-12-25T14:49:00-08:00">
-<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a></div>
-</div><div class="article__license"><div class="license">
+</div>
+<section class="article__sharing d-print-none"></section><div class="d-print-none">
+<footer class="article__footer"><meta itemprop="dateModified" content="2014-12-25T14:49:00-08:00">
+<div class="article__subscribe">
+<div class="subscribe">
+<i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a>
+</div>
+</div>
+<div class="article__license"><div class="license">
     <p>本文遵守 <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> 许可协议。
       <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
-        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/2014/12/12/flash-cookie-cross-domain/">Flash Cookie的跨域读取</a></div><div class="next"><span>下篇</span><a href="/2014/12/25/thrift-and-slf4j/">Thrift依赖和Slf4j</a></div></div></div>
+<div class="article__section-navigator clearfix">
+<div class="previous">
+<span>上篇</span><a href="/2014/12/12/flash-cookie-cross-domain/">Flash Cookie的跨域读取</a>
+</div>
+<div class="next">
+<span>下篇</span><a href="/2014/12/25/thrift-and-slf4j/">Thrift依赖和Slf4j</a>
+</div>
+</div>
+</div>
 
 </div>
 
@@ -383,7 +439,8 @@
   });
 })();
 </script>
-</div><section class="page__comments d-print-none"><div id="disqus_thread"></div>
+</div>
+<section class="page__comments d-print-none"><div id="disqus_thread"></div>
   <script>
   /**
   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -399,30 +456,16 @@
     (d.head || d.body).appendChild(s);
   })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></section></article><!-- start custom main bottom snippet -->
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
 </div>
-            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
-  <div class="main">
-    
-    <div itemscope itemtype="https://schema.org/Person">
-      <meta itemprop="name" content="Harry Chen">
-      <meta itemprop="url" content="https://chenxiaohui.me/about/">
-      <meta itemprop="description" content="工程师，记录 AI、系统与湾区生活">
-      <p><a href="/about/">Harry Chen</a> · 工程师，记录 AI、系统与湾区生活</p>
+            </div></div></div>
+
+      </div>
     </div>
-    
-    
-    <div class="site-info mt-2">
-      © Harry Chen 2020,
-      Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="https://jekyllrb.com/">Jekyll</a> &amp;
-      <a title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
-    </div>
-  </div>
-</footer>
-</div></div>
-    </div><script>(function() {
+<script>(function() {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
     var $body = $('body'), $window = $(window);
@@ -486,7 +529,8 @@
     $.fn.modal = modal;
   });
 })();
-</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"><script>
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal">
+<script>
 (function () {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
@@ -578,7 +622,7 @@
     <div class="search-bar">
       <div class="search-box js-search-box">
         <div class="search-box__icon-search"><i class="fas fa-search"></i></div>
-        <input type="text" />
+        <input type="text">
         <div class="search-box__icon-clear js-icon-clear">
           <a><i class="fas fa-times"></i></a>
         </div>
@@ -702,7 +746,8 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
   });
 });
 </script>
-</div></div>
+</div>
+</div>
 
 
 <script>(function() {
@@ -1002,6 +1047,17 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
   });
 })();
 </script>
+  </main>
+  
+<footer class="personal-brand-footer">
+  <a href="/archive/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="/about/">About</a>
+  <span>© Harry Chen</span>
+</footer>
+
+</div>
+
     </div>
     <script>(function () {
   var $root = document.getElementsByClassName('root')[0];
@@ -1013,4 +1069,3 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 </script>
   </body>
 </html>
-

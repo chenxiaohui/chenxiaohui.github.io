@@ -1,13 +1,28 @@
-<!DOCTYPE html><html lang="zh-CN">
-  <head><meta charset="utf-8">
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>万水千山总是情，预装下header行不行？ - CHENXIAOHUI.ME</title><meta name="description" content="晚上安装Ngix总是遇到一个问题，如下图也就是”C preprocessor “/lib/cpp” fails sanity check”错误，网上怎么说的都有，随便一搜索就是一堆问题，历尽千辛万苦，装了一堆乱七八糟的rpm包（我是RedHat AS4），差点就换个内核了，最后在发现是glibc-headers没...">
-<link rel="canonical" href="https://chenxiaohui.me/2011/05/14/cannnot-you-install-the-headers/"><link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>万水千山总是情，预装下header行不行？ - CHENXIAOHUI.ME</title>
+<meta name="description" content="晚上安装Ngix总是遇到一个问题，如下图也就是”C preprocessor “/lib/cpp” fails sanity check”错误，网上怎么说的都有，随便一搜索就是一堆问题，历尽千辛万苦，装了一堆乱七八糟的rpm包（我是RedHat AS4），差点就换个内核了，最后在发现是glibc-headers没...">
+<link rel="canonical" href="https://chenxiaohui.me/2011/05/14/cannnot-you-install-the-headers/">
+<link rel="alternate" type="application/rss+xml" title="CHENXIAOHUI.ME" href="/feed.xml">
+<!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
+<link rel="manifest" href="/assets/site.webmanifest">
+<link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50">
+<link rel="shortcut icon" href="/assets/favicon.ico">
 
-<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#ffc40d">
+<meta name="msapplication-config" content="/assets/browserconfig.xml">
 
 <meta name="theme-color" content="#ffffff">
-<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css?v=20260828160740"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" ><!-- start custom head snippets -->
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css?v=20260828204836">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css">
+<!-- start custom head snippets -->
 
 
 
@@ -266,71 +281,121 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+      <div class="personal-brand-home personal-brand-page">
+  <header class="personal-brand-nav">
+  <a class="personal-brand-nav__brand" href="/">CHENXIAOHUI.ME</a>
+  <nav class="personal-brand-nav__links" aria-label="主导航">
+    
+      
+      
+      <a href="/">首页</a>
+    
+      
+      
+      <a href="/tech/">技术 / AI</a>
+    
+      
+      
+      <a href="/life/">生活 / 湾区</a>
+    
+      
+      
+      <a href="/archive/">归档</a>
+    
+      
+      
+      <a href="/about/">关于</a>
+    
+  </nav>
+</header>
 
-      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
-      <div class="header__title">
-        <div class="header__brand"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="24px" height="24px" viewBox="0 0 24 24">
-<style type="text/css">
-	.st0{fill:#515151;}
-</style>
-<path class="st0" d="M1.7,22.3c5.7-5.7,11.3-5.7,17,0c3.3-3.3,3.5-5.3,0.8-6c2.7,0.7,3.5-1.1,2.3-5.6s-3.3-5.2-6.3-2.1
-	c3-3,2.3-5.2-2.1-6.3S7,1.8,7.7,4.6C7,1.8,5,2.1,1.7,5.3C7.3,11,7.3,16.7,1.7,22.3"/>
-</svg>
-<a title="工程师，记录 AI、系统与湾区生活" href="/">CHENXIAOHUI.ME</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/">首页</a></li><li class="navigation__item"><a href="/tech/">技术 / AI</a></li><li class="navigation__item"><a href="/life/">生活 / 湾区</a></li><li class="navigation__item"><a href="/archive/">归档</a></li><li class="navigation__item"><a href="/about/">关于</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
-      </nav></div>
-  </header>
-</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+  <main class="personal-brand-page__main">
+    <div class="layout--page js-page-root">
+<div class="page__main js-page-main page__viewport has-aside cell cell--auto">
+
+      <div class="page__main-inner">
+        <div class="page__content"><div class="main"><div class="grid grid--reverse">
 
               <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
 </aside></div>
 
-              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+              <div class="col-main cell cell--auto">
+<!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>万水千山总是情，预装下header行不行？</h1></header><span class="split-space">&nbsp;</span>
-          <a class="edit-on-github"
-            title="在 Github 上修改"
-            href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2011-05-14-cannnot-you-install-the-headers.md">
-            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="万水千山总是情，预装下header行不行？"><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=glibc-headers">glibc-headers</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=preprocessor+fails+sanity+check">preprocessor fails sanity check</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=RedHat">RedHat</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=rpm">rpm</a>
-            </li></ul><ul class="right-col menu"><li><i class="fas fa-user"></i> <span>Harry Chen</span></li><li><i class="far fa-calendar-alt"></i> <span>2011年 05月14日</span>
-            </li></ul></div><meta itemprop="author" content="Harry Chen"/><meta itemprop="datePublished" content="2011-05-14T00:00:00-07:00">
-    <meta itemprop="keywords" content="glibc-headers,preprocessor fails sanity check,RedHat,rpm"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header">
+<header><h1>万水千山总是情，预装下header行不行？</h1></header><span class="split-space"> </span>
+          <a class="edit-on-github" title="在 Github 上修改" href="https://github.com/chenxiaohui/chenxiaohui.github.io/tree/master/_posts/2011-05-14-cannnot-you-install-the-headers.md">
+            <i class="far fa-edit"></i></a>
+</div>
+<meta itemprop="headline" content="万水千山总是情，预装下header行不行？">
+<div class="article__info clearfix">
+<ul class="left-col menu">
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive/?tag=glibc-headers">glibc-headers</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive/?tag=preprocessor+fails+sanity+check">preprocessor fails sanity check</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive/?tag=RedHat">RedHat</a>
+            </li>
+<li>
+              <a class="button button--secondary button--pill button--sm" href="/archive/?tag=rpm">rpm</a>
+            </li>
+</ul>
+<ul class="right-col menu">
+<li>
+<i class="fas fa-user"></i> <span>Harry Chen</span>
+</li>
+<li>
+<i class="far fa-calendar-alt"></i> <span>2011年 05月14日</span>
+            </li>
+</ul>
+</div>
+<meta itemprop="author" content="Harry Chen">
+<meta itemprop="datePublished" content="2011-05-14T00:00:00-07:00">
+    <meta itemprop="keywords" content="glibc-headers,preprocessor fails sanity check,RedHat,rpm">
+<div class="js-article-content">
+<div class="layout--article">
+<!-- start custom article top snippet -->
 
 <!-- end custom article top snippet -->
-<div class="article__content" itemprop="articleBody"><p>晚上安装Ngix总是遇到一个问题，如下图</p>
+<div class="article__content" itemprop="articleBody">
+<p>晚上安装Ngix总是遇到一个问题，如下图</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/05/image_thumb.png (image)" alt="image" /></p>
+<p><span class="legacy-media-unavailable" role="img" aria-label="image">历史图片暂不可用</span></p>
 
 <p>也就是”<strong>C preprocessor “/lib/cpp” fails sanity check”</strong>错误，网上怎么说的都有，随便一搜索就是一堆问题，历尽千辛万苦，装了一堆乱七八糟的rpm包（我是RedHat AS4），差点就换个内核了，最后在发现是glibc-headers没装，最后在RedHat第三张盘里发现了glibc-headers的rpm，如下</p>
 
-<p><img src="http://www.roybit.com/wp-content/uploads/2011/05/image_thumb1.png (image)" alt="image" /> 问题是这么重要的东西，为什么就不预装一下，甚至软件管理那里都没有它的选项….</p>
+<p><span class="legacy-media-unavailable" role="img" aria-label="image">历史图片暂不可用</span> 问题是这么重要的东西，为什么就不预装一下，甚至软件管理那里都没有它的选项….</p>
 
 <p>哎，万水千山总是情，预装下header行不行？</p>
 
-</div><section class="article__sharing d-print-none"></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2011-05-14T00:00:00-07:00">
-<div class="article__subscribe"><div class="subscribe"><i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a></div>
-</div><div class="article__license"><div class="license">
+</div>
+<section class="article__sharing d-print-none"></section><div class="d-print-none">
+<footer class="article__footer"><meta itemprop="dateModified" content="2011-05-14T00:00:00-07:00">
+<div class="article__subscribe">
+<div class="subscribe">
+<i class="fas fa-rss"></i> <a type="application/rss+xml" href="/feed.xml">订阅</a>
+</div>
+</div>
+<div class="article__license"><div class="license">
     <p>本文遵守 <a itemprop="license" rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">Attribution-NonCommercial 4.0 International</a> 许可协议。
       <a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/">
-        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" />
+        <img alt="Attribution-NonCommercial 4.0 International" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png">
       </a>
     </p>
   </div></div></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">IE8无法调试ActiveX控件的问题</a></div><div class="next"><span>下篇</span><a href="/2011/05/22/install-vmware-tool-in-ubuntu-10.10/">在ubuntu10.10中安装VMWare Tool，遇到The path &quot; &quot; is not valid 的问题</a></div></div></div>
+<div class="article__section-navigator clearfix">
+<div class="previous">
+<span>上篇</span><a href="/2011/05/05/can-not-debug-activex-plugin-in-ie8/">IE8无法调试ActiveX控件的问题</a>
+</div>
+<div class="next">
+<span>下篇</span><a href="/2011/05/22/install-vmware-tool-in-ubuntu-10.10/">在ubuntu10.10中安装VMWare Tool，遇到The path " " is not valid 的问题</a>
+</div>
+</div>
+</div>
 
 </div>
 
@@ -359,7 +424,8 @@
   });
 })();
 </script>
-</div><section class="page__comments d-print-none"><div id="disqus_thread"></div>
+</div>
+<section class="page__comments d-print-none"><div id="disqus_thread"></div>
   <script>
   /**
   *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
@@ -375,30 +441,16 @@
     (d.head || d.body).appendChild(s);
   })();
   </script>
-  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></section></article><!-- start custom main bottom snippet -->
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
 </div>
-            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
-  <div class="main">
-    
-    <div itemscope itemtype="https://schema.org/Person">
-      <meta itemprop="name" content="Harry Chen">
-      <meta itemprop="url" content="https://chenxiaohui.me/about/">
-      <meta itemprop="description" content="工程师，记录 AI、系统与湾区生活">
-      <p><a href="/about/">Harry Chen</a> · 工程师，记录 AI、系统与湾区生活</p>
+            </div></div></div>
+
+      </div>
     </div>
-    
-    
-    <div class="site-info mt-2">
-      © Harry Chen 2020,
-      Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="https://jekyllrb.com/">Jekyll</a> &amp;
-      <a title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
-    </div>
-  </div>
-</footer>
-</div></div>
-    </div><script>(function() {
+<script>(function() {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
     var $body = $('body'), $window = $(window);
@@ -462,7 +514,8 @@
     $.fn.modal = modal;
   });
 })();
-</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"><script>
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal">
+<script>
 (function () {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
@@ -554,7 +607,7 @@
     <div class="search-bar">
       <div class="search-box js-search-box">
         <div class="search-box__icon-search"><i class="fas fa-search"></i></div>
-        <input type="text" />
+        <input type="text">
         <div class="search-box__icon-clear js-icon-clear">
           <a><i class="fas fa-times"></i></a>
         </div>
@@ -678,7 +731,8 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
   });
 });
 </script>
-</div></div>
+</div>
+</div>
 
 
 <script>(function() {
@@ -978,6 +1032,17 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
   });
 })();
 </script>
+  </main>
+  
+<footer class="personal-brand-footer">
+  <a href="/archive/">Archive</a>
+  <a href="/feed.xml">RSS</a>
+  <a href="/about/">About</a>
+  <span>© Harry Chen</span>
+</footer>
+
+</div>
+
     </div>
     <script>(function () {
   var $root = document.getElementsByClassName('root')[0];
@@ -989,4 +1054,3 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 </script>
   </body>
 </html>
-
