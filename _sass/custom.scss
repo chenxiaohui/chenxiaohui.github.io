@@ -259,6 +259,73 @@ html,
   padding: 3.25rem 2.875rem 3.75rem;
 }
 
+.personal-brand-page {
+  .layout--page,
+  .page__main,
+  .page__main-inner,
+  .page__content {
+    background: transparent !important;
+    height: auto;
+    min-height: 0;
+  }
+
+  .page__content > .main {
+    max-width: none;
+    padding: 0;
+  }
+
+  .page__content {
+    padding-bottom: 0;
+  }
+
+  .article__header {
+    margin-top: 0;
+
+    h1 {
+      color: $personal-home-text;
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+  }
+
+  .article__info,
+  .article__content,
+  .js-article-content {
+    color: $personal-home-muted;
+  }
+
+  .article__content a,
+  .js-article-content a {
+    color: #d7b4e8;
+  }
+
+  .article__content a:hover,
+  .js-article-content a:hover {
+    color: $personal-home-accent;
+  }
+
+  .js-article-content > h1:first-child {
+    color: $personal-home-text;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin: 0 0 0.75rem;
+  }
+
+  .js-article-content > h2 {
+    border-top: 1px solid $personal-home-border;
+    color: $personal-home-text;
+    font-size: 1.125rem;
+    margin: 1.75rem 0 0.75rem;
+    padding-top: 1.25rem;
+  }
+
+  .js-article-content > p,
+  .js-article-content > ul {
+    line-height: 1.75;
+    max-width: 42rem;
+  }
+}
+
 .archive-page__header {
   border-bottom: 1px solid $personal-home-border;
   margin-bottom: 1.5rem;
@@ -472,9 +539,21 @@ html,
 }
 
 .channel-page__header {
-  border-left: 3px solid var(--channel-accent);
-  margin-bottom: 2rem;
-  padding-left: 1rem;
+  border-bottom: 1px solid $personal-home-border;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+
+  h1 {
+    color: $personal-home-text;
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    color: $personal-home-muted;
+    font-size: 0.8125rem;
+    margin: 0.375rem 0 0;
+  }
 }
 
 .channel-page__header a,
@@ -483,8 +562,21 @@ html,
 }
 
 .channel-post {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 0.75rem 0 1rem;
+  border-bottom: 1px solid #252b34;
+  padding: 0.875rem 0;
+
+  h3 {
+    color: $personal-home-text;
+    font-size: 1rem;
+    line-height: 1.45;
+    margin: 0;
+  }
+
+  p {
+    color: $personal-home-muted;
+    font-size: 0.75rem;
+    margin: 0.375rem 0 0;
+  }
 }
 
 @media (max-width: 760px) {

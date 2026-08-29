@@ -1,6 +1,7 @@
 ---
 layout: page
 title: 关于
+show_title: false
 description: 工程师，记录 AI、系统与湾区生活
 comments: true
 permalink: /about/

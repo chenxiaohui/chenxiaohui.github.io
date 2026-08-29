@@ -22,6 +22,7 @@ jobs:
       - run: JEKYLL_ENV=production bundle exec jekyll build
       - run: bundle exec ruby -Itest test/home_visual_test.rb
       - run: bundle exec ruby -Itest test/archive_visual_test.rb
+      - run: bundle exec ruby -Itest test/site_shell_visual_test.rb
       - run: bundle exec ruby -Itest test/public_content_test.rb
       - run: node test/archive_interaction_test.js
       - run: bundle exec ruby tools/validate_site.rb _site
